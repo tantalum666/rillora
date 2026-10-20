@@ -1,0 +1,43 @@
+
+> ios-prototype@0.1.0 test:runtime
+> playwright test --grep cancelled touch
+
+[WebServer] (node:82217) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+[WebServer] (Use `node --trace-warnings ...` to show where the warning was created)
+
+Running 1 test using 1 worker
+
+(node:82218) Warning: The 'NO_COLOR' env is ignored due to the 'FORCE_COLOR' env being set.
+(Use `node --trace-warnings ...` to show where the warning was created)
+  ✘  1 tests/mobile-runtime.spec.ts:67:1 › a cancelled touch drag does not consume the next deliberate card tap (6.8s)
+
+
+  1) tests/mobile-runtime.spec.ts:67:1 › a cancelled touch drag does not consume the next deliberate card tap 
+
+    Error: expect(locator).toHaveText(expected) failed
+
+    Locator:  getByTestId('tap-count')
+    Expected: "1"
+    Received: "0"
+    Timeout:  5000ms
+
+    Call log:
+      - Expect "toHaveText" with timeout 5000ms
+      - waiting for getByTestId('tap-count')
+        14 × locator resolved to <output data-testid="tap-count">0</output>
+           - unexpected value "0"
+
+
+      81 |     await expect(carousel).toHaveAttribute("data-dragging", "false");
+      82 |     await card.click();
+    > 83 |     await expect(page.getByTestId("tap-count")).toHaveText("1");
+         |                                                 ^
+      84 |     expect(errors).toEqual([]);
+      85 |   } finally { await input.detach(); }
+      86 | });
+        at /Users/tantalum/Documents/电子遗嘱app/apps/ios-prototype/tests/mobile-runtime.spec.ts:83:49
+
+    Error Context: test-results/mobile-runtime-a-cancelled-f23eb-he-next-deliberate-card-tap/error-context.md
+
+  1 failed
+    tests/mobile-runtime.spec.ts:67:1 › a cancelled touch drag does not consume the next deliberate card tap 

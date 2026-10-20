@@ -1,0 +1,262 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@22/22.22.3/bin/node",
+      "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "output/qa/rillora-native-cross-platform-20261012/playwright-remaining.config.mjs"
+    ],
+    "configFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/playwright-remaining.config.mjs",
+    "rootDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-green-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "legal-return.spec.mjs"
+        ],
+        "timeout": 15000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-green.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 4174 --strictPort",
+      "cwd": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web",
+      "url": "http://127.0.0.1:4174",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "legal-return.spec.mjs",
+      "file": "legal-return.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "legal return rechecks an existing session without another login en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3120,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:31:18.959Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-33996bd3f850ab2a75e5",
+          "file": "legal-return.spec.mjs",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "legal return rechecks an existing session without another login zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2978,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:31:22.632Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-62a970fa991b730b4b53",
+          "file": "legal-return.spec.mjs",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "saved-copy Account link resumes the existing workspace",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2580,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:31:25.617Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-a58df57e87384e784f4c",
+          "file": "legal-return.spec.mjs",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "legal return keeps signed-out visitors public without accepting terms",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3706,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:31:28.206Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-38400abf72607e1dd26c",
+          "file": "legal-return.spec.mjs",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "moving between public legal pages never fetches private workspace data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1433,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:31:31.919Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-34752021ad022e3bc6b2",
+          "file": "legal-return.spec.mjs",
+          "line": 58,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T14:31:18.043Z",
+    "duration": 15549.890000000001,
+    "expected": 5,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

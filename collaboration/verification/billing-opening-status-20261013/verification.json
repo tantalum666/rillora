@@ -1,0 +1,39 @@
+{
+  "checkedAt": "2026-10-12T17:12:17.036959+00:00",
+  "scope": "Read-only explanation of why configured Stripe Live cannot yet be purchased through Rillora",
+  "source": "b86c05e399512154909037bf2e8fbe156367aee7",
+  "currentAccountVerified": true,
+  "runtimeVerified": true,
+  "sourceGuardsInspected": [
+    "infra/aws/lib/rillora-production-runtime.ts",
+    "apps/api/src/config.ts",
+    "apps/api/src/app.ts",
+    "apps/api/src/stripe-production-secret.ts",
+    "apps/api/src/stripe-production-adapter.ts",
+    "apps/api/src/stripe-commerce-executor.ts",
+    "apps/api/src/commerce-routes.ts"
+  ],
+  "directDatabaseReadRepeated": false,
+  "databaseBoundary": "The source requires active sales/route/price/operator/plane and production entitlement settings; latest actual UI shows billing closed. Individual production database flags were not queried anew in this status pass.",
+  "officialSource": "https://docs.stripe.com/api/checkout/sessions/create",
+  "officialFact": "automatic_tax is an optional Checkout parameter; currently enabled charges/payouts are separately verified",
+  "toolBoundary": "Stripe plugin and operator CLI profile could not authenticate; reused the existing validated Rillora runtime restricted credential in process memory, no new access, login request, credential save or provider mutation. Initial generic ECS service-count assertion failed because the identity worker is also a service; then selected the actual named API service.",
+  "newImplementation": false,
+  "newTestsOrDeployment": false,
+  "chargesCreated": false,
+  "settingsChanged": false,
+  "fanPassTouched": false,
+  "reading": "Same release workflow, reused complete Markdown baseline; read current handoff, live configuration full, source/commerce guard ranges and official Stripe references. No new repo-wide scan.",
+  "decisionLogAppendNeeded": false,
+  "decisionReason": "Owner asks for status and remaining work, not a new price, tax declaration or immediate sales mutation.",
+  "preservation": "Safe original readbacks and runner are normal Git; third-party Stripe reference download is a reproducible vendor documentation cache. No secret/API key/browser auth/provider personal body was persisted.",
+  "closure": {
+    "focusedContract": "docs/live-configuration-20261009.md",
+    "releaseInventory": "docs/release-readiness.md",
+    "handoff": "docs/handoff.md",
+    "history": "docs/handoff-history-20261013-before-billing-opening-status.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md",
+    "sourceAndReadableScansPassed": true,
+    "reproducibleInventoryExcluded": true
+  }
+}

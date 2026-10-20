@@ -1,0 +1,414 @@
+[
+  [
+    "/Resources/ContentKey78A057A4/Properties/KeyPolicy/Statement/0/Principal/AWS/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":iam::",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":root"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":iam::133857166372:root"
+    ]
+  ],
+  [
+    "/Resources/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A/Properties/Code/S3Bucket",
+    {
+      "Fn::Sub": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1"
+    },
+    "cdk-hnb659fds-assets-133857166372-eu-central-1"
+  ],
+  [
+    "/Resources/MigrationTask69EAEF9D/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+    "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+  ],
+  [
+    "/Resources/MigrationTaskExecutionRoleDefaultPolicy91A4C2FE/Properties/PolicyDocument/Statement/0/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":repository/",
+      {
+        "Fn::Sub": "cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/5/Resource/0/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":db:",
+      {
+        "Ref": "DatabaseB269D8BB"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:db:",
+      {
+        "Ref": "DatabaseB269D8BB"
+      }
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/5/Resource/1/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":snapshot:rillora-production-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/6/Resource/0/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":snapshot:rillora-production-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/6/Resource/1/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":pg:",
+      {
+        "Ref": "PostgresParameters8EA48B37"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:pg:",
+      {
+        "Ref": "PostgresParameters8EA48B37"
+      }
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/6/Resource/2/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":subgrp:",
+      {
+        "Ref": "DatabaseSubnets"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:subgrp:",
+      {
+        "Ref": "DatabaseSubnets"
+      }
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/6/Resource/3/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":og:default:postgres-16"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:og:default:postgres-16"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/7/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":db:rillora-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/8/Resource/0/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":snapshot:rillora-production-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/8/Resource/1/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":db:rillora-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/9/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":db:rillora-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:db:rillora-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/OperatorDefaultPolicyA84BD3A6/Properties/PolicyDocument/Statement/10/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":snapshot:rillora-production-recovery-*"
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*"
+    ]
+  ],
+  [
+    "/Resources/RecoveryTaskD940248B/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+    "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+  ],
+  [
+    "/Resources/RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9/Properties/PolicyDocument/Statement/0/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":repository/",
+      {
+        "Fn::Sub": "cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+    ]
+  ],
+  [
+    "/Resources/RuntimeApiTaskCF645D67/Properties/ContainerDefinitions/0/Image/Fn::Sub",
+    "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+    "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50"
+  ],
+  [
+    "/Resources/RuntimeApiTaskExecutionRoleDefaultPolicy98299827/Properties/PolicyDocument/Statement/0/Resource/Fn::Join/1",
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:",
+      {
+        "Ref": "AWS::AccountId"
+      },
+      ":repository/",
+      {
+        "Fn::Sub": "cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1"
+      }
+    ],
+    [
+      "arn:",
+      {
+        "Ref": "AWS::Partition"
+      },
+      ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+    ]
+  ],
+  [
+    "/Resources/VpcdataSubnet1SubnetE2B009FB/Properties/AvailabilityZone",
+    {
+      "Fn::Select": [
+        0,
+        {
+          "Fn::GetAZs": ""
+        }
+      ]
+    },
+    "eu-central-1a"
+  ],
+  [
+    "/Resources/VpcdataSubnet2SubnetAD08DFFF/Properties/AvailabilityZone",
+    {
+      "Fn::Select": [
+        1,
+        {
+          "Fn::GetAZs": ""
+        }
+      ]
+    },
+    "eu-central-1b"
+  ],
+  [
+    "/Resources/VpcmaintenanceSubnet1SubnetB36026C0/Properties/AvailabilityZone",
+    {
+      "Fn::Select": [
+        0,
+        {
+          "Fn::GetAZs": ""
+        }
+      ]
+    },
+    "eu-central-1a"
+  ],
+  [
+    "/Resources/VpcmaintenanceSubnet2Subnet5D5D514C/Properties/AvailabilityZone",
+    {
+      "Fn::Select": [
+        1,
+        {
+          "Fn::GetAZs": ""
+        }
+      ]
+    },
+    "eu-central-1b"
+  ]
+]

@@ -4,7 +4,22 @@ Role: production transport implementation and acceptance contract
 
 Status: PRODUCTION HTTPS AND RESTRICTED REVIEW VERIFIED; GENERAL CUSTOMERS CLOSED
 
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-07 (Asia/Hong_Kong)
+
+## October7 current runtime
+
+API16/schema0093 is deployed from reviewed Dot integration. Image and same-three-identity
+expiry are the only task changes against API14; one task is HEALTHY. Review ends
+2026-10-08T20:00:00Z. Customers/live billing remain closed; no schema migration ran.
+[Deployment and exact digest](dot-rollout-20261007.md).
+
+## HISTORICAL — October3 reviewed runtime
+
+API11/schema0093 is deployed with the same restricted review identities/expiry and
+closed live billing.93checksums, unchanged private records, constrained runtime/TLS,
+1/1healthy service and new successful retention heartbeats are verified. The older
+checkpoints below keep their dates. [Current execution](review-rollout-20261003.md).
+
 
 ## September30 restricted review runtime
 

@@ -18,7 +18,6 @@ struct AuthenticatedProfileContent: View {
     let addContact: () -> Void
     let editContact: (TrustedContact) -> Void
 
-    @State private var isConfirmingAllSessionRevocation = false
     @State private var sharingConnections: [SharingConnection] = []
     @State private var sharingLoadFailed = false
     @State private var sharingLoaded = false
@@ -26,6 +25,11 @@ struct AuthenticatedProfileContent: View {
 
     var body: some View {
         RilloraList {
+            Section {
+                AccountIdentityView(plannerPublicID: snapshot.session.plannerPublicId,
+                                    service: startHereService as? any AccountIdentityServing,
+                                    onAuthenticationRequired: store.invalidateAuthentication)
+            }
             if snapshot.session.usesDevelopmentIdentity {
                 developmentIdentitySection
             }
@@ -43,27 +47,16 @@ struct AuthenticatedProfileContent: View {
         .accessibilityIdentifier("profile.list")
         .task(id: sharingRevision) { await loadConnections() }
         .onChange(of: scenePhase) { _, phase in if phase == .active { Task { await loadConnections() } } }
-        .confirmationDialog(
-            "Sign out all Rillora devices?",
-            isPresented: $isConfirmingAllSessionRevocation,
-            titleVisibility: .visible
-        ) {
-            Button("Sign out all devices", role: .destructive) {
-                Task { await authenticationStore.signOutAll() }
-            }
-            Button("Cancel", role: .cancel) {}
-        } message: {
-            Text("Every active Rillora app session will stop working, including this device.")
-        }
+
     }
 
     private var developmentIdentitySection: some View {
         Section {
-            Label("Local QA identity", systemImage: "hammer.fill")
+            Label(String(localized: "Local QA identity"), systemImage: "hammer.fill")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(RilloraTheme.ink)
         } footer: {
-            Text("Debug only · not production sign-in")
+            Text(String(localized: "Debug only · not production sign-in"))
         }
         .listRowBackground(RilloraTheme.peach.opacity(0.38))
     }
@@ -77,8 +70,8 @@ struct AuthenticatedProfileContent: View {
                 )
             } label: {
                 ProfileTaskLabel(
-                    title: "Plan & access",
-                    detail: "Subscription and included features",
+                    title: String(localized: "Plan & access"),
+                    detail: String(localized: "Subscription and included features"),
                     systemImage: "rectangle.stack.fill",
                     badge: commerceStore.currentPlanLabel
                 )
@@ -87,10 +80,10 @@ struct AuthenticatedProfileContent: View {
             NavigationLink {
                 FamilyMaintenanceView(service: maintenanceService, overviewStore: store)
             } label: {
-                ProfileTaskLabel(title: "Shared reviews", detail: "Check directions and review updates together", systemImage: "person.2.badge.gearshape")
+                ProfileTaskLabel(title: String(localized: "Shared reviews"), detail: String(localized: "Check directions and review updates together"), systemImage: "person.2.badge.gearshape")
             }.accessibilityIdentifier("maintenance.open")
         } header: {
-            ProfileSectionHeader("Your plan")
+            ProfileSectionHeader(String(localized: "Your plan"))
         }
         .rilloraProfileActionRows()
     }
@@ -104,10 +97,10 @@ struct AuthenticatedProfileContent: View {
                 } label: {
                     ProfileTaskLabel(
                         title: contact.displayName,
-                        detail: contact.relationshipLabel ?? "Relationship not added",
+                        detail: contact.relationshipLabel ?? String(localized: "Relationship not added"),
                         systemImage: contactIcon(for: contact),
                         badge: sharingConnections.first(where: { $0.personPublicId == contact.publicId })?.statusLabel
-                            ?? (sharingLoadFailed ? "Connection unavailable" : sharingLoaded ? "Not invited" : "Checking connection…")
+                            ?? (sharingLoadFailed ? String(localized: "Connection unavailable") : sharingLoaded ? String(localized: "Not invited") : String(localized: "Checking connection…"))
                     )
                 }
                 .buttonStyle(RilloraQuietButtonStyle())
@@ -117,10 +110,10 @@ struct AuthenticatedProfileContent: View {
             NavigationLink {
                 SharedWithMeView(service: sharingService, onOpenInvitation: onOpenInvitation)
             } label: {
-                ProfileTaskLabel(title: "Shared with me", detail: "Items others let you see", systemImage: "person.2")
+                ProfileTaskLabel(title: String(localized: "Shared with me"), detail: String(localized: "Items others let you see"), systemImage: "person.2")
             }.accessibilityIdentifier("shared.open")
         } header: {
-            ProfileSectionHeader("People")
+            ProfileSectionHeader(String(localized: "People"))
         }
         .rilloraProfileActionRows()
         .rilloraEntrance()
@@ -141,26 +134,29 @@ struct AuthenticatedProfileContent: View {
         Section {
             if let dataService = startHereService as? any AccountDataServing {
                 NavigationLink { AccountDataView(service: dataService, overviewStore: store, onDeletionRequested: authenticationStore.endSessionAfterDeletion) } label: {
-                    ProfileTaskLabel(title: "My data", detail: "Backups and saved copies", systemImage: "externaldrive")
+                    ProfileTaskLabel(title: String(localized: "My data"), detail: String(localized: "Backups and saved copies"), systemImage: "externaldrive")
                 }.accessibilityIdentifier("account-data.open")
             }
             NavigationLink { StartHerePreviewView(service: startHereService) } label: {
-                ProfileTaskLabel(title: "Start Here guide", detail: "Create a guide you can keep", systemImage: "square.and.arrow.up")
+                ProfileTaskLabel(title: String(localized: "Start Here guide"), detail: String(localized: "Create a guide you can keep"), systemImage: "square.and.arrow.up")
             }.accessibilityIdentifier("start-here.open")
             NavigationLink { OfficialSetupView(service: officialSetupService, overviewStore: store) } label: {
-                ProfileTaskLabel(title: "Account inheritance", detail: "Preparation & after-death guidance", systemImage: "book")
+                ProfileTaskLabel(title: String(localized: "Account inheritance"), detail: String(localized: "Preparation & after-death guidance"), systemImage: "book")
             }.accessibilityIdentifier("official-setup.open")
-        } header: { ProfileSectionHeader("Tools") }
+        } header: { ProfileSectionHeader(String(localized: "Tools")) }
         .rilloraProfileActionRows()
     }
 
     private var supportSection: some View {
         Section {
-            NavigationLink { RilloraSafetyPrivacyView() } label: {
-                ProfileTaskLabel(title: "Safety & privacy", detail: "Your data and permissions", systemImage: "lock.shield")
+            NavigationLink { RilloraSafetyPrivacyView(authenticationStore: authenticationStore) } label: {
+                ProfileTaskLabel(title: String(localized: "Safety & privacy"), detail: String(localized: "Your data and permissions"), systemImage: "lock.shield")
             }.accessibilityIdentifier("profile.safety")
+            NavigationLink { AppPreferencesView() } label: {
+                ProfileTaskLabel(title: String(localized: "Language & appearance"), detail: String(localized: "App language and display mode"), systemImage: "slider.horizontal.3")
+            }.accessibilityIdentifier("profile.preferences")
             NavigationLink { AboutRilloraView() } label: {
-                ProfileTaskLabel(title: "About Rillora", detail: "Version and app information", systemImage: "info.circle")
+                ProfileTaskLabel(title: String(localized: "About Rillora"), detail: String(localized: "Version and app information"), systemImage: "info.circle")
             }.accessibilityIdentifier("profile.about")
         } header: { ProfileSectionHeader("Rillora") }
         .rilloraProfileActionRows()
@@ -172,32 +168,24 @@ struct AuthenticatedProfileContent: View {
                 Task { await authenticationStore.signOut() }
             } label: {
                 Label(
-                    authenticationStore.isWorking ? "Signing out…" : "Sign out",
+                    authenticationStore.isWorking ? String(localized: "Signing out…") : String(localized: "Sign out"),
                     systemImage: "rectangle.portrait.and.arrow.right"
                 )
                 .foregroundStyle(RilloraTheme.clay)
             }
             .disabled(authenticationStore.isWorking)
             .accessibilityIdentifier("account.sign-out")
-
-            Button(role: .destructive) {
-                isConfirmingAllSessionRevocation = true
-            } label: {
-                Label("Sign out all Rillora devices", systemImage: "rectangle.stack.badge.minus")
-                    .foregroundStyle(RilloraTheme.clay)
+            if let message = authenticationStore.errorMessage {
+                Text(message).foregroundStyle(RilloraTheme.clay).accessibilityIdentifier("account.sign-out-error")
             }
-            .disabled(authenticationStore.isWorking)
-            .accessibilityIdentifier("account.sign-out-all")
         } header: {
-            ProfileSectionHeader("Sessions")
-        } footer: {
-            Text("Rillora sessions only")
+            ProfileSectionHeader(String(localized: "Sessions"))
         }
         .rilloraProfileActionRows()
     }
 
     private var authenticationLabel: String {
-        snapshot.session.usesDevelopmentIdentity ? "Development" : "Secure session"
+        snapshot.session.usesDevelopmentIdentity ? String(localized: "Development") : String(localized: "Secure session")
     }
 
     private var continuityStatus: String {
@@ -207,7 +195,7 @@ struct AuthenticatedProfileContent: View {
     private var motivationLabel: String {
         guard let rawValue = snapshot.plan.motivation,
               let motivation = PlanMotivation(rawValue: rawValue) else {
-            return "Not selected"
+            return String(localized: "Not selected")
         }
         return motivation.label
     }

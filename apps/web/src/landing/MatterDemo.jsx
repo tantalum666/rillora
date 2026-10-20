@@ -1,3 +1,5 @@
+import { PublicLink } from "../PublicLink.jsx";
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { motion, useReducedMotion } from "motion/react";
 import {
@@ -13,11 +15,14 @@ import { Reveal } from "./LandingMotion.jsx";
 const icons = { bank: Bank, file: FileText, laptop: Laptop, coin: CurrencyBtc };
 
 export function MatterDemo() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState(0);
   const reduce = useReducedMotion();
+  const [interacted, setInteracted] = useState(false);
   const item = matterExamples[selected];
   const Icon = icons[item.icon];
   function select(index) {
+    setInteracted(true);
     setSelected(index);
   }
   return (
@@ -30,16 +35,14 @@ export function MatterDemo() {
       <div className="lp-section-body">
         <Reveal className="lp-section-heading">
           <div>
-            <h2 id="lp-organise-title">What goes in your map.</h2>
-            <p>
-              An account, a document, a device. Give it a place and a next step.
-            </p>
+            <h2 id="lp-organise-title">{t("public.matter.title")}</h2>
+            <p>{t("public.matter.intro")}</p>
           </div>
         </Reveal>
         <div
           className="lp-category-choices"
           role="group"
-          aria-label="Choose a matter example"
+          aria-label={t("public.matter.choose")}
         >
           {matterExamples.map((example, index) => (
             <button
@@ -48,13 +51,13 @@ export function MatterDemo() {
               aria-pressed={index === selected}
               onClick={() => select(index)}
             >
-              {example.label}
+              {t(example.labelKey)}
             </button>
           ))}
         </div>
         <div className="lp-organise-scene">
           <div className="lp-map-rail">
-            <p>Your map</p>
+            <p>{t("public.matter.yourMap")}</p>
             {matterExamples.map((example, index) => {
               const RowIcon = icons[example.icon];
               return (
@@ -65,18 +68,18 @@ export function MatterDemo() {
                   onClick={() => select(index)}
                 >
                   <RowIcon aria-hidden="true" size={24} />
-                  <span>{example.title}</span>
+                  <span>{t(example.titleKey)}</span>
                   <ArrowRight size={16} aria-hidden="true" />
                 </button>
               );
             })}
-            <small>Interactive example · nothing is saved</small>
+            <small>{t("public.matter.unsaved")}</small>
           </div>
           <div className="lp-matter-sheet" aria-live="polite">
             <motion.div
               key={item.id}
-              initial={reduce ? false : { opacity: 0, y: 10, rotate: 0.4 }}
-              animate={{ opacity: 1, y: 0, rotate: 0 }}
+              initial={!interacted || reduce ? false : { opacity: 0, y: 10, rotate: 0.4 }}
+              animate={interacted ? { opacity: 1, y: 0, rotate: 0 } : undefined}
               transition={{ duration: reduce ? 0 : 0.35 }}
             >
               <div className="lp-matter-sheet-heading">
@@ -84,29 +87,28 @@ export function MatterDemo() {
                   <Icon size={30} aria-hidden="true" />
                 </span>
                 <div>
-                  <small>{item.type}</small>
-                  <h3>{item.title}</h3>
+                  <small>{t(item.typeKey)}</small>
+                  <h3>{t(item.titleKey)}</h3>
                 </div>
               </div>
               <dl>
-                {item.fields.map(([label, value]) => (
-                  <div key={label}>
-                    <dt>{label}</dt>
-                    <dd>{value}</dd>
+                {item.fields.map(([labelKey, valueKey]) => (
+                  <div key={labelKey}>
+                    <dt>{t(labelKey)}</dt>
+                    <dd>{t(valueKey)}</dd>
                   </div>
                 ))}
                 <div>
-                  <dt>Notes</dt>
-                  <dd className="lp-matter-note">{item.note}</dd>
+                  <dt>{t("public.matter.notes")}</dt>
+                  <dd className="lp-matter-note">{t(item.noteKey)}</dd>
                 </div>
               </dl>
             </motion.div>
           </div>
         </div>
-        <a className="lp-section-next" href="/#people">
-          From what matters, to who it matters to{" "}
+        <PublicLink className="lp-section-next" href="/#people">{t("public.matter.next")}{" "}
           <ArrowRight aria-hidden="true" size={20} />
-        </a>
+        </PublicLink>
       </div>
     </section>
   );

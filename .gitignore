@@ -16,6 +16,8 @@
 *.pfx
 *.key
 *.pem
+# Reviewed public RDS roots; the Docker build verifies their exact digest.
+!/apps/api/certificates/rds/global-bundle.pem
 *.keychain*
 .auth0/
 .aws/
@@ -29,6 +31,7 @@ dist/
 dist-public/
 dist-production/
 dist-production-review/
+dist-production-live/
 build/
 coverage/
 cdk.out*/

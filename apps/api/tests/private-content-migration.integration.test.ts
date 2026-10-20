@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { randomUUID } from "node:crypto";
 import { afterAll,beforeAll,describe,it,expect } from "vitest";
 import request from "./http-fixture.js";
@@ -8,7 +9,7 @@ import { runMigrations } from "../src/migrate.js";
 import { migratePrivateContent,inspectPrivateContent,enforcePrivateContent } from "../src/migrate-private-content.js";
 import { TestContentKeys } from "./content-test-keys.js";
 
-const databaseUrl='postgresql:///continuity_content_migration_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql:///continuity_content_migration_test', 'continuity_content_migration_test');
 const A='a1111111-1111-4111-8111-111111111111',B='b2222222-2222-4222-8222-222222222222';
 const env={NODE_ENV:'test',DATABASE_URL:databaseUrl,ALLOW_DEV_AUTH:'true',ALLOW_FAMILY_MAINTENANCE_PREVIEW:'true',CORS_ORIGINS:'http://localhost:4261'};
 const base=loadConfig(env),config=loadConfig({...env,CONTENT_PROTECTION_MODE:'encrypted',CONTENT_KEY_NAMESPACE:'content-migration-test',CONTENT_KMS_KEY_ARN:'arn:aws:kms:eu-central-1:000000000000:key/11111111-1111-4111-8111-111111111111'});
@@ -17,8 +18,8 @@ let plainPool:DatabasePool,pool:DatabasePool,app:ReturnType<typeof createApp>,ow
 const content={category:'account',title:'Historical sentinel title',institutionName:'Historical sentinel provider',locationHint:'Historical sentinel location',notes:'Historical sentinel notes',details:{}};
 describe.sequential('Existing-data migration and paid ciphertext snapshots',()=>{
  beforeAll(async()=>{
-  if(databaseUrl!=='postgresql:///continuity_content_migration_test')throw Error('Dedicated local database only');
-  await runMigrations(databaseUrl);plainPool=createPool(base);pool=createPool(config,service);
+  await assertDedicatedTestDatabase(databaseUrl, 'continuity_content_migration_test');
+    await runMigrations(databaseUrl);plainPool=createPool(base);pool=createPool(config,service);
   await plainPool.query('truncate app.planners restart identity cascade');
   await plainPool.query('update app.private_content_policy set require_encrypted_writes=false');
   await plainPool.query('update app.commerce_runtime_policy set sharing_limits_enabled=true');
@@ -74,9 +75,13 @@ describe.sequential('Existing-data migration and paid ciphertext snapshots',()=>
  it('preserves saved paid-period contents and denies known post-cutoff references',async()=>{
   await pool.query('update app.commerce_entitlement_grants set expires_at=clock_timestamp() where id=$1',[entitlement]);
   const current=(await request(app).get(`/v1/matters/${matter}`).set(owner).expect(200)).body.matter;
-  await request(app).patch(`/v1/matters/${matter}`).set(owner).send({expectedVersion:current.version,notes:'NEW POST-CUTOFF SECRET'}).expect(200);
+  await request(app).patch(`/v1/matters/${matter}`).set(owner).send({expectedVersion:current.version,title:'NEW POST-CUTOFF TITLE',notes:'NEW POST-CUTOFF SECRET'}).expect(200);
   const shared=(await request(app).get('/v1/sharing/shared-with-me').set(recipient).expect(200)).body.items[0];
   expect(shared.accessMode).toBe('saved');expect(shared.fields.notes).toBe(content.notes);
+  const guide=(await request(app).post('/v1/exports/start-here/preview').set(owner)
+   .send({recipientConnectionPublicId:connection}).expect(201)).body.package;
+  expect(guide.matters[0].title).toBe(content.title);
+  expect(JSON.stringify(guide)).not.toMatch(/NEW POST-CUTOFF|rce1_/);
   const latest=(await pool.query('select notes from app.matter_items where public_id=$1',[matter])).rows[0].notes.slice(5);
   const recipientId=(await pool.query('select id::text from app.planners where public_id=$1',[B])).rows[0].id;
   const rejected=await withPlannerDatabase(pool,recipientId,async client=>(await client.query('select app.content_read_values($1,true) as data',[[latest]])).rows[0].data);

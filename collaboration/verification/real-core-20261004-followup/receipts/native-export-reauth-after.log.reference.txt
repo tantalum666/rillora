@@ -1,0 +1,711 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj -scheme Rillora -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /tmp/rillora-review-release-20260930 -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile RILLORA_CUSTOMER_ACCESS_ENABLED=NO "-only-testing:RilloraTests/StartHerePreviewStoreTests" -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-04T12-59-37-665Z_pid21617_765e1488.xctestproducts build-for-testing
+
+Build settings from command line:
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+    RILLORA_CUSTOMER_ACCESS_ENABLED = NO
+
+2026-10-04 20:59:38.988 xcodebuild[73400:25386176] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-04T12-59-37-665Z_pid21617_765e1488.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  InteropForGoogle: https://github.com/google/interop-ios-for-google-sdks.git @ 101.0.0
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS @ 9.2.0
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.1.0
+  AppCheck: https://github.com/google/app-check.git @ 11.3.1
+  GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.3
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  Pow: https://github.com/EmergeTools/Pow @ 1b4b1dd
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  Promises: https://github.com/google/promises.git @ 2.4.1
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (43 targets)
+    Target 'RilloraTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer' (no dependencies)
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow_Pow' in project 'Pow' (no dependencies)
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'GULUserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+    Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+    Target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+SwiftDriver Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Rillora (in target 'Rillora' from project 'Rillora')
+
+EmitSwiftModule normal arm64 (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ StartHerePreviewStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ RilloraAPIError.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/RilloraAPIError.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/RilloraAPIError.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling RilloraAPIError.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 Compiling\ FamilyMaintenanceModels.swift,\ FamilyMaintenanceStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ AccountDataView.swift,\ AccountDeletionView.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Account/AccountDataView.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Account/AccountDeletionView.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Account/AccountDataView.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Account/AccountDeletionView.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ OfficialSetupStore.swift,\ OverviewStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/OfficialSetup/OfficialSetupStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Overview/OverviewStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/OfficialSetup/OfficialSetupStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Overview/OverviewStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ SharingModels.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/SharingModels.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/SharingModels.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ InvitationAcceptView.swift,\ MatterEditorStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Matters/MatterEditorStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Matters/MatterEditorStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ PlanMotivationStore.swift,\ RoleAssignmentPolicyStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Plan/PlanMotivationStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Plan/PlanMotivationStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ SharedAccessStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ APIClient.swift,\ AccountDataModels.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/APIClient.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/AccountDataModels.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/APIClient.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Domain/AccountDataModels.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ FirstUseGuideStore.swift,\ HTTPTransport.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/FirstUse/FirstUseGuideStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/HTTPTransport.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/FirstUse/FirstUseGuideStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/API/HTTPTransport.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ SimulationStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Simulation/SimulationStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Simulation/SimulationStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ UITestPresentationFixtures.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/App/UITestPresentationFixtures.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/App/UITestPresentationFixtures.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling StartHerePreviewStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 Compiling\ TrustedContactEditorStore.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling SimulationStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SharedAccessStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling UITestPresentationFixtures.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling FirstUseGuideStore.swift, HTTPTransport.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlanMotivationStore.swift, RoleAssignmentPolicyStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling OfficialSetupStore.swift, OverviewStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling FamilyMaintenanceModels.swift, FamilyMaintenanceStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SharingModels.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling TrustedContactEditorStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling APIClient.swift, AccountDataModels.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling InvitationAcceptView.swift, MatterEditorStore.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling AccountDataView.swift, AccountDeletionView.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriver\ Compilation Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for Rillora (in target 'Rillora' from project 'Rillora')
+
+SwiftDriver\ Compilation\ Requirements Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.abi.json (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.abi.json /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftsourceinfo (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Ld /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib normal (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -filelist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.LinkFileList -install_name @rpath/Rillora.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -framework CoreGraphics -framework CoreText -framework Foundation -framework LocalAuthentication -framework Security -framework UIKit -framework Security -framework DeviceCheck -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0.build/Objects-normal/arm64/Auth0.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0.build/Objects-normal/arm64/Auth0-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SimpleKeychain.build/Debug-iphonesimulator/SimpleKeychain.build/Objects-normal/arm64/SimpleKeychain.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SimpleKeychain.build/Debug-iphonesimulator/SimpleKeychain.build/Objects-normal/arm64/SimpleKeychain-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/JWTDecode.build/Debug-iphonesimulator/JWTDecode.build/Objects-normal/arm64/JWTDecode.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/JWTDecode.build/Debug-iphonesimulator/JWTDecode.build/Objects-normal/arm64/JWTDecode-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GTMAppAuth.build/Debug-iphonesimulator/GTMAppAuth.build/Objects-normal/arm64/GTMAppAuth.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GTMAppAuth.build/Debug-iphonesimulator/GTMAppAuth.build/Objects-normal/arm64/GTMAppAuth-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow.build/Objects-normal/arm64/Pow.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow.build/Objects-normal/arm64/Pow-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftUI-Shimmer.build/Debug-iphonesimulator/Shimmer.build/Objects-normal/arm64/Shimmer.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftUI-Shimmer.build/Debug-iphonesimulator/Shimmer.build/Objects-normal/arm64/Shimmer-linker-args.resp
+
+ConstructStubExecutorLinkFileList /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    construct-stub-executor-link-file-list /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'Rillora' from project 'Rillora')
+
+Ld /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora normal (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app-Simulated.xcent.der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora
+
+ExtractAppIntentsMetadata (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Rillora --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.rillora.ios --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora --dependency-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_dependency_info.dat --stringsdata-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList --metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.DependencyMetadataFileList --static-metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-04 20:59:45.801 appintentsmetadataprocessor[73484:25386613] Starting appintentsmetadataprocessor export
+2026-10-04 20:59:45.806 appintentsmetadataprocessor[73484:25386613] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+SwiftDriver RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleSignIn_GoogleSignIn.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-Logger.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Logger.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Logger.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Promises_FBLPromises.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Promises_FBLPromises.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Promises_FBLPromises.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-Environment.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Environment.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Environment.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GTMSessionFetcher_GTMSessionFetcherCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMSessionFetcher_GTMSessionFetcherCore.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMSessionFetcher_GTMSessionFetcherCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/AppAuth_AppAuthCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/AppAuth_AppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-UserDefaults.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-UserDefaults.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-UserDefaults.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GTMAppAuth_GTMAppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMAppAuth_GTMAppAuth.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMAppAuth_GTMAppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Auth0_Auth0.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+ProcessInfoPlistFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Info.plist /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Info.plist (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-infoPlistUtility /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Info.plist -producttype com.apple.product-type.application -genpkginfo /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PkgInfo -expandbuildsettings -format binary -platform iphonesimulator -additionalcontentfile /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/AppAuth_AppAuth.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/AppAuth_AppAuthCore.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Auth0_Auth0.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GTMAppAuth_GTMAppAuth.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GTMSessionFetcher_GTMSessionFetcherCore.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleSignIn_GoogleSignIn.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-Environment.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-Logger.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/GoogleUtilities_GoogleUtilities-UserDefaults.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Pow_Pow.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Promises_FBLPromises.bundle -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Info.plist
+
+CopySwiftLibs /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Frameworks --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/SystemExtensions --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil -q /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM
+
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM
+
+SwiftCompile normal arm64 Compiling\ MatterEditorStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ APIClientTests.swift,\ ApplePurchaseCoordinatorTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ FamilyMaintenanceTests.swift,\ FirstUseGuideStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/FamilyMaintenanceTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/FirstUseGuideStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/FamilyMaintenanceTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/FirstUseGuideStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ ContactSharingStoreTests.swift,\ DisclosureRehearsalStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ContactSharingStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/DisclosureRehearsalStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ContactSharingStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/DisclosureRehearsalStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ OverviewStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/OverviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/OverviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ StartHerePreviewStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ OfficialSetupStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/OfficialSetupStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/OfficialSetupStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ TrustedContactEditorStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ PlanMotivationStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/PlanMotivationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/PlanMotivationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ SharedAccessStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SharedAccessStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SharedAccessStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RilloraTests (in target 'RilloraTests' from project 'Rillora')
+
+EmitSwiftModule normal arm64 (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ SimulationStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SimulationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/SimulationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling PlanMotivationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 Compiling\ RoleAssignmentPolicyStoreTests.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling OfficialSetupStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SharedAccessStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling TrustedContactEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling OverviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling FamilyMaintenanceTests.swift, FirstUseGuideStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling MatterEditorStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling ContactSharingStoreTests.swift, DisclosureRehearsalStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling SimulationStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for RilloraTests (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation\ Requirements RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+SwiftDriverJobDiscovery normal arm64 Compiling RoleAssignmentPolicyStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling APIClientTests.swift, ApplePurchaseCoordinatorTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-Environment.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Environment.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Environment.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Auth0_Auth0.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Auth0_Auth0.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GTMSessionFetcher_GTMSessionFetcherCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMSessionFetcher_GTMSessionFetcherCore.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMSessionFetcher_GTMSessionFetcherCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/AppAuth_AppAuthCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuthCore.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/AppAuth_AppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/AppAuth_AppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GTMAppAuth_GTMAppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMAppAuth_GTMAppAuth.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GTMAppAuth_GTMAppAuth.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleSignIn_GoogleSignIn.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleSignIn_GoogleSignIn.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Promises_FBLPromises.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Promises_FBLPromises.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Promises_FBLPromises.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-UserDefaults.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-UserDefaults.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-UserDefaults.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-Logger.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Logger.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/GoogleUtilities_GoogleUtilities-Logger.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+Ld /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests normal (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -filelist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -bundle_loader /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora -Xlinker -object_path_lto -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -framework CoreGraphics -framework CoreText -framework Foundation -framework LocalAuthentication -framework Security -framework UIKit -framework Security -framework DeviceCheck -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+ProcessInfoPlistFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Info.plist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/empty-RilloraTests.plist (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-infoPlistUtility /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/empty-RilloraTests.plist -producttype com.apple.product-type.bundle.unit-test -expandbuildsettings -format binary -platform iphonesimulator -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/AppAuth_AppAuth.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/AppAuth_AppAuthCore.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Auth0_Auth0.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GTMAppAuth_GTMAppAuth.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GTMSessionFetcher_GTMSessionFetcherCore.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleSignIn_GoogleSignIn.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-Environment.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-Logger.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/GoogleUtilities_GoogleUtilities-UserDefaults.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Pow_Pow.bundle -scanforprivacyfile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Promises_FBLPromises.bundle -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Info.plist
+
+CopySwiftLibs /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/PlugIns --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/SystemExtensions --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ExtractAppIntentsMetadata (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RilloraTests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.rillora.ios.tests --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --dependency-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat --stringsdata-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList --metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyMetadataFileList --static-metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-04 20:59:47.720 appintentsmetadataprocessor[73508:25386733] Starting appintentsmetadataprocessor export
+2026-10-04 20:59:47.721 appintentsmetadataprocessor[73508:25386733] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest (in target 'RilloraTests' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib
+/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib: replacing existing signature
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app.xcent --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Validate /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-validationUtility /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app -shallow-bundle -infoplist-subpath Info.plist
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-04T12-59-37-665Z_pid21617_765e1488.xctestproducts -destination "platform=iOS Simulator,id=2B8F75C5-7AB3-4CCA-ADB3-CA154E622D43" -collect-test-diagnostics never -disableAutomaticPackageResolution -onlyUsePackageVersionsFromResolvedFile RILLORA_CUSTOMER_ACCESS_ENABLED=NO "-only-testing:RilloraTests/StartHerePreviewStoreTests" -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-real-core-20261004/native-export-reauth-after.xcresult test-without-building
+
+Build settings from command line:
+    RILLORA_CUSTOMER_ACCESS_ENABLED = NO
+
+2026-10-04 20:59:49.207 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-real-core-20261004/native-export-reauth-after.xcresult
+
+2026-10-04 20:59:49.216 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-04 20:59:50.614 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-04 20:59:51.018 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-04 20:59:51.367 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-04 20:59:51.528 xcodebuild[73516:25386793] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-04 21:00:31.305145+0800 Rillora[73843:25391205] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+Test Suite 'Selected tests' started at 2026-10-04 21:00:31.663.
+Test Suite 'RilloraTests.xctest' started at 2026-10-04 21:00:31.664.
+Test Suite 'StartHerePreviewStoreTests' started at 2026-10-04 21:00:31.664.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' passed (0.010 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' passed (0.088 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' passed (0.006 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' passed (0.002 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' passed (0.007 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' passed (0.002 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' passed (0.001 seconds).
+Test Suite 'StartHerePreviewStoreTests' passed at 2026-10-04 21:00:31.788.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.120 (0.124) seconds
+Test Suite 'RilloraTests.xctest' passed at 2026-10-04 21:00:31.788.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.120 (0.124) seconds
+Test Suite 'Selected tests' passed at 2026-10-04 21:00:31.788.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.120 (0.125) seconds
+2026-10-04 21:00:32.134 xcodebuild[73516:25386793] [MT] IDETestOperationsObserverDebug: 41.488 elapsed -- Testing started completed.
+2026-10-04 21:00:32.134 xcodebuild[73516:25386793] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-04 21:00:32.134 xcodebuild[73516:25386793] [MT] IDETestOperationsObserverDebug: 41.488 sec, +41.488 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-real-core-20261004/native-export-reauth-after.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

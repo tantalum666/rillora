@@ -1,0 +1,31 @@
+{
+  "capturedFrom": "2026-10-06T18:43:38.664182+00:00",
+  "capturedThrough": "2026-10-06T18:43:54.711743+00:00",
+  "workFiles": 7314,
+  "uniqueRawObjects": 913,
+  "workBytes": 3005064209,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-021.tar.zst.age",
+      "sha256": "72c53f7517983b3bc4f3c7106de834c3ba1fd8653da11c0a03e5b4cbf1bb342a",
+      "bytes": 233637603,
+      "plainBytes": 743154959,
+      "uniqueObjects": 913
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/dot-integration-20261007/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-dot-integration-20261007/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": ".local-secrets/device-config-20261006",
+      "reason": "credentials_authentication_personal_data_and_raw_device_logs_not_archived"
+    }
+  ],
+  "selection": "All eligible local Dot integration QA, failed and passed Xcode results, exact Debug/Release/Web products, four full cloud browser ZIPs, source reads and merge evidence. Test/build package metadata remains encrypted raw only to avoid ignored readable mirrors. Previous20archives immutable; credentials, dependency/compiler caches and quarantined duplicate readable copies excluded.",
+  "boundary": "PR1 merged into current release branch after Debug/Release,272unit/6UI/174Web/17API/66guards and CI73/20browser checks. No deployment, TestFlight upload, provider settings, actual reset email, purchase, review access extension, retained-account deletion or FanPass change."
+}

@@ -1,0 +1,59 @@
+import {readFileSync,writeFileSync} from 'node:fs';
+import {fileURLToPath} from 'node:url';
+import {createStripeSdkPort} from '../../../apps/api/src/stripe-sdk.ts';
+import {StripeTestAdapter} from '../../../apps/api/src/stripe-test-adapter.ts';
+import {readStripeRecoveryFinancialState} from '../../../apps/api/src/stripe-recovery-financial-state.ts';
+
+const root=fileURLToPath(new URL('../../../',import.meta.url));
+const prior=root+'.local-secrets/payment-recheck-20261009/';
+export const cases=['stripe-failure-checkout.json','stripe-pending-checkout.json','stripe-third-payment.json'].map((name,index)=>{
+ const raw=JSON.parse(readFileSync(prior+name,'utf8')),checkout=raw.checkout??raw;
+ if(checkout.livemode!==false||checkout.payment_status!=='paid'||checkout.amount_total!==8899||checkout.currency!=='usd')throw Error('invalid_original_test_checkout');
+ const subscription=checkout.subscription;
+ if(!subscription||typeof subscription==='string'||subscription.livemode!==false||subscription.status!=='active')throw Error('historical_paid_active_evidence_required');
+ return {name:['failed-refund-then-ended','partial-plus-full-refund-ended','full-refund-ended'][index],checkout,subscription};
+});
+export const readCalls:Record<string,number>={};
+const key=readFileSync(root+'.local-secrets/release-12-stripe-20261005/stripe-test-key.txt','utf8').trim();
+if(!key.startsWith('rk_test_'))throw Error('restricted_test_key_required');
+const base=createStripeSdkPort(key,'test');
+const sdk=new Proxy({...base},{get(target,property){
+ if(typeof property!=='string')return Reflect.get(target,property);
+ if(!property.startsWith('retrieve')&&!property.startsWith('list'))return ()=>{throw Error('provider_mutation_forbidden');};
+ const fn=Reflect.get(target,property);if(typeof fn!=='function')return fn;
+ return async(...args:unknown[])=>{readCalls[property]=(readCalls[property]??0)+1;return fn(...args);};
+}});
+export async function verifyAccount(){
+ const status=await sdk.retrieveAccountStatus!();
+ if(status.id!=='acct_1U6B2RCxTlowhyiG')throw Error('wrong_stripe_account');
+ return {accountMatched:true,testMode:true};
+}
+export async function readCurrent(index:number){
+ const item=cases[index]!,cs=item.checkout;
+ const config={apiKey:key,webhookSecret:'unused-read-only',integrationEnvironment:'staging' as const,
+  expectedAccountId:'acct_1U6B2RCxTlowhyiG',familyProductId:'prod_V6O8lAFbTCDmKd',familyPlanVersion:2,familyPriceVersion:4,
+  familyPriceIds:{annual:'price_1UJe38CxTlowhyiGdx5ypIKJ',monthly:'price_1UHMlhCxTlowhyiGvBEPdb4x'},
+  checkoutSuccessUrl:'https://app.staging.rillora.xyz/?view=access',checkoutCancelUrl:'https://app.staging.rillora.xyz/?view=access',portalReturnUrl:'https://app.staging.rillora.xyz/?view=access'};
+ const adapter=new StripeTestAdapter(config,sdk);
+ const input={providerSubscriptionReference:item.subscription.id,expectedCommerceAccountReference:cs.metadata.rillora_commerce_account_reference,expectedStripeCustomerReference:cs.customer};
+ const first=await adapter.retrieveAuthoritativeSubscription(input);
+ if(!first.providerInvoiceReference)throw Error('original_invoice_required');
+ const financial=await readStripeRecoveryFinancialState(sdk,first.providerInvoiceReference,input.expectedStripeCustomerReference,false);
+ const current=await adapter.retrieveAuthoritativeSubscription(input);
+ for(const field of ['providerInvoiceReference','state','currentPeriodStartsAt','currentPeriodEndsAt','priceCode'] as const){
+  if(current[field]!==first[field])throw Error('provider_changed_during_read');
+ }
+ return {snapshot:{...current,state:financial.override??current.state,observedAt:new Date().toISOString()},
+  financialOverride:financial.override,disputeResolved:financial.resolvedDispute,refundResolved:financial.resolvedRefund,
+  stripePrice:{id:config.familyPriceIds.annual,priceCode:'family_usd_annual_v4',amountMinor:8899,currency:'usd' as const,interval:'year' as const,planVersion:2},stripeProduct:config.familyProductId};
+}
+if(process.argv.includes('--probe')){
+ try{
+  await verifyAccount();const rows=[];
+  for(let i=0;i<cases.length;i++)rows.push({case:cases[i]!.name,observation:await readCurrent(i)});
+  writeFileSync(root+'.local-secrets/recovery-financial-20261010/stripe-current-probe.json',JSON.stringify({at:new Date().toISOString(),rows,readCalls}),{mode:0o600});
+  console.log(JSON.stringify({accountMatched:true,testMode:true,readOnly:true,rows:rows.map(x=>({case:x.case,state:x.observation.snapshot.state,refundOverride:x.observation.financialOverride,renewalIsPossible:x.observation.snapshot.renewalIsPossible})),readCalls}));
+ }catch(error){const e=error as {type?:string;code?:string;statusCode?:number;name?:string;message?:string;stack?:string};
+  const safeMessage=/^(wrong_stripe_account|Recovery [A-Za-z -]+|Stripe Subscription [A-Za-z -]+|Subscription [A-Za-z -]+|One verified [A-Za-z -]+)$/.test(e.message??'')?e.message:undefined;
+  console.error(JSON.stringify({failed:true,type:e.type??'guard',code:e.code??'guard_failed',statusCode:e.statusCode,name:e.name,safeMessage,readCalls,frames:e.stack?.split('\n').slice(1,4)}));process.exitCode=1;}
+}

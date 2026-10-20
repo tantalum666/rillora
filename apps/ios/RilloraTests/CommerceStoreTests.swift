@@ -4,6 +4,30 @@ import XCTest
 
 @MainActor
 final class CommerceStoreTests: XCTestCase {
+    func testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator() async {
+        let suspended = expectation(description: "Previous account status request is in flight")
+        let service = SuspendedFirstCommerceService(entered: suspended)
+        let store = CommerceStore(
+            service: service,
+            storefrontProvider: StubCommerceStorefrontProvider(current: "USA"),
+            storeKitClient: StubStoreKitClient(products: [], purchaseOutcome: .userCancelled,
+                                             appEnvironment: .sandbox),
+            serviceMarketCode: "GLOBAL_US", storeKitProductionEnabled: true
+        )
+        let previous = Task { await store.start(appAccountToken: UUID()) }
+        await fulfillment(of: [suspended], timeout: 2)
+        // Match the shell task cancellation and AuthenticationStore.reset on account change.
+        previous.cancel()
+        store.reset()
+        await store.start(appAccountToken: UUID())
+        XCTAssertEqual(store.applePurchase?.environment, .sandbox)
+
+        await service.releaseFirstRequest()
+        await previous.value
+        XCTAssertEqual(store.applePurchase?.environment, .sandbox,
+                       "A late previous-account request must not reset the new account's purchase state")
+    }
+
     func testRetiredMonthlyProductCannotStartANewPurchase() async {
         let token = UUID(uuidString: "11111111-1111-4111-8111-111111111111")!
         let client = StubStoreKitClient(products: storeKitProducts,
@@ -611,6 +635,7 @@ private func storeKitStatusSnapshot(
 }
 
 private actor StubStoreKitClient: StoreKitPurchasing {
+    private let appEnvironment: ApplePurchaseEnvironment?
     private let products: [StoreKitProductSnapshot]
     private let purchaseOutcome: StoreKitPurchaseOutcome
     private let entitlements: StoreKitEntitlementSnapshot
@@ -629,7 +654,8 @@ private actor StubStoreKitClient: StoreKitPurchasing {
         ),
         subscriptionStatuses: StoreKitSubscriptionStatusSnapshot = .empty,
         updates: [StoreKitTransactionUpdate] = [],
-        statusUpdates: [StoreKitSubscriptionStatusSnapshot] = []
+        statusUpdates: [StoreKitSubscriptionStatusSnapshot] = [],
+        appEnvironment: ApplePurchaseEnvironment? = nil
     ) {
         self.products = products
         self.purchaseOutcome = purchaseOutcome
@@ -637,7 +663,10 @@ private actor StubStoreKitClient: StoreKitPurchasing {
         self.subscriptionStatusSnapshot = subscriptionStatuses
         self.updates = updates
         self.statusUpdates = statusUpdates
+        self.appEnvironment = appEnvironment
     }
+
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { appEnvironment }
 
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
         products.filter { identifiers.contains($0.productID) }
@@ -665,7 +694,8 @@ private actor StubStoreKitClient: StoreKitPurchasing {
     func purchase(
         productID: String,
         appAccountToken: UUID,
-        expectedStorefrontCountryCode: String?
+        expectedStorefrontCountryCode: String?,
+        expectedProduct: StoreKitProductSnapshot?
     ) async throws -> StoreKitPurchaseOutcome {
         purchaseOutcome
     }
@@ -768,6 +798,35 @@ private actor StubCommerceService: CommerceServing {
     func routeRequests() -> [CommercePurchaseRouteRequest] { requests }
     func sandboxRequests() -> [StoreKitSandboxTransactionRequest] {
         submittedSandboxRequests
+    }
+}
+
+private actor SuspendedFirstCommerceService: CommerceServing {
+    private let entered: XCTestExpectation
+    private let base = StubCommerceService()
+    private var first = true
+    private var continuation: CheckedContinuation<Void, Never>?
+
+    init(entered: XCTestExpectation) { self.entered = entered }
+
+    func fetchCommerceStatus(serviceMarketCode: String) async throws -> CommerceStatus {
+        if first {
+            first = false
+            await withCheckedContinuation { continuation in
+                self.continuation = continuation
+                entered.fulfill()
+            }
+        }
+        return try await base.fetchCommerceStatus(serviceMarketCode: serviceMarketCode)
+    }
+
+    func resolvePurchaseRoute(request: CommercePurchaseRouteRequest) async throws -> CommercePurchaseRouteResponse {
+        try await base.resolvePurchaseRoute(request: request)
+    }
+
+    func releaseFirstRequest() {
+        continuation?.resume()
+        continuation = nil
     }
 }
 

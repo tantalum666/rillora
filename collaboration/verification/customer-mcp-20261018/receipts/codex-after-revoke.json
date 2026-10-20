@@ -1,0 +1,18 @@
+{
+  "data": [
+    {
+      "name": "rillora_customer_20261018",
+      "runtimeStatus": null,
+      "pluginId": null,
+      "httpOrigin": "https://app.rillora.xyz",
+      "serverInfo": null,
+      "serverCapabilities": null,
+      "tools": {},
+      "toolsError": "MCP startup failed: handshaking with MCP server failed: Send message error Transport [rmcp::transport::worker::WorkerTransport<rmcp::transport::streamable_http_client::StreamableHttpClientWorker<rmcp::transport::auth::AuthClient<codex_rmcp_client::http_client_adapter::StreamableHttpClientAdapter>>>] error: Auth required, when send initialize request: Send message error Transport [rmcp::transport::worker::WorkerTransport<rmcp::transport::streamable_http_client::StreamableHttpClientWorker<rmcp::transport::auth::AuthClient<codex_rmcp_client::http_client_adapter::StreamableHttpClientAdapter>>>] error: Auth required, when send initialize request",
+      "resources": [],
+      "resourceTemplates": [],
+      "authStatus": "notLoggedIn"
+    }
+  ],
+  "nextCursor": null
+}

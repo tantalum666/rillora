@@ -5,7 +5,70 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-09-30 (review repair request identity and complete matter hydration)
+Last updated: 2026-10-19 (Asia/Hong_Kong)
+
+## October15 Web activation and scoped native closeout
+
+The original token window is closed by fresh negative evidence. Ordinary Web admission and the existing Web sales route are live, while Apple Production routes remain independently held. The dedicated reviewer completed Web/native authentication and a synthetic cross-platform write/read round trip. Owner explicitly confirmed physical legal return to the same account/data, then stopped further physical testing; remaining unsubscribed-device and VoiceOver observations are not claimed as passed. [Current scope](app-review-preflight-20261014.md). All following dated holds and deferrals retain their original scope.
+
+## October13 Web billing capability and identity hold
+
+The Web billing engine is now live-capable with explicit disabled tax automation, currentUSD88.99annual price and production entitlements. Actual new sales and ordinary identity entry remain held until the old Preview Management tokens expire (earliest Hong KongOctober14 04:21). Existing native14and Apple evidence are not reinstalled or rerun; do not infer iOS release from Web configuration. Website destination and customer availability are separate: the real production URL must not show the test-app/sample-data disclaimer. [Exact deployment and remaining time gate](web-billing-activation-20261013.md).
+
+## October13 compact paid-plan page
+
+Both consumer surfaces follow benefits, channel-specific annual price and one primary subscribe/manage action. Web now removes the Free status/accordions and the extra consent form; its explicit button click records only the displayed, freshly revalidated offer. The real production owner session now confirms the compact page in both languages, with the disabled subscribe action matching the retained closed-sales setting. Native Release already uses ApplePurchaseSection; it is read, not rebuilt or newly device-verified here. [Exact scope and tests](plan-purchase-page-20261013.md).
+
+## October12 remaining cross-platform acceptance
+
+Existing real core, signed Apple and Stripe TEST evidence keeps its original date. Current Web acceptance confirms the original account/data, the closed Free branch, both languages and keyboard disclosure. Leaving a public read-only document now re-enters normal session checking; legal-to-legal browsing still fetches no private map. Both Web artifacts are deployed and independently matched. Phone14's earlier home/data confirmation is retained; physical VoiceOver, native legal navigation, unsubscribed device state and a contemporaneous active Apple entitlement comparison remain Owner-deferred for this turn. [Exact scope](native-cross-platform-acceptance-20261012.md).
+
+## October7 account identity and owner organization
+
+Both clients identify the current authenticated account using server-selected identity;
+verified email is transient and optional, never guessed from provider IDs or stale caches.
+Raw matter category, owner progress/status and recipient review are distinct dimensions.
+The native list filters real categories, while Home suggests missing required locators;
+shared review stays optional and permission-bound. Profile language/appearance is a
+secondary settings task, using existing platform persistence. Unsupported provider
+security management cannot be simulated with decorative buttons.
+[Current native implementation and pending runtime](native-ux-refinement-20261006.md).
+
+## October5 native bilingual interface
+
+Owner explicitly includes native iOS in the Chinese UI request. Both clients use the
+same Name / Directions / Details disclosure terms while retaining native interaction.
+Native uses Apple String Catalogs and iOS per-app language settings; changing language
+does not change raw domain values, saved text, market, currency or sharing access.
+[Native implementation and pending Mac acceptance](native-localization-20261005.md)
+are distinct from the separate Web branch and prior deployed English/native4 proofs.
+
+
+## October4 actual core continuation
+
+The native planner changed Name/Details access under real recent authentication;
+the open QQ Web detail followed the allowed field projection and cleared after
+native Stop sharing. Actual native plaintext/full-map/encrypted files opened in Web,
+and the encrypted file also reopened in the native local reader. Current-device
+logout returned both clients to public state; native restart stayed signed out.
+A native export alert could obscure required sign-in; the focused store repair is
+verified by10tests and the actual retry/recovery flow. CI48and uploaded/processed
+1.0(4)include that repair. October5completed real Web import and fresh-auth retry in the independent account.
+Owner then retained that account/data, so irreversible deletion remains deferred.
+The temporary fourth-identity access was removed and the test session ended. Physical
+Apple purchases and public release are not implied complete.
+[Current acceptance](real-core-acceptance-20261004.md).
+
+## October3 strict-review implementation boundary
+
+Both clients distinguish acknowledged writes from failed follow-up reads and prevent
+concurrent editor operations. Deletion requires the same current billing acknowledgement
+for pending purchases as active subscriptions; a race returns400 and refreshes the
+existing confirmation UI without deleting the account. Browser account binding extends
+through downloaded response bodies, while native purchase setup is bounded by account
+lifecycle revision. Readiness never labels counts or rehearsals as verified emergency
+plans. [Strict-review evidence](code-review-20261002.md) is local; previous real-provider
+and deployment evidence retains its original date.
 
 ## September30 request and hydration contract
 
@@ -119,12 +182,14 @@ watchOS不是当前P0平台，也不因Apple Watch研究自动进入MVP：
 
 - iPhone App经用户授权可读取已同步的部分HealthKit历史数据，这本身不要求Watch App，但同步和后台投递不能作为实时或完整保证；
 - 实时第三方Fall Detection需要独立watchOS App、Apple专用entitlement、用户授权和兼容设备；
-- 高采样心率依赖用户可见的真实Workout，不能以隐藏的全天Workout实现死亡监控；
+- 采样频率取决于机型、设置和使用场景，部分新款的测量能力已提高；不能以隐藏的全天Workout规避后台限制或实现死亡监控，设备采样也不等于第三方实时投递；
 - SafetyKit严重车祸事件可由获批iOS App接收，不以Watch App为必要条件；
 - 所有设备事件都只允许进入无披露的`SafetySignal / WelfareCheck`边界，不能进入死亡事实核验或claim/release状态机；
 - 在Owner另行批准、需求证据成立、平台权限获批、隐私／法律／安全审查和实体设备测试计划完成前，不创建Watch target、不增加HealthKit／Fall Detection／SafetyKit entitlement。
 
 证据、误报分析和分阶段建议见[`docs/apple-watch-death-signal-research.md`](apple-watch-death-signal-research.md)。
+
+October19下一版本[条件披露设计](conditional-disclosure-vnext-20261019.md)新增Owner要求：Web／iOS都区分现在共享、仅身后披露和待评估的独立失联条件；指定亲友可先知道安排存在，生前无内容读取权限。具体规则仍为设计，现有运行时、真实披露关闭状态与当前在审版本不变；无Watch用户也必须有完整的未来申请入口。
 
 ## P0 Parity Matrix
 

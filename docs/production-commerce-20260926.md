@@ -1,8 +1,74 @@
 # Production annual commerce preparation
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
-Status: SOURCE AND LOCAL LIFECYCLE VERIFIED; CLOSED WEB DEPLOYED; LIVE BILLING NOT CONFIGURED
-Last updated: 2026-09-26 (Asia/Hong_Kong)
+Status: LIVE BILLING ENGINE DEPLOYED; AUTOMATIC TAX DISABLED; NEW SALES HELD FOR IDENTITY TOKEN EXPIRY
+Last updated: 2026-10-13 (Asia/Hong_Kong)
+
+## October13实际Web计费交付
+
+Owner移除计税策略前置后，tax.mode=disabled实际安装，原商品／USD88.99／年价不变，API25live与目录／权益准备完成。当前新购因既有身份切换要求暂闭：4旧Preview客户端停止签发、两项旧服务实测403，等旧令牌至香港October14 04:21之后再开放。此门与Stripe Tax无关，未制造Live付款。[当前结果](web-billing-activation-20261013.md)。
+
+## October13 Owner移除计税策略阻塞
+
+Owner随后明确“忽略掉计税策略”，取代下方状态解释中继续等待税价策略的前置条件。按[当前实施](web-billing-activation-20261013.md)加入显式disabled模式，automatic_tax=false，保留现有8899USD年价与provider原始税行为；不生成assessmentReference、登记号或免税声明。此处是明确操作选择，缺省not_configured仍不被静默解释为允许收费。正式运行／销售及权益切换分别记录。
+
+## October10 optional Stripe Tax deferral
+
+Owner prioritizes deferring the Stripe Tax automation setup. The processor account freshly confirms charge/payout capability; automatic_tax is optional in Checkout. Stripe Tax activation is not a universal launch prerequisite. The current application still rejects not_configured for new checkout and only checks provider Tax readiness in automatic mode. Preserve the actual source/runtime boundary until an explicit valid non-automated billing policy is implemented/configured; do not fabricate a reviewed_no_collection assessment or call ordinary customer checkout open. [Current decision and evidence](live-configuration-20261009.md).
+
+## October9 configuration checkpoint
+
+Owner directs Live setup without waiting for BR completion; the prior blanket gate is superseded. Actual Product/Price/default and production catalog binding are configured, existing scoped key/HMAC bundle is installed, API17and the18-event Live endpoint are operating. A genuine signed Live configuration event is independently verified without a payment. [Current Live contract](live-configuration-20261009.md) is the authority; October6 sections below are dated prior checkpoints.
+
+Notifications can be enabled separately from new checkout in the existing restricted review runtime. Tax mode not_configured expresses pending facts without inventing an assessment; quote/checkout and purchase routing stay closed, while signature processing and owned management remain separate. Ordinary customer opening, actual tax treatment and real-money lifecycle remain unverified. The full current cloud TEST lifecycle is [separately proven](stripe-cloud-acceptance-20261009.md).
+
+October9 testing-boundary correction: Stripe's [official testing rules](https://docs.stripe.com/testing) prohibit testing live mode with real payment details. The earlier Agent requirement for a prelaunch real-money payment/refund test is withdrawn. Preserve Sandbox lifecycle proof and verify Live configuration/security/nonfinancial delivery; observe legitimate customer transactions when they occur. Do not require merchant self-payments or manufactured transactions to clear a release gate. No real-money lifecycle is retrospectively claimed passed.
+
+## October6 Live merchant and configuration readback
+
+Owner approved reuse of X identity/banking, personally submitted Stripe's final form and
+approved scoped Live MCP access for Rillora only. Actual account retrieval confirms
+charges_enabled/payouts_enabled/details_submitted true, card_payments active and no
+current/past-due/pending-verification requirements. No FanPass or shared-entity website
+change was made. This processor status does not independently settle business/tax facts.
+
+Live product `prod_rillora_family_v2_live` and annual USD8899 Price
+`price_1UNXyZCxTlowhyiGJB6HlBR5` are inactive. Tax behavior remains unspecified until the
+required assessment; active Stripe registrations are empty. Setting an inactive Price
+as default was rejected without mutation; do not silently enable it to bypass that gate.
+Portal `bpc_1UNXzpCxTlowhyiGj6xNlx2w` permits invoice/payment-detail management and
+period-end cancellation, no plan change or public login link. Webhook
+`we_1UNY1yCxTlowhyiGTpwy62qY` has18supported events, pinned API2026-08-26.dahlia and
+is disabled until its runtime is ready. MCP redacted the signing secret, so its actual
+value was read through the provider UI, saved directly to protected local storage and
+hidden again. No secret belongs in Git, model output or a plaintext task environment.
+
+Owner separately approved the dedicated runtime key's3write/9read permissions and
+protected storage, then completed Stripe's required email identity check. The key now
+exists; actual SDK reads confirm the correct Live account/product/8899price. Local and
+AWS Secrets Manager payloads match. AWS labels the first version AWSCURRENT as well as
+PREPARED; this is deliberately a preparationOnly bundle that the production parser
+rejects. The running API has no billing ARN/read grant/enablement. Complete runtime
+configuration, tax/market facts, real payment and lifecycle/reconciliation remain open.
+[Current execution](device-config-20261006.md).
+
+## October6 current-price browser TEST acceptance
+
+The existing Rillora account's USD88.99 annual TEST Price has now completed hosted
+Checkout cancellation/return, declined and successful test cards, signed-in Family
+return, Portal scheduled cancellation/resumption, full succeeded8899 TEST refund and
+subscription termination. Free access returns after the refund. The official CLI's
+original signed webhook replay returns duplicate; all10observed inbox events finish
+applied after controlled retries of transient concurrency503responses.
+
+The loopback fixture uses shipping cookie/CSRF middleware and a synthetic identity/
+consent record. This is real Stripe TEST transport and browser UI, not upstream OIDC,
+human purchase consent, cloud live-webhook or real-money acceptance. The refund amount
+is verified against Stripe; the adapter stores event/object linkage and the entitlement
+override, while the scaffold commerce_refunds table remains unpopulated. Do not claim
+a complete accounting ledger. Live merchant/tax/market facts, actual production secret
+installation, final reconciliation/alert operation and controlled sales activation keep
+their separate gates. [Full evidence](release-12-stripe-20261005.md).
 
 Owner asks to complete release engineering. Keep Free plus WebUS$88.99 annual Family,
 current UI/brand, historical receipts, test identities and FanPass. This increment
@@ -28,7 +94,7 @@ Stripe SDK22.6.2 pins API2026-08-26.dahlia; this version was checked against the
 A strict versioned secret schema loads AWSCURRENT from only the named Rillora
 production billing secret in Frankfurt. Secret bytes are not returned in parser
 errors, committed or supplied as plaintext runtime environment variables. The
-actual secret and production task permission are **not installed** yet. The
+October9notification configuration and exact production task read grant are installed. The
 ordinary runtime flag requires the reviewed production origin, encrypted content,
 recovery journal and internalTLS; development/test/closed-runtime flags cannot be
 combined with it. A closed production build and server stay independently closed.
@@ -41,10 +107,10 @@ recorded tax code, exact annualUSD Price of8899cents, licensed/per-unit, explici
 behavior, one item and quantity one. No new monthly purchase, trial, promotion
 code, adaptive pricing or client-supplied price/provider identity is accepted.
 
-Tax remains a factual launch gate. Configuration requires a recorded assessment
+New checkout retains its tax-readiness gate. A purchase-enabled configuration requires a recorded assessment
 and confirmed product code; automatic tax additionally rechecks the specified
 active registrations. An explicit reviewed-no-collection decision is a separate
-mode, never an automatic inference from missing registration. No tax registration,
+mode, never an automatic inference from missing registration. The explicit not_configured mode permits signed notifications and owned management, while quote/checkout and new-purchase routing stay closed. No tax registration,
 filing, merchant verification or tax assessment was performed in this increment.
 
 ## Customer flow and durable purchase proof
@@ -90,9 +156,9 @@ and12 internal retries; it never stores/replays raw webhook bodies. Per-process
 runs do not overlap, duplicate ledger application is suppressed, and generic
 counts/errors omit customer content. Exhausted/unmapped items require operational
 review; final alert wiring and post-restore provider-wide reconciliation remain
-release work. This worker is source/local tested, not currently running in AWS.
+release work. The bounded retry timer is now deployed with the October9notification runtime; real failed-payment/recovery behavior is not established by the non-financial Live probe.
 
-## Evidence, rollout and remaining gates
+## HISTORICAL — September26 evidence and initial remaining gates
 
 Local:233API tests, typecheck/build;89Web source tests plus7legal fixture tests;
 39infra tests and21release guards. The initial all-Web invocation used the product

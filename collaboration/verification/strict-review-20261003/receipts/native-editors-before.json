@@ -1,0 +1,243 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": true,
+  "error": "Tests failed",
+  "data": {
+    "summary": {
+      "status": "FAILED",
+      "durationMs": 18919,
+      "counts": {
+        "passed": 13,
+        "failed": 4,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-02T17-21-31-093Z_pid26593_99f7de50.log",
+      "xcresultPath": "output/qa/rillora-strict-review-20261002/native-editors-before.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-02T17-21-31-093Z_pid26593_1eac453b.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/MatterEditorStoreTests/testArchiveUsesTheLatestOptimisticVersion",
+        "RilloraTests/MatterEditorStoreTests/testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields",
+        "RilloraTests/MatterEditorStoreTests/testCreateRetryKeepsTheSameRequestIdentityAndDraft",
+        "RilloraTests/MatterEditorStoreTests/testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter",
+        "RilloraTests/MatterEditorStoreTests/testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange",
+        "RilloraTests/MatterEditorStoreTests/testNewMatterUsesCreateContract",
+        "RilloraTests/MatterEditorStoreTests/testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+        "RilloraTests/MatterEditorStoreTests/testReloadAndArchiveCannotReplaceAnInFlightSave",
+        "RilloraTests/MatterEditorStoreTests/testRequiredLocatorsAndCryptoBranchesStopTransport",
+        "RilloraTests/MatterEditorStoreTests/testSaveUsesCurrentVersionAndAppliesServerResponse",
+        "RilloraTests/MatterEditorStoreTests/testValidationStopsAnEmptyTitleBeforeTransport",
+        "RilloraTests/MatterEditorStoreTests/testVersionConflictKeepsDraftAndOffersRecoveryState",
+        "RilloraTests/RoleAssignmentPolicyStoreTests/testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+        "RilloraTests/RoleAssignmentPolicyStoreTests/testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale",
+        "RilloraTests/RoleAssignmentPolicyStoreTests/testFailedMutationPreservesAssignmentsAndExposesConflict",
+        "RilloraTests/RoleAssignmentPolicyStoreTests/testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate",
+        "RilloraTests/RoleAssignmentPolicyStoreTests/testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation"
+      ],
+      "discovered": {
+        "total": 17,
+        "items": [
+          "RilloraTests/MatterEditorStoreTests/testArchiveUsesTheLatestOptimisticVersion",
+          "RilloraTests/MatterEditorStoreTests/testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields",
+          "RilloraTests/MatterEditorStoreTests/testCreateRetryKeepsTheSameRequestIdentityAndDraft",
+          "RilloraTests/MatterEditorStoreTests/testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter",
+          "RilloraTests/MatterEditorStoreTests/testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange",
+          "RilloraTests/MatterEditorStoreTests/testNewMatterUsesCreateContract"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": [
+        {
+          "suite": "MatterEditorStoreTests",
+          "test": "testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+          "message": "XCTAssertNil failed: \"Matter(publicId: \"30000000-0000-4000-8000-000000000004\", category: \"document\", title: \"Insurance\", institutionName: Optional(\"Harbor Mutual\"), accountHint: nil, valueBand: \"unknown\", currencyCode: nil, locationHint: Optional(\"Blue folder\"), importance: \"important\", desiredOutcome: \"undecided\", status: \"draft\", reviewDueAt: nil, version: 1, createdAt: \"2026-08-08T00:00:00.000Z\", updatedAt: \"2026-08-08T00:00:00.000Z\", archivedAt: nil, details: nil, notes: nil)\" - Idempotent server retries must not become duplicate client-side create callbacks",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:18"
+        },
+        {
+          "suite": "MatterEditorStoreTests",
+          "test": "testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+          "message": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:20"
+        },
+        {
+          "suite": "MatterEditorStoreTests",
+          "test": "testReloadAndArchiveCannotReplaceAnInFlightSave",
+          "message": "XCTAssertEqual failed: (\"ready\") is not equal to (\"saving\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:37"
+        },
+        {
+          "suite": "MatterEditorStoreTests",
+          "test": "testReloadAndArchiveCannotReplaceAnInFlightSave",
+          "message": "XCTAssertNil failed: \"30000000-0000-4000-8000-000000000004\"",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:38"
+        },
+        {
+          "suite": "MatterEditorStoreTests",
+          "test": "testReloadAndArchiveCannotReplaceAnInFlightSave",
+          "message": "XCTAssertTrue failed",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/MatterEditorStoreTests.swift:39"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+          "message": "XCTAssertTrue failed - A failed read after acknowledged persistence must not report the write as failed",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:32"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+          "message": "XCTAssertEqual failed: (\"[]\") is not equal to (\"[Rillora.RoleAssignment(publicId: \"44444444-4444-4444-8444-444444444444\", person: Rillora.RoleAssignmentPerson(publicId: \"99999999-9999-4999-8999-999999999999\", displayName: \"Maya Chen\", relationshipLabel: Optional(\"Sister\")), role: Rillora.RoleAssignmentRole.executor, scope: Rillora.RoleAssignmentScope.planWide, matter: nil, status: \"draft\", evidence: Rillora.RoleAssignmentEvidence.recordOnly, invitationStatus: nil, editable: true, version: 1, createdAt: \"2026-08-10T00:00:00.000Z\", updatedAt: \"2026-08-10T00:00:00.000Z\")]\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:33"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+          "message": "XCTAssertEqual failed: (\"failed(message: \"Synthetic read outage after commit\", conflict: false)\") is not equal to (\"loaded\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:34"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+          "message": "XCTAssertEqual failed: (\"nil\") is not equal to (\"Optional(\"Role policy saved. Reload to check the latest records.\")\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:35"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+          "message": "XCTAssertFalse failed",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:20"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+          "message": "XCTAssertEqual failed: (\"loaded\") is not equal to (\"working\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:21"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+          "message": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:22"
+        },
+        {
+          "suite": "RoleAssignmentPolicyStoreTests",
+          "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+          "message": "XCTAssertEqual failed: (\"[Rillora.RoleAssignment(publicId: \"44444444-4444-4444-8444-444444444444\", person: Rillora.RoleAssignmentPerson(publicId: \"99999999-9999-4999-8999-999999999999\", displayName: \"Maya Chen\", relationshipLabel: Optional(\"Sister\")), role: Rillora.RoleAssignmentRole.executor, scope: Rillora.RoleAssignmentScope.planWide, matter: nil, status: \"draft\", evidence: Rillora.RoleAssignmentEvidence.recordOnly, invitationStatus: nil, editable: true, version: 1, createdAt: \"2026-08-10T00:00:00.000Z\", updatedAt: \"2026-08-10T00:00:00.000Z\"), Rillora.RoleAssignment(publicId: \"44444444-4444-4444-8444-444444444444\", person: Rillora.RoleAssignmentPerson(publicId: \"99999999-9999-4999-8999-999999999999\", displayName: \"Maya Chen\", relationshipLabel: Optional(\"Sister\")), role: Rillora.RoleAssignmentRole.executor, scope: Rillora.RoleAssignmentScope.planWide, matter: nil, status: \"draft\", evidence: Rillora.RoleAssignmentEvidence.recordOnly, invitationStatus: nil, editable: true, version: 1, createdAt: \"2026-08-10T00:00:00.000Z\", updatedAt: \"2026-08-10T00:00:00.000Z\")]\") is not equal to (\"[Rillora.RoleAssignment(publicId: \"44444444-4444-4444-8444-444444444444\", person: Rillora.RoleAssignmentPerson(publicId: \"99999999-9999-4999-8999-999999999999\", displayName: \"Maya Chen\", relationshipLabel: Optional(\"Sister\")), role: Rillora.RoleAssignmentRole.executor, scope: Rillora.RoleAssignmentScope.planWide, matter: nil, status: \"draft\", evidence: Rillora.RoleAssignmentEvidence.recordOnly, invitationStatus: nil, editable: true, version: 1, createdAt: \"2026-08-10T00:00:00.000Z\", updatedAt: \"2026-08-10T00:00:00.000Z\")]\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/RoleAssignmentPolicyStoreTests.swift:23"
+        }
+      ]
+    },
+    "testCases": [
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testArchiveUsesTheLatestOptimisticVersion",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testCreateRetryKeepsTheSameRequestIdentityAndDraft",
+        "status": "passed",
+        "durationMs": 26
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testNewMatterUsesCreateContract",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testOverlappingCreateReturnsOnlyOneResultToTheOverview",
+        "status": "failed",
+        "durationMs": 107
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testReloadAndArchiveCannotReplaceAnInFlightSave",
+        "status": "failed",
+        "durationMs": 485
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testRequiredLocatorsAndCryptoBranchesStopTransport",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testSaveUsesCurrentVersionAndAppliesServerResponse",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testValidationStopsAnEmptyTitleBeforeTransport",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "MatterEditorStoreTests",
+        "test": "testVersionConflictKeepsDraftAndOffersRecoveryState",
+        "status": "passed",
+        "durationMs": 4
+      },
+      {
+        "suite": "RoleAssignmentPolicyStoreTests",
+        "test": "testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails",
+        "status": "failed",
+        "durationMs": 33
+      },
+      {
+        "suite": "RoleAssignmentPolicyStoreTests",
+        "test": "testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale",
+        "status": "passed",
+        "durationMs": 2
+      },
+      {
+        "suite": "RoleAssignmentPolicyStoreTests",
+        "test": "testFailedMutationPreservesAssignmentsAndExposesConflict",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "RoleAssignmentPolicyStoreTests",
+        "test": "testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "RoleAssignmentPolicyStoreTests",
+        "test": "testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation",
+        "status": "failed",
+        "durationMs": 3
+      }
+    ]
+  }
+}

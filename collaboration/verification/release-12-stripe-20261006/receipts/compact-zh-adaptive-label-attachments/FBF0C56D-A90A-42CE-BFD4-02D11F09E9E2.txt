@@ -1,0 +1,38 @@
+Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
+Attributes: StaticText, 0x10ab46300, {{32.0, 125.0}, {311.0, 149.5}}, label: '共享或打印指引'
+Element subtree:
+ →StaticText, 0x10ab46300, {{32.0, 125.0}, {311.0, 149.5}}, label: '共享或打印指引'
+Path to element:
+ →Application, 0x11839bac0, pid: 94240, label: 'Rillora'
+  ↳Window (Main), 0x11839bc00, {{0.0, 0.0}, {375.0, 667.0}}
+   ↳Other, 0x11839bd40, {{0.0, 0.0}, {375.0, 667.0}}
+    ↳Other, 0x11839be80, {{0.0, 0.0}, {375.0, 667.0}}
+     ↳Other, 0x1181012c0, {{0.0, 0.0}, {375.0, 667.0}}
+      ↳Other, 0x1181008c0, {{0.0, 0.0}, {375.0, 667.0}}
+       ↳Other, 0x118100a00, {{0.0, 0.0}, {375.0, 667.0}}
+        ↳Other, 0x118101400, {{0.0, 0.0}, {375.0, 667.0}}
+         ↳Other, 0x118103ac0, {{0.0, 0.0}, {375.0, 667.0}}
+          ↳Other, 0x118103c00, {{0.0, 0.0}, {375.0, 667.0}}
+           ↳Other, 0x118103d40, {{0.0, 0.0}, {375.0, 667.0}}
+            ↳Other, 0x118103e80, {{0.0, 0.0}, {375.0, 667.0}}
+             ↳Other, 0x118100b40, {{0.0, 0.0}, {375.0, 667.0}}
+              ↳Other, 0x118101540, {{0.0, 0.0}, {375.0, 667.0}}
+               ↳Other, 0x118103980, {{0.0, 0.0}, {375.0, 667.0}}
+                ↳Other, 0x118100f00, {{0.0, 0.0}, {375.0, 667.0}}
+                 ↳Other, 0x118100000, {{0.0, 0.0}, {375.0, 667.0}}
+                  ↳CollectionView, 0x118100140, {{0.0, 0.0}, {375.0, 667.0}}, identifier: 'start-here.view'
+                   ↳Cell, 0x1182f0c80, {{16.0, 110.0}, {343.0, 179.5}}
+                    ↳Other, 0x117d7b840, {{16.0, 110.0}, {343.0, 179.5}}
+                     ↳Other, 0x10ab47480, {{16.0, 110.0}, {343.0, 179.5}}
+                      ↳Other, 0x10ab46f80, {{16.0, 110.0}, {343.0, 179.5}}
+                       ↳Button, 0x10ab470c0, {{16.0, 110.0}, {343.0, 179.5}}, identifier: 'start-here.share', label: '共享或打印指引'
+                        ↳StaticText, 0x10ab46300, {{32.0, 125.0}, {311.0, 149.5}}, label: '共享或打印指引'
+Query chain:
+ →Find: Target Application 'com.rillora.ios'
+  Output: {
+    Application, 0x1194dfc00, pid: 94240, label: 'Rillora'
+  }
+  ↪︎Find: Descendant with identity binding to AX element pid: 94240, elementOrHash.elementID: 5011602752.751
+    Output: {
+      StaticText, 0x1194dd040, {{32.0, 125.0}, {311.0, 149.5}}, label: '共享或打印指引'
+    }

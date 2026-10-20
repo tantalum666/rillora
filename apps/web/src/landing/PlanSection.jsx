@@ -1,87 +1,81 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { publicRoutes } from "../publicRoutes.js";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight, Check } from "@phosphor-icons/react";
 import { publicEntry } from "../publicEntry.js";
 import catalog from "../../../../config/product-catalog.json" with { type: "json" };
 
-const annualPrice = `${catalog.currency === "USD" ? "US" : ""}${new Intl.NumberFormat("en-US", { style: "currency", currency: catalog.currency }).format(catalog.annual.amountMinor / 100)}`;
 
 export function PlanSection() {
+  const { t, locale, formatMoney } = useI18n();
+  const annualPrice = formatMoney(catalog.annual.amountMinor, catalog.currency);
+  const subscriptionsOpen = publicEntry.customerAccess === "live";
   return (
     <main id="lp-main" className="lp-page-content lp-pricing lp-container">
       <header className="lp-page-intro">
-        <h1>A plan that fits your circle.</h1>
-        <p>Start with one person. Make more room when you need it.</p>
+        <h1>{t("public.price.title")}</h1>
+        <p>{t("public.price.intro")}</p>
       </header>
-      <section className="lp-plan-comparison" aria-label="Planned Web pricing">
-        <p>Planned Web pricing. Preview access is available now.</p>
+      <section className="lp-plan-comparison" aria-label={t("public.price.label")}>
+        <p>{t(publicEntry.preview ? "public.price.preview" : subscriptionsOpen ? "public.price.available" : "public.price.restricted")}</p>
         <table>
-          <caption className="sr-only">
-            Free and Family planned Web features
-          </caption>
+          <caption className="sr-only">{t("public.price.caption")}</caption>
           <thead>
             <tr>
-              <th scope="col">Feature</th>
-              <th scope="col">
-                Free<strong>$0</strong>
+              <th scope="col">{t("public.price.feature")}</th>
+              <th scope="col">{t("public.price.free")}<strong>{formatMoney(0, catalog.currency)}</strong>
               </th>
-              <th scope="col">
-                Family
-                <strong>
-                  {annualPrice} <small>/ year</small>
+              <th scope="col">{t("public.price.family")}<strong>
+                  {annualPrice} <small>{t("public.price.perYear")}</small>
                 </strong>
               </th>
             </tr>
           </thead>
           <tbody>
             <tr>
-              <th scope="row">Private map</th>
+              <th scope="row">{t("public.price.map")}</th>
               <td>
-                <Check aria-label="Included" />
+                <Check aria-label={t("public.price.included")} />
               </td>
               <td>
-                <Check aria-label="Included" />
-              </td>
-            </tr>
-            <tr>
-              <th scope="row">Live sharing</th>
-              <td>1 person</td>
-              <td>Up to 5 people</td>
-            </tr>
-            <tr>
-              <th scope="row">Shared reviews</th>
-              <td>Not included</td>
-              <td>
-                <Check aria-label="Included" />
+                <Check aria-label={t("public.price.included")} />
               </td>
             </tr>
             <tr>
-              <th scope="row">Export and privacy controls</th>
+              <th scope="row">{t("public.price.liveSharing")}</th>
+              <td>{t("public.price.onePerson")}</td>
+              <td>{t("public.price.fivePeople")}</td>
+            </tr>
+            <tr>
+              <th scope="row">{t("public.price.reviews")}</th>
+              <td>{t("public.price.excluded")}</td>
               <td>
-                <Check aria-label="Included" />
+                <Check aria-label={t("public.price.included")} />
+              </td>
+            </tr>
+            <tr>
+              <th scope="row">{t("public.price.export")}</th>
+              <td>
+                <Check aria-label={t("public.price.included")} />
               </td>
               <td>
-                <Check aria-label="Included" />
+                <Check aria-label={t("public.price.included")} />
               </td>
             </tr>
           </tbody>
         </table>
+        <p className="lp-channel-price-note">{t("public.price.appleNote")}</p>
         <div className="lp-plan-actions">
-          <p>Paid subscriptions are not open yet.</p>
-          <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>
-            Try Preview <ArrowRight aria-hidden="true" size={20} />
+          <p>{t(subscriptionsOpen ? "public.price.subscribeHint" : "public.price.notOpen")}</p>
+          <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t(publicEntry.preview ? "public.auth.try" : "public.auth.signin")}<ArrowRight aria-hidden="true" size={20} />
           </AppearanceLink>
         </div>
       </section>
-      <p className="lp-pricing-note">
-        Both plans include core privacy and export controls. Receiving an
-        invitation does not require a paid plan.
-      </p>
+      <p className="lp-pricing-note">{t("public.price.note")}</p>
       <a
         className="lp-text-link"
-        href={`https://legal.rillora.xyz${publicRoutes.subscriptions}`}
-      >
-        Subscription terms <ArrowRight size={20} aria-hidden="true" />
+        href={`https://legal.rillora.xyz${publicRoutes.subscriptions}?lang=${locale}`}
+      >{t("public.price.terms")}<ArrowRight size={20} aria-hidden="true" />
       </a>
     </main>
   );

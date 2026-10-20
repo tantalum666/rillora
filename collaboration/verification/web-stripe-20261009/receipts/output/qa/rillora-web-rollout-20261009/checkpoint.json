@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-08T20:33:50.939947+00:00",
+  "task": "Publish and verify actual www navigation fix",
+  "source": "f82179e4459ac3a5fb738a570891479f0d9dd7e8",
+  "liveOldNavigationReproduced": true,
+  "candidatePublicBuild": 31,
+  "aws": "Restored after Owner MFA; actual STS/public template read succeeded",
+  "deploymentPerformed": true,
+  "next": "Owner original Preview login then current hosted TEST annual acceptance",
+  "actualCloudDiff": "Only PublicDeployment SourceObjectKeys/0 changed;12resources preserved",
+  "deploymentState": "UPDATE_COMPLETE",
+  "www": "UPDATE_COMPLETE;31live files match;actual1280EN/ZH,390mobile and768tablet verified",
+  "staging": "API40/schema93 deployed; signed-in email acceptance pending Owner login",
+  "formal": "UPDATE_COMPLETE;86/86 live files match",
+  "frontends": {
+    "www": 31,
+    "preview": 86,
+    "formal": 86,
+    "allLiveFilesMatch": true
+  },
+  "stagingBackend": {
+    "actualIdentityRoute": "old404 followed by real401; authenticated readback pending",
+    "schemaApplied": 93,
+    "pendingMigrations": 0,
+    "checksumMismatches": 0,
+    "backupRetentionDays": 1,
+    "latestRestorableTime": "2026-10-08T17:34:11+00:00",
+    "stage": "API40/1healthy/COMPLETED",
+    "imageAssetHash": "0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744",
+    "imageDigest": "sha256:5761e248a42dbce9a5c8128e23bdd3533f9e81f4b8402954ce8c950a46fd4f6f",
+    "actualPlatform": "linux/arm64",
+    "checksumsMatch": true,
+    "tlsVerified": true,
+    "runtimeCredentialRotation": false,
+    "onlyPendingOwnerStep": "Preview session now actually401; current account page requires personal consent/login; async request pending"
+  },
+  "newApiSource": "[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]",
+  "buildRepair": "Retained108approved RDS roots vendored; pinned SHA and Frankfurt trust roots unchanged. Initial helper AMD64 candidate was never deployed and corrected to actualARM64.",
+  "queuedOwnerRequest": {
+    "afterCurrentWork": true,
+    "request": "Read the new Stripe webhook email in Gmail, then investigate missing Stripe Web purchase button and verify current payment flow; retain dated TEST evidence instead of claiming Live or repeating blindly."
+  },
+  "deploymentStatus": "All three frontends and Preview API40/schema93 complete; Owner Preview login pending"
+}

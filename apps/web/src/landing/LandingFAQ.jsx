@@ -1,49 +1,38 @@
-import * as Accordion from "@radix-ui/react-accordion";
+import { useI18n } from "../i18n/I18nProvider.jsx";
+import { useId } from "react";
 import { Plus } from "@phosphor-icons/react";
 
 export const landingQuestions = [
   {
-    title: "What should I keep in Rillora?",
-    answer:
-      "Account names, document locations, safe references and clear next steps. Keep passwords, seed phrases, private keys and complete recovery codes out of your map.",
+    titleKey: "public.faq.keep.title",
+    answerKey:
+      "public.faq.keep.answer",
   },
   {
-    title: "Does my family need the app?",
-    answer:
-      "No. They can open your invitation on the web, sign in or create their own account, and accept. They see only the matters and details you choose to share.",
+    titleKey: "public.faq.app.title",
+    answerKey:
+      "public.faq.app.answer",
   },
   {
-    title: "Who can see my information?",
-    answer:
-      "Each person you invite has their own view. You can change or revoke their live access. Copies they already saved are outside that control.",
+    titleKey: "public.faq.visibility.title",
+    answerKey:
+      "public.faq.visibility.answer",
   },
   {
-    title: "Does Rillora transfer my accounts?",
-    answer:
-      "No. Rillora organises information and directions. After signing in, account inheritance guidance helps you find official processes. Each provider and the applicable legal process decide access, closure or transfer.",
+    titleKey: "public.faq.transfer.title",
+    answerKey:
+      "public.faq.transfer.answer",
   },
 ];
 
 export function QuestionList({ questions = landingQuestions }) {
-  return (
-    <Accordion.Root type="single" collapsible className="lp-faq">
-      {questions.map((item, index) => (
-        <Accordion.Item
-          className="lp-faq-item"
-          value={`question-${index}`}
-          key={item.title}
-        >
-          <Accordion.Header>
-            <Accordion.Trigger>
-              {item.title}
-              <Plus size={22} aria-hidden="true" />
-            </Accordion.Trigger>
-          </Accordion.Header>
-          <Accordion.Content>
-            <p>{item.answer}</p>
-          </Accordion.Content>
-        </Accordion.Item>
-      ))}
-    </Accordion.Root>
-  );
+  const { t } = useI18n();
+  const group = useId();
+  // Native disclosure keeps the same interaction available before JavaScript loads.
+  return <div className="lp-faq">
+    {questions.map(item => <details className="lp-faq-item" name={group} key={item.titleKey}>
+      <summary>{t(item.titleKey)}<Plus size={22} aria-hidden="true" /></summary>
+      <p>{t(item.answerKey)}</p>
+    </details>)}
+  </div>;
 }

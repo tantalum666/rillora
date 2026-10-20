@@ -1,0 +1,19 @@
+{
+  "checkedAt": "2026-10-12T17:07:52.708436+00:00",
+  "readOnly": true,
+  "service": "RilloraProduction",
+  "status": "ACTIVE",
+  "desired": 1,
+  "running": 1,
+  "taskRevision": 23,
+  "configuration": {
+    "PRODUCTION_RUNTIME_MODE": "review",
+    "ALLOW_STRIPE_PRODUCTION_INTEGRATION": "false",
+    "ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS": "true",
+    "ALLOW_APPLE_PRODUCTION_INTEGRATION": "false",
+    "ALLOW_APPLE_REVIEW_INTEGRATION": "true",
+    "PRODUCTION_REVIEW_EXPIRES_AT": "2026-10-14T12:01:00Z",
+    "ALLOW_STRIPE_TEST_INTEGRATION": "false",
+    "ALLOW_APPLE_SANDBOX_INTEGRATION": "false"
+  }
+}

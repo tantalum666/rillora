@@ -1,0 +1,24 @@
+{
+  "passed": true,
+  "at": "2026-10-18T09:11:20.800Z",
+  "results": [
+    {
+      "path": "/.well-known/oauth-authorization-server/api/ai/oauth",
+      "status": 200,
+      "issuer": "https://app.rillora.xyz/api/ai/oauth",
+      "authorization": "[REDACTED_CREDENTIAL]",
+      "token": "https://app.rillora.xyz/api/ai/oauth/token",
+      "userinfo": "https://app.rillora.xyz/api/ai/oauth/userinfo",
+      "jwks": "https://app.rillora.xyz/api/ai/oauth/jwks"
+    },
+    {
+      "path": "/api/ai/oauth/.well-known/openid-configuration",
+      "status": 200,
+      "issuer": "https://app.rillora.xyz/api/ai/oauth",
+      "authorization": "[REDACTED_CREDENTIAL]",
+      "token": "https://app.rillora.xyz/api/ai/oauth/token",
+      "userinfo": "https://app.rillora.xyz/api/ai/oauth/userinfo",
+      "jwks": "https://app.rillora.xyz/api/ai/oauth/jwks"
+    }
+  ]
+}

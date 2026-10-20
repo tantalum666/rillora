@@ -1,0 +1,13 @@
+import subprocess,json,re,secrets,hashlib,base64
+from pathlib import Path
+from urllib.parse import urlencode,urlparse
+root=Path(__file__).resolve().parents[3];p=root/'.local-secrets/ai-hosting-20261017';q=Path(__file__).resolve().parent
+origin='https://rillora-ai-candidate.rillora-candidate.workers.dev';jar=p/'redirect-probe-cookies'
+challenge=base64.urlsafe_b64encode(hashlib.sha256(secrets.token_bytes(32)).digest()).decode().rstrip('=')
+url=origin+'/authorize?'+urlencode({'response_type':'code','client_id':'FasKCOkle5eu2EVw','redirect_uri':'http://localhost:18372/callback','state':secrets.token_urlsafe(32),'code_challenge':challenge,'code_challenge_method':'S256','scope':'matters:read:summary','resource':origin+'/mcp'})
+r=subprocess.run(['curl','-sS','--max-time','20','-c',str(jar),url],capture_output=True,text=True,check=True)
+handle=re.search('name="handle" value="([^"]+)"',r.stdout).group(1)
+r=subprocess.run(['curl','-sS','--max-time','30','-b',str(jar),'-c',str(jar),'-D',str(p/'redirect-probe-headers'),'-H','Origin: '+origin,'--data-urlencode','handle='+handle,'--data-urlencode','decision=continue',origin+'/authorize'],capture_output=True,text=True,check=True)
+h=(p/'redirect-probe-headers').read_text();location=re.search(r'(?im)^location: (.+)',h)
+value={'status':re.findall(r'HTTP/\S+ (\d+)',h),'redirectOrigin':(urlparse(location.group(1).strip()).scheme+'://'+urlparse(location.group(1).strip()).netloc) if location else None,'csp':re.findall(r'(?im)^content-security-policy: (.+)',h),'bodyBytes':len(r.stdout)}
+q.joinpath('consent-redirect-diagnostic.json').write_text(json.dumps(value,indent=2)+'\n');print(json.dumps(value))

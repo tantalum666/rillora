@@ -1,10 +1,11 @@
 import { createReauthenticationRouter, completeReauthentication, failReauthentication, type ReauthenticationTransaction } from "./reauthentication.js";
 import { fetchInitialOverview } from "./overview.js";
-import { createHash, randomBytes } from "node:crypto";
+import { createHash, randomBytes, randomUUID } from "node:crypto";
+import { sealSessionDeletionProof } from './identity-deletion-proof.js';
 import { Router as createRouter, type CookieOptions, type Router } from "express";
 import rateLimit from "express-rate-limit";
 import * as oidc from "openid-client";
-import { parseCookie } from "cookie";
+import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import { z } from "zod";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -17,10 +18,10 @@ import type {
   NativeIdentityVerifier,
 } from "./identity.js";
 import { createNativeOidcIdentityVerifier, createOidcIdentityProvider } from "./identity.js";
-import { verifiedEmailDigest } from "./sharing-identity.js";
 import { sessionCookieName } from "./auth.js";
 import { reviewAccessOpen, reviewIdentityAllowed } from './production-review-access.js';
 import { createRateLimitKeyGenerator } from "./rate-limit-key.js";
+import { admitAuthenticationTransaction, authenticationBusy } from './auth-transaction-budget.js';
 import {
   currentLegalContract,
   legalBundleDigest,
@@ -99,7 +100,7 @@ export function createAuthRouter(
   router.get(
     "/session-status",
     asyncHandler(async (request, response) => {
-      const sessionToken = parseCookie(request.get("cookie") ?? "")[sessionCookieName] ?? "";
+      const sessionToken = readSecurityCookie(request.get('cookie'), securityCookieName(config, sessionCookieName)) ?? '';
       if (!isPlausibleOpaqueToken(sessionToken) || !reviewAccessOpen(config)) {
         response.json({ authenticated: false });
         return;
@@ -162,6 +163,8 @@ export function createAuthRouter(
       const parsed = authStartSchema.parse(request.body);
       const acceptance = parseLegalAcceptance(parsed.legalAcceptance);
       const returnTo = normalizeReturnPath(parsed.returnTo);
+      const display = new URL(returnTo, "https://rillora.invalid").searchParams;
+      const uiLocales = (display.get("lang") ?? display.get("langHint")) === "zh-CN" ? "zh-CN" as const : "en" as const;
       const screenHint = parsed.intent === "signup" ? "signup" : undefined;
       const transactionToken = randomOpaqueToken();
       const transaction: IdentityTransaction = {
@@ -170,7 +173,8 @@ export function createAuthRouter(
         codeVerifier: oidc.randomPKCECodeVerifier(),
       };
 
-      await withAuthDatabase(pool, async (client) => {
+      const admitted = await withAuthDatabase(pool, async (client) => {
+        if (!await admitAuthenticationTransaction(client)) return false;
         await client.query(
           `insert into app.auth_transactions (
              token_hash, state_hash, code_verifier, nonce, return_to, expires_at,
@@ -194,16 +198,20 @@ export function createAuthRouter(
             legalBundleDigest(acceptance),
           ],
         );
+        return true;
       });
+      // Commit bounded cleanup even when capacity is full; rejecting inside
+      // that transaction would roll cleanup back and strand a legacy backlog.
+      if (!admitted) throw authenticationBusy();
 
-      response.cookie(transactionCookieName, transactionToken, {
+      response.cookie(securityCookieName(config, transactionCookieName), transactionToken, {
         ...baseCookieOptions(config),
         httpOnly: true,
         maxAge: config.authTransactionTtlSeconds * 1_000,
       });
       const authorizationUrl = await provider.createAuthorizationUrl(
         transaction,
-        { ...(screenHint ? { screenHint } : {}), ...(parsed.selectAccount ? { prompt: "login" as const } : {}) },
+        { ...(screenHint ? { screenHint } : {}), ...(parsed.selectAccount ? { prompt: "login" as const } : {}), uiLocales },
       );
       response.status(201).json({ authorizationUrl: authorizationUrl.href });
     }),
@@ -217,7 +225,7 @@ export function createAuthRouter(
         throw new ApiError(503, "identity_not_configured", "Sign in is not configured.");
       }
       if (typeof request.query.error === "string") {
-        const token = parseCookie(request.get("cookie") ?? "")[transactionCookieName] ?? "";
+        const token = readSecurityCookie(request.get('cookie'), securityCookieName(config, transactionCookieName)) ?? '';
         const state = typeof request.query.state === "string" ? request.query.state : "";
         if (isPlausibleOpaqueToken(token) && isPlausibleOpaqueToken(state)) {
           const cancelled = await consumeTransaction(pool, token, state);
@@ -228,7 +236,7 @@ export function createAuthRouter(
       }
       const state = typeof request.query.state === "string" ? request.query.state : "";
       const code = typeof request.query.code === "string" ? request.query.code : "";
-      const transactionToken = parseCookie(request.get("cookie") ?? "")[transactionCookieName] ?? "";
+      const transactionToken = readSecurityCookie(request.get('cookie'), securityCookieName(config, transactionCookieName)) ?? '';
       if (!isPlausibleOpaqueToken(transactionToken) || !isPlausibleOpaqueToken(state) || !code) {
         clearTransactionCookie(response, config);
         throw new ApiError(401, "identity_transaction_invalid", "Sign in could not be verified.");
@@ -239,6 +247,9 @@ export function createAuthRouter(
       if (!stored) {
         throw new ApiError(401, "identity_transaction_invalid", "Sign in could not be verified.");
       }
+      // Recheck persisted transactions too: a deployment can leave a short-lived
+      // transaction created by an older return-path validator.
+      const returnTo = normalizeReturnPath(stored.return_to);
 
       const callbackUrl = new URL(config.oidc.redirectUri);
       callbackUrl.search = new URL(request.originalUrl, "http://local.invalid").search;
@@ -269,17 +280,17 @@ export function createAuthRouter(
         "web",
       );
 
-      response.cookie(sessionCookieName, session.sessionToken, {
+      response.cookie(securityCookieName(config, sessionCookieName), session.sessionToken, {
         ...baseCookieOptions(config),
         httpOnly: true,
         maxAge: config.sessionTtlMinutes * 60 * 1_000,
       });
-      response.cookie(csrfCookieName, session.csrfToken, {
+      response.cookie(securityCookieName(config, csrfCookieName), session.csrfToken, {
         ...baseCookieOptions(config),
         httpOnly: false,
         maxAge: config.sessionTtlMinutes * 60 * 1_000,
       });
-      response.redirect(303, new URL(stored.return_to, config.oidc.webAppOrigin).href);
+      response.redirect(303, new URL(returnTo, config.oidc.webAppOrigin).href);
     }),
   );
 
@@ -304,7 +315,10 @@ export function createAuthRouter(
       } catch {
         throw new ApiError(401, "identity_token_invalid", "Sign in could not be verified.");
       }
-      const acceptance = parseLegalAcceptance(request.body?.legalAcceptance);
+      // The body is only a compatibility check. Consent authority comes from
+      // the verified provider proof, never caller-supplied affirmative values.
+      parseLegalAcceptance(request.body?.legalAcceptance);
+      const acceptance = parseLegalAcceptance(identity.legalAcceptance);
       const session = await issueSession(
         pool,
         config,
@@ -369,6 +383,8 @@ async function issueSession(
   }
   const sessionToken = randomOpaqueToken();
   const csrfToken = randomOpaqueToken();
+  const sessionPublicId = randomUUID();
+  const deletionProof = await sealSessionDeletionProof(config,identity,sessionPublicId);
   const accountIds = await withAuthDatabase(pool, async (client) => {
     const deletion = await client.query<{ pending: boolean }>("select app.identity_deletion_pending($1,$2) as pending", [identity.issuer, identity.subject]);
     if (deletion.rows[0]?.pending) throw new ApiError(409, "account_deletion_pending", "Account deletion is in progress. Use your deletion reference to check its status.");
@@ -419,10 +435,10 @@ async function issueSession(
       `insert into app.auth_sessions (
          planner_id, identity_account_id, token_hash, csrf_token_hash,
          authenticated_at, authentication_methods, credential_kind,
-         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash
+         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash,public_id,deletion_identity_proof
        ) values (
          $1, $2, $3, $4, $5, $6::text[], $7, $8, now(),
-         now() + make_interval(mins => $9), $10
+         now() + make_interval(mins => $9), $10,$11,$12::jsonb
        )`,
       [
         account.planner_id,
@@ -434,7 +450,8 @@ async function issueSession(
         credentialKind,
         legalAcceptanceId,
         config.sessionTtlMinutes,
-        identity.verifiedEmail ? verifiedEmailDigest(identity.verifiedEmail) : null,
+        null, // No global email match value is retained with sessions.
+        sessionPublicId, deletionProof ? JSON.stringify(deletionProof) : null,
       ],
     );
     await client.query(
@@ -477,7 +494,9 @@ function normalizeReturnPath(value: unknown): string {
     value.length > 500 ||
     !value.startsWith("/") ||
     value.startsWith("//") ||
-    value.includes("\\")
+    value.includes("\\") ||
+    /[\u0000-\u001f\u007f]/.test(value) ||
+    new URL(value, "https://rillora.invalid").origin !== "https://rillora.invalid"
   ) {
     throw new ApiError(400, "invalid_return_path", "The return path is invalid.");
   }
@@ -498,14 +517,14 @@ function isPlausibleOpaqueToken(value: string): boolean {
 
 function baseCookieOptions(config: AppConfig): CookieOptions {
   return {
-    secure: config.nodeEnv === "production",
+    secure: usesSecureCookies(config),
     sameSite: "lax",
     path: "/",
   };
 }
 
 function clearTransactionCookie(response: import("express").Response, config: AppConfig): void {
-  response.clearCookie(transactionCookieName, {
+  response.clearCookie(securityCookieName(config, transactionCookieName), {
     ...baseCookieOptions(config),
     httpOnly: true,
   });

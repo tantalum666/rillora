@@ -1,0 +1,1715 @@
+{
+  "phase": "maintenance",
+  "changes": [
+    {
+      "id": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false,
+      "removed": false,
+      "before": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Command": [
+                "/bin/sh",
+                "-c",
+                "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce"
+              ],
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATABASE_HOST",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "DatabaseB269D8BB",
+                      "Endpoint.Address"
+                    ]
+                  }
+                }
+              ],
+              "Essential": true,
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:36c77ed7516159d7cd2123d78b8f4689a1b9bcd6def38995e78af2fcbe563e09"
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "MaintenanceLogs61C6A99C"
+                  },
+                  "awslogs-stream-prefix": "migration",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Maintenance",
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "RUNTIME_DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "RUNTIME_DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "MigrationTaskExecutionRole54576998",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionMigrationTask3A96A2B6",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "MigrationTaskTaskRole9CC4695E",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/MigrationTask/Resource"
+        }
+      },
+      "after": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Command": [
+                "/bin/sh",
+                "-c",
+                "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce"
+              ],
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATABASE_HOST",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "DatabaseB269D8BB",
+                      "Endpoint.Address"
+                    ]
+                  }
+                }
+              ],
+              "Essential": true,
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32"
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "MaintenanceLogs61C6A99C"
+                  },
+                  "awslogs-stream-prefix": "migration",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Maintenance",
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "RUNTIME_DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "RUNTIME_DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "MigrationTaskExecutionRole54576998",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionMigrationTask3A96A2B6",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "MigrationTaskTaskRole9CC4695E",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/MigrationTask/Resource"
+        }
+      }
+    },
+    {
+      "id": "RecoveryTaskD940248B",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false,
+      "removed": false,
+      "before": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Command": [
+                "node",
+                "-e",
+                "process.stderr.write('Explicit isolated recovery operation is required\\n');process.exit(1)"
+              ],
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "APPLE_REVIEW_SECRET_ARN",
+                  "Value": {
+                    "Ref": "RuntimeAppleReviewSecret3201CF49"
+                  }
+                },
+                {
+                  "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+                  "Value": "/app/certificates/apple"
+                }
+              ],
+              "Essential": true,
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:36c77ed7516159d7cd2123d78b8f4689a1b9bcd6def38995e78af2fcbe563e09"
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "MaintenanceLogs61C6A99C"
+                  },
+                  "awslogs-stream-prefix": "recovery",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Maintenance",
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "RecoveryTaskExecutionRoleE7A0DE57",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionRecoveryTask4FA4E62D",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "RecoveryTaskTaskRole7CAA29D4",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/RecoveryTask/Resource"
+        }
+      },
+      "after": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Command": [
+                "node",
+                "-e",
+                "process.stderr.write('Explicit isolated recovery operation is required\\n');process.exit(1)"
+              ],
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "APPLE_REVIEW_SECRET_ARN",
+                  "Value": {
+                    "Ref": "RuntimeAppleReviewSecret3201CF49"
+                  }
+                },
+                {
+                  "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+                  "Value": "/app/certificates/apple"
+                }
+              ],
+              "Essential": true,
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32"
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "MaintenanceLogs61C6A99C"
+                  },
+                  "awslogs-stream-prefix": "recovery",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Maintenance",
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "DatabaseSecretAttachmentE5D1B020"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "RecoveryTaskExecutionRoleE7A0DE57",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionRecoveryTask4FA4E62D",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "RecoveryTaskTaskRole7CAA29D4",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/RecoveryTask/Resource"
+        }
+      }
+    },
+    {
+      "id": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition",
+      "added": false,
+      "removed": false,
+      "before": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "PRODUCTION_RUNTIME_MODE",
+                  "Value": "review"
+                },
+                {
+                  "Name": "HOST",
+                  "Value": "0.0.0.0"
+                },
+                {
+                  "Name": "PORT",
+                  "Value": "8443"
+                },
+                {
+                  "Name": "DATABASE_HOST",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "DatabaseB269D8BB",
+                      "Endpoint.Address"
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_POOL_MAX",
+                  "Value": "5"
+                },
+                {
+                  "Name": "DATABASE_CONNECTION_TIMEOUT_MS",
+                  "Value": "10000"
+                },
+                {
+                  "Name": "API_TLS_CERTIFICATE_ARN",
+                  "Value": {
+                    "Ref": "RuntimeCertificateC2895169"
+                  }
+                },
+                {
+                  "Name": "API_TLS_SERVER_NAME",
+                  "Value": "origin.production.rillora.xyz"
+                },
+                {
+                  "Name": "TRUST_PROXY_HOPS",
+                  "Value": "1"
+                },
+                {
+                  "Name": "CORS_ORIGINS",
+                  "Value": "https://app.rillora.xyz"
+                },
+                {
+                  "Name": "ALLOW_DEV_AUTH",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_STRIPE_TEST_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_APPLE_PRODUCTION_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_STRIPE_PRODUCTION_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_RETENTION_WORKER",
+                  "Value": "true"
+                },
+                {
+                  "Name": "ALLOW_APPLE_REVIEW_INTEGRATION",
+                  "Value": "true"
+                },
+                {
+                  "Name": "APPLE_REVIEW_SECRET_ARN",
+                  "Value": {
+                    "Ref": "RuntimeAppleReviewSecret3201CF49"
+                  }
+                },
+                {
+                  "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+                  "Value": "/app/certificates/apple"
+                },
+                {
+                  "Name": "PRODUCTION_REVIEW_IDENTITY_SHA256",
+                  "Value": {
+                    "Ref": "RuntimeReviewIdentityDigests0273C88C"
+                  }
+                },
+                {
+                  "Name": "PRODUCTION_REVIEW_EXPIRES_AT",
+                  "Value": {
+                    "Ref": "RuntimeReviewExpiresAtF4A0DBEC"
+                  }
+                },
+                {
+                  "Name": "WEB_APP_ORIGIN",
+                  "Value": "https://app.rillora.xyz"
+                },
+                {
+                  "Name": "OIDC_ISSUER_URL",
+                  "Value": "https://login.rillora.xyz"
+                },
+                {
+                  "Name": "OIDC_CLIENT_ID",
+                  "Value": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz"
+                },
+                {
+                  "Name": "OIDC_REDIRECT_URI",
+                  "Value": "https://app.rillora.xyz/api/auth/callback"
+                },
+                {
+                  "Name": "NATIVE_OIDC_CLIENT_ID",
+                  "Value": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
+                },
+                {
+                  "Name": "OIDC_API_AUDIENCE",
+                  "Value": "urn:rillora:production:api"
+                }
+              ],
+              "Essential": true,
+              "HealthCheck": {
+                "Command": [
+                  "CMD",
+                  "node",
+                  "dist/healthcheck.js"
+                ],
+                "Interval": 30,
+                "Retries": 3,
+                "StartPeriod": 45,
+                "Timeout": 5
+              },
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:36c77ed7516159d7cd2123d78b8f4689a1b9bcd6def38995e78af2fcbe563e09"
+              },
+              "LinuxParameters": {
+                "Capabilities": {
+                  "Drop": [
+                    "ALL"
+                  ]
+                }
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "RuntimeApiLogs69C9F62B"
+                  },
+                  "awslogs-stream-prefix": "api",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Api",
+              "PortMappings": [
+                {
+                  "ContainerPort": 8443,
+                  "Name": "https",
+                  "Protocol": "tcp"
+                }
+              ],
+              "ReadonlyRootFilesystem": true,
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_DOMAIN",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":domain::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_CLIENT_ID",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":client_id::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_DOMAIN",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":domain::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_ID",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":client_id::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "OIDC_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeWebOidcSecretACD537A8"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "RuntimeApiTaskExecutionRoleD48730C6",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionRuntimeApiTask93405B31",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "RuntimeApiTaskTaskRole477A5663",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/Runtime/ApiTask/Resource"
+        }
+      },
+      "after": {
+        "Type": "AWS::ECS::TaskDefinition",
+        "Properties": {
+          "ContainerDefinitions": [
+            {
+              "Environment": [
+                {
+                  "Name": "NODE_ENV",
+                  "Value": "production"
+                },
+                {
+                  "Name": "DATA_REGION",
+                  "Value": "eu-central-1"
+                },
+                {
+                  "Name": "DATABASE_PORT",
+                  "Value": "5432"
+                },
+                {
+                  "Name": "DATABASE_NAME",
+                  "Value": "rillora"
+                },
+                {
+                  "Name": "DATABASE_SSL_MODE",
+                  "Value": "verify-full"
+                },
+                {
+                  "Name": "DATABASE_SSL_CA_PATH",
+                  "Value": "/app/certs/rds-global-bundle.pem"
+                },
+                {
+                  "Name": "CONTENT_PROTECTION_MODE",
+                  "Value": "encrypted"
+                },
+                {
+                  "Name": "CONTENT_KMS_KEY_ARN",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "ContentKey78A057A4",
+                      "Arn"
+                    ]
+                  }
+                },
+                {
+                  "Name": "CONTENT_KEY_NAMESPACE",
+                  "Value": "rillora-production"
+                },
+                {
+                  "Name": "RECOVERY_JOURNAL_TABLE",
+                  "Value": {
+                    "Ref": "RecoveryJournal06BB91CD"
+                  }
+                },
+                {
+                  "Name": "RECOVERY_ENVIRONMENT",
+                  "Value": "production"
+                },
+                {
+                  "Name": "PRODUCTION_RUNTIME_MODE",
+                  "Value": "review"
+                },
+                {
+                  "Name": "HOST",
+                  "Value": "0.0.0.0"
+                },
+                {
+                  "Name": "PORT",
+                  "Value": "8443"
+                },
+                {
+                  "Name": "DATABASE_HOST",
+                  "Value": {
+                    "Fn::GetAtt": [
+                      "DatabaseB269D8BB",
+                      "Endpoint.Address"
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_POOL_MAX",
+                  "Value": "5"
+                },
+                {
+                  "Name": "DATABASE_CONNECTION_TIMEOUT_MS",
+                  "Value": "10000"
+                },
+                {
+                  "Name": "API_TLS_CERTIFICATE_ARN",
+                  "Value": {
+                    "Ref": "RuntimeCertificateC2895169"
+                  }
+                },
+                {
+                  "Name": "API_TLS_SERVER_NAME",
+                  "Value": "origin.production.rillora.xyz"
+                },
+                {
+                  "Name": "TRUST_PROXY_HOPS",
+                  "Value": "1"
+                },
+                {
+                  "Name": "CORS_ORIGINS",
+                  "Value": "https://app.rillora.xyz"
+                },
+                {
+                  "Name": "ALLOW_DEV_AUTH",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_STRIPE_TEST_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_APPLE_PRODUCTION_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_STRIPE_PRODUCTION_INTEGRATION",
+                  "Value": "false"
+                },
+                {
+                  "Name": "ALLOW_RETENTION_WORKER",
+                  "Value": "true"
+                },
+                {
+                  "Name": "ALLOW_APPLE_REVIEW_INTEGRATION",
+                  "Value": "true"
+                },
+                {
+                  "Name": "APPLE_REVIEW_SECRET_ARN",
+                  "Value": {
+                    "Ref": "RuntimeAppleReviewSecret3201CF49"
+                  }
+                },
+                {
+                  "Name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+                  "Value": "/app/certificates/apple"
+                },
+                {
+                  "Name": "PRODUCTION_REVIEW_IDENTITY_SHA256",
+                  "Value": {
+                    "Ref": "RuntimeReviewIdentityDigests0273C88C"
+                  }
+                },
+                {
+                  "Name": "PRODUCTION_REVIEW_EXPIRES_AT",
+                  "Value": {
+                    "Ref": "RuntimeReviewExpiresAtF4A0DBEC"
+                  }
+                },
+                {
+                  "Name": "WEB_APP_ORIGIN",
+                  "Value": "https://app.rillora.xyz"
+                },
+                {
+                  "Name": "OIDC_ISSUER_URL",
+                  "Value": "https://login.rillora.xyz"
+                },
+                {
+                  "Name": "OIDC_CLIENT_ID",
+                  "Value": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz"
+                },
+                {
+                  "Name": "OIDC_REDIRECT_URI",
+                  "Value": "https://app.rillora.xyz/api/auth/callback"
+                },
+                {
+                  "Name": "NATIVE_OIDC_CLIENT_ID",
+                  "Value": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
+                },
+                {
+                  "Name": "OIDC_API_AUDIENCE",
+                  "Value": "urn:rillora:production:api"
+                }
+              ],
+              "Essential": true,
+              "HealthCheck": {
+                "Command": [
+                  "CMD",
+                  "node",
+                  "dist/healthcheck.js"
+                ],
+                "Interval": 30,
+                "Retries": 3,
+                "StartPeriod": 45,
+                "Timeout": 5
+              },
+              "Image": {
+                "Fn::Sub": "${AWS::AccountId}.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-${AWS::AccountId}-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32"
+              },
+              "LinuxParameters": {
+                "Capabilities": {
+                  "Drop": [
+                    "ALL"
+                  ]
+                }
+              },
+              "LogConfiguration": {
+                "LogDriver": "awslogs",
+                "Options": {
+                  "awslogs-group": {
+                    "Ref": "RuntimeApiLogs69C9F62B"
+                  },
+                  "awslogs-stream-prefix": "api",
+                  "awslogs-region": "eu-central-1"
+                }
+              },
+              "Name": "Api",
+              "PortMappings": [
+                {
+                  "ContainerPort": 8443,
+                  "Name": "https",
+                  "Protocol": "tcp"
+                }
+              ],
+              "ReadonlyRootFilesystem": true,
+              "Secrets": [
+                {
+                  "Name": "DATABASE_USER",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":username::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "DATABASE_PASSWORD",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeCredential871C86BA"
+                        },
+                        ":password::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_DOMAIN",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":domain::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_CLIENT_ID",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":client_id::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_DELETION_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeAccountDeletionServiceSecret32D97CCD"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_DOMAIN",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":domain::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_ID",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":client_id::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeEmailVerificationServiceSecret994FE572"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                },
+                {
+                  "Name": "OIDC_CLIENT_SECRET",
+                  "ValueFrom": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        {
+                          "Ref": "RuntimeWebOidcSecretACD537A8"
+                        },
+                        ":client_secret::"
+                      ]
+                    ]
+                  }
+                }
+              ]
+            }
+          ],
+          "Cpu": "256",
+          "ExecutionRoleArn": {
+            "Fn::GetAtt": [
+              "RuntimeApiTaskExecutionRoleD48730C6",
+              "Arn"
+            ]
+          },
+          "Family": "RilloraProductionRuntimeApiTask93405B31",
+          "Memory": "512",
+          "NetworkMode": "awsvpc",
+          "RequiresCompatibilities": [
+            "FARGATE"
+          ],
+          "RuntimePlatform": {
+            "CpuArchitecture": "ARM64",
+            "OperatingSystemFamily": "LINUX"
+          },
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskRoleArn": {
+            "Fn::GetAtt": [
+              "RuntimeApiTaskTaskRole477A5663",
+              "Arn"
+            ]
+          }
+        },
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/Runtime/ApiTask/Resource"
+        }
+      }
+    },
+    {
+      "id": "RuntimeService1702E585",
+      "type": "AWS::ECS::Service",
+      "added": false,
+      "removed": false,
+      "before": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "CapacityProviderStrategy": [
+            {
+              "CapacityProvider": "FARGATE",
+              "Weight": 1
+            }
+          ],
+          "Cluster": {
+            "Ref": "ClusterEB0386A7"
+          },
+          "DeploymentConfiguration": {
+            "Alarms": {
+              "AlarmNames": [],
+              "Enable": false,
+              "Rollback": false
+            },
+            "DeploymentCircuitBreaker": {
+              "Enable": true,
+              "Rollback": true
+            },
+            "MaximumPercent": 200,
+            "MinimumHealthyPercent": 100
+          },
+          "DeploymentController": {
+            "Type": "ECS"
+          },
+          "DesiredCount": 1,
+          "EnableECSManagedTags": true,
+          "NetworkConfiguration": {
+            "AwsvpcConfiguration": {
+              "AssignPublicIp": "ENABLED",
+              "SecurityGroups": [
+                {
+                  "Fn::GetAtt": [
+                    "RuntimeApiNetwork3B2CC8BA",
+                    "GroupId"
+                  ]
+                }
+              ],
+              "Subnets": [
+                {
+                  "Ref": "VpcmaintenanceSubnet1SubnetB36026C0"
+                },
+                {
+                  "Ref": "VpcmaintenanceSubnet2Subnet5D5D514C"
+                }
+              ]
+            }
+          },
+          "PropagateTags": "SERVICE",
+          "ServiceRegistries": [
+            {
+              "ContainerName": "Api",
+              "ContainerPort": 8443,
+              "RegistryArn": {
+                "Fn::GetAtt": [
+                  "RuntimeNamespaceApiDiscovery35D81D27",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskDefinition": {
+            "Ref": "RuntimeApiTaskCF645D67"
+          }
+        },
+        "DependsOn": [
+          "RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6",
+          "RuntimeApiTaskTaskRole477A5663",
+          "RuntimeVpcLinkCFD171E5"
+        ],
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/Runtime/Service/Service"
+        }
+      },
+      "after": {
+        "Type": "AWS::ECS::Service",
+        "Properties": {
+          "CapacityProviderStrategy": [
+            {
+              "CapacityProvider": "FARGATE",
+              "Weight": 1
+            }
+          ],
+          "Cluster": {
+            "Ref": "ClusterEB0386A7"
+          },
+          "DeploymentConfiguration": {
+            "Alarms": {
+              "AlarmNames": [],
+              "Enable": false,
+              "Rollback": false
+            },
+            "DeploymentCircuitBreaker": {
+              "Enable": true,
+              "Rollback": true
+            },
+            "MaximumPercent": 200,
+            "MinimumHealthyPercent": 100
+          },
+          "DeploymentController": {
+            "Type": "ECS"
+          },
+          "DesiredCount": 0,
+          "EnableECSManagedTags": true,
+          "NetworkConfiguration": {
+            "AwsvpcConfiguration": {
+              "AssignPublicIp": "ENABLED",
+              "SecurityGroups": [
+                {
+                  "Fn::GetAtt": [
+                    "RuntimeApiNetwork3B2CC8BA",
+                    "GroupId"
+                  ]
+                }
+              ],
+              "Subnets": [
+                {
+                  "Ref": "VpcmaintenanceSubnet1SubnetB36026C0"
+                },
+                {
+                  "Ref": "VpcmaintenanceSubnet2Subnet5D5D514C"
+                }
+              ]
+            }
+          },
+          "PropagateTags": "SERVICE",
+          "ServiceRegistries": [
+            {
+              "ContainerName": "Api",
+              "ContainerPort": 8443,
+              "RegistryArn": {
+                "Fn::GetAtt": [
+                  "RuntimeNamespaceApiDiscovery35D81D27",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Tags": [
+            {
+              "Key": "CostCenter",
+              "Value": "Rillora"
+            },
+            {
+              "Key": "Environment",
+              "Value": "Production"
+            },
+            {
+              "Key": "Project",
+              "Value": "Rillora"
+            }
+          ],
+          "TaskDefinition": {
+            "Ref": "RuntimeApiTaskCF645D67"
+          }
+        },
+        "DependsOn": [
+          "RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6",
+          "RuntimeApiTaskTaskRole477A5663",
+          "RuntimeVpcLinkCFD171E5"
+        ],
+        "Metadata": {
+          "aws:cdk:path": "RilloraProduction/Runtime/Service/Service"
+        }
+      }
+    }
+  ],
+  "parametersSame": true,
+  "outputsSame": true
+}

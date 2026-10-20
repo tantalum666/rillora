@@ -1,0 +1,32 @@
+/* Content localization; header geometry belongs to landing-header.css. */
+.lp-hero h1,
+.lp-hero-copy > p,
+.lp-closing h2,
+.lp-sharing-heading h2,
+.lp-page-intro h1,
+.lp-life-path > span,
+.lp-support-grid > div > p { white-space: pre-line; }
+.lp-footer nav { flex-wrap: wrap; row-gap: 14px; }
+.lp-life-path > span { overflow-wrap: anywhere; }
+html[lang="zh-CN"] .lp-page {
+  font-family: Inter, "PingFang SC", "Microsoft YaHei", "Noto Sans CJK SC", sans-serif;
+}
+html[lang="zh-CN"] .lp-page :is(h1, h2, h3) {
+  font-family: "Source Serif 4", "Songti SC", "Noto Serif CJK SC", serif;
+  letter-spacing: 0;
+  line-height: 1.35;
+}
+html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(48px, 5.7vw, 88px); }
+html[lang="zh-CN"] .lp-hero-copy > p { letter-spacing: 0; max-width: 26em; }
+html[lang="zh-CN"] .lp-page-intro h1 { line-height: 1.35; }
+html[lang="zh-CN"] .lp-document-links strong { font-family: inherit; font-size: 22px; }
+@media (max-width: 600px) {
+  html[lang="zh-CN"] .lp-hero h1 { font-size: clamp(42px, 11vw, 60px); }
+  html[lang="zh-CN"] .lp-page-intro h1 { font-size: 38px; }
+  html[lang="zh-CN"] .lp-situation-choices { flex-wrap: wrap; }
+  .lp-plan-comparison th > strong { font-size: clamp(15px, 4.6vw, 22px); }
+}
+
+@media (max-width: 440px) {
+  .lp-hero-copy > p { white-space: normal; }
+}

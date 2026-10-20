@@ -1,0 +1,47 @@
+{
+  "summary": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"matters\":[{\"publicId\":\"d6fcaa74-56ac-4890-953d-519d14b2dd1f\",\"title\":\"Selected synthetic matter\",\"category\":\"account\",\"status\":\"draft\"}]}"
+      }
+    ],
+    "structuredContent": {
+      "matters": [
+        {
+          "publicId": "d6fcaa74-56ac-4890-953d-519d14b2dd1f",
+          "title": "Selected synthetic matter",
+          "category": "account",
+          "status": "draft"
+        }
+      ]
+    }
+  },
+  "gaps": {
+    "content": [
+      {
+        "type": "text",
+        "text": "{\"matters\":[{\"publicId\":\"d6fcaa74-56ac-4890-953d-519d14b2dd1f\",\"missingFields\":[\"intended_outcome\"]}],\"assessment\":\"selected_common_fields_only\",\"notAssessed\":[\"category_specific_details\",\"legal_authority\",\"recipient_readiness\"]}"
+      }
+    ],
+    "structuredContent": {
+      "matters": [
+        {
+          "publicId": "d6fcaa74-56ac-4890-953d-519d14b2dd1f",
+          "missingFields": [
+            "intended_outcome"
+          ]
+        }
+      ],
+      "assessment": "selected_common_fields_only",
+      "notAssessed": [
+        "category_specific_details",
+        "legal_authority",
+        "recipient_readiness"
+      ]
+    }
+  },
+  "passed": true,
+  "transport": "actual temporary public HTTPS",
+  "modelSelectedTools": false
+}

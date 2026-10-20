@@ -1,0 +1,54 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": true,
+  "error": "Tests failed",
+  "data": {
+    "summary": {
+      "status": "FAILED",
+      "durationMs": 19798,
+      "counts": {
+        "passed": 0,
+        "failed": 1,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-02T17-07-17-431Z_pid26593_48ee4b88.log",
+      "xcresultPath": "output/qa/rillora-strict-review-20261002/native-commerce-race-before.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-02T17-07-17-431Z_pid26593_a51869c3.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/CommerceStoreTests/testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator"
+      ],
+      "discovered": {
+        "total": 1,
+        "items": [
+          "RilloraTests/CommerceStoreTests/testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": [
+        {
+          "suite": "CommerceStoreTests",
+          "test": "testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+          "message": "XCTAssertEqual failed: (\"nil\") is not equal to (\"Optional(Rillora.ApplePurchaseEnvironment.sandbox)\") - A late previous-account request must not reset the new account's purchase state",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/CommerceStoreTests.swift:27"
+        }
+      ]
+    },
+    "testCases": [
+      {
+        "suite": "CommerceStoreTests",
+        "test": "testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator",
+        "status": "failed",
+        "durationMs": 353
+      }
+    ]
+  }
+}

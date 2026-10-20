@@ -1,0 +1,6 @@
+import base from '../../../apps/web/vite.config.mjs';
+export default (context) => {
+  const original = base(context);
+  return { ...original, server: { ...original.server, host: '127.0.0.1', port: 4809, strictPort: true,
+    proxy: { '/api': { target: 'http://127.0.0.1:4496', changeOrigin: false, rewrite: path => path.replace(/^\/api/, '') } } } };
+};

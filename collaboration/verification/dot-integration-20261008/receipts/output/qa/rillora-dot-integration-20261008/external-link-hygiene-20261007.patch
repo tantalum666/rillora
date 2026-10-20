@@ -1,0 +1,214 @@
+diff --git a/apps/web/tests/external-url-hygiene.test.mjs b/apps/web/tests/external-url-hygiene.test.mjs
+new file mode 100644
+index 000000000..617cebe1d
+--- /dev/null
++++ b/apps/web/tests/external-url-hygiene.test.mjs
+@@ -0,0 +1,92 @@
++import assert from "node:assert/strict";
++import { readFileSync, readdirSync } from "node:fs";
++import { extname, join, relative } from "node:path";
++import { fileURLToPath } from "node:url";
++import test from "node:test";
++
++const root = fileURLToPath(new URL("../../../", import.meta.url));
++const gptHost = (host) => /(^|\.)(chatgpt\.com|chat\.openai\.com|chatgpt\.site)$/.test(host);
++
++// Audit authored links, never sanitize runtime auth/payment URLs or user content.
++function assertCleanURL(raw) {
++  assert.doesNotMatch(raw, /[\s\u0000-\u001f\u007f\\]/, `Malformed raw URL: ${raw}`);
++  const url = new URL(raw);
++  assert.doesNotMatch(url.hostname, /(^|\.)chatgpt\.site$/, `Sites URL exposed: ${raw}`);
++  const parameters = [...url.searchParams, ...new URLSearchParams(url.hash.slice(1))];
++  for (const [key, value] of parameters) {
++    if (/^(utm_.+|ref|referrer|source|from)$/i.test(key)) {
++      assert.doesNotMatch(value, /chatgpt|chat\.openai|^gpt$/i, `GPT tracking suffix: ${raw}`);
++    }
++  }
++  if (gptHost(url.hostname)) {
++    assert.doesNotMatch(url.pathname, /(^|\/)(redirect|out|link)(\/|$)/i, `GPT intermediary: ${raw}`);
++    for (const [key, value] of parameters) {
++      assert.ok(!/^(url|u|to|target|redirect|redirect_url|redirect_to|redirectTo)$/i.test(key) || !/^(https?:)?\/\//i.test(value), `GPT intermediary: ${raw}`);
++    }
++  }
++}
++
++function sourceURLs(source) {
++  // Also inspect JSON-escaped slashes and JS/JSON unicode escapes in source.
++  const decoded = source.replace(/\\u([0-9a-f]{4})/gi, (_, hex) => String.fromCharCode(parseInt(hex, 16)))
++    .replace(/\\\//g, "/").replace(/&amp;/g, "&");
++  return decoded.match(/https?:\/\/[^\s<>"'`{}\\)]+/g) ?? [];
++}
++
++test("link guard rejects GPT tracking and intermediary routes before publication", () => {
++  for (const raw of [
++    "https://legal.rillora.xyz/privacy?utm_source=chatgpt.com",
++    "https://support.apple.com/en-us/102631?ref=ChatGPT",
++    "https://legal.rillora.xyz/terms#utm_source=chatgpt.com",
++    "https://chatgpt.com/redirect?url=https%3A%2F%2Flegal.rillora.xyz%2Fterms",
++    "https://chat.openai.com/?target=https%3A%2F%2Fexample.com",
++    "https://example.chatgpt.site/privacy",
++    "https://chatgpt.com/?target=%2F%2Fexample.com",
++    "https://chatgpt.com/?redirect_to=https%3A%2F%2Fexample.com",
++    "https://support.apple.com/\narticle",
++  ]) assert.throws(() => assertCleanURL(raw), raw);
++  const escaped = String.raw`{"url":"https:\/\/example.com\/help?utm_source=\u0063hatgpt.com"}`;
++  assert.equal(sourceURLs(escaped).length, 1);
++  assert.throws(() => assertCleanURL(sourceURLs(escaped)[0]));
++});
++
++test("link guard preserves official references and functional query parameters", () => {
++  for (const raw of [
++    "https://help.openai.com/en/articles/6825453-chatgpt-release-notes",
++    "https://platform.openai.com/docs/guides/authentication",
++    "https://www.binance.com/en/my/risk/appeal?templateId=T192d41590",
++    "https://support.google.com/accounts/troubleshooter/6357590?hl=en",
++    "https://login.rillora.xyz/authorize?state=[REDACTED_CAPABILITY]&code_challenge=opaque&redirect_uri=https%3A%2F%2Fapp.rillora.xyz%2Fcallback",
++    "https://app.rillora.xyz/account?next=guides&service=binance_us&lang=zh-CN",
++  ]) assert.doesNotThrow(() => assertCleanURL(raw), raw);
++});
++
++test("authored Web, native, guide, attribution and legal integration URLs stay clean", () => {
++  const extensions = new Set([".js", ".jsx", ".ts", ".tsx", ".swift", ".json", ".xcstrings", ".txt", ".html", ".plist", ".cjs", ".svg"]);
++  const files = [];
++  function visit(path) {
++    for (const entry of readdirSync(path, { withFileTypes: true })) {
++      const child = join(path, entry.name);
++      if (entry.isDirectory()) visit(child);
++      else if (entry.isFile() && extensions.has(extname(child))) files.push(child);
++    }
++  }
++  for (const path of ["apps/web/src", "apps/web/worker", "apps/ios/Rillora"]) visit(join(root, path));
++  files.push(...[
++    "config/provider-guides.json", "config/app-store-listing.en-US.json",
++    "apps/api/src/legal-contract.ts", "infra/auth0/hosted-consent/form.json",
++    "infra/auth0/universal-login/branding.json",
++  ].map(path => join(root, path)));
++  let count = 0;
++  for (const path of files) {
++    for (const raw of sourceURLs(readFileSync(path, "utf8"))) {
++      assert.doesNotThrow(() => assertCleanURL(raw), `${relative(root, path)}: ${raw}`);
++      count += 1;
++    }
++  }
++  assert.ok(count > 100, "The cross-client source inventory must not silently become empty");
++  const catalog = JSON.parse(readFileSync(join(root, "config/provider-guides.json"), "utf8"));
++  for (const guide of catalog.guides) {
++    for (const link of guide.links) assertCleanURL(link.urlString);
++  }
++});
+diff --git a/docs/qa/external-links-20261008/README.md b/docs/qa/external-links-20261008/README.md
+new file mode 100644
+index 000000000..72c42fbab
+--- /dev/null
++++ b/docs/qa/external-links-20261008/README.md
+@@ -0,0 +1,88 @@
++# Rillora external-link guard and hosting investigation
++
++Date: 2026-10-08. Baseline: c0cec8680c613c3f6889f800754818fddf901031.
++Status: source safeguard; hosting migration is not deployed.
++
++## Finding
++
++The reported Safari page named chatgpt.site while the address bar remained
++legal.rillora.xyz. Current application links point directly to the legal hostname.
++Sites control-plane readback confirms its CNAME target is custom-domains.chatgpt.site;
++this is a hosting dependency rather than evidence of an authored GPT redirect.
++The exact device/network security trigger is unknown. Successful cloud browser
++checks do not establish that the original device block is fixed.
++
++Privacy belongs to the same seven-document legal bundle: /privacy, /terms,
++/subscription-terms, /refund-policy, /acceptable-use, /cookies and /legal.
++All seven rendered in the cloud browser on October 7; Privacy and Terms also had
++successful 200/no-redirect HTTP checks and an actual Privacy-to-Terms click.
++October 8 readback still finds Sites active/public version 10 and the same CNAME.
++The WWW /legal page is a directory pointing back to this host, not a fallback;
++WWW /privacy and /terms did not provide equivalent documents.
++
++## Narrow source change
++
++The new external-url-hygiene.test.mjs is automatically included by the existing
++Web CI test glob. It checks authored Web/native source, guide and attribution
++links, public listing links, and legal integration references. It rejects exposed
++Sites URLs, GPT tracking parameters and common GPT redirect wrappers, including
++scheme-relative targets. It inspects escaped source URLs and checks complete guide
++URLs for raw whitespace/control characters before parsing.
++
++Official OpenAI help/docs references remain valid. No runtime URL is rewritten,
++and functional authentication/provider parameters are preserved. Existing
++provider-owned-host assertions remain active. Tests contain synthetic negative
++examples only, never runtime destinations.
++
++The initial source inventory covered 18 guides/35 provider links and found no GPT
++tracking suffix or intermediary URL. The continuation retains the latest upstream
++native files without editing them. A source test cannot prove DNS, arbitrary
++provider redirects or all future links universally safe; hosting inventory and
++post-deployment DNS/HTTP/browser checks are separate requirements.
++
++## Verification
++
++- 177 Web tests passed on the current baseline, including three new guard tests
++- Internal Web build passed during this continuation
++- Prior public build and seven legal packaging fixture tests passed October 7;
++  those results are retained as dated evidence, not claimed as newly rerun here
++- Xcode/native runtime and migration acceptance were not run
++
++See [aggregate verification](summary.json). Detailed suite logs are not uploaded.
++No application route, accepted legal body/version/digest, production configuration,
++shared product/decision/handoff document, DNS, AWS resource or billing setting is
++changed by this focused publication. Broader shared-document updates were blocked
++by review and are not included or transmitted under another filename.
++
++## Current migration scope and access
++
++The Owner asks to audit every Rillora public hostname/preview that depends on GPT
++hosting and move those portions toward Cloudflare Pages. This includes Privacy,
++not only Terms. Distinguish production from design/motion previews, preserve all
++seven branded legal URLs/content/security boundaries, and leave unrelated personal
++Sites and official provider references alone. The authenticated AWS backend is
++outside this public-host migration. Current known-host inventory: legal is Sites-backed; WWW, app and app.staging use
++CloudFront, and login uses Auth0. Root redirects to WWW. A separate restricted
++Rillora motion-review Site is a design preview, not production; its audience must
++remain restricted. Planned api/docs/status hostnames are not currently provisioned.
++Inventory is bounded to known Rillora hosts and owned/shared-editable Sites; no
++universal completion claim is made.
++
++Cloud access preflight: no AWS CLI/profile/environment credential is available;
++AWS Console shows Site Unavailable before a login form, making auth state unknown.
++GoDaddy redirects to sign-in; its available connector has no DNS management.
++Cloudflare connector discovery returned no eligible integration. Its dashboard
++login page shows a verification error and disabled Sign in; a supported manual
++handoff is being assessed. No new credential or persistent grant
++has been created, and none is implied by this source publication.
++
++Next: complete the Rillora-only hosting inventory, obtain working authorized
++provider access, prepare and verify the provider-neutral legal artifact, then
++perform only approved public-host changes with rollback and independent DNS/TLS/
++route/content/click acceptance. The original hosting block remains unresolved.
++
++A fresh October 8 anonymous legal-root request returned Cloudflare HTTP 403/error
++1010 while the known AWS public roots returned 200. This is a client-specific edge
++rejection, not a browser redirect or proof of universal failure. No alternate-path
++probe was used to bypass that rejection. Only the new guard/report and aggregate
++counts are included; denied detailed logs and shared-document payloads are omitted.
+diff --git a/docs/qa/external-links-20261008/summary.json b/docs/qa/external-links-20261008/summary.json
+new file mode 100644
+index 000000000..e034399e9
+--- /dev/null
++++ b/docs/qa/external-links-20261008/summary.json
+@@ -0,0 +1,16 @@
++{
++  "date": "2026-10-08",
++  "baseline": "c0cec8680c613c3f6889f800754818fddf901031",
++  "webTests": {
++    "passed": 177,
++    "failed": 0
++  },
++  "focusedURLGuardTests": {
++    "passed": 3,
++    "failed": 0
++  },
++  "internalBuild": "passed",
++  "nativeRuntime": "not run",
++  "hostingMigration": "not deployed",
++  "scope": "new URL guard and dedicated report; no shared documents or detailed test logs"
++}

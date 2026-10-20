@@ -1,0 +1,15 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "rillora-ai-candidate",
+  "account_id": "8035762329fae4920052e81df9baaa0c",
+  "main": "worker.ts",
+  "compatibility_date": "2026-10-17",
+  "compatibility_flags": ["nodejs_compat"],
+  "workers_dev": true,
+  "preview_urls": false,
+  "vars": {"HOSTING_MODE": "synthetic-only"},
+  "kv_namespaces": [{"binding":"OAUTH_KV","id":"3dbec952169e4b1782ef358932214049"}],
+  "hyperdrive": [{"binding":"DATABASE","id":"4f27cc101d784395aaa249c92e3bad18"}],
+  "observability": {"enabled":true,"logs":{"enabled":true,"invocation_logs":false}},
+  "secrets": {"required":["AUTH0_CLIENT_ID","AUTH0_CLIENT_SECRET","AUTH0_CONNECTION","SYNTHETIC_SUBJECT","SESSION_KEY","CONTENT_WRAPPING_KEY","DATABASE_AUTHORITY_KEY","OPERATOR_SECRET"]}
+}

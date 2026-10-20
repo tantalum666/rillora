@@ -1,0 +1,14 @@
+from pathlib import Path
+import json,subprocess,time
+q=Path(__file__).resolve().parent;root=q.parents[2]
+secret=(root/'.local-secrets/ai-hosting-20261017/probe-secret').read_text().strip()
+assert all(c.isalnum() or c in '-_' for c in secret)
+config='url = "https://rillora-ai-candidate-probe.rillora-candidate.workers.dev/capabilities"\nrequest = "POST"\nheader = "content-type: application/json"\nheader = "x-probe-secret: '+secret+'"\ndata = "{}"\n'
+t=time.monotonic()
+r=subprocess.run(['curl','--config','-','--silent','--show-error','--max-time','30','--dump-header',str(q/'edge-protected-headers.txt'),'--output',str(q/'edge-protected-body.txt'),'--write-out','%{http_code} %{ssl_verify_result}'],input=config,capture_output=True,text=True)
+result={'curlExit':r.returncode,'statusAndTlsVerification':r.stdout,'durationSeconds':round(time.monotonic()-t,3),'diagnostic':r.stderr[:300]}
+p=q/'edge-protected-body.txt'
+if p.exists():
+ try:result['body']=json.loads(p.read_text())
+ except ValueError:result['body']=p.read_text()[:400]
+q.joinpath('edge-probe-after-adapter-fix.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result,indent=2))

@@ -1,0 +1,42 @@
+{
+  "recordedAt": "2026-10-04T12:14:00.902857+00:00",
+  "status": "in progress; pending exact Owner native terms confirmation",
+  "implementationChanges": [],
+  "newProductTests": false,
+  "newDeploymentOrStoreUpload": false,
+  "newSimulatorBuild": "Current reviewed source installed for new actual acceptance, replacing October1artifact without data/keychain erase",
+  "focusedDocs": [
+    "docs/real-core-acceptance-20261004.md",
+    "docs/trusted-sharing.md",
+    "docs/start-here-export.md",
+    "config/release-gates.json"
+  ],
+  "authority": [
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decisionReason": "Owner selected real core continuation; no new product/pricing/access duration decision",
+  "passedEvidence": [
+    "web-baseline.json",
+    "web-copy-and-reauth.json",
+    "native-artifact-check.json"
+  ],
+  "notProven": [
+    "current native private callback",
+    "scope expansion/reduction/revoke",
+    "populated guide/encrypted/backup recovery",
+    "actual empty-target import",
+    "fresh-auth retry",
+    "disposable-account deletion",
+    "final logout boundary"
+  ],
+  "publicationExclusions": [
+    "native-account-terms.jpg actual authentication handoff",
+    "provider/authentication/runtime session logs",
+    "credentials, recovery keys, callback/capability URLs",
+    "reproducible dependency/compiler cache"
+  ],
+  "retainedRegression": "CI47 and earlier complete-code test suites retain original dates"
+}

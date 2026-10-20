@@ -1,0 +1,28 @@
+{
+  "observedAt": "2026-10-16T12:54:15.122543+00:00",
+  "purpose": "Bing site verification CNAME",
+  "recordValuePublished": false,
+  "checks": [
+    {
+      "resolver": "ns73.domaincontrol.com",
+      "source": "authoritative DNS",
+      "matched": true
+    },
+    {
+      "resolver": "ns74.domaincontrol.com",
+      "source": "authoritative DNS",
+      "matched": true
+    },
+    {
+      "resolver": "https://dns.google/resolve",
+      "source": "DNS over HTTPS",
+      "matched": true
+    },
+    {
+      "resolver": "https://cloudflare-dns.com/dns-query",
+      "source": "DNS over HTTPS",
+      "matched": true
+    }
+  ],
+  "passed": true
+}

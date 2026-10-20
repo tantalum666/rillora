@@ -1,0 +1,6 @@
+
+> continuity-api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+tests/production-commerce.integration.test.ts(319,37): error TS2694: Namespace '"/Users/tantalum/Documents/\u7535\u5B50\u9057\u5631app/apps/api/node_modules/stripe/esm/resources/Refunds".Refund' has no exported member 'Status'.
+tests/stripe-refund-reversal.test.ts(9,45): error TS2694: Namespace '"/Users/tantalum/Documents/\u7535\u5B50\u9057\u5631app/apps/api/node_modules/stripe/esm/resources/Refunds".Refund' has no exported member 'Status'.

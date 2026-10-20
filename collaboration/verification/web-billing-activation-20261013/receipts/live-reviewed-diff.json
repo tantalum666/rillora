@@ -1,0 +1,18 @@
+{
+  "at": "2026-10-12T18:59:22.750553+00:00",
+  "passed": true,
+  "source": "474702c06c00eadf1054910cc603fd0b81d8b506",
+  "resourcesRetained": 101,
+  "changedResourceIds": [
+    "RuntimeApiTaskCF645D67",
+    "RuntimeApiNetwork3B2CC8BA",
+    "RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6",
+    "MaintenanceBrokerFunctionC542279B",
+    "CDKMetadata"
+  ],
+  "scope": "Live production identity and Stripe Checkout; drop API-only Apple review access while retaining historical recovery checks; fixed broker live gate; metadata only",
+  "databaseNetworkKeysSecretsPricesAndUserDataUnchanged": true,
+  "runtimeImageUnchanged": true,
+  "nativeAndWebClientIdsUnchanged": true,
+  "deployed": false
+}

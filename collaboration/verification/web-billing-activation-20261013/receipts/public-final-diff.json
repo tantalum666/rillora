@@ -1,0 +1,15 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "id": "PublicRoutesC0C4D2B4",
+      "type": "AWS::CloudFront::Function"
+    },
+    {
+      "id": "PublicDeploymentCustomResource947B276F",
+      "type": "Custom::CDKBucketDeployment"
+    }
+  ],
+  "allOtherResourcesAndPropertiesUnchanged": true,
+  "deployed": false
+}

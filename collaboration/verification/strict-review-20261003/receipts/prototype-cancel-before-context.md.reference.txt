@@ -1,0 +1,221 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: mobile-runtime.spec.ts >> a cancelled touch drag does not consume the next deliberate card tap
+- Location: tests/mobile-runtime.spec.ts:67:1
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator:  getByTestId('tap-count')
+Expected: "1"
+Received: "0"
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveText" with timeout 5000ms
+  - waiting for getByTestId('tap-count')
+    14 × locator resolved to <output data-testid="tap-count">0</output>
+       - unexpected value "0"
+
+```
+
+```yaml
+- status: "0"
+```
+
+# Test source
+
+```ts
+  1   | import { expect, test, type Locator, type Page } from "@playwright/test";
+  2   | 
+  3   | async function drag(page: Page, locator: Locator, deltaX: number, deltaY: number, steps = 8) {
+  4   |   const box = await locator.boundingBox();
+  5   |   if (!box) throw new Error("Drag target has no bounding box");
+  6   |   const startX = box.x + box.width / 2;
+  7   |   const startY = box.y + box.height / 2;
+  8   | 
+  9   |   await page.mouse.move(startX, startY);
+  10  |   await page.mouse.down();
+  11  |   for (let step = 1; step <= steps; step += 1) {
+  12  |     await page.mouse.move(
+  13  |       startX + (deltaX * step) / steps,
+  14  |       startY + (deltaY * step) / steps,
+  15  |     );
+  16  |     await page.waitForTimeout(8);
+  17  |   }
+  18  |   await page.mouse.up();
+  19  | }
+  20  | 
+  21  | test.beforeEach(async ({ page }) => {
+  22  |   await page.goto("/tests/runtime-fixture.html");
+  23  | });
+  24  | 
+  25  | test("horizontal intent stays in Carousel and cannot create parent momentum", async ({ page }) => {
+  26  |   const carousel = page.locator(".fixture-carousel");
+  27  |   const card = page.locator(".carousel-card").nth(1);
+  28  |   const parent = page.getByTestId("mobile-scroll");
+  29  | 
+  30  |   await expect(carousel).not.toHaveAttribute("data-scroll-drag", "ignore");
+  31  |   await drag(page, card, -130, 14, 5);
+  32  | 
+  33  |   const afterRelease = await carousel.evaluate((element) => element.scrollLeft);
+  34  |   expect(afterRelease).toBeGreaterThan(40);
+  35  |   expect(await parent.evaluate((element) => element.scrollTop)).toBe(0);
+  36  | 
+  37  |   await page.waitForTimeout(250);
+  38  |   expect(await parent.evaluate((element) => element.scrollTop)).toBe(0);
+  39  |   expect(await page.getByTestId("tap-count").textContent()).toBe("0");
+  40  | });
+  41  | 
+  42  | test("vertical intent over a carousel is handed to MobileScroll in both directions", async ({ page }) => {
+  43  |   const card = page.locator(".carousel-card").nth(1);
+  44  |   const carousel = page.locator(".fixture-carousel");
+  45  |   const parent = page.getByTestId("mobile-scroll");
+  46  | 
+  47  |   await drag(page, card, 4, -150);
+  48  |   expect(await parent.evaluate((element) => element.scrollTop)).toBeGreaterThan(60);
+  49  |   expect(await carousel.evaluate((element) => element.scrollLeft)).toBe(0);
+  50  | 
+  51  |   await parent.evaluate((element) => {
+  52  |     element.scrollTop = 80;
+  53  |   });
+  54  |   await drag(page, card, -3, 110);
+  55  |   expect(await parent.evaluate((element) => element.scrollTop)).toBeLessThan(80);
+  56  | });
+  57  | 
+  58  | test("tap activates a card but a completed drag does not", async ({ page }) => {
+  59  |   const firstCard = page.locator(".carousel-card").first();
+  60  |   await firstCard.click();
+  61  |   await expect(page.getByTestId("tap-count")).toHaveText("1");
+  62  | 
+  63  |   await drag(page, firstCard, -100, 6);
+  64  |   await expect(page.getByTestId("tap-count")).toHaveText("1");
+  65  | });
+  66  | 
+  67  | test("a cancelled touch drag does not consume the next deliberate card tap", async ({ page }) => {
+  68  |   const carousel = page.locator(".fixture-carousel");
+  69  |   const card = page.locator(".carousel-card").nth(1);
+  70  |   const box = await card.boundingBox();
+  71  |   if (!box) throw new Error("Card has no bounding box");
+  72  |   const errors: string[] = [];
+  73  |   page.on("pageerror", error => errors.push(error.message));
+  74  |   const input = await page.context().newCDPSession(page);
+  75  |   const x = box.x + box.width / 2, y = box.y + box.height / 2;
+  76  |   try {
+  77  |     await input.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x, y, id: 1 }] });
+  78  |     await input.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: x - 70, y, id: 1 }] });
+  79  |     await expect(carousel).toHaveAttribute("data-dragging", "true");
+  80  |     await input.send("Input.dispatchTouchEvent", { type: "touchCancel", touchPoints: [] });
+  81  |     await expect(carousel).toHaveAttribute("data-dragging", "false");
+  82  |     await card.click();
+> 83  |     await expect(page.getByTestId("tap-count")).toHaveText("1");
+      |                                                 ^ Error: expect(locator).toHaveText(expected) failed
+  84  |     expect(errors).toEqual([]);
+  85  |   } finally { await input.detach(); }
+  86  | });
+  87  | 
+  88  | test("Carousel preserves momentum and edge rubber-banding", async ({ page }) => {
+  89  |   const carousel = page.locator(".fixture-carousel");
+  90  |   const card = page.locator(".carousel-card").nth(1);
+  91  | 
+  92  |   await drag(page, card, -100, 5, 3);
+  93  |   const releasedOffset = await carousel.evaluate((element) => element.scrollLeft);
+  94  |   await page.waitForTimeout(120);
+  95  |   expect(await carousel.evaluate((element) => element.scrollLeft)).toBeGreaterThan(releasedOffset);
+  96  | 
+  97  |   await carousel.evaluate((element) => {
+  98  |     element.scrollLeft = 0;
+  99  |   });
+  100 |   const box = await card.boundingBox();
+  101 |   if (!box) throw new Error("Card has no bounding box");
+  102 |   await page.mouse.move(box.x + box.width / 2, box.y + box.height / 2);
+  103 |   await page.mouse.down();
+  104 |   await page.mouse.move(box.x + box.width / 2 + 90, box.y + box.height / 2, { steps: 4 });
+  105 |   expect(Number(await carousel.getAttribute("data-overscroll"))).toBeGreaterThan(0);
+  106 |   await page.mouse.up();
+  107 |   await page.waitForTimeout(900);
+  108 |   expect(Math.abs(Number(await carousel.getAttribute("data-overscroll")))).toBeLessThan(1);
+  109 | });
+  110 | 
+  111 | test("BottomSheet remains mounted while its default exit animation plays", async ({ page }) => {
+  112 |   await page.locator(".sheet-trigger").click();
+  113 |   await expect(page.getByTestId("bottom-sheet")).toBeVisible();
+  114 | 
+  115 |   await page.getByTestId("sheet-overlay").click({ position: { x: 8, y: 8 } });
+  116 |   await expect(page.getByTestId("bottom-sheet")).toHaveCount(1);
+  117 |   await page.waitForTimeout(500);
+  118 |   await expect(page.getByTestId("bottom-sheet")).toHaveCount(0);
+  119 | });
+  120 | 
+  121 | test("keyboard and its attached footer dismiss on the same transition", async ({ page }) => {
+  122 |   await page.goto("/tests/runtime-fixture.html?fixture=keyboard");
+  123 |   const input = page.getByLabel("Message");
+  124 |   const footer = page.getByTestId("flow-fixed-footer");
+  125 |   const keyboard = page.getByTestId("keyboard-dock");
+  126 | 
+  127 |   await input.click();
+  128 |   await expect(keyboard).toHaveAttribute("data-visible", "true");
+  129 |   await drag(page, footer, 0, 120, 5);
+  130 |   await expect(keyboard).toHaveAttribute("data-visible", "false");
+  131 | 
+  132 |   await page.waitForTimeout(100);
+  133 |   const progress = await page.evaluate(() => {
+  134 |     const footerElement = document.querySelector<HTMLElement>('[data-testid="flow-fixed-footer"]')!;
+  135 |     const keyboardElement = document.querySelector<HTMLElement>('[data-testid="keyboard-dock"]')!;
+  136 |     const fullHeight = Number.parseFloat(keyboardElement.style.height);
+  137 |     const footerRemaining = Number.parseFloat(getComputedStyle(footerElement).bottom);
+  138 |     const matrix = new DOMMatrixReadOnly(getComputedStyle(keyboardElement).transform);
+  139 |     return {
+  140 |       footer: footerRemaining / fullHeight,
+  141 |       keyboard: 1 - matrix.m42 / fullHeight,
+  142 |     };
+  143 |   });
+  144 |   expect(Math.abs(progress.footer - progress.keyboard)).toBeLessThan(0.18);
+  145 | 
+  146 |   await page.waitForTimeout(300);
+  147 |   expect(await footer.evaluate((element) => getComputedStyle(element).bottom)).toBe("34px");
+  148 | });
+  149 | 
+  150 | test("switching to Pixel keeps the composer above Android navigation", async ({ page }) => {
+  151 |   await page.goto("/tests/runtime-fixture.html?fixture=keyboard");
+  152 |   const input = page.getByLabel("Message");
+  153 |   await input.evaluate((element: HTMLInputElement) => {
+  154 |     element.value = "Draft message";
+  155 |   });
+  156 | 
+  157 |   await page.getByTestId("device-picker").click();
+  158 |   await page.getByTestId("device-option-pixel-10").click();
+  159 | 
+  160 |   const frame = page.getByTestId("phone-frame");
+  161 |   const screen = page.getByTestId("device-screen");
+  162 |   const statusIndicators = page.getByTestId("status-indicators");
+  163 |   const navigation = page.getByTestId("android-navigation-bar");
+  164 |   const footer = page.getByTestId("flow-fixed-footer");
+  165 | 
+  166 |   await expect(frame).toHaveAttribute("data-device", "pixel-10");
+  167 |   await expect(screen).toHaveAttribute("data-device", "pixel-10");
+  168 |   await expect(page.locator(".phone-bezel")).toHaveAttribute(
+  169 |     "src",
+  170 |     "/assets/android/Pixel10.png",
+  171 |   );
+  172 |   await expect(statusIndicators).toHaveAttribute("data-platform", "android");
+  173 |   await expect(statusIndicators).toHaveAttribute(
+  174 |     "src",
+  175 |     "/assets/status/status-icons.svg",
+  176 |   );
+  177 |   await expect(navigation).toBeVisible();
+  178 |   await expect(page.getByTestId("home-indicator")).toHaveCount(0);
+  179 |   await expect(input).toHaveValue("Draft message");
+  180 |   await page.waitForTimeout(300);
+  181 | 
+  182 |   const layout = await page.evaluate(() => {
+  183 |     const footerElement = document.querySelector<HTMLElement>(
+```

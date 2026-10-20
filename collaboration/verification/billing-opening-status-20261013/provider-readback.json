@@ -1,0 +1,34 @@
+{
+  "checkedAt": "2026-10-12T17:07:55.959Z",
+  "readOnly": true,
+  "credentialSource": "existing runtime secret used only in memory",
+  "applicationTaxMode": "not_configured",
+  "account": {
+    "readSucceeded": true,
+    "expectedRilloraAccount": true,
+    "chargesEnabled": true,
+    "payoutsEnabled": true
+  },
+  "product": {
+    "readSucceeded": true,
+    "livemode": true,
+    "active": true,
+    "expectedProduct": true,
+    "configuredTaxCodeMatches": true
+  },
+  "price": {
+    "readSucceeded": true,
+    "livemode": true,
+    "active": true,
+    "amountMinor": 8899,
+    "currency": "usd",
+    "interval": "year",
+    "taxBehavior": "unspecified",
+    "expectedPrice": true
+  },
+  "tax": {
+    "readSucceeded": true,
+    "settingsStatus": "pending",
+    "activeRegistrationCount": 0
+  }
+}

@@ -9,14 +9,40 @@ import {recordSubscriptionObservation,persistReconciliation} from './commerce-su
 import {resolveAppleReceiptPrice,persistAppleReceipt} from './apple-production-receipts.js';
 import {appleProductionContext,appleReviewContext} from './apple-execution-context.js';
 
-/** Only a quarantined administrator may refresh current provider facts. The
- * current journal inventory is mandatory; old empty markers never auto-clear. */
-export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:RecoveryControl[],generation:string,reader:RecoveryProviderReader){
+/** Missing external markers are not evidence that restored billing is safe.
+ * This read-only check can also be run before quiescing the source service. */
+export async function assertRecoveryCommerceCoverage(pool:DatabasePool,controls:RecoveryControl[],generation:string){
  if(process.env.NODE_ENV!=='test'){
   const ssl=pool.options.ssl;validateRecoveryHost(pool.options.host??'',typeof ssl==='object'&&ssl.rejectUnauthorized===true);
  }
+ const covered=new Set(controls.map(parseRecoveryControl).filter(e=>e.kind==='unreconciled_access').map(e=>e.id));
+ const client=await pool.connect();
+ try{
+  await client.query('begin read only');
+  if(!(await client.query("select pg_has_role(session_user,'continuity_recovery_service','member') as allowed")).rows[0]?.allowed)throw Error('Recovery administrator is required');
+  if((await client.query('select generation from app.recovery_policy where singleton')).rows[0]?.generation!==generation)throw Error('Recovery generation mismatch');
+  const owners=(await client.query(`select p.public_id from app.planners p where p.status='active' and (
+   exists(select 1 from app.commerce_subscriptions s where s.planner_id=p.id)
+   or exists(select 1 from app.commerce_entitlement_grants g where g.planner_id=p.id and g.revoked_at is null
+    and (g.expires_at is null or g.expires_at>statement_timestamp()))) limit 101`)).rows;
+  if(owners.length>100)throw Error('Commerce recovery needs bounded offline batches');
+  if(owners.some(owner=>!covered.has(owner.public_id)))throw Error('Restored billing owner is missing from the independent recovery inventory');
+  await client.query('commit');
+ }catch(error){await client.query('rollback');throw error;}finally{client.release();}
+}
+
+/** Only a quarantined administrator may refresh current provider facts. The
+ * current journal inventory is mandatory; old empty markers never auto-clear. */
+export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:RecoveryControl[],generation:string,reader:RecoveryProviderReader){
+ const now=Date.now(),frozen=Date.parse(process.env.RECOVERY_SOURCE_FROZEN_AT??'');
+ if(process.env.NODE_ENV!=='test'){
+  const ssl=pool.options.ssl;validateRecoveryHost(pool.options.host??'',typeof ssl==='object'&&ssl.rejectUnauthorized===true);
+  if(!Number.isFinite(frozen)||frozen>now||now-frozen>10*60_000)throw Error('Fresh source-service freeze verification is required');
+ }
+ const observationFloor=new Date(Math.max(now-5*60_000,Number.isFinite(frozen)?frozen:0)).toISOString();
  const events=controls.map(parseRecoveryControl).filter(e=>e.kind==='unreconciled_access');
  if(events.length>100)throw Error('Commerce recovery needs bounded offline batches');
+ await assertRecoveryCommerceCoverage(pool,events,generation);
  let reconciled=0,providerReads=0;
  for(const event of events){
   const client=await pool.connect();
@@ -26,17 +52,33 @@ export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:Recov
    if((await client.query('select generation from app.recovery_policy where singleton')).rows[0]?.generation!==generation)throw Error('Recovery generation mismatch');
    await client.query("select pg_advisory_xact_lock(hashtextextended('recovery-commerce',0)),set_config('app.recovery_replay','true',true)");
    const prior=(await client.query('select revision::text from app.recovery_controls where entity_key=$1',[event.key])).rows[0];
-   if(prior&&BigInt(prior.revision)>=BigInt(event.revision)){await client.query('commit');continue;}
    const inventory=recoveryCommerceInventorySchema.parse(event.facts);
    if(inventory.manualAccess||!inventory.subscriptions.length||providerReads+inventory.subscriptions.length>20)throw Error('Current complete provider inventory or manual access review is required');
-   const owner=(await client.query("select p.id::text,plan.id::text as plan_id from app.planners p join app.plans plan on plan.planner_id=p.id where p.public_id=$1 and p.status='active'",[event.id])).rows;
+   const owner=(await client.query("select id::text from app.planners where public_id=$1 and status='active'",[event.id])).rows;
    if(owner.length!==1)throw Error('Missing or inactive restored owner needs explicit identity and financial recovery');
+   await client.query("select set_config('app.current_planner_id',$1,true)",[owner[0].id]);
+   const plan=(await client.query('select id::text from app.plans where planner_id=$1',[owner[0].id])).rows;
+   if(plan.length!==1)throw Error('Missing restored plan needs explicit recovery');
    const refs=inventory.subscriptions;
    const key=(r:{provider:string;environment:string;reference:string|null;account:string})=>JSON.stringify([r.provider,r.environment,r.reference,r.account]);
    if(new Set(refs.map(key)).size!==refs.length)throw Error('Ambiguous recovery inventory');
    const restored=(await client.query(`select s.renewal_provider as provider,s.provider_environment as environment,s.provider_subscription_reference as reference,a.public_id as account
     from app.commerce_subscriptions s join app.commerce_accounts a on a.id=s.commerce_account_id where s.planner_id=$1`,[owner[0].id])).rows;
    if(restored.some(r=>!refs.some(ref=>key(ref)===key(r))))throw Error('Restored subscription missing from current journal inventory');
+   if(prior&&BigInt(prior.revision)>=BigInt(event.revision)){
+    // A source checkpoint is also copied into a backup. Only fresh observations
+    // made by this recovery after its source freeze can prove reconciliation.
+    const verified=(await client.query(`select distinct s.renewal_provider as provider,s.provider_environment as environment,
+     s.provider_subscription_reference as reference,a.public_id as account
+     from app.commerce_reconciliation_runs r join app.commerce_provider_events e on e.id=r.provider_event_id and e.planner_id=r.planner_id
+     join app.commerce_subscriptions s on s.id=r.subscription_id and s.planner_id=r.planner_id
+     join app.commerce_accounts a on a.id=s.commerce_account_id and a.planner_id=s.planner_id
+     where r.planner_id=$1 and e.event_type='recovery_current_provider_state' and e.processing_status='applied'
+      and e.provider_event_reference like $3 and r.provider_observed_at>=$2::timestamptz and r.created_at>=$2::timestamptz
+      and r.provider_observed_at<=$4::timestamptz and r.created_at<=$4::timestamptz
+      and s.provider_observed_at=r.provider_observed_at`,[owner[0].id,observationFloor,`recovery:${event.revision}:%`,new Date(now).toISOString()])).rows;
+    if(refs.every(ref=>verified.some(row=>key(row)===key(ref)))){await client.query('commit');continue;}
+   }
    const observations:RecoveryProviderObservation[]=[];
    for(const ref of refs){
     if(!ref.reference||ref.acquisition!=='purchased'||ref.plane!=='global'||ref.market!=='GLOBAL_US')throw Error('Unsupported recovery subscription');
@@ -46,7 +88,8 @@ export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:Recov
      ||s.commerceAccountReference!==ref.account||s.planCode!=='family'||!s.priceCode||!Number.isFinite(at)
      ||!Number.isFinite(Date.parse(event.recordedAt))||at<Date.parse(event.recordedAt)||Math.abs(Date.now()-at)>5*60_000
      ||s.source!==(s.provider==='stripe'?'stripe_api':'app_store_server_api_signed_status'))throw Error('Recovery observation scope or freshness mismatch');
-    if(s.provider==='storekit'&&(!observation.apple||observation.apple.receipt.originalTransactionId!==ref.reference))throw Error('Verified Apple receipt required');
+    if(s.provider==='storekit'&&(!observation.apple||observation.apple.receipt.originalTransactionId!==ref.reference
+     ||(observation.apple.receipt.appAccountToken??event.id).toLowerCase()!==(ref.appAccountToken??event.id).toLowerCase()))throw Error('Verified Apple receipt with the exact recovered owner token required');
     if(s.provider==='stripe'&&(!Object.hasOwn(observation,'financialOverride')||typeof observation.disputeResolved!=='boolean'
      ||!observation.stripePrice||!observation.stripeProduct||s.providerCustomerReference!==ref.customer))throw Error('Current Stripe financial verification is required');
     observations.push(observation);
@@ -61,7 +104,7 @@ export async function reconcileRecoveryCommerce(pool:DatabasePool,controls:Recov
     const existing=(await client.query('select id::text,planner_id::text,status,service_market_code from app.commerce_accounts where public_id=$1',[ref.account])).rows[0];
     if(existing&&(existing.planner_id!==owner[0].id||existing.status!=='active'||existing.service_market_code!==ref.market))throw Error('Restored commerce ownership mismatch');
     const account=existing??(await client.query(`insert into app.commerce_accounts(public_id,planner_id,plan_id,operating_plane_code,service_market_code,status)
-     values($1,$2,$3,'global',$4,'active') returning id::text`,[ref.account,owner[0].id,owner[0].plan_id,ref.market])).rows[0];
+     values($1,$2,$3,'global',$4,'active') returning id::text`,[ref.account,owner[0].id,plan[0].id,ref.market])).rows[0];
     await client.query('set local role continuity_commerce');await client.query("select set_config('app.current_planner_id',$1,true)",[owner[0].id]);
     await commitObservation(client,{commerceAccountId:account.id,publicId:ref.account},observation,event);
     await client.query('reset role');
@@ -80,7 +123,7 @@ async function commitObservation(client:PoolClient,context:{commerceAccountId:st
   where planner_id=app.current_planner_id() and renewal_provider=$1 and provider_environment=$2 and provider_subscription_reference=$3`,
   [s.provider,s.providerEnvironment,s.providerSubscriptionReference])).rows[0];
  if(s.provider==='stripe'&&prior?.provider_invoice_reference===s.providerInvoiceReference){
-  if(prior.financial_state_override==='refunded')override='refunded';
+  if(prior.financial_state_override==='refunded'&&observation.refundResolved!==true)override='refunded';
   if(prior.financial_state_override==='revoked'&&!observation.disputeResolved)override??='revoked';
   if(override)s={...s,state:override,cancelAtPeriodEnd:false};
  }

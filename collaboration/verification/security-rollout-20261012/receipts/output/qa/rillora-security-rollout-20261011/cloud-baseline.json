@@ -1,0 +1,118 @@
+{
+  "checkedAt": "2026-10-11T14:42:31.367533+00:00",
+  "readOnly": true,
+  "account": "133857166372",
+  "stacks": [
+    {
+      "stack": "RilloraProduction",
+      "status": "UPDATE_COMPLETE",
+      "resources": 79,
+      "services": [
+        {
+          "name": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+          "desired": 1,
+          "running": 1,
+          "pending": 0,
+          "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:21",
+          "deployments": [
+            {
+              "status": "PRIMARY",
+              "rolloutState": "COMPLETED",
+              "desiredCount": 1,
+              "runningCount": 1,
+              "pendingCount": 0
+            }
+          ]
+        }
+      ],
+      "taskDefinitions": [
+        {
+          "arn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:21",
+          "containers": [
+            {
+              "name": "Api",
+              "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59"
+            }
+          ],
+          "flags": {
+            "ALLOW_FAMILY_MAINTENANCE_PREVIEW": "false",
+            "ALLOW_STRIPE_PRODUCTION_INTEGRATION": "false",
+            "ALLOW_APPLE_SANDBOX_INTEGRATION": "false",
+            "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL": "false",
+            "ALLOW_APPLE_PRODUCTION_INTEGRATION": "false",
+            "ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS": "true",
+            "ALLOW_DEV_AUTH": "false",
+            "PRODUCTION_RUNTIME_MODE": "review",
+            "ALLOW_STRIPE_TEST_INTEGRATION": "false",
+            "ALLOW_APPLE_REVIEW_INTEGRATION": "true",
+            "CONTENT_PROTECTION_MODE": "encrypted",
+            "ALLOW_RETENTION_WORKER": "true"
+          }
+        }
+      ]
+    },
+    {
+      "stack": "RilloraStaging",
+      "status": "UPDATE_COMPLETE",
+      "resources": 81,
+      "services": [
+        {
+          "name": "RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+          "desired": 1,
+          "running": 1,
+          "pending": 0,
+          "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:43",
+          "deployments": [
+            {
+              "status": "PRIMARY",
+              "rolloutState": "COMPLETED",
+              "desiredCount": 1,
+              "runningCount": 1,
+              "pendingCount": 0
+            }
+          ]
+        }
+      ],
+      "taskDefinitions": [
+        {
+          "arn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:43",
+          "containers": [
+            {
+              "name": "Api",
+              "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:d075426673fad825fcd70df5a95d1c348748ce166fb84eda339e2447e5c00a59"
+            }
+          ],
+          "flags": {
+            "ALLOW_FAMILY_MAINTENANCE_PREVIEW": "true",
+            "ALLOW_APPLE_SANDBOX_INTEGRATION": "false",
+            "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL": "false",
+            "ALLOW_DEV_AUTH": "false",
+            "ALLOW_STRIPE_TEST_INTEGRATION": "true",
+            "CONTENT_PROTECTION_MODE": "encrypted"
+          }
+        }
+      ]
+    },
+    {
+      "stack": "RilloraProductionWeb",
+      "status": "UPDATE_COMPLETE",
+      "resources": 13,
+      "services": [],
+      "taskDefinitions": []
+    },
+    {
+      "stack": "RilloraPublicWeb",
+      "status": "UPDATE_COMPLETE",
+      "resources": 12,
+      "services": [],
+      "taskDefinitions": []
+    },
+    {
+      "stack": "RilloraOperations",
+      "status": "UPDATE_COMPLETE",
+      "resources": 39,
+      "services": [],
+      "taskDefinitions": []
+    }
+  ]
+}

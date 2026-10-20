@@ -82,7 +82,12 @@ def verify(root: Path, scan: bool = False) -> dict:
                 target.parent.mkdir(parents=True, exist_ok=True)
                 os.link(root / item['path'], target)
             report = Path(temporary) / 'scan.json'
+            rules = Path(temporary) / 'rules.toml'
+            rules.write_text('[extend]\nuseDefault = true\n')
+            ignored = Path(temporary) / 'empty.ignore'
+            ignored.write_text('')
             result = subprocess.run(['gitleaks', 'dir', str(stage), '--redact=100', '--no-banner',
+                '--config', str(rules), '--gitleaks-ignore-path', str(ignored), '--ignore-gitleaks-allow',
                 '--max-archive-depth', '2', '--report-format', 'json', '--report-path', str(report)], capture_output=True)
             if result.returncode != 0 or not report.exists() or json.loads(report.read_text()):
                 raise ValueError('Readable evidence secret scan did not pass')

@@ -1,0 +1,51 @@
+{
+  "confirmedAt": "2026-10-19T08:02:25Z",
+  "confirmedAtHongKong": "2026-10-19T16:02:25+08:00",
+  "caseId": "103001356140",
+  "supportTopic": "App Review > App Review Status > Email",
+  "supportUrl": "https://developer.apple.com/contact/topic/SC1103/subtopic/30020/solution/CONTACT.EML.GEN/submit",
+  "receiptText": "感谢你与我们联系。此对话的案例 ID 是 103001356140。我们将审阅你的信息，并尽快给予回复。",
+  "app": {
+    "name": "Rillora",
+    "appleId": "6803957639",
+    "bundleId": "com.rillora.ios",
+    "version": "1.0",
+    "build": "14"
+  },
+  "submission": {
+    "id": "6537a10c-38f2-425e-8b8e-c76e5fa730b1",
+    "submittedAtHongKong": "2026-10-15T09:49:00+08:00",
+    "statusObserved": "WAITING_FOR_REVIEW",
+    "items": [
+      {
+        "type": "app_version",
+        "version": "1.0",
+        "build": "14",
+        "status": "WAITING_FOR_REVIEW"
+      },
+      {
+        "type": "subscription",
+        "name": "Rillora Family Yearly",
+        "status": "WAITING_FOR_REVIEW"
+      },
+      {
+        "type": "subscription_group",
+        "name": "Rillora Family",
+        "status": "WAITING_FOR_REVIEW"
+      }
+    ],
+    "elapsedHoursAtConfirmation": 102.22
+  },
+  "deduplication": "Apple recent-cases page showed only the prior API/keys case102995248851; no existing review-status case was present. The old case was not reused or reopened.",
+  "messageSha256": "bfc90554d3cf60f176a97b51752f0b1394307613fc8a87007b378c926d7b351b",
+  "authorizedBy": "Owner explicitly requested an email or support case asking about the review delay.",
+  "submittedOnce": true,
+  "submissionWithdrawn": false,
+  "resubmitted": false,
+  "expeditedReviewRequested": false,
+  "testflightDistributed": false,
+  "newCredentialDisclosure": false,
+  "newLoginRequested": false,
+  "appleReplyReceived": false,
+  "scope": "Support receipt proves message acceptance, not review start, approval, an ETA, or reason for delay."
+}

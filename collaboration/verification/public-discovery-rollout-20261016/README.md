@@ -1,0 +1,28 @@
+# October16 官网 GEO 发布与搜索平台验收
+
+Status: PUBLIC WEBSITE LIVE / BOTH OWNERSHIPS AND SUBMISSIONS VERIFIED / INDEXING PENDING
+Last updated: 2026-10-16 (Asia/Hong_Kong)
+
+[完整合同](../../../docs/architecture/public-discovery-rollout-20261016.md)区分已发布网站、站长平台提交、实际抓取与尚未完成的索引／推荐。官网使用653093e62／[CI165](receipts/ci165.json)已通过源码，复用原54文件产物，没有重复构建或全量本地测试。
+
+- [两阶段记录](receipts/rollout-events.json)：先上传assets／pages及DEVELOPMENT函数，确认原首页和LIVE不变；再发布完整源码模板。失败的原部署角色上传尝试及改用既有operator的过程保留。
+- [第一阶段](receipts/stage-verified.json)：51实际S3对象匹配，原首页／LIVE函数字节不变。
+- [最终实际读回](receipts/live-verification.json)：53公开HTTP对象、20语言页面和2根S3对象匹配；CSP／无Cookie／私有入口拒绝／旧指南与语言跳转保持。最终云端模板和LIVE函数一致。
+- [浏览器](receipts/browser-verification.json)：真实英文文章到中文路径及完整中文正文；Rillora／CSP错误0，用户MetaMask扩展告警单独排除，未修改扩展。
+- [Google DNS](receipts/search-console-dns.json)及[Bing DNS](receipts/bing-dns.json)：34→35→36，每次所有旧记录完整保留；各自两权威／两公共DNS均确认。
+- [首次搜索回执](receipts/search-platform-progress.json)记录两家所有权及各一次提交；[收尾新读回](receipts/search-platform-final.json)确认Bing已Success、解析20网址、0错误／警告。Google即时提取成功，但常规地图报告仍无法抓取／0已发现。未证明页面全部收录或AI推荐；冻结前原件保持原样，原始失败／提供方前端恢复过程不抹除。
+- [阅读链](receipts/reading.json)、[文档收尾](receipts/documentation-closeout.json)及[源码扫描](receipts/source-scan.json)分别记录：沿用完整阅读，32条原登记／0未知，不改扫描规则或豁免。
+
+[新增archive43](snapshot.json)保存226路径／118对象，1,646,127密文字节；[本地完整认证](archive-verification.json)通过，[目录](catalog.json)定位精确原件。公共部署产物、HTTP／S3字节、裁去账号区域的结果图及失败／成功日志保留；凭据、登录URL、原始DNS管理对象、账号页和第三方缓存明确排除。旧archive1—42不重封、不重下。后续独立远端下载回执直接补交，不递归归档。
+
+f91a4ba61570ad5779e0af5179c8e50da90e08d2已推送：[CI166](ci-readback.json)三任务全部成功；[独立远端下载](remote-readback.json)在空LFS存储只取得archive43，118对象／226路径完整认证通过。后续普通Git元数据不触发新的官网部署。
+
+元数据96743dd36已[远端逐对象核对](metadata-remote-readback.json)，11个对象相同、[CI167](ci167-readback.json)成功。晚到Bing成功图与回执直接补交，不更改archive43或重跑其下载。
+
+同轮继续[托管前置核对](../../../docs/architecture/ai-hosted-preflight-20261016.md)：原Auth0管理仍有效，9普通应用需考虑Free10实体上限；独立Teams安全验证待本人完成，未新建租户／扩大套餐／重用退役客户端。该只读材料在[后续容量回执](receipts/hosted-identity-capacity.json)中单独保存，不回写成归档冻结前已完成的托管验收。
+
+只更新既有RilloraPublicWeb栈和两条所有权DNS证明。App14、正式API／数据库、数据、价格／收费和FanPass保持，未发TestFlight。无GSC数据导入、DNS账号委托、广告、Clarity或新增跟踪。MCP的本机真实OAuth与公网托管闭环继续分别记账。
+
+![Bing地图解析成功，发现20个网址](images/bing-sitemap-success.png)
+
+![中文官网实际页面](images/live-article-zh.png)

@@ -1,9 +1,34 @@
 import unittest
+import tempfile
+from pathlib import Path
 from unittest.mock import patch
 import rillora_dns as dns
 
 
 class Guards(unittest.TestCase):
+    def test_add_can_keep_a_same_data_record_with_another_priority(self):
+        old = {'type': 'MX', 'name': '_fixture', 'data': 'mail.example.', 'ttl': 600, 'priority': 20}
+        added = {**old, 'priority': 10}
+        with tempfile.TemporaryDirectory() as temporary, patch.object(dns, 'ROOT', Path(temporary)), \
+             patch.object(dns, 'read_records', side_effect=[[old], [old], [old, added]]), \
+             patch.object(dns, 'invoke', return_value={}), patch('builtins.print'):
+            dns.main(['add', '--type', 'MX', '--name', '_fixture', '--data', 'mail.example', '--priority', '10', '--apply'])
+
+    def test_provider_readback_must_confirm_priority_and_caa_attributes(self):
+        cases = [
+            (['--type', 'MX', '--priority', '10'], {'priority': 20}),
+            (['--type', 'MX', '--priority', '10'], {}),
+            (['--type', 'CAA', '--flag', '0', '--tag', 'issue'], {'flag': 128, 'tag': 'issue'}),
+            (['--type', 'CAA', '--flag', '0', '--tag', 'issue'], {'flag': 0, 'tag': 'iodef'}),
+        ]
+        for options, attributes in cases:
+            with self.subTest(options=options, attributes=attributes), tempfile.TemporaryDirectory() as temporary:
+                after = [{'type': options[1], 'name': '_fixture', 'data': 'mail.example', 'ttl': 600, **attributes}]
+                with patch.object(dns, 'ROOT', Path(temporary)), patch.object(dns, 'read_records', side_effect=[[], [], after]), \
+                     patch.object(dns, 'invoke', return_value={}), patch('builtins.print'):
+                    with self.assertRaisesRegex(RuntimeError, 'requested'):
+                        dns.main(['add', '--name', '_fixture', '--data', 'mail.example', '--apply', *options])
+
     def test_already_matching_cname_is_not_deleted_and_recreated(self):
         old = {'type': 'CNAME', 'name': 'www', 'data': 'new.example.', 'ttl': 600}
         with patch.object(dns, 'read_records', return_value=[old]), patch.object(dns, 'invoke') as invoke, patch('builtins.print'):

@@ -1,0 +1,11 @@
+{
+  "checkedAt": "2026-10-16T14:35:46.865922+00:00",
+  "temporaryProviderResourcesRemoved": true,
+  "defaultApplicationDifference": "explicit client_secret_post retained for previously unspecified legacy method",
+  "otherClientsBindingsAndTenantSettingsMatched": true,
+  "localPlannersRemaining": 0,
+  "apiAndTunnelListenersStopped": true,
+  "rootCause": "MCP readiness queried app schema directly using base NOINHERIT runtime role; source fix uses scoped auth transaction",
+  "originalDriverFailureWasMaskedByFinallyExit": true,
+  "driverFailureReportingCorrected": true
+}

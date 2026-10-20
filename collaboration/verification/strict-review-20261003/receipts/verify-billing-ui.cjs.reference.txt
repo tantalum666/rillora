@@ -1,0 +1,15 @@
+async (page) => {
+ const checks=[];
+ const button=name=>page.getByRole('button',{name,exact:true});
+ await button('Overview').click(); await button('Settings').click(); await button('Delete my account').click();
+ const billing=page.getByRole('checkbox',{name:'I understand deleting the account does not cancel provider billing.'});
+ if(!await billing.isVisible() || await billing.isChecked())throw new Error('Pending purchase must show an unchecked billing acknowledgement');
+ checks.push('pending-only profile shows unchecked billing acknowledgement');
+ if(!await button('Delete account').isDisabled())throw new Error('Deletion must remain disabled');
+ checks.push('deletion disabled until explicit confirmations');
+ await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-strict-review-20261002/billing-pending-desktop.png'});
+ await page.setViewportSize({width:390,height:844}); await billing.scrollIntoViewIfNeeded();
+ await page.screenshot({path:'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-strict-review-20261002/billing-pending-mobile.png'});
+ await page.setViewportSize({width:1440,height:1000});
+ return {checks,url:page.url(),syntheticOnly:true,expectedConsoleError:'Prior negative delete request returned400; no account was removed'};
+}

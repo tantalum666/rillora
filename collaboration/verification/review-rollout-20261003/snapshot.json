@@ -1,0 +1,63 @@
+{
+  "capturedFrom": "2026-10-03T11:20:28.515790+00:00",
+  "capturedThrough": "2026-10-03T11:20:29.619141+00:00",
+  "workFiles": 312,
+  "uniqueRawObjects": 284,
+  "workBytes": 116632072,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-013.tar.zst.age",
+      "sha256": "e2a2fc07e9e3fde413c09b7503aa597f3c4bb96adafc4805abae012a6918ddef",
+      "bytes": 51343122,
+      "plainBytes": 94226200,
+      "uniqueObjects": 284
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/review-rollout-20261003/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/apple-export-compliance-source.md",
+      "reason": "reproducible_third_party_documentation_cache"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-web/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-web/asset.c312532234ab0221629a9e9cea13d5197c32beda4bfe77e9501c17cc5bda41ee",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-active/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-active/asset.1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-maintenance/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-production-maintenance/asset.1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-public-web/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-review-rollout-20261003/cdk-public-web/asset.ce86d95ae3ecc661c6b79f71949a4c74082fbe33f4d21916349ac37a5ace1e1e",
+      "reason": "expanded_deployment_asset_copy"
+    }
+  ],
+  "selection": "New rollout QA/release and actual deployed restricted-Web/public build trees only; old archives untouched. Full third-party documentation cache and expanded CDK assets excluded.",
+  "boundary": "No credential store, raw recovery image/link, browser authentication state, device inventory, or unrelated project included."
+}

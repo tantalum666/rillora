@@ -1,0 +1,38 @@
+import pg from 'pg';
+import {readFileSync,readdirSync} from 'node:fs';
+import {createHash} from 'node:crypto';
+import {loadDatabaseConfig} from '/app/dist/config.js';
+import {databaseConnectionOptions} from '/app/dist/db.js';
+import {runMigrations} from '/app/dist/migrate.js';
+import {bootstrapRuntimeRole} from '/app/dist/bootstrap-runtime.js';
+const db=loadDatabaseConfig();
+const assert=(condition,message)=>{if(!condition)throw Error(message)};
+assert(/^rillora-production\.[a-z0-9]+\.eu-central-1\.rds\.amazonaws\.com$/.test(db.host??'')&&db.database==='rillora'&&db.sslMode==='verify-full'&&process.env.CONTENT_KEY_NAMESPACE==='rillora-production','Wrong production boundary');
+const admin=new pg.Client({...databaseConnectionOptions(db),application_name:'rillora-reviewed-migration-20261003'});
+const runtime=new pg.Client({...databaseConnectionOptions({...db,user:process.env.RUNTIME_DATABASE_USER,password:process.env.RUNTIME_DATABASE_PASSWORD}),application_name:'rillora-reviewed-readback-20261003'});
+const tables=['planners','identity_accounts','matter_items','people','sharing_connections','sharing_grants','sharing_saved_items','family_review_tasks'];
+async function fingerprints(){const result={};for(const table of tables){const r=await admin.query(`select count(*)::int as rows, md5(coalesce(string_agg(to_jsonb(t)::text,E'\\n' order by to_jsonb(t)::text),'')) as fingerprint from app.${table} t`);result[table]=r.rows[0]}return result}
+try{
+ await admin.connect();await admin.query("set statement_timeout='45s';set lock_timeout='15s'");
+ const before=await fingerprints();const initial=(await admin.query('select name,checksum from app.schema_migrations order by name')).rows;
+ assert(initial.length===91,'Expected existing schema0091; inspect state before retry');
+ const files=readdirSync('/app/migrations').filter(n=>/^\d+_[a-z0-9_]+\.sql$/.test(n)).sort();assert(files.length===93,'Wrong migration image');
+ for(const row of initial)assert(row.checksum===createHash('sha256').update(readFileSync('/app/migrations/'+row.name)).digest('hex'),'Old migration checksum changed');
+ console.log(JSON.stringify({stage:'before-migration',schemaCount:initial.length,fingerprints:before}));
+ await runMigrations(db);await bootstrapRuntimeRole(admin,process.env.RUNTIME_DATABASE_USER,process.env.RUNTIME_DATABASE_PASSWORD,false);
+ const rows=(await admin.query('select name,checksum from app.schema_migrations order by name')).rows;
+ assert(rows.length===93&&files.every(n=>rows.find(r=>r.name===n)?.checksum===createHash('sha256').update(readFileSync('/app/migrations/'+n)).digest('hex')),'Final migration checksum mismatch');
+ assert(JSON.stringify(before)===JSON.stringify(await fingerprints()),'Private records changed during schema migration');
+ const definitions=(await admin.query("select pg_get_functiondef('app.recovery_pending()'::regprocedure) as history,pg_get_functiondef('app.run_retention_batch(integer)'::regprocedure) as retention")).rows[0];
+ assert(definitions.history.includes('historyVersion')&&definitions.history.includes('savedFieldNames')&&definitions.history.includes('revokedReviewThrough'),'Missing permission-history function');
+ assert(definitions.retention.includes("hashtextextended('retention-holds'"),'Missing retention serialization');
+ await runtime.connect();const role=(await runtime.query("select current_user as name,(select ssl from pg_stat_ssl where pid=pg_backend_pid()) as tls,pg_has_role(current_user,'continuity_recovery_service','member') as recovery,pg_has_role(current_user,'continuity_retention_service','member') as retention,pg_has_role(current_user,'continuity_content_service','member') as content")).rows[0];
+ assert(role.name==='continuity_runtime_production'&&role.tls&&!role.recovery&&!role.retention&&!role.content,'Runtime privilege/TLS violation');
+ await runtime.query('begin');await runtime.query('set local role continuity_auth');await runtime.query("set local statement_timeout='45s';set local lock_timeout='15s'");
+ const bounded=(await runtime.query('select app.run_retention_batch(1) as removed')).rows[0].removed;
+ await runtime.query('rollback');
+ assert(JSON.stringify(before)===JSON.stringify(await fingerprints()),'Rollback probe changed private data');
+ const policy=(await admin.query('select production_entitlements_enabled as live from app.commerce_runtime_policy')).rows[0];assert(policy.live===false,'Live billing unexpectedly active');
+ console.log(JSON.stringify({stage:'migration-verified',schema:'0093',checksumsMatched:93,old91ChecksumsUnchanged:true,privateRecordFingerprintsUnchanged:true,runtimeRole:role.name,verifiedTls:true,privilegedServiceMemberships:false,retentionExecutionRolledBack:true,retentionProbeCounts:bounded,permissionHistoryVersion:2,customerAccessOpened:false,liveBilling:false}));
+}catch(e){console.error(JSON.stringify({stage:'failed',code:e.code??null,message:e.message}));process.exitCode=1}
+finally{await runtime.end().catch(()=>{});await admin.end().catch(()=>{})}

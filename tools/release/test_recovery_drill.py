@@ -68,6 +68,19 @@ class RecoveryIsolationTests(unittest.TestCase):
             with self.subTest(change=change), self.assertRaises(ValueError):
                 drill.validate_snapshot({**snapshot, **change}, self.state)
 
+    def test_manifest_network_must_match_independent_stack_outputs(self):
+        state = {**self.state, 'sourceHost': 'rillora-production.internal'}
+        outputs = {'ProductionVpcId':'vpc-test','DatabaseSubnetGroup':'isolated',
+                   'DatabaseParameterGroup':'tls','RecoveryDatabaseSecurityGroupId':'sg-recovery',
+                   'DatabaseSecurityGroupId':'sg-live','DatabaseHost':'rillora-production.internal'}
+        drill.validate_trusted_network(state, outputs)
+        for field in ['vpc','subnetGroup','parameterGroup','recoverySecurityGroup','sourceHost']:
+            with self.subTest(field=field), self.assertRaises(ValueError):
+                drill.validate_trusted_network({**state,field:'attacker-selected'}, outputs)
+        with self.assertRaises(ValueError):
+            drill.validate_trusted_network({**state,'recoverySecurityGroup':'sg-live'},
+                                          {**outputs,'RecoveryDatabaseSecurityGroupId':'sg-live'})
+
 
 if __name__ == '__main__':
     unittest.main()

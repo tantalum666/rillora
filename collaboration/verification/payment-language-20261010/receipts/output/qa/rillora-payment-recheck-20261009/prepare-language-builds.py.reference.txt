@@ -1,0 +1,24 @@
+from pathlib import Path
+import datetime,hashlib,json,os,shlex,shutil,subprocess
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';P=R/'.local-secrets/payment-recheck-20261009'
+sha=subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip();assert sha.startswith('f0d3b906a')
+assert not subprocess.check_output(['git','status','--porcelain'],text=True).strip()
+subprocess.run(['python3','tools/release/prepare_repository.py','--report',str(Q/'locale-frozen-source.json')],check=True)
+source=R/'.local/github-preflight/source/apps/api';dest=R/'output/release/rillora-payment-recheck-20261009/locale-api-source'
+assert not dest.exists();shutil.copytree(source,dest)
+env=dict(os.environ)
+config=R/'.local-secrets/legal/release.env';assert config.stat().st_mode & 0o777==0o600
+for line in config.read_text().splitlines():
+ if not line.strip() or line.lstrip().startswith('#'):continue
+ fields=shlex.split(line);assert len(fields)==1 and fields[0].startswith('VITE_LEGAL_')
+ key,value=fields[0].split('=',1);env[key]=value
+builds=[('preview','build','dist/client'),('www','build:public','dist-public'),('production','build:production-review','dist-production-review')]
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':sha,'apiSource':str(dest.relative_to(R)),'web':{}}
+for name,script,folder in builds:
+ with (Q/('locale-'+name+'-build.log')).open('w') as log:
+  subprocess.run(['npm','run',script],cwd=R/'apps/web',env=env,stdout=log,stderr=subprocess.STDOUT,check=True)
+ out=P/'locale-web'/name;assert not out.exists();shutil.copytree(R/'apps/web'/folder,out)
+ files={p.relative_to(out).as_posix():hashlib.sha256(p.read_bytes()).hexdigest() for p in out.rglob('*') if p.is_file()}
+ report['web'][name]={'directory':str(out.relative_to(R)),'files':files,'count':len(files)}
+ print(json.dumps({'built':name,'files':len(files)}),flush=True)
+(Q/'locale-build-inputs.json').write_text(json.dumps(report,indent=2)+'\n')

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-03T10:02:26.967396+00:00",
+  "identities": [
+    {
+      "profile": "rillora-cdk-session",
+      "exitCode": 0,
+      "account": "133857166372",
+      "arn": "arn:aws:iam::133857166372:user/rillora/rillora-operator"
+    },
+    {
+      "profile": "rillora-cdk-deploy",
+      "exitCode": 0,
+      "account": "133857166372",
+      "arn": "arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy"
+    },
+    {
+      "profile": "rillora-production-operator",
+      "exitCode": 0,
+      "account": "133857166372",
+      "arn": "arn:aws:sts::133857166372:assumed-role/rillora-production-operator/botocore-session-1791021744"
+    }
+  ]
+}

@@ -1,0 +1,90 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "Client4A7F64DF",
+      "PhysicalResourceId": "E2D4X9TBTJK942",
+      "ResourceType": "AWS::CloudFront::Distribution",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "DistributionConfig",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "Routes4F6D566C.FunctionARN"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "DistributionConfig",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "DeploymentCustomResource47E8B2E6",
+      "PhysicalResourceId": "aws.cdk.s3deployment.e1af7cad-e60e-4fc9-a9f9-ced3a40aee47",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "Replacement": "Conditional",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Prune",
+            "RequiresRecreation": "Conditionally"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "SourceObjectKeys",
+            "RequiresRecreation": "Conditionally"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "Routes4F6D566C",
+      "PhysicalResourceId": "arn:aws:cloudfront::133857166372:function/eu-central-1RilloraProductionWebRoutesBB0E1643",
+      "ResourceType": "AWS::CloudFront::Function",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "FunctionCode",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    }
+  ],
+  "oldApiBehaviorPreserved": true,
+  "exactNewDiscoveryRoutes": true,
+  "oldAssetPruningDisabled": true
+}

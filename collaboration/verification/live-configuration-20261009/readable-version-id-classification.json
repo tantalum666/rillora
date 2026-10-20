@@ -1,0 +1,7 @@
+{
+  "rule": "generic-api-key",
+  "field": "secretCurrentVersion",
+  "classification": "AWS secret version UUID, not a credential; matches the independently read version metadata",
+  "action": "Omitted only from readable mirror; exact encrypted original unchanged",
+  "scannerRulesChanged": false
+}

@@ -1,0 +1,36 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "a7636581e4697d3d36f9c035ce3b6dbbcd5ff05c2d877933202f68572b87aea9": {
+      "displayName": "Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Code",
+      "source": {
+        "path": "asset.a7636581e4697d3d36f9c035ce3b6dbbcd5ff05c2d877933202f68572b87aea9",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-1f0c1b13": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[PUBLIC_CDK_ARTIFACT_KEY_OMITTED]",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "edb21839fc29b6fdf31c4b5761836bd82feab9ec53d5eabf53488e849e9dd801": {
+      "displayName": "RilloraProductionWeb Template",
+      "source": {
+        "path": "RilloraProductionWeb.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-b7592e16": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "edb21839fc29b6fdf31c4b5761836bd82feab9ec53d5eabf53488e849e9dd801.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

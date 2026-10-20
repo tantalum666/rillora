@@ -1,0 +1,30 @@
+{
+  "passed": true,
+  "at": "2026-10-18T09:31:28.329Z",
+  "actualClient": "codex-cli 0.163.0-alpha.10.2",
+  "source": "Production service and current upstream Gmail login",
+  "ownerScopeConfirmed": true,
+  "selectedSyntheticMatters": 1,
+  "toolCalls": [
+    "list_selected_matters",
+    "get_preparation_gaps"
+  ],
+  "selectedProjectionKeys": [
+    "category",
+    "publicId",
+    "status",
+    "title"
+  ],
+  "missingFieldNames": [
+    "intended_outcome"
+  ],
+  "emailsNotesAndOtherMattersNotReturned": true,
+  "modelInvokedBothTools": true,
+  "revokedInBrowser": true,
+  "sameStoredClientCredentialRejected": true,
+  "clientAfterRevoke": "notLoggedIn",
+  "remainingDiscoveredTools": 0,
+  "credentialRemoved": true,
+  "globalConfigChanged": false,
+  "firstAttempt": "Local callback listener timed out while awaiting Owner confirmation; same approved scope resumed without repeating permission"
+}

@@ -3,6 +3,42 @@ import XCTest
 
 @MainActor
 final class MatterEditorStoreTests: XCTestCase {
+    func testOverlappingCreateReturnsOnlyOneResultToTheOverview() async {
+        let entered = expectation(description: "Matter create is in flight")
+        let service = StubMatterService(fetch: .success(.editorFixture), update: .success(.editorFixture),
+                                        suspendFirstMutation: entered)
+        let store = MatterEditorStore(matter: nil, service: service)
+        store.draft.title = "Emergency fund"; store.draft.institutionName = "Example bank"
+        let first = Task { await store.save() }
+        await fulfillment(of: [entered], timeout: 2)
+        let duplicate = await store.save()
+        await service.releaseMutation()
+        let saved = await first.value
+        let creates = await service.recordedCreates()
+        XCTAssertNil(duplicate, "Idempotent server retries must not become duplicate client-side create callbacks")
+        XCTAssertNotNil(saved)
+        XCTAssertEqual(creates.count, 1)
+    }
+
+    func testReloadAndArchiveCannotReplaceAnInFlightSave() async {
+        let entered = expectation(description: "Matter update is in flight")
+        let service = StubMatterService(fetch: .success(.editorFixture), update: .success(.editorFixture),
+                                        suspendFirstMutation: entered)
+        let store = MatterEditorStore(matter: .editorFixture, service: service)
+        store.draft.title = "Changed directions"
+        let save = Task { await store.save() }
+        await fulfillment(of: [entered], timeout: 2)
+        await store.loadLatest()
+        let archived = await store.archive()
+        let during = store.state
+        await service.releaseMutation()
+        _ = await save.value
+        let archives = await service.recordedArchives()
+        XCTAssertEqual(during, .saving)
+        XCTAssertNil(archived)
+        XCTAssertTrue(archives.isEmpty)
+    }
+
     func testSaveUsesCurrentVersionAndAppliesServerResponse() async throws {
         let updated = Matter.editorFixture(
             status: "ready",
@@ -189,13 +225,17 @@ private actor StubMatterService: MatterEditing {
     private var updates: [MatterUpdateRequest] = []
     private var creates: [MatterCreateRequest] = []
     private var archives: [(publicID: String, expectedVersion: Int)] = []
+    private var suspendFirstMutation: XCTestExpectation?
+    private var pendingMutation: CheckedContinuation<Void, Never>?
 
     init(
         fetch: Result<Matter, RilloraAPIError>,
-        update: Result<Matter, RilloraAPIError>
+        update: Result<Matter, RilloraAPIError>,
+        suspendFirstMutation: XCTestExpectation? = nil
     ) {
         fetchResult = fetch
         updateResult = update
+        self.suspendFirstMutation = suspendFirstMutation
     }
 
     func fetchMatter(publicID: String) async throws -> Matter {
@@ -204,11 +244,13 @@ private actor StubMatterService: MatterEditing {
 
     func updateMatter(publicID: String, request: MatterUpdateRequest) async throws -> Matter {
         updates.append(request)
+        await pauseMutationIfNeeded()
         return try updateResult.get()
     }
 
     func createMatter(request: MatterCreateRequest) async throws -> Matter {
         creates.append(request)
+        await pauseMutationIfNeeded()
         return try updateResult.get()
     }
 
@@ -226,6 +268,20 @@ private actor StubMatterService: MatterEditing {
 
     func recordedArchives() -> [(publicID: String, expectedVersion: Int)] {
         archives
+    }
+
+    private func pauseMutationIfNeeded() async {
+        guard let entered = suspendFirstMutation else { return }
+        suspendFirstMutation = nil
+        await withCheckedContinuation { continuation in
+            pendingMutation = continuation
+            entered.fulfill()
+        }
+    }
+
+    func releaseMutation() {
+        pendingMutation?.resume()
+        pendingMutation = nil
     }
 }
 

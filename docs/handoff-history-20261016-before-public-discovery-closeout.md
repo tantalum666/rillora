@@ -1,0 +1,36 @@
+# HISTORICAL - before public discovery closeout
+
+Continue from [handoff.md](handoff.md). This is a historical progress snapshot, not the current next step.
+
+# Rillora 当前交接
+
+Status: REAL OAUTH VERIFIED AND CLEANED / SOURCE653093e62 CI165 PASSED / PUBLIC GEO STAGING IN PROGRESS
+Last updated: 2026-10-16 (Asia/Hong_Kong)
+
+## 当前任务
+
+Owner要求先完成官网GEO／SEO，再推进MCP和各平台接入；新功能留给下一版并推GitHub，保留App1.0(14)审核。当前目录 /Users/tantalum/Documents/电子遗嘱app，分支 codex/ai-discovery-vnext-20261015；发布工作树保持fec1ad3b。最新[真实OAuth验收](architecture/ai-oauth-validation-20261016.md)取代旧的连接权限阻塞；[前份交接](handoff-history-20261016-before-oauth-validation.md)为HISTORICAL。
+
+## 已完成
+
+- [20页双语官网与最小MCP](architecture/ai-discovery-implementation-20261015.md)及既有560等本地检查保留，不重做。新UI和runtime开关仍默认关闭，官网新候选尚未发布。
+- Owner完成Auth0追加授权，已实际创建独立合成数据库连接、账号及精确用户委托grant；原三条正式连接始终未提升为域级，也未复用现有客户端。
+- Codex实际app-server完成授权码＋S256，真实Auth0令牌验签、issuer／audience／client／scope通过，真实工具发现为两项。
+- Gemini CLI0.64.0使用其原版导出的OAuth函数完成真实授权，再由实际CLI读取加密临时存储并返回Connected。没有Google模型登录或调用付费模型。
+- 两者都用实际客户端已送达的令牌，经官方MCP SDK读取仅选定事项；未选事项／备注不返回。撤销后同一枚未过期令牌的两个读取操作均拒绝。自然语言模型选工具仍单独待验。
+- 已修正真实互通发现的Codex重复resource参数：生成器移除额外oauth-resource，由受保护资源元数据提供唯一规范值；audience校验保持。配置生成2项检查及修正后的真实Auth0流程通过。
+- 两个临时客户端／用户grant、独立API、合成用户及域级连接均已删除；本机规划者／临时角色／监听／临时Gemini凭据及profile已清理。原9普通应用／3API／3连接及租户设置指纹全部相同。
+
+## 证据与边界
+
+当轮原件 output/qa/rillora-ai-oauth-20261016；[可读交付](../collaboration/verification/ai-oauth-validation-20261016/README.md)。新增archive42保存44路径／38对象，119,709密文字节，本地完整认证通过；原archive1—41及上一轮普通Git文本不重复封存。Auth0登录URL、code、token、密码和原始提供方资料均排除发布；两张成功回调截图只含完成文字。
+
+Gemini验证覆盖原版OAuth底层实现＋实际CLI连接，未运行交互/mcp auth或模型对话；两家工具执行／撤销由协议驱动核对，不冒称自然语言自动选工具、ChatGPT／Gemini Apps消费端或目录验收。全部事项及账号均为新建合成夹具，无真实事项发送给模型。
+
+旧CI162被后续提交取消；CI163的API和Web／infra通过，source因新增证据未同步readable-manifest失败。完整清单已补齐，误被ignore排除的配置测试日志也已显式保存。当前653093e62／CI165三任务全部成功；archive42独立GitHub下载认证38对象／44路径通过。最终回执普通Git补交，清单随之刷新。
+
+生产API／数据／定价／收费／FanPass／在审构建均未变，未发TestFlight；已取消真机和暂缓Auth0外壳保持。AWS原会话已自动复用恢复，无需Owner再次MFA。现在单独执行[官网GEO两阶段更新](architecture/public-discovery-rollout-20261016.md)：第一阶段只上传assets／pages并更新函数DEVELOPMENT，原根页／LIVE路由应保持，尚待完成及实际读回。Auth0无需再次登录。
+
+## 唯一下一步
+
+完成官网第一阶段并核对原首页／LIVE函数未变、新资源到位，再发布完整源码模板并验收20语言路径／文件／浏览器；完成后保存本轮证据，再推进MCP的HTTPS候选。保持当前审核与正式数据不变，不重复已通过的OAuth、本地矩阵或旧部署。

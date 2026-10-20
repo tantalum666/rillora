@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-08T20:27:11.698062+00:00",
+  "stack": "RilloraStaging",
+  "stackStatus": "UPDATE_COMPLETE",
+  "apiTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:40",
+  "previousApiTaskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:38",
+  "desired": 1,
+  "running": 1,
+  "health": "HEALTHY",
+  "rollout": "COMPLETED",
+  "imageAssetHash": "0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744",
+  "imageDigest": "sha256:5761e248a42dbce9a5c8128e23bdd3533f9e81f4b8402954ce8c950a46fd4f6f",
+  "platform": {
+    "cpuArchitecture": "ARM64",
+    "operatingSystemFamily": "LINUX"
+  },
+  "onlyRuntimeChange": "image",
+  "rolesSecretsEnvironmentNetworkAndHealthChecksUnchanged": true,
+  "schemaCount": 93,
+  "schemaProof": "../rillora-web-rollout-20261009/staging-migration-complete.json",
+  "productionApiChanged": false
+}

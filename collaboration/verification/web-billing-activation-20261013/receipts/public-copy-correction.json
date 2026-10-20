@@ -1,0 +1,5 @@
+{
+  "observed": "The first hold incorrectly used the preview flag, which rendered a sample-data/test-app footer while pointing at the real production app.",
+  "fixed": "Environment destination stays production; separate customerAccess=review controls availability and FAQ. No language mixing or implementation jargon added.",
+  "checks": "19targeted Web/i18n tests passed; final CI/deployment/readback separately recorded."
+}

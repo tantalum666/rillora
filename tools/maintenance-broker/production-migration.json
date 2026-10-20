@@ -1,0 +1,5 @@
+[
+  "/bin/sh",
+  "-c",
+  "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce && node dist/migrate-email-matches.js"
+]

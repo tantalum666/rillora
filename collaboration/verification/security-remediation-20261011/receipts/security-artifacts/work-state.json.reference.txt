@@ -1,0 +1,60 @@
+{
+  "date": "2026-10-11",
+  "branch": "codex/security-findings-20261011",
+  "baseline": "647317834bd785ace1499e251f0e501530163239",
+  "status": "source-verified-preservation-in-progress",
+  "ownerApprovalsApplied": true,
+  "validation": {
+    "api": {
+      "passed": 495,
+      "failed": 0,
+      "files": 54,
+      "typecheck": true,
+      "build": true
+    },
+    "sourceScan": {
+      "passed": true,
+      "matches": 32,
+      "unreviewed": 0,
+      "approvedSpans": 28
+    },
+    "ios": {
+      "passed": 287,
+      "skipped": 1
+    },
+    "web": {
+      "passed": 191
+    },
+    "infra": {
+      "passed": 56
+    },
+    "releaseTools": {
+      "passed": 70
+    },
+    "auth0Tools": {
+      "passed": 7
+    },
+    "auth0Actions": {
+      "passed": 14
+    },
+    "broker": {
+      "passed": 4
+    },
+    "collaboration": {
+      "passed": 9
+    }
+  },
+  "independentReview": {
+    "cycles": 1,
+    "confirmedAndAddressed": 4
+  },
+  "groups": 35,
+  "occurrences": 73,
+  "deployment": false,
+  "providerMutations": false,
+  "deviceInstall": false,
+  "testflight": false,
+  "gitCommit": false,
+  "gitPush": false,
+  "boundary": "Owner explicitly approved source/registry changes and requires unchanged online state; Git preservation continues."
+}

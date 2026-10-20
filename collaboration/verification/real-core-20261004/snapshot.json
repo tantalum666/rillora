@@ -1,0 +1,31 @@
+{
+  "capturedFrom": "2026-10-04T12:14:43.142075+00:00",
+  "capturedThrough": "2026-10-04T12:14:43.916222+00:00",
+  "workFiles": 135,
+  "uniqueRawObjects": 112,
+  "workBytes": 58143731,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-014.tar.zst.age",
+      "sha256": "fb87096d1a59263dbd0adfa5ca7f19072bc9e75b6d5911835680d6db6693759b",
+      "bytes": 13372336,
+      "plainBytes": 58139652,
+      "uniqueObjects": 112
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/real-core-20261004/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-real-core-20261004/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-real-core-20261004/native-account-terms.jpg",
+      "reason": "actual_authentication_handoff_screen"
+    }
+  ],
+  "selection": "New real-core QA checkpoint and reviewed-source simulator app only; earlier archives/deployed artifacts untouched. Native authentication handoff screen, runtime session logs and dependency/compiler caches excluded.",
+  "boundary": "No credential store, raw recovery image/link, browser authentication state, device inventory, or unrelated project included."
+}

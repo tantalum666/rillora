@@ -58,8 +58,8 @@ export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying {
 export class SessionEmailVerification {
   constructor(private pool: DatabasePool, private verifier: EmailIdentityVerifying | null) {}
 
-  async refresh(auth: Request["auth"]): Promise<Buffer | null> {
-    if (auth.verifiedEmailHash) return auth.verifiedEmailHash;
+  async refresh(auth: Request["auth"], requireCurrentProof = false): Promise<Buffer | null> {
+    if (auth.verifiedEmailHash && !requireCurrentProof) return auth.verifiedEmailHash;
     if (!auth.sessionPublicId || !this.verifier) {
       throw new ApiError(503, "email_verification_unavailable", "Email verification could not be checked. Keep this invitation open and try again.");
     }
@@ -74,20 +74,27 @@ export class SessionEmailVerification {
     if (!identity) throw new ApiError(401, "authentication_required", "Sign in to continue with this invitation.");
     let email: string | null;
     try { email = await this.verifier.verifiedEmail(identity); }
-    catch { throw new ApiError(503, "email_verification_unavailable", "Email verification could not be checked. Keep this invitation open and try again."); }
-    if (!email) return null;
-    const hash = verifiedEmailDigest(email);
+    catch {
+      delete auth.verifiedEmailHash;
+      await withAuthDatabase(this.pool, client => client.query(
+        'update app.auth_sessions set verified_email_hash=null where public_id=$1 and planner_id=$2',
+        [auth.sessionPublicId, auth.plannerId],
+      ));
+      throw new ApiError(503, "email_verification_unavailable", "Email verification could not be checked. Keep this invitation open and try again.");
+    }
+    const hash = email ? verifiedEmailDigest(email) : null;
     const updated = await withAuthDatabase(this.pool, client => client.query(
-      `update app.auth_sessions s set verified_email_hash = $3
+      `update app.auth_sessions s set verified_email_hash = null
        from app.identity_accounts i, app.planners p
        where s.public_id = $1 and s.planner_id = $2 and s.revoked_at is null and s.expires_at > now()
-         and i.id = s.identity_account_id and i.planner_id = s.planner_id and i.issuer = $4 and i.subject = $5
+         and i.id = s.identity_account_id and i.planner_id = s.planner_id and i.issuer = $3 and i.subject = $4
          and p.id = s.planner_id and p.status = 'active'`,
-      [auth.sessionPublicId, auth.plannerId, hash, identity.issuer, identity.subject],
+      [auth.sessionPublicId, auth.plannerId, identity.issuer, identity.subject],
     ));
     if (updated.rowCount !== 1) throw new ApiError(401, "authentication_required", "Sign in to continue with this invitation.");
     // The same cookie/bearer and legal receipt remain in force; no account is provisioned or linked.
-    auth.verifiedEmailHash = hash;
+    if (hash) auth.verifiedEmailHash = hash;
+    else delete auth.verifiedEmailHash;
     return hash;
   }
 }

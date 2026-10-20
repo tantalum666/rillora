@@ -2,6 +2,9 @@ import { createHash, timingSafeEqual } from "node:crypto";
 import * as oidc from "openid-client";
 import { createRemoteJWKSet, jwtVerify } from "jose";
 import type { NativeOidcConfig, OidcConfig } from "./config.js";
+import { parseLegalAcceptance, type LegalAcceptance } from './legal-contract.js';
+
+export const hostedLegalAcceptanceClaim = 'https://rillora.xyz/legal-acceptance';
 
 export type IdentityTransaction = {
   state: string;
@@ -13,9 +16,12 @@ export type AuthorizationIntent = {
   screenHint?: "signup";
   prompt?: "login";
   maxAge?: number;
+  uiLocales?: "en" | "zh-CN";
 };
 
 export type ExternalIdentity = {
+  /** Verified ID-token bytes are sealed for the isolated deletion worker, never logged or stored raw. */
+  signedIdentityToken?: string;
   issuer: string;
   subject: string;
   displayName: string;
@@ -23,6 +29,8 @@ export type ExternalIdentity = {
   authenticatedAt: Date | null;
   authenticationMethods: string[];
   verifiedEmail?: string;
+  /** Present only after verifying the provider-signed native access-token claim. */
+  legalAcceptance?: LegalAcceptance;
 };
 
 export interface IdentityProvider {
@@ -64,6 +72,7 @@ export function createNativeOidcIdentityVerifier(
       if (!payload.sub || typeof payload.iat !== "number") {
         throw new Error("The access token does not contain a valid subject");
       }
+      const legalAcceptance = parseLegalAcceptance(payload[hostedLegalAcceptanceClaim]);
       const rawMethods = payload.amr;
       const authenticationMethods = Array.isArray(rawMethods)
         ? rawMethods.filter((value): value is string => typeof value === "string").slice(0, 10)
@@ -106,6 +115,8 @@ export function createNativeOidcIdentityVerifier(
         locale: "en",
         authenticatedAt,
         authenticationMethods,
+        legalAcceptance,
+        ...(idToken ? {signedIdentityToken:idToken} : {}),
         ...(verifiedEmail ? { verifiedEmail } : {}),
       };
     },
@@ -120,7 +131,12 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
       config.clientId,
       config.clientSecret,
       oidc.ClientSecretPost(config.clientSecret),
-    );
+    ).catch(error => {
+      // Share concurrent discovery, but let the next explicit login attempt
+      // recover after a transient provider or network failure.
+      discovered = undefined;
+      throw error;
+    });
     return discovered;
   };
 
@@ -139,6 +155,7 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
         max_age: String(intent?.maxAge ?? 86_400),
         ...(intent?.screenHint ? { screen_hint: intent.screenHint } : {}),
         ...(intent?.prompt ? { prompt: intent.prompt } : {}),
+        ...(intent?.uiLocales ? { ui_locales: intent.uiLocales } : {}),
       });
     },
 
@@ -172,6 +189,7 @@ export function createOidcIdentityProvider(config: OidcConfig): IdentityProvider
         locale,
         authenticatedAt,
         authenticationMethods,
+        ...(tokens.id_token ? {signedIdentityToken:tokens.id_token} : {}),
         ...(claims.email_verified === true && typeof claims.email === "string" && claims.email.length <= 254 ? { verifiedEmail: claims.email } : {}),
       };
     },

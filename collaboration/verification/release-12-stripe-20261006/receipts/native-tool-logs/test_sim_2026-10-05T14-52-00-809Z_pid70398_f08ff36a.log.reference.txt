@@ -1,0 +1,795 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj -scheme RilloraLayoutMatrix -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=09B5E8B3-6EE7-45B2-BAAA-D215D53AAFB0" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /tmp/rillora-review-release-20260930 -parallel-testing-enabled NO "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedLargeTextDraftAndPrintableExport" -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T14-52-00-809Z_pid70398_141262ca.xctestproducts build-for-testing
+
+Build settings from command line:
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+
+2026-10-05 22:52:02.219 xcodebuild[92782:26485902] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T14-52-00-809Z_pid70398_141262ca.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS @ 9.2.0
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.3
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.1.0
+  InteropForGoogle: https://github.com/google/interop-ios-for-google-sdks.git @ 101.0.0
+  Promises: https://github.com/google/promises.git @ 2.4.1
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  Pow: https://github.com/EmergeTools/Pow @ 1b4b1dd
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+  AppCheck: https://github.com/google/app-check.git @ 11.3.1
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (43 targets)
+    Target 'RilloraLayoutMatrixTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer' (no dependencies)
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow_Pow' in project 'Pow' (no dependencies)
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'GULUserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+    Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+    Target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+SwiftDriver Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ RilloraInteractionComponents.swift /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftCompile normal arm64 /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ Rillora (in target 'Rillora' from project 'Rillora')
+EmitSwiftModule normal arm64 (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling RilloraInteractionComponents.swift (in target 'Rillora' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for Rillora (in target 'Rillora' from project 'Rillora')
+
+SwiftDriver\ Compilation\ Requirements Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriver\ Compilation Rillora normal arm64 com.apple.xcode.tools.swift.compiler (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name Rillora -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/tmp/rillora-review-release-20260930/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftsourceinfo (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.abi.json (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.abi.json /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib normal (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -dynamiclib -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -filelist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.LinkFileList -install_name @rpath/Rillora.debug.dylib -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -framework CoreGraphics -framework CoreText -framework Foundation -framework LocalAuthentication -framework Security -framework UIKit -framework Security -framework DeviceCheck -Xlinker -alias -Xlinker _main -Xlinker ___debug_main_executable_dylib_entry_point -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0.build/Objects-normal/arm64/Auth0.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Auth0.build/Debug-iphonesimulator/Auth0.build/Objects-normal/arm64/Auth0-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SimpleKeychain.build/Debug-iphonesimulator/SimpleKeychain.build/Objects-normal/arm64/SimpleKeychain.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SimpleKeychain.build/Debug-iphonesimulator/SimpleKeychain.build/Objects-normal/arm64/SimpleKeychain-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/JWTDecode.build/Debug-iphonesimulator/JWTDecode.build/Objects-normal/arm64/JWTDecode.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/JWTDecode.build/Debug-iphonesimulator/JWTDecode.build/Objects-normal/arm64/JWTDecode-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GTMAppAuth.build/Debug-iphonesimulator/GTMAppAuth.build/Objects-normal/arm64/GTMAppAuth.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/GTMAppAuth.build/Debug-iphonesimulator/GTMAppAuth.build/Objects-normal/arm64/GTMAppAuth-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow.build/Objects-normal/arm64/Pow.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow.build/Objects-normal/arm64/Pow-linker-args.resp -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftUI-Shimmer.build/Debug-iphonesimulator/Shimmer.build/Objects-normal/arm64/Shimmer.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftUI-Shimmer.build/Debug-iphonesimulator/Shimmer.build/Objects-normal/arm64/Shimmer-linker-args.resp
+
+ConstructStubExecutorLinkFileList /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    construct-stub-executor-link-file-list /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor_no_swift_entry_point.a /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libPreviewsJITStubExecutor.a --output /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt
+note: Using stub executor library with Swift entry point. (in target 'Rillora' from project 'Rillora')
+
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM
+
+Ld /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora normal (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Xlinker -rpath -Xlinker @executable_path -Xlinker -rpath -Xlinker /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -e ___debug_blank_executor_main -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_dylib -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-DebugDylibPath-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __debug_instlnm -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-DebugDylibInstallName-normal-arm64.txt -Xlinker -filelist -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora-ExecutorLinkFileList-normal-arm64.txt -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app-Simulated.xcent.der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora
+
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil -q /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app.dSYM
+
+CopySwiftLibs /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --sign - --scan-executable /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Frameworks --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/SystemExtensions --scan-folder /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Frameworks --strip-bitcode --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+
+ExtractAppIntentsMetadata (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name Rillora --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.rillora.ios --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora --dependency-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora_dependency_info.dat --stringsdata-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftFileList --metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.DependencyMetadataFileList --static-metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Objects-normal/arm64/Rillora.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-05 22:52:08.735 appintentsmetadataprocessor[92850:26486380] Starting appintentsmetadataprocessor export
+2026-10-05 22:52:08.740 appintentsmetadataprocessor[92850:26486380] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib
+/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/__preview.dylib: replacing existing signature
+
+CodeSign /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    
+    Signing Identity:     "Sign to Run Locally"
+    
+    /usr/bin/codesign --force --sign - --entitlements /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/Rillora.app.xcent --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+
+Validate /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /Users/tantalum/Documents/电子遗嘱app/apps/ios
+    builtin-validationUtility /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app -shallow-bundle -infoplist-subpath Info.plist
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T14-52-00-809Z_pid70398_141262ca.xctestproducts -destination "platform=iOS Simulator,id=09B5E8B3-6EE7-45B2-BAAA-D215D53AAFB0" -collect-test-diagnostics never -parallel-testing-enabled NO "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedLargeTextDraftAndPrintableExport" -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/compact-zh-labels-fixed.xcresult test-without-building
+
+2026-10-05 22:52:11.008 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/compact-zh-labels-fixed.xcresult
+
+2026-10-05 22:52:11.018 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 22:52:12.262 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 22:52:12.651 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 22:52:13.038 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 22:52:13.204 xcodebuild[92857:26486527] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-05 22:52:47.638526+0800 RilloraLayoutMatrixTests-Runner[93222:26490641] [Default] Running tests...
+2026-10-05 22:52:47.861499+0800 RilloraLayoutMatrixTests-Runner[93222:26491483] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-05 22:52:47.900844+0800 RilloraLayoutMatrixTests-Runner[93222:26491483] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+objc[93222]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10b4cc310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a9e4398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+    t =      nans Interface orientation changed to Portrait
+Test Suite 'Selected tests' started at 2026-10-05 22:52:56.006.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-10-05 22:52:56.006.
+Test Suite 'RilloraLocalizationUITests' started at 2026-10-05 22:52:56.007.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' started.
+    t =     0.00s Start Test at 2026-10-05 22:52:56.008
+    t =     0.54s Set Up
+    t =     0.55s Setting device orientation to Portrait
+    t =     0.56s     Device orientation changed to Portrait
+    t =     0.68s     Wait for com.apple.springboard to idle
+    t =     0.86s Open com.rillora.ios
+    t =     0.86s     Launch com.rillora.ios
+2026-10-05 22:52:57.450 xcodebuild[92857:26486527] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-05 22:52:57.450 xcodebuild[92857:26486527] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     6.29s         Setting up automation session
+    t =    11.58s         Wait for com.rillora.ios to idle
+    t =    13.68s Waiting 20.0s for "overview.scroll" Any to exist
+    t =    14.72s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =    14.73s         Checking existence of `"overview.scroll" Any`
+    t =    14.95s Tap "事项" Button
+    t =    14.95s     Wait for com.rillora.ios to idle
+    t =    15.02s     Find the "事项" Button
+    t =    15.07s     Check for interrupting elements affecting "事项" Button
+    t =    15.14s     Synthesize event
+    t =    15.56s     Wait for com.rillora.ios to idle
+    t =    17.28s Tap "matter.add" Any
+    t =    17.28s     Wait for com.rillora.ios to idle
+    t =    17.29s     Find the "matter.add" Any
+    t =    17.36s     Check for interrupting elements affecting "matter.add" Button
+    t =    17.44s     Synthesize event
+    t =    17.74s     Wait for com.rillora.ios to idle
+    t =    18.73s Checking existence of `NavigationBar (First Match)`
+    t =    18.78s Find the NavigationBar (First Match)
+    t =    18.82s Checking existence of `TabBar (First Match)`
+    t =    18.84s Find the TabBar (First Match)
+    t =    18.91s Find the Target Application 'com.rillora.ios'
+    t =    18.97s Checking existence of `"matter.edit.title" TextField`
+    t =    19.05s Find the "matter.edit.title" TextField
+    t =    19.14s Find the "matter.edit.title" TextField
+    t =    19.20s Find the "matter.edit.title" TextField
+    t =    19.25s Tap "matter.edit.title" TextField
+    t =    19.26s     Wait for com.rillora.ios to idle
+    t =    19.26s     Find the "matter.edit.title" TextField
+    t =    19.32s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =    19.39s     Synthesize event
+    t =    19.69s     Wait for com.rillora.ios to idle
+    t =    22.81s Type 'QA localization un...' into "matter.edit.title" TextField
+    t =    22.81s     Wait for com.rillora.ios to idle
+    t =    23.91s     Find the "matter.edit.title" TextField
+    t =    23.99s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =    24.07s     Synthesize event
+    t =    24.76s     Wait for com.rillora.ios to idle
+    t =    24.76s Type '' into "matter.edit.title" TextField
+    t =    24.76s     Wait for com.rillora.ios to idle
+    t =    24.77s     Find the "matter.edit.title" TextField
+    t =    24.86s     Check for interrupting elements affecting "matter.edit.title" TextField
+    t =    24.93s     Synthesize event
+    t =    25.16s     Wait for com.rillora.ios to idle
+    t =    25.40s Tap "取消" Button
+    t =    25.40s     Wait for com.rillora.ios to idle
+    t =    25.41s     Find the "取消" Button
+    t =    25.47s     Check for interrupting elements affecting "取消" Button
+    t =    25.59s     Synthesize event
+    t =    25.89s     Wait for com.rillora.ios to idle
+    t =    26.70s Waiting 5.0s for "继续编辑" Button to exist
+    t =    27.74s     Checking `Expect predicate `existsNoRetry == 1` for object "继续编辑" Button`
+    t =    27.78s         Checking existence of `"继续编辑" Button`
+    t =    27.85s Tap "继续编辑" Button
+    t =    27.85s     Wait for com.rillora.ios to idle
+    t =    27.85s     Find the "继续编辑" Button
+    t =    27.90s     Check for interrupting elements affecting "继续编辑" Button
+    t =    27.97s     Synthesize event
+    t =    28.26s     Wait for com.rillora.ios to idle
+    t =    28.59s Find the "matter.edit.title" TextField
+    t =    28.74s Added attachment named 'zh-Hans-localized-ax5-retained-draft'
+    t =    28.74s Tap "取消" Button
+    t =    28.74s     Wait for com.rillora.ios to idle
+    t =    28.74s     Find the "取消" Button
+    t =    28.80s     Check for interrupting elements affecting "取消" Button
+    t =    28.86s     Synthesize event
+    t =    29.16s     Wait for com.rillora.ios to idle
+    t =    29.95s Tap "放弃修改" Button
+    t =    29.95s     Wait for com.rillora.ios to idle
+    t =    29.96s     Find the "放弃修改" Button
+    t =    30.01s     Check for interrupting elements affecting "放弃修改" Button
+    t =    30.09s     Synthesize event
+    t =    30.39s     Wait for com.rillora.ios to idle
+    t =    30.71s Waiting 5.0s for "matters.list" Any to exist
+    t =    31.74s     Checking `Expect predicate `existsNoRetry == 1` for object "matters.list" Any`
+    t =    31.74s         Checking existence of `"matters.list" Any`
+    t =    31.81s Tap "个人中心" Button
+    t =    31.81s     Wait for com.rillora.ios to idle
+    t =    31.81s     Find the "个人中心" Button
+    t =    31.84s     Check for interrupting elements affecting "person.crop.circle" Button
+    t =    31.88s     Synthesize event
+    t =    32.18s     Wait for com.rillora.ios to idle
+    t =    34.17s Checking existence of `NavigationBar (First Match)`
+    t =    34.19s Find the NavigationBar (First Match)
+    t =    34.22s Checking existence of `TabBar (First Match)`
+    t =    34.23s Find the TabBar (First Match)
+    t =    34.26s Find the "标签页栏" TabBar
+    t =    34.27s Find the "标签页栏" TabBar
+    t =    34.28s Checking existence of `"start-here.open" Any`
+    t =    34.42s Checking existence of `"start-here.open" Any`
+    t =    34.55s Find the Target Application 'com.rillora.ios'
+    t =    34.58s Find the Target Application 'com.rillora.ios'
+    t =    34.61s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 477.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 180.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    34.61s     Wait for com.rillora.ios to idle
+    t =    34.61s     Find the Target Application 'com.rillora.ios'
+    t =    34.64s     Check for interrupting elements affecting "Rillora" Application
+    t =    34.67s     Synthesize event
+    t =    34.67s         Find the Target Application 'com.rillora.ios'
+    t =    34.70s         Find the Target Application 'com.rillora.ios'
+    t =    34.73s         Find the Target Application 'com.rillora.ios'
+    t =    34.75s         Find the Target Application 'com.rillora.ios'
+    t =    34.78s         Find the Target Application 'com.rillora.ios'
+    t =    35.70s     Wait for com.rillora.ios to idle
+    t =    37.30s Checking existence of `NavigationBar (First Match)`
+    t =    37.33s Find the NavigationBar (First Match)
+    t =    37.35s Checking existence of `TabBar (First Match)`
+    t =    37.36s Find the TabBar (First Match)
+    t =    37.38s Find the "标签页栏" TabBar
+    t =    37.40s Find the "标签页栏" TabBar
+    t =    37.41s Checking existence of `"start-here.open" Any`
+    t =    37.56s Checking existence of `"start-here.open" Any`
+    t =    37.70s Find the Target Application 'com.rillora.ios'
+    t =    37.73s Find the Target Application 'com.rillora.ios'
+    t =    37.76s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 477.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 180.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    37.76s     Wait for com.rillora.ios to idle
+    t =    38.02s     Find the Target Application 'com.rillora.ios'
+    t =    38.05s     Check for interrupting elements affecting "Rillora" Application
+    t =    38.08s     Synthesize event
+    t =    38.09s         Find the Target Application 'com.rillora.ios'
+    t =    38.11s         Find the Target Application 'com.rillora.ios'
+    t =    38.14s         Find the Target Application 'com.rillora.ios'
+    t =    38.17s         Find the Target Application 'com.rillora.ios'
+    t =    38.20s         Find the Target Application 'com.rillora.ios'
+    t =    39.12s     Wait for com.rillora.ios to idle
+    t =    41.00s Checking existence of `NavigationBar (First Match)`
+    t =    41.03s Find the NavigationBar (First Match)
+    t =    41.05s Checking existence of `TabBar (First Match)`
+    t =    41.06s Find the TabBar (First Match)
+    t =    41.09s Find the "标签页栏" TabBar
+    t =    41.10s Find the "标签页栏" TabBar
+    t =    41.11s Checking existence of `"start-here.open" Any`
+    t =    41.27s Checking existence of `"start-here.open" Any`
+    t =    41.42s Find the Target Application 'com.rillora.ios'
+    t =    41.45s Find the Target Application 'com.rillora.ios'
+    t =    41.48s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 477.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 180.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    41.48s     Wait for com.rillora.ios to idle
+    t =    42.03s     Find the Target Application 'com.rillora.ios'
+    t =    42.06s     Check for interrupting elements affecting "Rillora" Application
+    t =    42.10s     Synthesize event
+    t =    42.10s         Find the Target Application 'com.rillora.ios'
+    t =    42.13s         Find the Target Application 'com.rillora.ios'
+    t =    42.17s         Find the Target Application 'com.rillora.ios'
+    t =    42.20s         Find the Target Application 'com.rillora.ios'
+    t =    42.23s         Find the Target Application 'com.rillora.ios'
+    t =    43.15s     Wait for com.rillora.ios to idle
+    t =    44.71s Checking existence of `NavigationBar (First Match)`
+    t =    44.74s Find the NavigationBar (First Match)
+    t =    44.76s Checking existence of `TabBar (First Match)`
+    t =    44.77s Find the TabBar (First Match)
+    t =    44.80s Find the "标签页栏" TabBar
+    t =    44.82s Find the "标签页栏" TabBar
+    t =    44.83s Checking existence of `"start-here.open" Any`
+    t =    44.97s Checking existence of `"start-here.open" Any`
+    t =    45.10s Find the Target Application 'com.rillora.ios'
+    t =    45.13s Find the Target Application 'com.rillora.ios'
+    t =    45.16s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 477.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 180.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    45.16s     Wait for com.rillora.ios to idle
+    t =    45.16s     Find the Target Application 'com.rillora.ios'
+    t =    45.19s     Check for interrupting elements affecting "Rillora" Application
+    t =    45.23s     Synthesize event
+    t =    45.23s         Find the Target Application 'com.rillora.ios'
+    t =    45.26s         Find the Target Application 'com.rillora.ios'
+    t =    45.29s         Find the Target Application 'com.rillora.ios'
+    t =    45.31s         Find the Target Application 'com.rillora.ios'
+    t =    45.35s         Find the Target Application 'com.rillora.ios'
+    t =    46.26s     Wait for com.rillora.ios to idle
+    t =    47.81s Checking existence of `NavigationBar (First Match)`
+    t =    47.83s Find the NavigationBar (First Match)
+    t =    47.85s Checking existence of `TabBar (First Match)`
+    t =    47.86s Find the TabBar (First Match)
+    t =    47.88s Find the "标签页栏" TabBar
+    t =    47.90s Find the "标签页栏" TabBar
+    t =    47.91s Checking existence of `"start-here.open" Any`
+    t =    48.06s Find the "start-here.open" Any
+    t =    48.20s Find the "start-here.open" Button
+    t =    48.33s Find the "start-here.open" Button
+    t =    48.46s Checking existence of `"start-here.open" Button`
+    t =    48.60s Find the "start-here.open" Button
+    t =    48.73s Find the "start-here.open" Button
+    t =    48.86s Find the Target Application 'com.rillora.ios'
+    t =    48.89s Find the Target Application 'com.rillora.ios'
+    t =    48.92s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 477.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 180.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    48.92s     Wait for com.rillora.ios to idle
+    t =    49.11s     Find the Target Application 'com.rillora.ios'
+    t =    49.14s     Check for interrupting elements affecting "Rillora" Application
+    t =    49.17s     Synthesize event
+    t =    49.18s         Find the Target Application 'com.rillora.ios'
+    t =    49.20s         Find the Target Application 'com.rillora.ios'
+    t =    49.23s         Find the Target Application 'com.rillora.ios'
+    t =    49.26s         Find the Target Application 'com.rillora.ios'
+    t =    49.29s         Find the Target Application 'com.rillora.ios'
+    t =    50.21s     Wait for com.rillora.ios to idle
+    t =    52.37s Checking existence of `NavigationBar (First Match)`
+    t =    52.40s Find the NavigationBar (First Match)
+    t =    52.46s Checking existence of `TabBar (First Match)`
+    t =    52.47s Find the TabBar (First Match)
+    t =    52.50s Find the "标签页栏" TabBar
+    t =    52.52s Find the "标签页栏" TabBar
+    t =    52.54s Checking existence of `"start-here.open" Button`
+    t =    52.68s Find the "start-here.open" Button
+    t =    52.82s Find the "start-here.open" Button
+    t =    52.95s Find the "start-here.open" Button
+    t =    53.08s Tap "start-here.open" Button
+    t =    53.08s     Wait for com.rillora.ios to idle
+    t =    53.08s     Find the "start-here.open" Button
+    t =    53.20s     Check for interrupting elements affecting "start-here.open" Button
+    t =    53.27s     Synthesize event
+    t =    53.56s     Wait for com.rillora.ios to idle
+    t =    54.60s Waiting 10.0s for "start-here.audience" Any to exist
+    t =    55.62s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.audience" Any`
+    t =    55.62s         Checking existence of `"start-here.audience" Any`
+    t =    55.70s Checking existence of `NavigationBar (First Match)`
+    t =    55.72s Find the NavigationBar (First Match)
+    t =    55.73s Checking existence of `TabBar (First Match)`
+    t =    55.76s Find the Target Application 'com.rillora.ios'
+    t =    55.78s Checking existence of `"start-here.audience" Any`
+    t =    55.82s Find the "start-here.audience" Any
+    t =    55.88s Find the "start-here.audience" Other
+    t =    55.92s Find the "start-here.audience" Other
+    t =    55.97s Checking existence of `Button (First Match)`
+    t =    56.01s Tap Button (First Match)
+    t =    56.01s     Wait for com.rillora.ios to idle
+    t =    56.02s     Find the Button (First Match)
+    t =    56.06s     Check for interrupting elements affecting "这份副本是给谁的？" Button
+    t =    56.11s     Synthesize event
+    t =    56.40s     Wait for com.rillora.ios to idle
+    t =    56.77s Waiting 2.0s for "给我自己" Button to exist
+    t =    57.81s     Checking `Expect predicate `existsNoRetry == 1` for object "给我自己" Button`
+    t =    57.81s         Checking existence of `"给我自己" Button`
+    t =    57.86s Tap "给我自己" Button
+    t =    57.86s     Wait for com.rillora.ios to idle
+    t =    57.86s     Find the "给我自己" Button
+    t =    57.90s     Check for interrupting elements affecting "给我自己" Button
+    t =    57.92s     Synthesize event
+    t =    58.22s     Wait for com.rillora.ios to idle
+    t =    58.58s Checking existence of `"start-here.preview" Any`
+    t =    58.64s Checking existence of `NavigationBar (First Match)`
+    t =    58.66s Find the NavigationBar (First Match)
+    t =    58.68s Checking existence of `TabBar (First Match)`
+    t =    58.73s Find the Target Application 'com.rillora.ios'
+    t =    58.74s Checking existence of `"start-here.preview" Any`
+    t =    58.80s Find the "start-here.preview" Any
+    t =    58.87s Find the "start-here.preview" Button
+    t =    58.92s Find the "start-here.preview" Button
+    t =    58.97s Checking existence of `"start-here.preview" Button`
+    t =    59.01s Find the "start-here.preview" Button
+    t =    59.05s Find the "start-here.preview" Button
+    t =    59.10s Find the Target Application 'com.rillora.ios'
+    t =    59.12s Find the Target Application 'com.rillora.ios'
+    t =    59.13s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 530.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 194.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    59.14s     Wait for com.rillora.ios to idle
+    t =    59.14s     Find the Target Application 'com.rillora.ios'
+    t =    59.16s     Check for interrupting elements affecting "Rillora" Application
+    t =    59.18s     Synthesize event
+    t =    59.18s         Find the Target Application 'com.rillora.ios'
+    t =    59.20s         Find the Target Application 'com.rillora.ios'
+    t =    59.22s         Find the Target Application 'com.rillora.ios'
+    t =    59.23s         Find the Target Application 'com.rillora.ios'
+    t =    59.25s         Find the Target Application 'com.rillora.ios'
+    t =    60.24s     Wait for com.rillora.ios to idle
+    t =    61.21s Checking existence of `NavigationBar (First Match)`
+    t =    61.23s Find the NavigationBar (First Match)
+    t =    61.25s Checking existence of `TabBar (First Match)`
+    t =    61.28s Find the Target Application 'com.rillora.ios'
+    t =    61.30s Checking existence of `"start-here.preview" Button`
+    t =    61.35s Find the "start-here.preview" Button
+    t =    61.41s Find the "start-here.preview" Button
+    t =    61.46s Find the "start-here.preview" Button
+    t =    61.51s Find the "start-here.preview" Button
+    t =    61.56s Tap "start-here.preview" Button
+    t =    61.56s     Wait for com.rillora.ios to idle
+    t =    61.56s     Find the "start-here.preview" Button
+    t =    61.62s     Check for interrupting elements affecting "start-here.preview" Button
+    t =    61.67s     Synthesize event
+    t =    61.97s     Wait for com.rillora.ios to idle
+    t =    62.51s Waiting 15.0s for "start-here.preview-result" Any to exist
+    t =    63.54s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.preview-result" Any`
+    t =    63.54s         Checking existence of `"start-here.preview-result" Any`
+    t =    63.63s Checking existence of `NavigationBar (First Match)`
+    t =    63.64s Find the NavigationBar (First Match)
+    t =    63.66s Checking existence of `TabBar (First Match)`
+    t =    63.70s Find the Target Application 'com.rillora.ios'
+    t =    63.72s Checking existence of `"start-here.step.format" Any`
+    t =    63.79s Find the "start-here.step.format" Any
+    t =    63.88s Find the "start-here.step.format" Button
+    t =    63.95s Find the "start-here.step.format" Button
+    t =    64.09s Tap "start-here.step.format" Button
+    t =    64.09s     Wait for com.rillora.ios to idle
+    t =    64.10s     Find the "start-here.step.format" Button
+    t =    64.24s     Check for interrupting elements affecting "start-here.step.format" Button
+    t =    64.43s     Synthesize event
+    t =    64.74s     Wait for com.rillora.ios to idle
+    t =    64.75s Checking existence of `NavigationBar (First Match)`
+    t =    64.77s Find the NavigationBar (First Match)
+    t =    64.79s Checking existence of `TabBar (First Match)`
+    t =    64.85s Find the Target Application 'com.rillora.ios'
+    t =    64.88s Checking existence of `"start-here.format.printable" Any`
+    t =    65.00s Find the "start-here.format.printable" Any
+    t =    65.12s Find the "start-here.format.printable" Button
+    t =    65.21s Find the "start-here.format.printable" Button
+    t =    65.30s Checking existence of `"start-here.format.printable" Button`
+    t =    65.40s Find the "start-here.format.printable" Button
+    t =    65.49s Find the "start-here.format.printable" Button
+    t =    65.58s Find the Target Application 'com.rillora.ios'
+    t =    65.61s Find the Target Application 'com.rillora.ios'
+    t =    65.63s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 530.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 194.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    65.63s     Wait for com.rillora.ios to idle
+    t =    65.63s     Find the Target Application 'com.rillora.ios'
+    t =    65.66s     Check for interrupting elements affecting "Rillora" Application
+    t =    65.70s     Synthesize event
+    t =    65.70s         Find the Target Application 'com.rillora.ios'
+    t =    65.72s         Find the Target Application 'com.rillora.ios'
+    t =    65.75s         Find the Target Application 'com.rillora.ios'
+    t =    65.77s         Find the Target Application 'com.rillora.ios'
+    t =    65.80s         Find the Target Application 'com.rillora.ios'
+    t =    66.79s     Wait for com.rillora.ios to idle
+    t =    67.11s Checking existence of `NavigationBar (First Match)`
+    t =    67.14s Find the NavigationBar (First Match)
+    t =    67.16s Checking existence of `TabBar (First Match)`
+    t =    67.21s Find the Target Application 'com.rillora.ios'
+    t =    67.23s Checking existence of `"start-here.format.printable" Button`
+    t =    67.33s Find the "start-here.format.printable" Button
+    t =    67.43s Find the "start-here.format.printable" Button
+    t =    67.52s Find the "start-here.format.printable" Button
+    t =    67.62s Tap "start-here.format.printable" Button
+    t =    67.62s     Wait for com.rillora.ios to idle
+    t =    67.87s     Find the "start-here.format.printable" Button
+    t =    67.96s     Check for interrupting elements affecting "start-here.format.printable" Button
+    t =    68.02s     Synthesize event
+    t =    68.31s     Wait for com.rillora.ios to idle
+    t =    68.32s Checking existence of `NavigationBar (First Match)`
+    t =    68.34s Find the NavigationBar (First Match)
+    t =    68.36s Checking existence of `TabBar (First Match)`
+    t =    68.41s Find the Target Application 'com.rillora.ios'
+    t =    68.44s Checking existence of `"start-here.format-continue" Any`
+    t =    68.54s Checking existence of `"start-here.format-continue" Any`
+    t =    68.65s Find the Target Application 'com.rillora.ios'
+    t =    68.67s Find the Target Application 'com.rillora.ios'
+    t =    68.69s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 530.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 194.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    68.69s     Wait for com.rillora.ios to idle
+    t =    68.69s     Find the Target Application 'com.rillora.ios'
+    t =    68.71s     Check for interrupting elements affecting "Rillora" Application
+    t =    68.74s     Synthesize event
+    t =    68.74s         Find the Target Application 'com.rillora.ios'
+    t =    68.76s         Find the Target Application 'com.rillora.ios'
+    t =    68.79s         Find the Target Application 'com.rillora.ios'
+    t =    68.81s         Find the Target Application 'com.rillora.ios'
+    t =    68.84s         Find the Target Application 'com.rillora.ios'
+    t =    69.83s     Wait for com.rillora.ios to idle
+    t =    70.57s Checking existence of `NavigationBar (First Match)`
+    t =    70.59s Find the NavigationBar (First Match)
+    t =    70.61s Checking existence of `TabBar (First Match)`
+    t =    70.66s Find the Target Application 'com.rillora.ios'
+    t =    70.68s Checking existence of `"start-here.format-continue" Any`
+    t =    70.76s Find the "start-here.format-continue" Any
+    t =    70.84s Find the "start-here.format-continue" Button
+    t =    70.92s Find the "start-here.format-continue" Button
+    t =    70.99s Tap "start-here.format-continue" Button
+    t =    70.99s     Wait for com.rillora.ios to idle
+    t =    70.99s     Find the "start-here.format-continue" Button
+    t =    71.06s     Check for interrupting elements affecting "start-here.format-continue" Button
+    t =    71.11s     Synthesize event
+    t =    71.41s     Wait for com.rillora.ios to idle
+    t =    72.00s Find the "start-here.printable" Any
+    t =    72.12s Checking existence of `NavigationBar (First Match)`
+    t =    72.14s Find the NavigationBar (First Match)
+    t =    72.15s Checking existence of `TabBar (First Match)`
+    t =    72.21s Find the Target Application 'com.rillora.ios'
+    t =    72.24s Checking existence of `"start-here.ack.plaintext" Any`
+    t =    72.32s Find the "start-here.ack.plaintext" Any
+    t =    72.43s Checking existence of `"start-here.ack.plaintext" Switch`
+    t =    72.51s Find the "start-here.ack.plaintext" Switch
+    t =    72.60s Find the "start-here.ack.plaintext" Switch
+    t =    72.69s Find the Target Application 'com.rillora.ios'
+    t =    72.71s Find the Target Application 'com.rillora.ios'
+    t =    72.74s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 194.2) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 530.8) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    72.74s     Wait for com.rillora.ios to idle
+    t =    72.74s     Find the Target Application 'com.rillora.ios'
+    t =    72.76s     Check for interrupting elements affecting "Rillora" Application
+    t =    72.79s     Synthesize event
+    t =    72.79s         Find the Target Application 'com.rillora.ios'
+    t =    72.82s         Find the Target Application 'com.rillora.ios'
+    t =    72.84s         Find the Target Application 'com.rillora.ios'
+    t =    72.86s         Find the Target Application 'com.rillora.ios'
+    t =    72.89s         Find the Target Application 'com.rillora.ios'
+    t =    73.88s     Wait for com.rillora.ios to idle
+    t =    74.18s Checking existence of `NavigationBar (First Match)`
+    t =    74.19s Find the NavigationBar (First Match)
+    t =    74.21s Checking existence of `TabBar (First Match)`
+    t =    74.26s Find the Target Application 'com.rillora.ios'
+    t =    74.28s Checking existence of `"start-here.ack.plaintext" Switch`
+    t =    74.36s Find the "start-here.ack.plaintext" Switch
+    t =    74.46s Find the "start-here.ack.plaintext" Switch
+    t =    74.55s Find the "start-here.ack.plaintext" Switch
+    t =    74.64s Find the "start-here.ack.plaintext" Switch
+    t =    74.73s Tap "start-here.ack.plaintext" Switch
+    t =    74.73s     Wait for com.rillora.ios to idle
+    t =    74.98s     Find the "start-here.ack.plaintext" Switch
+    t =    75.08s     Check for interrupting elements affecting "start-here.ack.plaintext" Switch
+    t =    75.13s     Synthesize event
+    t =    75.42s     Wait for com.rillora.ios to idle
+    t =    75.43s Find the "start-here.ack.plaintext" Switch
+    t =    75.52s Checking existence of `NavigationBar (First Match)`
+    t =    75.53s Find the NavigationBar (First Match)
+    t =    75.55s Checking existence of `TabBar (First Match)`
+    t =    75.60s Find the Target Application 'com.rillora.ios'
+    t =    75.62s Checking existence of `"start-here.ack.copies" Any`
+    t =    75.71s Find the "start-here.ack.copies" Any
+    t =    75.81s Find the "start-here.ack.copies" Switch
+    t =    75.90s Find the "start-here.ack.copies" Switch
+    t =    75.99s Find the "start-here.ack.copies" Switch
+    t =    76.08s Tap "start-here.ack.copies" Switch
+    t =    76.08s     Wait for com.rillora.ios to idle
+    t =    76.08s     Find the "start-here.ack.copies" Switch
+    t =    76.17s     Check for interrupting elements affecting "start-here.ack.copies" Switch
+    t =    76.22s     Synthesize event
+    t =    76.52s     Wait for com.rillora.ios to idle
+    t =    76.52s Find the "start-here.ack.copies" Switch
+    t =    76.62s Checking existence of `NavigationBar (First Match)`
+    t =    76.64s Find the NavigationBar (First Match)
+    t =    76.66s Checking existence of `TabBar (First Match)`
+    t =    76.70s Find the Target Application 'com.rillora.ios'
+    t =    76.73s Checking existence of `"start-here.printable" Button`
+    t =    76.82s Find the "start-here.printable" Button
+    t =    76.92s Find the "start-here.printable" Button
+    t =    77.04s Find the "start-here.printable" Button
+    t =    77.13s Checking existence of `"start-here.printable" Button`
+    t =    77.22s Find the "start-here.printable" Button
+    t =    77.32s Find the "start-here.printable" Button
+    t =    77.41s Find the Target Application 'com.rillora.ios'
+    t =    77.43s Find the Target Application 'com.rillora.ios'
+    t =    77.45s Press Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 530.8) for 0.1 seconds, then drag to Target Application 'com.rillora.ios'[0.00, 0.00] -> (187.5, 194.2) with velocity of 500.00 pixels per second, and then hold for 0.0 seconds 
+    t =    77.45s     Wait for com.rillora.ios to idle
+    t =    77.45s     Find the Target Application 'com.rillora.ios'
+    t =    77.48s     Check for interrupting elements affecting "Rillora" Application
+    t =    77.50s     Synthesize event
+    t =    77.51s         Find the Target Application 'com.rillora.ios'
+    t =    77.53s         Find the Target Application 'com.rillora.ios'
+    t =    77.55s         Find the Target Application 'com.rillora.ios'
+    t =    77.57s         Find the Target Application 'com.rillora.ios'
+    t =    77.60s         Find the Target Application 'com.rillora.ios'
+    t =    78.59s     Wait for com.rillora.ios to idle
+    t =    78.94s Checking existence of `NavigationBar (First Match)`
+    t =    78.95s Find the NavigationBar (First Match)
+    t =    78.97s Checking existence of `TabBar (First Match)`
+    t =    79.03s Find the Target Application 'com.rillora.ios'
+    t =    79.05s Checking existence of `"start-here.printable" Button`
+    t =    79.17s Find the "start-here.printable" Button
+    t =    79.27s Find the "start-here.printable" Button
+    t =    79.37s Find the "start-here.printable" Button
+    t =    79.46s Find the "start-here.printable" Button
+    t =    79.60s Added attachment named 'zh-Hans-localized-ax5-export-acknowledgements'
+    t =    79.60s Tap "start-here.printable" Button
+    t =    79.60s     Wait for com.rillora.ios to idle
+    t =    79.71s     Find the "start-here.printable" Button
+    t =    79.81s     Check for interrupting elements affecting "start-here.printable" Button
+    t =    79.86s     Synthesize event
+    t =    80.16s     Wait for com.rillora.ios to idle
+    t =    81.04s Waiting 20.0s for "start-here.share" Any to exist
+    t =    82.07s     Checking `Expect predicate `existsNoRetry == 1` for object "start-here.share" Any`
+    t =    82.08s         Checking existence of `"start-here.share" Any`
+    t =    82.20s Checking existence of `NavigationBar (First Match)`
+    t =    82.21s Find the NavigationBar (First Match)
+    t =    82.23s Checking existence of `TabBar (First Match)`
+    t =    82.28s Find the Target Application 'com.rillora.ios'
+    t =    82.30s Checking existence of `"start-here.share" Any`
+    t =    82.38s Find the "start-here.share" Any
+    t =    82.48s Find the "start-here.share" Button
+    t =    82.56s Find the "start-here.share" Button
+    t =    82.65s Find the "start-here.share" Button
+    t =    82.74s Find the "start-here.share" Button
+    t =    82.87s Added attachment named 'zh-Hans-localized-ax5-prepared-printable'
+    t =    84.91s Find the Any (Descendant with identity binding to AX element pid: 93362, elementOrHash.elementID: 4977986176.723)
+    t =    84.94s Requesting snapshot of accessibility hierarchy for app with pid 93362
+    t =    84.99s Find: Descendant with identity binding to AX element pid: 93362, elementOrHash.elementID: 4977986176.723
+    t =    85.06s Requesting snapshot of accessibility hierarchy for app with pid 93362
+    t =    85.10s Find: Descendant with identity binding to AX element pid: 93362, elementOrHash.elementID: 4977986176.723
+    t =    85.10s Requesting snapshot of accessibility hierarchy for app with pid 93362
+    t =    85.15s Added attachment named 'accessibility-audit-element'
+    t =    85.15s Find the Any (Descendant with identity binding to AX element pid: 93362, elementOrHash.elementID: 4977986176.723)
+    t =    85.18s Checking existence of `"包含的信息" StaticText`
+    t =    85.20s Find the "包含的信息" StaticText
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:139: error: -[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport] : Text clipped
+    t =    85.50s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' failed (85.847 seconds).
+Test Suite 'RilloraLocalizationUITests' failed at 2026-10-05 22:54:21.855.
+	 Executed 1 test, with 1 failure (0 unexpected) in 85.847 (85.848) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' failed at 2026-10-05 22:54:21.855.
+	 Executed 1 test, with 1 failure (0 unexpected) in 85.847 (85.849) seconds
+Test Suite 'Selected tests' failed at 2026-10-05 22:54:21.856.
+	 Executed 1 test, with 1 failure (0 unexpected) in 85.847 (85.850) seconds
+2026-10-05 22:54:22.434 xcodebuild[92857:26486527] [MT] IDETestOperationsObserverDebug: 130.141 elapsed -- Testing started completed.
+2026-10-05 22:54:22.434 xcodebuild[92857:26486527] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-05 22:54:22.434 xcodebuild[92857:26486527] [MT] IDETestOperationsObserverDebug: 130.141 sec, +130.141 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/compact-zh-labels-fixed.xcresult
+
+Failing tests:
+	RilloraLocalizationUITests.testLocalizedLargeTextDraftAndPrintableExport()
+
+** TEST EXECUTE FAILED **
+
+Testing started

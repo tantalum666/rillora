@@ -1,0 +1,9 @@
+{
+  "unexpectedCandidateFiles": [
+    "index.html",
+    "integrations/rillora-ai-v1.zip"
+  ],
+  "cause": "Running the full prepare step on an already-prepared artifact re-inserted the appearance bootstrap. No candidate was deployed.",
+  "correction": "Restore the verified original HTML exactly; update only the ZIP hash. Synthesize a fresh assembly to avoid cached asset metadata.",
+  "htmlRestoredSha256": "08fda614ef44736ba9a5f6cdfd79ed5bf9a42a19fb40b92d72f409415d322886"
+}

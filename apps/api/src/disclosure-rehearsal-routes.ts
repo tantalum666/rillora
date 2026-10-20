@@ -1,5 +1,6 @@
 import type { Router } from "express";
 import { Router as createRouter } from "express";
+import { admitPlannerSnapshot } from './snapshot-work-budget.js';
 import type { PoolClient } from "pg";
 import { requireCsrf } from "./auth.js";
 import type { DatabasePool } from "./db.js";
@@ -218,6 +219,7 @@ export function createDisclosureRehearsalRouter(pool: DatabasePool): Router {
       const input = createDisclosureRehearsalSchema.parse(request.body);
       const machine = machines[input.lifeEvent];
       const created = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
+        await admitPlannerSnapshot(client);
         const snapshot = await collectDisclosureSnapshot(client, input.lifeEvent, machine);
         const publicId = randomUUID();
         const storedSnapshot = await protectSnapshot(client,publicId,snapshot);
@@ -449,7 +451,7 @@ async function collectDisclosureSnapshot(
     `select id::text, public_id, category, title, institution_name, location_hint, desired_outcome
      from app.matter_items
      where planner_id = app.current_planner_id() and archived_at is null
-     order by id`,
+     order by id limit 501`,
   );
   const assignments = await client.query<AssignmentPolicyRow>(
     `select ra.public_id, ra.role, ra.status, ra.matter_item_id::text,
@@ -466,8 +468,11 @@ async function collectDisclosureSnapshot(
      where ra.planner_id = app.current_planner_id()
        and ra.status <> 'revoked'
        and p.status not in ('revoked', 'archived')
-     order by ra.id`,
+     order by ra.id limit 1001`,
   );
+  if (matters.rows.length > 500 || assignments.rows.length > 1000) {
+    throw new ApiError(413, 'operation_size_limit', 'This collection is too large for one request. No records were omitted.');
+  }
   const owner = planner.rows[0];
   if (!owner) throw new ApiError(409, "planner_missing", "Planner profile is unavailable.");
 

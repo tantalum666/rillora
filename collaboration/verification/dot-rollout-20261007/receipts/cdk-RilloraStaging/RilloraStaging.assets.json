@@ -1,0 +1,36 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "f5322b0c13464780eb317a66fd706e1587ca338972d65ebd142e6ad81aa4352e": {
+      "displayName": "WebDeployment/Asset1",
+      "source": {
+        "path": "asset.f5322b0c13464780eb317a66fd706e1587ca338972d65ebd142e6ad81aa4352e",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "current_account-eu-central-1-68c5b8bf": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "[CDK_ASSET_DIGEST_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    },
+    "181dd97113f80a5e4763add3e50d2aeb33c4c4a19a94550dcabbc89905d3d9d4": {
+      "displayName": "RilloraStaging reviewed template",
+      "source": {
+        "path": "RilloraStaging.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "current_account-eu-central-1-68c5b8bf": {
+          "bucketName": "cdk-hnb659fds-assets-${AWS::AccountId}-eu-central-1",
+          "objectKey": "[CDK_ASSET_DIGEST_OMITTED].json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::${AWS::AccountId}:role/cdk-hnb659fds-file-publishing-role-${AWS::AccountId}-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {}
+}

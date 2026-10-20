@@ -1,0 +1,22 @@
+"""Renew only the retained review expiry; no identity, scope or consent change."""
+from pathlib import Path
+import datetime,json,os,subprocess
+R=Path.cwd();Q=R/'output/qa/rillora-dot-rollout-20261007';P=R/'.local-secrets/dot-rollout-20261007'
+plan=json.loads((Q/'review-window-plan.json').read_text());expiry=plan['proposedExpiry'];old=plan['currentExpiry']
+assert datetime.datetime.fromisoformat(expiry.replace('Z','+00:00'))>datetime.datetime.now(datetime.timezone.utc)
+def auth(method,path,body=None):
+ r=subprocess.run(['auth0','api',method,path,'--tenant','rillora-dev.eu.auth0.com','--no-input'],input=json.dumps(body) if body is not None else None,capture_output=True,text=True,timeout=50)
+ if r.returncode:raise RuntimeError('Auth0 operation failed; provider body suppressed')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+receipt=Q/'review-action-renewed.json'
+if receipt.exists():raise SystemExit('Existing renewal receipt; do not repeat.')
+before=json.loads((P/'review-action-before.json').read_text());bindings=json.loads((P/'auth0-bindings-before.json').read_text())['bindings']
+current=auth('get','actions/actions/'+before['id']);assert current['deployed_version']['code']==before['deployed_version']['code']
+code=current['deployed_version']['code'];assert code.count(old)==1
+replacement=code.replace(old,expiry);assert replacement.replace(expiry,old)==code
+auth('patch','actions/actions/'+before['id'],{'code':replacement});auth('post','actions/actions/'+before['id']+'/deploy')
+after=auth('get','actions/actions/'+before['id']);assert after['deployed_version']['code']==replacement
+key=lambda xs:[(x['id'],x['action']['id']) for x in xs]
+assert key(auth('get','actions/triggers/post-login/bindings?per_page=100')['bindings'])==key(bindings)
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'actionId':before['id'],'oldExpiry':old,'expiresAt':expiry,'identityCount':3,'onlyExpiryChanged':True,'bindingsUnchanged':True,'legalFormAndRequiredUserConsentUnchanged':True,'ordinaryCustomersClosed':True}
+receipt.write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

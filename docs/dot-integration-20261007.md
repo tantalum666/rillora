@@ -1,0 +1,66 @@
+# Dot branch integration review — 2026-10-07
+
+Status: REVIEWED, FIXED AND MERGED; DEBUG/RELEASE AND TARGETED BILINGUAL UI PASS
+Updated: 2026-10-07 (Asia/Hong_Kong)
+
+Owner requests reviewing the latest GitHub work, fixing issues and merging if sound.
+This supersedes the earlier cloud-only/no-merge scope. Existing release authorizations,
+prices, real data and build8 remain; no deployment/real mail/purchase is performed.
+
+Subsequent Owner deployment instruction is recorded in [the rollout](dot-rollout-20261007.md).
+The no-deployment/expired-window statements below describe this review's original
+checkpoint; they do not override the later rollout or its bounded renewal.
+
+## Exact sources and scope
+
+- Operator baseline: e95007878729352c852b9bf411138e07c0361a1e
+- Shared identity:8cc5e10042d5c9f3688b1093306b2e4377a92c82
+- Native head:3c6e05b1c, includes the identity foundation and complete operator baseline
+- Web head:75d4d7d9f, shares the same identity commit, integrated without duplicate patches
+- Review branch:codex/dot-integration-20261007; target is the current release branch
+  codex/device-config-20261006, not the older main checkpoint.
+
+Review covers all incoming runtime changes: additive identity API/auth middleware,
+read-only provider proof and revocation recheck; Swift/React lifecycle/old-server fallback;
+explicit SDK reset and mock transport; guide phases/source provenance; native settings,
+category/locator semantics and disclosure motion; Web header/locale/history/provider
+fallbacks; Xcode/source registration, tests, workflows and archival metadata. Existing
+product contracts are retained; incoming new Markdown and affected deltas were read.
+
+## Findings and fixes
+
+1. Native Safety & privacy failed real compilation: Section(title) with footer has no
+matching SwiftUI initializer. Use explicit content/header/footer. Product behavior unchanged.
+2. New AccountIdentityTests could not compile because the reused overview fixture was
+file-private. Make that synthetic XCTest fixture available within the test module only.
+3. The unrun category UI test made two invalid reachability assumptions: decorative
+ContentUnavailableView image must accept taps, and native navigation-bar search must
+sit below the bar. Verify the real Show all categories action and actual tappable search.
+Screenshots show the product controls were already visible; assertions are retained.
+4. Regenerate Xcode project from its committed spec. Added-file object references are
+now canonical; only two existing public-identifier scanner line positions move, with
+identical source-span hashes and no new exceptions.
+5. Preserve Dot's archive20 readable-metadata correction. Move25ignored local generated
+copies out of collaboration so regenerating a manifest cannot recreate their false Git
+availability. All original3,102raw records and ciphertext remain unchanged.
+
+## Evidence and remaining work
+
+- Real native unit run:272pass/0fail/1known StoreKitTest platform skip;49new tests executed.
+- Web174pass, API typecheck/build and17focused identity/proof pass;66release guards pass.
+- Initial native UI:guide and identity/settings pass; category test failures above retained.
+- Dot CI62, CI70 and20/20 browser job independently read back through GitHub connector;
+  their historical scopes are retained, not claimed as a new local browser run.
+- Final Debug/Release compile and six affected native UI scenarios pass across English/Chinese. PR source CI73 and20/20browser scenarios pass. [PR1](https://github.com/tantalum666/rillora/pull/1) merged as eb5fb1a70290eefdcbfea029586c75bb32f9a640 into the current release branch. The wider historical iPad/VoiceOver/real-provider matrix is not claimed rerun. All four cloud browser ZIPs were downloaded/hash-verified and join the local result bundles in archive21.
+
+No iOS upload, cloud deploy, Auth0 setting, live reset email, real transaction, review
+access extension, retained-account deletion or FanPass change. Review access expired
+2026-10-06T17:08:57Z; testing here is isolated synthetic loopback and simulator only.
+
+Raw results: `output/qa/rillora-dot-integration-20261007/`. Current release state remains in [handoff](handoff.md).
+
+Final preservation: archive21at06519bde8contains7,314paths/913objects. Its233,637,603bytes
+were independently downloaded from GitHub and decrypted/hash-verified. Readable secret
+scan has0unreviewed findings,535changed-document links pass, and every manifest path
+is present in the staged Git tree. [Complete receipt](../collaboration/verification/dot-integration-20261007/closeout.json).
+The later receipt-only commit adds these exact outcomes without rerunning completed tests.

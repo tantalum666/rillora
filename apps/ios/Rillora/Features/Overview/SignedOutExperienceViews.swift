@@ -9,8 +9,8 @@ struct SignedOutMattersView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 20) {
                 VStack(alignment: .leading, spacing: 10) {
-                    SectionEyebrow("Matters")
-                    Text("What would you like to organise?")
+                    SectionEyebrow(String(localized: "Matters"))
+                    Text(String(localized: "What would you like to organise?"))
                         .font(.system(.title, design: .serif).weight(.medium))
                         .foregroundStyle(RilloraTheme.ink)
                         .fixedSize(horizontal: false, vertical: true)
@@ -25,7 +25,7 @@ struct SignedOutMattersView: View {
 
                 Button { onAuthenticate(expandedGroup?.category ?? .account) } label: {
                     HStack {
-                        Text("Add a matter")
+                        Text(String(localized: "Add a matter"))
                         Spacer()
                         Image(systemName: "plus").accessibilityHidden(true)
                     }
@@ -72,7 +72,7 @@ struct SignedOutMattersView: View {
                 .contentShape(Rectangle())
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityValue(expanded ? "Expanded" : "Collapsed")
+            .accessibilityValue(expanded ? String(localized: "Expanded") : String(localized: "Collapsed"))
             .accessibilityIdentifier("public-matters.category.\(group.rawValue)")
 
             if expanded {
@@ -116,11 +116,11 @@ struct SignedOutProfileView: View {
 
     var body: some View {
         List {
-            Section("Account") {
+            Section(String(localized: "Account")) {
                 Button(action: onAuthenticate) {
                     ProfileActionLabel(
-                        title: isAuthenticating ? "Opening sign in…" : "Sign in / Sign up",
-                        detail: "Access your private map",
+                        title: isAuthenticating ? String(localized: "Opening sign in…") : String(localized: "Sign in / Sign up"),
+                        detail: String(localized: "Access your private map"),
                         systemImage: "person.crop.circle",
                         accessory: .forward
                     )
@@ -130,7 +130,7 @@ struct SignedOutProfileView: View {
                 .accessibilityIdentifier("public-profile.sign-in")
                 if let onOpenInvitation {
                     Button(action: onOpenInvitation) {
-                        ProfileActionLabel(title: "Accept a received invitation", detail: "Open a link someone sent you", systemImage: "link", accessory: .forward)
+                        ProfileActionLabel(title: String(localized: "Accept a received invitation"), detail: String(localized: "Open a link someone sent you"), systemImage: "link", accessory: .forward)
                     }.buttonStyle(RilloraQuietButtonStyle()).accessibilityIdentifier("public-profile.invitation")
                 }
             }
@@ -139,29 +139,34 @@ struct SignedOutProfileView: View {
             Section("Rillora") {
                 if let deletionService, let deletionReference {
                     NavigationLink { AccountDeletionStatusView(service: deletionService, initialReference: deletionReference) } label: {
-                        ProfileActionLabel(title: "Deletion status", detail: "Check your saved request", systemImage: "person.crop.circle.badge.minus")
+                        ProfileActionLabel(title: String(localized: "Deletion status"), detail: String(localized: "Check your saved request"), systemImage: "person.crop.circle.badge.minus")
                     }.accessibilityIdentifier("public-profile.deletion-status")
                 }
                 NavigationLink { SavedCopyReaderView() } label: {
-                    ProfileActionLabel(title: "Open a saved copy", detail: "Read a file on this device", systemImage: "folder")
+                    ProfileActionLabel(title: String(localized: "Open a saved copy"), detail: String(localized: "Read a file on this device"), systemImage: "folder")
                 }.accessibilityIdentifier("public-profile.saved-copy")
                 NavigationLink {
                     RilloraSafetyPrivacyView()
                 } label: {
                     ProfileActionLabel(
-                        title: "Safety & privacy",
-                        detail: "Storage and disclosure controls",
+                        title: String(localized: "Safety & privacy"),
+                        detail: String(localized: "Storage and disclosure controls"),
                         systemImage: "lock.shield"
                     )
                 }
                 .accessibilityIdentifier("public-profile.safety")
 
+                NavigationLink { AppPreferencesView() } label: {
+                    ProfileActionLabel(title: String(localized: "Language & appearance"), detail: String(localized: "App language and display mode"), systemImage: "slider.horizontal.3")
+                }
+                .accessibilityIdentifier("public-profile.preferences")
+
                 NavigationLink {
                     AboutRilloraView()
                 } label: {
                     ProfileActionLabel(
-                        title: "About Rillora",
-                        detail: "Version and build",
+                        title: String(localized: "About Rillora"),
+                        detail: String(localized: "Version and build"),
                         systemImage: "info.circle"
                     )
                 }

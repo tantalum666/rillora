@@ -1,0 +1,2011 @@
+{
+  "config": {
+    "argv": [
+      "/opt/hostedtoolcache/node/22.22.3/x64/bin/node",
+      "/home/runner/work/rillora/rillora/apps/web/node_modules/.bin/playwright",
+      "test"
+    ],
+    "configFile": "/home/runner/work/rillora/rillora/apps/web/playwright.config.mjs",
+    "rootDir": "/home/runner/work/rillora/rillora/apps/web/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": true,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "ci": {
+        "commitHref": "https://github.com/tantalum666/rillora/commit/d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+        "commitHash": "d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+        "prHref": "https://github.com/tantalum666/rillora/pull/2",
+        "prTitle": "Integrate bilingual guides and Web plan UX while preserving current native fixes",
+        "prBaseHash": "06da360715ad68e165bd3e1334dec32911aad345",
+        "buildHref": "https://github.com/tantalum666/rillora/actions/runs/37735567497"
+      },
+      "gitCommit": {
+        "shortHash": "d91edd4",
+        "hash": "d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+        "subject": "Merge 68d707d4dfca3949e8d697a540b238b28779fa31 into 06da360715ad68e165bd3e1334dec32911aad345",
+        "body": "Merge 68d707d4dfca3949e8d697a540b238b28779fa31 into 06da360715ad68e165bd3e1334dec32911aad345\n",
+        "author": {
+          "name": "tantalum666",
+          "email": "[REDACTED_EMAIL]",
+          "time": 1791439419000
+        },
+        "committer": {
+          "name": "GitHub",
+          "email": "[REDACTED_EMAIL]",
+          "time": 1791439419000
+        },
+        "branch": "HEAD"
+      },
+      "actualWorkers": 2
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "ci": {
+            "commitHref": "https://github.com/tantalum666/rillora/commit/d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+            "commitHash": "d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+            "prHref": "https://github.com/tantalum666/rillora/pull/2",
+            "prTitle": "Integrate bilingual guides and Web plan UX while preserving current native fixes",
+            "prBaseHash": "06da360715ad68e165bd3e1334dec32911aad345",
+            "buildHref": "https://github.com/tantalum666/rillora/actions/runs/37735567497"
+          },
+          "gitCommit": {
+            "shortHash": "d91edd4",
+            "hash": "d91edd4af31466ea4c0f6d677f3ff3c0e242d672",
+            "subject": "Merge 68d707d4dfca3949e8d697a540b238b28779fa31 into 06da360715ad68e165bd3e1334dec32911aad345",
+            "body": "Merge 68d707d4dfca3949e8d697a540b238b28779fa31 into 06da360715ad68e165bd3e1334dec32911aad345\n",
+            "author": {
+              "name": "tantalum666",
+              "email": "[REDACTED_EMAIL]",
+              "time": 1791439419000
+            },
+            "committer": {
+              "name": "GitHub",
+              "email": "[REDACTED_EMAIL]",
+              "time": 1791439419000
+            },
+            "branch": "HEAD"
+          },
+          "actualWorkers": 2
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/home/runner/work/rillora/rillora/apps/web/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "**/*.@(spec|test).?(c|m)[jt]s?(x)"
+        ],
+        "timeout": 30000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "html",
+        {
+          "outputFolder": "browser-report",
+          "open": "never"
+        }
+      ],
+      [
+        "json",
+        {
+          "outputFile": "browser-results/results.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 2,
+    "webServer": null
+  },
+  "suites": [
+    {
+      "title": "account-identity.spec.mjs",
+      "file": "account-identity.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "pending identity does not claim missing email and retry publishes fresh provider proof",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1491,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:47.783Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/account-identity-pending-i-910d2-lishes-fresh-provider-proof/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ddef2fe46175d321068-e7908e7dd732e48d6148",
+          "file": "account-identity.spec.mjs",
+          "line": 4,
+          "column": 1
+        },
+        {
+          "title": "Web recognizes the same current account with case-insensitive UUIDs like iOS",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 749,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:49.648Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/account-identity-Web-recog-43bfb--insensitive-UUIDs-like-iOS/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ddef2fe46175d321068-520ba825a30a5eed476f",
+          "file": "account-identity.spec.mjs",
+          "line": 27,
+          "column": 1
+        },
+        {
+          "title": "identity hook discards old clients, canceled responses, mismatches and stale retries",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1782,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:50.412Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/account-identity-identity--ca344-ismatches-and-stale-retries/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "8ddef2fe46175d321068-a55d2b722c53f1aac9f9",
+          "file": "account-identity.spec.mjs",
+          "line": 43,
+          "column": 1
+        }
+      ]
+    },
+    {
+      "title": "landing-header.spec.mjs",
+      "file": "landing-header.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "landing responsive navigation and Apple price note en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 15194,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:47.761Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/landing-header-landing-res-b424c-ion-and-Apple-price-note-en/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4f98a6b47ee8db644193-bf97f72ab966e57e82f8",
+          "file": "landing-header.spec.mjs",
+          "line": 21,
+          "column": 3
+        },
+        {
+          "title": "landing responsive navigation and Apple price note zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 13890,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:03.354Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/landing-header-landing-res-50c2e--and-Apple-price-note-zh-CN/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "4f98a6b47ee8db644193-542ad83c10069aa61c1c",
+          "file": "landing-header.spec.mjs",
+          "line": 21,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "plan-access.spec.mjs",
+      "file": "plan-access.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "Family-first plans and settings en 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:52.225Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-en-320/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-cf2d9722d2b04c3dcbaf",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings en 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2446,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:54.688Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-en-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-f5bd60cb3cc714f60d79",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings en 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2724,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:57.170Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-en-768/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-85d7db0bedb8403223df",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings en 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2797,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:04:59.937Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-en-1280/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-520b54aa131f872b1907",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings en 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2648,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:02.768Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-en-1920/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-b90de3c0a9177f14a68f",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings zh-CN 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2382,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:05.443Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-zh-CN-320/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-c5ecb02d066530a6a4c2",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings zh-CN 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2233,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:07.840Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-zh-CN-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-436595f63f5a6a6a871a",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings zh-CN 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:10.092Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-zh-CN-768/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-1dff110df3b258da8e04",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings zh-CN 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2925,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:12.569Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-zh-CN-1280/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-3ecacbefde635e738e3d",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Family-first plans and settings zh-CN 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3015,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:15.505Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Family-first-plans-and-settings-zh-CN-1920/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-eed858190ca395650eb8",
+          "file": "plan-access.spec.mjs",
+          "line": 25,
+          "column": 3
+        },
+        {
+          "title": "Plan lifecycle presentation preserves purchase consent and management en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 2947,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:18.538Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Plan-lifecycle-ed795-e-consent-and-management-en/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-457f74b8a3d0d61ea1b2",
+          "file": "plan-access.spec.mjs",
+          "line": 52,
+          "column": 3
+        },
+        {
+          "title": "Plan lifecycle presentation preserves purchase consent and management zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 3489,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:21.506Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Plan-lifecycle-0f4bb-onsent-and-management-zh-CN/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-4b2a568913ccf070728c",
+          "file": "plan-access.spec.mjs",
+          "line": 52,
+          "column": 3
+        },
+        {
+          "title": "Enrolled Stripe TEST entry remains visible while ordinary sales are closed en",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1240,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:25.015Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Enrolled-Strip-d7724-rdinary-sales-are-closed-en/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-de1492d3b57489ef21b7",
+          "file": "plan-access.spec.mjs",
+          "line": 82,
+          "column": 3
+        },
+        {
+          "title": "Enrolled Stripe TEST entry remains visible while ordinary sales are closed zh-CN",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1175,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:26.276Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/plan-access-Enrolled-Strip-2d4ce-nary-sales-are-closed-zh-CN/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "37cd0c207b0f3a4c9213-ec271d99431382eff84e",
+          "file": "plan-access.spec.mjs",
+          "line": 82,
+          "column": 3
+        }
+      ]
+    },
+    {
+      "title": "ux.spec.mjs",
+      "file": "ux.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "public pages en 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 6743,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:17.287Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-320/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-5a476ae7e47280034476",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 5432,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:24.048Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-5267c9ea0022297ee73b",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3655,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:29.492Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-768/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-b36f4f7d65c5038e4dc4",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3649,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:33.162Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-1024/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-5cf5892f05d65f81ce9d",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3764,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:36.823Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-1280/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-1b026eda0b4a82b4225b",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3839,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:40.610Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-1440/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-3635d3363c3eddd02f15",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages en 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3861,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:44.467Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-en-1920/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-fef881c3a6cf11e4c29a",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 320",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4232,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:48.342Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-320/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-a67f6a22eb3ff457ab2e",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 4209,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:52.583Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-04ff25189f88082ab37d",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 768",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3669,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:05:56.800Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-768/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-d02c2951217b44cb55a0",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 1024",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3657,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:00.481Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-1024/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-fe063a4ab7d4ea20dd6a",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 1280",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3690,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:04.150Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-1280/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-e7ab95b60af8cfd0c6b5",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3692,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:07.849Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-1440/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-a36b8de42ee48819623b",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "public pages zh-CN 1920",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 3760,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:11.553Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogW10sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-public-pages-zh-CN-1920/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-70877092bdb140064eb5",
+          "file": "ux.spec.mjs",
+          "line": 16,
+          "column": 3
+        },
+        {
+          "title": "workspace routes and all provider identifiers en 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 23003,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:15.329Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmV4cGVjdGVkIjogW10sCiAgIndyaXRlcyI6IFtdCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-workspace-routes-and-all-provider-identifiers-en-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-95db1b2ccc1387e7461e",
+          "file": "ux.spec.mjs",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "title": "workspace routes and all provider identifiers en 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 24879,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:06:38.368Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmV4cGVjdGVkIjogW10sCiAgIndyaXRlcyI6IFtdCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-workspace-routes-and-all-provider-identifiers-en-1440/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-c1f2dacfdb0ee8290b3d",
+          "file": "ux.spec.mjs",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "title": "workspace routes and all provider identifiers zh-CN 390",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 21687,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:03.272Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmV4cGVjdGVkIjogW10sCiAgIndyaXRlcyI6IFtdCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-workspace-routes-and-all-provider-identifiers-zh-CN-390/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-bb401abd900cc5fdbcb6",
+          "file": "ux.spec.mjs",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "title": "workspace routes and all provider identifiers zh-CN 1440",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 120000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 26669,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:24.971Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmV4cGVjdGVkIjogW10sCiAgIndyaXRlcyI6IFtdCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-workspace-routes-and-all-provider-identifiers-zh-CN-1440/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-4ae8506335aa71eb4d7e",
+          "file": "ux.spec.mjs",
+          "line": 49,
+          "column": 3
+        },
+        {
+          "title": "Chinese website handoff, account consent, auth return and reload stay Chinese",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 2016,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:51.694Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA0MDEgKFVuYXV0aG9yaXplZCkiLAogICAgICAidXJsIjogImh0dHBzOi8vYXBwLnN0YWdpbmcucmlsbG9yYS54eXovYXBpL3YxL292ZXJ2aWV3IiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9LAogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA0MDEgKFVuYXV0aG9yaXplZCkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvb3ZlcnZpZXciLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9CiAgXSwKICAidW5leHBlY3RlZCI6IFtdLAogICJ3cml0ZXMiOiBbCiAgICAiL2FwaS9hdXRoL3N0YXJ0IgogIF0KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-Chinese-website-handoff-36fcd-urn-and-reload-stay-Chinese/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-c0361b3354c355f36330",
+          "file": "ux.spec.mjs",
+          "line": 103,
+          "column": 1
+        },
+        {
+          "title": "blocked storage, explicit app language and guide navigation preserve locale",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1452,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:53.728Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9CiAgXSwKICAidW5leHBlY3RlZCI6IFtdLAogICJ3cml0ZXMiOiBbXQp9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-blocked-storage-explici-8339c--navigation-preserve-locale/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-25dc156955de6854f82f",
+          "file": "ux.spec.mjs",
+          "line": 123,
+          "column": 1
+        },
+        {
+          "title": "failed logos retain distinct local fallbacks without remote icon services",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 644,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:55.191Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9GQUlMRUQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hc3NldHMvZmFjZWJvb2stcHJpbWFyeS1DbWdKaDNIZC5wbmciLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiBuZXQ6OkVSUl9GQUlMRUQiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hc3NldHMveC1sb2dvLXdoaXRlLUNuUjBmUklLLnBuZyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfQogIF0sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-failed-logos-retain-dis-4d521-ithout-remote-icon-services/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-8c547239354814552ac9",
+          "file": "ux.spec.mjs",
+          "line": 134,
+          "column": 1
+        },
+        {
+          "title": "identity is visible, bilingual, handles missing email and never displays a stale account",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 983,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:55.849Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfSwKICAgIHsKICAgICAgImxldmVsIjogImVycm9yIiwKICAgICAgInRleHQiOiAiRmFpbGVkIHRvIGxvYWQgcmVzb3VyY2U6IHRoZSBzZXJ2ZXIgcmVzcG9uZGVkIHdpdGggYSBzdGF0dXMgb2YgNTAzIChTZXJ2aWNlIFVuYXZhaWxhYmxlKSIsCiAgICAgICJ1cmwiOiAiaHR0cDovLzEyNy4wLjAuMTo0MTc0L2FwaS92MS9jb21tZXJjZS9zdGF0dXM/c2VydmljZU1hcmtldENvZGU9R0xPQkFMX1VTIiwKICAgICAgImV4cGVjdGVkRml4dHVyZUZhaWx1cmUiOiB0cnVlCiAgICB9CiAgXSwKICAidW5leHBlY3RlZCI6IFtdLAogICJ3cml0ZXMiOiBbXQp9"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-identity-is-visible-bil-52365-er-displays-a-stale-account/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-52c79c7e369dfa15cc12",
+          "file": "ux.spec.mjs",
+          "line": 149,
+          "column": 1
+        },
+        {
+          "title": "draft text and discard decisions survive a real cross-tab language change",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 1048,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:56.844Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0sCiAgICB7CiAgICAgICJsZXZlbCI6ICJlcnJvciIsCiAgICAgICJ0ZXh0IjogIkZhaWxlZCB0byBsb2FkIHJlc291cmNlOiB0aGUgc2VydmVyIHJlc3BvbmRlZCB3aXRoIGEgc3RhdHVzIG9mIDUwMyAoU2VydmljZSBVbmF2YWlsYWJsZSkiLAogICAgICAidXJsIjogImh0dHA6Ly8xMjcuMC4wLjE6NDE3NC9hcGkvdjEvY29tbWVyY2Uvc3RhdHVzP3NlcnZpY2VNYXJrZXRDb2RlPUdMT0JBTF9VUyIsCiAgICAgICJleHBlY3RlZEZpeHR1cmVGYWlsdXJlIjogdHJ1ZQogICAgfQogIF0sCiAgInVuZXhwZWN0ZWQiOiBbXSwKICAid3JpdGVzIjogW10KfQ=="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-draft-text-and-discard--8815e-l-cross-tab-language-change/test-finished-1.png"
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-draft-text-and-discard--8815e-l-cross-tab-language-change/test-finished-2.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-cfcdcc40e8e7e0445431",
+          "file": "ux.spec.mjs",
+          "line": 165,
+          "column": 1
+        },
+        {
+          "title": "late identity responses cannot reappear after the active account is invalidated",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 30000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 1,
+                  "status": "passed",
+                  "duration": 483,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-08T06:07:57.904Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "console-and-network",
+                      "contentType": "application/json",
+                      "body": "ewogICJjb25zb2xlIjogWwogICAgewogICAgICAibGV2ZWwiOiAiZXJyb3IiLAogICAgICAidGV4dCI6ICJGYWlsZWQgdG8gbG9hZCByZXNvdXJjZTogdGhlIHNlcnZlciByZXNwb25kZWQgd2l0aCBhIHN0YXR1cyBvZiA1MDMgKFNlcnZpY2UgVW5hdmFpbGFibGUpIiwKICAgICAgInVybCI6ICJodHRwOi8vMTI3LjAuMC4xOjQxNzQvYXBpL3YxL2NvbW1lcmNlL3N0YXR1cz9zZXJ2aWNlTWFya2V0Q29kZT1HTE9CQUxfVVMiLAogICAgICAiZXhwZWN0ZWRGaXh0dXJlRmFpbHVyZSI6IHRydWUKICAgIH0KICBdLAogICJ1bmV4cGVjdGVkIjogW10sCiAgIndyaXRlcyI6IFtdCn0="
+                    },
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/home/runner/work/rillora/rillora/apps/web/browser-results/artifacts/ux-late-identity-responses-ea334-tive-account-is-invalidated/test-finished-1.png"
+                    }
+                  ]
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "154d59d89f30566fe9eb-bbd6b043c6595e198cc6",
+          "file": "ux.spec.mjs",
+          "line": 183,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-08T06:04:35.002Z",
+    "duration": 203657.345,
+    "expected": 43,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  }
+}

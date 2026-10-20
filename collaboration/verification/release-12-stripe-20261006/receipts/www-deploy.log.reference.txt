@@ -1,0 +1,36 @@
+
+✨  Synthesis time: 0.54s
+
+RilloraPublicWeb: start: Building PublicDeployment/Asset1
+RilloraPublicWeb: success: Built PublicDeployment/Asset1
+RilloraPublicWeb: start: Building RilloraPublicWeb Template
+RilloraPublicWeb: success: Built RilloraPublicWeb Template
+RilloraPublicWeb: start: Publishing PublicDeployment/Asset1 (133857166372-eu-central-1-6ed62764)
+RilloraPublicWeb: start: Publishing RilloraPublicWeb Template (133857166372-eu-central-1-8409eddf)
+RilloraPublicWeb: success: Published RilloraPublicWeb Template (133857166372-eu-central-1-8409eddf)
+RilloraPublicWeb: success: Published PublicDeployment/Asset1 (133857166372-eu-central-1-6ed62764)
+RilloraPublicWeb: creating CloudFormation changeset...
+RilloraPublicWeb: deploying... [1/1]
+RilloraPublicWeb | 0/4 | 11:27:26 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack             | RilloraPublicWeb User Initiated
+RilloraPublicWeb | 0/4 | 11:27:29 PM | UPDATE_IN_PROGRESS      | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb | 0/4 | 11:28:10 PM | UPDATE_IN_PROGRESS      | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) Eventual consistency check initiated
+RilloraPublicWeb | 1/4 | 11:28:11 PM | UPDATE_COMPLETE         | AWS::CloudFront::Function              | PublicRoutes (PublicRoutesC0C4D2B4) 
+RilloraPublicWeb | 1/4 | 11:28:14 PM | UPDATE_IN_PROGRESS      | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 2/4 | 11:29:35 PM | UPDATE_COMPLETE         | Custom::CDKBucketDeployment            | PublicDeployment/CustomResource/Default (PublicDeploymentCustomResource947B276F) 
+RilloraPublicWeb | 3/4 | 11:29:36 PM | UPDATE_COMPLETE_CLEANUP | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+RilloraPublicWeb | 4/4 | 11:29:37 PM | UPDATE_COMPLETE         | AWS::CloudFormation::Stack             | RilloraPublicWeb 
+
+✅  RilloraPublicWeb
+
+✨  Deployment time: 141.27s
+
+Outputs:
+RilloraPublicWeb.BucketName = rillorapublicweb-publicassetsacf28b1b-2lrttva1bc8p
+RilloraPublicWeb.DistributionDomain = d1zq6qpnicab3e.cloudfront.net
+RilloraPublicWeb.DistributionId = E1H3EWWIZNTZDO
+RilloraPublicWeb.PublicUrl = https://www.rillora.xyz
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraPublicWeb/8b064b60-b7c2-11f1-8199-0ac9000d7ba3
+
+✨  Total time: 171.02s
+

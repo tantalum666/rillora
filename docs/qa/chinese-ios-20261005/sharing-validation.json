@@ -1,0 +1,43 @@
+{
+  "source_files_read": 25,
+  "source_lines_read": 4620,
+  "changed_sources": [
+    "apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift",
+    "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+    "apps/ios/Rillora/Core/Domain/SharingModels.swift",
+    "apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift",
+    "apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift",
+    "apps/ios/Rillora/Features/StartHere/StartHereEncryptionService.swift",
+    "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift",
+    "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+    "apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift",
+    "apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift",
+    "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+    "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift",
+    "apps/ios/Rillora/Features/Contacts/MatterPeopleSection.swift",
+    "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift",
+    "apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift",
+    "apps/ios/Rillora/Features/Contacts/SharingPreviewContent.swift",
+    "apps/ios/Rillora/Features/Simulation/SimulationStore.swift",
+    "apps/ios/Rillora/Features/Simulation/SimulationView.swift",
+    "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift",
+    "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift",
+    "apps/ios/Rillora/Features/Maintenance/FamilyReviewSheetView.swift",
+    "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift"
+  ],
+  "catalog_entries": 436,
+  "plural_entries": 4,
+  "checks": {
+    "authored_key_coverage": "passed",
+    "numbered_placeholder_parity": "passed",
+    "encryption_implementation_unchanged_except_four_error_descriptions": "passed",
+    "accessibility_identifiers_system_symbols_component_identifiers_and_filenames_unchanged": "passed"
+  },
+  "new_native_test": "apps/ios/RilloraTests/SharingLocalizationTests.swift",
+  "native_tests": "not run: Linux has no Swift/Xcode/iOS SDK",
+  "boundaries": [
+    "Server-generated rehearsal labels/reasons remain English, with explicit localized disclosure",
+    "Server-generated printable guide and recovery-file warnings remain English, with explicit localized disclosure",
+    "User names/content, wire values, crypto formats, key lifecycle and permission predicates unchanged"
+  ]
+}

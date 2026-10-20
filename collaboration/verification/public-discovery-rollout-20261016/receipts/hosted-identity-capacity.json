@@ -1,0 +1,112 @@
+{
+  "checkedAt": "2026-10-16T13:06:58.899376+00:00",
+  "ordinaryApplications": 9,
+  "clients": [
+    {
+      "name": "Default App",
+      "appType": null,
+      "global": false,
+      "grantTypes": [
+        "authorization_code",
+        "implicit",
+        "refresh_token",
+        "client_credentials"
+      ],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    },
+    {
+      "name": "Rillora Web",
+      "appType": "regular_web",
+      "global": false,
+      "grantTypes": [],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 3
+    },
+    {
+      "name": "Rillora iOS",
+      "appType": "native",
+      "global": false,
+      "grantTypes": [],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 1
+    },
+    {
+      "name": "Rillora Account Deletion Service",
+      "appType": "non_interactive",
+      "global": false,
+      "grantTypes": [],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    },
+    {
+      "name": "Rillora current-session email verification",
+      "appType": "non_interactive",
+      "global": false,
+      "grantTypes": [],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    },
+    {
+      "name": "Rillora",
+      "appType": "regular_web",
+      "global": false,
+      "grantTypes": [
+        "authorization_code"
+      ],
+      "environment": "production",
+      "releaseState": "prepared",
+      "callbackCount": 1
+    },
+    {
+      "name": "Rillora",
+      "appType": "native",
+      "global": false,
+      "grantTypes": [
+        "authorization_code"
+      ],
+      "environment": "production",
+      "releaseState": "prepared",
+      "callbackCount": 1
+    },
+    {
+      "name": "Rillora production account deletion",
+      "appType": "non_interactive",
+      "global": false,
+      "grantTypes": [
+        "client_credentials"
+      ],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    },
+    {
+      "name": "Rillora production current-session email verification",
+      "appType": "non_interactive",
+      "global": false,
+      "grantTypes": [
+        "client_credentials"
+      ],
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    },
+    {
+      "name": "All Applications",
+      "appType": null,
+      "global": true,
+      "grantTypes": null,
+      "environment": null,
+      "releaseState": null,
+      "callbackCount": 0
+    }
+  ],
+  "mutation": false,
+  "newTenants": 0,
+  "planChanged": false
+}

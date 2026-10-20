@@ -1,0 +1,39 @@
+{
+  "/RilloraStagingRuntimeAsset": [
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "[eval]:5: ([eval]:5:1)",
+        "...node internals...",
+        "[eval]-wrapper:6: ([eval]-wrapper:6:2)",
+        "...node internals..."
+      ]
+    }
+  ],
+  "/RilloraStagingRuntimeAsset/BootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "BootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ],
+  "/RilloraStagingRuntimeAsset/CheckBootstrapVersion": [
+    {
+      "type": "aws:cdk:logicalId",
+      "data": "CheckBootstrapVersion"
+    },
+    {
+      "type": "aws:cdk:creationStack",
+      "data": [
+        "...aws-cdk-lib...",
+        "(no user code in 10 frames, use --stack-trace-limit to capture more)"
+      ]
+    }
+  ]
+}

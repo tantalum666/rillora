@@ -1,0 +1,61 @@
+"""Current two Actions only; retain live reviewer set, expiry, bindings and security settings."""
+from pathlib import Path
+import datetime,importlib.util,json,re,sys,time
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';P=R/'.local-secrets/payment-recheck-20261009/auth0-language';P.mkdir(mode=0o700,exist_ok=True)
+spec=importlib.util.spec_from_file_location('hosted',R/'tools/auth0/apply-hosted-consent.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
+phase=sys.argv[1];assert phase in ['prepare','apply']
+ids={'preview':'5ee3533f-ab0c-4830-9c70-a55a817eeb69','production':'53601883-484d-4bec-8a56-cb8329ea5dd7'}
+def save(n,obj):
+ p=P/(n+'.json');p.write_text(json.dumps(obj));p.chmod(0o600)
+def saved(n):return json.loads((P/(n+'.json')).read_text())
+def forms():
+ r=m.api('get','forms?per_page=100&include_totals=true');items=r if isinstance(r,list) else r['forms'];assert isinstance(r,list) or r.get('total',len(items))==len(items);return items
+def constant(code,name):
+ result=re.search(r'const '+name+r' = [\'\"]([^\'\"]+)[\'\"];?',code);assert result,name;return result[1]
+if phase=='prepare':
+ assert not (P/'prepared.json').exists()
+ binding=m.binding_summary(m.bindings());assert [x['action_id'] for x in binding]==list(ids.values());save('bindings-before',binding)
+ current={key:m.api('get','actions/actions/'+value) for key,value in ids.items()}
+ for k,v in current.items():assert not v.get('secrets') and v.get('deployed_version',{}).get('code')==v['code'];save(k+'-before',v)
+ production=current['production']['code'];digests=constant(production,'IDENTITY_DIGESTS');expiry=constant(production,'EXPIRES_AT')
+ assert len(digests.split(','))==3 and all(re.fullmatch('[a-f0-9]{64}',x) for x in digests.split(','));assert expiry=='2026-10-11T14:00:00Z'
+ assert constant(current['preview']['code'],'IOS_CLIENT_ID')=='HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ'
+ originalForm=constant(production,'FORM');assert originalForm=='ap_q6BHHzwCtVrjA7nZMvrgAa'
+ english=m.api('get','forms/'+originalForm);save('english-before',english)
+ tenant=m.api('get','tenants/settings');assert set(tenant['enabled_locales'])=={'en'};save('tenant-before',tenant)
+ zh=m.one_named(forms(),m.FORM_ZH_NAME);save('chinese-before',m.api('get','forms/'+zh['id']) if zh else None)
+ save('prepared',{'form':originalForm,'formZH':zh['id'] if zh else None,'digests':digests,'expiry':expiry,'source':'eaf68c0a714f74c59c42d304ba19ba121fabce26'})
+ print(json.dumps({'prepared':True,'actions':2,'existingReviewerCount':3,'expiryPreserved':True,'bindingOrderPreserved':True,'newChineseFormNeeded':not bool(zh),'newCredentials':False}));sys.exit(0)
+
+assert not (Q/'locale-auth0-complete.json').exists();plan=saved('prepared')
+for stack in ['RilloraStaging','RilloraProduction']:
+ report=json.loads((Q/(stack+'-locale-runtime-complete.json')).read_text());assert report['status']=='UPDATE_COMPLETE' and report['source']==plan['source']
+legal=json.loads((Q/'locale-legal-deployment-complete.json').read_text());assert legal['success'] and legal['commit']==plan['source']
+assert m.binding_summary(m.bindings())==saved('bindings-before')
+for key,id in ids.items():assert m.api('get','actions/actions/'+id)['code']==saved(key+'-before')['code'],'Concurrent Action change; review rather than overwrite'
+tenant=m.api('get','tenants/settings');assert tenant['enabled_locales']==['en','zh-CN']
+# Both exact templates were imported/published through the existing authorized Dashboard.
+# CLI did not request new Form write scopes. The old Form remains unchanged as rollback evidence.
+plan['form']='ap_66s915VMAmUhodSK5yfrGx';zh={'id':'ap_jWSP3qH77VmnEGeMYXN7PP'}
+desiredEN=json.loads((R/'infra/auth0/hosted-consent/form.json').read_text());desiredZH=json.loads((R/'infra/auth0/hosted-consent/form.zh-CN.json').read_text())
+for label,id,desired in [('english',plan['form'],desiredEN),('chinese',zh['id'],desiredZH)]:
+ actual=m.api('get','forms/'+id);assert m.subset(desired,actual);save(label+'-after',actual)
+original=m.api('get','forms/ap_q6BHHzwCtVrjA7nZMvrgAa');before=saved('english-before')
+for key in ['nodes','start','ending','style','languages']:assert original.get(key)==before.get(key),'Original form changed unexpectedly'
+textPath='prompts/signup-password/custom-text/zh-CN';existing=m.api('get',textPath);save('signup-zh-before',existing)
+desiredText=json.loads((R/'infra/auth0/universal-login/custom-text/signup-password.zh-CN.json').read_text());merged={**existing,'signup-password':{**existing.get('signup-password',{}),**desiredText['signup-password']}}
+m.api('put',textPath,merged);assert m.api('get',textPath)==merged
+for key,id in ids.items():
+ file='post-login-action.cjs' if key=='preview' else 'production-review-action.cjs';code=(R/'infra/auth0/hosted-consent'/file).read_text()
+ code=code.replace('__RILLORA_IOS_CLIENT_ID__','HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ').replace('__RILLORA_FORM_ID__',plan['form']).replace('__RILLORA_FORM_ZH_ID__',zh['id']).replace('__REVIEW_IDENTITY_DIGEST__',plan['digests']).replace('__REVIEW_EXPIRES_AT__',plan['expiry'])
+ assert '__RILLORA_' not in code and '__REVIEW_' not in code
+ m.api('patch','actions/actions/'+id,{'code':code});m.api('post','actions/actions/'+id+'/deploy')
+ for _ in range(20):
+  after=m.api('get','actions/actions/'+id)
+  if after.get('status')=='built' and after.get('deployed_version',{}).get('code')==code:break
+  time.sleep(0.5)
+ else:raise RuntimeError('Action deployment not confirmed; retain exact state')
+ save(key+'-after',after)
+assert m.binding_summary(m.bindings())==saved('bindings-before')
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':plan['source'],'enabledLocales':['en','zh-CN'],'forms':{'en':plan['form'],'zh-CN':zh['id']},'actions':ids,'readbacksMatch':True,'existingReviewerCount':3,'reviewExpiry':plan['expiry'],'bindingOrderPreserved':True,'newCredentialOrPermissionCreated':False,'userConsentSubmitted':False,'originalEnglishFormPreservedUnchanged':True,'formPublicationMethod':'existing authorized Dashboard import; no new scopes','customLoginShellChanged':False,'customLoginShellBlocker':'provider paid-template HTTP402'}
+(Q/'locale-auth0-complete.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

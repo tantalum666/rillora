@@ -1,0 +1,38 @@
+{
+  "checkedAt": "2026-10-16T15:52:47.628802+00:00",
+  "scope": "Next-version synthetic HTTPS selection and revocation; current review unchanged",
+  "specsChanged": [
+    "docs/architecture/ai-https-acceptance-20261016.md",
+    "docs/architecture/ai-hosted-preflight-20261016.md",
+    "docs/architecture/ai-discovery-vnext-20261015.md",
+    "docs/product.md",
+    "docs/source-control.md"
+  ],
+  "decisionLog": "docs/decision-log.md#2026-10-16--owner-confirms-synthetic-legal-consent-complete-public-https-scope-acceptance",
+  "decisionReason": "Owner explicit current synthetic legal acceptance; implementation correction and declared default-client normalization",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "readEvidence": "recovery-reading-20261016.json",
+  "tests": {
+    "apiTypecheck": true,
+    "mcp": 19,
+    "cookieAuthSharing": 42,
+    "webClient": 27,
+    "anonymousHttpsChecks": 11,
+    "sourceReviewedNonSecrets": 32,
+    "unknownSecrets": 0
+  },
+  "actualBrowserFlow": {
+    "signIn": true,
+    "oneMatterSelection": true,
+    "actualCodexOAuth": true,
+    "sdkScopedReads": true,
+    "sameTokenRevoke": true,
+    "logout": true,
+    "cleanup": true
+  },
+  "modelInferencePerformed": false,
+  "fullPreviousMatrixRepeated": false,
+  "productionChanged": false,
+  "GitPublication": "pending exact new archive and remote verification"
+}

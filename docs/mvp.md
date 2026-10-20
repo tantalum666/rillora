@@ -5,7 +5,11 @@ Authority scope: first usable product, experiment events and continue/stop crite
 Superseded by: later locked MVP decision  
 Do not use for: production security certification or global legal claims  
 Status: PROVISIONAL MVP SCOPE  
-Last updated: 2026-09-26 (current annual offer and existing sharing evidence aligned; dated evidence unchanged)
+Last updated: 2026-10-18 (marketing continuation; historical checks remain dated)
+
+## October18 营销执行入口
+
+按[获客计划](marketing/acquisition-plan-20261018.md)进入小批真实任务验证；保留本文件原有30—50人、5组共享任务及真实付款方向门槛。October15正式Web购买已开放，Apple当前已提交审核且新购单独保持关闭；下方早期“支付未激活”不再代表Web当前状态。现有事件实现、渠道归因与真实客户结果仍独立取证，不因计划新增营销埋点或修改价格。
 
 ## Core Hypothesis
 
@@ -158,7 +162,7 @@ September 10. Current runtime boundaries live in [handoff.md](handoff.md) and
 - 取消后使用到已付周期末，再安全降级到Free；账户、核心文本、基础导出和接收人基础访问不因取消或付款失败删除／锁死，订阅状态也永不触发死亡、失能、失联或披露。
 - 每个地区首次公开发布都必须同时具备永久Free和可用的Family订阅；Global与Mainland独立过门、无需同日发布。支付未就绪的地区停留在受控beta，不先做公开Free-only发布。
 
-完整长期套餐、权益、退款、全球Storefront和订阅生命周期设计见[`docs/monetization.md`](monetization.md)；单位经济、成本分配、毛利、LTV/CAC、跑道和尽调指标见[`docs/unit-economics.md`](unit-economics.md)。价格尚未验证且支付未激活；首轮目标仍是区分赞同、完成、邀请和付款四种强度不同的信号，并把付款后的30／90天维护、退款、取消和直接支持时间作为独立队列证据。
+完整长期套餐、权益、退款、全球Storefront和订阅生命周期设计见[`docs/monetization.md`](monetization.md)；单位经济、成本分配、毛利、LTV/CAC、跑道和尽调指标见[`docs/unit-economics.md`](unit-economics.md)。价格的市场需求尚未验证；Web支付按October15已开放记录使用，Apple开售仍独立；首轮目标仍是区分赞同、完成、邀请和付款四种强度不同的信号，并把付款后的30／90天维护、退款、取消和直接支持时间作为独立队列证据。
 
 2026-09-10区分补全：Free的“一人”指向外共享关系，不限制保存联系人记录或接收别人分享；Family暂定五位接收人及一位共同维护者。逐项权限、安全、范围预览和退出能力两版相同。多人邀请和有界复核已在合成staging实现；provider/location建议审批、修正历史和产品内日期已完成。该September10时点尚未完成人数限制／截止版本；September17已完成其部署与有界测试。完整共同编辑、外部通知与全计划历史仍不属于已交付能力。先验证免费的一人完整结果，再以第二位接收人／共同维护等真实意图验证付费，具体计数、降级和验证分母以商业合同为准。
 

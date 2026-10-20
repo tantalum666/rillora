@@ -1,0 +1,43 @@
+{
+  "capturedFrom": "2026-10-08T02:23:15.830627+00:00",
+  "capturedThrough": "2026-10-08T02:23:23.941756+00:00",
+  "workFiles": 3251,
+  "uniqueRawObjects": 364,
+  "workBytes": 1567565987,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-024.tar.zst.age",
+      "sha256": "5235f7b7e70c0093285ef55e3b585f796788802ac1875036ee4636008bbdd906",
+      "bytes": 98028452,
+      "plainBytes": 433050793,
+      "uniqueObjects": 364
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/matter-categories-20261008/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-matter-categories-20261008/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-matter-categories-20261008/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": ".local-secrets/device-config-20261006",
+      "reason": "credentials_authentication_personal_data_and_raw_device_logs_not_archived"
+    },
+    {
+      "path": ".local-secrets/build9-distribution-20261007",
+      "reason": "credentials_authentication_and_exact_identity_task_overrides_not_archived"
+    },
+    {
+      "path": ".local-secrets/matter-categories-20261008",
+      "reason": "raw_device_inventory_service_logs_and_signing_identity_inventory_not_archived"
+    }
+  ],
+  "selection": "All eligible current category QA, supplied before image, synthetic light/dark captures, UI results/products, new Release archive and development export. Previous1-23archives unchanged. Credentials, raw device logs and reproducible caches excluded.",
+  "boundary": "Source35f37e1b2 changes native matter-category presentation and its UI locator only. Same app/version in-place installation/readback/launch succeeded; no TestFlight upload, provider setting change or new purchase. Owner reports restored Family separately; no fresh provider receipt readback."
+}

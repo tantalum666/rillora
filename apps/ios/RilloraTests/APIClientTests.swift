@@ -75,13 +75,14 @@ final class APIClientTests: XCTestCase {
         catch let error as RilloraAPIError { XCTAssertTrue(error.isAuthenticationRequired) }
     }
     func testLegalLinksUseThePublicCustomDomain() {
+        let language = L10n.isSimplifiedChinese(bundle: .main) ? "zh-CN" : "en"
         XCTAssertEqual(
             RilloraLegalURLs.terms.absoluteString,
-            "https://legal.rillora.xyz/terms"
+            "https://legal.rillora.xyz/terms?lang=\(language)"
         )
         XCTAssertEqual(
             RilloraLegalURLs.privacy.absoluteString,
-            "https://legal.rillora.xyz/privacy"
+            "https://legal.rillora.xyz/privacy?lang=\(language)"
         )
     }
 
@@ -95,7 +96,7 @@ final class APIClientTests: XCTestCase {
         let acceptance = try XCTUnwrap(payload["legalAcceptance"] as? [String: Any])
         XCTAssertEqual(
             acceptance["termsVersion"] as? String,
-            "terms-2026-08-27-1"
+            "terms-2026-10-09-1"
         )
         XCTAssertEqual(
             acceptance["privacyVersion"] as? String,
@@ -103,11 +104,11 @@ final class APIClientTests: XCTestCase {
         )
         XCTAssertEqual(
             acceptance["consentTextVersion"] as? String,
-            "registration-clickwrap-2026-08-24-1"
+            "registration-clickwrap-2026-10-09-1"
         )
         XCTAssertEqual(
             acceptance["bundleSha256"] as? String,
-            "3eb7d7bf4d3c420c49946dbfcd322293136cce556407339dc0cafa0aa5f30602"
+            "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb"
         )
         XCTAssertEqual(acceptance["acceptedTerms"] as? Bool, true)
         XCTAssertEqual(acceptance["acknowledgedPrivacy"] as? Bool, true)
@@ -125,23 +126,23 @@ final class APIClientTests: XCTestCase {
 
     func testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct() {
         XCTAssertEqual(
-            Auth0NativeAuthenticationService.authorizationParameters(for: .signIn),
-            ["prompt": "login", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
+            Auth0NativeAuthenticationService.authorizationParameters(for: .signIn, localeIdentifier: "en"),
+            ["prompt": "login", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1", "ui_locales": "en"]
         )
         XCTAssertEqual(
-            Auth0NativeAuthenticationService.authorizationParameters(for: .createAccount),
-            ["prompt": "login", "screen_hint": "signup", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
+            Auth0NativeAuthenticationService.authorizationParameters(for: .createAccount, localeIdentifier: "en"),
+            ["prompt": "login", "screen_hint": "signup", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1", "ui_locales": "en"]
         )
         XCTAssertEqual(
-            Auth0NativeAuthenticationService.authorizationParameters(for: .google),
-            ["prompt": "login", "connection": "google-oauth2", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
+            Auth0NativeAuthenticationService.authorizationParameters(for: .google, localeIdentifier: "en"),
+            ["prompt": "login", "connection": "google-oauth2", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1", "ui_locales": "en"]
         )
         XCTAssertEqual(
             Auth0NativeAuthenticationService.authorizationParameters(
                 for: .signIn,
-                loginHint: "  Person@Example.com  "
+                loginHint: "  Person@Example.com  ", localeIdentifier: "en"
             ),
-            ["prompt": "login", "login_hint": "Person@Example.com", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1"]
+            ["prompt": "login", "login_hint": "Person@Example.com", "max_age": "86400", "rillora_auth_ui": "single-hosted-v1", "ui_locales": "en"]
         )
     }
 

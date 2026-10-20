@@ -4,8 +4,60 @@ Role: Start Here preview, printable guide and client-encrypted package contract
 Authority scope: included fields, disclosure boundary, cryptographic format, file lifecycle, cross-platform semantics and evidence language  
 Superseded by: a later reviewed decision recorded in `docs/decision-log.md`  
 Do not use for: claiming legal authority, real recipient identity/acceptance/delivery, post-download revocation, production release or universal legal validity  
-Status: AUDIENCE-BOUND GUIDES AND BACKUP READERS DEPLOYED/VALIDATED IN SYNTHETIC STAGING; REAL DELIVERY CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: CONTROLLED PRODUCTION COPY/RECOVERY/IMPORT VERIFIED; THIRD-PARTY FILE DELIVERY NOT VERIFIED
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+## October11 local security candidate
+
+The [current audit repair](security-findings-remediation-20261011.md) verifies the recovered package against its original commitment on both clients, using the established v1 field order and optional-null semantics. Unknown fields and non-boolean boundary values cannot disappear through typed decoding. Full-map exports add a content-free audit record; finalization requires recent authentication. File imports use bounded background reads, and aggregate export/rehearsal work refuses oversize requests without truncation. Only expired, non-encrypted preview metadata is eligible for the new bounded retention path; ready ciphertext and financial/legal evidence are unchanged. These are local candidate changes, with previous real copy/recovery evidence remaining dated separately.
+
+## October5 actual empty-map import and Web reauthentication
+
+The native2,291-byte synthetic backup was imported through deployed Web into the
+explicitly verified isolated empty account: HTTP201,1matter/1person and no restored
+sharing. New identifiers/draft states and preserved Notes/reference were read back;
+the contact stayed Not invited. After natural recent-auth expiry, export returned403.
+Same-account reauthentication retained the working page and required explicit retry;
+that retry returned200and saved a2,309-byte complete map with1matter/1person/1role.
+
+Owner retained the test account/data at the final deletion dialog. No purge occurred;
+the test session ended and temporary access was removed. This does not remotely erase
+any saved copy. [Actual record](real-core-acceptance-20261004.md).
+
+## October4 actual cross-client exports and native reauthentication repair
+
+The QQ empty backup (1,299bytes) and native populated backup (2,291bytes,
+1matter/1person/1role) were saved through their actual system file dialogs and read
+by the deployed Web reader. The native recipient plaintext guide (962bytes) and
+native encrypted package (2,507bytes) also opened in Web with only minimum fields;
+Notes/reference remain exclusive to the full private backup. The343-byte recovery
+key was saved separately and stays outside ordinary QA/Git. Import was still pending
+at that October4checkpoint; the October5result above closes that case.
+
+Real native encrypted export exposed a generic alert competing with the shared
+recent-auth prompt. The store now preserves preview/action state for the exact
+403reauthentication_required response, leaving the shared prompt in control. It
+never automatically retries or publishes an unfinalized package. Other failures
+retain their normal alerts. Focused tests reproduced3failures then passed10of10;
+the fixed Release simulator completed the actual sign-in/retry/file/decrypt flow.
+An expired preview still requires refresh and review. No layout, crypto or server
+permission change. New signed1.0(4)includes the fix, is uploaded/processed as Ready
+to Submit, and has saved test notes with0groups; build3remains its prior checkpoint.
+[Current actual evidence](real-core-acceptance-20261004.md).
+
+## October3 strict-review implementation boundary
+
+Recipient guides use the same live/saved/paused projection as recipient reads,
+including permanent redaction and historical encrypted references. Free personal
+exports retain current owner content. Maximum65536-byte encrypted ciphertext fits
+the authenticated finalize transport; backup artifacts stay bounded at2MiB independent
+of their request envelope. Oversized requests return413. Web downloads use compact
+JSON so a valid artifact remains readable under that same byte limit.
+
+Late file reads/unlocks cannot replace a newer selection or resurrect a closed reader;
+private printable responses are rejected after an observed account change. Real Blob
+round trips, HTTP/DB tests and actual React file-input races pass locally. These
+repairs do not create new delivery or recipient-key capabilities. [Report](code-review-20261002.md).
 
 ## September30 recent authentication before producing a copy
 

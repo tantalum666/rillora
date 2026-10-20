@@ -1,0 +1,15 @@
+{
+  "continuedWorkflow": true,
+  "at": "2026-10-09T10:12:32.574588+00:00",
+  "retainedFullRead": "output/qa/rillora-dot-integration-20261008/reading.json",
+  "priorContinuation": "output/qa/rillora-stripe-cloud-checkout-20261009/reading.json",
+  "newFocusedReads": [
+    "docs/live-configuration-20261009.md",
+    "docs/production-commerce-20260926.md",
+    "docs/device-config-20261006.md relevant current/Live fields",
+    "Current config/app/Stripe adapter/secret/routes and touched tests in full",
+    "Current production runtime/stack/CDK entry and touched infra tests in full",
+    "Stripe docs skill; official consumer SaaS taxonomy; official IRD registration timing"
+  ],
+  "ownerSteering": "Continue configuration without waiting for BR completion; preserve truth of unknown facts"
+}

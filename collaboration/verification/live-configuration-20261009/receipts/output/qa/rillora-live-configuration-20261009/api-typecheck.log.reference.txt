@@ -1,0 +1,8 @@
+
+> continuity-api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+tests/stripe-production-adapter.test.ts(87,60): error TS2322: Type '{ productTaxCode: string; mode: "automatic"; activeRegistrationIds: string[]; } | { assessmentReference: string; productTaxCode: string; mode: "automatic"; activeRegistrationIds: string[]; }' is not assignable to type 'StripeProductionTaxConfig'.
+  Type '{ productTaxCode: string; mode: "automatic"; activeRegistrationIds: string[]; }' is not assignable to type 'StripeProductionTaxConfig'.
+    Property 'assessmentReference' is missing in type '{ productTaxCode: string; mode: "automatic"; activeRegistrationIds: string[]; }' but required in type 'Readonly<{ mode: "automatic" | "reviewed_no_collection"; assessmentReference: string; productTaxCode: string; activeRegistrationIds: readonly string[]; }>'.
+tests/stripe-production-adapter.test.ts(88,87): error TS2353: Object literal may only specify known properties, and 'activeRegistrationIds' does not exist in type 'Readonly<{ mode: "not_configured"; productTaxCode: string; }>'.

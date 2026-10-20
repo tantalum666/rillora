@@ -1,0 +1,26 @@
+"""Official TEST payment methods only; provider semantics, not Rillora end-to-end acceptance."""
+from pathlib import Path
+import datetime,json,os,subprocess,sys
+R=Path.cwd();P=R/'.local-secrets/payment-recheck-20261009';Q=R/'output/qa/rillora-payment-recheck-20261009';mode=sys.argv[1]
+assert mode in ['pending','failure'];method={'pending':'pm_card_pendingRefund','failure':'pm_card_refundFail'}[mode]
+env=dict(os.environ);assert not env.get('STRIPE_API_KEY'),'Do not override the already authorized Rillora sandbox profile'
+who=subprocess.check_output(['stripe','whoami','--project-name','rillora'],text=True,env=env);assert 'acct_1U6B2RCxTlowhyiG' in who and 'sandbox' in who and 'Authorized (1 accounts)' in who
+def command(args):
+ r=subprocess.run(['stripe',*args,'--project-name','rillora'],capture_output=True,text=True,env=env,timeout=55)
+ if r.returncode:raise RuntimeError('Stripe TEST operation failed; private response retained only')
+ obj=json.loads(r.stdout)
+ if 'error' in obj:
+  target=P/('refund-probe-'+mode+'-error.json');target.write_text(json.dumps(obj));target.chmod(0o600)
+  print(json.dumps({k:obj['error'].get(k) for k in ['code','param','type','message']}),flush=True)
+  raise RuntimeError('Stripe TEST provider refused the requested official fixture')
+ return obj
+def saved(name,create):
+ p=P/('refund-probe-'+mode+'-'+name+'.json')
+ if p.exists():return json.loads(p.read_text())
+ r=create();p.write_text(json.dumps(r));p.chmod(0o600);return r
+pi=saved('payment',lambda:command(['payment_intents','create','--amount','8899','--currency','usd','--payment-method',method,'--confirm','-d','payment_method_types[]=card','-d','metadata[rillora_qa]=refund-semantics-20261010','--idempotency','rillora-refund-semantics-20261010-'+mode]))
+assert pi['livemode'] is False and pi['status']=='succeeded'
+refund=saved('refund',lambda:command(['refunds','create','--payment-intent',pi['id'],'--amount','8899','--confirm','--idempotency','rillora-refund-semantics-20261010-'+mode+'-refund']))
+current=command(['refunds','retrieve',refund['id']]);charge=command(['charges','retrieve',pi['latest_charge']]);assert charge['livemode'] is False
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'testOnly':True,'fixture':mode,'amountMinor':8899,'currency':'USD','initialRefundStatus':refund['status'],'currentRefundStatus':current['status'],'chargeRefunded':charge['refunded'],'chargeAmountRefunded':charge['amount_refunded'],'refundInventory':[{'status':x['status'],'amount':x['amount']} for x in charge['refunds']['data']],'rilloraOrderCreated':False,'provesApplicationFlow':False}
+path=Q/('stripe-refund-probe-'+mode+'.json');path.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

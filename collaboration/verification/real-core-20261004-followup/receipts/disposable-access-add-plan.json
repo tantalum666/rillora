@@ -1,0 +1,58 @@
+{
+  "at": "2026-10-04T14:31:40.297843+00:00",
+  "status": "CREATE_COMPLETE",
+  "execution": "AVAILABLE",
+  "changes": [
+    {
+      "action": "Modify",
+      "type": "AWS::ECS::TaskDefinition",
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "replacement": "True",
+      "scope": [
+        "Properties"
+      ],
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ParameterReference",
+          "CausingEntity": "RuntimeReviewIdentityDigests0273C88C"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "action": "Modify",
+      "type": "AWS::ECS::Service",
+      "logicalId": "RuntimeService1702E585",
+      "replacement": "False",
+      "scope": [
+        "Properties"
+      ],
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "TaskDefinition",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "RuntimeApiTaskCF645D67"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+import { createInterface } from 'node:readline';
+import { publicEncrypt, constants } from 'node:crypto';
+import { readFileSync, writeFileSync } from 'node:fs';
+const lines = createInterface({input:process.stdin});
+lines.once('line', line => {
+  const key=readFileSync('output/qa/rillora-ai-hosting-20261017/browser-transfer-public.pem');
+  const encrypted=publicEncrypt({key,padding:constants.RSA_PKCS1_OAEP_PADDING,oaepHash:'sha256'},Buffer.from(line));
+  writeFileSync('.local-secrets/ai-hosting-20261017/browser-transfer.bin',encrypted,{mode:0o600,flag:'wx'});
+  console.log('Synthetic credential transfer encrypted.');lines.close();process.exit(0);
+});

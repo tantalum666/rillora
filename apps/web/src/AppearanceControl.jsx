@@ -1,3 +1,5 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
+import { withLocale } from "./i18n/localeStore.js";
 import { useEffect, useRef, useState, useId, useSyncExternalStore } from "react";
 import { Moon, Sun, Desktop } from "@phosphor-icons/react";
 import "./websiteAppearance.js";
@@ -6,28 +8,32 @@ import { withAppearance } from "./appearanceLink.js";
 
 export function AppearanceLink({ href, ...props }) {
   const { preference } = useWebsiteAppearance();
-  return <a {...props} href={withAppearance(href, preference)} />;
+  const { localePreference, locale } = useI18n();
+  return <a {...props} href={withLocale(withAppearance(href, preference), localePreference, locale)} />;
 }
 
 export function useWebsiteAppearance() {
-  const store = window.rilloraWebsiteAppearance;
-  return useSyncExternalStore(store.subscribe, store.getSnapshot);
+  const store = typeof window === "undefined" ? serverAppearance : window.rilloraWebsiteAppearance;
+  return useSyncExternalStore(store.subscribe, store.getSnapshot, serverAppearance.getSnapshot);
 }
+const serverAppearanceSnapshot = Object.freeze({ preference: "system", resolved: "light", persistenceAvailable: true });
+const serverAppearance = { subscribe: () => () => {}, getSnapshot: () => serverAppearanceSnapshot };
 export function ThemePicture({ light, dark, className, ...imageProps }) {
-  const { resolved } = useWebsiteAppearance();
+  const { resolved, preference } = useWebsiteAppearance();
   return (
     <picture className={className}>
-      <source media={resolved === "dark" ? "all" : "not all"} srcSet={dark} />
+      <source media={preference === "system" ? "(prefers-color-scheme: dark)" : resolved === "dark" ? "all" : "not all"} srcSet={dark} />
       <img src={light} {...imageProps} />
     </picture>
   );
 }
 const options = [
-  { value: "system", label: "System", Icon: Desktop },
-  { value: "light", label: "Light", Icon: Sun },
-  { value: "dark", label: "Dark", Icon: Moon },
+  { value: "system", Icon: Desktop },
+  { value: "light", Icon: Sun },
+  { value: "dark", Icon: Moon },
 ];
 export function AppearanceControl({ open, onOpenChange, informationURL = "/legal#appearance" }) {
+  const { t } = useI18n();
   const id = useId();
   const { preference, resolved, persistenceAvailable } = useWebsiteAppearance();
   const root = useRef(null),
@@ -65,20 +71,20 @@ export function AppearanceControl({ open, onOpenChange, informationURL = "/legal
         ref={trigger}
         className="lp-appearance-trigger"
         type="button"
-        aria-label={`Appearance: ${preference}`}
+        aria-label={t("common.appearance.current", { mode: t(`common.appearance.${preference}`) })}
         aria-expanded={open}
         aria-controls={id}
-        title="Change appearance"
+        title={t("common.appearance.change")}
         onClick={() => onOpenChange(!open)}
       >
         <Icon size={22} aria-hidden="true" />
-        <span>Appearance</span>
+        <span>{t("common.appearance.label")}</span>
       </button>
       {open && (
         <div className="lp-appearance-options" id={id}>
           <fieldset>
-            <legend>Appearance</legend>
-            {options.map(({ value, label, Icon: OptionIcon }) => (
+            <legend>{t("common.appearance.label")}</legend>
+            {options.map(({ value, Icon: OptionIcon }) => (
               <label key={value}>
                 <input
                   type="radio"
@@ -90,16 +96,16 @@ export function AppearanceControl({ open, onOpenChange, informationURL = "/legal
                   }
                 />
                 <OptionIcon size={19} aria-hidden="true" />
-                <span>{label}</span>
+                <span>{t(`common.appearance.${value}`)}</span>
               </label>
             ))}
           </fieldset>
           <p>
             {persistenceAvailable
-              ? "Light or Dark is saved on this device. System clears that choice."
-              : "Changed for this page. Browser storage is unavailable."}
+              ? t("common.appearance.saved")
+              : t("common.appearance.temporary")}
           </p>
-          <a href={informationURL}>About this setting</a>
+          <a href={informationURL}>{t("common.appearance.about")}</a>
         </div>
       )}
     </div>

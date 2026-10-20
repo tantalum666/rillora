@@ -1,0 +1,126 @@
+{
+  "executed": false,
+  "reason": "Conditional VPC-link replacement caused by resolving legacy AZ expressions",
+  "changes": [
+    {
+      "LogicalResourceId": "DatabaseSubnets",
+      "ResourceType": "AWS::RDS::DBSubnetGroup",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "MaintenanceBrokerFunctionC542279B",
+      "ResourceType": "AWS::Lambda::Function",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001",
+      "ResourceType": "AWS::IAM::Policy",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "MigrationTask69EAEF9D",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "OperatorDefaultPolicyA84BD3A6",
+      "ResourceType": "AWS::IAM::Policy",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "RecoveryTaskD940248B",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "RuntimeApiTaskCF645D67",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33",
+      "ResourceType": "AWS::ApiGatewayV2::Integration",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "RuntimeIdentityWorkerServiceD8B21381",
+      "ResourceType": "AWS::ECS::Service",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "RuntimeIdentityWorkerTask676ED9B0",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "RuntimeService1702E585",
+      "ResourceType": "AWS::ECS::Service",
+      "Action": "Modify",
+      "Replacement": "False"
+    },
+    {
+      "LogicalResourceId": "RuntimeVpcLinkCFD171E5",
+      "ResourceType": "AWS::ApiGatewayV2::VpcLink",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcdataSubnet1RouteTableAssociation9E9FDBBB",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcdataSubnet1SubnetE2B009FB",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcdataSubnet2RouteTableAssociation6C8F2058",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcdataSubnet2SubnetAD08DFFF",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcmaintenanceSubnet1RouteTableAssociationCB237A6C",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcmaintenanceSubnet1SubnetB36026C0",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B",
+      "ResourceType": "AWS::EC2::SubnetRouteTableAssociation",
+      "Action": "Modify",
+      "Replacement": "True"
+    },
+    {
+      "LogicalResourceId": "VpcmaintenanceSubnet2Subnet5D5D514C",
+      "ResourceType": "AWS::EC2::Subnet",
+      "Action": "Modify",
+      "Replacement": "True"
+    }
+  ]
+}

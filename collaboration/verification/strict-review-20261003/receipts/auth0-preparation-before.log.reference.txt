@@ -1,0 +1,61 @@
+FFF
+======================================================================
+FAIL: test_full_client_page_stops_service_creation_before_any_mutation (test_preparation_guards.PreparationGuards) (name='prepare-production-identity-services')
+----------------------------------------------------------------------
+RuntimeError: UNEXPECTED_PROVIDER_MUTATION
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/auth0/test_preparation_guards.py", line 46, in test_full_client_page_stops_service_creation_before_any_mutation
+    main(module, '--output', str(root / 'receipt.json'))
+AssertionError: "Incomplete client inventory" does not match "UNEXPECTED_PROVIDER_MUTATION"
+
+======================================================================
+FAIL: test_full_client_page_stops_service_creation_before_any_mutation (test_preparation_guards.PreparationGuards) (name='provision-email-verification')
+----------------------------------------------------------------------
+RuntimeError: UNEXPECTED_PROVIDER_MUTATION
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/auth0/test_preparation_guards.py", line 46, in test_full_client_page_stops_service_creation_before_any_mutation
+    main(module, '--output', str(root / 'receipt.json'))
+AssertionError: "Incomplete client inventory" does not match "UNEXPECTED_PROVIDER_MUTATION"
+
+======================================================================
+FAIL: test_preparation_cannot_disable_an_existing_active_production_client (test_preparation_guards.PreparationGuards)
+----------------------------------------------------------------------
+RuntimeError: UNEXPECTED_PROVIDER_MUTATION
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/auth0/test_preparation_guards.py", line 93, in test_preparation_cannot_disable_an_existing_active_production_client
+    main(module, '--apply', '--output', str(Path(temporary) / 'receipt.json'))
+AssertionError: "Existing production client.*active connection" does not match "UNEXPECTED_PROVIDER_MUTATION"
+
+======================================================================
+FAIL: test_theme_read_failure_cannot_be_treated_as_a_missing_theme (test_preparation_guards.PreparationGuards)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/auth0/test_preparation_guards.py", line 120, in test_theme_read_failure_cannot_be_treated_as_a_missing_theme
+    self.assertFalse(any(row[:2] in [['api', 'post'], ['api', 'patch']] or row[:3] == ['universal-login', 'templates', 'update'] for row in calls))
+AssertionError: True is not false
+
+======================================================================
+FAIL: test_unmatched_protected_credential_cannot_create_an_orphan_client (test_preparation_guards.PreparationGuards)
+----------------------------------------------------------------------
+RuntimeError: UNEXPECTED_PROVIDER_MUTATION
+
+During handling of the above exception, another exception occurred:
+
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/auth0/test_preparation_guards.py", line 65, in test_unmatched_protected_credential_cannot_create_an_orphan_client
+    main(module)
+AssertionError: "Protected credential exists" does not match "UNEXPECTED_PROVIDER_MUTATION"
+
+----------------------------------------------------------------------
+Ran 4 tests in 0.718s
+
+FAILED (failures=5)

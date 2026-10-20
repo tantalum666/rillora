@@ -1,0 +1,15 @@
+{
+  "status": "prepared-not-deployed",
+  "nodeBrokerTests": 8,
+  "auth0ToolTests": 8,
+  "infraTests": 59,
+  "releaseToolTests": 73,
+  "apiSourceUnchangedSince": "[SOURCE_REVISION_OMITTED]",
+  "newFullApiRunClaimed": false,
+  "cloudDatabasesPreflighted": ["staging", "production"],
+  "schemasBefore": 94,
+  "pendingIdentityDeletionsBefore": 0,
+  "fingerprintedTablesPerEnvironment": 68,
+  "sourceMigrations1To94Match": true,
+  "serviceStopOrDeploymentDone": false
+}

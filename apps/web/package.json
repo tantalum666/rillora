@@ -11,6 +11,7 @@
     "build:public": "vite build --mode public && node scripts/prepare-public-build.mjs",
     "build:production-closed": "node scripts/validate-legal-release.mjs && vite build --mode production-closed && node scripts/prepare-production-build.mjs",
     "build:production-review": "node scripts/validate-legal-release.mjs && vite build --mode production-review && node scripts/prepare-production-build.mjs --review",
+    "build:production-live": "node scripts/validate-legal-release.mjs && vite build --mode production-live && node scripts/prepare-production-build.mjs --live",
     "preview": "vite preview",
     "test:api-client": "node --test tests/api-client.test.mjs",
     "test:first-use": "node --test tests/first-use.test.mjs",
@@ -19,7 +20,8 @@
     "test:product-truth": "node --test tests/contact-evidence.test.mjs",
     "test:crypto": "node --test tests/start-here-crypto.test.mjs",
     "test:sites": "node --test tests/sites-worker.test.mjs",
-    "test:legal-sites": "node --test tests/legal-sites-worker.test.mjs"
+    "test:legal-sites": "node --test tests/legal-sites-worker.test.mjs",
+    "test:browser": "playwright test"
   },
   "dependencies": {
     "@fontsource/inter": "^5.3.0",
@@ -33,5 +35,8 @@
     "react": "19.2.0",
     "react-dom": "19.2.0",
     "vite": "6.4.3"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.63.0"
   }
 }

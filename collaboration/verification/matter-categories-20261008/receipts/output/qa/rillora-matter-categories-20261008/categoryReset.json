@@ -1,0 +1,76 @@
+{
+  "schema": "xcodebuildmcp.output.ui-action-result",
+  "schemaVersion": "2",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED"
+    },
+    "action": {
+      "type": "tap",
+      "elementRef": "e56",
+      "x": 201,
+      "y": 490
+    },
+    "artifacts": {
+      "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+    },
+    "capture": {
+      "type": "runtime-snapshot",
+      "rs": "1",
+      "screenHash": "1siyqky",
+      "seq": 9,
+      "count": 143,
+      "targets": [
+        "e17|typeText|text-field||搜索事项|",
+        "e16|tap|button|添加事项||matter.add",
+        "e34|tap|button|全部||matters.filter.all",
+        "e35|tap|button|在线账号||matters.filter.account",
+        "e36|tap|button|文件||matters.filter.document",
+        "e37|tap|button|设备||matters.filter.device",
+        "e38|tap|button|金融资产||matters.filter.financial_asset",
+        "e48|tap|button|Bank account，已添加查找指引||matter.open.24151b76-6cb6-4f5b-aedb-7eaa335aaa50",
+        "e60|tap|button|Cloud photos，已添加查找指引||matter.open.79f1877e-3c69-4d18-a9c0-2f7be92a17b8",
+        "e73|tap|button|GitHub projects，已添加查找指引||matter.open.4baa62c9-4c04-45b4-af36-0209286d796a",
+        "e86|tap|button|Insurance，草稿||matter.open.9e34e67d-6fa2-48ab-996a-9b8eaebf6749",
+        "e99|tap|button|Subscriptions，草稿||matter.open.775e1b62-54cd-4236-8219-80c3432e9cb6",
+        "e121|tap|tab|总览|0|house",
+        "e123|tap|tab|事项|1|list.bullet.rectangle",
+        "e125|tap|tab|个人中心|0|person.crop.circle"
+      ],
+      "scroll": [
+        "e23|swipe|other|||matters.list",
+        "e32|swipe|scroll-view|按类别筛选||matters.filter"
+      ],
+      "text": [
+        "e49|text|text|Bank account，已添加查找指引||",
+        "e51|text|text|Bank account||",
+        "e53|text|text|已添加查找指引||",
+        "e52|text|text|Northstar Bank||",
+        "e61|text|text|Cloud photos，已添加查找指引||",
+        "e63|text|text|Cloud photos||",
+        "e65|text|text|已添加查找指引||",
+        "e64|text|text|Apple||",
+        "e74|text|text|GitHub projects，已添加查找指引||",
+        "e76|text|text|GitHub projects||",
+        "e78|text|text|已添加查找指引||",
+        "e77|text|text|GitHub||",
+        "e87|text|text|Insurance，草稿||",
+        "e89|text|text|Insurance||",
+        "e91|text|text|草稿||",
+        "e90|text|text|Harbor Mutual||",
+        "e100|text|text|Subscriptions，草稿||",
+        "e102|text|text|Subscriptions||",
+        "e104|text|text|草稿||",
+        "e103|text|text|订阅||"
+      ],
+      "udid": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0"
+    }
+  },
+  "nextSteps": [
+    "Batch same-screen taps: batch({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", steps: [{\"action\":\"tap\",\"elementRef\":\"e16\"},{\"action\":\"tap\",\"elementRef\":\"e34\"}] })",
+    "Tap an elementRef: tap({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", elementRef: \"e16\" })",
+    "Scroll visible content: swipe({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", withinElementRef: \"e32\", direction: \"up\", distance: 0.5 })"
+  ]
+}

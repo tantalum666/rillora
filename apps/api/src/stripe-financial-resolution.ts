@@ -2,6 +2,8 @@ import type Stripe from 'stripe';
 import type { NormalizedProviderSignal } from './commerce-provider-contract.js';
 import type { StripeSdkPort, StripeFinancialSignalResolution } from './stripe-sdk.js';
 import { assertStripeObjectId, stripeObjectReference, stringWithPrefix } from './stripe-provider-shared.js';
+import { readStripeRecoveryFinancialState } from './stripe-recovery-financial-state.js';
+import { readStripeRefundEvidence } from './stripe-refund-evidence.js';
 
 export async function resolveStripeFinancialSignal(
   sdk: StripeSdkPort,
@@ -43,11 +45,24 @@ export async function resolveStripeFinancialSignal(
   if (!subscriptionId || !customerId) throw new Error('Subscription and Customer references are required');
   assertStripeObjectId(subscriptionId, 'sub_'); assertStripeObjectId(customerId, 'cus_');
   if (stripeObjectReference(charge.customer) && stripeObjectReference(charge.customer) !== customerId) throw new Error('Charge and Invoice Customer references do not match');
-  const fullRefund = signal.signalType === 'refund_changed' && (refund === null || refund.status === 'succeeded')
+  const fullRefundCandidate = signal.signalType === 'refund_changed' && (refund === null || refund.status === 'succeeded')
     && (charge.refunded || charge.amount_refunded >= charge.amount);
+  const fullRefund = fullRefundCandidate && (await readStripeRefundEvidence(sdk, charge)).fullyRefunded;
   const revoked = dispute !== null && !['won', 'prevented', 'warning_closed'].includes(dispute.status);
-  return { providerInvoiceReference: invoiceId, providerSubscriptionReference: subscriptionId,
+  let authoritativeStateOverride: StripeFinancialSignalResolution['authoritativeStateOverride'] =
+    fullRefund ? 'refunded' : revoked ? 'revoked' : null;
+  let refundReversed = false;
+  if (refund && (refund.status === 'failed' || refund.status === 'canceled')) {
+    // A refund can succeed and later fail. Clearing a prior revoke needs the
+    // complete settled invoice/charge/refund/dispute state, not a failed event
+    // alone: another completed full refund or open dispute must still block access.
+    const financial = await readStripeRecoveryFinancialState(sdk, invoiceId, customerId, expectedLive);
+    if (financial.chargeReference !== chargeId) throw new Error('Refund and current invoice Charge references do not match');
+    authoritativeStateOverride = financial.override;
+    refundReversed = financial.override !== 'refunded';
+  }
+  return Object.freeze({ providerInvoiceReference: invoiceId, providerSubscriptionReference: subscriptionId,
     providerCustomerReference: customerId, providerTransactionReference: chargeId,
     providerRefundReference: signal.providerRefundReference,
-    authoritativeStateOverride: fullRefund ? 'refunded' : revoked ? 'revoked' : null };
+    authoritativeStateOverride, ...(refundReversed ? { refundReversed: true } : {}) });
 }

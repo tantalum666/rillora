@@ -23,25 +23,25 @@ struct InvitationAcceptView: View {
         ScrollView {
             VStack(alignment: .leading, spacing: 24) {
                 if case .loaded(let snapshot) = overviewStore.state, snapshot.session.usesDevelopmentIdentity {
-                    Label("Local QA · test data", systemImage: "hammer").font(.footnote).foregroundStyle(RilloraTheme.muted)
+                    Label(String(localized: "Local QA · test data"), systemImage: "hammer").font(.footnote).foregroundStyle(RilloraTheme.muted)
                 }
                 RilloraConnectionVisual(state: accepted ? .connected : invitation?.status == .accepted ? .unavailable : invitation.map { ConnectionVisualState($0.status) } ?? .pending)
                     .frame(maxWidth: .infinity).padding(.vertical, 6)
                 if let invitation {
-                    Text(accepted ? "Connected with \(invitation.ownerName)" : "\(invitation.ownerName) invited you").font(.title2.weight(.semibold)).foregroundStyle(RilloraTheme.ink)
-                    Label("For \(invitation.emailHint)", systemImage: "envelope").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(accepted ? L10n.format("Connected with %1$@", invitation.ownerName) : L10n.format("%1$@ invited you", invitation.ownerName)).font(.title2.weight(.semibold)).foregroundStyle(RilloraTheme.ink)
+                    Label(L10n.format("For %1$@", invitation.emailHint), systemImage: "envelope").font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     if accepted {
-                        Button("Open shared items") { showShared = true }.buttonStyle(RilloraPrimaryActionButtonStyle())
+                        Button(String(localized: "Open shared items")) { showShared = true }.buttonStyle(RilloraPrimaryActionButtonStyle())
                             .accessibilityIdentifier("invitation.open-shared")
                     } else if invitation.status == .accepted {
-                        Text("This invitation has been accepted. Use the invited account to open shared items.").font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                        Button(signedIn ? "Open shared items" : "Sign in to view shared items") {
+                        Text(String(localized: "This invitation has been accepted. Use the invited account to open shared items.")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                        Button(signedIn ? String(localized: "Open shared items") : String(localized: "Sign in to view shared items")) {
                             if signedIn { showShared = true } else { Task { _ = await authenticationStore.signIn() } }
                         }.buttonStyle(RilloraPrimaryActionButtonStyle())
                     } else if invitation.status == .expired || invitation.status == .revoked {
-                        Text(invitation.status == .expired ? "This invitation expired. Ask for a new link." : "This invitation was revoked. Ask for a new link.")
+                        Text(invitation.status == .expired ? String(localized: "This invitation expired. Ask for a new link.") : String(localized: "This invitation was revoked. Ask for a new link."))
                     } else {
-                        Text("Only the items they choose. Read only.").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                        Text(String(localized: "Only the items they choose. Read only.")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                         Button {
                             Task {
                                 if authenticationRequired {
@@ -51,34 +51,34 @@ struct InvitationAcceptView: View {
                                 else { _ = await authenticationStore.createAccount() }
                             }
                         } label: {
-                            HStack { if working || authenticationStore.isWorking { ProgressView() }; Text(authenticationRequired ? "Sign in to continue" : signedIn ? (verificationRequired ? "I've verified my email" : "Accept invitation") : "Create account to accept").frame(maxWidth: .infinity); Image(systemName: "arrow.right") }
+                            HStack { if working || authenticationStore.isWorking { ProgressView() }; Text(authenticationRequired ? String(localized: "Sign in to continue") : signedIn ? (verificationRequired ? String(localized: "I've verified my email") : String(localized: "Accept invitation")) : String(localized: "Create account to accept")).frame(maxWidth: .infinity); Image(systemName: "arrow.right") }
                         }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(working || authenticationStore.isWorking)
                             .accessibilityIdentifier("invitation.accept")
                         if signedIn {
-                            Button("Use another account") { Task { await authenticationStore.signOut(); _ = await authenticationStore.signIn() } }
+                            Button(String(localized: "Use another account")) { Task { await authenticationStore.useAnotherAccount() } }
                                 .frame(maxWidth: .infinity, minHeight: 44).disabled(working || authenticationStore.isWorking)
                         } else {
-                            Button("Already have an account? Sign in") { Task { _ = await authenticationStore.signIn() } }
+                            Button(String(localized: "Already have an account? Sign in")) { Task { _ = await authenticationStore.signIn() } }
                                 .frame(maxWidth: .infinity, minHeight: 44).disabled(working || authenticationStore.isWorking)
                         }
                     }
                 } else {
-                    Text(working ? "Opening invitation…" : "Accept a received invitation").font(.title2.weight(.semibold))
-                    Text("Paste a link someone sent you.").font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                    RilloraTextField(title: "Invitation link", prompt: "Paste the link you received", text: $link,
+                    Text(working ? String(localized: "Opening invitation…") : String(localized: "Accept a received invitation")).font(.title2.weight(.semibold))
+                    Text(String(localized: "Paste a link someone sent you.")).font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    RilloraTextField(title: String(localized: "Invitation link"), prompt: String(localized: "Paste the link you received"), text: $link,
                                     identifier: "invitation.link", required: true, axis: .vertical)
                         .textInputAutocapitalization(.never).autocorrectionDisabled()
-                    Button("Continue with this link") {
-                        guard let value = ReceivedInvitation.token(from: link) else { error = "Paste the complete invitation link."; return }
+                    Button(String(localized: "Continue with this link")) {
+                        guard let value = ReceivedInvitation.token(from: link) else { error = String(localized: "Paste the complete invitation link."); return }
                         Task { await resolve(value) }
                     }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(working || link.isEmpty)
                         .accessibilityIdentifier("invitation.resolve")
                 }
-                if let error { Text(error).foregroundStyle(RilloraTheme.clay).font(.subheadline).accessibilityIdentifier("invitation.error") }
+                if let message = error ?? authenticationStore.errorMessage { Text(message).foregroundStyle(RilloraTheme.clay).font(.subheadline).accessibilityIdentifier("invitation.error") }
             }.padding(24)
         }.background(RilloraTheme.canvas).rilloraFocusedTask()
-            .navigationTitle("Received invitation").navigationBarTitleDisplayMode(.inline)
-            .toolbar { ToolbarItem(placement: .cancellationAction) { Button("Close") { dismiss() }.disabled(working || authenticationStore.isWorking) } }
+            .navigationTitle(String(localized: "Received invitation")).navigationBarTitleDisplayMode(.inline)
+            .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Close")) { dismiss() }.disabled(working || authenticationStore.isWorking) } }
             .navigationDestination(isPresented: $showShared) { SharedWithMeView(service: service) }
             .interactiveDismissDisabled(working || authenticationStore.isWorking)
             .task(id: plannerID) { accepted = false; verificationRequired = false; authenticationRequired = false; if let value = token ?? initialToken { await resolve(value) } }
@@ -129,7 +129,7 @@ struct InvitationAcceptView: View {
             let verified = try await service.checkEmailVerification()
             guard plannerID == account, !Task.isCancelled else { return }
             if verified { verificationRequired = false; error = nil }
-            else { error = "Open the verification email, then return here to continue. Your invitation is saved." }
+            else { error = String(localized: "Open the verification email, then return here to continue. Your invitation is saved.") }
         } catch {
             if plannerID == account {
                 if let failure = error as? RilloraAPIError, failure.isAuthenticationRequired { authenticationRequired = true; verificationRequired = false }

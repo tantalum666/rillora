@@ -5,7 +5,7 @@ import GoogleSignIn
 import UIKit
 
 @MainActor
-protocol NativeAuthenticating: AnyObject {
+protocol NativeAuthenticating: PasswordResetRequesting {
     var isConfigured: Bool { get }
     var canSignInWithApple: Bool { get }
     var canSignInWithGoogle: Bool { get }
@@ -22,13 +22,16 @@ protocol NativeAuthenticating: AnyObject {
     func signInWithGoogle(legalAcceptance: LegalAcceptanceProof) async throws
     func signInWithPasskey(legalAcceptance: LegalAcceptanceProof) async throws
     func takeInitialOverview() -> OverviewSnapshot?
-    func signOut() async
+    func signOut() async throws
     func clearLocalSession() async
     func signOutAll() async throws
 }
 
 extension NativeAuthenticating {
-    func clearLocalSession() async { await signOut() }
+    var canResetPassword: Bool { false }
+    func requestPasswordReset(email: String) async throws { throw PasswordResetError.unavailable }
+
+    func clearLocalSession() async { try? await signOut() }
     func takeInitialOverview() -> OverviewSnapshot? { nil }
 }
 
@@ -52,6 +55,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
             && configuration.googleServerClientID != nil
     }
     var canSignInWithPasskey: Bool { configuration.passkeyNativeSignInEnabled }
+    var canResetPassword: Bool { configuration.passwordResetConnection != nil }
 
     private let configuration: NativeAuthenticationConfiguration
     private let tokenStore: any SessionTokenStore
@@ -76,12 +80,51 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         self.session = session
     }
 
+    func requestPasswordReset(email: String) async throws {
+        guard let connection = configuration.passwordResetConnection else {
+            throw PasswordResetError.unavailable
+        }
+        guard let email = PasswordResetEmail.normalized(email) else {
+            throw PasswordResetError.invalidEmail
+        }
+        try Task.checkCancellation()
+        do {
+            // Public Authentication API only. No Management API credential, new scope,
+            // browser sign-in, session exchange, token storage or provider error display.
+            try await Auth0
+                .authentication(clientId: configuration.clientID, domain: configuration.domain, session: session)
+                .resetPassword(email: email, connection: connection)
+                .start()
+            try Task.checkCancellation()
+        } catch {
+            if Task.isCancelled || error is CancellationError {
+                throw CancellationError()
+            }
+            if let providerError = error as? AuthenticationError {
+                if let cause = providerError.cause as? URLError, cause.code == .cancelled {
+                    throw CancellationError()
+                }
+                if providerError.isNetworkError { throw PasswordResetError.network }
+                if providerError.statusCode == 429 || providerError.isTooManyAttempts {
+                    throw PasswordResetError.rateLimited
+                }
+            }
+            if let networkError = error as? URLError {
+                if networkError.code == .cancelled { throw CancellationError() }
+                throw PasswordResetError.network
+            }
+            // Never expose provider messages, email existence or account metadata.
+            throw PasswordResetError.requestFailed
+        }
+    }
+
     func signIn(
         intent: NativeAuthenticationIntent,
         loginHint: String?
     ) async throws {
         let credentials = try await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .audience(configuration.audience)
             .scope("openid profile email session:create")
             .parameters(Self.authorizationParameters(for: intent, loginHint: loginHint))
@@ -240,7 +283,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
 
     nonisolated static func authorizationParameters(
         for intent: NativeAuthenticationIntent,
-        loginHint: String? = nil
+        loginHint: String? = nil,
+        localeIdentifier: String = Bundle.main.preferredLocalizations.first ?? "en"
     ) -> [String: String] {
         var parameters: [String: String] = switch intent {
         case .signIn:
@@ -254,6 +298,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         }
         if parameters["max_age"] == nil { parameters["max_age"] = "86400" }
         parameters["rillora_auth_ui"] = "single-hosted-v1"
+        parameters["ui_locales"] = localeIdentifier.hasPrefix("zh") ? "zh-CN" : "en"
         if let loginHint = loginHint?.trimmingCharacters(in: .whitespacesAndNewlines),
            !loginHint.isEmpty {
             parameters["login_hint"] = loginHint
@@ -261,12 +306,15 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         return parameters
     }
 
-    func signOut() async {
+    func signOut() async throws {
         initialOverview = nil
-        try? await revokeSession(allDevices: false)
-        try? await tokenStore.delete()
+        // A failed remote revocation is not a successful sign-out. Keep the
+        // retry path, and never reload a bearer whose local removal failed.
+        try await revokeSession(allDevices: false)
+        try await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .logout()
     }
 
@@ -280,6 +328,7 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         try await tokenStore.delete()
         try? await Auth0
             .webAuth(clientId: configuration.clientID, domain: configuration.domain)
+            .useHTTPS()
             .logout()
     }
 
@@ -291,7 +340,8 @@ final class Auth0NativeAuthenticationService: NativeAuthenticating {
         request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
         request.setValue("application/json", forHTTPHeaderField: "Accept")
         let (_, response) = try await session.data(for: request)
-        guard let http = response as? HTTPURLResponse, (200..<300).contains(http.statusCode) else {
+        guard let http = response as? HTTPURLResponse,
+              (200..<300).contains(http.statusCode) || http.statusCode == 401 else {
             throw NativeAuthenticationError.sessionRevocationRejected
         }
     }
@@ -449,29 +499,29 @@ enum NativeAuthenticationError: LocalizedError, Sendable {
     var errorDescription: String? {
         switch self {
         case .accountsNotOpen:
-            "Accounts are not open yet. You can still explore Rillora and its guides."
+            String(localized: "Accounts are not open yet. You can still explore Rillora and its guides.")
         case .notConfigured:
-            "Native sign in is not configured for this build."
+            String(localized: "Native sign in is not configured for this build.")
         case .appleSignInNotConfigured:
-            "Sign in with Apple is not configured for this build."
+            String(localized: "Sign in with Apple is not configured for this build.")
         case .googleSignInNotConfigured:
-            "Sign in with Google is not configured for this build."
+            String(localized: "Sign in with Google is not configured for this build.")
         case .passkeySignInNotConfigured:
-            "Passkey sign in is not configured for this build."
+            String(localized: "Passkey sign in is not configured for this build.")
         case .invalidAppleAuthorization:
-            "Apple did not return a valid authorization code."
+            String(localized: "Apple did not return a valid authorization code.")
         case .invalidGoogleIdentity:
-            "Google did not return a valid identity token."
+            String(localized: "Google did not return a valid identity token.")
         case .invalidPasskeyIdentity:
-            "The passkey provider did not return a valid credential."
+            String(localized: "The passkey provider did not return a valid credential.")
         case .invalidResponse:
-            "The identity service returned an invalid response."
+            String(localized: "The identity service returned an invalid response.")
         case .exchangeRejected:
-            "The identity service could not establish a Rillora session."
+            String(localized: "The identity service could not establish a Rillora session.")
         case .invalidSession:
-            "The identity service returned an invalid session."
+            String(localized: "The identity service returned an invalid session.")
         case .sessionRevocationRejected:
-            "Rillora could not revoke every active app session."
+            String(localized: "Rillora could not revoke every active app session.")
         }
     }
 }

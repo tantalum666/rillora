@@ -1,0 +1,22 @@
+"""Check local links in this workflow's changed Markdown and new addendum."""
+from pathlib import Path
+from urllib.parse import unquote,urlsplit
+import json,re,subprocess
+root=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent
+names=set(subprocess.check_output(['git','diff','--name-only','HEAD'],cwd=root,text=True).splitlines())
+names.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard'],cwd=root,text=True).splitlines())
+names.update(str(p.relative_to(root)) for p in (root/'collaboration/verification/public-seo-rollout-20261018').rglob('*.md'))
+missing=[];checked=0
+for name in sorted(names):
+ p=root/name
+ if p.suffix!='.md' or not p.exists():continue
+ for target in re.findall(r'\]\(([^\n]+?)\)',p.read_text()):
+  target=target.strip().strip('<>');u=urlsplit(target)
+  if u.scheme or target.startswith('#'):continue
+  value=unquote(u.path)
+  if not value:continue
+  linked=(p.parent/value).resolve();checked+=1
+  if not linked.exists():missing.append({'file':name,'target':target})
+result={'checkedLinks':checked,'missing':missing,'passed':not missing,'scope':'Changed project Markdown plus new addendum; unchanged historical corpus retained'}
+(q/'markdown-links.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result));assert not missing

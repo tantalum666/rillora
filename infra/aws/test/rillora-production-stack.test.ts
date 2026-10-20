@@ -4,6 +4,22 @@ import {describe,it,expect} from 'vitest';
 import {RilloraProductionStack} from '../lib/rillora-production-stack.js';
 function template(){return Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'111111111111',region:'eu-central-1'}}));}
 describe('Closed production data and recovery foundation',()=>{
+ it('keeps privileged task execution and recovery writes behind the fixed broker rather than the human operator',()=>{
+  const t=template(),roles=t.findResources('AWS::IAM::Role');
+  const operator=Object.entries(roles).find(([,r]:any)=>r.Properties.RoleName==='rillora-production-operator')![0];
+  const human=(Object.values(t.findResources('AWS::IAM::Policy')) as any[])
+    .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===operator)).flatMap(p=>p.Properties.PolicyDocument.Statement);
+  const actions=human.flatMap(s=>typeof s.Action==='string'?[s.Action]:s.Action);
+  for(const action of ['ecs:RunTask','iam:PassRole','rds:CreateDBSnapshot','rds:RestoreDBInstanceFromDBSnapshot',
+    'rds:DeleteDBInstance','rds:DeleteDBSnapshot','rds:AddTagsToResource'])expect(actions).not.toContain(action);
+  expect(actions).toContain('lambda:InvokeFunction');
+  const broker=(Object.values(t.findResources('AWS::Lambda::Function')) as any[]).find(f=>f.Properties.Environment?.Variables?.BROKER_SETTINGS)!;
+  const brokerRole=broker.Properties.Role['Fn::GetAtt'][0];
+  const brokerActions=(Object.values(t.findResources('AWS::IAM::Policy')) as any[])
+    .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===brokerRole)).flatMap(p=>p.Properties.PolicyDocument.Statement)
+    .flatMap(s=>typeof s.Action==='string'?[s.Action]:s.Action);
+  expect(brokerActions).toContain('ecs:RunTask');expect(brokerActions).toContain('iam:PassRole');
+ });
  it('requires seven-day encrypted private storage and keeps customer traffic closed',()=>{
   const t=template();
   t.hasResourceProperties('AWS::RDS::DBInstance',{DBInstanceIdentifier:'rillora-production',DBInstanceClass:'db.t4g.micro',
@@ -60,13 +76,107 @@ describe('Closed production data and recovery foundation',()=>{
 });
 
 describe('Optional closed production HTTPS runtime',()=>{
+ it('prepares isolated OAuth storage before enabling least-privilege customer access',()=>{
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,
+   reviewPrepared:true,liveEnabled:true,identityServicesEnabled:true,retentionEnabled:true,customerMcpPrepared:true,
+   stripeNotificationsSecretArn:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123'};
+  for(const enabled of [false,true]) {
+   const t=Template.fromStack(new RilloraProductionStack(new App(),'CustomerMcp',{...props,customerMcpEnabled:enabled}));
+   t.hasResourceProperties('AWS::DynamoDB::Table',{TableName:'rillora-production-mcp-oauth',BillingMode:'PAY_PER_REQUEST',
+    DeletionProtectionEnabled:true,TimeToLiveSpecification:{AttributeName:'expiresAt',Enabled:true}});
+   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/ai-oauth'});
+   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+   const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+   expect(env.ALLOW_MCP_INTEGRATION).toBe(enabled?'true':undefined);
+   if(enabled) {
+    t.hasResourceProperties('AWS::ApiGatewayV2::Integration',{
+     RequestParameters:{'overwrite:header.Host':'origin.production.rillora.xyz'},
+     TlsConfig:{ServerNameToVerify:'origin.production.rillora.xyz'},ConnectionType:'VPC_LINK',
+    });
+    expect(env.MCP_RESOURCE_URL).toBe('https://app.rillora.xyz/api/mcp');
+    expect(JSON.parse(env.MCP_CLIENTS_JSON)).toHaveLength(7);
+    const grants=(Object.values(t.findResources('AWS::IAM::Policy')) as any[]).flatMap(p=>p.Properties.PolicyDocument.Statement)
+     .filter(s=>JSON.stringify(s.Resource).includes('CustomerMcpOAuthState') && s.Effect==='Allow');
+    expect(grants).toHaveLength(1);expect(grants[0].Action).not.toContain('dynamodb:Scan');
+    expect(grants[0].Condition['ForAllValues:StringLike']['dynamodb:LeadingKeys']).toContain('RevokedGrant:*');
+   }
+   expect(env.ALLOW_STRIPE_PRODUCTION_INTEGRATION).toBe('false');
+   expect(env.ALLOW_APPLE_PRODUCTION_INTEGRATION).toBe('false');
+  }
+  for(const override of [{customerMcpPrepared:false,customerMcpEnabled:true},{liveEnabled:false,customerMcpEnabled:true}])
+   expect(()=>new RilloraProductionStack(new App(),'InvalidMcp',{...props,...override})).toThrow();
+ });
+
+ it('activates live identity independently of Checkout without any review or test purchase surface',()=>{
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,
+   reviewPrepared:true,liveEnabled:true,identityServicesEnabled:true,retentionEnabled:true,
+   stripeNotificationsSecretArn:'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123'};
+  for(const enabled of [false,true]){
+   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{...props,stripeCheckoutEnabled:enabled}));
+   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
+   const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+   expect(env).toMatchObject({PRODUCTION_RUNTIME_MODE:'live',ALLOW_STRIPE_PRODUCTION_INTEGRATION:String(enabled),
+    ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',ALLOW_STRIPE_TEST_INTEGRATION:'false',ALLOW_APPLE_SANDBOX_INTEGRATION:'false',
+    ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',CONTENT_PROTECTION_MODE:'encrypted',RECOVERY_ENVIRONMENT:'production',
+    OIDC_ISSUER_URL:'https://login.rillora.xyz',WEB_APP_ORIGIN:'https://app.rillora.xyz'});
+   for(const name of ['PRODUCTION_REVIEW_IDENTITY_SHA256','PRODUCTION_REVIEW_EXPIRES_AT','APPLE_REVIEW_SECRET_ARN','ALLOW_APPLE_REVIEW_INTEGRATION'])expect(env[name]).toBeUndefined();
+   expect(api.Secrets.some((s:any)=>s.Name==='OIDC_CLIENT_SECRET')).toBe(true);
+   expect(api.Secrets.some((s:any)=>s.Name.startsWith('AUTH0_DELETION'))).toBe(false);
+   expect(api.ReadonlyRootFilesystem).toBe(true);
+   t.hasResourceProperties('AWS::RDS::DBInstance',{StorageEncrypted:true,PubliclyAccessible:false,DeletionProtection:true,BackupRetentionPeriod:7});
+   const subnets=Object.values(t.findResources('AWS::EC2::Subnet')) as any[];
+   expect(subnets).toHaveLength(4);
+   for(const subnet of subnets)expect(subnet.Properties.AvailabilityZone).toEqual({'Fn::Select':[expect.any(Number),{'Fn::GetAZs':''}]});
+   const certificateChecks=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
+   expect(certificateChecks).toHaveLength(1);
+   expect(certificateChecks[0]).toMatchObject({ToPort:80,IpProtocol:'tcp',CidrIp:'17.0.0.0/8'});
+   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
+   t.hasOutput('ProductionTrafficReady',{Value:'true'});
+   expect(t.toJSON().Parameters?.ReviewIdentityDigests).toBeUndefined();
+  }
+  for(const override of [{reviewEnabled:true},{reviewPrepared:false},{identityServicesEnabled:false},{retentionEnabled:false},
+    {stripeNotificationsSecretArn:undefined},{env:{account:'111111111111',region:'eu-central-1'}},{liveEnabled:false,stripeCheckoutEnabled:true}]){
+   expect(()=>new RilloraProductionStack(new App(),'Invalid',{...props,...override})).toThrow();
+  }
+ });
+ it('shares only the exact existing billing configuration with the isolated recovery reader and leaves purchases closed',()=>{
+  const arn='arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-ABC123';
+  const props={env:{account:'133857166372',region:'eu-central-1'},runtimeEnabled:true,runtimeDesiredCount:1 as const,reviewPrepared:true,reviewEnabled:true,stripeNotificationsSecretArn:arn};
+  const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',props));
+  const task=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).find(t=>t.Properties.ContainerDefinitions.some((c:any)=>c.Name==='Api'))!;
+  const api=task.Properties.ContainerDefinitions.find((c:any)=>c.Name==='Api');
+  const env=Object.fromEntries(api.Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(env).toMatchObject({PRODUCTION_RUNTIME_MODE:'review',ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS:'true',STRIPE_PRODUCTION_SECRET_ARN:arn,
+    ALLOW_STRIPE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_TEST_INTEGRATION:'false',ALLOW_APPLE_REVIEW_INTEGRATION:'true'});
+  expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
+  const policies=Object.values(t.findResources('AWS::IAM::Policy')) as any[];
+  const grants=policies.filter(p=>p.Properties.PolicyDocument.Statement.some((s:any)=>JSON.stringify(s.Resource).includes(arn)));
+  const recovery=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[])
+   .find(t=>!t.Properties.ContainerDefinitions[0].Environment.some((e:any)=>e.Name==='DATABASE_HOST'))!;
+  expect(grants).toHaveLength(2);
+  expect(grants.flatMap(p=>p.Properties.Roles.map((r:any)=>r.Ref)).sort())
+   .toEqual([task,recovery].map(t=>t.Properties.TaskRoleArn['Fn::GetAtt'][0]).sort());
+  for(const grant of grants){
+   const statement=grant.Properties.PolicyDocument.Statement.find((s:any)=>JSON.stringify(s.Resource).includes(arn));
+   expect(statement.Action).toEqual(['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']);
+   expect(statement.Resource).toBe(arn);
+  }
+  const recoveryEnv=Object.fromEntries(recovery.Properties.ContainerDefinitions[0].Environment.map((e:any)=>[e.Name,e.Value]));
+  expect(recoveryEnv.STRIPE_PRODUCTION_SECRET_ARN).toBe(arn);
+  expect(recoveryEnv.DATABASE_HOST).toBeUndefined();
+  expect(recoveryEnv.ALLOW_STRIPE_PRODUCTION_INTEGRATION).toBeUndefined();
+  expect(recoveryEnv.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS).toBeUndefined();
+  expect(JSON.stringify(t.findResources('AWS::SecretsManager::Secret'))).not.toContain('stripe-billing');
+  expect(()=>new RilloraProductionStack(new App(),'Wrong',{...props,stripeNotificationsSecretArn:arn.replace('rillora/production','fanpass')})).toThrow();
+  expect(()=>new RilloraProductionStack(new App(),'Closed',{...props,reviewEnabled:false})).toThrow();
+ });
  it('prepares isolated vault resources while retaining closed runtime and the old immutable API image',()=>{
   const t=Template.fromStack(new RilloraProductionStack(new App(),'Production',{env:{account:'133857166372',region:'eu-central-1'},
    runtimeEnabled:true,runtimeDesiredCount:1,reviewPrepared:true,runtimeImageTag:'a'.repeat(64)}));
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/apple-review'});
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/web-oidc'});
   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
-  expect(api.Secrets).toHaveLength(2);
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY']);
   expect(api.Environment).toContainEqual({Name:'PRODUCTION_RUNTIME_MODE',Value:'closed'});
   expect(api.Environment.some((e:any)=>e.Name==='APPLE_REVIEW_SECRET_ARN')).toBe(false);
  });
@@ -79,7 +189,7 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(env.ALLOW_RETENTION_WORKER).toBe('true');
   expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expect(env.PRODUCTION_REVIEW_EXPIRES_AT.Ref).toBeDefined();
   for(const name of ['ALLOW_DEV_AUTH','ALLOW_APPLE_PRODUCTION_INTEGRATION','ALLOW_STRIPE_PRODUCTION_INTEGRATION','ALLOW_APPLE_SANDBOX_INTEGRATION'])expect(env[name]).toBe('false');
-  expect(api.Secrets).toHaveLength(3);t.hasOutput('ProductionTrafficReady',{Value:'false'});
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY','OIDC_CLIENT_SECRET']);t.hasOutput('ProductionTrafficReady',{Value:'false'});
   const ocspRules=Object.values(t.findResources('AWS::EC2::SecurityGroup')).flatMap((g:any)=>g.Properties.SecurityGroupEgress??[]).filter((r:any)=>r.FromPort===80);
   expect(ocspRules).toHaveLength(2);
   expect(ocspRules.every((r:any)=>r.ToPort===80&&r.IpProtocol==='tcp'&&r.CidrIp==='17.0.0.0/8')).toBe(true);
@@ -92,9 +202,12 @@ describe('Optional closed production HTTPS runtime',()=>{
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/account-deletion'});
   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora/production/email-verification'});
   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='Api');
-  expect(api.Secrets).toHaveLength(9);
-  for(const prefix of ['AUTH0_DELETION','AUTH0_EMAIL_VERIFICATION']){
-    for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']) expect(api.Secrets.find((s:any)=>s.Name===`${prefix}_${field}`)).toBeDefined();
+  expect(api.Secrets).toHaveLength(8);
+  const worker=(Object.values(t.findResources('AWS::ECS::TaskDefinition')) as any[]).flatMap(t=>t.Properties.ContainerDefinitions).find(c=>c.Name==='IdentityDeletion');
+  for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']){
+    expect(api.Secrets.find((s:any)=>s.Name===`AUTH0_EMAIL_VERIFICATION_${field}`)).toBeDefined();
+    expect(api.Secrets.find((s:any)=>s.Name===`AUTH0_DELETION_${field}`)).toBeUndefined();
+    expect(worker.Secrets.find((s:any)=>s.Name===`AUTH0_DELETION_${field}`)).toBeDefined();
   }
   expect(JSON.stringify(api.Secrets)).not.toContain('staging');
  });
@@ -113,7 +226,7 @@ describe('Optional closed production HTTPS runtime',()=>{
   expect(httpRules).toHaveLength(0);
   expect(env.ALLOW_DEV_AUTH).toBe('false');expect(env.ALLOW_STRIPE_TEST_INTEGRATION).toBe('false');
   expect(api.ReadonlyRootFilesystem).toBe(true);expect(api.LinuxParameters.Capabilities.Drop).toContain('ALL');
-  expect(api.Secrets).toHaveLength(2);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');
+  expect(api.Secrets.map((s:any)=>s.Name).sort()).toEqual(['DATABASE_AUTHORITY_KEY','DATABASE_PASSWORD','DATABASE_USER','EMAIL_MATCH_KEY']);expect(JSON.stringify(api.Secrets)).not.toContain('DatabaseSecret');
   const incoming=Object.values(t.findResources('AWS::EC2::SecurityGroupIngress')) as any[];
   expect(incoming.every(x=>!x.Properties.CidrIp)).toBe(true);
   const tlsRules=incoming.filter(x=>x.Properties.FromPort===8443);expect(tlsRules).toHaveLength(1);

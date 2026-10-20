@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-13T10:59:06.657949+00:00",
+  "source": "eb2b3c4d290c05c1533510f9ef101b1efdbc58cf",
+  "changes": [
+    {
+      "logicalId": "HealthCheckA1C381C7",
+      "type": "AWS::Lambda::Function",
+      "added": false
+    },
+    {
+      "logicalId": "AlertsPolicy425C338D",
+      "type": "AWS::SNS::TopicPolicy",
+      "added": false
+    },
+    {
+      "logicalId": "AppleDeliveryFailedCA8C5623",
+      "type": "AWS::CloudWatch::Alarm",
+      "added": true
+    },
+    {
+      "logicalId": "AppleDeliveryWorkerErrors2A0C947F",
+      "type": "AWS::CloudWatch::Alarm",
+      "added": true
+    },
+    {
+      "logicalId": "AppleDeliveryOldestPendingSecondsD003E47C",
+      "type": "AWS::CloudWatch::Alarm",
+      "added": true
+    },
+    {
+      "logicalId": "AppleDeliveryHeartbeat5929C3C2",
+      "type": "AWS::CloudWatch::Alarm",
+      "added": true
+    },
+    {
+      "logicalId": "OperationsRunbook277D4959",
+      "type": "AWS::IAM::Policy",
+      "added": false
+    }
+  ],
+  "existingResourcesPreserved": true,
+  "existingSubscriberConfirmed": true,
+  "originalSchedulesAndRetentionPreserved": true,
+  "newAppleProductionAlarms": 4,
+  "deployed": false
+}

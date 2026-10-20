@@ -1,0 +1,55 @@
+import { readFileSync, writeFileSync } from 'node:fs';
+import { resolve } from 'node:path';
+import { createHash } from 'node:crypto';
+import { pathToFileURL } from 'node:url';
+import { createInterface } from 'node:readline';
+import { Client, StreamableHTTPClientTransport } from '../../../apps/api/node_modules/@modelcontextprotocol/client/dist/index.mjs';
+
+const root=resolve(import.meta.dirname,'../../..'), privateRoot=root+'/.local-secrets/ai-seo-20261018';
+const packageRoot='/Users/tantalum/.npm/_npx/d9830c2c9ade923c/node_modules/@qwen-code/qwen-code';
+if(JSON.parse(readFileSync(packageRoot+'/package.json','utf8')).version!=='0.25.2')throw Error('Unexpected upstream version');
+if(process.env.QWEN_CODE_FORCE_ENCRYPTED_FILE_STORAGE!=='true')throw Error('Encrypted token storage required');
+const modulePath=packageRoot+'/chunks/chunk-IFAUFERF.js';
+const { MCPOAuthProvider, MCPOAuthTokenStorage }=await import(pathToFileURL(modulePath).href);
+const resource='https://rillora-ai-candidate.rillora-candidate.workers.dev/mcp',origin=new URL(resource).origin;
+const discovery=await fetch(origin+'/.well-known/oauth-authorization-server').then(r=>r.json()) as any;
+if(discovery.issuer!==origin||discovery.authorization_endpoint!==origin+'/authorize'||discovery.token_endpoint!==origin+'/oauth/token')throw Error('Unexpected provider metadata');
+const alias='rillora-hosted-qa-20261018',storage=new MCPOAuthTokenStorage(),provider=new MCPOAuthProvider(storage);
+const config={enabled:true,clientId:'ufMS5EJHdQ2HfwXg',authorizationUrl:discovery.authorization_endpoint,tokenUrl:discovery.token_endpoint,
+ scopes:['matters:read:summary','readiness:read:scoped'],redirectUri:'http://localhost:7777/oauth/callback'};
+if(!config.scopes.every(s=>discovery.scopes_supported.includes(s)))throw Error('Unadvertised scope');
+const pkce=provider.generatePKCEParams();
+const callback=provider.startCallbackServer(pkce.state);
+writeFileSync(privateRoot+'/qwen-auth-url',provider.buildAuthorizationUrl(config,pkce,resource),{mode:0o600});
+console.log('QWEN_ORIGINAL_OAUTH_READY');
+const returned=await callback;
+const response=await provider.exchangeCodeForToken(config,returned.code,pkce.codeVerifier,resource);
+const token={accessToken:response.access_token,tokenType:response.token_type,refreshToken:response.refresh_token,
+ scope:response.scope,expiresAt:Date.now()+response.expires_in*1000};
+await storage.saveToken(alias,token,config.clientId,config.tokenUrl,resource);
+const lines=createInterface({input:process.stdin});const stages:string[]=[];let pending:((value:string)=>void)|undefined;
+lines.on('line',line=>{if(pending){const next=pending;pending=undefined;next(line);}else stages.push(line);});
+const stage=()=>stages.length?Promise.resolve(stages.shift()!):new Promise<string>(r=>pending=r);
+const record={client:'Qwen Code 0.25.2',method:'Unchanged official OAuth provider methods, followed by original CLI reconnect/discovery',
+ upstreamModuleSha256:createHash('sha256').update(readFileSync(modulePath)).digest('hex'),pkce:'S256',issuerVerified:true,
+ originalCallbackServer:true,encryptedTokenStore:true,modelProviderConfigured:false,modelCalls:0,interactiveModelUiUsed:false,oauthCompleted:true};
+writeFileSync(resolve(import.meta.dirname,'qwen-oauth-readback.json'),JSON.stringify(record,null,2)+'\n');console.log(JSON.stringify(record));
+console.log('WAITING_FOR_ACTUAL_CLI');if(await stage()!=='verify')throw Error('Wrong stage');
+const sdk=new Client({name:'rillora-qwen-credential-check',version:'1.0.0'},{versionNegotiation:{mode:'legacy'}});
+await sdk.connect(new StreamableHTTPClientTransport(new URL(resource),{requestInit:{headers:{authorization:'Bearer '+token.accessToken}}}));
+const summary=await sdk.callTool({name:'list_selected_matters',arguments:{}}),gaps=await sdk.callTool({name:'get_preparation_gaps',arguments:{}});
+if(summary.isError||gaps.isError||(summary.structuredContent as any).matters.length!==1||/Private synthetic|Unselected synthetic/.test(JSON.stringify(summary)))throw Error('Unexpected projection');
+const fresh=await provider.refreshAccessToken(config,token.refreshToken,config.tokenUrl,resource),freshAt=Date.now();
+if(fresh.expires_in!==900||!fresh.refresh_token)throw Error('Invalid refresh');
+const newer=new Client({name:'rillora-qwen-refreshed-check',version:'1.0.0'},{versionNegotiation:{mode:'legacy'}});
+await newer.connect(new StreamableHTTPClientTransport(new URL(resource),{requestInit:{headers:{authorization:'Bearer '+fresh.access_token}}}));
+const before={summary:summary.structuredContent,gaps:gaps.structuredContent,originalQwenRefreshPassed:true,accessTokenTtl:900,passed:true};
+writeFileSync(resolve(import.meta.dirname,'qwen-selected-read.json'),JSON.stringify(before,null,2)+'\n');console.log(JSON.stringify(before));
+console.log('WAITING_FOR_REVOCATION');if(await stage()!=='verify-after')throw Error('Wrong stage');
+const oldRead=await sdk.callTool({name:'list_selected_matters',arguments:{}}),freshRead=await newer.callTool({name:'list_selected_matters',arguments:{}});
+let refreshRejected=false;try{await provider.refreshAccessToken(config,fresh.refresh_token,config.tokenUrl,resource);}catch(e){refreshRejected=String(e).includes('invalid_grant');}
+const remaining=900-Math.ceil((Date.now()-freshAt)/1000);
+const after={oldReadDenied:oldRead.isError===true,freshReadDenied:freshRead.isError===true,refreshRejected,remainingSeconds:remaining,
+ passed:oldRead.isError===true&&freshRead.isError===true&&refreshRejected&&remaining>0};
+await storage.deleteCredentials(alias);await sdk.close();await newer.close();lines.close();
+writeFileSync(resolve(import.meta.dirname,'qwen-revocation-read.json'),JSON.stringify(after,null,2)+'\n');console.log(JSON.stringify(after));if(!after.passed)process.exitCode=1;

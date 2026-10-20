@@ -1,0 +1,37 @@
+
+> web@0.0.0 dev
+> vite --config ../../output/qa/rillora-strict-review-20261002/vite-review.config.mjs --host 127.0.0.1 --port 4413 --strictPort
+
+
+  VITE v6.4.3  ready in 225 ms
+
+  ➜  Local:   http://127.0.0.1:4413/
+11:27:17 PM [vite] (client) hmr update /src/App.jsx
+11:27:17 PM [vite] (client) hmr update /src/FamilyMaintenancePanel.jsx
+11:27:17 PM [vite] (client) hmr update /src/App.jsx
+11:38:02 PM [vite] (client) hmr update /src/ConfirmationDialog.jsx
+11:38:02 PM [vite] (client) hmr update /src/App.jsx
+11:38:02 PM [vite] (client) hmr update /src/App.jsx
+11:38:02 PM [vite] (client) hmr invalidate /src/ConfirmationDialog.jsx Could not Fast Refresh ("useConfirmation" export is incompatible). Learn more at https://github.com/vitejs/vite-plugin-react/tree/main/packages/plugin-react#consistent-components-exports
+11:38:02 PM [vite] (client) hmr update /src/App.jsx, /src/AccountDataPanel.jsx, /src/StartHerePanel.jsx, /src/SharingPanels.jsx, /src/RoleAssignmentPolicyPanel.jsx
+11:47:16 PM [vite] (client) hmr update /src/FamilyMaintenancePanel.jsx
+11:47:16 PM [vite] (client) hmr update /src/ContactEditorPanel.jsx
+11:47:16 PM [vite] (client) hmr update /src/DisclosureRehearsalPanel.jsx
+12:03:34 AM [vite] (client) hmr update /src/AccountDataPanel.jsx, /src/SavedCopyReader.jsx
+12:03:34 AM [vite] (client) hmr update /src/RoleAssignmentPolicyPanel.jsx
+12:03:34 AM [vite] (client) hmr update /src/SharingPanels.jsx
+12:03:34 AM [vite] (client) hmr update /src/StartHerePanel.jsx
+12:11:25 AM [vite] (client) hmr update /src/SavedCopyReader.jsx
+12:11:25 AM [vite] (client) hmr update /src/AccountDataPanel.jsx, /src/SavedCopyReader.jsx
+12:17:46 AM [vite] (client) hmr update /src/App.jsx, /src/ProductionBillingControls.jsx, /src/TestBillingControls.jsx, /src/StartHerePanel.jsx, /src/DisclosureRehearsalPanel.jsx, /src/PublicExperience.jsx, /src/RoleAssignmentPolicyPanel.jsx
+1:00:54 AM [vite] (client) page reload dist-public/index.html
+1:00:54 AM [vite] (client) page reload dist-public/public.html
+1:00:54 AM [vite] (client) page reload dist-public/public.html
+1:00:54 AM [vite] (client) page reload dist-public/index.html
+1:59:15 AM [vite] (client) page reload dist-public/index.html
+1:59:15 AM [vite] (client) page reload dist-public/public.html
+1:59:15 AM [vite] (client) page reload dist-public/public.html
+1:59:15 AM [vite] (client) page reload dist-public/index.html
+3:11:23 AM [vite] (client) page reload dist-production/index.html
+3:11:23 AM [vite] (client) page reload dist-production/index.html
+3:11:24 AM [vite] (client) page reload dist-production/index.html

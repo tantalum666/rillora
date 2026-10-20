@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-18",
   "appId": "6803957639",
   "bundleId": "com.rillora.ios",
-  "status": "metadata_and_six_designed_screenshots_saved_in_unsubmitted_app_store_draft",
+  "status": "waiting_for_review_last_verified_20261015",
   "name": "Rillora",
   "subtitle": "Your digital life, organized",
   "primaryCategory": "PRODUCTIVITY",
@@ -16,7 +16,7 @@
   "publicationConditions": [
     "Production Free and Family journeys pass before submission; current sandbox evidence is insufficient.",
     "Fill support and marketing URLs only after the actual public pages are reachable.",
-    "Show the actual Apple-localized channel price; Web is USD88.99/year and Apple differentiation remains separately unresolved.",
+    "Show the actual Apple-localized channel price; Web is USD88.99/year and Apple USA is Owner-approved USD119.99/year. Apple other storefronts use their saved localized prices; availability and actual transactions remain separate gates.",
     "Privacy, age rating, encryption and market declarations require the final artifact and processing inventory."
   ],
   "releaseMode": "MANUAL",
@@ -33,7 +33,24 @@
       "ipad-01-private-map.jpg",
       "ipad-02-start-small.jpg"
     ],
-    "source": "output/release/rillora-store-design-20260930/v1",
-    "savedReadbackEvidence": "collaboration/verification/independent-release-20261002/receipts/store-assets-readback.json"
+    "source": "output/release/rillora-store-design-20261013/en-US",
+    "savedReadbackEvidence": "collaboration/verification/final-readiness-20261013/receipts/apple-bilingual-assets-saved.json"
+  },
+  "reviewSubmission": {
+    "state": "waiting_for_review",
+    "id": "6537a10c-38f2-425e-8b8e-c76e5fa730b1",
+    "build": "14",
+    "observedAt": "2026-10-15T09:49:00+08:00",
+    "evidence": "docs/app-review-preflight-20261014.md",
+    "appleRejection": false,
+    "publiclyReleased": false,
+    "note": "Historical provider readback; no fresh Apple status check or metadata submission on October18."
+  },
+  "previousReviewSubmission": {
+    "state": "developer_withdrawn",
+    "id": "d7a09a69-8b76-4b37-9a95-c0e169ed4039",
+    "build": "14",
+    "appleRejection": false,
+    "publiclyReleased": false
   }
 }

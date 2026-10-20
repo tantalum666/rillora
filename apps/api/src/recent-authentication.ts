@@ -9,7 +9,7 @@ export function authenticationIsRecent(value: Date | null | undefined, now = Dat
     && at >= now - recentAuthenticationMilliseconds;
 }
 export function requireRecentAuthentication(config: AppConfig, auth: Request['auth']): void {
-  if (!config.requireRecentAuthentication) return;
+  if (!config.requireRecentAuthentication && config.nodeEnv !== 'production') return;
   if (!authenticationIsRecent(auth.authenticatedAt)) {
     throw new ApiError(403, 'reauthentication_required', 'Sign in again to continue. Your changes have not been submitted.');
   }

@@ -1,0 +1,15 @@
+{
+  "at": "2026-10-07T02:06:09.735482+00:00",
+  "ownerBuild9Installed": true,
+  "backendProof": "output/qa/rillora-build9-distribution-20261007/apple-restore-readback-result.json",
+  "subscriptionStillActive": true,
+  "signedHkdAmountMinor": 88800,
+  "latestClientReceiptApplied": "2026-10-07T01:42:24.546Z",
+  "uiDefect": "subscriber or absent purchase quote falls back to old plan list and hides new offer content",
+  "restoreDefect": "AppStore.sync precedes all cached verified-history inspection",
+  "redTest": "existing owned history unexpectedly invokes sync; red run captured",
+  "changes": "Always show Apple Family card; catalogue price remains read-only when new purchase is unavailable; explicit Restore uses already-verified owned history and authoritative server reconciliation first",
+  "securityRetained": "Verified AppTransaction environment still required; no environment guessing, no local entitlement grant or early transaction finish",
+  "newQuoteRaceGuard": true,
+  "validation": "in progress; no claim of physical fix"
+}

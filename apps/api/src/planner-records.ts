@@ -51,7 +51,7 @@ export type ContactRow = {
 
 /** Contact identity is unique; the summary describes its plan-wide contact role. */
 export async function selectTrustedContacts(client: PoolClient, publicId: string | null = null): Promise<ContactRow[]> {
-  return (await client.query<ContactRow>(`
+  const rows = (await client.query<ContactRow>(`
     select p.public_id, p.display_name, p.relationship_label, p.status, p.version,
       p.created_at, p.updated_at, ra.status as role_status,
       i.status as invitation_status, i.delivery_channel
@@ -70,7 +70,9 @@ export async function selectTrustedContacts(client: PoolClient, publicId: string
     where p.planner_id=app.current_planner_id()
       and ($1::uuid is null or p.public_id=$1)
       and ($1::uuid is not null or p.archived_at is null)
-    order by p.id`, [publicId])).rows;
+    order by p.id limit 1001`, [publicId])).rows;
+  if (rows.length > 1000) throw new ApiError(413, 'operation_size_limit', 'This collection is too large for one request. No records were omitted.');
+  return rows;
 }
 
 export function mapPlan(row: PlanRow) {

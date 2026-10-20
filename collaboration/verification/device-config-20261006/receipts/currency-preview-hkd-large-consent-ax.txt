@@ -1,0 +1,10 @@
+The following is a diff from the previous accessibility tree for Window: "Rillora-Device-Purchase-Fix-20261006" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 37-40
+~		36 container Secondary Actions: Cancel, Scroll Up
++			43 switch Value: 0, ID: apple-purchase.consent, Secondary Actions: Cancel, Description: I agree to the subscription terms and yearly renewal at HKD HK$888.00. I can cancel in Apple Settings.
++			44 button Description: 服务条款, Secondary Actions: Cancel
++			45 button Description: 隐私, Secondary Actions: Cancel
++			46 button Description: 退款, Secondary Actions: Cancel
++			47 button (disabled) Description: 通过 Apple 订阅, ID: apple-purchase.subscribe, Secondary Actions: Cancel
++			48 button Description: 恢复购买, ID: apple-purchase.restore, Secondary Actions: Cancel
+The focused UI element is 0 standard window Rillora-Device-Purchase-Fix-20261006 – iOS 26.5, Secondary Actions: Raise

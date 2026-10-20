@@ -1,0 +1,18 @@
+{
+  "date": "2026-10-11",
+  "source": "Direct Owner replies in the current chat",
+  "approvals": [
+    {
+      "scope": "Explicit protected live runtime source mode",
+      "answer": "批准这项源码修复，线上保持原状",
+      "applied": true
+    },
+    {
+      "scope": "Exact moved fixture/public-identifier spans and two synthetic crypto fixtures",
+      "answer": "批准这些精确的测试夹具登记",
+      "proposalSha256": "a7008344753349f060348261fb09342bd8849476414d1eb751d82dcbc88c9176",
+      "applied": true
+    }
+  ],
+  "boundary": "Source and test registry only. No provider, deployment, customer opening or real billing change."
+}

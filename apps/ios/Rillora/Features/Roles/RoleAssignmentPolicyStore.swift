@@ -15,6 +15,7 @@ final class RoleAssignmentPolicyStore {
     private(set) var state: RoleAssignmentPolicyState = .idle
     private(set) var assignments: [RoleAssignment] = []
     private(set) var notice: String?
+    private(set) var needsReload = false
 
     private let service: any RoleAssignmentEditing
 
@@ -38,10 +39,13 @@ final class RoleAssignmentPolicyStore {
     }
 
     func reload() async {
+        guard !isBusy else { return }
         let previousState = state
         state = .loading
         do {
             assignments = try await service.fetchRoleAssignments()
+            if needsReload { notice = nil }
+            needsReload = false
             state = .loaded
         } catch is CancellationError {
             state = previousState
@@ -91,7 +95,7 @@ final class RoleAssignmentPolicyStore {
     }
 
     func revoke(_ assignment: RoleAssignment) async -> Bool {
-        await mutate {
+        await mutate(removingID: assignment.publicId) {
             try await service.revokeRoleAssignment(
                 publicID: assignment.publicId,
                 expectedVersion: assignment.version
@@ -108,17 +112,35 @@ final class RoleAssignmentPolicyStore {
     }
 
     private func mutate(
+        removingID: String? = nil,
         _ operation: () async throws -> RoleAssignmentMutationResult
     ) async -> Bool {
+        guard !isBusy else { return false }
         let previousAssignments = assignments
         state = .working
         notice = nil
         do {
             let result = try await operation()
-            assignments = try await service.fetchRoleAssignments()
+            // Keep the acknowledged write even if the subsequent list read fails.
+            if let saved = result.assignment {
+                if let index = assignments.firstIndex(where: { $0.publicId == saved.publicId }) {
+                    assignments[index] = saved
+                } else { assignments.append(saved) }
+            } else if let removingID {
+                assignments.removeAll { $0.publicId == removingID }
+            }
+            do {
+                assignments = try await service.fetchRoleAssignments()
+                needsReload = false
+            } catch {
+                needsReload = true
+                notice = String(localized: "Role policy saved. Reload to check the latest records.")
+                state = .loaded
+                return true
+            }
             notice = result.invalidatedDisclosureRehearsalCount > 0
-                ? "Role policy saved. Earlier disclosure rehearsals are now stale."
-                : "Role policy saved. No invitation or authority was created."
+                ? String(localized: "Role policy saved. Earlier disclosure rehearsals are now stale.")
+                : String(localized: "Role policy saved. No invitation or authority was created.")
             state = .loaded
             return true
         } catch is CancellationError {

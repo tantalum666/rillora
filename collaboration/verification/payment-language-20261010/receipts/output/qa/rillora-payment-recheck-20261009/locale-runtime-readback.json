@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-09T16:49:19.909097+00:00",
+  "phase": "locale",
+  "services": [
+    {
+      "stack": "RilloraStaging",
+      "desired": 1,
+      "running": 1,
+      "health": "HEALTHY",
+      "rollout": "COMPLETED",
+      "taskDefinition": "RilloraStagingApiTaskDefinitionF6347BA4:42",
+      "imageAsset": "929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "imageDigest": "sha256:c0a9fed0f42bde678f06a0d6046a21f3761683f59818a7cac0fac139ebae7fc6"
+    },
+    {
+      "stack": "RilloraProduction",
+      "desired": 1,
+      "running": 1,
+      "health": "HEALTHY",
+      "rollout": "COMPLETED",
+      "taskDefinition": "RilloraProductionRuntimeApiTask93405B31:20",
+      "imageAsset": "929a75e1b7d725935ff7153d779fe2bcf3f5dac3d8348bb015b12fe68979c818",
+      "imageDigest": "sha256:c0a9fed0f42bde678f06a0d6046a21f3761683f59818a7cac0fac139ebae7fc6"
+    }
+  ]
+}

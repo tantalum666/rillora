@@ -1,0 +1,9 @@
+file:///private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/artifacts/remediation/reset-remaining-five-test-schemas.mjs:11
+  if(row.db!==name||row.actor!=='tantalum'||row.address!=='127.0.0.1')throw Error('Unsafe fixture connection');
+                                                                            ^
+
+Error: Unsafe fixture connection
+    at file:///private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/artifacts/remediation/reset-remaining-five-test-schemas.mjs:11:77
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+
+Node.js v22.22.3

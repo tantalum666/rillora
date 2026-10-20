@@ -4,10 +4,24 @@ Role: public legal-page drafting and release gate
 Authority scope: Web Privacy Policy, Terms of Service, required factual inputs and publication status  
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
-Status: OWNER-APPROVED FORMAL ENGLISH RELEASE TEXT PUBLIC AT `LEGAL.RILLORA.XYZ`; CURRENT PUBLICATION IN HANDOFF; PRIOR ACCESS／DOMAIN／TLS／SEVEN-ROUTE EVIDENCE REMAINS DATED; GOOGLE OAUTH BRANDING SAVED UNDER `EXTERNAL / TESTING`; PRODUCT PRODUCTION／MARKET／BILLING GATES REMAIN OPEN WORK
-Last updated: 2026-09-30 (align September29 Sites10 receipt; no new publication or legal-body change)
+Status: COMPLETE CHINESE/ENGLISH TEXT PUBLISHED AND BROWSER VERIFIED
+Last updated: 2026-10-13 (Asia/Hong_Kong)
 
-## Current publication — Sites version10
+## October13 publication-shell notice removal
+
+Owner rejects the two appearance/language update boxes above Privacy/Cookies and selects removal rather than a replacement foldout. Only the LegalPublicationApp shell import/insertion is deleted; all seven accepted bodies, versions and the c983dc26 legal digest stay unchanged. Existing preference/storage facts remain on the website legal-information page. This is a presentation change, not a new agreement or data-processing policy.
+
+Source78f262a3a/CI148passes all three jobs. The existing rillora-legal-pages project now has successful production deployment e2d5857d-3bbf-441d-8d36-2b809a1b3271.191existing Web checks,8legal artifact checks,126self-contained package checks and50live HTTP checks pass; all18assets match. Actual390px/1440pxPrivacy, English/Chinese body comparison and language/legal navigation pass, with zero notice boxes or added foldouts. Only extension-origin console warnings were observed. No API/native/client-consent rollout or TestFlight follows. [Focused result](legal-page-layout-20261013.md).
+
+## Current language update and hosting
+
+The October8 Cloudflare Pages deployment replaced the legal hostname's Sites routing; it is the current host, not Sites10. Its seven-route/TLS/DNS evidence is retained in [the cutover record](dot-integration-20261008.md).
+
+Owner now explicitly requires full selected-language text and removal of English-prevails/reference framing. Seven Chinese documents match all60 English sections; translated wording does not create new product capabilities or change operator facts. Terms changes to terms-2026-10-09-1 and clickwrap to registration-clickwrap-2026-10-09-1; the unchanged substantive Privacy policy keeps privacy-2026-09-15-1. The published bilingual body hash isc983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb. Earlier accepted receipts remain immutable.
+
+Coordinated publication completed on October10: Cloudflare deployment e99e137f-d469-4452-b796-4844ee38fb8d, API/schema94, both hosted Actions and Web/native13 agree on the contract. Eight legal artifact checks,50 live HTTP checks,18 exact resources and14 actual bilingual document pages pass. Owner explicitly accepted these current terms for Preview and authorized the continuing Google login; historical receipts were not rewritten. The legal site stores no language preference: links carry onlyen/zh-CN, and the root preserves only that allowed enum. Required third-party licence originals remain separate. [Current execution and provider limits](payment-recheck-20261009.md).
+
+## HISTORICAL — Sites version10
 
 The September29 UI audit extended the appearance disclosure to both the public
 website and Web workspace. Sites10 succeeded from source

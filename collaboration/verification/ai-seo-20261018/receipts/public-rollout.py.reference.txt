@@ -1,0 +1,151 @@
+"""Scoped, resumable public-site rollout. No application stack or account mutation."""
+from pathlib import Path
+import copy, datetime, hashlib, json, os, subprocess, sys, urllib.request, zipfile
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+PRIVATE = ROOT / '.local-secrets/ai-seo-20261018'
+ARTIFACT = ROOT / 'apps/web/dist-public'
+STACK = 'RilloraPublicWeb'
+REGION = 'eu-central-1'
+DEPLOYMENT = 'PublicDeploymentCustomResource947B276F'
+FUNCTION = 'PublicRoutesC0C4D2B4'
+
+def read(path): return json.loads(path.read_text())
+def save(path, data): path.write_text(json.dumps(data, indent=2) + '\n')
+def aws(args, profile='rillora-cdk-deploy', env=None):
+    command = ['aws', *args, '--region', REGION, '--output', 'json']
+    if profile: command += ['--profile', profile]
+    result = subprocess.run(command, capture_output=True, text=True, env=env)
+    if result.returncode:
+        (PRIVATE / 'rollout-aws-error.txt').write_text(result.stderr)
+        raise RuntimeError('AWS operation failed; private diagnostic saved')
+    return json.loads(result.stdout) if result.stdout.strip() else {}
+def template():
+    value = aws(['cloudformation', 'get-template', '--stack-name', STACK, '--template-stage', 'Original'])['TemplateBody']
+    return json.loads(value) if isinstance(value, str) else value
+def stack(): return aws(['cloudformation', 'describe-stacks', '--stack-name', STACK])['Stacks'][0]
+def sha(data): return hashlib.sha256(data).hexdigest()
+def fetch(path):
+    with urllib.request.urlopen('https://www.rillora.xyz' + path, timeout=30) as response:
+        return response.read()
+def object_get(bucket, key, target):
+    target.parent.mkdir(parents=True, exist_ok=True)
+    aws(['s3api', 'get-object', '--bucket', bucket, '--key', key, str(target)], 'rillora-operator')
+    return target.read_bytes()
+def verify_artifact(marker):
+    assert read(ARTIFACT / 'public-build.json') == marker
+    for path, digest in marker['files'].items(): assert sha((ARTIFACT / path).read_bytes()) == digest, path
+def changed(before, after):
+    assert set(before) == set(after)
+    assert all(before[k] == after[k] for k in before if k != 'Resources')
+    assert set(before['Resources']) == set(after['Resources'])
+    return sorted(k for k in before['Resources'] if before['Resources'][k] != after['Resources'][k])
+
+action = sys.argv[1]
+final = read(QA / 'cdk.out/RilloraPublicWeb.template.json')
+marker = read(ARTIFACT / 'public-build.json')
+verify_artifact(marker)
+
+if action == 'plan':
+    identity = aws(['sts', 'get-caller-identity'], 'rillora-operator')
+    assert identity['Account'] == '133857166372' and identity['Arn'].endswith('/rillora-operator')
+    before_stack = stack(); assert before_stack['StackStatus'] == 'UPDATE_COMPLETE'
+    before = template()
+    assert before == read(ROOT / 'output/qa/rillora-public-discovery-rollout-20261016/final-public-template.json'), 'Unexpected live drift'
+    assert changed(before, final) == sorted([DEPLOYMENT, FUNCTION])
+    save(PRIVATE / 'public-stack-before.json', before_stack)
+    save(QA / 'before-template.json', before)
+    bucket = next(o['OutputValue'] for o in before_stack['Outputs'] if o['OutputKey'] == 'BucketName')
+    old_marker = json.loads(object_get(bucket, 'public-build.json', QA / 'before-public-build.json'))
+    assert old_marker['htmlSha256'] == read(ROOT / 'output/qa/rillora-public-discovery-rollout-20261016/root-object-readback/public-build.json')['htmlSha256']
+    old_source = before['Resources'][DEPLOYMENT]['Properties']
+    rollback = PRIVATE / 'public-rollback.zip'
+    object_get(old_source['SourceBucketNames'][0], old_source['SourceObjectKeys'][0], rollback)
+    with zipfile.ZipFile(rollback) as archive:
+        for path, digest in old_marker['files'].items(): assert sha(archive.read(path)) == digest, path
+    staged = copy.deepcopy(final)
+    staged['Resources'][FUNCTION]['Properties']['AutoPublish'] = False
+    new_pages = sorted(p for p in marker['files'] if p.startswith('pages/') and p not in old_marker['files'])
+    assert len(new_pages) == 8
+    staged['Resources'][DEPLOYMENT]['Properties'].update(Exclude=['*'], Include=['assets/*', *new_pages])
+    save(QA / 'staged-template.json', staged)
+    save(QA / 'final-template.json', final)
+    save(QA / 'rollout-plan.json', {'time': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+         'stack': STACK, 'changedResources': [DEPLOYMENT, FUNCTION], 'rollbackArtifactVerified': True,
+         'previousFiles': len(old_marker['files']), 'newFiles': len(marker['files']), 'localizedPages': len(marker['pages']),
+         'stageOnlyNewAssetsAndEightNewPages': True, 'existingPagesHeldUntilFinalSwitch': True,
+         'newPageFiles': new_pages, 'customerStackChanges': False})
+    print('Exact source plan and rollback verified')
+
+elif action == 'prepare-stage':
+    assert template() == read(QA / 'before-template.json')
+    assets = read(QA / 'cdk.out/RilloraPublicWeb.assets.json')['files']
+    asset = next(v for v in assets.values() if v.get('displayName') == 'PublicDeployment/Asset1')
+    destination = next(iter(asset['destinations'].values()))
+    source = QA / 'cdk.out' / asset['source']['path']
+    assert read(source / 'public-build.json') == marker
+    bundle = PRIVATE / 'public-candidate.zip'
+    with zipfile.ZipFile(bundle, 'w', zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(source.rglob('*')):
+            if path.is_file(): archive.write(path, path.relative_to(source).as_posix())
+    with zipfile.ZipFile(bundle) as archive:
+        assert set(archive.namelist()) == set(marker['files']) | {'public-build.json'}
+        for path, digest in marker['files'].items(): assert sha(archive.read(path)) == digest
+    role = destination['assumeRoleArn'].replace('${AWS::Partition}', 'aws')
+    credentials = aws(['sts', 'assume-role', '--role-arn', role, '--role-session-name', 'rillora-public-seo-20261018', '--duration-seconds', '900'], 'rillora-operator')['Credentials']
+    env = os.environ.copy()
+    env.pop('AWS_PROFILE', None); env.pop('AWS_DEFAULT_PROFILE', None)
+    env.update(AWS_ACCESS_KEY_ID=credentials['AccessKeyId'], AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'], AWS_SESSION_TOKEN=credentials['SessionToken'])
+    aws(['s3api', 'put-object', '--bucket', destination['bucketName'], '--key', destination['objectKey'], '--body', str(bundle)], None, env)
+    env.clear(); credentials.clear()
+    name = 'rillora-seo-20261018-stage'
+    result = aws(['cloudformation', 'create-change-set', '--stack-name', STACK, '--change-set-name', name,
+                  '--change-set-type', 'UPDATE', '--template-body', 'file://' + str(QA / 'staged-template.json'), '--capabilities', 'CAPABILITY_IAM'])
+    save(QA / 'stage-reference.json', result)
+    print('Candidate source uploaded and staging change set prepared')
+
+elif action in ['execute-stage', 'execute-live']:
+    phase = action.removeprefix('execute-')
+    reference = read(QA / (phase + '-reference.json'))
+    result = aws(['cloudformation', 'describe-change-set', '--stack-name', STACK, '--change-set-name', reference['Id']])
+    assert result['Status'] == 'CREATE_COMPLETE' and result['ExecutionStatus'] == 'AVAILABLE'
+    changes = [v['ResourceChange'] for v in result['Changes']]
+    assert {v['LogicalResourceId'] for v in changes} == {DEPLOYMENT, FUNCTION}
+    assert all(v['Action'] == 'Modify' and v.get('Replacement') in ['False', 'Conditional'] for v in changes)
+    assert all(v.get('Replacement') == 'False' for v in changes if v['LogicalResourceId'] != DEPLOYMENT)
+    save(QA / (phase + '-review.json'), {'changes': changes, 'nonPublicResourcesChanged': False})
+    aws(['cloudformation', 'execute-change-set', '--stack-name', STACK, '--change-set-name', reference['Id']])
+    print(phase + ' execution accepted; completion must be read separately')
+
+elif action == 'check-stage':
+    current = stack(); assert current['StackStatus'] == 'UPDATE_COMPLETE'
+    assert current['Outputs'] == read(PRIVATE / 'public-stack-before.json')['Outputs']
+    assert template() == read(QA / 'staged-template.json')
+    old = read(QA / 'before-public-build.json')
+    bucket = next(o['OutputValue'] for o in current['Outputs'] if o['OutputKey'] == 'BucketName')
+    for key in ['public-build.json', 'index.html', 'sitemap.xml', 'robots.txt']:
+        data = object_get(bucket, key, QA / 'stage-root-readback' / key)
+        assert json.loads(data) == old if key == 'public-build.json' else sha(data) == old['files'][key]
+    checked = []
+    for page in old['pages']:
+        assert sha(fetch(page['path'])) == old['files'][page['file']], page['path']
+    for key, digest in marker['files'].items():
+        if key.startswith('assets/') or key in read(QA / 'rollout-plan.json')['newPageFiles']:
+            assert sha(object_get(bucket, key, QA / 'stage-object-readback' / key)) == digest
+            checked.append(key)
+    fn = final['Resources'][FUNCTION]['Properties']['Name']
+    aws(['cloudfront', 'get-function', '--name', fn, '--stage', 'LIVE', str(QA / 'stage-live-function.js')], 'rillora-operator')
+    assert (QA / 'stage-live-function.js').read_text() == read(QA / 'before-template.json')['Resources'][FUNCTION]['Properties']['FunctionCode']
+    save(QA / 'stage-verified.json', {'passed': True, 'oldPagesUnchanged': len(old['pages']), 'rootAndDiscoveryUnchanged': True,
+         'newAssetsAndPagesVerified': len(checked), 'liveFunctionUnchanged': True, 'outputsUnchanged': True})
+    print('Staged objects verified; all 20 old pages and live routing unchanged')
+
+elif action == 'prepare-live':
+    assert read(QA / 'stage-verified.json')['passed']
+    assert template() == read(QA / 'staged-template.json')
+    result = aws(['cloudformation', 'create-change-set', '--stack-name', STACK, '--change-set-name', 'rillora-seo-20261018-live',
+                  '--change-set-type', 'UPDATE', '--template-body', 'file://' + str(QA / 'final-template.json'), '--capabilities', 'CAPABILITY_IAM'])
+    save(QA / 'live-reference.json', result)
+    print('Final public switch prepared')
+else: raise SystemExit('Unknown scoped rollout action')

@@ -6,8 +6,15 @@ import parseForwarded from "forwarded-parse";
 type RateLimitRequest = Pick<Request, "headers" | "ip" | "socket">;
 
 export function createRateLimitKeyGenerator(trustedProxyHops: number) {
+  if (trustedProxyHops !== 0 && trustedProxyHops !== 1) {
+    throw new Error('Only the reviewed single-hop AWS HTTP API proxy contract is supported');
+  }
   return (request: RateLimitRequest): string => {
-    const fallback = request.ip || request.socket.remoteAddress || "unknown";
+    // AWS HTTP API appends its authoritative final Forwarded entry. If that
+    // reserved-header contract is missing/malformed, never fall back to an
+    // independently supplied X-Forwarded-For value through Express request.ip.
+    const fallback = trustedProxyHops > 0 ? request.socket.remoteAddress || 'unknown'
+      : request.ip || request.socket.remoteAddress || 'unknown';
     const forwarded = request.headers.forwarded;
     if (trustedProxyHops <= 0 || typeof forwarded !== "string") {
       return ipKeyGenerator(fallback);

@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-10T11:15:44.772642+00:00",
+  "workflow": "Continuation of final Rillora launch; Owner selected remaining item3",
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "priorFocusedRead": "output/qa/rillora-payment-recheck-20261009/reading.json",
+  "focusedRead": [
+    "AGENTS.md full",
+    "docs/product.md1-48",
+    "docs/handoff.md full",
+    "docs/decision-log.md latest45lines",
+    "docs/release-readiness.md current section retained",
+    "docs/production-recovery-20260923.md full",
+    "docs/recovery-control-journal.md1-157; truncated tail115-157 re-read",
+    "tools/release/recovery_drill.py1-212",
+    "tools/release/run_recovery_task.py1-158",
+    "apps/api/src/recovery-commerce-admin.ts1-39",
+    "apps/api/src/recovery-commerce-readers.ts full",
+    "apps/api/src/recovery-commerce.ts full",
+    "apps/api/src/stripe-recovery-financial-state.ts full",
+    "apps/api/src/stripe-sdk.ts full",
+    "apps/api/tests/recovery-commerce.integration.test.ts full",
+    "apps/api/tests/recovery-permission-history.integration.test.ts full",
+    "infra/aws/lib/rillora-production-runtime.ts full",
+    "infra/aws/lib/rillora-production-stack.ts80-156",
+    "infra/aws/test/rillora-production-stack.test.ts full"
+  ],
+  "exclusions": "Generated evidence/archive caches retained as dated evidence; no re-scan of project-owned Markdown required for continuing workflow",
+  "auth": "AWS original session actually expired; aws login reused existing browser session and returned exact original scoped operator without Owner intervention",
+  "work": "Source recovery env missing Stripe integration proven by current ECS metadata and one red infra assertion; no Stripe permission/key creation. Only exact existing secret Get/Describe for isolated recovery role planned."
+}

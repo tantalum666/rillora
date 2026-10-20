@@ -1,0 +1,19 @@
+The following is a diff from the previous accessibility tree for Window: "Rillora-Device-Purchase-Fix-20261006" with ~ and + representing changed and added elements, respectively. Removed elements are summarized by ID range.
+Removed element IDs: 35-38
+~		34 back button Description: Rillora Preview, ID: BackButton, Secondary Actions: Cancel
++		35 heading Description: Purchase layout, Secondary Actions: Cancel
++		36 container Secondary Actions: Cancel
++			37 text Description: Local fixture · No purchase or charge, Secondary Actions: Cancel
++			38 switch Description: Large text, Value: 0, ID: preview.apple-large-text, Secondary Actions: Cancel
++			39 pop up button Description: 币种、USD, ID: preview.apple-currency, Secondary Actions: Cancel
++			40 text Description: 家庭版 · 年付、USD $119.99, Secondary Actions: Cancel
++			41 text Description: 最多与 5 人持续共享 · 共同复核, Secondary Actions: Cancel
++			42 text Description: 订阅同意内容以英文显示，并以英文原文为准。, Secondary Actions: Cancel
++			43 switch Description: I agree to the subscription terms and yearly renewal at USD $119.99. I can cancel in Apple Settings., Value: 0, ID: apple-purchase.consent, Secondary Actions: Cancel
++			44 button Description: 服务条款, Secondary Actions: Cancel
++			45 button Description: 隐私, Secondary Actions: Cancel
++			46 button Description: 退款, Secondary Actions: Cancel
++			47 button (disabled) Description: 通过 Apple 订阅, ID: apple-purchase.subscribe, Secondary Actions: Cancel
++			48 button Description: 恢复购买, ID: apple-purchase.restore, Secondary Actions: Cancel
++		49 element Description: 币种、USD, Secondary Actions: Cancel
+The focused UI element is 0 standard window Rillora-Device-Purchase-Fix-20261006 – iOS 26.5, Secondary Actions: Raise

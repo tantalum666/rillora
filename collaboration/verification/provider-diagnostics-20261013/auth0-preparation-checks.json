@@ -1,0 +1,21 @@
+{
+  "checkedAt": "2026-10-13T15:50:57.197872+00:00",
+  "command": "python3 -m unittest discover -s tools/auth0 -p test_preparation_guards.py -v",
+  "returncode": 0,
+  "testMethods": 7,
+  "newFailureMatrix": {
+    "theme": [
+      "existing",
+      "confirmed absent"
+    ],
+    "templateStatuses": [
+      402,
+      403,
+      404,
+      503
+    ],
+    "remoteWrites": 0
+  },
+  "providerCallsIntercepted": true,
+  "noLiveProviderMutation": true
+}

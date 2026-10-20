@@ -4,14 +4,16 @@ options:
   bundleIdPrefix: com.rillora
   createIntermediateGroups: true
   deploymentTarget:
-    iOS: "17.0"
+    iOS: "17.4"
   xcodeVersion: "26.0"
+  developmentLanguage: en
 
 settings:
   base:
     SWIFT_VERSION: "6.0"
     SWIFT_STRICT_CONCURRENCY: complete
     ENABLE_USER_SCRIPT_SANDBOXING: true
+    SWIFT_EMIT_LOC_STRINGS: true
 
 packages:
   Auth0:
@@ -34,6 +36,8 @@ targets:
     sources:
       - path: ../../config/provider-guides.json
         buildPhase: resources
+      - path: ../../config/disclosure-copy.json
+        buildPhase: resources
       - path: Rillora
       - path: StoreKit/Rillora.storekit
         buildPhase: resources
@@ -47,6 +51,9 @@ targets:
       path: Rillora/Resources/Info.plist
       properties:
         CFBundleDisplayName: Rillora
+        ITSAppUsesNonExemptEncryption: false
+        CFBundleLocalizations: [en, zh-Hans]
+        UIPrefersShowingLanguageSettings: true
         UILaunchScreen:
           UIColorName: LaunchBackground
         UISupportedInterfaceOrientations:
@@ -65,6 +72,7 @@ targets:
         RilloraAuth0Domain: $(RILLORA_AUTH0_DOMAIN)
         RilloraAuth0ClientID: $(RILLORA_AUTH0_CLIENT_ID)
         RilloraAuth0Audience: $(RILLORA_AUTH0_AUDIENCE)
+        RilloraPasswordResetConnection: $(RILLORA_PASSWORD_RESET_CONNECTION)
         RilloraNativeSessionURL: $(RILLORA_NATIVE_SESSION_URL)
         RilloraAppleSignInEnabled: $(RILLORA_APPLE_SIGN_IN_ENABLED)
         RilloraGoogleNativeSignInEnabled: $(RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED)
@@ -105,6 +113,7 @@ targets:
           RILLORA_AUTH0_DOMAIN: "login.rillora.xyz"
           RILLORA_AUTH0_CLIENT_ID: "HDfmJrHaM08lDAgsygPm7b5OB1aaUhrZ"
           RILLORA_AUTH0_AUDIENCE: "urn:rillora:api"
+          RILLORA_PASSWORD_RESET_CONNECTION: "Username-Password-Authentication"
           RILLORA_NATIVE_SESSION_URL: "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/auth/native/session"
           RILLORA_APPLE_SIGN_IN_ENABLED: "YES"
           RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED: "NO"
@@ -120,6 +129,7 @@ targets:
           RILLORA_AUTH0_DOMAIN: "login.rillora.xyz"
           RILLORA_AUTH0_CLIENT_ID: "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
           RILLORA_AUTH0_AUDIENCE: "urn:rillora:production:api"
+          RILLORA_PASSWORD_RESET_CONNECTION: "Username-Password-Authentication"
           RILLORA_NATIVE_SESSION_URL: "https://app.rillora.xyz/api/auth/native/session"
           RILLORA_APPLE_SIGN_IN_ENABLED: "NO"
           RILLORA_GOOGLE_NATIVE_SIGN_IN_ENABLED: "NO"
@@ -151,6 +161,8 @@ targets:
       path: RilloraComponentPreview/Info.plist
       properties:
         CFBundleDisplayName: Rillora Preview
+        CFBundleLocalizations: [en, zh-Hans]
+        UIPrefersShowingLanguageSettings: true
         UILaunchScreen:
           UIColorName: LaunchBackground
         UIUserInterfaceStyle: Dark

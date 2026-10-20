@@ -28,7 +28,7 @@ struct SimulationView: View {
                 } label: {
                     HStack {
                         if simulationStore.isRunning { ProgressView() }
-                        Label(simulationStore.isRunning ? "Checking plan…" : "Run rehearsal", systemImage: "play.fill")
+                        Label(simulationStore.isRunning ? String(localized: "Checking plan…") : String(localized: "Run rehearsal"), systemImage: "play.fill")
                             .frame(maxWidth: .infinity)
                     }
                 }
@@ -45,18 +45,18 @@ struct SimulationView: View {
             }
 
             Section {
-                RilloraInfoDisclosure("Simulation only") {
+                RilloraInfoDisclosure(String(localized: "Simulation only")) {
                     Text(simulationStore.selectedLifeEvent.explanation)
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     RilloraFactStrip([
-                        .init(title: "No contact", systemImage: "envelope"),
-                        .init(title: "No release", systemImage: "lock.shield"),
-                        .init(title: "No legal authority", systemImage: "building.columns"),
+                        .init(title: String(localized: "No contact"), systemImage: "envelope"),
+                        .init(title: String(localized: "No release"), systemImage: "lock.shield"),
+                        .init(title: String(localized: "No legal authority"), systemImage: "building.columns"),
                     ])
                     if case .completed(let simulation) = simulationStore.state {
-                        LabeledContent("Notifications", value: "None sent")
-                        LabeledContent("Data release", value: "None")
-                        Text("Policy \(simulation.policyVersion) · counts only")
+                        LabeledContent(String(localized: "Notifications"), value: String(localized: "None sent"))
+                        LabeledContent(String(localized: "Data release"), value: String(localized: "None"))
+                        Text(L10n.format("Policy %1$@ · counts only", simulation.policyVersion))
                             .font(.footnote).foregroundStyle(RilloraTheme.muted)
                     }
                 }
@@ -66,17 +66,17 @@ struct SimulationView: View {
         .rilloraStructuredList()
         .listSectionSpacing(18)
         .rilloraFocusedTask()
-        .navigationTitle("Rehearsal")
+        .navigationTitle(String(localized: "Rehearsal"))
         .navigationBarTitleDisplayMode(.inline)
         .animation(reduceMotion ? nil : .easeOut(duration: 0.22), value: simulationStore.state)
         .alert(
-            "Simulation not completed",
+            String(localized: "Simulation not completed"),
             isPresented: Binding(
                 get: { if case .failed = simulationStore.state { true } else { false } },
                 set: { if !$0 { simulationStore.clearFailure() } }
             )
         ) {
-            Button("OK", role: .cancel) { simulationStore.clearFailure() }
+            Button(String(localized: "OK"), role: .cancel) { simulationStore.clearFailure() }
         } message: {
             if case .failed(let message) = simulationStore.state { Text(message) }
         }
@@ -102,7 +102,7 @@ private struct SimulationResultSection: View {
 
     var body: some View {
         VStack(spacing: 18) {
-            Label("Rehearsal recorded", systemImage: "checkmark.circle.fill")
+            Label(String(localized: "Rehearsal recorded"), systemImage: "checkmark.circle.fill")
                 .font(.subheadline.weight(.semibold))
                 .foregroundStyle(RilloraTheme.tabSelection)
             if dynamicTypeSize.isAccessibilitySize {
@@ -119,9 +119,9 @@ private struct SimulationResultSection: View {
 
     private var metrics: some View {
         Group {
-            metric("Matters", symbol: "doc.text", count: simulation.snapshot.matterCount)
-            metric("Directions", symbol: "arrow.triangle.branch", count: simulation.snapshot.outcomeCount)
-            metric("People", symbol: "person.2", count: simulation.snapshot.trustedContactCount)
+            metric(String(localized: "Matters"), symbol: "doc.text", count: simulation.snapshot.matterCount)
+            metric(String(localized: "Directions"), symbol: "arrow.triangle.branch", count: simulation.snapshot.outcomeCount)
+            metric(String(localized: "People"), symbol: "person.2", count: simulation.snapshot.trustedContactCount)
         }
     }
 
@@ -133,6 +133,6 @@ private struct SimulationResultSection: View {
         }
         .frame(maxWidth: .infinity)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("\(count) \(title.lowercased())")
+        .accessibilityLabel(L10n.format("%1$lld %2$@", count, title))
     }
 }

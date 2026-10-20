@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomUUID } from 'node:crypto';
 import { beforeAll, afterAll, describe, it, expect } from 'vitest';
 import request from './http-fixture.js';
@@ -9,18 +10,19 @@ import { currentLegalContract } from '../src/legal-contract.js';
 import { verifiedAuthenticationTime, type ExternalIdentity, type AuthorizationIntent } from '../src/identity.js';
 import { expandsSharing } from '../src/recent-authentication.js';
 
-const url='postgresql:///rillora_recent_auth_test';
+const url = dedicatedTestDatabaseUrl('postgresql:///rillora_recent_auth_test', 'rillora_recent_auth_test');
 const config=loadConfig({NODE_ENV:'test',DATABASE_URL:url,REQUIRE_RECENT_AUTHENTICATION:'true',
   CORS_ORIGINS:'http://localhost:4173',WEB_APP_ORIGIN:'http://localhost:4173',
   OIDC_ISSUER_URL:'https://identity.example',OIDC_CLIENT_ID:'fixture-web',
   OIDC_CLIENT_SECRET:'synthetic-test-credential-only',OIDC_REDIRECT_URI:'http://localhost:4173/auth/callback',
   NATIVE_OIDC_CLIENT_ID:'fixture-native',OIDC_API_AUDIENCE:'urn:fixture:recent-auth'});
-const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true};
+const acceptance={...currentLegalContract,acceptedTerms:true,acknowledgedPrivacy:true,acceptedElectronicRecords:true} as const;
 let pool:DatabasePool;
-function fixture(authenticatedAt:Date|null=null) {
-  const owner:ExternalIdentity={issuer:'https://identity.example',subject:`auth0|${randomUUID()}`,displayName:'Synthetic planner',locale:'en',authenticatedAt,authenticationMethods:['pwd']};
+function fixture(authenticatedAt:Date|null=null, webOrigin?:string) {
+  const owner:ExternalIdentity={issuer:'https://identity.example',subject:`auth0|${randomUUID()}`,displayName:'Synthetic planner',locale:'en',authenticatedAt,authenticationMethods:['pwd'],legalAcceptance:acceptance};
   let who=owner;let intent:AuthorizationIntent|undefined;
-  const app=createApp(pool,config,{
+  const applicationConfig=webOrigin ? {...config,oidc:{...config.oidc!,webAppOrigin:webOrigin,redirectUri:`${webOrigin}/auth/callback`}} : config;
+  const app=createApp(pool,applicationConfig,{
     nativeIdentityVerifier:{async verifyAccessToken(){return who;}},
     identityProvider:{async createAuthorizationUrl(transaction,value){intent=value;return new URL(`https://identity.example/authorize?state=${transaction.state}`);},async exchangeAuthorizationCode(){return who;}},
   });
@@ -33,14 +35,36 @@ async function web(f:ReturnType<typeof fixture>) {
   const start=await request(f.app).post('/auth/start').send({intent:'signin',legalAcceptance:acceptance}).expect(201);
   const state=new URL(start.body.authorizationUrl).searchParams.get('state');
   const result=await request(f.app).get(`/auth/callback?state=${state}&code=synthetic`).set('Cookie',start.headers['set-cookie']!).expect(303);
-  const cookies=(result.headers['set-cookie'] as unknown as string[]).filter(value=>!value.startsWith('continuity_auth_tx='));
-  const csrf=cookies.find(value=>value.startsWith('continuity_csrf='))!.split(';')[0]!.split('=')[1]!;
+  const cookies=(result.headers['set-cookie'] as unknown as string[]).filter(value=>! /^(?:__Host-)?continuity_auth_tx=/.test(value));
+  const csrf=cookies.find(value=> /^(?:__Host-)?continuity_csrf=/.test(value))!.split(';')[0]!.split('=')[1]!;
   const session = await request(f.app).get('/v1/session').set('Cookie', cookies).expect(200);
-  return {cookies, csrf, planner: session.body.plannerPublicId};
+  return {cookies, csrf, planner: session.body.plannerPublicId,transactionCookies:start.headers['set-cookie'] as unknown as string[]};
 }
 describe.sequential('Recent identity authentication without replaying the sensitive action',()=>{
-  beforeAll(async()=>{await runMigrations(url);pool=createPool(config);});
+  beforeAll(async()=>{await assertDedicatedTestDatabase(url, 'rillora_recent_auth_test');
+    await runMigrations(url);pool=createPool(config);});
   afterAll(async()=>{await pool?.end();});
+  it.each([
+    ['http://localhost:4173', false], ['https://acceptance.example.test', true], ['https://localhost:4173', true],
+  ] as const)('keeps the %s cookie policy through sign-in, reauthentication and both logout paths', async (origin, secure) => {
+    const f=fixture(new Date(),origin),session=await web(f);
+    const hasSecure=(value:string)=>/;\s*Secure(?:;|$)/.test(value);
+    for (const cookie of [...session.transactionCookies,...session.cookies]) {
+      expect(hasSecure(cookie)).toBe(secure);
+      expect(cookie.startsWith('__Host-')).toBe(secure);
+    }
+    const headers={'x-csrf-token':session.csrf,'x-rillora-planner':session.planner};
+    const renewed=await request(f.app).post('/auth/reauthenticate').set('Cookie',session.cookies).set(headers).send({}).expect(201);
+    expect((renewed.headers['set-cookie'] as unknown as string[]).every(value=>hasSecure(value)===secure)).toBe(true);
+    const logout=await request(f.app).post('/v1/auth/logout').set('Cookie',session.cookies).set(headers).send({}).expect(204);
+    expect((logout.headers['set-cookie'] as unknown as string[]).every(value=>hasSecure(value)===secure)).toBe(true);
+    await request(f.app).get('/v1/session').set('Cookie',session.cookies).expect(401);
+    const next=await web(f);
+    const logoutAll=await request(f.app).post('/v1/auth/logout-all').set('Cookie',next.cookies)
+      .set({'x-csrf-token':next.csrf,'x-rillora-planner':next.planner}).send({}).expect(200);
+    expect((logoutAll.headers['set-cookie'] as unknown as string[]).every(value=>hasSecure(value)===secure)).toBe(true);
+    await request(f.app).get('/v1/session').set('Cookie',next.cookies).expect(401);
+  });
   it('never substitutes token issue time and rejects invalid/future auth_time',()=>{
     expect(verifiedAuthenticationTime(undefined)).toBeNull();
     for (const value of [NaN,Infinity,-1,0,123.5,Date.now(),String(Date.now())]) expect(verifiedAuthenticationTime(value)).toBeNull();
@@ -50,7 +74,7 @@ describe.sequential('Recent identity authentication without replaying the sensit
     for(const time of [null,new Date(Date.now()-11*60_000)]) {
       const f=fixture(time),token=await native(f),headers={Authorization:`Bearer ${token}`};
       await request(f.app).get('/v1/overview').set(headers).expect(200);
-      for(const path of ['/account/map/export','/account/map/import','/account/delete','/exports/start-here/printable','/exports/start-here/encrypted/prepare','/sharing/connections']) {
+      for(const path of ['/account/map/export','/account/map/import','/account/delete','/exports/start-here/printable','/exports/start-here/encrypted/prepare',`/exports/start-here/encrypted/${randomUUID()}/finalize`,'/sharing/connections','/sharing/invitations/accept']) {
         const response=await request(f.app).post(`/v1${path}`).set(headers).send({}).expect(403);
         expect(response.body.error.code).toBe('reauthentication_required');
       }
@@ -59,7 +83,7 @@ describe.sequential('Recent identity authentication without replaying the sensit
   });
   it('guards the actual handlers under both prefixes, case variants and trailing slashes', async () => {
     const paths = ['/account/map/export', '/account/map/import', '/account/delete',
-      '/exports/start-here/printable', '/exports/start-here/encrypted/prepare', '/sharing/connections',
+      '/exports/start-here/printable', '/exports/start-here/encrypted/prepare', `/exports/start-here/encrypted/${randomUUID()}/finalize`, '/sharing/connections', '/sharing/invitations/accept',
       `/sharing/connections/${randomUUID()}/link`, `/sharing/connections/${randomUUID()}/live`];
     for (const time of [null, new Date(Date.now() - 11 * 60_000), new Date()]) {
       const f = fixture(time), token = await native(f);

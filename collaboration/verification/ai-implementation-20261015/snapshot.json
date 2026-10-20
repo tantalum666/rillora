@@ -1,0 +1,39 @@
+{
+  "capturedFrom": "2026-10-15T16:15:57.772268+00:00",
+  "capturedThrough": "2026-10-15T16:15:58.523801+00:00",
+  "workFiles": 1057,
+  "uniqueRawObjects": 507,
+  "workBytes": 43170399,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-040.tar.zst.age",
+      "sha256": "c9e95f158213e596ac8a8b38d3f79288244c249f200e18bc13f483266d9d2b29",
+      "bytes": 8802787,
+      "plainBytes": 18105504,
+      "uniqueObjects": 507
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/ai-implementation-20261015/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials_and_authentication_material_never_published"
+    },
+    {
+      "path": "archives001-039",
+      "reason": "previous_immutable_archives_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "node_modules_and_.local_caches",
+      "reason": "reproducible_dependencies_and_SSR_source_stage_not_deliverables"
+    },
+    {
+      "path": "output/qa/rillora-ai-implementation-20261015/publication",
+      "reason": "capture_and_fresh_download_cache"
+    }
+  ],
+  "selection": "New local next-version QA: successes, failures, screenshots, tested builds, sample platform packages and exact compiled API/public/legal fixture artifacts. No provider credential, private user data or current release build selected.",
+  "boundary": "Local source/artifact preservation only. No cloud runtime/identity/data/pricing/sales/AppReview/TestFlight change, actual external OAuth or directory release. Old1-39immutable. Late source/CI/remote receipts follow as normal metadata without resealing."
+}

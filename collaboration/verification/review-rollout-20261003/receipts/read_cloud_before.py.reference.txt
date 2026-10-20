@@ -1,0 +1,14 @@
+from pathlib import Path
+import subprocess,json,concurrent.futures
+q=Path(__file__).resolve().parent
+stacks=['RilloraProduction','RilloraProductionWeb','RilloraPublicWeb']
+def read_stack(name):
+ results={}
+ for operation in ['describe-stacks','get-template']:
+  r=subprocess.run(['aws','cloudformation',operation,'--stack-name',name,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json','--no-cli-pager'],capture_output=True,text=True)
+  if r.returncode:raise RuntimeError(name+' '+operation+': '+r.stderr[:500])
+  value=json.loads(r.stdout);(q/(name+'-before-'+operation+'.json')).write_text(json.dumps(value,indent=2)+'\n');results[operation]=value
+ stack=results['describe-stacks']['Stacks'][0]
+ return {'stack':name,'status':stack['StackStatus'],'outputs':len(stack.get('Outputs',[]))}
+with concurrent.futures.ThreadPoolExecutor(max_workers=3) as e:
+ for item in e.map(read_stack,stacks):print(json.dumps(item))

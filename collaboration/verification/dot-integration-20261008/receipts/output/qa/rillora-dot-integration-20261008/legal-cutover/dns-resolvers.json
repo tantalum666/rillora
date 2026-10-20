@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-08T03:19:07.137809+00:00",
+  "authoritativeNameservers": [
+    "ns73.domaincontrol.com.",
+    "ns74.domaincontrol.com."
+  ],
+  "answers": [
+    {
+      "resolver": "ns73.domaincontrol.com.",
+      "exit": 0,
+      "answer": "; <<>> DiG 9.10.6 <<>> @ns73.domaincontrol.com. legal.rillora.xyz CNAME +noall +answer +time=3 +tries=1\n; (1 server found)\n;; global options: +cmd\nlegal.rillora.xyz.\t600\tIN\tCNAME\trillora-legal-pages.pages.dev."
+    },
+    {
+      "resolver": "ns74.domaincontrol.com.",
+      "exit": 0,
+      "answer": "; <<>> DiG 9.10.6 <<>> @ns74.domaincontrol.com. legal.rillora.xyz CNAME +noall +answer +time=3 +tries=1\n; (1 server found)\n;; global options: +cmd\nlegal.rillora.xyz.\t599\tIN\tCNAME\trillora-legal-pages.pages.dev."
+    },
+    {
+      "resolver": "1.1.1.1",
+      "exit": 0,
+      "answer": "; <<>> DiG 9.10.6 <<>> @1.1.1.1 legal.rillora.xyz CNAME +noall +answer +time=3 +tries=1\n; (1 server found)\n;; global options: +cmd\nlegal.rillora.xyz.\t599\tIN\tCNAME\trillora-legal-pages.pages.dev."
+    },
+    {
+      "resolver": "8.8.8.8",
+      "exit": 0,
+      "answer": "; <<>> DiG 9.10.6 <<>> @8.8.8.8 legal.rillora.xyz CNAME +noall +answer +time=3 +tries=1\n; (1 server found)\n;; global options: +cmd\nlegal.rillora.xyz.\t599\tIN\tCNAME\trillora-legal-pages.pages.dev."
+    }
+  ]
+}

@@ -42,3 +42,18 @@ test('real invitations survive initial fragment entry, auth return and reload wi
     assert.equal(route({request:{uri,method:'GET'}}).statusCode,404);
   }
 });
+
+
+test('only exact MCP discovery routes reach the uncached API and reject mutation methods', () => {
+  const paths = {
+    '/.well-known/oauth-authorization-server/api/ai/oauth': '/ai/oauth/.well-known/openid-configuration',
+    '/.well-known/openid-configuration/api/ai/oauth': '/ai/oauth/.well-known/openid-configuration',
+    '/.well-known/oauth-protected-resource/api/mcp': '/mcp/resource-metadata',
+  };
+  for (const [uri, target] of Object.entries(paths)) {
+    for (const method of ['GET', 'HEAD']) assert.equal(route({request:{uri,method}}).uri,target);
+    assert.equal(route({request:{uri,method:'POST'}}).statusCode,405);
+    assert.equal(route({request:{uri:uri+'/extra',method:'GET'}}).statusCode,404);
+  }
+  assert.equal(route({request:{uri:'/.well-known/oauth-authorization-server',method:'GET'}}).statusCode,404);
+});

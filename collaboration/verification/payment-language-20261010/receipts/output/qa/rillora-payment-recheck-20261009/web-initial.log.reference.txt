@@ -1,0 +1,76 @@
+TAP version 13
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 1 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 88.113542
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 2 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.341625
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 3 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.119916
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 4 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.112458
+  type: 'test'
+  ...
+# Subtest: test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+ok 5 - test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+  ---
+  duration_ms: 0.280541
+  type: 'test'
+  ...
+# Subtest: Family benefits remain visible when their catalog enforcement becomes included
+ok 6 - Family benefits remain visible when their catalog enforcement becomes included
+  ---
+  duration_ms: 0.138875
+  type: 'test'
+  ...
+# Subtest: actual Family component shows factual product features without promising planned access
+ok 7 - actual Family component shows factual product features without promising planned access
+  ---
+  duration_ms: 541.07
+  type: 'test'
+  ...
+# Subtest: purchase consent is current, annual, separate and never inferred from an unchecked box
+ok 8 - purchase consent is current, annual, separate and never inferred from an unchecked box
+  ---
+  duration_ms: 0.822041
+  type: 'test'
+  ...
+# Subtest: billing redirects require production response, provider host and server entitlement boundary
+ok 9 - billing redirects require production response, provider host and server entitlement boundary
+  ---
+  duration_ms: 0.230042
+  type: 'test'
+  ...
+# Subtest: provider returns enter account access and discard untrusted session/payment parameters
+ok 10 - provider returns enter account access and discard untrusted session/payment parameters
+  ---
+  duration_ms: 0.674458
+  type: 'test'
+  ...
+# Subtest: production checkout uses authenticated CSRF POST, independent proof and the same retry key
+ok 11 - production checkout uses authenticated CSRF POST, independent proof and the same retry key
+  ---
+  duration_ms: 38.142166
+  type: 'test'
+  ...
+1..11
+# tests 11
+# suites 0
+# pass 11
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 788.423916

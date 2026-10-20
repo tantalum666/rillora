@@ -1,0 +1,67 @@
+{
+  "capturedFrom": "2026-10-12T16:32:25.266828+00:00",
+  "capturedThrough": "2026-10-12T16:32:25.715577+00:00",
+  "workFiles": 256,
+  "uniqueRawObjects": 164,
+  "workBytes": 65765809,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-035.tar.zst.age",
+      "sha256": "9e3680fa687ff3b68b3fd90b744702017f2b4eff2ec3af865dd3df3e14eeb856",
+      "bytes": 35554938,
+      "plainBytes": 38755880,
+      "uniqueObjects": 164
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/plan-purchase-page-20261012/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials_real_account_or_system_authentication_screenshots_provider_bodies"
+    },
+    {
+      "path": "old_archives_001_to_034",
+      "reason": "immutable_previous_evidence_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/publication",
+      "reason": "reproducible_capture_and_download_cache"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraStaging-assembly/asset.ac31dcfb519a4edc9e6c7c6af263a19983e1c19e26167a6c1cd19cce91ac3ad9",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraProductionWeb-assembly/asset.ede4a3c8de271c411a93c542bf250a6e4f4be3e0640f501a12a691c58a1af983",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-plan-purchase-page-20261012/RilloraProductionWeb-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    }
+  ],
+  "selection": "New compact-plan QA including initial stale test assertions and corrected runs, CI failure log, reviewed runners, stack assemblies excluding expanded duplicate assets, final two Web builds and reviewed screenshots. Source and specifications remain normal Git.",
+  "boundary": "Single paid-plan card and explicit-click subscription flow; source759c00112. Actual Web deployment and file matching are separate receipts. No new provider payment/refund, native build/install, API migration, customer activation or TestFlight. Existing phone deferral and current Apple cross-client gaps remain. Remote/final receipts follow without recursive archives."
+}

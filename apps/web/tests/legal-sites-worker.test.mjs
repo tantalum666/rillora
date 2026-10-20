@@ -46,6 +46,13 @@ test("serves only allowlisted legal routes through the app shell", async () => {
   assert.equal(response.headers.get("cache-control"), "public, max-age=300, must-revalidate");
 });
 
+test("preserves only a supported language at the legal-site root", async () => {
+  for (const [query, expected] of [["?lang=zh-CN&private=discard", "?lang=zh-CN"], ["?lang=en", "?lang=en"], ["?lang=unknown", ""]]) {
+    const response = await worker.fetch(new Request(`https://legal.example.test/${query}`), { ASSETS: assets().binding });
+    assert.equal(response.headers.get("location"), `https://legal.example.test/terms${expected}`);
+  }
+});
+
 test("rejects account, API, unknown and write routes", async () => {
   for (const request of [
     new Request("https://legal.example.test/account"),

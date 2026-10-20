@@ -1,0 +1,28 @@
+import pathlib,subprocess,json,datetime,copy,os
+R=pathlib.Path.cwd();Q=R/'output/qa/rillora-dot-rollout-20261007';P=R/'.local-secrets/dot-rollout-20261007'
+def aws(a):
+ r=subprocess.run(['aws',*a,'--profile','rillora-cdk-session','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=45)
+ assert r.returncode==0,'AWS verification failed; provider body suppressed'
+ return json.loads(r.stdout)
+s=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0]
+assert s['StackStatus']=='UPDATE_COMPLETE','Runtime update still in progress'
+o={x['OutputKey']:x['OutputValue'] for x in s['Outputs']};cluster=o['ClusterName'];service=next(v for k,v in o.items() if k.startswith('RuntimeApiServiceName'))
+sv=aws(['ecs','describe-services','--cluster',cluster,'--services',service])['services'][0]
+new=aws(['ecs','describe-task-definition','--task-definition',sv['taskDefinition']])['taskDefinition'];old=aws(['ecs','describe-task-definition','--task-definition','RilloraProductionRuntimeApiTask93405B31:14'])['taskDefinition']
+keys=['family','taskRoleArn','executionRoleArn','networkMode','containerDefinitions','volumes','requiresCompatibilities','cpu','memory','runtimePlatform','ephemeralStorage']
+a=copy.deepcopy({k:old.get(k) for k in keys});b=copy.deepcopy({k:new.get(k) for k in keys});images=[];count=None
+for x,y in zip(a['containerDefinitions'],b['containerDefinitions']):
+ images.append(y['image']);x['image']=y['image'];olde={z['name']:z['value'] for z in x['environment']};newe={z['name']:z['value'] for z in y['environment']}
+ assert olde['PRODUCTION_REVIEW_EXPIRES_AT']=='2026-10-06T17:08:57Z'
+ assert newe['PRODUCTION_REVIEW_EXPIRES_AT']=='2026-10-08T20:00:00Z'
+ olde['PRODUCTION_REVIEW_EXPIRES_AT']=newe['PRODUCTION_REVIEW_EXPIRES_AT'];assert olde==newe
+ count=len(newe['PRODUCTION_REVIEW_IDENTITY_SHA256'].split(','));assert count==3;x['environment']=y['environment']
+assert a==b,'Unreviewed task change';assert len(sv['deployments'])==1 and sv['deployments'][0]['rolloutState']=='COMPLETED' and sv['runningCount']==sv['desiredCount']==1
+ids=aws(['ecs','list-tasks','--cluster',cluster,'--service-name',service])['taskArns'];assert len(ids)==1
+t=aws(['ecs','describe-tasks','--cluster',cluster,'--tasks',*ids])['tasks'][0];assert t['healthStatus']=='HEALTHY' and t['taskDefinitionArn']==sv['taskDefinition']
+assert images[0].endswith(':3a0e033942aa93b43adaf602931eb15817ca092b949fcac3eee7d5e2e63d59b3')
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stackStatus':s['StackStatus'],'desired':1,'running':1,'health':t['healthStatus'],'rollout':sv['deployments'][0]['rolloutState'],'taskDefinition':sv['taskDefinition'],'image':images[0],'imageDigest':t['containers'][0]['imageDigest'],'onlyTaskChanges':['application image','retained review expiry'],'rolesSecretsNetworkAndOtherEnvironmentUnchanged':True,'reviewIdentityCount':count,'expiresAt':'2026-10-08T20:00:00Z','productionTrafficReady':o['ProductionTrafficReady'],'schemaFloor':93,'schemaFloorEvidence':'retained successful0093migration and unchanged migration set; no migration executed this turn','migrationRun':False}
+(Q/'runtime-after.json').write_text(json.dumps(result,indent=2)+'\n')
+for name,data in [('production-after-runtime.json',new),('production-after-stack.json',s)]:
+ f=P/name;f.write_text(json.dumps(data));os.chmod(f,0o600)
+print(json.dumps(result))

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-20 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -2970,3 +2970,710 @@ unreachable release remains a different closed workflow. See [sharing contract](
   save existing public beta support information and accurate test instructions.
   This is Agent execution under current scope, not invented Owner visual approval,
   final declaration or review submission. [Evidence](independent-release-closeout-20261002.md).
+
+
+## 2026-10-02 — Strict whole-project review supersedes the parked release next step
+
+- Status: LOCKED
+- Scope: Current engineering workflow only.
+- Owner requests every project code file reviewed very carefully and problems repaired directly.
+- Continue code/correctness/security-boundary work under existing authorization; preserve current UI, price decisions, real data and FanPass. Personal consent, physical-device and merchant deferrals are not reopened.
+- Full Markdown reading, file-level review coverage, reproduced defects, fixes, tests and deployment remain distinct evidence. Initial repairs do not close the whole review or launch.
+- Evidence: [current review contract](code-review-20261002.md).
+
+## 2026-10-03 — Strict-review safety and preservation choices
+
+- Existing Owner authority covers28confirmed correctness/toolchain fixes; no new
+  UI direction, price, legal consent, billing activation or real-data decision.
+- Preserve all91applied migration bytes; implement permission-history and retention
+  serialization as0092/0093. Ambiguous legacy accepted-sharing history requires
+  quarantined reconciliation instead of inventing intermediate restriction evidence.
+- Bound uncertain ECS retries by exact request/token and fresh isolation/freeze
+  checks. Fixture mutation targets must be explicitly disposable/local, and native
+  matrix cleanup may affect only per-run created simulators.
+- Keep the CDK bundled advisory visible: latest upstream still contains it. Do not
+  substitute an ineffective update, suppressed audit or bespoke postinstall rewrite
+  for a genuine upstream fix. Direct source review is not the failed optional scan.
+- Save current source/tests/contracts and all eligible QA/build artifacts on the
+  strict-review branch under the standing all-work Git policy. Production rollout
+  remains separate from code review, CI and encrypted-original preservation.
+  [Full evidence and limits](code-review-20261002.md).
+
+## 2026-10-03 — Owner selects reviewed rollout and the new native candidate
+
+- Owner explicitly selects remaining packages1and2. Existing project authorization
+  applies to restricted deployment, new signed artifact/upload and bounded checks;
+  personal declarations, physical-device/merchant deferrals and public/live activation
+  remain distinct. Preserve identities, original review expiry, UI, prices and FanPass.
+- Agent uses a bounded0task maintenance window for0092/0093 so old/new permission
+  logic cannot overlap, then restores1healthy task. No data/network/key/secret resource
+  replacement or permission expansion is introduced; only expected image/count changes.
+- Build3has normal upload eligibility and no testers. Source/third-party/linked-framework
+  evidence supports Apple's OS-only encryption option. The final formal declaration
+  still awaits Owner action-time confirmation under the browser rule; no silent Save.
+- Existing full suites/CI47 are retained; actual new deployment/artifact evidence has
+  its own date. [Execution and proof](review-rollout-20261003.md).
+
+## 2026-10-03 — Owner confirms the specific native3OS-only encryption declaration
+
+- Owner explicitly confirms提交这份声明 for the prepared1.0(3)option excluding
+  proprietary and non-OS standard algorithms. The technical basis is the current
+  CryptoKit/Security/HTTPS implementation and linked dependency inventory.
+- Save completed and Apple's build list now shows准备提交. This is the specific
+  App Store Connect documentation declaration, not a blanket legal clearance or
+  a statement that Rillora has no encryption. No other personal/store declaration
+  or market/price decision is implied.
+- Record the same non-exempt-encryption=false Info.plist metadata for future builds;
+  all other plist values and runtime cryptography stay unchanged. Reassess if the
+  crypto/dependency basis changes. Existing build3uses the saved portal record and
+  is not rebuilt/re-uploaded. No tester invite, review submission or physical use.
+
+## 2026-10-04 — Owner resumes real two-platform core acceptance
+
+- Owner explicitly selects the remaining real Web/native core journeys after the
+  completed deployment/build packages. Continue existing controlled identities and
+  synthetic test content, restoring authentication only on actual signed-out state.
+- Preserve existing completed mail/reset/invitation evidence and the original review
+  identity/expiry restriction. Physical-device purchase and merchant deferrals remain.
+- Update the older installed simulator app to reviewed-source Release for acceptance,
+  preserving data/Keychain. It is not another store upload or physical-device result.
+- Account deletion must use a deliberately disposable identity, never the Owner's
+  Gmail/QQ records. Personal terms and any irreversible final UI action retain their
+  action-time rules. [Current evidence](real-core-acceptance-20261004.md).
+
+
+## 2026-10-04 — Bounded disposable acceptance and observed native export repair
+
+- Preserve the original three review identities and expiry. Add exactly one isolated,
+  unverified disposable identity for actual delete acceptance, then restore the three;
+  no new connection binding, false verification/consent, public access or live billing.
+- Fix the observed native competing-alert defect under existing direct-repair authority.
+  Preserve draft state only for the exact recent-auth error and require explicit retry.
+  No new product/price/crypto decision is introduced. Focused red/green and actual
+  saved-file-to-Web-decrypt evidence support the fix; build3predates it and a new
+  signed candidate is needed. [Current acceptance](real-core-acceptance-20261004.md).
+
+
+## 2026-10-05 — Owner confirms disposable Web terms and actual SSO choice is repaired
+
+- Owner explicitly says确认，继续工作 in reply to the pending isolated-account Web
+  terms confirmation. Proceed with that exact identity/terms; the irreversible final
+  deletion still has its separate action-time rule.
+- Actual ordinary sign-in reused the old QQ SSO identity before any import/delete.
+  Under existing direct-repair authority, request the already-supported account
+  selection option from intentional Account signin/signup. Preserve active Rillora
+  sessions, layout, legal versions, provider settings and all data; no tenant-wide
+  SSO disablement or public access expansion. Verify the real deployed choice.
+
+
+## 2026-10-05 — Owner retains the isolated account and defers actual deletion
+
+- At the prepared final account-deletion dialog, Owner explicitly chooses保留，暂不删除.
+  Keep that Auth0 identity and its1synthetic matter/1person/1role. No deletion request
+  or provider user deletion is submitted. This supersedes executing the prepared purge.
+- Agent cancels the final dialog, clears the confirmation, verifies retained data and
+  ends the test session. Restore the original three expiring review identities as
+  bounded test cleanup; this is reversible access restriction, not account deletion.
+  Runtime13and Auth0 readbacks match the original set/expiry, with one healthy task
+  and unchanged application image, roles, network and secret references.
+- Actual import and Web recent-auth retry are verified. Deletion remains unverified
+  and Owner-deferred, alongside the existing physical-device/merchant deferrals.
+  Do not automatically reopen any of those decisions or call the complete launch ready.
+
+## 2026-10-05 — Chinese UI explicitly includes native iOS
+
+- Status: LOCKED
+- Scope: Owner-requested Chinese interface includes the shipping native SwiftUI app.
+- Evidence: Owner明确「不只是做web哦，ios也要做」。
+- Decision: preserve English and add Simplified Chinese with Apple String Catalogs,
+standard system/per-app language selection and shared Web/native terminology.
+- Supersedes: treating a Web-only localization delivery as completing this request.
+- Does not imply: translation of operative legal texts/provider-controlled content,
+market/price changes, compilation, deployment, store upload or public release.
+- Implementation: [native contract](native-localization-20261005.md); isolated source
+branch, static checks and explicit Mac acceptance gate.
+
+## 2026-10-05 — Maintainable Chinese Web interface
+
+- Owner explicitly requests a Chinese interface, direct implementation and Git push, with maintainable code.
+- Implement Simplified Chinese plus English for Web/app and public website on 2cc95f77, using central semantic catalogs/context, browser preference, explicit choice handoff and Intl formatting. Future Traditional Chinese can be a separate catalog; none is claimed now.
+- Preserve English operative legal content/digests, provider/hosted-auth/transaction-mail/native scopes, user data, API/permission enums, markets and actual currency/amount. Locale is presentation only.
+- Implementation/local testing and Git/CI readback are distinct from rendered acceptance and deployment. Browser sockets/cloud preview are blocked; no actual responsive/keyboard screenshot pass or production release is claimed.
+- [Contract](web-localization-20261005.md), [QA](qa/chinese-web-20261005/README.md).
+
+## 2026-10-05 — 保存 AI/MCP 接口预留方案，实施仍为提案
+
+- Status: LOCKED（本轮文档与 Git 交付范围）；技术分期与接口设计为 PROVISIONAL。
+- Scope: 未来用户通过 AI 使用 Rillora 的接口准备与工程交接。
+- Decision: Owner 提出需预留 AI 接口，并明确要求“整理好也推到git去”。保存[AI/MCP 计划](architecture/ai-mcp-plan-20261005.md)，将版本化领域 API、MCP 适配与公开目录分开；不新增当前首发阻塞项。
+- Evidence: 本轮 Owner 的两条直接请求；当前官方资料及 strict-review 源码映射记录在计划中。
+- Supersedes: 无；不取代已锁定的地图/密码边界、共享权限、加密、当前真实核心验收或发布门。
+- Does not imply: 技术方案已经实现、MCP 已部署、AI 数据披露已获用户同意、公开目录审核通过，或允许创建凭据/配置身份/提交发布。
+- Implementation impact: 后续按计划 C0–C6 独立接手；建议先规划者只读、再独立草稿与可信确认写入。实际实现前重新核对授权、源码和平台规则。
+
+## 2026-10-05 — Follow Dot branches without reopening superseded personal gates
+
+- Owner asks to follow GitHub progress. Consolidate the four dated Dot tips on a new
+integration branch based on03c97fc; retain the latest account-choice/export repairs,
+Owner keep-account decision and original-three cleanup evidence.
+- Resolve current documentation by preserving both additive decision/journey records
+and archiving branch-specific handoffs. No old pending deletion step regains authority.
+- Apply narrow reproduced focus/status/date/email fixes and Notes disclosure clarity
+under standing repair authorization; no new permission level, pricing, layout direction
+or legal consent. Optional AI/MCP/Events remains PROPOSAL, with no runtime work.
+- Source integration/local tests are distinct from restricted deployment/store upload.
+[Scope and evidence](qa/dot-followup-20261005/README.md).
+
+
+## 2026-10-05 — Owner requests careful Chinese product copy
+
+- Owner explicitly asks to scrutinize Chinese wording during Dot integration. Review
+both actual Web and native catalogs in full,not only translation completeness.
+- Agent adopts plain你voice,shared terminology,clear action/status copy and explicit
+Notes/key/copy/legal boundaries. Export instructions are distinct from quick start.
+Separate native Contact name from matterNamewhile keeping its English displayName.
+- No new price,entitlement,legal text,market,provider or user-data decision. Exact copy
+is an Agent editorial choice under this scope,not claimed individual Owner approval.
+[Copy contract and coverage](chinese-copy-guidelines-20261005.md).
+
+## 2026-10-05 — Owner selects packages1/2 and prioritizes Stripe Web
+
+- Complete bilingual/remaining UX acceptance and corresponding restricted rollout/new
+nativecandidate. Payment acceptance priority is StripeWebbeforeApplephysicaltransactions.
+- Preserve prior actual StripeTESTresults at their old price and fixture scope;do not
+mislabel them current88.99signed-inbrowser orlivecharge acceptance.
+- Default project authorization continues. Physicalphone/account-deletion/merchant fact
+choices are not silently reopened;provider authentication only on observed expiry.
+[Execution contract](release-12-stripe-20261005.md).
+
+## 2026-10-06 — Rillora-only TEST CLI approval and current-price acceptance
+
+- Owner explicitly completed the new Rillora CLI device authorization after the earlier
+code expired. Scope is only the existing Rillora account/testmode; no FanPass/live grant.
+Reusing this valid credential needs no repeated login request. Existing restricted TEST
+key was reused without new permission or key creation.
+- Current88.99hosted browser/TEST lifecycle is executed under the selected payment scope.
+Synthetic cookie identity/consent is labelled; human consent, live money, cloud live
+callbacks and a complete accounting ledger are not inferred from it.
+- Agent fixes observed native AX5 label/scroll issues within standing repair scope and
+uses only task-created simulators for actual OS-language acceptance. No new UI direction,
+price, sharing permission or data policy. Existing deletion/phone/merchant deferrals remain.
+- New1.0(5) retains the previously approved OS-only declaration because cryptography has
+not changed. Upload is authorized distribution preparation, not App Review or public release.
+
+## 2026-10-06 — Owner resumes physical-device and configuration work
+
+- Owner explicitly requests starting physical-device acceptance and release configuration,
+then reconnects/unlocks the previously paired phone and chooses direct on-phone operation.
+This supersedes the physical-device deferral. Do not take over iPhone Mirroring.
+- Resume investigating and preparing Apple/Stripe configuration, using truthful existing
+facts. The request supplies no missing merchant/tax/banking values and is not a final
+legal attestation, live-charge completion or permission to fabricate them.
+- Retain the explicit keep-account decision; no irreversible QA-account deletion.
+Reuse processed build5/current deployments and completed TEST evidence. Send a TestFlight
+invitation only after the specific recipient/action is explicitly authorized.
+[Current scope](device-config-20261006.md).
+
+## 2026-10-06 — Final Apple price, scoped invitations and Stripe activation
+
+- Owner reiterates that68was rejected, then explicitly selects Apple USA USD119.99/year.
+Web USD88.99 and annual-only Family-v2 remain. Retire68for new review quotes; retain
+historical immutable amounts/receipts. Synchronize actual Apple price and versioned
+server binding before any next Sandbox purchase. SBP15%is not inferred from this price.
+- Owner explicitly authorizes invitations to the three named inboxes, clarifies the
+existing Apple holder address, then defers the two external invitations at their contact
+step. The internal holder invite/install continues; no App Store Connect roles granted.
+- Owner explicitly approves reusing X identity/bank details for Rillora, and personally
+submits Stripe's final account/terms form. Shared legal-entity website edits are cancelled
+after Stripe warns they affect linked accounts. Only Rillora account-level descriptor/
+product/support-display settings are changed; FanPass is preserved.
+- Fix the observed missing-app-receipt recovery under standing repair authority. Explicit
+Restore may refresh AppTransaction and prompt Apple authentication; startup stays silent,
+only verified production/sandbox environments are accepted, and account-generation guards
+remain. Tests/builds are not a completed physical purchase/restore claim.
+
+
+## 2026-10-06 — Rillora Live access and backend credential approval
+
+- Owner completed the prepared Rillora-only Live plugin authorization. Actual connector
+readback includes the same Rillora account in both TEST and Live; no FanPass grant.
+- Owner then explicitly approved the separate production billing runtime key with only
+Customers/Checkout Sessions/Customer Portal write and9specified verification reads,
+and protected local/AWS Secrets Manager storage. This authorizes the concrete key,
+not arbitrary financial operations or broader permissions. Stripe additionally requires
+an emailed identity-verification link; that provider step is pending, not a new permission request.
+- No sales-tax registration or reviewed-no-collection policy is approved by the Owner's
+question about identity numbers. A missing Stripe Tax registration is not itself proof
+that registration is required, or that no collection is needed. Use actual market facts.
+
+
+## 2026-10-06 — Owner switches phone acceptance to Mirroring
+
+Owner now explicitly asks Agent to inspect through iPhone Mirroring, superseding the
+earlier direct-phone-only preference for this acceptance. Observe/control the existing
+app; do not change the main Apple/media account or unrelated phone settings. Owner
+personally completes the actual Apple password prompt. Verified Sandbox identification
+is observed afterward; history sync failure remains a separate unresolved result.
+
+## 2026-10-06 — Explicit currency and consistent Apple checkout quote
+
+Owner confirms the Sandbox purchase succeeded, then explicitly requests currency
+prefixes and agreement between the in-app quote and Apple's final payment sheet.
+The observed app quote was AUD199.99; signed server evidence confirms the purchase
+was HKG/HKD888.00. Preserve the authoritative receipt and active test subscription.
+The old AUD preflight is already closed/canceled by reconciliation, not rewritten.
+Fix price/consent presentation and the launch-time freshness gap around cached
+StoreKit products; reuse the existing storefront-change mechanism rather than
+creating another payment flow. No new price decision or live charge is authorized.
+
+## 2026-10-07 — Owner simplifies the Apple purchase page
+
+- Owner explicitly rejects visible Large text test controls and an extra subscription
+checkbox. Present the real Family differences, explicit currency/full annual amount and
+one purchase button. Keep concise renewal/cancellation disclosure and policy links by
+the button; Apple owns final payment confirmation. Restore remains a secondary action.
+- This supersedes the earlier native unchecked-toggle presentation. The explicit button
+tap accepts its captured, displayed quote; loading a page does not record consent. The
+existing semantic acceptance contract and legal document versions are unchanged. Account
+registration clickwrap is separate and unchanged; no checkbox is silently preselected.
+- Build7 is already uploaded/processed but is not distributed. Hold it and prepare build8
+with this requested flow. Preserve the verified HKD888 Sandbox subscription; no repeat
+purchase or account reset is needed for the layout fix.
+
+## 2026-10-07 — Owner requests cloud UX repairs and visible account identity
+
+Owner explicitly requests fixes to the native guide flash, redundant source links and guide acknowledgement; removes passive safety cards; moves licenses and language/appearance into secondary settings; limits visible session actions to current logout; distinguishes matter categories from optional recipient review. Home suggests concrete organization, not blanket review. This supersedes conflicting older UI placement requirements, not backend permissions, legal consent or raw status values.
+
+Both clients must show the current authenticated account. Use server-selected identity and transient verified email, never inferred email or stale cross-account content. Native password reset uses the existing public Auth0 database flow with explicit user submission. No provider/grant configuration, actual email, MFA/passkey enrollment or production deployment occurs. Unsupported account-security management is not represented by fake controls.
+
+Source and validation documentation are approved for isolated Git branches in tantalum666/rillora; no main merge or deployment. Preserve shared identity8cc5e100 and operator08afb382 purchase changes. Current cloud checks do not establish an Xcode build. See [native contract](native-ux-refinement-20261006.md).
+
+## 2026-10-07 — Owner authorizes reviewing, fixing and merging Dot delivery
+
+Owner explicitly asks to read the latest GitHub work, merge if sound and directly fix
+issues first. This supersedes the prior separate-cloud-branches/no-merge instruction
+for the three delivered identity/Web/native branches. Review against the latest active
+operator baseline, retain build8/prices/real data, and use necessary local validation.
+No provider settings, actual password reset mail, purchase, review-window extension or
+public release follows from a code merge. [Current scope](dot-integration-20261007.md).
+
+## 2026-10-07 — Owner authorizes deployment and the next release step
+
+- Status: LOCKED
+- Scope: deploy the reviewed Dot merge and continue release preparation.
+- Decision: Owner explicitly says “开始部署和下一步”; this supersedes the prior review-only
+  no-deployment boundary. Reuse exact-source validation and current credentials.
+- Implementation choice: Agent announced a bounded extension for the same three review
+  identities and existing planner Sandbox qualification to2026-10-08T20:00:00Z, under
+  retained release authorization. This timestamp is an Agent operational choice, not
+  a new Owner pricing/market/legal decision. No additional identity or security scope.
+- Does not imply: ordinary customer/Live sales activation, repeat purchase, deferred
+  account deletion/external invitations, invented business facts or App Review success.
+- Evidence: [reviewed deployment](dot-rollout-20261007.md), provider readbacks and signed9.
+
+## 2026-10-07 — Owner rejects the actual build9 plan/restore result
+
+Owner confirms1.0(9)and original matters on the phone, then reports the benefits/price are
+still absent and Restore opens Settings again. Treat this as failed actual acceptance and
+fix the subscriber/unavailable-quote branch; the approved simple plan page applies to the
+whole real flow, not just a nil-subscription preview. Existing subscribers keep the same
+benefits/current catalog view and an appropriate management action under the existing
+one-renewal-provider rule. No duplicate purchase or relaxed server verification follows.
+Owner explicitly chooses to operate the phone directly for this turn, superseding the
+prior mirroring preference for this acceptance. Provider build selection/installation,
+local correction/tests and actual restoration remain separate evidence.
+
+## 2026-10-08 — Owner chooses direct iPhone iteration and pauses incremental TestFlight distribution
+
+- Status: LOCKED
+- Scope: current native fixes and acceptance delivery.
+- Decision: continue resolving issues, install directly on Owner's phone, and batch
+  changes before a later TestFlight release. Prefer the already paired wireless path
+  when reachable; a cable is not inherently required for every install.
+- Supersedes: the previous per-fix TestFlight upload/distribution next step. Previously
+  uploaded/distributed builds remain dated evidence; do not revoke or re-upload them.
+- Does not imply: phone/account resets, data deletion, purchase bypass, new billing
+  activation, new store pricing, new testers or public release.
+- Implementation: local development export from the retained matching Release archive,
+  exact-device signing check, in-place com.rillora.ios installation and actual readback.
+
+## 2026-10-08 — Direct installation can use either a cable or Wi-Fi
+
+- Status: LOCKED
+- Scope: connection method for the current direct-device iteration.
+- Decision: Owner clarifies that wireless is not required; a cable is appropriate when
+  more convenient. Choose the available, reliable method without resetting the device.
+- Supersedes: treating the earlier wireless question as a requirement or a fixed priority.
+- Does not imply: resuming incremental TestFlight distribution or changing phone accounts.
+
+## 2026-10-08 — Refine the native Matters category presentation
+
+- Status: LOCKED
+- Scope: Owner rejects the crowded category block in the supplied physical-device screenshot.
+- Decision: improve that native category UI within the current product/brand and direct-install workflow.
+- Agent implementation choice: a single horizontally scrollable row, one soft selected background,
+  unchanged categories/search,44pt targets and selected accessibility traits. This is a reversible
+  scoped implementation, not Owner approval of a new global visual system.
+- Does not imply: changing category meaning, stored matters, plan prices, billing or TestFlight policy.
+
+## 2026-10-08 — Follow up Dot work and execute the legal hostname cutover
+
+- Status: LOCKED
+- Scope: review, directly fix and merge the newly delivered Dot branches; complete the legal hosting continuation.
+- Decision: after Agent identified the documented DNS deferral, Owner explicitly states “不是暂缓，是由你来执行”.
+  Agent now executes the Rillora legal CNAME step using existing GoDaddy/Cloudflare access, preserving content and TTL.
+- Supersedes: the earlier hosting handoff's pause on the Mac/GoDaddy step. No renewed approval is needed for this
+  concrete cutover; only actual provider-required authentication or higher-priority tool conditions can require Owner.
+- Boundaries: no mail/other-host DNS change, secret export, repeat same-version deployment, TestFlight distribution,
+  account deletion, live billing activation or FanPass operation. DNS application and actual TLS/page acceptance remain distinct.
+
+
+## 2026-10-09 — Owner requires actual Web delivery and then Stripe diagnosis
+
+- Status: LOCKED within the existing release scope.
+- Owner disputes the live www navigation and asks to check app.staging, then explicitly queues Gmail Stripe webhook diagnosis and Web checkout after current work.
+- Continue actual rollout/verification under retained authorization. A merge, old loopback TEST, or provider setup cannot replace live-file/UI/cloud-callback evidence.
+- Agent operational choices: apply only pending Preview migrations, retain the approved pinned CA bytes for reproducible images, retain nonlocal signed TEST events as needs_mapping, cancel the exact obsolete TEST monthly subscription and close its expired/unpaid reservation, then grant only the already observed Preview owner48hours of TEST checkout.
+- These choices do not change USD88.99/Apple119.99, historical paid records, ordinary/live billing, market eligibility, user consent, production review expiry, TestFlight pause or FanPass. Preview login is handed back only after actual401.
+- Evidence: [Web deployment](web-rollout-20261009.md) and [Stripe repair/remaining acceptance](stripe-webhook-20261009.md).
+
+
+## 2026-10-09 — Owner directs Live configuration without waiting for BR completion
+
+- Status: LOCKED within Rillora configuration/release preparation.
+- Owner explicitly says the registration is not urgent, refers to the one-month-after-commencement rule, and instructs Agent to configure directly.
+- Supersedes: treating completed BR or an unanswered general business-information question as a blocker to all further technical configuration.
+- Official IRD supports the stated timeframe for sole proprietorship/partnership and other specified business forms; incorporated companies use separate procedures. Do not invent commencement date, filed registration, tax exemption, headquarters or declarations.
+- Reuse the already approved Rillora Live account/catalog/Portal/webhook/scoped runtime credentials. Preserve TEST/Live separation, data, price, FanPass and provider-specific human steps. Actual customer opening/real charges remain independently evidenced actions.
+- [Current work and evidence](live-configuration-20261009.md).
+
+## 2026-10-09 — Correct the Agent-created Live payment testing prerequisite
+
+- Status: LOCKED by applicable provider testing rules, not a new Owner payment authorization.
+- Scope: Stripe release validation after Owner asks whether a real payment is returned or remains in Stripe.
+- Evidence: [Stripe testing](https://docs.stripe.com/testing) prohibits testing live mode using real payment details; [refunds](https://docs.stripe.com/refunds) describes explicit original-method refunds and retained processing fees.
+- Decision: withdraw the earlier Agent-created prelaunch real-money purchase/refund prerequisite. Reuse completed Sandbox lifecycle evidence and verify actual Live configuration, signatures and access boundaries. Observe legitimate customer payments/refunds when they occur; do not create merchant self-payments or artificial transactions for testing.
+- Does not imply: production checkout/tax readiness is complete, any Live money has moved, refunds are automatic/free, or Owner has instructed a charge/refund now.
+- Implementation impact: documentation/register/handoff only; no source, credentials, provider state, prices or real data changed.
+
+
+## 2026-10-09 — Owner requests consolidated phone delivery and another payment review
+
+- Status: LOCKED within current launch work.
+- Owner explicitly requests installing the fixed version on the original phone and rechecking Web/iOS purchase/refund flows because money handling matters.
+- This authorizes a fresh scoped review/test cycle; prior evidence remains dated and is not relabelled as new. Use Stripe TEST/Apple Sandbox, no artificial real-card Live charges.
+- Agent operational choice: renew only the existing three review identities and original Sandbox qualification to2026-10-11T14:00Z, preserving genuine consent and ordinary customer closure. Direct1.0(12) is a new development artifact; no incremental TestFlight.
+
+## 2026-10-09 — Owner requires complete selected-language presentation
+
+- Status: LOCKED for Web/iOS and their payment/consent/legal presentation.
+- Decision: selected Chinese displays Chinese; selected English displays English. Remove bilingual duplicate explanations, Chinese-reference wording and English-prevails presentation, including English-labelled legal links. Keep proper service names and user/provider-supplied original data where translation would alter identity or evidence.
+- Supersedes: earlier English-only consent with Chinese reference and language-boundary disclaimers for these controlled surfaces.
+- Does not imply: changing prices, bank details, jurisdiction facts or previously accepted receipts. Any actual document/consent version change must preserve historical evidence and be implemented consistently rather than silently changing a stored acceptance.
+- Evidence: Owner's current explicit instruction; implementation/validation recorded in the current payment recheck contract.
+
+## 2026-10-10 — Defer optional Stripe Tax automation; distinguish processor capability
+
+- Owner asks to leave Stripe tax configuration for later and points out that payments are already enabled. Treat this as a deferral of the Stripe Tax automation service, not a waiver of actual tax obligations.
+- Fresh Rillora Live readback confirms charges_enabled/payouts_enabled/details_submitted true, card_payments active, no currently_due/past_due fields and no disabled_reason.
+- Official Checkout creation documents automatic_tax as optional. Supersedes treating Tax Settings pending/head_office missing as a Stripe-imposed universal prerequisite for charging or for all launch work.
+- Rillora's independent new-sales switches and current explicit tax-strategy guard still exist. A deferred automation setup is not a fabricated reviewed_no_collection assessment, a checkout deployment, customer activation or payment instruction.
+- Preserve pricing, provider/account boundaries and remaining release work. Current execution continues independent financial recovery acceptance; do not re-create credentials/catalog or repeat purchases.
+
+## 2026-10-10 — Owner selects final safety and post-restore billing acceptance
+
+- Owner explicitly selects release item3: final artifacts, permission boundaries, rollback configuration and financial reconciliation after restoring old data.
+- Reuse previous foundation/release evidence; execute needed isolated verification and directly fix demonstrated gaps. A scoped disposable recovery target and temporary verified source quiescence are implementation choices within this work, not customer cutover.
+- Preserve real source data, pricing, FanPass, existing subscriptions, deferred Stripe Tax automation and incremental TestFlight pause. No artificial Live payment, account deletion or public support post follows.
+
+## 2026-10-11 — Owner selects remediation of the recent Rillora audit reports
+
+- Owner explicitly asks to fix the recent findings and clarifies that this means Rillora audit reports, not Codex/Daybreak tooling.
+- Supersedes the report-only restriction for these reported application findings and the old release-item2 next step. The paused deep scan is not resumed, and original export provenance is retained.
+- Agent choices: isolated branch at647317834, deduplicate73records into35boundaries, targeted fixes, synthetic/local verification, one fresh read-only investigator and one fresh read-only candidate reviewer. No pricing, data, ordinary sales, real payment, device installation or TestFlight change follows.
+- The candidate adds bounded work, explicit protected configuration and purpose-limited operations. Source/test changes and deployed results remain separate. Runtime-compromise and metadata risks are calibrated against existing trust contracts, not claimed fixed by unrelated endpoint repairs.
+- Automatic approval review specifically requires Owner confirmation for the explicit live configuration capability and the exact test-fixture scan registry update. These two drafts are pending, not new Owner approvals and not a revocation of the existing project authorization. See[the repair record](security-findings-remediation-20261011.md).
+
+## 2026-10-11 — Owner approves both precise security source operations
+
+- Owner answers “批准这项源码修复，线上保持原状” for the explicit live configuration branch, and “批准这些精确的测试夹具登记” for the reviewed scan registry proposal.
+- This authorizes applying those exact source/test changes; the prior automatic-review approval blockers are resolved. The current proposal's28entries are verified against their exact byte hashes, with mechanical line relocation only where the approved code moves an unchanged span.
+- No live runtime mode, customer opening, payment, provider setting, installation or deployment is authorized by this source-only confirmation. Preserve the online state explicitly.
+- Applied result: API495/495/typecheck/build and source scan32reviewed matches/0unknown. Continue Git preservation under the existing all-work authorization; do not request these two confirmations again.
+
+## 2026-10-11 — Owner requests code and tests for remaining groups31–35
+
+- Owner explicitly asks to fix all five remaining groups, complete code/tests first, keep online unchanged, then push the complete result to GitHub.
+- Supersedes the prior task boundary that only classified these stronger-compromise and metadata risks. Preserve their original report evidence and identify exact containment rather than promising protection from all host/API compromise.
+- Continue from b6f5b8c97 in the same attached security worktree. Necessary database authority, journal attestation, deletion-worker isolation, owner-scoped email matching and protected local-credential tooling are in scope.
+- No deployment, existing credential movement/rotation/deletion, real-account deletion, purchase/refund, phone/TestFlight delivery or restart of the paused scan follows from this source/test instruction.
+
+- Implementation result: groups31–35 have scoped code/local validation, source74a9c66ac, CI125 success and archive32 remote authenticated readback. The unchanged exact scan spans only move3line positions under the existing approval. Implementation choices and preservation receipts introduce no new price, market or deployment approval.
+
+## 2026-10-12 — Owner starts the coordinated security rollout
+
+- Owner explicitly requests deploying this security batch in the documented cutover order, preserving existing data, pricing and sales switches, with no TestFlight distribution.
+- Supersedes the source-only online-freeze instruction for this deployment task, not the closed customer/billing boundary or retained-account decision. Necessary scoped resource/key provisioning, compatible migrations, broker/worker isolation and validation are authorized; no new purchase/refund or blanket deletion follows.
+- Owner reiterates maximum default project authorization. Do not repeat already-covered confirmations; only actual provider-required personal interaction or higher-priority tool rules can require handoff.
+- Reuse74a9c66ac/CI125 and prior reading/evidence. Exact deployed state, new compatibility fixes and actual data/permission results must be recorded separately in the rollout contract.
+
+## 2026-10-12 — Restore the existing review window for actual native acceptance
+
+- Owner reported that the newly installed14could not enter the home screen, then clarified that the App showed service-not-open/login failure. The exact original review expiry, not installation or data loss, caused the server403.
+- Within the already authorized release acceptance, Agent renewed only the same3identity digests for48hours, to2026-10-14T12:01Z (Hong Kong20:01). API and Auth0 were read back separately; all other API environment fields, secrets, image, binding order and sales switches were preserved. No new identities or ordinary customer access were added.
+- Owner then confirmed entering the home screen and seeing original matters; the matching native client has fresh provider login/code-exchange records. HTTPS-only callback retirement followed delivery of signed14and association verification.
+- Owner completed the actual macOS nonsecret user-presence probe; all9supported local credential files were then encrypted and individually readback-verified. Provider keys, permissions, archive identity and FanPass were not changed. This is an operational follow-through under existing authorization, not a new pricing, purchase, market-opening or TestFlight decision.
+- GitHub current private-repository rules are not enforced on the present plan. No paid plan or organization transfer was authorized or performed; manual/source CI evidence does not substitute for that platform control.
+
+## 2026-10-12 — Owner resumes remaining native and cross-platform acceptance
+
+- Owner explicitly requests only remaining acceptance, reusing completed evidence, continuing independent work and keeping TestFlight paused.
+- After actual Mac authentication was required for iPhone Mirroring, Owner defers the phone step for this turn and asks to complete other checks. Owner separately restores the real production Web login. Neither action authorizes a new purchase, account deletion, hidden consent or claims of current physical-device verification.
+- The scoped correction removes a duplicated Web availability sentence; it preserves existing prices, data, sales controls and every server permission. This is an Agent implementation choice within the ongoing acceptance scope, not a new commercial or security-policy decision.
+
+## 2026-10-13 — Owner reiterates benefits, annual price and one subscription button
+
+- Owner explicitly rejects the incomplete Plan & access correction and asks for the paid plan, its price and a subscribe button. This supersedes Web's Free badge, included/expiry accordions, persistent refresh action and separate subscription-checkbox review step. Permanent Free capabilities themselves are unchanged.
+- Agent implements one paid-plan card and explicit-click acceptance beside renewal/cancellation/legal disclosures. The freshly checked immutable quote, idempotency, server-authoritative access and original renewal-provider management remain mandatory. No acceptance occurs on render or load.
+- This does not authorize ordinary sales activation, a price change, invented tax facts, new provider transactions, subscription resets, native reinstall or TestFlight. Current native Release already has the approved consumer presentation; Owner's deferred phone verification remains separate.
+- [Implementation and exact scoped evidence](plan-purchase-page-20261013.md).
+
+## 2026-10-13 — Owner removes tax strategy as the Web subscription prerequisite
+
+- Owner explicitly says “忽略掉计税策略” after the application-side sales blockers are explained. Stripe Tax remains disabled; do not require tax-policy setup or registrations before continuing this Web subscription work.
+- Agent implementation choice: explicit disabled mode, automatic_tax false, current annual8899USD unchanged. This is not a fabricated reviewed_no_collection assessment or a declaration of tax exemption. Existing merchant/environment/price/idempotency/consent/signature and single-renewal-provider checks stay in force.
+- Continue the concrete live runtime and catalog/sales/entitlement delivery work. Source readiness, actual provider settings, customer entry, financial behavior and TestFlight remain distinct; no TestFlight or artificial Live transaction follows. [Current implementation](web-billing-activation-20261013.md).
+
+## 2026-10-13 — Correct the identity cutover sequence before ordinary sales
+
+- Agent found the old Preview tenant-wide service issuers still active after enabling the production billing engine. The original identity retirement contract remains applicable; Owner's tax instruction does not waive it. Restored the exact original production review Action and closed only new-sales route/market, preserving existing entitlements, prices and records.
+- Disabled all grant types for the exact four old Preview clients; both old M2M credential exchanges now return403. Production client permissions/connections remain unchanged. Inert historical grant metadata is retained; no broader CLI scopes or account deletion were introduced.
+- The actual Management token lifetime remains86400seconds. Earliest ordinary activation is2026-10-13T20:20:46Z plus rounding to Hong KongOctober14 04:21, after a300second tolerance and a fresh negative check. No new Owner approval, Stripe Tax setup, real self-payment or TestFlight is required. This is an implementation correction under the existing security contract, not a new product/tax decision.
+
+## 2026-10-13 — Owner starts consolidated final readiness
+
+- Owner asks to move all remaining work to formal launch readiness, superseding the narrow wait-only next step. Continue independent Apple/native/store preparation while preserving the already measured identity-token deadline.
+- Existing no-per-fix TestFlight distribution, prices, real data, retained deletion account and FanPass constraints remain; no new self-payment or mass deletion is inferred. Reuse unchanged native14instead of rebuilding merely for a new turn.
+- Actual source currently omits Apple production runtime wiring and rejects the separately configured Apple review context in live mode. Reconcile this with the existing independent-context contract and Apple's Sandbox review requirement using explicit expiring review-account access; do not enable general development or old diagnostic test features. This is an implementation choice to satisfy the release goal; scope, negative checks and actual deployment must be recorded independently.
+
+- During this continuation, iPhone Mirroring actually required Mac user presence. Owner replied “现在不方便，先做其他工作”; defer that physical step for this turn and continue independent release work without another identical request. Existing14evidence remains valid at its original scope.
+
+- Owner subsequently confirms iPhone Mirroring is unlocked and available, superseding that temporary deferral. The original Google identity is reused; actual legal acceptance remains subject to the tool's action-time confirmation. Apple preparation covers the existing verified USA/HKG annual prices; the old nine-territory draft is not automatic sales approval and AUS retains its test evidence.
+
+
+## 2026-10-13 — Owner confirms current consent and formal store disclosures
+
+- Owner confirms the current native account Terms/Privacy/electronic-record action and later restores the actual Mac mirroring lock. The original Google account returns to its existing map; no new purchase or restoration is inferred.
+- Owner supplies the exact App Review contact phone for Apple; it is saved for that purpose and excluded from readable Git. Owner separately confirms publishing the concrete13-type privacy answers, and explicitly authorizes sending only the existing dedicated synthetic reviewer username/password to the App Store review form. Those actions are saved and independently re-opened; no personal account password is disclosed.
+- Agent implementation choice: Production Apple USA/HKGnew-sale routes are independently held while Production authorization returns401, preserving all Web prices/routes, markets, review enrollments and historical financial data. SuccessfulSandboxTESTdoes not waive the Production gate. Four production worker alarms and strict401health checks are deployed under existing scope.
+- English(U.S.) stays the primary store localization; separate Chinese copy/designs are added and current English Matters/home captures replace outdated imagery. App download price isfree, preparedApp/annualavailability isUSA/HKGonly, automatic territory expansion and unverifiedMac/Visionopt-ins are off. Existing18+service terms determine the age override. No TestFlight distribution or automatic release is authorized by these configuration changes.
+
+## 2026-10-13 — Owner authorizes the two provider follow-ups
+
+- Owner explicitly approves sending both reviewed drafts: a public Auth0 Community Free-template reset question and a private Apple Developer Support Production401 inquiry. Owner separately confirms the actual first-time community account Terms/Privacy/guidelines. Apple case102995248851 is received; Auth0 confirms one pending moderator-approved post. No paid plan, credential disclosure, Classic switch or duplicate question follows.
+- During store completeness preflight, the App14/annual/group packet entered actual waiting-for-review before intended final acceptance. Agent disclosed the premature state and withdrew it, preserving materials. Reload confirmsRemoved/DeveloperRejected, not an Apple review rejection. This is a corrective implementation action under the existing readiness scope; remaining dedicated-reviewer/device evidence is not waived and manual release/noTestFlightremain.
+- The mirroring process was later reopened and actually required Mac user presence. Owner replies “现在先完成其他收尾”; defer the remaining phone interactions for this turn, continue independent preservation/platform work, and do not ask again for the same system unlock.
+- Owner subsequently says the mirror is unlocked, superseding that temporary deferral. Continue remaining physical acceptance; actual mirroring input did not affect the phone UI despite successful connection/native launch. Record the tool limitation and request the specific manual legal-return operation, not another login or blanket approval.
+
+## 2026-10-13 — Remove duplicated legal-page settings notices
+
+- Owner reports that both native Terms and Privacy links open, and objects to the two boxes above Privacy. This confirms opening; the free-text reply does not explicitly attest returning to the same account.
+- Owner then asks to delete the two notices if separate display is unnecessary. This supersedes the Agent's unshipped footer-foldout proposal. Remove the duplicated appearance/language block from the legal publication shell without adding a replacement control.
+- Existing actual preference/storage facts remain on the live website legal-information page and the policy surfaces. Accepted bodies, versions, consent digest and processing behavior are unchanged. Publish only the existing legal Pages project after validation; do not rebuild/install iOS, change financial configuration or distribute TestFlight.
+
+## 2026-10-13 — Provider evidence corrects release order and Free login maintenance
+
+- Owner asks for the exact Auth0 page defect and durable maintenance, and permits closing the Apple inquiry if an explanation is found. The live Chinese login preview confirms three English shell phrases plus its English region label; no new credential or callback was submitted.
+- An Apple Commerce Engineer states Production API access requires a production release. This explains the current comparison sufficiently to remove Production200as a pre-submission gate, while retaining actual post-release validation before ordinary Apple sales. The exact approval/public-release boundary and account-specific post-release result remain unproven; no generic401Sandbox fallback is adopted.
+- Retain standard New Universal Login plus Free-supported branding and localized prompts as the maintainable target. The old locked shell is still live, and the public question is still pending. The documented official support escalation exists, but the current account exposes no Message control; no new private support message is claimed.
+- Fix the legacy full-template script to stop before remote writes when the existing template cannot be read, including a404after removal. Seven intercepted-provider checks pass. No live tenant/runtime/price change occurs.
+- After Owner restores the actually expired Apple Developer session, send a closure request in existing case102995248851. Apple acknowledges receipt in that case, but does not display Closed. No duplicate case or new TestFlight distribution follows. [Current evidence](provider-diagnostics-20261013.md).
+
+## 2026-10-14 — Owner defers Auth0 shell and prioritizes complete App Review preflight
+
+- Owner explicitly defers the current Auth0 outer-shell language/cosmetic issue and asks for a thorough second review of Apple submission material plus remaining independent launch work. This is a deferral, not a passed localization result or permission to alter authentication safeguards.
+- Reuse completed native14, financial, security and cloud evidence. Inspect actual Apple metadata and a usable dedicated reviewer path, correct real discrepancies, and keep manual release/no TestFlight. Do not guarantee Apple's review outcome or create redundant tests/support cases.
+- The previously measured Web identity-token deadline remains binding; complete independent preparation while it has not elapsed. [Current scope](app-review-preflight-20261014.md).
+
+## 2026-10-15 — Owner ends physical-device checks; complete independent launch work
+
+- Owner explicitly says “真机不用验证了”. Stop further physical-device verification. The prior explicit confirmation that legal navigation returns to the original account and matter is retained. Remaining unsubscribed-device and VoiceOver results are not fabricated or kept as a fresh participation requirement.
+- The dedicated synthetic reviewer has separately completed Web and native authentication under the current terms confirmation, then a Web-create / iOS-edit / fresh-Web-read round trip. One clearly labelled nonpersonal example remains for App Review. Passwords are unchanged; input-tool failures and simulator/store-binary evidence remain distinct.
+- Under the existing launch authorization, the expired identity window is closed by fresh four-client readback and two403denials. The prepared production consent Action is restored; only the original Web route and market sales flags are opened. Current USD88.99, disabled automatic tax and the separately closed Apple Production routes remain. No real payment or new TestFlight occurs.
+- Review notes now explain the optional passkey prompt and the synthetic example. Continue the three-item Apple submission after these checks, retain manual release and the post-release Production gate. This is not a guarantee of Apple approval.
+
+- After the final3-item validation, the preparedApp14/annual/group packet is intentionally submitted under the continuing release authorization. Apple receipt6537a10c-38f2-425e-8b8e-c76e5fa730b1shows all threeWaiting for Review atHong KongOctober15 09:49. This supersedes the earlier withdrawn packet as current review state; manual release remains and no monthly product is submitted.
+
+## 2026-10-15 — Owner starts cross-platform AI work for the next version
+
+- Owner asks to continue development while Apple review runs, put new capabilities in a subsequent version, and improve Rillora discovery/recommendation/use across AI products. The follow-up explicitly extends scope beyond two providers.
+- Preserve the submitted App14, existing production dependencies/data/prices/sales flags, manual release and no TestFlight. New work is isolated on codex/ai-discovery-vnext-20261015 from fec1ad3bc; the release worktree remains available.
+- [Current plan](architecture/ai-discovery-vnext-20261015.md) distinguishes public discovery, platform-directory distribution and authenticated tools. The earlier MCP proposal supplies permission boundaries; it is not an implemented service.
+- Agent recommendation: public-site discovery foundation first, a shared narrowly scoped read-only MCP next, then independently verified platform adapters/listings. This sequence and tool design are recommendations, not an assertion that Owner individually approved every future feature or provider grant.
+- Official research and four anonymous website reads are complete. New implementation, real AI connections, directory submissions and recommendation/conversion measurements remain unperformed. No guaranteed automatic recommendation or global compatibility claim.
+
+
+## 2026-10-16 — Owner authorizes next-version discovery and scoped MCP implementation
+
+- Owner explicitly directs implementation of the plan: public GEO/SEO first, MCP and multiple AI clients next, next-version delivery without disrupting current review, then GitHub publication. This supersedes the earlier documentation-only stage; it does not make undeployed work a customer feature.
+- Agent implements20 prerendered language pages and two original bilingual articles, retaining public/private boundaries and existing UI. Search indexing and AI recommendation measurements remain unperformed.
+- Agent chooses a narrow first integration: two read-only tools, up to20 selected matters,7-day scoped grants, ordinary selected-field updates readable, and permanent removal when made private/archived. Replacement needs fresh explicit consent and version checks. No generic REST bridge, model call, write/payment/export/release tools or first-party credential reuse.
+- Both runtime and UI flags default off. Isolated protocol/consent/recovery tests and five generated platform configurations are source evidence; independent provider OAuth/client acceptance, directory review and deployment remain required. CurrentApp14, production data, prices, sales controls and FanPass stay unchanged; noTestFlight.
+- Full regression identified the deletion worker's omitted journal permission after the new formatter. Append-only0105preserves the prior exact permission and closes the old formatter entry; no broad grant, checksum bypass or real database mutation. [Implementation and evidence](architecture/ai-discovery-implementation-20261015.md).
+
+
+## 2026-10-16 — Isolate current Codex packaging from the newer portable OAuth format
+
+- Continuing Owner-authorized cross-platform acceptance, the actual current Codex parser rejects portable server.extensions and silently omits the server after parsing the manifest. The official OpenAI guide still documents that OAuth extension location.
+- Preserve the documented portable package for compatible directory hosts and generate a separate current-Codex compatibility package; do not delete authentication, invent a successful universal-schema result, upgrade the user's desktop app or change global plugin configuration. Both outputs share the existing service and metadata.
+- Real local Codex/Gemini client discovery uses only signed synthetic identities. It does not close provider OAuth, model tool-selection, marketplace review or public deployment. Current review/runtime/data/prices remain unchanged; no new product or pricing decision is introduced.
+
+
+## 2026-10-16 — Keep real OAuth acceptance separate from production login connections
+
+- Auth0 administrative login is actually restored. Resource compatibility was already enabled; no tenant-wide toggle is changed. Prepare a purpose-tagged temporary public third-party client and dedicated900-second API within the existing free application limit.
+- The real provider rejects per-client binding for a third-party application. Keep its third-party classification and all existing production connections unchanged; choose an isolated synthetic domain-level database connection and explicit user-delegated API grant for acceptance. This is an Agent implementation choice within the authorized next-version test scope, not permission to expose production identities or upgrade a plan.
+- Creation is blocked before mutation because the current CLI lackscreate:connections. Request onlycreate:connections anddelete:connections for that isolated lifecycle; browser action-time confirmation remains pending. Do not describe this as expired login or approved new scope.
+- The actual Codex authorization request proves matchingresource, exact callback andS256, not successful OAuth or tool execution. Stop and clean the local fixture while waiting; retain the inactive tagged registrations for continuation and eventual scoped cleanup. [Evidence](architecture/ai-integration-acceptance-20261016.md).
+
+
+## 2026-10-16 — Correct duplicate OAuth resource and complete two-client provider acceptance
+
+- Owner completes the specifically requested connection-management authorization. Use a separate signup-disabled synthetic connection and account, sequential temporary third-party public clients, and explicit user grants; retain all existing production connections and the free plan.
+- Actual Codex sendsresource twice when the generated override duplicates discovered metadata. Remove only that override; keep exact resource, issuer, client, PKCE and server audience validation. The corrected real provider flow succeeds.
+- Gemini uses its unchanged exported OAuth implementation followed by actual CLI discovery. Both client-presented credentials pass scoped protocol reads and same-token revocation checks. No model or consumer-chat equivalence is claimed.
+- Delete only this workflow's temporary provider resources, then confirm original client/resource/binding hashes and full tenant settings are unchanged. No new product, pricing, legal or deployment permission is inferred. [Current evidence](architecture/ai-oauth-validation-20261016.md).
+
+## 2026-10-16 — Public GEO delivery and minimal search-provider access
+
+- Agent continues the existing public-discovery goal with two-phase deployment of the independently hosted www site: stage assets/pages and DEVELOPMENT first, then publish the complete source template only after actual byte checks. No new App/API/data/billing or TestFlight change is inferred.
+- Choose manual DNS ownership verification through the already authorized Rillora-only GoDaddy wrapper. Add exactly one Google TXT and one isolated Bing CNAME; preserve every pre-existing record and keep these ongoing ownership proofs.
+- Owner explicitly confirms sharing the original Google account's name, photo and email with bing.com for webmaster login. This applies to that exact recipient/scope, not GSC-data import, DNS-account delegation, advertising, analytics or a new paid service. No duplicate confirmation after a failed old callback is required when the same approved flow is renewed.
+- Record website publication, ownership, submission, actual live fetch, indexing and model recommendation separately. Google live fetch succeeds but its regular report remains unable to read; Bing is processing. No new product/pricing/legal decision or automatic-recommendation promise is introduced.
+
+## 2026-10-16 — Isolated HTTPS acceptance within the existing free plan
+
+- Owner completes the reopened browser login; both Dashboard and Teams are verified. Teams confirms Free/$0 and its one-tenant limit. No paid upgrade or new tenant is selected.
+- Agent chooses temporary HTTPS acceptance using a synthetic local environment and plans reversible use of the inactive Default App as the first-party Web client. It is not an AI client; AI still gets an independent third-party registration. Existing production and retired clients stay unchanged. Mutation and restoration must be independently verified; an audit alone does not prove completion or historical non-use.
+- Secure-cookie behavior now also follows a configured HTTPS preview origin, keeping production protections and HTTP local behavior. This is a next-version source change, not a production deployment. The temporary tunnel is development evidence, not a hosted-product or production-security equivalence claim.
+
+## 2026-10-16 — Record legacy default-client normalization during safe cleanup
+
+- The first temporary HTTPS startup exposes an actual MCP readiness query using the base NOINHERIT connection. Fix it through the existing scoped auth transaction; retain base permissions and add a real database regression.
+- Auth0 rejects restoring the Default App's previously unspecified authentication-method field as null; the paired modern-field request requires additional credential-management scope. Agent does not broaden management access. Restore name, empty callbacks, grant list, JWT lifetime and old binding, while retaining explicit client_secret_post. This is a declared configuration normalization for the unused default app, not exact prior-metadata restoration; production applications and the secret remain unchanged.
+- All newly created provider resources and local synthetic records from that attempt are removed; retry from the explicit normalized baseline. Preserve failure evidence and correct the driver's masked exit status instead of recording the failed startup as passed.
+
+## 2026-10-16 — Owner confirms synthetic legal consent; complete public HTTPS scope acceptance
+
+- Owner explicitly confirms the current synthetic account's Terms, Privacy and electronic-record acceptance and continued selection/revocation test. The same approved purpose and unchanged legal text carry through the corrected fixture; do not re-request this consent or administrative login. No personal Gmail/QQ data is used.
+- Real HTTPS saving reveals that Secure alone is insufficient: non-production cookies used plain names while remote Web requires __Host. Align name and Secure behavior for configured HTTPS and keep unprefixed CSRF limited to HTTP loopback; retain the original production boundary and reject duplicate/legacy cookies. This is an implementation correction, not relaxed CSRF policy.
+- Browser selection, independent Codex OAuth, two selected-only reads and same-token revocation pass. The token remains valid819seconds at rejection. Log out the synthetic sessions and remove the scoped provider/local resources. The earlier Default App authentication normalization remains explicitly declared; no key rotation, production deployment or paid upgrade is performed.
+- Temporary HTTPS is development acceptance, not long-term hosting or model-selected tool/consumer-directory completion. Continue sustainable isolated identity/hosting design before public multi-platform distribution. [Evidence and limitations](architecture/ai-https-acceptance-20261016.md).
+
+## 2026-10-17 — Continue long-term hosting and additional AI clients on free resources
+
+- Owner explicitly requests long-term hosting and additional AI-platform work, preferring Free, preserving current review and existing successful evidence, and publishing to GitHub.
+- Agent creates a separate empty Neon Free project in Frankfurt with low quotas. This does not migrate production records or activate a new customer database. Actual idle suspension is confirmed. Functions reports deployment completion but public ingress returns an upstream403; do not label it usable.
+- Agent selects the official Cloudflare OAuth Provider for isolated candidate authorization, with one Auth0 upstream sign-in app and separate downstream client grants. This preserves client separation while avoiding destructive retirement or paid Auth0 expansion solely for capacity. Implementation and real acceptance remain required; existing production authentication is untouched.
+
+## 2026-10-17 — Keep consumer accounts optional and preserve independent downstream grants
+
+- Owner states they have no Claude account. Do not create an account, require a paid plan or claim Claude consumer acceptance. Actual Claude Code and Cursor CLI OAuth can be validated independently without an Anthropic or Cursor model session.
+- Retain one Auth0 upstream application and independent Cloudflare client registrations. Candidate-only wrapping keys, synthetic legal fixtures and disabled recovery publication are explicitly not production KMS/recovery or customer-readiness equivalence. Production and App14 remain untouched.
+- Real browser evidence identifies no-referrer → Origin:null on native forms. Use same-origin for HTML and redirects, keep null origins rejected, and allow only verified form redirect origins. Both clients pass selected-only reads and same-token/refresh rejection after browser revocation. No model request, paid upgrade, directory submission or recommendation promise follows.
+
+## 2026-10-18 — Complete remaining client evidence and deepen public SEO/GEO
+
+- Status: LOCKED
+- Scope: next-version AI candidate and existing independent public website.
+- Decision: Owner asks to complete the remaining work first and explicitly emphasizes meaningful SEO/GEO work. Reuse the unmodified Qwen OAuth component and actual CLI without inventing a model credential or purchasing a model plan. Add four distinct original bilingual educational articles, navigation and accurate discovery metadata.
+- Evidence: Owner instruction; actual Qwen OAuth/CLI/read/refresh/revoke receipts, 822 seconds remaining at rejection; public build, 26 public checks, 10 infrastructure tests and scoped browser results.
+- Supersedes: treating a Qwen model-provider configuration as mandatory for protocol/CLI acceptance. It remains necessary for the separate interactive model experience where applicable.
+- Does not imply: a live website update while AWS MFA is pending, a consumer-platform connection, model-selected tool usage, indexing, AI citations, customer MCP enablement or any change to App14 review.
+- Implementation impact: preserve current production data, prices, billing, FanPass and TestFlight. The staged website upload must include only assets and eight new page objects; existing pages remain unchanged until the complete routing/content switch. [Current evidence](architecture/ai-seo-20261018.md).
+
+## 2026-10-18 — Keep educational resources out of primary navigation
+
+- Status: LOCKED
+- Scope: public website navigation on desktop and mobile.
+- Decision: Owner says placing 整理方法 in the main navigation is too prominent and not useful. Remove that destination; retain the footer entry and relevant article links so the published resources remain discoverable.
+- Evidence: Owner feedback during the public-site rollout, before the final switch.
+- Supersedes: this workflow's earlier decision to promote Resources into the primary navigation. It does not cancel the original bilingual articles or SEO/GEO work.
+- Implementation impact: update the candidate header and rebuild its public artifact before publishing. Retain the original live pages while the corrected assets are staged; do not publish the rejected header variant.
+
+
+## 2026-10-18 — Prioritize marketing readiness and acquisition over additional feature work
+
+- Status: LOCKED for current work priority; channel outcomes remain provisional.
+- Decision: Owner asks for a full review of existing SEO/GEO, runnable MCP/plugins, other AI coverage, low-cost acquisition and App Store keyword strategy after the current task. Marketing is now more important than more development.
+- Implementation: preserve the completed public rollout, audit actual evidence by surface, correct actionable package/document drift, and prepare bilingual campaign and next-version ASO materials. Reuse prior validation rather than repeating deployment, OAuth, payment or device work.
+- Boundaries: a synthetic MCP endpoint is not a customer integration; installed, authenticated, model-used, directory-approved, indexed and acquired are separate outcomes. Keep current App Review, real data, prices, billing and FanPass unchanged. This instruction does not invent an advertising budget or authorize unsolicited messages.
+- Evidence: Owner request; [readiness audit](marketing/readiness-audit-20261018.md) and [execution plan](marketing/acquisition-plan-20261018.md). No marketing outcome or keyword-volume claim is inferred.
+
+
+## 2026-10-18 — Deliver ordinary-user MCP rather than stopping at synthetic hosting
+
+- Status: LOCKED scope; execution outcomes remain unproven until read back.
+- Decision: Owner requests Google sitemap repair and remaining MCP/plugin integration through genuine ordinary-user availability, preserving current App Review and publishing completed work to GitHub.
+- Supersedes: the previous marketing-materials-only next step and treating the synthetic candidate as the final hosting destination.
+- Implementation: reuse the production data/security boundaries and existing Rillora sign-in, add a separately authorized read-only integration, keep existing prices and billing, and leave the in-review native artifact unchanged. Provider directory approval is independent of a working customer endpoint.
+- Evidence: Owner instruction; [customer integration contract](architecture/customer-mcp-20261018.md).
+
+## 2026-10-18 — Accept only the selected synthetic production Codex test, then revoke
+
+- Owner confirms current Web legal acceptance and original Google login, then explicitly approves access by the real Codex client to Release acceptance 2026-10-01 only: titles/categories/statuses and generic missing-field checks, no email, notes or other matters, maximum seven days, immediately revoked after acceptance. A timed-out local callback can be restarted with the same scope without repeating this confirmation.
+- Actual production OAuth, model calls and immediate revocation pass. Remove the test alias credential only; retain the account, synthetic matter, existing client configuration and other projects. This does not authorize separate ChatGPT email disclosure or reuse of Apple review credentials for another provider.
+- Agent publishes public service metadata to the official MCP Registry within the already authorized distribution scope, using a single additive DNS proof and an encrypted registry-only signing key. No paid service, DNS delegation, broad runtime grant, arbitrary dynamic client registration or marketplace-approval claim is introduced.
+- The residual bilingual language label is corrected under the existing selected-language decision; it is not a new design or legal-contract decision. See [actual delivery and boundaries](architecture/customer-mcp-20261018.md).
+
+## 2026-10-18 — Add marketing aliases without purchasing another mailbox
+
+- Owner explicitly requests social@rillora.xyz and hello@rillora.xyz as aliases of the existing Zoho mailbox, with actual send/receive verification and no additional mailbox purchase.
+- Reuse the current support mailbox and preserve its primary address, privacy/security aliases, user count, subscription and existing authentication. Do not create extra users, groups, forwarding, DNS changes or a new mail provider.
+- A bounded external rehearsal uses the already connected Owner Gmail: one test to each alias and a matching-alias reply, containing only test IDs and receipt text. This authorization does not extend to marketing campaigns or contacting prospective customers.
+- The current Zoho browser session is actually unauthenticated; request only the required original-account sign-in, not another approval for the already specified alias configuration. OpenAI publisher identity remains deferred at the Owner's request. [Scope and evidence](marketing/mail-aliases-20261018.md).
+
+## 2026-10-19 — Preserve the initial temporary SMTP failure and verify alias capability separately
+
+- Original Zoho login restored; both aliases are saved under the same licensed mailbox, with the primary and old aliases preserved. No paid user or forwarding/DNS change is introduced.
+- Both inbound tests pass. The hello reply reaches Gmail Inbox with SPF/DKIM/DMARC pass; the initial social reply receives Google's temporary4.3.0 and remains in Zoho's automatic retry queue.
+- Agent performs one additional, independently identified social outbound probe to the same Owner Gmail under the existing send/receive verification request. It reaches Inbox with correct sender/content and all three authentication passes. No third probe, manual duplicate of the original, queue cancellation or unsolicited outreach is performed.
+- Record the two aliases as send/receive verified while keeping the original delayed message explicitly unresolved; do not rewrite the initial failure as a clean first-attempt pass or promise universal future deliverability.
+
+## 2026-10-19 — Social banner brief and concrete folio correction
+
+- Status: LOCKED task scope; artwork is an Agent-delivered design, not a new Owner-selected brand identity.
+- Owner requests a social banner if none exists, then rejects the abstract paper-ribbon treatment as not resembling a book, notebook or map and asks about URLs/platform rules.
+- Replace the current banner visual with a recognizable open folio and simple matters diagram. Preserve the exact Legacy Imprint03 master, palette and separate English/Chinese presentation. Retain the first study as HISTORICAL.
+- Agent chooses URL-free main exports and platform-native website fields where supported. This is not a blanket platform-policy guarantee or an Owner ban on all future URLs. No handle is locked or registered.
+- Deliver images/source through Git under the standing all-work preservation instruction. No profile upload, marketing message, app/review change or new deployment is inferred. [Scope and evidence](marketing/social-banner-20261019.md).
+
+## 2026-10-19 — Contact Apple about the current review delay
+
+- Status: LOCKED one-off communication scope; review outcome remains Apple's decision.
+- Owner explicitly requests an email or support case about Rillora's review exceeding48hours. This authorizes a factual status inquiry to Apple Developer/App Review support for the existing submission.
+- Agent uses the App Review Status email category after confirming the real waiting submission and the absence of a duplicate recent status case. Do not withdraw/resubmit, fabricate urgency, reopen the unrelatedAPI401case or disclose review passwords.
+- Apple accepts case103001356140. Existing build14, manual release, data, prices, sales and TestFlight remain unchanged. No recurring monitor is created. [Sent message and receipt](app-review-followup-20261019.md).
+
+## 2026-10-19 — Research platform-specific marketing and a bounded acquisition budget
+
+- Status: LOCKED research/save scope; platform priorities, budget allocations andCACthresholds arePROVISIONAL Agent recommendations.
+- Owner asks which platforms to register, how their rules/playbooks differ, and how200–500USD could acquire users with minimal waste. This asks for research and a durable plan, not an instruction to create accounts, disclose identities, buy ads or spend the full amount.
+- Record primary rules and uncertainties separately. Start with a50USDconditional experiment; keep remaining funds gated, count real net paid households and time, and do not import anecdotalCPC/CACor fictional conversions.
+- Existing publishing/ad controls stayfalse/0; current pricing, data, AppReview andFanPassstay unchanged. New platform-specific research supersedes the earlier generic channel suggestions where they conflict, but not the originalMVPmarket-validation targets. [Platform rules](marketing/platform-playbook-20261019.md), [budget](marketing/acquisition-budget-20261019.md).
+
+## 2026-10-19 — Multi-signal confirmation and sealed future-recipient arrangements
+
+- Status: OWNER REQUIREMENTS RECORDED; exact thresholds and proposed mode separation remain provisional design details, with no runtime implementation in this research/design response.
+- Owner clarifies that Rillora should combine available signals, personal routines and responses rather than rely on a missing heart-rate sample or expect Apple to determine death. Owner proposes reminders followed by preconfigured disclosure after nonresponse conditions or real death evidence, and expressly requires designated family/friends to know an arrangement exists while receiving no contents during the planner's life.
+- The [candidate design](conditional-disclosure-vnext-20261019.md) distinguishes owner-authorized absence-condition delivery from death-only delivery; the latter cannot truthfully promise lifetime secrecy while substituting a timeout for verified death. This separation and the recommended build sequence are Agent proposals, not an invented Owner approval of exact rules, hours, health-data usage or a release corridor.
+- A future-recipient acceptance must not imply present Name/Directions/Details grants. Pre-notice is minimal and owner-selected; no titles, counts, other recipients or health information. Existing live shares and downloaded copies cannot become retroactively secret.
+- Record the automatic-execution goal while retaining independent evidence, identity, effective authority, scope, revocation and cryptographic availability questions. Do not infer Apple permission from local processing or relabel health-derived nonresponse to evade purpose restrictions.
+- This records next-version requirements only. No current review/build, HealthKit capability, health data, family notice, timer, billing or production disclosure change. It supersedes any reading of the prior feasibility answer as dismissing multi-signal confirmation or future conditional delivery altogether, not the established distinction between missing information and a proven death.
+
+## 2026-10-20 — Repair the reported publication failure and consolidate GitHub work
+
+- Status: OWNER-DIRECTED review, repair and merge; actual CI and merge outcomes remain evidence-dependent.
+- Owner asks to inspect Dot's26-file manifest warning and check/merge any outstanding GitHub work. This explicitly authorizes bringing the default main branch up to the reviewed integrated history; it supersedes historical instructions that merely preserved main as an older checkpoint.
+- Independent inspection finds all23 remote branch tips already contained in the current head, no initial open PR, and main200commits behind. The reported run passes application jobs but fails complete readable coverage after source tests/scanning.
+- Repair the generated manifest and retain full scanners. Add the final-receipt regeneration/check step to the repository closeout protocol. Preserve history through[PR3](https://github.com/tantalum666/rillora/pull/3), check its actual CI, and verify merge ancestry/tree without deployments, TestFlight, changed prices, real-data operations or FanPass work.

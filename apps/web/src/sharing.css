@@ -39,7 +39,7 @@
 .shared-item-row svg { color:var(--accent); flex-shrink:0; }
 .shared-item-detail dl > div { margin:18px 0; padding-bottom:18px; border-bottom:1px solid var(--divider); }
 .shared-item-detail dt { font-size:13px; color:var(--muted); margin-bottom:7px; }
-.shared-item-detail dd { margin:0; color:var(--body); font-size:17px; overflow-wrap:anywhere; }
+.shared-item-detail dd { margin:0; color:var(--body); font-size:17px; overflow-wrap:anywhere; white-space:pre-wrap; }
 @media (prefers-reduced-motion:reduce) { .sharing-matter { transition:none; } }
 .invitation-page { min-height:100dvh; background:var(--canvas); color:var(--body); padding:0 22px 40px; }
 .invitation-page header { max-width:1100px; margin:auto; padding:22px 0; display:flex; align-items:center; justify-content:space-between; flex-wrap:wrap; gap:12px; }
@@ -55,3 +55,5 @@
 .invitation-open-app { color:var(--muted); font-size:14px; text-decoration:none; }
 .invitation-page .account-consent { margin:24px 0 16px; }
 .invitation-page input:not([type=checkbox]) { width:100%; color:var(--body); border:1px solid var(--divider); border-radius:12px; background:var(--surface); padding:15px; }
+.contact-sharing-panel button:disabled { opacity: .45; cursor: not-allowed; box-shadow: none; }
+.contact-sharing-panel input[aria-invalid="true"] { border-color: var(--danger, #c65b47); }

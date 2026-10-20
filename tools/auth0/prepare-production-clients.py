@@ -8,9 +8,12 @@ import subprocess
 from urllib.parse import urlencode
 
 ROOT = Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import CredentialStore, read_secret_json, write_secret_json
 DOMAIN = 'rillora-dev.eu.auth0.com'
 SECRET = ROOT / '.local-secrets/production-identity/web-client.json'
-NATIVE_CALLBACK = 'com.rillora.ios://login.rillora.xyz/ios/com.rillora.ios/callback'
+NATIVE_CALLBACK = 'https://login.rillora.xyz/ios/com.rillora.ios/callback'
 CLIENTS = {
     'web': {'name': 'Rillora Production Web', 'app_type': 'regular_web',
             'callbacks': ['https://app.rillora.xyz/api/auth/callback'],
@@ -19,6 +22,7 @@ CLIENTS = {
             'token_endpoint_auth_method': 'client_secret_post'},
     'ios': {'name': 'Rillora Production iOS', 'app_type': 'native',
             'callbacks': [NATIVE_CALLBACK], 'allowed_logout_urls': [NATIVE_CALLBACK],
+            'mobile': {'ios': {'team_id': '8L99CFNK24', 'app_bundle_identifier': 'com.rillora.ios'}},
             'token_endpoint_auth_method': 'none'},
 }
 COMMON = {'grant_types': ['authorization_code'], 'oidc_conformant': True,
@@ -75,7 +79,7 @@ def main():
     parser.add_argument('--apply', action='store_true')
     parser.add_argument('--output', type=Path, required=True)
     args = parser.parse_args()
-    clients = api('get', 'clients?fields=client_id,name,app_type&include_fields=true&per_page=100')
+    clients = api('get', 'clients?fields=client_id,name,app_type,client_metadata&include_fields=true&per_page=100')
     if len(clients) >= 100:
         raise RuntimeError('Client inventory must be complete.')
     servers = api('get', 'resource-servers?per_page=100')
@@ -97,6 +101,14 @@ def main():
     if not args.apply:
         print(json.dumps({'preview': str(args.output), 'applied': False}))
         return
+    existing_production = [existing['client_id'] for spec in CLIENTS.values()
+                           if (existing := exact(clients, spec['name']))]
+    # Customer-facing names may change after activation. They are not resource
+    # identities and must never make an active production client look missing.
+    existing_production.extend(c['client_id'] for c in clients
+                               if c.get('client_metadata', {}).get('environment') == 'production')
+    if any(identifier in bindings for identifier in existing_production for bindings in before.values()):
+        raise RuntimeError('Existing production client has active connection bindings; preparation cannot disable an activated client')
     production = []
     for kind, spec in CLIENTS.items():
         desired = {**spec, **COMMON}
@@ -106,27 +118,29 @@ def main():
         else:
             if kind == 'web' and SECRET.exists():
                 raise RuntimeError('An unmatched protected credential exists; review before creating a client.')
+            if kind == 'web':
+                CredentialStore(ROOT).ensure_ready()
             created = api('post', 'clients', desired)
             identifier = created['client_id']
             if kind == 'web':
                 SECRET.parent.mkdir(parents=True, exist_ok=True, mode=0o700)
                 os.chmod(SECRET.parent, 0o700)
-                with os.fdopen(os.open(SECRET, os.O_WRONLY | os.O_CREAT | os.O_EXCL, 0o600), 'w') as file:
-                    json.dump({'domain': DOMAIN, 'client_id': identifier,
-                               'client_secret': created['client_secret']}, file)
+                write_secret_json(SECRET,{'domain':DOMAIN,'client_id':identifier,'client_secret':created['client_secret']},root=ROOT)
         fields = ','.join([*desired, 'client_id'])
         current = api('get', f'clients/{identifier}?fields={fields}&include_fields=true')
         match(current, desired)
         if kind == 'web':
             if not SECRET.exists() or SECRET.stat().st_mode & 0o077:
                 raise RuntimeError('Web credential needs protected recovery; never auto-rotate or duplicate.')
-            stored = json.loads(SECRET.read_text())
+            stored = read_secret_json(SECRET,root=ROOT)
             if stored['client_id'] != identifier or stored['domain'] != DOMAIN:
                 raise RuntimeError('Protected credential does not match.')
         # Some Auth0 tenant defaults automatically bind new clients. Remove only
         # these prepared IDs, preserving every pre-existing connection/client pair.
         for connection in connections:
             if identifier in connection_clients(connection['id']):
+                if existing:
+                    raise RuntimeError('Existing production client acquired active connection bindings; preparation stopped')
                 api('patch', f"connections/{connection['id']}/clients",
                     [{'client_id': identifier, 'status': False}])
         report['clients'][kind] = current

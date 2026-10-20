@@ -1,0 +1,7 @@
+file:///app/[eval1]:11
+ if(unsafe)throw new Error('existing_billing_requires_review');
+                 ^
+Error: existing_billing_requires_review
+    at file:///app/[eval1]:11:18
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+Node.js v22.22.3

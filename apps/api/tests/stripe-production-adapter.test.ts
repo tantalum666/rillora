@@ -3,15 +3,16 @@ import { describe, expect, it, vi } from 'vitest';
 import { StripeProductionAdapter, type StripeProductionConfig } from '../src/stripe-production-adapter.js';
 import type { StripeSdkPort } from '../src/stripe-sdk.js';
 import { stripeSubscriptionReference } from '../src/stripe-provider-shared.js';
+import { parseStripeProductionSecret } from '../src/stripe-production-secret.js';
 
 const now = new Date('2026-09-25T00:00:00.000Z');
-const config: StripeProductionConfig = {
+const config = {
   apiKey: 'rk_live_rillora_fixture_not_a_real_key', webhookSecret: 'whsec_rillora_production_fixture_only',
   expectedAccountId: 'acct_1U6B2RCxTlowhyiG', familyProductId: 'prod_fixture_family', annualPriceId: 'price_fixture_annual', historicalPrices: [],
   checkoutSuccessUrl: 'https://app.rillora.xyz/account/billing/complete?session_id={CHECKOUT_SESSION_ID}',
   checkoutCancelUrl: 'https://app.rillora.xyz/account/billing', portalReturnUrl: 'https://app.rillora.xyz/account/billing', portalConfigurationId: 'bpc_fixture',
   tax: { mode: 'reviewed_no_collection', assessmentReference: 'synthetic-assessment-not-a-tax-decision', productTaxCode: 'txcd_fixture', activeRegistrationIds: [] },
-};
+} satisfies StripeProductionConfig;
 const price = () => ({ id: config.annualPriceId, object: 'price', livemode: true, active: true,
   product: config.familyProductId, currency: 'usd', unit_amount: 8899, billing_scheme: 'per_unit', transform_quantity: null, tax_behavior: 'exclusive', recurring: { interval: 'year', interval_count: 1, usage_type: 'licensed' } }) as Stripe.Price;
 const subscription = () => ({ id: 'sub_fixture', object: 'subscription', livemode: true, status: 'active',
@@ -41,6 +42,16 @@ const checkoutInput = { commerceAccountReference: 'account-fixture-001', billing
   idempotencyKey: 'server-owned-order-fixture-001', orderReference: 'order-fixture-001', paymentAttemptReference: 'attempt-fixture-001' };
 
 describe('production Stripe boundary without live network access', () => {
+  it.each([['en', 'en'], ['zh-CN', 'zh']] as const)('keeps %s through Checkout and Portal without changing the offer', async (locale, stripeLocale) => {
+    const checkout = vi.fn(sdk().createCheckoutSession);
+    const portal = vi.fn(sdk().createPortalSession);
+    const adapter = new StripeProductionAdapter(config, sdk({ createCheckoutSession: checkout, createPortalSession: portal }), () => now);
+    await adapter.createHostedSubscriptionCheckout({ ...checkoutInput, locale });
+    await adapter.createCustomerPortal({ stripeCustomerReference: 'cus_fixture', locale });
+    expect(checkout.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale,
+      line_items: [{ price: config.annualPriceId, quantity: 1 }], adaptive_pricing: { enabled: false } });
+    expect(portal.mock.calls[0]![0]).toMatchObject({ locale: stripeLocale, customer: 'cus_fixture', configuration: config.portalConfigurationId });
+  });
   it('refuses wrong-account/test credentials and non-production return destinations', () => {
     for (const mutation of [{ apiKey: 'rk_test_fixture' }, { expectedAccountId: 'acct_other' },
       { checkoutCancelUrl: 'https://app.staging.rillora.xyz/account' }, { portalReturnUrl: 'https://user:password@app.rillora.xyz/account' }]) {
@@ -60,6 +71,32 @@ describe('production Stripe boundary without live network access', () => {
     await expect(adapter.createHostedSubscriptionCheckout(unreserved)).rejects.toThrow('durable order');
     expect(create).toHaveBeenCalledTimes(1);
   });
+  it('keeps an unconfigured tax state available for notifications but rejects purchases before provider calls',async()=>{
+    const create=vi.fn(sdk().createCheckoutSession),account=vi.fn(sdk().retrieveAccountStatus!);
+    const pending={...config,tax:{mode:'not_configured' as const,productTaxCode:'txcd_fixture'}};
+    const adapter=new StripeProductionAdapter(pending,sdk({createCheckoutSession:create,retrieveAccountStatus:account}));
+    await expect(adapter.createHostedSubscriptionCheckout(checkoutInput)).rejects.toMatchObject({status:503,code:'checkout_setup_unavailable'});
+    expect(create).not.toHaveBeenCalled();expect(account).not.toHaveBeenCalled();
+  });
+  it('explicitly disables automatic tax without inventing an assessment or changing the annual amount',async()=>{
+    const disabled={...config,tax:{mode:'disabled' as const,productTaxCode:config.tax.productTaxCode}};
+    const parsed=parseStripeProductionSecret(JSON.stringify({schemaVersion:1,environment:'production',...disabled}));
+    expect(parsed.tax).toEqual(disabled.tax);
+    const tax=vi.fn(async()=>{throw new Error('Automatic tax was not requested');});
+    const create=vi.fn(sdk().createCheckoutSession);
+    const provider=sdk({retrieveTaxReadiness:tax,retrievePrice:async()=>({...price(),tax_behavior:'unspecified'}),createCheckoutSession:create});
+    await new StripeProductionAdapter(parsed,provider).createHostedSubscriptionCheckout(checkoutInput);
+    expect(tax).not.toHaveBeenCalled();
+    expect(create.mock.calls[0]![0]).toMatchObject({automatic_tax:{enabled:false},line_items:[{price:config.annualPriceId,quantity:1}]});
+    expect(create.mock.calls[0]![0]).not.toHaveProperty('subscription_data.default_tax_rates');
+    expect(()=>parseStripeProductionSecret(JSON.stringify({schemaVersion:1,environment:'production',...disabled,tax:{...disabled.tax,assessmentReference:'not-a-real-assessment'}}))).toThrow();
+    for(const changed of [{unit_amount:6800},{livemode:false},{currency:'hkd'}]){
+      const rejectCreate=vi.fn(sdk().createCheckoutSession);
+      const adapter=new StripeProductionAdapter(disabled,sdk({retrievePrice:async()=>({...price(),...changed}),createCheckoutSession:rejectCreate}));
+      await expect(adapter.createHostedSubscriptionCheckout(checkoutInput)).rejects.toThrow();
+      expect(rejectCreate).not.toHaveBeenCalled();
+    }
+  });
   it('blocks unready merchants, other accounts and altered price before checkout creation', async () => {
     for (const overrides of [
       { retrieveAccountStatus: async () => ({ id: config.expectedAccountId, chargesEnabled: false, payoutsEnabled: true }) },
@@ -77,7 +114,7 @@ describe('production Stripe boundary without live network access', () => {
     }
   });
   it('requires confirmed active tax registrations and refreshes returning customer address', async () => {
-    const automatic: StripeProductionConfig = { ...config, tax: { ...config.tax, mode: 'automatic', activeRegistrationIds: ['taxreg_fixture'] } };
+    const automatic = { ...config, tax: { ...config.tax, mode: 'automatic', activeRegistrationIds: ['taxreg_fixture'] } } satisfies StripeProductionConfig;
     expect(() => new StripeProductionAdapter({ ...automatic, tax: { ...automatic.tax, activeRegistrationIds: [] } }, sdk())).toThrow('registration');
     const create = vi.fn(sdk().createCheckoutSession);
     await expect(new StripeProductionAdapter(automatic, sdk({ createCheckoutSession: create, retrieveTaxReadiness: async () => ({ status: 'active', activeRegistrationIds: [] }) })).createHostedSubscriptionCheckout(checkoutInput)).rejects.toThrow('no longer active');

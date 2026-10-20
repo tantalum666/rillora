@@ -1,0 +1,60 @@
+{
+  "passed": true,
+  "budgets": [
+    {
+      "cashCeilingUsd": 200,
+      "conditionalMediaCeilingUsd": 150,
+      "feesAndUncommittedReserveUsd": 50
+    },
+    {
+      "cashCeilingUsd": 500,
+      "conditionalMediaCeilingUsd": 400,
+      "feesAndUncommittedReserveUsd": 100
+    }
+  ],
+  "cacArithmetic": [
+    {
+      "assumedCpcUsd": 0.5,
+      "assumedClickToNetPaidRate": 0.02,
+      "mediaCacUsd": 25.0
+    },
+    {
+      "assumedCpcUsd": 1,
+      "assumedClickToNetPaidRate": 0.02,
+      "mediaCacUsd": 50.0
+    },
+    {
+      "assumedCpcUsd": 2,
+      "assumedClickToNetPaidRate": 0.02,
+      "mediaCacUsd": 100.0
+    },
+    {
+      "assumedCpcUsd": 1,
+      "assumedClickToNetPaidRate": 0.04,
+      "mediaCacUsd": 25.0
+    }
+  ],
+  "illustrationOnly": {
+    "spendUsd": 200,
+    "assumedCpcUsd": 1,
+    "assumedClickToNetPaidRate": 0.02,
+    "expectedPayersNotGuaranteed": 4,
+    "mediaCacUsd": 50,
+    "grossAnnualSalesNotProfitUsd": 355.96,
+    "probabilityOfZeroPayersIn50IndependentClicks": 0.36416968008711675
+  },
+  "proposedCacCaps": [
+    {
+      "assumedFirstYearContributionUsd": 40,
+      "capUsd": 16.0
+    },
+    {
+      "assumedFirstYearContributionUsd": 60,
+      "capUsd": 24.0
+    }
+  ],
+  "measuredMarketingResults": false,
+  "trackingImplemented": false,
+  "campaignExecutionEnabled": false,
+  "actualMetricsRemainBlank": true
+}

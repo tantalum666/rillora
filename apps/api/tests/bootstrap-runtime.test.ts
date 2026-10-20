@@ -82,4 +82,19 @@ describe.sequential("runtime database role bootstrap", () => {
     );
     expect(result.rows[0]).toEqual({ rolinherit: false, rolsuper: false });
   });
+
+  it.each(['bypassrls', 'replication'])('rejects an existing runtime login with %s', async attribute => {
+    await client.query(`alter role ${runtimeRole} ${attribute}`);
+    try {
+      await expect(bootstrapRuntimeRole(client, runtimeRole, runtimePassword)).rejects.toThrow('privilege boundary');
+    } finally { await client.query(`alter role ${runtimeRole} no${attribute}`); }
+  });
+
+  it.each(['continuity_retention_service', 'continuity_share_service', 'continuity_account_service', 'pg_read_all_data'])(
+    'rejects privileged membership %s instead of preserving it during rotation', async membership => {
+      await client.query(`grant ${membership} to ${runtimeRole}`);
+      try {
+        await expect(bootstrapRuntimeRole(client, runtimeRole, `${runtimePassword}-rotated`, true)).rejects.toThrow('privilege boundary');
+      } finally { await client.query(`revoke ${membership} from ${runtimeRole}`); }
+    });
 });

@@ -54,7 +54,12 @@ enum AccountDeletionReferenceStore {
 
 struct AccountDataProfile: Decodable, Sendable {
     struct Account: Decodable, Sendable { let publicId: String; let displayName: String }
-    struct Billing: Decodable, Sendable { let hasSubscription: Bool; let providers: [String] }
+    struct Billing: Decodable, Sendable {
+        let hasSubscription: Bool
+        let providers: [String]
+        let hasPendingPurchase: Bool?
+        var requiresAcknowledgement: Bool { hasSubscription || hasPendingPurchase == true }
+    }
     let account: Account
     let billing: Billing?
 }
@@ -100,11 +105,11 @@ enum SavedCopyContent: Sendable {
     case directions(StartHerePackage)
     case text(String)
     static func read(data: Data, filename: String) throws -> SavedCopyContent {
-        guard data.count <= 2 * 1024 * 1024 else { throw RilloraAPIError.invalidPayload("Choose a file no larger than 2 MB.") }
+        guard data.count <= 2 * 1024 * 1024 else { throw RilloraAPIError.invalidPayload(String(localized: "Choose a file no larger than 2 MB.")) }
         if filename.lowercased().hasSuffix(".txt"), let text = String(data: data, encoding: .utf8) { return .text(text) }
         if let backup = try? JSONDecoder().decode(MapBackupDocument.self, from: data), backup.isValid { return .backup(backup, data) }
         if let encrypted = try? JSONDecoder().decode(EncryptedStartHereArtifact.self, from: data),
            encrypted.schemaVersion == "rillora-encrypted-start-here-v1" { return .encrypted(encrypted) }
-        throw RilloraAPIError.invalidPayload("Choose a Rillora map backup, encrypted package or text guide.")
+        throw RilloraAPIError.invalidPayload(String(localized: "Choose a Rillora map backup, encrypted package or text guide."))
     }
 }

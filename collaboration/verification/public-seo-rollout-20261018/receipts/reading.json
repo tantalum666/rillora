@@ -1,0 +1,15 @@
+{
+  "continuationOf": "output/qa/rillora-ai-seo-20261018/reading.json",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "at": "2026-10-17T18:02:23.490794+00:00",
+  "focus": [
+    "docs/handoff.md",
+    "docs/product.md current section",
+    "docs/decision-log.md latest decision",
+    "docs/architecture/ai-seo-20261018.md",
+    "public-rollout.py complete",
+    "installed AWS CLI verification parser"
+  ],
+  "newScope": "Publish already verified public candidate after Owner MFA; no source rebuild or repeated AI acceptance",
+  "operationalAdjustment": "Public bucket upload and route have no explicit CloudFormation dependency. Publish the staged additive router and verify it before replacing old HTML so new links cannot precede routes."
+}

@@ -1,0 +1,8 @@
+{
+  "at": "2026-10-09T07:09:17.673891+00:00",
+  "initialExpectedQuoteStatus": 401,
+  "actualQuoteStatus": 403,
+  "actualError": "service_not_open",
+  "reason": "Existing review expiry is enforced before normal authentication; preserve it instead of treating it as a regression or requesting login",
+  "productionRedeployedAgain": false
+}

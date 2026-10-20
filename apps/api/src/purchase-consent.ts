@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { currentLegalContract } from './legal-contract.js';
 
 export const purchaseConsentContract = Object.freeze({
-  version: 'family-annual-web-20260926-1', provider: 'stripe', priceCode: 'family_usd_annual_v4',
+  version: 'family-annual-web-20261009-1', provider: 'stripe', priceCode: 'family_usd_annual_v4',
   amountMinor: 8899, currency: 'USD', billingPeriod: 'annual',
   termsVersion: currentLegalContract.termsVersion,
   subscriptionTermsVersion: 'subscriptions-2026-08-27-1', refundPolicyVersion: 'refunds-2026-08-27-1',

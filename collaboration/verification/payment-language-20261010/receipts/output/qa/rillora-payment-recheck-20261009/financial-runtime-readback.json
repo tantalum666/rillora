@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-09T16:24:28.831123+00:00",
+  "phase": "financial",
+  "services": [
+    {
+      "stack": "RilloraStaging",
+      "desired": 1,
+      "running": 1,
+      "health": "HEALTHY",
+      "rollout": "COMPLETED",
+      "taskDefinition": "RilloraStagingApiTaskDefinitionF6347BA4:41",
+      "imageAsset": "33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57",
+      "imageDigest": "sha256:4adbaae609fdccb47eec247169f836414d59a4cf14193dfca25148e70074fccd"
+    },
+    {
+      "stack": "RilloraProduction",
+      "desired": 1,
+      "running": 1,
+      "health": "HEALTHY",
+      "rollout": "COMPLETED",
+      "taskDefinition": "RilloraProductionRuntimeApiTask93405B31:19",
+      "imageAsset": "33bf84ef66834a5c902cb59086a54741f3efac266778853dd192a780a2abdc57",
+      "imageDigest": "sha256:4adbaae609fdccb47eec247169f836414d59a4cf14193dfca25148e70074fccd"
+    }
+  ]
+}

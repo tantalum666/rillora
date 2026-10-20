@@ -1,0 +1,22 @@
+{
+  "sourceCommit": "653093e6264e585fe1f377e6412a3b8f8da21a59",
+  "phaseOneChangeSet": "rillora-geo-653093e62-stage",
+  "phaseOne": {
+    "uploadIncludes": [
+      "assets/*",
+      "pages/*"
+    ],
+    "existingRootIndexRobotsSitemapPreserved": true,
+    "routerDevelopmentOnly": true,
+    "prune": false
+  },
+  "phaseTwo": {
+    "template": "original exact synthesized candidate",
+    "publishRouter": true,
+    "uploadRemainingRootFiles": true
+  },
+  "accountDataAndPricingChanged": false,
+  "resourceReplacementAllowed": false,
+  "sourceCi165": "success",
+  "executed": false
+}

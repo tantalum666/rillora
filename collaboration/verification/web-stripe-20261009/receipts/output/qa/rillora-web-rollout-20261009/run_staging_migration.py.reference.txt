@@ -1,0 +1,73 @@
+"""Apply only pending reviewed migrations using the newly verified staging maintenance image."""
+from pathlib import Path
+import datetime
+import json
+import subprocess
+import uuid
+
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-rollout-20261009'
+PRIVATE=ROOT/'.local-secrets/web-rollout-20261009'
+ready=json.loads((QA/'staging-runtime-prepare-complete.json').read_text())
+assert ready['status']=='UPDATE_COMPLETE' and ready['actualTemplateMatches']
+receipt=QA/'staging-migration-task.json'
+assert not receipt.exists(),'Reuse the existing task receipt; do not launch a duplicate.'
+def aws(args,profile='rillora-staging-operator'):
+    result=subprocess.run(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json'],capture_output=True,text=True)
+    if result.returncode:raise RuntimeError(result.stderr[:800])
+    return json.loads(result.stdout)
+who=aws(['sts','get-caller-identity'])
+assert who['Account']=='133857166372' and ':assumed-role/rillora-staging-operator/' in who['Arn']
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+assert out['WebUrl']=='https://app.staging.rillora.xyz'
+database=json.loads((PRIVATE/'staging-rds-before.json').read_text())['DBInstances'][0]['DBInstanceIdentifier']
+backup=aws(['rds','describe-db-instances','--db-instance-identifier',database],'rillora-cdk-session')['DBInstances'][0]
+point=datetime.datetime.fromisoformat(backup['LatestRestorableTime'].replace('Z','+00:00'))
+assert backup['DBInstanceStatus']=='available' and backup['BackupRetentionPeriod']>=1 and backup['StorageEncrypted']
+assert datetime.datetime.now(datetime.timezone.utc)-point < datetime.timedelta(minutes=20), 'Fresh backup point required'
+(QA/'staging-backup-before-migration.json').write_text(json.dumps({
+ 'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'latestRestorableTime':backup['LatestRestorableTime'],'backupRetentionDays':backup['BackupRetentionPeriod'],
+ 'encrypted':True,'existingPitrBackup':True,'newSnapshotCreated':False},indent=2)+'\n')
+script="""import {spawnSync} from 'node:child_process';
+import {readFile,readdir} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import pg from 'pg';
+import {loadDatabaseConfig} from './dist/config.js';
+import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('verified_tls_required');
+if(process.env.ROTATE_RUNTIME_DATABASE_PASSWORD==='true')throw new Error('credential_rotation_not_requested');
+for(const file of ['dist/migrate.js','dist/bootstrap-runtime.js']){
+ const child=spawnSync(process.execPath,[file],{stdio:'inherit'});
+ if(child.error||child.status!==0)process.exit(child.status||2);
+}
+const client=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-staging-migration-verification'});
+await client.connect();
+try {
+ await client.query('begin read only');
+ const tls=(await client.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl;
+ const rows=(await client.query('select name,checksum from app.schema_migrations order by name')).rows;
+ const files=(await readdir('migrations')).filter(n=>/^\\d+_[a-z0-9_]+\\.sql$/.test(n)).sort();
+ if(!tls||rows.length!==93||files.length!==93)throw new Error('unexpected_schema_or_tls');
+ const byName=new Map(rows.map(r=>[r.name,r.checksum]));
+ for(const name of files){if(byName.get(name)!==createHash('sha256').update(await readFile('migrations/'+name)).digest('hex'))throw new Error('migration_checksum_mismatch');}
+ await client.query('commit');
+ console.log(JSON.stringify({migrationSucceeded:true,schemaCount:rows.length,checksumsMatch:true,tls:true,runtimeCredentialRotation:false}));
+}finally{await client.end();}
+"""
+prior=json.loads((QA/'staging-schema-task.json').read_text())
+request={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['PublicSubnetIds'].split(','),'securityGroups':[out['TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script]}]}}
+request_path=PRIVATE/'staging-migration-request.json'
+if request_path.exists():request=json.loads(request_path.read_text())
+else:request_path.write_text(json.dumps(request));request_path.chmod(0o600)
+result=aws(['ecs','run-task','--cli-input-json','file://'+str(request_path)])
+assert not result.get('failures') and len(result.get('tasks',[]))==1
+arn=result['tasks'][0]['taskArn']
+saved={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+       'logGroup':prior['logGroup'],'logStream':'migration/Migration/'+arn.split('/')[-1],
+       'expectedFrom':75,'expectedTo':93,'onlyPendingMigrations':True,'runtimeCredentialRotationRequested':False}
+receipt.write_text(json.dumps(saved,indent=2)+'\n');print(json.dumps(saved))

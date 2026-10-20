@@ -1,0 +1,55 @@
+{
+  "capturedFrom": "2026-10-16T15:52:47.709061+00:00",
+  "capturedThrough": "2026-10-16T15:52:48.053289+00:00",
+  "workFiles": 344,
+  "uniqueRawObjects": 174,
+  "workBytes": 15248075,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-044.tar.zst.age",
+      "sha256": "f2bb042a5c4cec56c3c1ab437d588f3d9e593a21e35325e40e079ff75c89bca9",
+      "bytes": 4375200,
+      "plainBytes": 7772105,
+      "uniqueObjects": 174
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/ai-https-acceptance-20261016/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, generated identity, capability URLs, raw provider objects, diagnostic headers and original operator configuration"
+    },
+    {
+      "path": "archives001-043",
+      "reason": "immutable captures; not resealed or downloaded"
+    },
+    {
+      "path": "local synthetic database files",
+      "reason": "disposable local database state; only safe receipts preserved"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosted-preflight-20261016/identity-capacity.json",
+      "reason": "already preserved byte-for-byte at collaboration/verification/public-discovery-rollout-20261016/receipts/hosted-identity-capacity.json"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosted-preflight-20261016/reopened.json",
+      "reason": "already preserved byte-for-byte at collaboration/verification/public-discovery-rollout-20261016/receipts/hosted-browser-reopened.json"
+    },
+    {
+      "path": "output/qa/rillora-ai-hosted-preflight-20261016/status.json",
+      "reason": "already preserved byte-for-byte at collaboration/verification/public-discovery-rollout-20261016/receipts/hosted-preflight-status.json"
+    },
+    {
+      "path": "output/qa/rillora-ai-https-20261016/publication",
+      "reason": "capture/download cache"
+    },
+    {
+      "path": "output/qa/rillora-ai-https-20261016/auth0-mutable-schema.json",
+      "reason": "reproducible upstream API-schema excerpt"
+    }
+  ],
+  "selection": "Only new temporary HTTPS acceptance, failures, targeted regressions, provider recovery, safe UI and exact candidate artifacts. Public operator-bearing builds remain sealed-only.",
+  "boundary": "Synthetic Web selection to real OAuth and public HTTPS MCP scoped read/revocation passed. No model selection, consumer directory, long-term hosting or production release claim. Default App authentication-method normalization is explicitly retained."
+}

@@ -32,11 +32,11 @@ struct RoleAssignmentPolicyView: View {
         RilloraForm {
             Section {
                 HStack(spacing: 12) {
-                    relationshipNode("Person", symbol: "person.fill")
+                    relationshipNode(String(localized: "Person"), symbol: "person.fill")
                     Image(systemName: "arrow.right").font(.caption).foregroundStyle(RilloraTheme.muted)
-                    relationshipNode("Role", symbol: newRole == .recipient ? "person.crop.square" : "shield.lefthalf.filled")
+                    relationshipNode(String(localized: "Role"), symbol: newRole == .recipient ? "person.crop.square" : "shield.lefthalf.filled")
                     Image(systemName: "arrow.right").font(.caption).foregroundStyle(RilloraTheme.muted)
-                    relationshipNode("Scope", symbol: newScope == .planWide ? "square.stack.3d.up" : "doc.text")
+                    relationshipNode(String(localized: "Scope"), symbol: newScope == .planWide ? "square.stack.3d.up" : "doc.text")
                 }
                 .frame(maxWidth: .infinity)
                 .padding(.vertical, 8)
@@ -46,27 +46,27 @@ struct RoleAssignmentPolicyView: View {
 
             Section {
                 if contacts.isEmpty {
-                    Text("Add an active person record before assigning a role.")
+                    Text(String(localized: "Add an active person record before assigning a role."))
                         .foregroundStyle(RilloraTheme.muted)
                 } else {
-                    RilloraAdaptivePicker("Person", selection: $selectedPersonPublicID) {
+                    RilloraAdaptivePicker(String(localized: "Person"), selection: $selectedPersonPublicID) {
                         ForEach(contacts) { contact in
                             Text(contact.displayName).tag(contact.publicId)
                         }
                     }
-                    RilloraAdaptivePicker("Role", selection: $newRole) {
+                    RilloraAdaptivePicker(String(localized: "Role"), selection: $newRole) {
                         ForEach(RoleAssignmentRole.allCases) { role in
                             Text(role.label).tag(role)
                         }
                     }
-                    RilloraAdaptivePicker("Scope", selection: $newScope) {
+                    RilloraAdaptivePicker(String(localized: "Scope"), selection: $newScope) {
                         ForEach(RoleAssignmentScope.allCases) { scope in
                             Text(scope.label).tag(scope)
                         }
                     }
                     .disabled(newRole == .recipient)
 
-                    Button("Add role record") {
+                    Button(String(localized: "Add role record")) {
                         Task {
                             _ = await store.create(
                                 personPublicID: selectedPersonPublicID,
@@ -81,9 +81,9 @@ struct RoleAssignmentPolicyView: View {
                     .accessibilityIdentifier("role-policy.add")
                 }
             } header: {
-                Text("Add role")
+                Text(String(localized: "Add role"))
             } footer: {
-                Text(newScope == .planWide ? "Applies across your map." : matter.title)
+                Text(newScope == .planWide ? String(localized: "Applies across your map.") : matter.title)
             }
 
             Section {
@@ -91,13 +91,13 @@ struct RoleAssignmentPolicyView: View {
                 case .idle, .loading:
                     HStack(spacing: 10) {
                         ProgressView()
-                        Text("Loading role policy…")
+                        Text(String(localized: "Loading role policy…"))
                             .foregroundStyle(RilloraTheme.muted)
                     }
                 default:
                     let assignments = store.assignments(applyingTo: matter.publicId)
                     if assignments.isEmpty {
-                        Text("No active role applies to this matter.")
+                        Text(String(localized: "No active role applies to this matter."))
                             .foregroundStyle(RilloraTheme.muted)
                     } else {
                         ForEach(assignments) { assignment in
@@ -123,17 +123,17 @@ struct RoleAssignmentPolicyView: View {
                     }
                 }
             } header: {
-                Text("Existing roles")
+                Text(String(localized: "Existing roles"))
             }
 
             Section {
-                RilloraInfoDisclosure("Record only") {
+                RilloraInfoDisclosure(String(localized: "Record only")) {
                     RilloraFactStrip([
-                        .init(title: "No invitation", systemImage: "envelope"),
-                        .init(title: "No account access", systemImage: "lock.shield"),
-                        .init(title: "No legal authority", systemImage: "building.columns"),
+                        .init(title: String(localized: "No invitation"), systemImage: "envelope"),
+                        .init(title: String(localized: "No account access"), systemImage: "lock.shield"),
+                        .init(title: String(localized: "No legal authority"), systemImage: "building.columns"),
                     ])
-                    Text("Invitation evidence stays separate. Revoking changes only Rillora role records.")
+                    Text(String(localized: "Invitation evidence stays separate. Revoking changes only Rillora role records."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                 }
             }
@@ -143,12 +143,16 @@ struct RoleAssignmentPolicyView: View {
                 Section {
                     Label(notice, systemImage: "checkmark.circle")
                         .foregroundStyle(RilloraTheme.sage)
+                    if store.needsReload {
+                        Button(String(localized: "Reload latest")) { Task { await store.reload() } }
+                            .disabled(store.isBusy || !dirtyAssignmentIDs.isEmpty)
+                    }
                 }
             }
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
-        .navigationTitle("Role scope")
+        .navigationTitle(String(localized: "Role scope"))
         .navigationBarTitleDisplayMode(.inline)
         .navigationBarBackButtonHidden(!dirtyAssignmentIDs.isEmpty)
         .interactiveDismissDisabled(!dirtyAssignmentIDs.isEmpty || store.isBusy)
@@ -157,10 +161,10 @@ struct RoleAssignmentPolicyView: View {
         .toolbar {
             if !dirtyAssignmentIDs.isEmpty {
                 ToolbarItem(placement: .cancellationAction) {
-                    Button("Back") { showsDiscardConfirmation = true }
-                        .alert("Discard unsaved role changes?", isPresented: $showsDiscardConfirmation) {
-                            Button("Discard changes", role: .destructive) { dismiss() }
-                            Button("Keep editing", role: .cancel) {}
+                    Button(String(localized: "Back")) { showsDiscardConfirmation = true }
+                        .alert(String(localized: "Discard unsaved role changes?"), isPresented: $showsDiscardConfirmation) {
+                            Button(String(localized: "Discard changes"), role: .destructive) { dismiss() }
+                            Button(String(localized: "Keep editing"), role: .cancel) {}
                         }
                 }
             }
@@ -170,35 +174,35 @@ struct RoleAssignmentPolicyView: View {
             if role == .recipient { newScope = .matterSpecific }
         }
         .alert(
-            "Role policy not saved",
+            String(localized: "Role policy needs attention"),
             isPresented: Binding(
                 get: { if case .failed = store.state { true } else { false } },
                 set: { if !$0 { store.clearFailure() } }
             )
         ) {
-            Button("Reload") { Task { await store.reload() } }
-            Button("Cancel", role: .cancel) { store.clearFailure() }
+            Button(String(localized: "Reload")) { Task { await store.reload() } }
+            Button(String(localized: "Cancel"), role: .cancel) { store.clearFailure() }
         } message: {
             if case .failed(let message, _) = store.state { Text(message) }
         }
         .confirmationDialog(
-            "Revoke this role?",
+            String(localized: "Revoke this role?"),
             isPresented: Binding(
                 get: { assignmentToRevoke != nil },
                 set: { if !$0 { assignmentToRevoke = nil } }
             ),
             titleVisibility: .visible
         ) {
-            Button("Revoke role", role: .destructive) {
+            Button(String(localized: "Revoke role"), role: .destructive) {
                 guard let assignment = assignmentToRevoke else { return }
                 assignmentToRevoke = nil
                 Task {
                     if await store.revoke(assignment) { dirtyAssignmentIDs.remove(assignment.publicId) }
                 }
             }
-            Button("Cancel", role: .cancel) { assignmentToRevoke = nil }
+            Button(String(localized: "Cancel"), role: .cancel) { assignmentToRevoke = nil }
         } message: {
-            Text("This does not change an external account, ownership, recovery right, or legal authority.")
+            Text(String(localized: "This does not change an external account, ownership, recovery right, or legal authority."))
         }
         .accessibilityIdentifier("role-policy.editor")
     }
@@ -250,34 +254,34 @@ private struct RoleAssignmentEditorRow: View {
     var body: some View {
         DisclosureGroup {
             if assignment.editable {
-                RilloraAdaptivePicker("Role", selection: $role) {
+                RilloraAdaptivePicker(String(localized: "Role"), selection: $role) {
                     ForEach(RoleAssignmentRole.allCases) { option in
                         Text(option.label).tag(option)
                     }
                 }
-                RilloraAdaptivePicker("Scope", selection: $scope) {
+                RilloraAdaptivePicker(String(localized: "Scope"), selection: $scope) {
                     ForEach(RoleAssignmentScope.allCases) { option in
                         Text(option.label).tag(option)
                     }
                 }
                 .disabled(role == .recipient)
-                Button("Save role changes") {
+                Button(String(localized: "Save role changes")) {
                     Task { await save(role, scope) }
                 }
                 .disabled(disabled || (role == assignment.role && scope == assignment.scope))
             } else {
-                Text("Invitation evidence is read-only.")
+                Text(String(localized: "Invitation evidence is read-only."))
                     .font(.footnote)
                     .foregroundStyle(RilloraTheme.muted)
             }
 
-            Button("Revoke role", role: .destructive, action: revoke)
+            Button(String(localized: "Revoke role"), role: .destructive, action: revoke)
                 .disabled(disabled)
         }
         label: {
             VStack(alignment: .leading, spacing: 4) {
                 Text(assignment.person.displayName).font(.headline).foregroundStyle(RilloraTheme.ink)
-                Text("\(assignment.role.label) · \(assignment.scope.label)")
+                Text(L10n.format("%1$@ · %2$@", assignment.role.label, assignment.scope.label))
                     .font(.footnote).foregroundStyle(RilloraTheme.muted)
             }
             .frame(minHeight: 44)

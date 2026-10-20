@@ -1,0 +1,35 @@
+{
+  "capturedFrom": "2026-10-05T05:31:56.862238+00:00",
+  "capturedThrough": "2026-10-05T05:31:57.233358+00:00",
+  "workFiles": 149,
+  "uniqueRawObjects": 149,
+  "workBytes": 30897688,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-016.tar.zst.age",
+      "sha256": "220e067247c5912f9246e5d67eca9065158748187dff00b8cbacc5ce75ae3ac0",
+      "bytes": 28717330,
+      "plainBytes": 30897688,
+      "uniqueObjects": 149
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/real-core-closeout-20261005/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-real-core-closeout-20261005/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-real-core-closeout-20261005/cdk-production-web/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-real-core-closeout-20261005/cdk-production-web/asset.04d63bb1372b0f9e4635824b136891ccb61445bb1cd296b5f2fee6f31f17684c",
+      "reason": "expanded_deployment_asset_copy"
+    }
+  ],
+  "selection": "October5QA, retained-account/cleanup receipts and the new Web-only client artifact. All prior archives/native4proofs retained. Actual credentials, deletion-query tokens, authscreens and reproducible caches excluded.",
+  "boundary": "No credential store, recovery or deletion-query capability, browser authentication state, unrelated project or machine inventory included. Owner retained the test account/data; irreversible deletion is unverified and deferred."
+}

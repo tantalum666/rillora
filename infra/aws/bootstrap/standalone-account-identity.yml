@@ -4,11 +4,11 @@ Description: Rillora standalone-account operator and temporary CDK bootstrap rol
 Parameters:
   BootstrapAdministratorEnabled:
     Type: String
-    Default: "true"
+    Default: "false"
     AllowedValues:
       - "true"
       - "false"
-    Description: Keep true only until the account has been bootstrapped for CDK.
+    Description: Explicit temporary opt-in for initial CDK bootstrap; return to false after bootstrap.
 
 Conditions:
   BootstrapAdministratorIsEnabled: !Equals [!Ref BootstrapAdministratorEnabled, "true"]

@@ -1,0 +1,20 @@
+from pathlib import Path
+import datetime,hashlib,json,plistlib,subprocess
+R=Path.cwd();Q=R/'output/qa/rillora-payment-recheck-20261009';P=R/'.local-secrets/payment-recheck-20261009';app=Q/'inspection13/Payload/Rillora.app';old=Q/'inspection/Payload/Rillora.app'
+subprocess.run(['codesign','--verify','--deep','--strict',str(app)],check=True,capture_output=True)
+def ent(path):
+ r=subprocess.run(['codesign','--display','--entitlements',':-',str(path)],capture_output=True,check=True);return plistlib.loads(r.stdout)
+info=plistlib.loads((app/'Info.plist').read_bytes());previous=plistlib.loads((old/'Info.plist').read_bytes());e=ent(app);oe=ent(old)
+profile=plistlib.loads(subprocess.check_output(['security','cms','-D','-i',str(app/'embedded.mobileprovision')],stderr=subprocess.DEVNULL))
+device=json.loads((P/'target-device.json').read_text());udid=device['hardwareProperties']['udid']
+checks={'strictSignature':True,'bundle':info['CFBundleIdentifier']=='com.rillora.ios','version':info['CFBundleShortVersionString']=='1.0' and info['CFBundleVersion']=='13',
+'sameProductionConnections':all(info.get(k)==v for k,v in previous.items() if k.startswith('Rillora')),
+'noDevelopmentPlanner':not info.get('RilloraDevelopmentPlannerID'),'sameKeychain':e.get('keychain-access-groups')==oe.get('keychain-access-groups'),
+'sameApplicationIdentifier':e.get('application-identifier')==oe.get('application-identifier')=='8L99CFNK24.com.rillora.ios',
+'developmentSigned':e.get('get-task-allow') is True,'exactDeviceProvisioned':udid in profile.get('ProvisionedDevices',[]),
+'profileUnexpired':profile['ExpirationDate']>datetime.datetime.utcnow(),'noStoreKitFixture':not list(app.rglob('*.storekit')),
+'privacyUnchanged':(app/'PrivacyInfo.xcprivacy').read_bytes()==(old/'PrivacyInfo.xcprivacy').read_bytes(),
+'disclosureLanguagesBundled':(app/'disclosure-copy.json').is_file(),'bothLanguageResources':(app/'en.lproj/Localizable.strings').is_file() and (app/'zh-Hans.lproj/Localizable.strings').is_file()}
+assert all(checks.values()),checks
+ipa=R/'output/release/rillora-payment-recheck-20261009/development13-export/Rillora.ipa'
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'checks':checks,'passed':True,'source':'eaf68c0a714f74c59c42d304ba19ba121fabce26','appVersion':'1.0(13)','ipaSha256':hashlib.sha256(ipa.read_bytes()).hexdigest(),'appPath':str(app),'testFlight':False};(Q/'direct13-signing-verification.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({'passed':True,'checks':len(checks),'version':'1.0(13)','testFlight':False}))

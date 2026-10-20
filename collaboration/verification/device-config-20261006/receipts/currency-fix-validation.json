@@ -1,0 +1,20 @@
+{
+  "at": "2026-10-06T15:52:11.521954+00:00",
+  "scope": "Shared ApplePurchaseSection rendered by the isolated preview; not an Apple payment sheet or new transaction",
+  "currencies": [
+    "AUD $199.99",
+    "HKD HK$888.00",
+    "USD $119.99"
+  ],
+  "priceAndConsentSameText": true,
+  "chineseInterface": true,
+  "hkdAccessibility3PriceAndConsentReadable": true,
+  "ordinaryUiStructurePreserved": true,
+  "regression": {
+    "passed": 38,
+    "failed": 0,
+    "skipped": 1,
+    "skipReason": "Retained iOS26.4/26.5 StoreKitTest synchronization issue"
+  },
+  "firstAttempt": "15localized-message test failures in Chinese locale; retained separately; explicit English/US suite then passed"
+}

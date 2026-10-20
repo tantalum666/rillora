@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "exitCode": 0,
+  "ephemeralSession": true,
+  "otherMcpServersAndPluginsDisabled": true,
+  "scope": "Only selected synthetic matter; actual Codex client and its configured OpenAI model",
+  "calls": [
+    {
+      "server": "rillora_customer_20261018",
+      "tool": "list_selected_matters",
+      "status": "completed",
+      "isError": null
+    },
+    {
+      "server": "rillora_customer_20261018",
+      "tool": "get_preparation_gaps",
+      "status": "completed",
+      "isError": null
+    }
+  ],
+  "finalReply": "我会仅调用已连接的 Rillora 只读工具，核对你当前选择的合成事项及其常见信息缺口。\n已选中的合成事项为「Release acceptance 2026-10-01」（公开 ID：`38d847a7-c74d-4521-bdec-09e7b8591301`），类别为 `account`，状态为 `draft`。其缺少的常见信息只有 `intended_outcome`（预期处理结果）；`provider`（服务提供商）和 `location`（资料位置）未被报告为缺失。本次只检查共通字段，未评估类别专属细节、法律授权或接收方准备情况。"
+}

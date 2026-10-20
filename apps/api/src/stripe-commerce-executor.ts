@@ -19,6 +19,7 @@ import {
 } from "./db.js";
 import { ApiError } from "./errors.js";
 import { stripeFamilyPriceCode } from "./stripe-test-adapter.js";
+import type { BillingDisplayLocale } from './stripe-sdk.js';
 import type {
   StripeBillingPeriod,
   StripeCheckoutResult,
@@ -40,8 +41,9 @@ export type StripeCommerceProvider = Readonly<{
     existingStripeCustomerReference?: string;
     orderReference?: string;
     paymentAttemptReference?: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult>;
-  createCustomerPortal(input: { stripeCustomerReference: string }): Promise<StripePortalResult>;
+  createCustomerPortal(input: { stripeCustomerReference: string; locale?: BillingDisplayLocale }): Promise<StripePortalResult>;
   resolveFinancialSignal?(signal: Pick<
     NormalizedProviderSignal,
     "signalType" | "providerTransactionReference" | "providerRefundReference"
@@ -60,6 +62,7 @@ type CheckoutReservation = Readonly<{
   providerIdempotencyKey: string;
   existingStripeCustomerReference: string | null;
   existingCheckoutReference: string | null;
+  locale: BillingDisplayLocale | null;
 }>;
 
 type InboxReservation = Readonly<{
@@ -81,6 +84,7 @@ export class StripeCommerceExecutor {
     billingPeriod: StripeBillingPeriod;
     idempotencySeed: string;
     purchaseConsent?: PurchaseConsent;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult & {
     orderReference: string;
     paymentAttemptReference: string;
@@ -109,6 +113,7 @@ export class StripeCommerceExecutor {
         this.config,
         this.provider,
         input.purchaseConsent,
+        input.locale,
       ),
     );
 
@@ -120,6 +125,7 @@ export class StripeCommerceExecutor {
       idempotencyKey: reservation.providerIdempotencyKey,
       orderReference: reservation.orderReference,
       paymentAttemptReference: reservation.paymentAttemptReference,
+      ...(reservation.locale ? { locale: reservation.locale } : {}),
       ...(reservation.existingStripeCustomerReference
         ? { existingStripeCustomerReference: reservation.existingStripeCustomerReference }
         : {}),
@@ -159,7 +165,7 @@ export class StripeCommerceExecutor {
     });
   }
 
-  async createPortal(plannerId: string): Promise<StripePortalResult & { testOnly: boolean }> {
+  async createPortal(plannerId: string, locale?: BillingDisplayLocale): Promise<StripePortalResult & { testOnly: boolean }> {
     const customerReference = await withCommercePlannerDatabase(
       this.pool,
       plannerId,
@@ -190,6 +196,7 @@ export class StripeCommerceExecutor {
     return Object.freeze({
       ...(await this.provider.createCustomerPortal({
         stripeCustomerReference: customerReference,
+        ...(locale ? { locale } : {}),
       })),
       testOnly: this.providerEnvironment === "test",
     });
@@ -197,7 +204,7 @@ export class StripeCommerceExecutor {
   async cancelPendingCheckout(plannerId: string): Promise<void> {
     if (!this.provider.expireHostedCheckout) throw new ApiError(503, "checkout_cancel_unavailable", "Checkout could not be canceled. Try again.");
     await withCommercePlannerDatabase(this.pool, plannerId, async client => {
-      await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
+      await acquireCheckoutLock(client);
       const pending = await client.query<{ id: string; order_id: string; provider_payment_reference: string | null; account_reference: string }>(`select p.id::text,p.order_id::text,p.provider_payment_reference,a.public_id as account_reference
         from app.commerce_payment_attempts p join app.commerce_orders o on o.id=p.order_id
         join app.commerce_accounts a on a.id=o.commerce_account_id
@@ -249,6 +256,10 @@ export class StripeCommerceExecutor {
       return Object.freeze({ received: true, status: "ignored", testOnly: this.providerEnvironment === "test" });
     }
 
+    // Keep the provider event's original reference. Resolution replaces its
+    // transaction reference with the Charge for ledger routing; a fresh dispute
+    // lookup still needs the original Dispute ID.
+    const financialSignal = signal;
     let financialResolution: StripeFinancialSignalResolution | null = null;
     if (
       ["refund_changed", "dispute_changed"].includes(signal.signalType)
@@ -312,7 +323,7 @@ export class StripeCommerceExecutor {
         // Initial financial lookup supplies routing only. Re-read it under the same
         // ownership as the subscription so a delayed dispute/refund cannot regress it.
         if (financialResolution) {
-          const current = await this.provider.resolveFinancialSignal!(signal);
+          const current = await this.provider.resolveFinancialSignal!(financialSignal);
           if (current.providerSubscriptionReference !== signal.providerSubscriptionReference
             || current.providerCustomerReference !== customerReference) throw new Error('Financial observation binding changed');
           financialResolution = current;
@@ -376,8 +387,8 @@ export class StripeCommerceExecutor {
   async loadProductionStatus(plannerId: string): Promise<unknown> {
     if (this.providerEnvironment !== "production") throw new Error("Production billing status requires a production executor");
     return withCommercePlannerDatabase(this.pool, plannerId, async client => {
-      const subscription = await client.query<{ state: string; current_period_ends_at: Date | null; cancel_at_period_end: boolean }>(
-        `select state,current_period_ends_at,cancel_at_period_end from app.commerce_subscriptions
+      const subscription = await client.query<{ state: string; current_period_ends_at: Date | null; cancel_at_period_end: boolean; renewal_is_possible: boolean | null }>(
+        `select state,current_period_ends_at,cancel_at_period_end,renewal_is_possible from app.commerce_subscriptions
          where planner_id=app.current_planner_id() and renewal_provider='stripe' and provider_environment='production'
          order by created_at desc,id desc limit 1`);
       const flags = await client.query<{ can_manage: boolean; checkout_pending: boolean }>(`select
@@ -389,7 +400,7 @@ export class StripeCommerceExecutor {
       return { contractVersion: 'commerce-stripe-production-v1', testOnly: false,
         canManage: flags.rows[0]?.can_manage === true, checkoutPending: flags.rows[0]?.checkout_pending === true,
         subscription: row ? { state: row.state, currentPeriodEndsAt: row.current_period_ends_at?.toISOString() ?? null,
-          cancelAtPeriodEnd: row.cancel_at_period_end } : null };
+          cancelAtPeriodEnd: row.cancel_at_period_end, renewalIsPossible: row.renewal_is_possible } : null };
     });
   }
 
@@ -408,8 +419,9 @@ export class StripeCommerceExecutor {
           state: string;
           current_period_ends_at: Date | null;
           cancel_at_period_end: boolean;
+          renewal_is_possible: boolean | null;
         }>(
-          `select public_id, state, current_period_ends_at, cancel_at_period_end
+          `select public_id, state, current_period_ends_at, cancel_at_period_end, renewal_is_possible
            from app.commerce_subscriptions
            where planner_id = app.current_planner_id()
              and renewal_provider = 'stripe'
@@ -457,6 +469,7 @@ export class StripeCommerceExecutor {
           state: row.state,
           currentPeriodEndsAt: row.current_period_ends_at?.toISOString() ?? null,
           cancelAtPeriodEnd: row.cancel_at_period_end,
+          renewalIsPossible: row.renewal_is_possible,
         })),
         events: events.rows.map((row) => ({
           publicId: row.public_id,
@@ -522,9 +535,10 @@ async function reserveCheckout(
   config: StripeExecutionConfig,
   provider: StripeCommerceProvider,
   purchaseConsent?: PurchaseConsent,
+  locale?: BillingDisplayLocale,
 ): Promise<CheckoutReservation> {
   const environment = stripeExecutionEnvironment(config);
-  await client.query("select pg_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0))");
+  await acquireCheckoutLock(client);
   if (environment === "production") {
     await assertProductionSalesReady(client);
     await assertNoForeignPurchase(client,'stripe');
@@ -604,11 +618,12 @@ async function reserveCheckout(
     provider_payment_reference: string | null;
     attempt_status?: string;
     order_status?: string;
+    stripe_checkout_locale: BillingDisplayLocale | null;
   }>(
     `select order_row.public_id::text as order_public_id,
             attempt.public_id::text as attempt_public_id,
             order_row.price_id::text,attempt.idempotency_key,attempt.provider_payment_reference,
-            attempt.status as attempt_status,order_row.status as order_status
+            attempt.status as attempt_status,order_row.status as order_status,attempt.stripe_checkout_locale
      from app.commerce_payment_attempts attempt
      join app.commerce_orders order_row
        on order_row.id = attempt.order_id and order_row.planner_id = attempt.planner_id
@@ -650,8 +665,8 @@ async function reserveCheckout(
       await client.query(`insert into app.commerce_subscription_state_history(planner_id,subscription_id,from_state,to_state,reason_code,occurred_at)
         values(app.current_planner_id(),$1,$2,'expired_read_only','stripe_api_checkout_preflight',$3)`,[sub.id,sub.state,current.observedAt]);
     }
-    const pending = await client.query<{ order_public_id: string; attempt_public_id: string; price_id: string; idempotency_key: string; provider_payment_reference: string | null }>(
-      `select o.public_id as order_public_id,p.public_id as attempt_public_id,o.price_id::text,p.idempotency_key,p.provider_payment_reference
+    const pending = await client.query<{ order_public_id: string; attempt_public_id: string; price_id: string; idempotency_key: string; provider_payment_reference: string | null; stripe_checkout_locale: BillingDisplayLocale | null }>(
+      `select o.public_id as order_public_id,p.public_id as attempt_public_id,o.price_id::text,p.idempotency_key,p.provider_payment_reference,p.stripe_checkout_locale
        from app.commerce_payment_attempts p join app.commerce_orders o on o.id=p.order_id
        where o.commerce_account_id=$1 and p.provider_code='stripe' and p.provider_environment='${environment}'
          and p.status in ('created','submitted') and o.status in ('created','pending') order by p.id desc limit 1`,[accountRow.id]);
@@ -686,11 +701,11 @@ async function reserveCheckout(
     const attempt = await client.query<{ public_id: string }>(
       `insert into app.commerce_payment_attempts (
          planner_id, order_id, provider_code, provider_environment,
-         idempotency_key, status, amount_minor, currency_code
+         idempotency_key, status, amount_minor, currency_code, stripe_checkout_locale
        ) values (
-         app.current_planner_id(), $1, 'stripe', '${environment}', $2, 'created', $3, $4
+         app.current_planner_id(), $1, 'stripe', '${environment}', $2, 'created', $3, $4, $5
        ) returning public_id::text`,
-      [order.rows[0]!.id, idempotencyKey, catalogRow.amount_minor, catalogRow.currency_code],
+      [order.rows[0]!.id, idempotencyKey, catalogRow.amount_minor, catalogRow.currency_code, locale ?? null],
     );
     orderReference = order.rows[0]!.public_id;
     paymentAttemptReference = attempt.rows[0]!.public_id;
@@ -710,7 +725,7 @@ async function reserveCheckout(
        and provider_code = 'stripe'
        and provider_environment = '${environment}'
        and status = 'active'
-       and ('${environment}'<>'production' or created_at <= (select created_at from app.commerce_orders where public_id=$2::uuid))
+       and created_at <= (select created_at from app.commerce_orders where public_id=$2::uuid)
      limit 1`,
     [accountRow.id, orderReference],
   );
@@ -721,6 +736,7 @@ async function reserveCheckout(
     providerIdempotencyKey: existing.rows[0]?.idempotency_key ?? idempotencyKey,
     existingStripeCustomerReference: customer.rows[0]?.provider_customer_reference ?? null,
     existingCheckoutReference: existing.rows[0]?.provider_payment_reference ?? null,
+    locale: existing.rows[0] ? existing.rows[0].stripe_checkout_locale : locale ?? null,
   });
 }
 
@@ -795,7 +811,13 @@ async function resolveCommerceAccountReference(
   if (mapped && isUuid(signal.commerceAccountReference) && mapped !== signal.commerceAccountReference) throw new Error("Provider object and metadata account mappings conflict");
   if (mapped) return mapped;
   if (!isUuid(signal.commerceAccountReference)) return null;
-  if (signal.providerEnvironment === "test") return signal.commerceAccountReference;
+  if (signal.providerEnvironment === "test") {
+    // The shared Stripe TEST account can also emit events from isolated local QA.
+    // Keep those events pending mapping instead of treating a nonlocal UUID as an
+    // owned account and failing with a retrying 500 later in reconciliation.
+    return withCommerceAccountDatabase(pool, signal.commerceAccountReference,
+      async (_client, context) => context.publicId);
+  }
   // A fast webhook can arrive before the checkout POST result is persisted.
   // Metadata alone is insufficient: require the owned durable purchase consent.
   if (!isUuid(signal.orderReference) || !isUuid(signal.paymentAttemptReference)) return null;
@@ -845,6 +867,16 @@ async function acquireStripeObservation(client: PoolClient, environment: string,
     [`stripe-observation:${environment}:${subscription}`],
   );
   if (!locked.rows[0]?.acquired) throw new ApiError(503, 'subscription_observation_busy', 'Subscription reconciliation will retry.');
+  await client.query("set local idle_in_transaction_session_timeout = '120s'");
+}
+
+async function acquireCheckoutLock(client: PoolClient): Promise<void> {
+  const result = await client.query<{ acquired: boolean }>(
+    "select pg_try_advisory_xact_lock(hashtextextended('checkout:' || app.current_planner_id()::text,0)) as acquired",
+  );
+  // Never occupy the shared pool waiting behind another planner request that
+  // may be doing provider I/O. Keep the existing read-to-commit serialization.
+  if (!result.rows[0]?.acquired) throw new ApiError(409, 'checkout_preparing', 'Checkout is still preparing. Try again shortly.');
   await client.query("set local idle_in_transaction_session_timeout = '120s'");
 }
 
@@ -960,7 +992,11 @@ async function applyAuthoritativeSnapshot(
   if (prior?.provider_invoice_reference === snapshot.providerInvoiceReference && prior?.financial_state_override) {
     const disputeResolved = prior.financial_state_override === "revoked" && matchingAdjustment
       && signal.signalType === "dispute_changed" && financialResolution?.authoritativeStateOverride === null;
-    if (!disputeResolved) financialOverride = prior.financial_state_override === "refunded" ? "refunded" : financialOverride ?? prior.financial_state_override;
+    const refundReversed = prior.financial_state_override === "refunded" && matchingAdjustment
+      && signal.signalType === "refund_changed" && financialResolution?.refundReversed === true;
+    if (!disputeResolved && !refundReversed) {
+      financialOverride = prior.financial_state_override === "refunded" ? "refunded" : financialOverride ?? prior.financial_state_override;
+    }
   }
   if (financialOverride) snapshot = Object.freeze({ ...snapshot, state: financialOverride, cancelAtPeriodEnd: false });
   const subscriptionId = await recordSubscriptionObservation(client, context, signal, snapshot,

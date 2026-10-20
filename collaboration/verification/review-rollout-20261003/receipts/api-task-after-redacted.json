@@ -1,0 +1,332 @@
+{
+  "taskDefinition": {
+    "taskDefinitionArn": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:11",
+    "containerDefinitions": [
+      {
+        "name": "Api",
+        "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:1c28cb38877a12ca1ac10e07ae8f05a3fa7e47a0eec86e45a8e7eec8bf2e6c32",
+        "cpu": 0,
+        "links": [],
+        "portMappings": [
+          {
+            "containerPort": 8443,
+            "hostPort": 8443,
+            "protocol": "tcp",
+            "name": "https"
+          }
+        ],
+        "essential": true,
+        "entryPoint": [],
+        "command": [],
+        "environment": [
+          {
+            "name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+            "value": "false"
+          },
+          {
+            "name": "ALLOW_STRIPE_PRODUCTION_INTEGRATION",
+            "value": "false"
+          },
+          {
+            "name": "DATABASE_HOST",
+            "value": "rillora-production.cxcqa2usex01.eu-central-1.rds.amazonaws.com"
+          },
+          {
+            "name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+            "value": "false"
+          },
+          {
+            "name": "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL",
+            "value": "false"
+          },
+          {
+            "name": "ALLOW_APPLE_PRODUCTION_INTEGRATION",
+            "value": "false"
+          },
+          {
+            "name": "HOST",
+            "value": "0.0.0.0"
+          },
+          {
+            "name": "OIDC_ISSUER_URL",
+            "value": "https://login.rillora.xyz"
+          },
+          {
+            "name": "APPLE_REVIEW_SECRET_ARN",
+            "value": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-review-CtmNG4"
+          },
+          {
+            "name": "ALLOW_DEV_AUTH",
+            "value": "false"
+          },
+          {
+            "name": "PRODUCTION_RUNTIME_MODE",
+            "value": "review"
+          },
+          {
+            "name": "DATABASE_SSL_CA_PATH",
+            "value": "/app/certs/rds-global-bundle.pem"
+          },
+          {
+            "name": "OIDC_REDIRECT_URI",
+            "value": "https://app.rillora.xyz/api/auth/callback"
+          },
+          {
+            "name": "API_TLS_SERVER_NAME",
+            "value": "origin.production.rillora.xyz"
+          },
+          {
+            "name": "ALLOW_STRIPE_TEST_INTEGRATION",
+            "value": "false"
+          },
+          {
+            "name": "OIDC_CLIENT_ID",
+            "value": "EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz"
+          },
+          {
+            "name": "CONTENT_KEY_NAMESPACE",
+            "value": "rillora-production"
+          },
+          {
+            "name": "PRODUCTION_REVIEW_IDENTITY_SHA256",
+            "value": "sha256-of-set:4b524c64007bbb103379b35e568218956d1d80a074c91fbc0fd8cc73d64513af"
+          },
+          {
+            "name": "PRODUCTION_REVIEW_EXPIRES_AT",
+            "value": "2026-10-06T17:08:57Z"
+          },
+          {
+            "name": "DATABASE_POOL_MAX",
+            "value": "5"
+          },
+          {
+            "name": "OIDC_API_AUDIENCE",
+            "value": "urn:rillora:production:api"
+          },
+          {
+            "name": "ALLOW_APPLE_REVIEW_INTEGRATION",
+            "value": "true"
+          },
+          {
+            "name": "DATABASE_NAME",
+            "value": "rillora"
+          },
+          {
+            "name": "PORT",
+            "value": "8443"
+          },
+          {
+            "name": "NATIVE_OIDC_CLIENT_ID",
+            "value": "POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"
+          },
+          {
+            "name": "RECOVERY_JOURNAL_TABLE",
+            "value": "RilloraProduction-RecoveryJournal06BB91CD-1EBHY2PWCGS9F"
+          },
+          {
+            "name": "DATABASE_PORT",
+            "value": "5432"
+          },
+          {
+            "name": "WEB_APP_ORIGIN",
+            "value": "https://app.rillora.xyz"
+          },
+          {
+            "name": "TRUST_PROXY_HOPS",
+            "value": "1"
+          },
+          {
+            "name": "CORS_ORIGINS",
+            "value": "https://app.rillora.xyz"
+          },
+          {
+            "name": "CONTENT_PROTECTION_MODE",
+            "value": "encrypted"
+          },
+          {
+            "name": "RECOVERY_ENVIRONMENT",
+            "value": "production"
+          },
+          {
+            "name": "DATA_REGION",
+            "value": "eu-central-1"
+          },
+          {
+            "name": "NODE_ENV",
+            "value": "production"
+          },
+          {
+            "name": "DATABASE_CONNECTION_TIMEOUT_MS",
+            "value": "10000"
+          },
+          {
+            "name": "DATABASE_SSL_MODE",
+            "value": "verify-full"
+          },
+          {
+            "name": "ALLOW_RETENTION_WORKER",
+            "value": "true"
+          },
+          {
+            "name": "APPLE_ROOT_CERTIFICATE_DIRECTORY",
+            "value": "/app/certificates/apple"
+          },
+          {
+            "name": "CONTENT_KMS_KEY_ARN",
+            "value": "arn:aws:kms:eu-central-1:133857166372:key/0f60cf8f-25b6-4e8e-94c5-03fc127a5b72"
+          },
+          {
+            "name": "API_TLS_CERTIFICATE_ARN",
+            "value": "arn:aws:acm:eu-central-1:133857166372:certificate/8435fada-00ca-4c0e-880b-ff26e0fb6191"
+          }
+        ],
+        "environmentFiles": [],
+        "mountPoints": [],
+        "volumesFrom": [],
+        "linuxParameters": {
+          "capabilities": {
+            "add": [],
+            "drop": [
+              "ALL"
+            ]
+          },
+          "devices": [],
+          "tmpfs": []
+        },
+        "secrets": [
+          {
+            "name": "DATABASE_USER",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeCredential871C86BA-OO3vKO9TLttB-xFGX4w:username::"
+          },
+          {
+            "name": "DATABASE_PASSWORD",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:RuntimeCredential871C86BA-OO3vKO9TLttB-xFGX4w:password::"
+          },
+          {
+            "name": "AUTH0_DELETION_DOMAIN",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/account-deletion-SM6pTi:domain::"
+          },
+          {
+            "name": "AUTH0_DELETION_CLIENT_ID",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/account-deletion-SM6pTi:client_id::"
+          },
+          {
+            "name": "AUTH0_DELETION_CLIENT_SECRET",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/account-deletion-SM6pTi:client_secret::"
+          },
+          {
+            "name": "AUTH0_EMAIL_VERIFICATION_DOMAIN",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/email-verification-k3bQtl:domain::"
+          },
+          {
+            "name": "AUTH0_EMAIL_VERIFICATION_CLIENT_ID",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/email-verification-k3bQtl:client_id::"
+          },
+          {
+            "name": "AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/email-verification-k3bQtl:client_secret::"
+          },
+          {
+            "name": "OIDC_CLIENT_SECRET",
+            "valueFrom": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/web-oidc-nccEvI:client_secret::"
+          }
+        ],
+        "readonlyRootFilesystem": true,
+        "dnsServers": [],
+        "dnsSearchDomains": [],
+        "extraHosts": [],
+        "dockerSecurityOptions": [],
+        "dockerLabels": {},
+        "ulimits": [],
+        "logConfiguration": {
+          "logDriver": "awslogs",
+          "options": {
+            "awslogs-group": "RilloraProduction-RuntimeApiLogs69C9F62B-I6Cv6Kkh8WhY",
+            "awslogs-region": "eu-central-1",
+            "awslogs-stream-prefix": "api"
+          },
+          "secretOptions": []
+        },
+        "healthCheck": {
+          "command": [
+            "CMD",
+            "node",
+            "dist/healthcheck.js"
+          ],
+          "interval": 30,
+          "timeout": 5,
+          "retries": 3,
+          "startPeriod": 45
+        },
+        "systemControls": [],
+        "credentialSpecs": []
+      }
+    ],
+    "family": "RilloraProductionRuntimeApiTask93405B31",
+    "taskRoleArn": "arn:aws:iam::133857166372:role/RilloraProduction-RuntimeApiTaskTaskRole477A5663-Rw8jVT32TULJ",
+    "executionRoleArn": "arn:aws:iam::133857166372:role/RilloraProduction-RuntimeApiTaskExecutionRoleD48730-4ANQ2zM0JRKt",
+    "networkMode": "awsvpc",
+    "revision": 11,
+    "volumes": [],
+    "status": "ACTIVE",
+    "requiresAttributes": [
+      {
+        "name": "ecs.capability.execution-role-awslogs"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.ecr-auth"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.17"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.task-iam-role"
+      },
+      {
+        "name": "ecs.capability.container-health-check"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.22"
+      },
+      {
+        "name": "ecs.capability.execution-role-ecr-pull"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.18"
+      },
+      {
+        "name": "ecs.capability.task-eni"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.29"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.logging-driver.awslogs"
+      },
+      {
+        "name": "com.amazonaws.ecs.capability.docker-remote-api.1.19"
+      },
+      {
+        "name": "ecs.capability.secrets.asm.environment-variables"
+      }
+    ],
+    "placementConstraints": [],
+    "compatibilities": [
+      "EC2",
+      "FARGATE",
+      "MANAGED_INSTANCES"
+    ],
+    "runtimePlatform": {
+      "cpuArchitecture": "ARM64",
+      "operatingSystemFamily": "LINUX"
+    },
+    "requiresCompatibilities": [
+      "FARGATE"
+    ],
+    "cpu": "256",
+    "memory": "512",
+    "registeredAt": "2026-10-03T18:11:09.259000+08:00",
+    "registeredBy": "arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-cfn-exec-role-133857166372-eu-central-1/AWSCloudFormation"
+  },
+  "tags": []
+}

@@ -16,14 +16,15 @@ test("recipient demonstration omits unshared matters instead of exposing locked 
   assert.ok(sharedDemoMatters("mum").every((item) => !("recipients" in item)));
 });
 
-test("public preview account and invitation routes stay on the explicitly selected app", () => {
-  assert.equal(publicEntry.preview, true);
+test("public launch candidate uses the production account and invitation routes", () => {
+  assert.equal(publicEntry.preview, false);
+  assert.equal(publicEntry.customerAccess, "live");
   assert.equal(
     publicEntry.accountURL,
-    "https://app.staging.rillora.xyz/account",
+    "https://app.rillora.xyz/account",
   );
   assert.equal(
     publicEntry.invitationURL,
-    "https://app.staging.rillora.xyz/invite",
+    "https://app.rillora.xyz/invite",
   );
 });

@@ -1,3 +1,5 @@
+import { PublicLink } from "../PublicLink.jsx";
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import { ArrowRight } from "@phosphor-icons/react";
 import hero from "../assets/landing/hero-still-life.webp";
@@ -8,6 +10,7 @@ import { ThemePicture } from "./AppearanceControl.jsx";
 import { Reveal } from "./LandingMotion.jsx";
 
 export function LandingPage() {
+  const { t } = useI18n();
   return (
     <main id="lp-main">
       <section className="lp-hero" aria-labelledby="lp-title">
@@ -23,27 +26,18 @@ export function LandingPage() {
         <div className="lp-container lp-hero-content">
           <div className="lp-hero-copy">
             <h1 id="lp-title">
-              Leave less
-              <br />
-              for them to
-              <br />
-              figure out.
+              {t("public.home.heroTitle")}
             </h1>
             <p>
-              A private map of your important things,
-              <br className="lp-desktop-break" /> shared with the people you
-              choose.
+              {t("public.home.heroDescription")}
             </p>
             <div className="lp-hero-actions">
-              <a className="lp-button" href="/product">
-                Explore the product <ArrowRight size={22} aria-hidden="true" />
-              </a>
+              <PublicLink className="lp-button" href="/product">{t("public.home.exploreProduct")}<ArrowRight size={22} aria-hidden="true" />
+              </PublicLink>
               <AppearanceLink
                 className="lp-invitation-link"
                 href={publicEntry.invitationURL}
-              >
-                Received an invitation?
-              </AppearanceLink>
+              >{t("public.auth.invitation")}</AppearanceLink>
             </div>
           </div>
         </div>
@@ -51,30 +45,25 @@ export function LandingPage() {
       <SharingDemo />
       <section
         className="lp-destinations lp-container"
-        aria-label="Explore Rillora"
+        aria-label={t("public.home.exploreLabel")}
       >
         <Reveal>
-          <a href="/product">
-            <span>Accounts, documents, devices.</span>
-            <h2>A place for what matters.</h2>
-            <p>
-              See what belongs in your map, and how to give each item a next
-              step.
-            </p>
-            <span className="lp-text-link">
-              Explore the product <ArrowRight size={20} aria-hidden="true" />
+          <PublicLink href="/product">
+            <span>{t("public.home.productEyebrow")}</span>
+            <h2>{t("public.home.productTitle")}</h2>
+            <p>{t("public.home.productDescription")}</p>
+            <span className="lp-text-link">{t("public.home.exploreProduct")}<ArrowRight size={20} aria-hidden="true" />
             </span>
-          </a>
+          </PublicLink>
         </Reveal>
         <Reveal>
-          <a href="/security">
-            <span>Privacy starts with your choices.</span>
-            <h2>Stay in control.</h2>
-            <p>Choose what to share, change access and keep your own copy.</p>
-            <span className="lp-text-link">
-              Security & privacy <ArrowRight size={20} aria-hidden="true" />
+          <PublicLink href="/security">
+            <span>{t("public.home.securityEyebrow")}</span>
+            <h2>{t("public.home.securityTitle")}</h2>
+            <p>{t("public.home.securityDescription")}</p>
+            <span className="lp-text-link">{t("public.home.securityLink")}<ArrowRight size={20} aria-hidden="true" />
             </span>
-          </a>
+          </PublicLink>
         </Reveal>
       </section>
       <section
@@ -83,14 +72,11 @@ export function LandingPage() {
       >
         <div>
           <h2 id="lp-closing-title">
-            Make the important
-            <br />
-            things clear.
+            {t("public.home.closingTitle")}
           </h2>
-          <p>Start with one matter and someone you trust.</p>
+          <p>{t("public.home.closingDescription")}</p>
         </div>
-        <AppearanceLink className="lp-button" href={publicEntry.accountURL}>
-          Explore Preview <ArrowRight size={22} aria-hidden="true" />
+        <AppearanceLink className="lp-button" href={publicEntry.accountURL}>{t(publicEntry.preview ? "public.auth.explore" : "public.auth.openMap")}<ArrowRight size={22} aria-hidden="true" />
         </AppearanceLink>
       </section>
     </main>

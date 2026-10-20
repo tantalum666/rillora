@@ -1,15 +1,17 @@
+import { useI18n } from "./i18n/I18nProvider.jsx";
 import { useState } from "react";
 import { ArrowRight, FileText, GitBranch, Users, IdentificationCard, Devices, DotsThreeCircle, CaretDown } from "@phosphor-icons/react";
 import mapArtwork from "./assets/continuity-map.png";
 import "./continuity-explorer.css";
 
 const topics = [
-  { id: "what", label: "What", title: "What exists", icon: FileText, tilt: 0, description: "Keep important accounts, documents and directions together." },
-  { id: "next", label: "Next step", title: "What happens", icon: GitBranch, tilt: -8, description: "Your wishes: keep, transfer or close." },
-  { id: "who", label: "Who", title: "Who can help", icon: Users, tilt: 8, description: "Invite by link. They use their own account and see only what you share." },
+  { id: "what", labelKey: "public.explorer.what.label", titleKey: "public.explorer.what.title", icon: FileText, tilt: 0, descriptionKey: "public.explorer.what.description" },
+  { id: "next", labelKey: "public.explorer.next.label", titleKey: "public.explorer.next.title", icon: GitBranch, tilt: -8, descriptionKey: "public.explorer.next.description" },
+  { id: "who", labelKey: "public.explorer.who.label", titleKey: "public.explorer.who.title", icon: Users, tilt: 8, descriptionKey: "public.explorer.who.description" },
 ];
 
 export function ContinuityExplorer() {
+  const { t } = useI18n();
   const [selected, setSelected] = useState("what");
   const topic = topics.find((item) => item.id === selected);
   return (
@@ -21,49 +23,50 @@ export function ContinuityExplorer() {
           <path data-active={selected === "who"} d="M190 155 Q342 55 342 158" />
         </svg>
         <img className="continuity-map" src={mapArtwork} alt="" width="1254" height="1254" fetchPriority="high" />
-        {topics.map(({ id, title, icon: Icon }) => (
-          <button key={id} type="button" tabIndex={-1} onMouseDown={event => event.preventDefault()} aria-label={`Explore ${title.toLowerCase()}`} aria-pressed={selected === id} className={`continuity-node node-${id}`} data-active={selected === id} onClick={() => setSelected(id)}>
+        {topics.map(({ id, titleKey, icon: Icon }) => (
+          <button key={id} type="button" tabIndex={-1} onMouseDown={event => event.preventDefault()} aria-label={t("public.explorer.explore", { title: t(titleKey) })} aria-pressed={selected === id} className={`continuity-node node-${id}`} data-active={selected === id} onClick={() => setSelected(id)}>
             <Icon size={27} weight="fill" aria-hidden="true" />
           </button>
         ))}
       </div>
-      <div className="continuity-selector" role="group" aria-label="Explore how your map works">
-        {topics.map(({ id, label, title, icon: Icon }) => (
-          <button key={id} type="button" aria-label={title} aria-pressed={selected === id} onClick={() => setSelected(id)}>
-            <Icon size={18} weight="fill" aria-hidden="true" /><span>{label}</span>
+      <div className="continuity-selector" role="group" aria-label={t("public.explorer.label")}>
+        {topics.map(({ id, labelKey, titleKey, icon: Icon }) => (
+          <button key={id} type="button" aria-label={t(titleKey)} aria-pressed={selected === id} onClick={() => setSelected(id)}>
+            <Icon size={18} weight="fill" aria-hidden="true" /><span>{t(labelKey)}</span>
           </button>
         ))}
       </div>
-      <p className="continuity-explanation" aria-live="polite" aria-atomic="true">{topic.description}</p>
+      <p className="continuity-explanation" aria-live="polite" aria-atomic="true">{t(topic.descriptionKey)}</p>
     </div>
   );
 }
 
 const groups = [
-  { id: "account", title: "Accounts", icon: IdentificationCard, detail: "Service · Safe hint · Next step", action: "Add an account" },
-  { id: "document", title: "Documents", icon: FileText, detail: "Document · Location · Who needs it", action: "Add a document" },
-  { id: "device", title: "Devices", icon: Devices, detail: "Device · Location · Official access route", action: "Add a device" },
-  { id: "financial_asset", title: "Other matters", icon: DotsThreeCircle, detail: "Assets · Debts · Subscriptions", action: "Add a matter" },
+  { id: "account", titleKey: "public.category.accounts", icon: IdentificationCard, detailKey: "public.explorer.account.detail", actionKey: "public.explorer.account.action" },
+  { id: "document", titleKey: "public.category.documents", icon: FileText, detailKey: "public.explorer.document.detail", actionKey: "public.explorer.document.action" },
+  { id: "device", titleKey: "public.category.devices", icon: Devices, detailKey: "public.explorer.device.detail", actionKey: "public.explorer.device.action" },
+  { id: "financial_asset", titleKey: "public.explorer.other.title", icon: DotsThreeCircle, detailKey: "public.explorer.other.detail", actionKey: "public.explorer.other.action" },
 ];
 
 export function PublicMatterExplorer({ onStart }) {
+  const { t } = useI18n();
   const [expanded, setExpanded] = useState("account");
   return (
     <section className="public-matter-explorer" id="explore-matters" tabIndex={-1} aria-labelledby="explore-matters-title">
       <div>
-        <p className="architectural-kicker">Explore matters</p>
-        <h2 id="explore-matters-title">What would you like to organise?</h2>
+        <p className="architectural-kicker">{t("public.appHome.explore")}</p>
+        <h2 id="explore-matters-title">{t("public.explorer.organise")}</h2>
       </div>
       <div className="public-matter-categories">
-        {groups.map(({ id, title, icon: Icon, detail, action }) => (
+        {groups.map(({ id, titleKey, icon: Icon, detailKey, actionKey }) => (
           <article className="public-matter-category" key={id} data-expanded={expanded === id}>
             <button type="button" aria-expanded={expanded === id} aria-controls={`matter-guidance-${id}`} onClick={() => setExpanded(expanded === id ? null : id)}>
-              <Icon size={24} aria-hidden="true" /><strong>{title}</strong><CaretDown size={17} aria-hidden="true" />
+              <Icon size={24} aria-hidden="true" /><strong>{t(titleKey)}</strong><CaretDown size={17} aria-hidden="true" />
             </button>
             <div className="public-matter-guidance" id={`matter-guidance-${id}`} hidden={expanded !== id}>
-              <p>{detail}</p>
-              {onStart ? <button type="button" onClick={() => onStart(id)}>{action}<ArrowRight size={20} aria-hidden="true" /></button>
-                : <a href={`/guides?service=${id === 'financial_asset' ? 'binance' : id === 'document' ? 'google' : 'apple'}`}>Explore a related guide <ArrowRight size={20} aria-hidden="true" /></a>}
+              <p>{t(detailKey)}</p>
+              {onStart ? <button type="button" onClick={() => onStart(id)}>{t(actionKey)}<ArrowRight size={20} aria-hidden="true" /></button>
+                : <a href={`/guides?service=${id === 'financial_asset' ? 'binance' : id === 'document' ? 'google' : 'apple'}`}>{t("public.explorer.guide")}<ArrowRight size={20} aria-hidden="true" /></a>}
             </div>
           </article>
         ))}

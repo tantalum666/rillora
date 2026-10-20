@@ -1,0 +1,25 @@
+{
+  "completedAt": "2026-10-15T20:34:28.103530+00:00",
+  "sourceApplicationChanged": false,
+  "sourceAndReadableSecretScansPassed": true,
+  "markdownLinksPassed": true,
+  "previousCi161": "success",
+  "realOAuthCompleted": false,
+  "requiredAction": "Additional Auth0 connection-management grant; current administrative login is restored",
+  "changedSpecifications": [
+    "docs/architecture/ai-integration-acceptance-20261016.md",
+    "integrations/ai/README.md",
+    "docs/product.md",
+    "docs/source-control.md"
+  ],
+  "decisionEntry": "2026-10-16 Keep real OAuth acceptance separate from production login connections",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "currentProviderResources": "one inactive temporary client and one dedicated API retained; no new connection/user/grant",
+  "privateProviderIdentifiersExcluded": true,
+  "oldTestsDeploymentsArchivesRepeated": false,
+  "pushedCommit": "08ef68cf40275a2f00ebf208d4b82cb3b0eb1847",
+  "remoteChangedFileHashesMatched": 32,
+  "newCi162": "in_progress_at_closeout",
+  "priorCi161": "success"
+}

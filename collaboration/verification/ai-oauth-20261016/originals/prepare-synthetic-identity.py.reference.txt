@@ -1,0 +1,36 @@
+"""Isolated provider fixture; password exists only in memory and an owner-only FIFO."""
+from pathlib import Path
+import importlib.util,json,secrets,os,subprocess
+ROOT=Path(__file__).resolve().parents[3];qa=ROOT/'output/qa/rillora-ai-oauth-20261016';private=ROOT/'.local-secrets/ai-oauth-20261016'
+spec=importlib.util.spec_from_file_location('h',ROOT/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+state=json.loads((private/'registration.json').read_text());assert state['purpose']=='mcp-synthetic-acceptance-20261016'
+name='rillora-mcp-synthetic-20261016';email='rillora-mcp-acceptance-20261016@example.test'
+connections=h.api('get','connections?per_page=100');assert len(connections)<100
+assert not h.exact(connections,name), 'Fixture already exists; do not replace its credential'
+bindings={c['id']:h.connection_clients(c['id']) for c in connections}
+created=h.api('post','connections',{'name':name,'strategy':'auth0','is_domain_connection':True,'enabled_clients':[],
+ 'metadata':{'purpose':state['purpose']},'options':{'disable_signup':True,'passwordPolicy':'excellent','brute_force_protection':True}})
+state['syntheticConnectionId']=created['id'];state['syntheticConnectionName']=name
+def save():
+ (private/'registration.json').write_text(json.dumps(state,indent=2)+'\n');(private/'registration.json').chmod(0o600)
+save()
+assert h.connection_clients(created['id'])==[], 'Synthetic connection must not bind to existing first-party clients'
+password=secrets.token_urlsafe(32)+'aA9!'
+user=h.api('post','users',{'connection':name,'email':email,'password':password,'email_verified':False,'verify_email':False,'name':'Synthetic MCP OAuth acceptance','app_metadata':{'purpose':state['purpose']}})
+state['syntheticUserId']=user['user_id'];save()
+grant=h.api('post','client-grants',{'client_id':state['clientId'],'audience':state['resource'],'scope':['matters:read:summary','readiness:read:scoped'],'subject_type':'user'})
+state['clientGrantId']=grant['id'];state['activated']=True;save()
+fresh=h.api('get','connections?per_page=100');assert [v for v in fresh if v['id']!=created['id']]==connections
+assert bindings=={c['id']:h.connection_clients(c['id']) for c in connections}
+readback=h.api('get','connections/'+created['id']);assert readback['is_domain_connection'] and readback['options']['disable_signup'] and h.connection_clients(created['id'])==[]
+fixture={'issuer':'https://login.rillora.xyz/','subject':user['user_id'],'fixtureDisplayName':'Synthetic MCP OAuth acceptance','actualPlannerDataWillNotBeRead':True,'syntheticIdentity':True}
+(private/'owner-fixture.json').write_text(json.dumps(fixture,indent=2)+'\n');(private/'owner-fixture.json').chmod(0o600)
+result={'isolatedConnectionCreated':True,'existingConnectionsAndBindingsUnchanged':True,'signupDisabled':True,'domainLevelOnlyForSyntheticConnection':True,'existingFirstPartyClientsBound':0,'syntheticUserCreated':True,'verificationEmailSent':False,'explicitUserGrantOnly':True,'machineGrantCreated':False,'scopes':grant['scope'],'passwordPersisted':False,'paidPlanChanged':False}
+(qa/'synthetic-identity-preparation.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result),flush=True)
+pipe=private/'synthetic-login.fifo';os.mkfifo(pipe,0o600)
+print(json.dumps({'credentialTransferReady':True,'transport':'owner-only named pipe; no disk credential'}),flush=True)
+try:
+ with pipe.open('w') as target:target.write(json.dumps({'email':email,'password':password}))
+ print(json.dumps({'credentialTransferred':True}),flush=True)
+finally:
+ password='';pipe.unlink(missing_ok=True)

@@ -1,0 +1,73 @@
+{
+  "checkedAt": "2026-10-02T19:18:33.206994+00:00",
+  "lockfiles": [
+    {
+      "path": "apps/api/package-lock.json",
+      "entries": 323,
+      "passed": true,
+      "checks": [
+        "root package declarations match",
+        "every package version pinned",
+        "all unbundled downloads HTTPS npm registry with integrity",
+        "platform optional packages retained"
+      ]
+    },
+    {
+      "path": "apps/ios-prototype/package-lock.json",
+      "entries": 127,
+      "passed": true,
+      "checks": [
+        "root package declarations match",
+        "every package version pinned",
+        "all unbundled downloads HTTPS npm registry with integrity",
+        "platform optional packages retained"
+      ]
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "entries": 13,
+      "passed": true,
+      "checks": [
+        "unique Swift identities",
+        "HTTPS GitHub locations",
+        "40-character immutable commit revisions",
+        "entire 122-line lock body read"
+      ]
+    },
+    {
+      "path": "apps/web/package-lock.json",
+      "entries": 167,
+      "passed": true,
+      "checks": [
+        "root package declarations match",
+        "every package version pinned",
+        "all unbundled downloads HTTPS npm registry with integrity",
+        "platform optional packages retained"
+      ]
+    },
+    {
+      "path": "infra/aws/package-lock.json",
+      "entries": 126,
+      "passed": true,
+      "checks": [
+        "root package declarations match",
+        "every package version pinned",
+        "all unbundled downloads HTTPS npm registry with integrity",
+        "platform optional packages retained"
+      ]
+    },
+    {
+      "path": "tools/snapshot-retention/package-lock.json",
+      "entries": 25,
+      "passed": true,
+      "checks": [
+        "root package declarations match",
+        "every package version pinned",
+        "all unbundled downloads HTTPS npm registry with integrity",
+        "platform optional packages retained"
+      ]
+    }
+  ],
+  "unchangedAppliedMigrations": 91,
+  "boundary": "Dependency metadata validation, not review of third-party source or assertion of zero vulnerabilities. Bundled CDK advisory remains explicit."
+}

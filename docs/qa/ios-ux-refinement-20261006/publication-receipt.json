@@ -1,0 +1,79 @@
+{
+  "publishedBranch": "codex/ios-ux-refinement-20261006",
+  "productSourceCommit": "0e452bc569e2d16862314794bc70182c895523ee",
+  "verifiedCommit": "8492822ff651f3db137182d9a4b0c0a710d33b30",
+  "verifiedTree": "b685422dbd1759d15ef5f24a1412c38a3b565eda",
+  "parentsOfSource": [
+    "8cc5e10042d5c9f3688b1093306b2e4377a92c82",
+    "e95007878729352c852b9bf411138e07c0361a1e"
+  ],
+  "sourceReadback": {
+    "changedFilesAgainstOperator": 65,
+    "exactBlobMatches": 65,
+    "extraOrMismatchedFiles": 0
+  },
+  "metadataCorrection": {
+    "commit": "8492822ff651f3db137182d9a4b0c0a710d33b30",
+    "changedFiles": 6,
+    "applicationSourceUnchanged": true,
+    "originalArchive20RecordsPreserved": 3102
+  },
+  "ci": {
+    "number": 70,
+    "id": 37503920129,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/37503920129",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "source",
+        "conclusion": "success",
+        "id": 112407623030
+      },
+      {
+        "name": "web-and-infrastructure",
+        "conclusion": "success",
+        "id": 112407623442
+      },
+      {
+        "name": "api",
+        "conclusion": "success",
+        "id": 112407623461
+      }
+    ],
+    "sourceSummary": [
+      "2026-10-06T17:30:04.9381793Z Ran 66 tests in 3.525s",
+      "2026-10-06T17:30:05.0389403Z Ran 10 tests in 0.025s",
+      "2026-10-06T17:30:05.2938724Z Ran 5 tests in 0.192s",
+      "2026-10-06T17:30:05.4225848Z Ran 8 tests in 0.007s",
+      "2026-10-06T17:30:05.6953855Z {\"fileCount\": 1272, \"totalBytes\": 76126186, \"nestedRepositoriesPreserved\": [], \"committed\": false, \"uploaded\": false}",
+      "2026-10-06T17:30:07.0019518Z {\"passed\": true, \"reviewedNonSecrets\": 29, \"unreviewed\": 0}",
+      "2026-10-06T17:30:27.7431876Z   \"passed\": true,",
+      "2026-10-06T17:30:27.7432298Z   \"readableFiles\": 10458,",
+      "2026-10-06T17:30:27.7432620Z   \"coveredWorkFiles\": 46768,",
+      "2026-10-06T17:30:27.7433303Z   \"lfsPointers\": 7,",
+      "2026-10-06T17:30:27.7433588Z   \"scan\": {",
+      "2026-10-06T17:30:27.7434162Z     \"unreviewedFindings\": 0,"
+    ]
+  },
+  "localChecks": {
+    "releasePythonTests": 66,
+    "nativeSourceContractTests": 34,
+    "catalogEntries": 1099,
+    "newXCTestCases": 49,
+    "newUITestMethods": 3,
+    "newSwiftFilesWired": 10
+  },
+  "nativeExecution": {
+    "xcodeBuild": false,
+    "xcodegen": false,
+    "xctest": false,
+    "simulator": false,
+    "physicalDevice": false,
+    "macOSCIAdded": false
+  },
+  "boundaries": [
+    "No deployment, main merge, store upload, provider/security configuration, reset email or actual purchase performed in this task.",
+    "The final receipt commit is documentation-only, and does not replace the tested source/CI commit above.",
+    "Inherited prior native builds and archive decryption remain dated operator evidence, not this task's runtime verification."
+  ]
+}

@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-09T18:49:45.651Z",
+  "charges": [
+    {
+      "testOnly": true,
+      "amount": 8899,
+      "amountRefunded": 8899,
+      "refunded": true
+    }
+  ],
+  "refunds": [
+    {
+      "status": "pending",
+      "amount": 7899,
+      "currency": "usd"
+    },
+    {
+      "status": "succeeded",
+      "amount": 1000,
+      "currency": "usd"
+    }
+  ],
+  "events": [
+    {
+      "type": "charge.refunded",
+      "created": 1791571723,
+      "pendingWebhooks": 1
+    },
+    {
+      "type": "charge.refunded",
+      "created": 1791568997,
+      "pendingWebhooks": 1
+    }
+  ]
+}

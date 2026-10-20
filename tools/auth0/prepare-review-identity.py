@@ -4,7 +4,7 @@
 No production client is bound until the separate restricted Action is deployed
 and read back. Reuse the existing database connection without changing its signup,
 password or existing-client policy. The Action and API restrict review access.
-Credentials go only to ignored owner-only storage, never command arguments.
+Credentials use user-presence Secure Enclave keys; ignored files contain only encrypted envelopes.
 """
 import argparse
 import datetime
@@ -18,6 +18,9 @@ import subprocess
 from urllib.parse import quote
 
 ROOT=Path(__file__).resolve().parents[2]
+import sys
+sys.path.insert(0,str(ROOT/'tools/security'))
+from credential_store import CredentialStore, read_secret_json, write_secret_json
 TENANT='rillora-dev.eu.auth0.com'
 NAME='Username-Password-Authentication'
 ACTION='Rillora production review access'
@@ -36,7 +39,7 @@ def store(data):
     PRIVATE.parent.mkdir(parents=True,exist_ok=True,mode=0o700)
     os.chmod(PRIVATE.parent,0o700)
     if PRIVATE.exists() and PRIVATE.stat().st_mode&0o077: raise RuntimeError('Protected review file permissions are too broad')
-    with os.fdopen(os.open(PRIVATE,os.O_WRONLY|os.O_CREAT|os.O_TRUNC,0o600),'w') as f:json.dump(data,f)
+    write_secret_json(PRIVATE,data,root=ROOT,replace=True)
 
 def clients(connection):
     data=api('get',f'connections/{connection}/clients?take=100')
@@ -70,9 +73,10 @@ def main():
     if actual.get('strategy')!='auth0':raise RuntimeError('Expected existing database connection')
     if PRIVATE.exists():
         if PRIVATE.stat().st_mode&0o077:raise RuntimeError('Protected file permissions')
-        saved=json.loads(PRIVATE.read_text())
+        saved=read_secret_json(PRIVATE,root=ROOT)
         if saved.get('connection')!=NAME:raise RuntimeError('Existing review credential has another purpose')
     else:
+        CredentialStore(ROOT).ensure_ready()
         saved={'connection':NAME,'email':'rillora-release-review-20260930@example.test',
             'password':secrets.token_urlsafe(36)+'!A1','expiresAt':(datetime.datetime.now(datetime.timezone.utc)+datetime.timedelta(days=7)).strftime('%Y-%m-%dT%H:%M:%SZ')}
         store(saved)
@@ -91,7 +95,9 @@ def main():
     original=api('get',f"actions/actions/{original['id']}")
     form=re.search(r'const FORM_ID = "(ap_[A-Za-z0-9]+)";',original.get('deployed_version',{}).get('code',''))
     if not form:raise RuntimeError('Cannot identify the already deployed legal Form')
-    code=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace('__REVIEW_IDENTITY_DIGEST__',saved['identityDigest']).replace('__REVIEW_EXPIRES_AT__',saved['expiresAt']).replace('__RILLORA_FORM_ID__',form.group(1))
+    form_zh=re.search(r'const FORM_ZH_ID = \"(ap_[A-Za-z0-9]+)\";',original.get('deployed_version',{}).get('code',''))
+    if not form_zh:raise RuntimeError('Deploy the reviewed bilingual hosted forms first')
+    code=(ROOT/'infra/auth0/hosted-consent/production-review-action.cjs').read_text().replace('__REVIEW_IDENTITY_DIGEST__',saved['identityDigest']).replace('__REVIEW_EXPIRES_AT__',saved['expiresAt']).replace('__RILLORA_FORM_ID__',form.group(1)).replace('__RILLORA_FORM_ZH_ID__',form_zh.group(1))
     target=[a for a in actions['actions'] if a['name']==ACTION]
     if len(target)>1:raise RuntimeError('Ambiguous review Action')
     prior=bindings()

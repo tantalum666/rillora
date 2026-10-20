@@ -1,0 +1,52 @@
+# Build 1.0(3) encryption declaration review
+
+Prepared: 2026-10-03 (Asia/Shanghai)
+Status: OWNER-CONFIRMED DECLARATION SAVED; BUILD3READY TO SUBMIT
+
+This applies to the signed native Rillora1.0(3) artifact, not the separately hosted
+Web/API software or a general legal export clearance.
+
+The app's saved-file encryption calls Apple's CryptoKit AES.GCM, P256.KeyAgreement,
+and HPKE.Sender/Recipient with P256_SHA256_AES_GCM_256. Session namespace hashing uses
+CryptoKit SHA256. HTTPS and Keychain use system Foundation/Security APIs. No custom
+cipher implementation was found in the reviewed app source. The resolved dependency
+crypto inventory shows Auth0/AppAuth/AppCheck using CryptoKit/CommonCrypto/Security;
+no bundled OpenSSL/BoringSSL/CryptoSwift/sodium implementation was found. The signed
+binary links Apple's Security and CryptoKit frameworks. Hash/PKCE/signature and
+message-serialization code do not introduce a separate cipher implementation.
+
+Evidence: distribution-check.json, native-linked-frameworks.txt,
+native-dependency-crypto-inventory.txt and the retained first-party source review.
+
+The supported Apple questionnaire answer is the option excluding proprietary and
+non-OS standard algorithms: encryption is limited to the Apple operating system.
+This does not mean the app has no encryption. Apple's documentation table says
+OS-only encryption requires no encryption-document upload in App Store Connect.
+The optional Info.plist non-exempt-encryption key can be false on that basis in a
+future build; build3 currently leaves the key unset and will use the portal answer.
+The statement is specific to Apple submission documentation, not a blanket claim
+about all jurisdictions or reporting duties.
+
+Before the final portal save, obtain the Owner's action-time confirmation because
+it is a formal export-compliance declaration under the browser confirmation rule.
+No extra fee, certificate purchase or new encryption service is required by the
+OS-only row. Do not change actual app crypto, weaken controls or answer "no encryption".
+
+Sources checked October3:
+- [Apple encryption documentation table](https://developer.apple.com/help/app-store-connect/reference/app-information/export-compliance-documentation-for-encryption)
+- [Apple declaration procedure](https://developer.apple.com/help/app-store-connect/manage-app-information/determine-and-upload-app-encryption-documentation)
+- [Apple CryptoKit HPKE](https://developer.apple.com/documentation/cryptokit/hpke)
+- [Info.plist declaration](https://developer.apple.com/documentation/security/complying-with-encryption-export-regulations)
+
+The downloaded full Apple Markdown is a reproducible third-party documentation
+cache and is excluded from work publication; this source-linked technical summary
+and project-specific inventory are the retained evidence.
+
+## Actual completion
+
+Owner explicitly confirmed this exact declaration. Agent saved it for build3 and
+navigated to the build list: Apple now shows准备提交, without Missing Compliance.
+The older internal build2was not changed. Source Info.plist now stores the same
+ITSAppUsesNonExemptEncryption=false metadata for future builds; all other plist
+values match and syntax validation passes. No encryption implementation changed,
+no rebuild/re-upload3and no app/beta review submission or tester invitation occurred.

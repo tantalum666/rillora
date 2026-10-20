@@ -1,0 +1,24 @@
+from pathlib import Path
+import json,subprocess,sys
+root=Path(__file__).resolve().parents[3];qa=Path(__file__).resolve().parent
+v=json.loads((root/'.local-secrets/mcp-customer-20261018/RilloraProduction-get-template-before.json').read_text())['TemplateBody']
+if isinstance(v,str):v=json.loads(v)
+task=next(r for k,r in v['Resources'].items() if k=='RuntimeApiTaskCF645D67')
+container=next(c for c in task['Properties']['ContainerDefinitions'] if c['Name']=='Api')
+env={x['Name']:x['Value'] for x in container['Environment']}
+assert env['PRODUCTION_RUNTIME_MODE']=='live'
+mode=sys.argv[1];assert mode in ['prepare','enable','hostfix','canonical']
+ctx={'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'1',
+'productionReviewPrepared':'true','productionReviewEnabled':'false','productionLiveEnabled':'true',
+'productionStripeCheckoutEnabled':env['ALLOW_STRIPE_PRODUCTION_INTEGRATION'],
+'productionApplePrepared':'true','productionAppleEnabled':env['ALLOW_APPLE_PRODUCTION_INTEGRATION'],
+'productionAppleReviewEnabled':env['ALLOW_APPLE_REVIEW_INTEGRATION'],
+'productionRetentionEnabled':env['ALLOW_RETENTION_WORKER'],'productionIdentityServicesEnabled':'true',
+'productionStripeNotificationsSecretArn':env['STRIPE_PRODUCTION_SECRET_ARN'],
+'productionMcpPrepared':'true','productionMcpEnabled':str(mode!='prepare').lower()}
+cmd=['npm','run','synth','--','--profile','rillora-cdk-deploy','--output',str(qa/('production-cdk-'+mode))]
+for k,value in ctx.items():cmd+=['-c',k+'='+value]
+with (qa/('production-synth-'+mode+'.log')).open('w') as log:
+ result=subprocess.run(cmd,cwd=root/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+if result.returncode==0:assert (qa/('production-cdk-'+mode)/'RilloraProduction.template.json').exists()
+print('production '+mode+' synth exit',result.returncode);sys.exit(result.returncode)

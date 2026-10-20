@@ -1,0 +1,40 @@
+{
+  "date": "2026-10-16",
+  "mode": "continuation of the same next-version discovery workflow",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "scope": "independent public website rollout and search visibility; no review API/data/pricing changes",
+  "reads": {
+    "infra/aws/lib/rillora-public-web-stack.ts": "full",
+    "apps/web/worker/public-router.js": "full",
+    "infra/aws/bin/rillora.ts": "publicWeb branch80-94; remainder retained from original read",
+    "infra/aws/README.md": "public website98-118; original complete read retained",
+    "tools/godaddy/README.md": "full",
+    "tools/godaddy/rillora_dns.py": "full",
+    "docs/architecture/public-discovery-rollout-20261016.md": "newly authored full",
+    "docs/architecture/ai-discovery-vnext-20261015.md": "retained current plan and D0/D1 order",
+    "CDK third-party source": "BucketDeployment exclude/include/retain semantics and physical-ID update handler; copied vendor caches excluded"
+  },
+  "officialSources": [
+    "https://docs.aws.amazon.com/AWSCloudFormation/latest/TemplateReference/aws-resource-cloudfront-function.html",
+    "https://support.google.com/webmasters/answer/7451001?hl=en"
+  ],
+  "readingCompleteAt": "2026-10-16T12:15:26.830649+00:00",
+  "repeatedLocalBrowserMatrix": false,
+  "repeatedAppOrPaymentTests": false,
+  "resumedAt": "2026-10-16T12:55:39.509013+00:00",
+  "continuationRecovery": {
+    "AGENTS.md": "full; user supplied identical protocol",
+    "docs/product.md": "1-35 and400-568 current directions/locked rules/authority map; full history retained from workflow read",
+    "docs/handoff.md": "full",
+    "docs/decision-log.md": "latest October16 entries and top date",
+    "docs/journey/PROJECT_JOURNEY.md": "latest continuation entries and top date",
+    "docs/architecture/ai-discovery-vnext-20261015.md": "full",
+    "docs/architecture/ai-oauth-validation-20261016.md": "full; missing truncated tail separately read",
+    "docs/architecture/public-discovery-rollout-20261016.md": "full",
+    "docs/source-control.md": "1-34 current and immediately prior checkpoints; remaining unchanged history retained",
+    "collaboration/README.md": "1-100 recent checkpoints; remaining unchanged history retained",
+    "tools/godaddy/README.md": "full",
+    "tools/godaddy/rillora_dns.py": "full"
+  },
+  "fullReadNotRestarted": true
+}

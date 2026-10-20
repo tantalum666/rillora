@@ -67,13 +67,13 @@ struct InvitationStepRail: View {
     let current: Int
     @Environment(\.dynamicTypeSize) private var size
     @RilloraReduceMotion private var reduceMotion
-    private let labels = ["Person", "Access", "Link"]
+    private let labels = [String(localized: "Person"), String(localized: "Access"), String(localized: "Link")]
     var body: some View {
       Group {
         if size.isAccessibilitySize {
             VStack(alignment: .leading, spacing: 8) {
                 Text(labels[current]).font(.headline).foregroundStyle(RilloraTheme.ink)
-                Text("Step \(current + 1) of 3").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                Text(L10n.format("Step %1$lld of 3", current + 1)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 ProgressView(value: Double(current + 1), total: 3).tint(RilloraTheme.sage)
             }
         } else { HStack(spacing: 6) {
@@ -89,14 +89,14 @@ struct InvitationStepRail: View {
       }
         .animation(reduceMotion ? nil : .easeInOut(duration: 0.25), value: current)
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Step \(current + 1) of 3: \(labels[current])")
+        .accessibilityLabel(L10n.format("Step %1$lld of 3: %2$@", current + 1, labels[current]))
     }
 }
 
 struct InviteSomeoneRow: View {
     var state: ConnectionVisualState = .uninvited
-    var title = "Invite someone"
-    var detail = "Share by link or QR"
+    var title = String(localized: "Invite someone")
+    var detail = String(localized: "Share by link or QR")
     let action: () -> Void
     @Environment(\.dynamicTypeSize) private var size
     var body: some View {

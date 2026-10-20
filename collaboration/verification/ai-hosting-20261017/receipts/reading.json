@@ -1,0 +1,29 @@
+{
+  "startedAt": "2026-10-17T07:21:48.535262+00:00",
+  "continuationOf": "output/qa/rillora-ai-https-20261016/recovery-reading-20261016.json",
+  "retainedFullRead": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "scope": "Long-term isolated hosting and additional AI clients, prefer Free, preserve App14",
+  "read": {
+    "AGENTS.md": "complete",
+    "docs/product.md": "current locked items1-42; unchanged remainder retained",
+    "docs/handoff.md": "complete",
+    "docs/decision-log.md": "latest42lines; unchanged history retained",
+    "integrations/ai/README.md": "complete",
+    "apps/api/src/mcp/config.ts": "complete",
+    "infra/aws/bin/rillora.ts": "1-170; truncated middle must supplement before modification",
+    "docs/architecture/ai-https-acceptance-20261016.md": "retained complete from previous turn",
+    "docs/architecture/ai-hosting-20261017.md": "complete; rewritten during this continuation",
+    "docs/source-control.md": "current paragraphs and publication procedure; unchanged history retained",
+    "collaboration/README.md": "current paragraphs and 125-220 publication procedure; unchanged history retained",
+    "infra/ai-candidate/*": "all authored implementation and focused upstream SDK documents read",
+    "tools/mcp/client-packages.mjs": "complete",
+    "tools/mcp/client-packages.test.mjs": "complete",
+    "apps/api/src/mcp/service.ts": "complete",
+    "apps/api/src/mcp/integration.ts": "complete",
+    "apps/api/src/migration-sql.ts": "complete retained plus current diff",
+    "apps/api/src/sharing-identity.ts": "complete"
+  },
+  "previousTestsRepeated": false,
+  "providerMutations": true,
+  "completedAt": "2026-10-17T11:41:29.510018+00:00"
+}

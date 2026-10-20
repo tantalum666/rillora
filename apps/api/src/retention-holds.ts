@@ -10,6 +10,9 @@ export async function setRetentionHold(pool:DatabasePool,input:unknown):Promise<
   await client.query('begin');
   if(!(await client.query("select pg_has_role(session_user,'continuity_recovery_service','member') as allowed")).rows[0]?.allowed)
    throw Error('Administrative retention operation required');
+  // The batch uses the same transaction lock before evaluating due rows. A
+  // successful hold must never refer to evidence concurrently being erased.
+  await client.query("select pg_advisory_xact_lock(hashtextextended('retention-holds',0))");
   const lookup={product_event:'select 1 from app.product_events where public_id=$1',audit_event:'select 1 from app.audit_events where public_id=$1',
    legal_acceptance:'select 1 from app.legal_acceptances where public_id=$1',closed_payment:'select 1 from app.closed_account_payment_records where deletion_public_id=$1',
    deletion_receipt:'select 1 from app.account_deletions where public_id=$1'}[hold.category];

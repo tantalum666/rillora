@@ -1,0 +1,87 @@
+{
+  "capturedFrom": "2026-10-06T20:10:59.060555+00:00",
+  "capturedThrough": "2026-10-06T20:11:00.606526+00:00",
+  "workFiles": 387,
+  "uniqueRawObjects": 274,
+  "workBytes": 147853998,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-022.tar.zst.age",
+      "sha256": "6325d7b47aa12c24c6bba10f089ce683ef0bb80567dba33e3d17768a5a527d6b",
+      "bytes": 55533496,
+      "plainBytes": 99738521,
+      "uniqueObjects": 274
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/dot-rollout-20261007/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/inspection",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/auth0-session-restored.png",
+      "reason": "actual_authentication_handoff_screen"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraProductionWeb/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraProductionWeb/asset.4873b41e9a1c0044684eb39f9d5e0e58da4c3ffca396e34912fce788bbc58675",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging/asset.3a0e033942aa93b43adaf602931eb15817ca092b949fcac3eee7d5e2e63d59b3",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging/asset.f5322b0c13464780eb317a66fd706e1587ca338972d65ebd142e6ad81aa4352e",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-production/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-production/asset.3a0e033942aa93b43adaf602931eb15817ca092b949fcac3eee7d5e2e63d59b3",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraPublicWeb/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-dot-rollout-20261007/cdk-RilloraPublicWeb/asset.976cb847ea453b145f454cb2099d28b11b65a6d1c65727b38d598d27c429add1",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": ".local-secrets/device-config-20261006",
+      "reason": "credentials_authentication_personal_data_and_raw_device_logs_not_archived"
+    },
+    {
+      "path": ".local-secrets/dot-rollout-20261007",
+      "reason": "credentials_authentication_cloud_private_readbacks_and_review_identity_material_not_archived"
+    }
+  ],
+  "selection": "All eligible current rollout QA, original failed preparation log, exact reviewed cloud assemblies, three deployed Web artifacts, native9 archive/export/upload and current receipts. Previous21archives immutable; credentials, authentication screens, private cloud readbacks and reproducible dependency/compiler/extraction caches excluded.",
+  "boundary": "API16/schema0093 healthy; Web86/WWW31/Preview86matching live files; same three reviewer identities and existing planner enrollment expire2026-10-08T20:00:00Z. Native9uploaded but Apple login blocks processing/distribution readback. No migration, purchase, public customer or Live sales activation, deferred deletion or FanPass change."
+}

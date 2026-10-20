@@ -1,0 +1,114 @@
+- generic [ref=f1e11]:
+  - complementary "Primary navigation" [ref=f1e12]:
+    - navigation [ref=f1e13]:
+      - button "Overview" [ref=f1e14] [cursor=pointer]
+      - button "My plan" [ref=f1e18] [cursor=pointer]
+      - button "Matters" [ref=f1e22] [cursor=pointer]
+      - button "Trusted contacts" [ref=f1e26] [cursor=pointer]
+      - button "Shared with me" [ref=f1e30] [cursor=pointer]
+      - button "Shared reviews" [ref=f1e34] [cursor=pointer]
+      - button "Account inheritance" [ref=f1e38] [cursor=pointer]
+      - button "Plan & access" [ref=f1e42] [cursor=pointer]
+      - button "Activity" [ref=f1e46] [cursor=pointer]
+    - generic [ref=f1e51]:
+      - strong [ref=f1e54]: Directions, not passwords.
+      - button "Safety & privacy" [ref=f1e55] [cursor=pointer]
+    - button "Settings" [ref=f1e56] [cursor=pointer]
+  - main [ref=f1e60]:
+    - generic [ref=f1e61]:
+      - paragraph [ref=f1e62]: Local QA · test data
+      - 'button "Appearance: system" [ref=f1e65] [cursor=pointer]'
+    - generic [ref=f1e269]:
+      - heading "Your matters" [level=1] [ref=f1e270]
+      - generic [ref=f1e271]:
+        - generic [ref=f1e272]:
+          - generic [ref=f1e273]: Search matters
+          - searchbox "Search matters" [ref=f1e274]
+        - button "Add a matter" [ref=f1e275] [cursor=pointer]
+      - group "Filter matters" [ref=f1e278]:
+        - button "All" [pressed] [ref=f1e279] [cursor=pointer]
+        - button "To review" [ref=f1e280] [cursor=pointer]
+        - button "Directions added" [ref=f1e281] [cursor=pointer]
+      - generic [ref=f1e282]:
+        - button "Open Bank account, directions added" [ref=f1e283] [cursor=pointer]:
+          - generic [ref=f1e287]: Bank account
+          - generic [ref=f1e288]: Directions added
+        - button "Open Cloud photos, directions added" [ref=f1e293] [cursor=pointer]:
+          - generic [ref=f1e297]: Cloud photos
+          - generic [ref=f1e298]: Directions added
+        - button "Open GitHub projects, directions added" [ref=f1e303] [cursor=pointer]:
+          - generic [ref=f1e307]: GitHub projects
+          - generic [ref=f1e308]: Directions added
+        - button "Open Insurance, draft" [ref=f1e313] [cursor=pointer]:
+          - generic [ref=f1e317]: Insurance
+          - generic [ref=f1e318]: Draft
+        - button "Open Subscriptions, draft" [ref=f1e322] [cursor=pointer]:
+          - generic [ref=f1e326]: Subscriptions
+          - generic [ref=f1e327]: Draft
+  - dialog [ref=f1e331]:
+    - banner [ref=f1e332]:
+      - heading "New matter" [level=2] [ref=f1e334]
+      - button "Close panel" [ref=f1e335] [cursor=pointer]
+    - group [ref=f1e339]:
+      - generic [ref=f1e340]:
+        - text: Category
+        - generic [ref=f1e341]: Required
+        - combobox "Category" [ref=f1e342]:
+          - option "Online account" [selected]
+          - option "Financial asset"
+          - option "Debt"
+          - option "Document"
+          - option "Device"
+          - option "Subscription"
+          - option "Crypto asset"
+      - generic [ref=f1e343]:
+        - text: Name
+        - generic [ref=f1e344]: Required
+        - textbox "Name" [active] [ref=f1e345]:
+          - /placeholder: Name this matter
+          - text: Synthetic back navigation draft
+      - region "Details" [ref=f1e346]:
+        - generic [ref=f1e347]:
+          - text: Provider
+          - generic [ref=f1e348]: Required
+          - textbox "Provider" [ref=f1e349]
+        - generic [ref=f1e350]:
+          - text: Recovery information location
+          - generic [ref=f1e351]: Optional
+          - textbox "Recovery information location" [ref=f1e352]:
+            - /placeholder: A useful location, never a password
+        - generic [ref=f1e353]:
+          - text: Username or masked reference
+          - generic [ref=f1e354]: Optional
+          - textbox "Username or masked reference" [ref=f1e355]:
+            - /placeholder: For example, ending 42
+      - region "Directions" [ref=f1e356]:
+        - generic [ref=f1e357]:
+          - text: Preferred outcome
+          - generic [ref=f1e358]: Optional
+          - combobox "Preferred outcome" [ref=f1e359]:
+            - option "Not decided" [selected]
+            - option "Notify someone"
+            - option "Request transfer"
+            - option "Request closure"
+            - option "Request deletion"
+            - option "Request memorialization"
+            - option "Delay disclosure"
+            - option "Never disclose"
+        - group [ref=f1e360]:
+          - generic "More options" [ref=f1e361] [cursor=pointer]
+          - option "Standard"
+          - option "Important" [selected]
+          - option "Critical"
+          - option "Draft" [selected]
+          - option "Directions added"
+          - option "Needs review"
+      - paragraph [ref=f1e362]: Private until you choose to share
+      - generic [ref=f1e365]:
+        - text: Notes
+        - generic [ref=f1e366]: Optional
+        - textbox "Notes" [ref=f1e367]:
+          - /placeholder: Anything else someone should know
+      - paragraph [ref=f1e368]: Keep passwords, private keys and recovery phrases out.
+      - status [ref=f1e372]: Add the provider.
+      - button "Save matter" [disabled] [ref=f1e369]

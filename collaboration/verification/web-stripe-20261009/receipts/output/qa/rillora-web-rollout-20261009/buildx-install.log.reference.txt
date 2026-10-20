@@ -1,0 +1,131 @@
+==> Auto-updating Homebrew...
+Adjust how often this is run with `$HOMEBREW_AUTO_UPDATE_SECS` or disable with
+`$HOMEBREW_NO_AUTO_UPDATE=1`. Hide these hints with `$HOMEBREW_NO_ENV_HINTS=1` (see `man brew`).
+==> Auto-updated Homebrew!
+==> Updated Homebrew from 7.0.6 (149b3cdfa8) to 7.0.9 (96d7c8ba12).
+Updated 5 taps (mongodb/brew, auth0/auth0-cli, stripe/stripe-cli, homebrew/core and homebrew/cask).
+==> New Formulae
+all-smi: GPU monitoring tool for NVIDIA/Jetson/Apple Silicon/Tenstorrent
+apkid: Android application identifier for compilers, packers, and obfuscators
+arcane-cli: Command-line client for the Arcane Docker management platform
+baysor: Bayesian segmentation of imaging-based spatial transcriptomics data
+chisel-ubuntu: Carve and cut Debian packages into slices
+ctcache: Cache for clang-tidy static analysis results
+cymbal: Language-agnostic code navigation CLI powered by tree-sitter
+ddns-updater: Lightweight universal DDNS Updater program
+deja: Predictive ghost-text autosuggestions for zsh
+doltlite: SQLite fork with Git-style version control via prolly trees
+goleft: Tools for coverage and QC of BAM/CRAM files, including indexcov
+hidapitester: Command-line tool to exercise USB HID devices via HIDAPI
+licensee: Detect under what license a project is distributed
+mailtrap-local: Local email sandbox with SMTP server, web UI, and JSON API
+maki: Efficient AI coding agent extendable by neovim-like Lua plugins
+mariadb@12.3: Drop-in replacement for MySQL
+modflow6: USGS modular hydrologic model
+mongodb/brew/mongodb-community@8.3
+mongodb/brew/mongodb-enterprise@8.3
+mongodb/brew/mongodb-mongocryptd@8.3
+morphe: Desktop app and CLI for patching Android apps with Morphe
+openshell: Safe, private runtime for autonomous AI agents
+packslip: Signed release manifest for vendor binaries
+pg_activity: Top-like interactive monitoring tool for PostgreSQL server activity
+pypy3.12: Implementation of Python 3 in Python
+regenie: Whole genome regression modelling of large genome-wide association studies
+rustqc: Fast genomics quality control tools for sequencing data
+sac: Seismic Analysis Code, Community Edition
+sdrmm: Modular, client-server software-defined radio
+sniffles: Structural variant caller for long-read sequencing data
+tcltls: OpenSSL extension to Tcl
+tfswitch: Command-line tool to switch between Terraform versions
+typdiff: Diff tool that generates Typst documents highlighting differences between inputs
+unixcw: Morse code tutor and command-line tools
+vcfexpress: Filter and format VCF/BCF files with Lua expressions
+vortix: Terminal UI for WireGuard and OpenVPN with live telemetry and leak guarding
+wavemon: Ncurses-based monitoring application for wireless network devices on Linux
+zig@0.16: Programming language designed for robustness, optimality, and clarity
+==> New Casks
+argo-books: Accounting software for small businesses
+auto-tune-central: Software download manager for Antares products
+azure-cli: Microsoft Azure CLI 2.0
+buildin: Collaborative workspace for notes, documents and wikis
+cuadriver: Background desktop automation driver for AI agents
+deepseek-harness: Plugin-based AI agent desktop application
+filmcraft: Video editor
+fl-studio: Digital audio production application
+fluxer: Chat for friends, groups, and communities with text, voice, and video
+font-aptos
+font-lexica-ultralegible
+font-xmind
+hagimimonitordirect: Menu bar monitor for system performance and hardware
+holst: Online whiteboard for team collaboration
+ideashell: AI partner for notes, voice, and to-dos
+ideashell-cn: AI partner for notes, voice, and to-dos (China edition)
+jpki: Digital signature and authentication client for the My Number Card (JPKI)
+keyecho: Mechanical keyboard sounds for every keystroke
+littlebird: AI assistant that captures meetings and work context
+local-studio: Local workstation for running and managing language models
+lody: Share coding agent sessions across desktop and mobile
+manus-cue: Personal AI agents with their own identities
+markpad: Markdown viewer and editor
+mcplinker: Manage and sync MCP server configurations across AI clients
+mdhero: Markdown viewer and editor
+napari: Multi-dimensional image viewer for Python
+nodeterm: Node-based terminal manager for terminals and coding agents on a canvas
+photocraft: Image editor
+picsart-ai-playground: Workspace for AI image, video and audio creation
+plane: Project management tool for tasks, sprints and docs
+ruffle: Flash Player emulator
+sandisk: Managing SanDisk external drives
+sdrmm-app: Modular, client-server software-defined radio
+solidtime: Open-source time tracker
+ssl-download-manager: Software manager for SSL plug-ins
+stashcat: Secure messenger for organisations
+swiftcord: Native Discord client
+threat-dragon: Threat modeling tool
+volumehud: Bring back the pre-Tahoe volume and brightness HUDs
+wheelwizard: Mod manager for Mario Kart Wii and Retro Rewind
+zed-delta: Multiplayer environment for coding with agents
+
+You have 70 outdated formulae and 1 outdated cask installed.
+==> azure-cli has been moved to homebrew/cask.
+To uninstall the formula and install the cask, run:
+  brew uninstall --formula --force azure-cli
+  brew tap homebrew/cask
+  brew install --cask homebrew/cask/azure-cli
+
+
+The 7.0.9 changelog can be found at:
+  https://github.com/Homebrew/brew/releases/tag/7.0.9
+Warning: The following taps are not trusted:
+  auth0/auth0-cli
+  mongodb/brew
+
+Homebrew is currently ignoring formulae, casks and commands
+from these taps because tap trust is required.
+Prefer trusting only the specific formulae, casks or commands you need.
+Trust installed formulae from these taps with:
+  brew trust --formula mongodb/brew/mongodb-community mongodb/brew/mongodb-database-tools
+Trust other specific casks and commands with:
+  brew trust --cask <user>/<tap>/<cask>
+  brew trust --command <user>/<tap>/<command>
+Whole-tap trust is broader and includes all current and future formulae,
+casks and commands from the listed taps. Trust whole taps with:
+  brew trust auth0/auth0-cli mongodb/brew
+Untap them with:
+  brew untap auth0/auth0-cli mongodb/brew
+For more information, see:
+  https://docs.brew.sh/Tap-Trust
+==> Downloading bottle manifests
+✔︎ Bottle Manifest docker-buildx (0.38.0)
+==> Fetching downloads for: docker-buildx
+✔︎ Bottle docker-buildx (0.38.0)
+==> Pouring docker-buildx--0.38.0.arm64_tahoe.bottle.tar.gz
+🍺  /opt/homebrew/Cellar/docker-buildx/0.38.0: 48 files, 65MB
+==> Caveats
+zsh completions have been installed to:
+  /opt/homebrew/share/zsh/site-functions
+==> docker-buildx
+docker-buildx is a Docker plugin. For Docker to find the plugin, add "cliPluginsExtraDirs" to ~/.docker/config.json:
+  "cliPluginsExtraDirs": [
+      "/opt/homebrew/lib/docker/cli-plugins"
+  ]

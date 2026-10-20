@@ -1,5 +1,6 @@
 import assert from "node:assert/strict";
 import test from "node:test";
+import { createHash } from 'node:crypto';
 import {
   Aes256Gcm,
   CipherSuite,
@@ -154,7 +155,7 @@ function makePreparation(eligibleRecipientKeys = [], publicId = "22222222-2222-4
       expiresAt: "2026-08-10T00:15:00.000Z",
       status: "generating",
       cryptoVersion: "rillora-hpke-v1",
-      sourceCommitment: "AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA",
+      sourceCommitment: createHash('sha256').update(JSON.stringify(preview.package)).digest('base64url'),
       contentEncryption: "AES-256-GCM",
       keyWrapping: "HPKE-Base-P256-HKDF-SHA256-AES-256-GCM",
       serverCanDecrypt: false,

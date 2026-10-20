@@ -1,0 +1,72 @@
+.........................................................................
+----------------------------------------------------------------------
+Ran 73 tests in 6.555s
+
+OK
+TAP version 13
+# Subtest: allows a fixed migration but rejects raw command, role, secret and network overrides before RunTask
+ok 1 - allows a fixed migration but rejects raw command, role, secret and network overrides before RunTask
+  ---
+  duration_ms: 3.27275
+  type: 'test'
+  ...
+# Subtest: a copied public run tag or authorization hash cannot delete another recovery run
+ok 2 - a copied public run tag or authorization hash cannot delete another recovery run
+  ---
+  duration_ms: 0.567042
+  type: 'test'
+  ...
+# Subtest: restore constructs the private quarantine network from broker configuration
+ok 3 - restore constructs the private quarantine network from broker configuration
+  ---
+  duration_ms: 0.2175
+  type: 'test'
+  ...
+# Subtest: staging accepts only its default reviewed migration
+ok 4 - staging accepts only its default reviewed migration
+  ---
+  duration_ms: 0.1075
+  type: 'test'
+  ...
+# Subtest: the actual Python migration caller produces a request accepted by the real broker
+ok 5 - the actual Python migration caller produces a request accepted by the real broker
+  ---
+  duration_ms: 90.097917
+  type: 'test'
+  ...
+# Subtest: recovery refuses any active source writer, including a deletion-only worker
+ok 6 - recovery refuses any active source writer, including a deletion-only worker
+  ---
+  duration_ms: 0.924375
+  type: 'test'
+  ...
+# Subtest: recovery fails closed without a complete valid source service configuration
+ok 7 - recovery fails closed without a complete valid source service configuration
+  ---
+  duration_ms: 0.27025
+  type: 'test'
+  ...
+1..7
+# tests 7
+# suites 0
+# pass 7
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 188.622416
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.045s
+
+OK
+.......
+----------------------------------------------------------------------
+Ran 7 tests in 0.790s
+
+OK
+....
+----------------------------------------------------------------------
+Ran 4 tests in 0.001s
+
+OK

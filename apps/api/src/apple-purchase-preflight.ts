@@ -18,7 +18,16 @@ export class ApplePurchasePreflight {
           s.client_nonce::text,s.state from app.commerce_apple_purchase_sessions s join app.commerce_orders o on o.id=s.order_id
         where s.planner_id=app.current_planner_id() and s.state in ('prepared','started','pending')
           and o.status in ('created','pending') and o.provider_environment=$1 order by s.created_at desc limit 1`,[this.context.environment])).rows[0];
-      return {purchase:row?{orderReference:row.order_reference,nonce:row.client_nonce,state:row.state}:null};
+      const tokens = (await client.query<{ token: string }>(`select s.app_account_token::text as token
+        from app.commerce_apple_purchase_sessions s join app.commerce_orders o on o.id=s.order_id
+        where s.planner_id=app.current_planner_id() and o.provider_environment=$1
+          and (s.original_transaction_reference is not null or s.state in ('prepared','started','pending'))
+        union select r.app_account_token::text as token from app.commerce_apple_transaction_receipts r
+          where r.planner_id=app.current_planner_id() and r.provider_environment=$1 and r.app_account_token is not null
+        order by token limit 1001`, [this.context.environment])).rows;
+      if (tokens.length > 1000) throw new ApiError(413,'operation_size_limit','Purchase history requires a bounded review.');
+      return {purchase:row?{orderReference:row.order_reference,nonce:row.client_nonce,state:row.state}:null,
+        appAccountTokens:tokens.map(value=>value.token)};
     });
   }
 
@@ -37,14 +46,14 @@ export class ApplePurchasePreflight {
     return withCommercePlannerDatabase(this.pool, input.plannerId, async client => {
       await lockCheckout(client); await requireAppleReviewEnrollment(client,this.context);
       await expirePreparedApplePurchases(client);
-      const old = (await client.query<{ order_reference: string; state: string; provider_environment: string; acceptance_sha256: Buffer }>(
-        `select o.public_id::text as order_reference,s.state,o.provider_environment,c.acceptance_sha256 from app.commerce_apple_purchase_sessions s
+      const old = (await client.query<{ order_reference: string; app_account_token: string; state: string; provider_environment: string; acceptance_sha256: Buffer }>(
+        `select o.public_id::text as order_reference,s.app_account_token::text,s.state,o.provider_environment,c.acceptance_sha256 from app.commerce_apple_purchase_sessions s
           join app.commerce_orders o on o.id=s.order_id join app.commerce_purchase_consents c on c.order_id=o.id
           where s.planner_id=app.current_planner_id() and s.client_nonce=$1`, [nonce])).rows[0];
       if (old) {
         if (old.provider_environment!==this.context.environment || !old.acceptance_sha256.equals(digest)) throw new ApiError(409,'purchase_terms_changed','Review the current subscription terms.');
         if (['closed','completed'].includes(old.state)) throw new ApiError(409,'checkout_finished','This purchase has finished. Refresh your access.');
-        return {...intent(old.order_reference, input.plannerPublicId, old.state),...this.executionMetadata()};
+        return {...intent(old.order_reference, old.app_account_token, old.state),...this.executionMetadata()};
       }
       const current = await loadApplePurchaseQuote(client, quote,this.context);
       if (JSON.stringify(current.quote) !== JSON.stringify(quote)) throw new ApiError(409,'purchase_terms_changed','Review the current Apple price before continuing.');
@@ -62,14 +71,14 @@ export class ApplePurchasePreflight {
           provider_code,provider_environment,amount_minor,currency_code,status)
         values(app.current_planner_id(),$1,$2,$3,$4,$5,'storekit',$8,$6,$7,'created') returning id::text,public_id::text`,
       [account.id,current.operatorCode,current.priceId,current.routeCode,current.routeVersion,quote.amountMinor,quote.currency,this.context.environment])).rows[0]!;
-      await client.query(`insert into app.commerce_apple_purchase_sessions(order_id,planner_id,client_nonce,binding_code,storefront_country_code,state)
-        values($1,app.current_planner_id(),$2,$3,$4,'prepared')`, [order.id,nonce,quote.bindingCode,quote.storefrontCountryCode]);
+      const prepared = (await client.query<{ app_account_token: string }>(`insert into app.commerce_apple_purchase_sessions(order_id,planner_id,client_nonce,binding_code,storefront_country_code,state)
+        values($1,app.current_planner_id(),$2,$3,$4,'prepared') returning app_account_token::text`, [order.id,nonce,quote.bindingCode,quote.storefrontCountryCode])).rows[0]!;
       await client.query(`insert into app.commerce_purchase_consents(planner_id,order_id,consent_version,terms_version,
           subscription_terms_version,refund_policy_version,legal_bundle_sha256,acceptance_sha256,price_code,amount_minor,currency_code,billing_interval)
         values(app.current_planner_id(),$1,$2,$3,$4,$5,$6,$7,$8,$9,$10,'annual')`,
       [order.id,consent.version,consent.termsVersion,consent.subscriptionTermsVersion,consent.refundPolicyVersion,
         Buffer.from(consent.legalBundleSha256,'hex'),digest,quote.priceCode,quote.amountMinor,quote.currency]);
-      return {...intent(order.public_id,input.plannerPublicId,'prepared'),...this.executionMetadata()};
+      return {...intent(order.public_id,prepared.app_account_token,'prepared'),...this.executionMetadata()};
     });
   }
 
@@ -84,13 +93,19 @@ export class ApplePurchasePreflight {
       if (!row) throw new ApiError(404,'purchase_not_found','This purchase is not available.');
       if (row.state==='completed') return { state:'completed',...this.executionMetadata() };
       if (row.state==='closed') throw new ApiError(409,'checkout_finished','This purchase has closed. Review the current price.');
+      if (row.state === 'pending') {
+        if (input.action === 'pending') return { state:'pending',...this.executionMetadata() };
+        throw new ApiError(409,'apple_purchase_in_progress','Apple is still processing this purchase. Restore purchases to check its status.');
+      }
+      if (input.action === 'pending' && row.state !== 'started') throw new ApiError(409,'purchase_state_changed','Reload your purchase before continuing.');
       if (input.action==='start') {
         const current=await loadApplePurchaseQuote(client,{serviceMarketCode:row.service_market_code,storefrontCountryCode:row.storefront_country_code},this.context);
         if(current.quote.bindingCode!==row.binding_code) throw new ApiError(409,'purchase_terms_changed','Review the current Apple price.');
         await assertApplePurchaseClear(client,this.context,row.id);
       }
       const next=input.action==='start'?'started':input.action==='pending'?'pending':'closed';
-      await client.query('update app.commerce_apple_purchase_sessions set state=$2,updated_at=now() where order_id=$1',[row.id,next]);
+      await client.query(`update app.commerce_apple_purchase_sessions set state=$2,updated_at=now(),
+        started_at=case when $2='started' then coalesce(started_at,now()) else started_at end where order_id=$1`,[row.id,next]);
       await client.query('update app.commerce_orders set status=$2,updated_at=now() where id=$1 and status in (\'created\',\'pending\')',
         [row.id,input.action==='cancel'?'canceled':'pending']);
       return { state:next,...this.executionMetadata() };

@@ -1,0 +1,55 @@
+{
+  "version": "54.0.0",
+  "files": {
+    "2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d": {
+      "displayName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Code",
+      "source": {
+        "path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+        "packaging": "zip"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-4396c4f7": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "[CDK_ASSET_HASH_OMITTED].zip",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    },
+    "3ac37e396f180a457322ec6dc2a29c36379e89ed1d87c99fc4fdb157ad982a12": {
+      "displayName": "RilloraProduction Template",
+      "source": {
+        "path": "RilloraProduction.template.json",
+        "packaging": "file"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-8be66897": {
+          "bucketName": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "objectKey": "3ac37e396f180a457322ec6dc2a29c36379e89ed1d87c99fc4fdb157ad982a12.json",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  },
+  "dockerImages": {
+    "cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50": {
+      "displayName": "MigrationTask/Maintenance/AssetImage",
+      "source": {
+        "directory": "asset.cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+        "dockerBuildArgs": {
+          "RDS_CA_BUNDLE_SHA256": "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3"
+        },
+        "platform": "linux/arm64"
+      },
+      "destinations": {
+        "133857166372-eu-central-1-f9266dad": {
+          "repositoryName": "cdk-hnb659fds-container-assets-133857166372-eu-central-1",
+          "imageTag": "cd59fe6bb469751197c068b00c786283b7f26e5e0c2a7e106333a5f5cb16ca50",
+          "region": "eu-central-1",
+          "assumeRoleArn": "arn:${AWS::Partition}:iam::133857166372:role/cdk-hnb659fds-image-publishing-role-133857166372-eu-central-1"
+        }
+      }
+    }
+  }
+}

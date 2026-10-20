@@ -1,0 +1,14 @@
+from pathlib import Path
+import importlib.util,json,hashlib,datetime
+root=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=root/'.local-secrets/ai-hosting-20261017'
+spec=importlib.util.spec_from_file_location('helper',root/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+fields='client_id,name,app_type,client_metadata,grant_types,callbacks,is_first_party,global,token_endpoint_auth_method'
+clients=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100')
+connections=h.api('get','connections?fields=id,name,strategy&include_fields=true&per_page=100')
+bindings={c['id']:h.connection_clients(c['id']) for c in connections}
+assert len(clients)<100 and len(connections)<100
+old={'clients':clients,'connections':connections,'bindings':bindings,'settings':h.api('get','tenants/settings')}
+p.joinpath('auth0-before.json').write_text(json.dumps(old));p.joinpath('auth0-before.json').chmod(0o600)
+ordinary=[c for c in clients if not c.get('global')]
+result={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'ordinaryClients':len(ordinary),'availableFreeSlots':10-len(ordinary),'existingCandidateClients':sum(c['name']=='Rillora AI Candidate Login' for c in ordinary),'oldClientsChanged':False,'connectionCount':len(connections),'baselineSha256':hashlib.sha256(json.dumps(old,sort_keys=True).encode()).hexdigest()}
+q.joinpath('auth0-capacity-preflight.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

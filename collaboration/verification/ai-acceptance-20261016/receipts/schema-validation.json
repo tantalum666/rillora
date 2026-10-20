@@ -1,0 +1,91 @@
+[
+  {
+    "file": "plugin",
+    "passed": true,
+    "errors": null
+  },
+  {
+    "file": "mcp",
+    "passed": false,
+    "errors": [
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/$defs/stdioServer/required",
+        "keyword": "required",
+        "params": {
+          "missingProperty": "command"
+        },
+        "message": "must have required property 'command'"
+      },
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/$defs/stdioServer/additionalProperties",
+        "keyword": "additionalProperties",
+        "params": {
+          "additionalProperty": "url"
+        },
+        "message": "must NOT have additional properties"
+      },
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/$defs/stdioServer/additionalProperties",
+        "keyword": "additionalProperties",
+        "params": {
+          "additionalProperty": "extensions"
+        },
+        "message": "must NOT have additional properties"
+      },
+      {
+        "instancePath": "/mcpServers/rillora/type",
+        "schemaPath": "#/$defs/stdioServer/properties/type/const",
+        "keyword": "const",
+        "params": {
+          "allowedValue": "stdio"
+        },
+        "message": "must be equal to constant"
+      },
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/additionalProperties",
+        "keyword": "additionalProperties",
+        "params": {
+          "additionalProperty": "extensions"
+        },
+        "message": "must NOT have additional properties"
+      },
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/additionalProperties",
+        "keyword": "additionalProperties",
+        "params": {
+          "additionalProperty": "extensions"
+        },
+        "message": "must NOT have additional properties"
+      },
+      {
+        "instancePath": "/mcpServers/rillora/type",
+        "schemaPath": "#/properties/type/const",
+        "keyword": "const",
+        "params": {
+          "allowedValue": "sse"
+        },
+        "message": "must be equal to constant"
+      },
+      {
+        "instancePath": "/mcpServers/rillora",
+        "schemaPath": "#/oneOf",
+        "keyword": "oneOf",
+        "params": {
+          "passingSchemas": null
+        },
+        "message": "must match exactly one schema in oneOf"
+      }
+    ]
+  },
+  {
+    "file": "mcp portable core only",
+    "passed": true,
+    "scope": "Documented vendor extension removed only for the independent core check; deliverable auth unchanged",
+    "errors": null
+  }
+]

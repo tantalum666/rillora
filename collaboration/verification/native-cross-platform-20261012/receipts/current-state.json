@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-12T15:01:37.461738+00:00",
+  "source": "d9825b6164e6b20e63a9f5beb7c00aa732241e0d",
+  "ci": 131,
+  "ciPassed": true,
+  "webChanges": [
+    "deduplicate closed-subscription notice",
+    "recover session on exit from read-only public pages"
+  ],
+  "newBrowserRegression": {
+    "before": {
+      "failed": 4,
+      "passed": 1
+    },
+    "after": {
+      "passed": 5
+    }
+  },
+  "focusedNodeChecks": 12,
+  "phone": "Owner deferred Mac/iPhone Mirroring authentication for this turn",
+  "web": "Owner signed in; same original Gmail and one matter; current Free, validationOnly false, sales closed, USD88.99",
+  "stagingDeployed": true,
+  "stagingAssetsVerified": true,
+  "productionDeployed": true,
+  "next": "archive34/push/remote verification/primary sync; then wait for Owner phone availability",
+  "productionAssetsVerified": true,
+  "productionLiveUiVerified": true,
+  "independentWorkComplete": true,
+  "phoneOwnerDeferred": true
+}

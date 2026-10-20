@@ -1,56 +1,42 @@
 import { createHash } from 'node:crypto';
-import { readFileSync, readdirSync, lstatSync } from 'node:fs';
-import { dirname, resolve, relative } from 'node:path';
+import { readFileSync } from 'node:fs';
+import { dirname, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 import { CfnOutput, Duration, RemovalPolicy, Stack, Tags, type StackProps,
   aws_s3 as s3, aws_s3_deployment as deployment, aws_cloudfront as cloudfront,
   aws_cloudfront_origins as origins, aws_certificatemanager as acm, aws_iam as iam } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
+import { readVerifiedClientArtifact } from './client-artifact-files.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const contractBytes = readFileSync(resolve(root, 'config/production-connections.json'));
 export const productionConnections = JSON.parse(contractBytes.toString());
 export const PRODUCTION_WEB_CSP = "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'";
 
-export function verifyProductionClientArtifact(directory: string, reviewEnabled = false): void {
-  const manifest = JSON.parse(readFileSync(resolve(directory, 'production-build.json'), 'utf8'));
-  if (productionConnections.schemaVersion !== 1 || productionConnections.customerAccess !== 'closed'
-    || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== 'closed'
+export function verifyProductionClientArtifact(directory: string, reviewEnabled = false, liveEnabled = false, customerMcpEnabled = false): void {
+  const manifest = readVerifiedClientArtifact(directory, 'production-build.json');
+  if ((reviewEnabled && liveEnabled) || productionConnections.schemaVersion !== 1 || !['closed','live'].includes(productionConnections.customerAccess)
+    || (liveEnabled && productionConnections.customerAccess !== 'live')
+    || (customerMcpEnabled && (!liveEnabled || manifest.aiConnections !== true))
+    || (!customerMcpEnabled && manifest.aiConnections === true)
+    || manifest.version !== 1 || manifest.surface !== 'production-client' || manifest.customerAccess !== (liveEnabled ? 'live' : 'closed')
     || manifest.publicationCandidate !== true
     || (reviewEnabled ? manifest.reviewAccess !== 'identity-allowlist' : manifest.reviewAccess !== undefined)
     || manifest.webOrigin !== productionConnections.webOrigin || manifest.apiBaseURL !== productionConnections.apiBaseURL
-    || manifest.connectionsSha256 !== createHash('sha256').update(contractBytes).digest('hex')
-    || !manifest.files || typeof manifest.files !== 'object' || Array.isArray(manifest.files)) {
+    || manifest.connectionsSha256 !== createHash('sha256').update(contractBytes).digest('hex')) {
     throw new Error('Only a matching production client artifact with the explicitly selected access mode is accepted');
   }
-  const observed: string[] = [];
-  function visit(folder: string) {
-    for (const name of readdirSync(folder)) {
-      const path = resolve(folder, name), stat = lstatSync(path);
-      if (stat.isSymbolicLink()) throw new Error('Artifact symlink rejected');
-      if (stat.isDirectory()) visit(path);
-      else {
-        const key = relative(directory, path);
-        if (key === 'production-build.json') continue;
-        if (key !== 'index.html' && !/^assets\/[A-Za-z0-9_-]+\.(js|css|png|jpe?g|webp|svg|woff|woff2|txt)$/.test(key)) throw new Error('Unexpected production artifact path');
-        observed.push(key);
-        if (manifest.files[key] !== createHash('sha256').update(readFileSync(path)).digest('hex')) throw new Error('Production asset hash mismatch');
-      }
-    }
-  }
-  visit(resolve(directory));
-  if (!observed.includes('index.html') || JSON.stringify(observed.sort()) !== JSON.stringify(Object.keys(manifest.files).sort())) throw new Error('Production asset manifest is incomplete');
 }
 
 /** Same-origin client delivery only. Existing API/customer activation is untouched. */
 export class RilloraProductionWebStack extends Stack {
-  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean }) {
+  constructor(scope: Construct, id: string, props: StackProps & { certificateArn: string; assetDirectory?: string; reviewEnabled?: boolean; liveEnabled?: boolean; customerMcpEnabled?: boolean }) {
     super(scope, id, props);
     if (props.env?.region !== 'eu-central-1') throw new Error('Production origin storage remains in Frankfurt');
     if (!/^arn:aws:acm:us-east-1:\d{12}:certificate\/[0-9a-f-]+$/.test(props.certificateArn)
       || props.certificateArn.split(':')[4] !== props.env.account) throw new Error('Use the reviewed same-account CloudFront certificate');
-    const directory = props.assetDirectory ?? resolve(root, props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
-    verifyProductionClientArtifact(directory, props.reviewEnabled);
+    const directory = props.assetDirectory ?? resolve(root, props.liveEnabled ? 'apps/web/dist-production-live' : props.reviewEnabled ? 'apps/web/dist-production-review' : 'apps/web/dist-production');
+    verifyProductionClientArtifact(directory, props.reviewEnabled, props.liveEnabled, props.customerMcpEnabled);
     Tags.of(this).add('Project', 'Rillora'); Tags.of(this).add('Environment', 'Production');
     const assets = new s3.Bucket(this, 'Assets', {
       blockPublicAccess: s3.BlockPublicAccess.BLOCK_ALL, enforceSSL: true,
@@ -74,8 +60,12 @@ export class RilloraProductionWebStack extends Stack {
       code: cloudfront.FunctionCode.fromFile({ filePath: resolve(root, 'apps/web/worker/production-router.js') }),
     });
     const association = [{ eventType: cloudfront.FunctionEventType.VIEWER_REQUEST, function: router }];
+    const apiOrigin = new origins.HttpOrigin(productionConnections.originApiDomain, {
+      protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
+      originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2], readTimeout: Duration.seconds(30),
+    });
     const distribution = new cloudfront.Distribution(this, 'Client', {
-      comment: props.reviewEnabled
+      comment: props.liveEnabled ? 'Rillora production Web client; server-owned customer access and subscriptions' : props.reviewEnabled
         ? 'Rillora restricted review client; server identity allowlist required, public customers closed'
         : 'Rillora production client candidate; server and client account access closed',
       domainNames: [new URL(productionConnections.webOrigin).hostname],
@@ -89,22 +79,24 @@ export class RilloraProductionWebStack extends Stack {
         cachePolicy: cloudfront.CachePolicy.CACHING_OPTIMIZED, compress: true,
         responseHeadersPolicy: headers, functionAssociations: association,
       },
-      additionalBehaviors: { '/api/*': {
-        origin: new origins.HttpOrigin(productionConnections.originApiDomain, {
-          protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
-          originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2], readTimeout: Duration.seconds(30),
-        }),
+      additionalBehaviors: Object.fromEntries(['/api/*', ...(props.customerMcpEnabled ? [
+        '/.well-known/oauth-authorization-server/api/ai/oauth',
+        '/.well-known/openid-configuration/api/ai/oauth',
+        '/.well-known/oauth-protected-resource/api/mcp',
+      ] : [])].map(path => [path, {
+        origin: apiOrigin,
         viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.HTTPS_ONLY,
         allowedMethods: cloudfront.AllowedMethods.ALLOW_ALL,
         cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
         originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
         responseHeadersPolicy: apiHeaders, functionAssociations: association, compress: true,
-      } },
+      }])),
       errorResponses: [400, 403, 404, 405, 414, 416, 500, 501, 502, 503, 504].map(httpStatus => ({ httpStatus, ttl: Duration.seconds(0) })),
     });
     const upload = new deployment.BucketDeployment(this, 'Deployment', {
       sources: [deployment.Source.asset(directory)], destinationBucket: assets,
-      distribution, distributionPaths: ['/*'], prune: true,
+      // Existing browser tabs may still request immutable chunks from the previous build.
+      distribution, distributionPaths: ['/*'], prune: !props.customerMcpEnabled,
       cacheControl: [deployment.CacheControl.fromString('public,max-age=300,must-revalidate')],
     });
     // CDK's deployment provider grants invalidations on *. Explicitly limit that
@@ -118,7 +110,7 @@ export class RilloraProductionWebStack extends Stack {
     new CfnOutput(this, 'DistributionId', { value: distribution.distributionId });
     new CfnOutput(this, 'DistributionDomain', { value: distribution.distributionDomainName });
     new CfnOutput(this, 'BucketName', { value: assets.bucketName });
-    new CfnOutput(this, 'CustomerAccess', { value: 'closed' });
+    new CfnOutput(this, 'CustomerAccess', { value: props.liveEnabled ? 'live' : 'closed' });
     if (props.reviewEnabled) new CfnOutput(this, 'ReviewAccess', { value: 'identity-allowlist' });
   }
 }

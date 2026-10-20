@@ -1,0 +1,51 @@
+{
+  "capturedFrom": "2026-10-16T13:01:59.549709+00:00",
+  "capturedThrough": "2026-10-16T13:01:59.777241+00:00",
+  "workFiles": 226,
+  "uniqueRawObjects": 118,
+  "workBytes": 6480012,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-043.tar.zst.age",
+      "sha256": "5f56e201e7868a4bc5fae12990141551e1df39212cba03c29056b25195445b62",
+      "bytes": 1646127,
+      "plainBytes": 2901040,
+      "uniqueObjects": 118
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/public-discovery-rollout-20261016/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, authentication pages/URLs, account identities and raw provider objects"
+    },
+    {
+      "path": ".local/dns-backups",
+      "reason": "protected original zone snapshots"
+    },
+    {
+      "path": "archives001-042",
+      "reason": "immutable earlier captures; not recreated or downloaded"
+    },
+    {
+      "path": "output/qa/rillora-public-discovery-rollout-20261016/publication",
+      "reason": "capture/download cache or deployment cache"
+    },
+    {
+      "path": "output/qa/rillora-public-discovery-rollout-20261016/cdk.out/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_deployment_asset_copy"
+    },
+    {
+      "path": "output/qa/rillora-public-discovery-rollout-20261016/cdk.out/.cache",
+      "reason": "capture/download cache or deployment cache"
+    },
+    {
+      "path": "output/qa/rillora-public-discovery-rollout-20261016/cdk.out/asset.98f62bef9320f8c0a0a7be21d7c746f069131f196f51ffe3008a6bb730b368ec.zip",
+      "reason": "unchanged third-party deployment layer archive"
+    }
+  ],
+  "selection": "New public release, exact HTTP/S3 readbacks, two-phase deployment, search ownership/submission and late OAuth closeout evidence only. Duplicate public bytes deduplicated within the new capture.",
+  "boundary": "Website actually deployed; search ownership and submission verified; indexing, AI recommendations and hosted MCP not proven. App14/API/data/prices/billing and FanPass unchanged."
+}

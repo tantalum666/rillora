@@ -1,0 +1,73 @@
+{
+  "inbox": [
+    {
+      "event_type": "invoice.paid",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "checkout.session.completed",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.created",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.updated",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.updated",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.updated",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "refund.created",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "charge.refunded",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "refund.updated",
+      "processing_status": "applied",
+      "last_error_code": null
+    },
+    {
+      "event_type": "customer.subscription.deleted",
+      "processing_status": "applied",
+      "last_error_code": null
+    }
+  ],
+  "subscriptions": [
+    {
+      "plan_code": "family",
+      "provider_environment": "test",
+      "state": "refunded",
+      "cancel_at_period_end": false,
+      "renewal_is_possible": false,
+      "financial_state_override": "refunded"
+    }
+  ],
+  "orders": [
+    {
+      "amount_minor": "8899",
+      "currency_code": "USD",
+      "status": "paid_reconciled",
+      "provider_environment": "test"
+    }
+  ],
+  "refunds": []
+}

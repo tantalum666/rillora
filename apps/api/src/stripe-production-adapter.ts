@@ -3,7 +3,7 @@ import { createHash } from 'node:crypto';
 import type Stripe from 'stripe';
 import { ApiError } from './errors.js';
 import type { AuthoritativeSubscriptionSnapshot, NormalizedProviderSignal } from './commerce-provider-contract.js';
-import { createStripeSdkPort, type StripeSdkPort, type StripeCheckoutResult, type StripePortalResult } from './stripe-sdk.js';
+import { createStripeSdkPort, type StripeSdkPort, type StripeCheckoutResult, type StripePortalResult, type BillingDisplayLocale } from './stripe-sdk.js';
 import { assertCommerceReference, assertIdempotencyKey, assertStripeHostedUrl, assertStripeObjectId,
   epochSecondsToIso, stripeCommerceAccountReference, stripeCustomerReference, stripeHasScheduledCancellation,
   stripeIntegrationIdentifier, stripeMetadataValue, stripeObjectReference, stripeRefundReference,
@@ -15,12 +15,15 @@ export type StripeProductionPriceBinding = Readonly<{
   id: string; priceCode: string; amountMinor: number; currency: 'usd';
   interval: 'year' | 'month'; planVersion: number;
 }>;
+export type StripeProductionTaxConfig =
+  | Readonly<{ mode: 'not_configured' | 'disabled'; productTaxCode: string }>
+  | Readonly<{ mode: 'automatic' | 'reviewed_no_collection'; assessmentReference: string;
+      productTaxCode: string; activeRegistrationIds: readonly string[] }>;
 export type StripeProductionConfig = Readonly<{
   apiKey: string; webhookSecret: string; expectedAccountId: string; familyProductId: string;
   annualPriceId: string; historicalPrices: readonly StripeProductionPriceBinding[];
   checkoutSuccessUrl: string; checkoutCancelUrl: string; portalReturnUrl: string; portalConfigurationId: string;
-  tax: Readonly<{ mode: 'automatic' | 'reviewed_no_collection'; assessmentReference: string;
-    productTaxCode: string; activeRegistrationIds: readonly string[] }>;
+  tax: StripeProductionTaxConfig;
 }>;
 
 /** Production-only provider boundary; market/consent/ledger checks remain in the executor. */
@@ -36,8 +39,10 @@ export class StripeProductionAdapter {
       const url = new URL(raw);
       if (url.origin !== 'https://app.rillora.xyz' || url.username || url.password || url.hash) throw new Error('Production billing return URL must remain on the reviewed origin');
     }
-    if (!['automatic', 'reviewed_no_collection'].includes(config.tax.mode)
-      || !config.tax.assessmentReference.trim() || !config.tax.productTaxCode.startsWith('txcd_')) throw new Error('Production billing needs a recorded tax assessment and confirmed product tax code');
+    if (!['not_configured', 'disabled', 'automatic', 'reviewed_no_collection'].includes(config.tax.mode)
+      || !config.tax.productTaxCode.startsWith('txcd_')
+      || (['automatic', 'reviewed_no_collection'].includes(config.tax.mode)
+        && (!('assessmentReference' in config.tax) || !config.tax.assessmentReference.trim()))) throw new Error('Production billing needs explicit tax configuration and a confirmed product tax code');
     if (config.tax.mode === 'automatic' && config.tax.activeRegistrationIds.length === 0) throw new Error('Automatic tax requires confirmed active registration references');
   }
 
@@ -66,6 +71,7 @@ export class StripeProductionAdapter {
 
   async assertCheckoutReady(period: 'annual' | 'monthly'): Promise<void> {
     if (period !== 'annual') throw new ApiError(409, 'billing_period_unavailable', 'Rillora Family is available as an annual subscription.');
+    if (this.config.tax.mode === 'not_configured') throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');
     if (!this.sdk.retrieveAccountStatus || !this.sdk.retrieveProduct) throw new Error('Production provider readiness checks are unavailable');
     const account = await this.sdk.retrieveAccountStatus();
     if (account.id !== this.config.expectedAccountId || !account.chargesEnabled || !account.payoutsEnabled) throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');
@@ -82,7 +88,7 @@ export class StripeProductionAdapter {
   }
 
   async createHostedSubscriptionCheckout(input: { commerceAccountReference: string; billingPeriod: 'annual' | 'monthly';
-    idempotencyKey: string; existingStripeCustomerReference?: string; orderReference?: string; paymentAttemptReference?: string }): Promise<StripeCheckoutResult> {
+    idempotencyKey: string; existingStripeCustomerReference?: string; orderReference?: string; paymentAttemptReference?: string; locale?: BillingDisplayLocale }): Promise<StripeCheckoutResult> {
     assertCommerceReference(input.commerceAccountReference); assertIdempotencyKey(input.idempotencyKey);
     if (!input.orderReference || !input.paymentAttemptReference) throw new Error('Production checkout requires a durable order and attempt');
     assertCommerceReference(input.orderReference); assertCommerceReference(input.paymentAttemptReference);
@@ -99,6 +105,7 @@ export class StripeProductionAdapter {
       allow_promotion_codes: false, automatic_tax: { enabled: automatic }, adaptive_pricing: { enabled: false },
       billing_address_collection: automatic && input.existingStripeCustomerReference ? 'required' : 'auto',
       payment_method_collection: 'always', metadata, subscription_data: { metadata },
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
       ...(input.existingStripeCustomerReference ? { customer: input.existingStripeCustomerReference,
         ...(automatic ? { customer_update: { address: 'auto' as const } } : {}) } : {}),
     }, { idempotencyKey: input.idempotencyKey });
@@ -109,10 +116,11 @@ export class StripeProductionAdapter {
     return { sessionId: session.id, url: session.url, expiresAt: session.expires_at ? epochSecondsToIso(session.expires_at) : null };
   }
 
-  async createCustomerPortal(input: { stripeCustomerReference: string }): Promise<StripePortalResult> {
+  async createCustomerPortal(input: { stripeCustomerReference: string; locale?: BillingDisplayLocale }): Promise<StripePortalResult> {
     assertStripeObjectId(input.stripeCustomerReference, 'cus_');
     const session = await this.sdk.createPortalSession({ customer: input.stripeCustomerReference,
-      configuration: this.config.portalConfigurationId, return_url: this.config.portalReturnUrl });
+      configuration: this.config.portalConfigurationId, return_url: this.config.portalReturnUrl,
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}) });
     this.requireLive(session.livemode); assertStripeHostedUrl(session.url, 'billing.stripe.com');
     return { sessionId: session.id, url: session.url };
   }
@@ -176,7 +184,7 @@ export class StripeProductionAdapter {
     const price=[this.currentPrice,...this.config.historicalPrices].find(p=>p.priceCode===snapshot.priceCode);
     if(!price)throw new Error('Recovery price binding is unavailable');
     if(!['active','cancel_at_period_end','grace'].includes(snapshot.state))return {snapshot,
-      financial:{override:null,resolvedDispute:false,chargeReference:null},price,product:this.config.familyProductId};
+      financial:{override:null,resolvedRefund:false,resolvedDispute:false,chargeReference:null},price,product:this.config.familyProductId};
     if(!snapshot.providerInvoiceReference)throw new Error('Recovery requires current invoice evidence');
     const financial=await readStripeRecoveryFinancialState(this.sdk,snapshot.providerInvoiceReference,input.expectedStripeCustomerReference,true);
     const current=await this.retrieveAuthoritativeSubscription(input);
@@ -193,7 +201,7 @@ export class StripeProductionAdapter {
     if (price.id !== binding.id || (newPurchase && !price.active) || stripeObjectReference(price.product) !== this.config.familyProductId
       || price.currency !== binding.currency || price.unit_amount !== binding.amountMinor
       || price.billing_scheme !== 'per_unit' || price.transform_quantity !== null || price.recurring?.usage_type !== 'licensed'
-      || (newPurchase && !['exclusive', 'inclusive'].includes(price.tax_behavior ?? ''))
+      || (newPurchase && !['exclusive', 'inclusive', ...(this.config.tax.mode === 'disabled' ? ['unspecified'] : [])].includes(price.tax_behavior ?? ''))
       || price.recurring?.interval !== binding.interval || price.recurring.interval_count !== 1) throw new Error('Provider price differs from the exact Rillora offer');
   }
 }

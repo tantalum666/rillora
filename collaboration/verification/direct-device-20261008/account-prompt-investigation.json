@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-08T01:21:47.248794+00:00",
+  "sourceCommit": "c0cec8680c613c3f6889f800754818fddf901031",
+  "installation": "development-signed 1.0(11), direct localNetwork installation",
+  "ownerObservations": {
+    "mediaAndPurchases": "original Gmail Apple account",
+    "testFlight": "same original Gmail Apple account",
+    "restoreAuthenticationPrompt": "QQ Apple account",
+    "developerSandboxSetting": "QQ Apple account confirmed by Owner"
+  },
+  "conclusion": "The independently configured Sandbox Apple Account explains account selection for this development installation. Rillora does not pass an email to StoreKit.",
+  "sourceInspection": [
+    "ApplePurchaseCoordinator.restore",
+    "StoreKitClient.refreshAppEnvironment",
+    "StoreKitClient.sync"
+  ],
+  "limitations": [
+    "The exact prompting API was not captured; either app-transaction refresh or missing-history sync may authenticate.",
+    "No successful physical restoration, exact current price, or purchasing Apple-account email was independently verified."
+  ],
+  "actionsNotPerformed": [
+    "phone account change",
+    "password entry",
+    "purchase-history clearing",
+    "uninstall",
+    "repeat purchase",
+    "TestFlight upload or distribution",
+    "runtime redeployment",
+    "implementation change"
+  ],
+  "officialSources": [
+    "https://developer.apple.com/documentation/storekit/testing-in-app-purchases-with-sandbox",
+    "https://developer.apple.com/documentation/storekit/apptransaction/4020517-refresh"
+  ],
+  "rawEmailsPublished": false
+}

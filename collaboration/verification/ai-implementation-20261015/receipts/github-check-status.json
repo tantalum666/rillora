@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-15T16:20:37.013319+00:00",
+  "commit": "15770aa4de8813520c5dad2254a4158b11536381",
+  "readSucceeded": false,
+  "response": {
+    "data": {
+      "repository": {
+        "object": {
+          "oid": "15770aa4de8813520c5dad2254a4158b11536381",
+          "statusCheckRollup": null
+        }
+      }
+    },
+    "errors": [
+      {
+        "type": "FORBIDDEN",
+        "path": [
+          "repository",
+          "object",
+          "statusCheckRollup"
+        ],
+        "extensions": {
+          "saml_failure": false,
+          "ip_allow_list_failure": false
+        },
+        "locations": [
+          {
+            "line": 1,
+            "column": 121
+          }
+        ],
+        "message": "Resource not accessible by personal access token"
+      }
+    ]
+  }
+}

@@ -1,0 +1,69 @@
+{
+  "at": "2026-10-15T03:31:19.425495+00:00",
+  "mode": "same-workflow-implementation-authorized",
+  "retainedFullRead": "collaboration/verification/ai-discovery-20261015/reading.json",
+  "baseline": "70f43c88a17ba5760280f972e1d01962ce56d7bc",
+  "read": [
+    {
+      "path": "AGENTS.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "path": "docs/handoff.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "f55aadb67374072968d404d42c7a13139bdc4b5ad04957753e045bb302c6cf60"
+    },
+    {
+      "path": "docs/architecture/ai-discovery-vnext-20261015.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "c93cfd905ae42a3061e7dcd97c56db55c9ab7c152b9cdbb587a6b0dce0e3f587"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "e265ac5cf90d03266ecf97133f0e60a9e817933788951fc8f792f1681e6f5bd5"
+    },
+    {
+      "path": "docs/landing-page-20260928.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "4410b6cabc305cb911cc9b6075856c05c2e23993cce80aa6f1bc959b365c3a0c"
+    },
+    {
+      "path": "docs/web-localization-20261005.md",
+      "range": "full; new architecture retained from previous turn creation and current reread",
+      "sha256": "0142754d86e909d599be5a558682f74f739cd8a02325ee21db4331c1a968744c"
+    }
+  ],
+  "supplementalRead": {
+    "docs/product.md": "1-55, 400-567 current locks and authority; complete baseline retained",
+    "docs/decision-log.md": "latest90lines current decisions",
+    "docs/journey/PROJECT_JOURNEY.md": "header and latest20lines; historical body retained",
+    "collaboration/README.md": "current15-16 October entry; full baseline retained",
+    "docs/source-control.md": "current section; full previous workflow read retained",
+    "docs/architecture/ai-discovery-vnext-20261015.md": "full 1-end; split1-100 and prior100-end",
+    "docs/architecture/ai-discovery-implementation-20261015.md": "newly authored complete",
+    "integrations/ai/README.md": "full 1-end",
+    "docs/trusted-sharing.md": "full178lines before MCP implementation",
+    "apps/api/src/mcp/": "all four implementation files, full",
+    "apps/api/migrations/0104_selected_ai_connections.sql": "full",
+    "apps/api/migrations/0105_ai_recovery_worker_compatibility.sql": "full",
+    "apps/web/src/AiConnectionsPanel.jsx": "full",
+    "apps/web/src/i18n/messages/aiConnections.js": "full"
+  },
+  "exclusions": [
+    "dependencies",
+    "caches",
+    "build products",
+    "generated output evidence",
+    "collaboration generated mirrors/catalog/ciphertext"
+  ],
+  "scope": "public web candidate first, then isolated MCP and platform integration; production and submitted App14 unchanged",
+  "browser": {
+    "classification": "Browser plugin not available",
+    "path": "existing repository Playwright workflow; CUA available for optional user-facing preview"
+  },
+  "resumedAt": "2026-10-15T16:08:23.550628+00:00",
+  "readingCompleteThrough": "2026-10-15T16:08:23.550628+00:00",
+  "recovery": "Same workflow, no repeat full scan; authored and changed task documents reviewed in full; original complete read chain retained."
+}

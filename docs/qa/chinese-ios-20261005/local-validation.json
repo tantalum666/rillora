@@ -1,0 +1,148 @@
+{
+  "checkedAt": "2026-10-05T01:05:45Z",
+  "baseline": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+  "catalogEntries": 1058,
+  "pluralEntries": 8,
+  "staticTests": {
+    "passed": 9,
+    "failed": 0
+  },
+  "addedNativeUnitTests": 21,
+  "addedNativeUITests": 2,
+  "newSwiftSyntaxParserErrors": 0,
+  "existingUnsupportedParserFiles": [
+    "apps/ios/Rillora/Core/API/APIClient.swift",
+    "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+    "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+    "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift"
+  ],
+  "projectParsed": true,
+  "newProjectRefsResolve": [
+    "apps/ios/Rillora/Core/Design/L10n.swift",
+    "apps/ios/Rillora/Core/Design/AppLanguageView.swift",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings",
+    "apps/ios/RilloraTests/LocalizationTests.swift",
+    "apps/ios/RilloraTests/AccountLocalizationTests.swift",
+    "apps/ios/RilloraTests/CoreLocalizationTests.swift",
+    "apps/ios/RilloraTests/SharingLocalizationTests.swift",
+    "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift"
+  ],
+  "protectedFilesByteIdentical": [
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/LegalConsentContract.swift",
+      "sha256": "c0f589743b2e00a785e83743123ca346fa902eb6c503216a1fe293a9e21785dd"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift",
+      "sha256": "bb389c03684786bd1125e489128c397dd779a8e0b8eed66d509a21192d103ba6"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationCallback.swift",
+      "sha256": "b0f5fe26d4abbac03aeb5b4333f163ee9827c840b3c662c2d784646405e09e76"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/CommerceModels.swift",
+      "sha256": "29586cab1656877755b94ea75b610cc94c5b856936d5b2d28aed5762abbd1873"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift",
+      "sha256": "ff42630ffbe789f559a677ac7f0ed7a9ce4d8aced51dd3dacd46ee9b354d95fe"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/RilloraStoreKitCatalog.swift",
+      "sha256": "4bfed2625fd1b3d4d7658efbb96ab59eb0acc5f4a9716d3d48e4df113cf588b9"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/SessionStorageNamespace.swift",
+      "sha256": "e9f026f50481d94498cc87f6f1207554c91814dc30a87194c9077420c4e9da0f"
+    },
+    {
+      "path": "apps/ios/Rillora/Rillora.entitlements",
+      "sha256": "92a56cbb8ee949d70279c43bad9ebe9286511a00bd89a117f69f59f447ac411d"
+    },
+    {
+      "path": "config/provider-guides.json",
+      "sha256": "a515e2c2e50b495a32ec4301866332054f0b5a8aa985e60d5d67af83e7a1c542"
+    }
+  ],
+  "sourceScan": {
+    "scanner": "gitleaks",
+    "version": "8.30.1",
+    "rawFindingCount": 7,
+    "reviewedNonSecrets": [
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/project.yml",
+        "startLine": 110,
+        "endLine": 110,
+        "sourceSpanSha256": "c9c9eb8a723073eae64c80690be13fc7c0919031fdb81d83a953ee5a247256b4",
+        "reason": "Native public Auth0 client identifier, included in distributed app configuration."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/project.yml",
+        "startLine": 125,
+        "endLine": 125,
+        "sourceSpanSha256": "5ac97cca4bf92df008a80d90fabca84d976bccc691219fdbb0bbc591b963b6ae",
+        "reason": "Prepared native public Auth0 production client identifier, verified against the approved public connection contract; not a client secret."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+        "startLine": 1288,
+        "endLine": 1288,
+        "sourceSpanSha256": "5de471a1bd1102dd7f3284468f430bc8b8c0d137dcaef7c8aa9d27cc17aae11e",
+        "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+        "startLine": 1541,
+        "endLine": 1541,
+        "sourceSpanSha256": "84b43e023d7ae444915797275d0661dbab0b68c1f6201663e2cd623b995b19ab",
+        "reason": "Native public Auth0 client identifier, byte-matched to the already reviewed project.yml value; shared generated Xcode project, not a client secret."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+        "startLine": 171,
+        "endLine": 171,
+        "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+        "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+        "startLine": 171,
+        "endLine": 171,
+        "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+        "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+      },
+      {
+        "rule": "generic-api-key",
+        "path": "apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift",
+        "startLine": 171,
+        "endLine": 171,
+        "sourceSpanSha256": "01a8ad16ed86676d58e652dc48227a1e1fbe06a725ede91abae49956de868d10",
+        "reason": "Fixed cross-platform cryptography fixture with synthetic UUIDs and no service/account authority."
+      }
+    ],
+    "unreviewedFindings": [],
+    "passed": true,
+    "boundary": "A scoped source scan; not proof of absence of every possible secret or personal datum."
+  },
+  "notRun": [
+    "Swift compilation",
+    "XcodeGen generation",
+    "xcstrings compilation",
+    "native XCTest / XCUITest",
+    "Simulator / device visual acceptance"
+  ],
+  "boundary": "Auxiliary parser and source checks are not SDK build, native runtime, deployment or release evidence.",
+  "existingPythonTests": {
+    "nativeUIContractPassed": 2,
+    "repositoryScanBoundaryPassed": 2
+  },
+  "sourceScanScope": "Materialized sparse iOS/text/docs source, 386 files; full repository CI is separate"
+}

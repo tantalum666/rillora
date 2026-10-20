@@ -1,0 +1,578 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/api
+
+ ❯ tests/api.integration.test.ts (64 tests | 5 failed) 1625ms
+     × exchanges an OIDC Code + PKCE transaction for an opaque local session 9ms
+     × exchanges a verified native access token for a typed opaque bearer session 4ms
+     × revokes every Rillora session for one planner without crossing planner boundaries 3ms
+     × preserves a same-origin OIDC return path with query and fragment 5ms
+     × returns a newly registered recipient to the original invitation before explicit acceptance 37ms
+ ❯ tests/sharing-lifecycle.integration.test.ts (15 tests | 9 failed) 1840ms
+     × serializes concurrent Free reservations and keeps contact creation/incoming access free 194ms
+     × keeps the paid-term version when a later edit occurs before any expiry job/read 88ms
+     × redacts narrowed/removed grants permanently and never backfills new saved content 97ms
+     × requires an explicit included-person choice and does not resume everyone after repurchase 92ms
+     × does not let a pending over-limit invite activate after expiry; choosing it preserves explicit acceptance 92ms
+     × clears saved retrieval immediately on matter privacy, archive and connection revocation 92ms
+     × replaces the Free recipient atomically and rolls back a failed replacement 90ms
+     × captures an existing Free recipient at paid activation before any new edit 87ms
+     × never mislabels a post-cutoff capture after a retroactive provider correction 93ms
+ ❯ tests/family-maintenance.integration.test.ts (14 tests | 14 skipped) 314ms
+ ❯ tests/sharing.integration.test.ts (12 tests | 12 skipped) 330ms
+ ❯ tests/recent-authentication.integration.test.ts (10 tests | 8 failed) 347ms
+     × holds sensitive endpoints for missing/stale proof while ordinary records and logout remain available 72ms
+     × guards the actual handlers under both prefixes, case variants and trailing slashes 13ms
+     × rejects old-tab reads and all new-record writes after another tab changes the cookie account 25ms
+     × returns one contact for multiple scopes and a recreated plan-wide role, including personal exports 7ms
+     × native reauthentication refuses account switching, expired proof and revoked sessions; preserves its original token 7ms
+     × browser reauthentication is CSRF-protected, bound to the original account and session, and requires a fresh transaction 11ms
+     × a different browser identity cannot change the original session or provision a new planner 14ms
+     × rolls back a blocked scope expansion while allowing immediate reduction and revocation 7ms
+ ❯ tests/recovery-journal.integration.test.ts (7 tests | 2 failed) 1381ms
+     × takes a database snapshot before later revocation and account erasure 182ms
+     × replays a real database copy without regranting C or disturbing B 758ms
+ ❯ tests/email-verification.integration.test.ts (9 tests | 1 failed) 494ms
+     × accepts the saved invitation with the same cookie and receipt after the provider verifies the email 58ms
+ ❯ tests/production-review-access.integration.test.ts (3 tests | 2 failed) 252ms
+     × admits the explicit identity, then denies its existing native session after removal or expiry 16ms
+     × uses the same restriction for browser cookies, session status and authentication start 9ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/family-maintenance.integration.test.ts > Family maintenance — scoped ongoing work
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ actor tests/family-maintenance.integration.test.ts:26:3
+     24|   const row=(await pool.query("select * from app.provision_oidc_planne…
+     25|   const token=name.repeat(43).slice(0,43);
+     26|   await pool.query(`with a as (insert into app.legal_acceptances(plann…
+       |   ^
+     27|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     28|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/family-maintenance.integration.test.ts:58:7
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/29]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ actor tests/sharing.integration.test.ts:29:3
+     27|     "select * from app.provision_oidc_planner($1, $2, $3, 'en', 'UTC')…
+     28|   const row = result.rows[0]!; const token = name[0]!.repeat(43);
+     29|   await pool.query(`with acceptance as (
+       |   ^
+     30|     insert into app.legal_acceptances(planner_id, identity_account_id,…
+     31|       consent_text_version, legal_bundle_sha256, accepted_terms, ackno…
+ ❯ tests/sharing.integration.test.ts:67:9
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/29]⎯
+
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 27 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exchanges an OIDC Code + PKCE transaction for an opaque local session
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ tests/api.integration.test.ts:352:8
+    350|     const callback = await agent
+    351|       .get(`/auth/callback?code=[REDACTED_CAPABILITY]&state=[REDACTED_CAPABILITY]
+    352|       .expect(303);
+       |        ^
+    353|     expect(callback.headers.location).toBe("http://localhost:4173/");
+    354|     const setCookies = callback.headers["set-cookie"] as unknown as st…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/29]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > exchanges a verified native access token for a typed opaque bearer session
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ tests/api.integration.test.ts:556:8
+    554|       .set("Authorization", `Bearer ${"a".repeat(80)}`)
+    555|       .send({ legalAcceptance })
+    556|       .expect(201);
+       |        ^
+    557|     expect(exchange.body.tokenType).toBe("Bearer");
+    558|     expect(exchange.body.sessionToken).toMatch(/^[A-Za-z0-9_-]{43}$/);
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/29]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > revokes every Rillora session for one planner without crossing planner boundaries
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ tests/api.integration.test.ts:594:8
+    592|       .set("Authorization", `Bearer ${"a".repeat(80)}`)
+    593|       .send({ legalAcceptance })
+    594|       .expect(201);
+       |        ^
+    595|     const secondExchange = await request(app)
+    596|       .post("/auth/native/session")
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/29]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > preserves a same-origin OIDC return path with query and fragment
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ tests/api.integration.test.ts:659:86
+    657|     const login = await agent.post("/auth/start").send({ intent: "sign…
+    658|     const state = new URL(login.body.authorizationUrl).searchParams.ge…
+    659|     const callback = await agent.get(`/auth/callback?code=[REDACTED_CAPABILITY]&st…
+       |                                                                                      ^
+    660|     expect(callback.headers.location).toBe(`http://localhost:4173${ret…
+    661|   });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/29]⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API > returns a newly registered recipient to the original invitation before explicit acceptance
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ tests/api.integration.test.ts:2779:124
+    2777|     expect(authorization.searchParams.get("screen_hint")).toBe("signup…
+    2778|     expect(authorization.href).not.toContain(token);
+    2779|     const callback = await recipient.get(`/auth/callback?code=[REDACTED_CAPABILITY]
+       |                                                                                                                            ^
+    2780|     expect(callback.headers.location).toBe(`http://localhost:4173${ret…
+    2781|     const resolved = await recipient.get(`/sharing/invitations/${invit…
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/29]⎯
+
+ FAIL  tests/email-verification.integration.test.ts > Email verification without another sign-in > accepts the saved invitation with the same cookie and receipt after the provider verifies the email
+AssertionError: expected null not to be null
+ ❯ tests/email-verification.integration.test.ts:54:154
+     52|     await attempt().expect(200);
+     53|     const row=(await pool.query("select token_hash,legal_acceptance_id…
+     54|     expect(row.token_hash).toEqual(hash(recipient.token));expect(row.l…
+       |                                                                                                                                                          ^
+     55|     expect((await request(app).get("/v1/sharing/shared-with-me").set(r…
+     56|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/29]⎯
+
+ FAIL  tests/production-review-access.integration.test.ts > Production review identity restriction > admits the explicit identity, then denies its existing native session after removal or expiry
+AssertionError: expected 500 to be 201 // Object.is equality
+
+- Expected
++ Received
+
+- 201
++ 500
+
+ ❯ tests/production-review-access.integration.test.ts:48:69
+     46|  });
+     47|  it('admits the explicit identity, then denies its existing native ses…
+     48|   const admitted=await native(app(allowed));expect(admitted.status).to…
+       |                                                                     ^
+     49|   const token=admitted.body.sessionToken;
+     50|   await request(app(allowed)).get('/v1/session').set('Authorization',`…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/29]⎯
+
+ FAIL  tests/production-review-access.integration.test.ts > Production review identity restriction > uses the same restriction for browser cookies, session status and authentication start
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ web tests/production-review-access.integration.test.ts:35:132
+     33|  const start=await request(target).post('/auth/start').send({intent:'s…
+     34|  const state=new URL(start.body.authorizationUrl).searchParams.get('st…
+     35|  const result=await request(target).get(`/auth/callback?state=[REDACTED_CAPABILITY]
+       |                                                                                                                                    ^
+     36|  return result;
+     37| }
+ ❯ tests/production-review-access.integration.test.ts:56:16
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > holds sensitive endpoints for missing/stale proof while ordinary records and logout remain available
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ native tests/recent-authentication.integration.test.ts:31:144
+     29| }
+     30| async function native(f:ReturnType<typeof fixture>) {
+     31|   return (await request(f.app).post('/auth/native/session').set('Autho…
+       |                                                                                                                                                ^
+     32| }
+     33| async function web(f:ReturnType<typeof fixture>) {
+ ❯ tests/recent-authentication.integration.test.ts:53:41
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > guards the actual handlers under both prefixes, case variants and trailing slashes
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ native tests/recent-authentication.integration.test.ts:31:144
+     29| }
+     30| async function native(f:ReturnType<typeof fixture>) {
+     31|   return (await request(f.app).post('/auth/native/session').set('Autho…
+       |                                                                                                                                                ^
+     32| }
+     33| async function web(f:ReturnType<typeof fixture>) {
+ ❯ tests/recent-authentication.integration.test.ts:67:46
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > rejects old-tab reads and all new-record writes after another tab changes the cookie account
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ web tests/recent-authentication.integration.test.ts:36:132
+     34|   const start=await request(f.app).post('/auth/start').send({intent:'s…
+     35|   const state=new URL(start.body.authorizationUrl).searchParams.get('s…
+     36|   const result=await request(f.app).get(`/auth/callback?state=[REDACTED_CAPABILITY]
+       |                                                                                                                                    ^
+     37|   const cookies=(result.headers['set-cookie'] as unknown as string[]).…
+     38|   const csrf=cookies.find(value=>value.startsWith('continuity_csrf='))…
+ ❯ tests/recent-authentication.integration.test.ts:84:15
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > returns one contact for multiple scopes and a recreated plan-wide role, including personal exports
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ native tests/recent-authentication.integration.test.ts:31:144
+     29| }
+     30| async function native(f:ReturnType<typeof fixture>) {
+     31|   return (await request(f.app).post('/auth/native/session').set('Autho…
+       |                                                                                                                                                ^
+     32| }
+     33| async function web(f:ReturnType<typeof fixture>) {
+ ❯ tests/recent-authentication.integration.test.ts:105:50
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > native reauthentication refuses account switching, expired proof and revoked sessions; preserves its original token
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ native tests/recent-authentication.integration.test.ts:31:144
+     29| }
+     30| async function native(f:ReturnType<typeof fixture>) {
+     31|   return (await request(f.app).post('/auth/native/session').set('Autho…
+       |                                                                                                                                                ^
+     32| }
+     33| async function web(f:ReturnType<typeof fixture>) {
+ ❯ tests/recent-authentication.integration.test.ts:123:35
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > browser reauthentication is CSRF-protected, bound to the original account and session, and requires a fresh transaction
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ web tests/recent-authentication.integration.test.ts:36:132
+     34|   const start=await request(f.app).post('/auth/start').send({intent:'s…
+     35|   const state=new URL(start.body.authorizationUrl).searchParams.get('s…
+     36|   const result=await request(f.app).get(`/auth/callback?state=[REDACTED_CAPABILITY]
+       |                                                                                                                                    ^
+     37|   const cookies=(result.headers['set-cookie'] as unknown as string[]).…
+     38|   const csrf=cookies.find(value=>value.startsWith('continuity_csrf='))…
+ ❯ tests/recent-authentication.integration.test.ts:136:31
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > a different browser identity cannot change the original session or provision a new planner
+Error: expected 303 "See Other", got 500 "Internal Server Error"
+ ❯ web tests/recent-authentication.integration.test.ts:36:132
+     34|   const start=await request(f.app).post('/auth/start').send({intent:'s…
+     35|   const state=new URL(start.body.authorizationUrl).searchParams.get('s…
+     36|   const result=await request(f.app).get(`/auth/callback?state=[REDACTED_CAPABILITY]
+       |                                                                                                                                    ^
+     37|   const cookies=(result.headers['set-cookie'] as unknown as string[]).…
+     38|   const csrf=cookies.find(value=>value.startsWith('continuity_csrf='))…
+ ❯ tests/recent-authentication.integration.test.ts:152:31
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/29]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action > rolls back a blocked scope expansion while allowing immediate reduction and revocation
+Error: expected 201 "Created", got 500 "Internal Server Error"
+ ❯ native tests/recent-authentication.integration.test.ts:31:144
+     29| }
+     30| async function native(f:ReturnType<typeof fixture>) {
+     31|   return (await request(f.app).post('/auth/native/session').set('Autho…
+       |                                                                                                                                                ^
+     32| }
+     33| async function web(f:ReturnType<typeof fixture>) {
+ ❯ tests/recent-authentication.integration.test.ts:168:45
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:904:2
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/29]⎯
+
+ FAIL  tests/recovery-journal.integration.test.ts > Durable restrictions and quarantined restore > takes a database snapshot before later revocation and account erasure
+Error: expected 200 "OK", got 202 "Accepted"
+ ❯ tests/recovery-journal.integration.test.ts:101:180
+     99|   const version=(await pool.query('select version from app.sharing_con…
+    100|   await request(app).delete(`/v1/sharing/connections/${revoked}`).set(…
+    101|   await request(app).post('/v1/account/delete').set('x-dev-planner-id'…
+       |                                                                                                                                                                                    ^
+    102|   expect(journal.get(`account:${D}`)?.facts.deleted).toBe(true);
+    103|  });
+ ❯ Test._assertStatus node_modules/supertest/lib/test.js:309:14
+ ❯ node_modules/supertest/lib/test.js:365:13
+ ❯ Test._assertFunction node_modules/supertest/lib/test.js:342:13
+ ❯ Test.assert node_modules/supertest/lib/test.js:195:23
+ ❯ localAssert node_modules/supertest/lib/test.js:138:14
+ ❯ node_modules/supertest/lib/test.js:156:7
+ ❯ fn node_modules/superagent/src/node/index.js:892:11
+ ❯ callback node_modules/superagent/src/node/index.js:1183:17
+ ❯ fn node_modules/superagent/src/node/parsers/json.js:19:6
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/29]⎯
+
+ FAIL  tests/recovery-journal.integration.test.ts > Durable restrictions and quarantined restore > replays a real database copy without regranting C or disturbing B
+error: permission denied for function claim_account_deletion
+ ❯ node_modules/pg/lib/client.js:652:17
+ ❯ replayRecoveryControls src/recovery-replay.ts:90:23
+     88|        await client.query("update app.account_deletions set lease_unti…
+     89|        await client.query('set local role continuity_auth');
+     90|        const claimed=(await client.query('select app.claim_account_del…
+       |                       ^
+     91|        if(!claimed)throw new Error('Restored deletion job could not be…
+     92|        const finished=(await client.query('select app.finish_account_d…
+ ❯ tests/recovery-journal.integration.test.ts:114:16
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > serializes concurrent Free reservations and keeps contact creation/incoming access free
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:88:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > keeps the paid-term version when a later edit occurs before any expiry job/read
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:116:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > redacts narrowed/removed grants permanently and never backfills new saved content
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:138:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > requires an explicit included-person choice and does not resume everyone after repurchase
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:153:45
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > does not let a pending over-limit invite activate after expiry; choosing it preserves explicit acceptance
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:166:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > clears saved retrieval immediately on matter privacy, archive and connection revocation
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:214:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > replaces the Free recipient atomically and rolls back a failed replacement
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:227:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[27/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > captures an existing Free recipient at paid activation before any new edit
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:250:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[28/29]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > never mislabels a post-cutoff capture after a retroactive provider correction
+error: new row for relation "auth_sessions" violates check constraint "session_has_no_global_email_digest"
+ ❯ node_modules/pg-pool/index.js:45:11
+ ❯ recipient tests/sharing-lifecycle.integration.test.ts:30:3
+     28|   const actor = (await pool.query("select * from app.provision_oidc_pl…
+     29|   const token = randomBytes(32).toString("base64url"), csrf = randomBy…
+     30|   await pool.query(`with legal as (insert into app.legal_acceptances(p…
+       |   ^
+     31|     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledg…
+     32|     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id)
+ ❯ tests/sharing-lifecycle.integration.test.ts:260:49
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[29/29]⎯
+
+
+ Test Files  8 failed | 49 passed (57)
+      Tests  27 failed | 459 passed | 26 skipped (512)
+   Start at  20:43:46
+   Duration  41.00s (transform 685ms, setup 1.43s, import 8.92s, tests 24.23s, environment 3ms)
+

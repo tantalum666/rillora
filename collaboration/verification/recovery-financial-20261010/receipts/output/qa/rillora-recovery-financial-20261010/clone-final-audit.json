@@ -1,0 +1,29 @@
+{
+  "readOnly": true,
+  "verifiedTLS": true,
+  "counts": {
+    "planners": 3,
+    "matters": 2,
+    "sessions": 0
+  },
+  "activeGrants": 2,
+  "observations": [
+    {
+      "state": "active",
+      "provider": "storekit",
+      "environment": "sandbox",
+      "providerObservedAt": "2026-10-10T12:07:47.925Z",
+      "renewalIsPossible": true,
+      "effective": true,
+      "events": [
+        {
+          "event_type": "recovery_current_provider_state",
+          "signature_verified": true,
+          "processing_status": "applied",
+          "n": 1
+        }
+      ]
+    }
+  ],
+  "customerTrafficEnabled": false
+}

@@ -1,0 +1,350 @@
+[
+  {
+    "id": "R01",
+    "priority": "P2",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/auth-routes.ts",
+    "problem": "Control characters in relative returnTo bypassed prefix checks and WHATWG URL normalization produced an external callback redirect.",
+    "before": "Three start tests accepted 201 instead of 400; persisted-transaction callback returned 303 instead of 400.",
+    "fix": "Reject C0/DEL and require parsed same origin at start; revalidate stored path before provider exchange/session issuance.",
+    "tests": "auth-return-after.log: 8 passed,49 unselected; real isolated local PostgreSQL and HTTP handlers, synthetic identity provider.",
+    "deployed": false
+  },
+  {
+    "id": "R09",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/app.ts",
+    "problem": "Global 64KB JSON limit may reject legitimate encrypted export finalize (up to65536ciphertext bytes => base64 larger); 2MB import envelope may reject a valid nearly2MB export.",
+    "priority": "P2",
+    "before": "file-boundaries-before.log:3fail maximum ciphertext, valid near2MiB import and413 classification.",
+    "fix": "Authenticated128KiB encrypted finalize parser;2MiB+1KiB import envelope with independent2MiBbackup bound; JSON subtype parity; truthful413.",
+    "tests": "file-boundaries-after.log:3pass (64+65536ciphertext roundtrip andordinary413),1fixtureECONNRESET from intentionally rejected large unauthenticated upload. Replace that transport-dependent auth assertion with small request; backup-boundary-after.log:actual2097136-byte export/import roundtrip and2097153-byte rejection pass.",
+    "deployed": false,
+    "clientFollowup": "backup-download-before.log:prettyprinting grows2097152-byte payload to2126223-byte unreadablefile. Compact exact JSON with independentblobsizeguard;web-copy-navigation-unit.log10pass before final malformed-record guard;late-download-after.log includes final saved-copy checks."
+  },
+  {
+    "id": "R06",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/bootstrap-runtime.ts",
+    "problem": "Existing runtime role validation omits rolbypassrls/rolreplication; verify whether unsafe roles pass and runtime permissions impact before deciding severity.",
+    "priority": "P1",
+    "before": "runtime-role-before.log:6negative cases pass unsafe roles unexpectedly.",
+    "fix": "Explicit NOBYPASSRLS/NOREPLICATION and validation; allow only the four application memberships including indirect roles.",
+    "tests": "runtime-role-after.log:8passed; actual local login/roles, no production role changes.",
+    "deployed": false
+  },
+  {
+    "id": "R12",
+    "status": "fixed_full_api_verified",
+    "path": "apps/api/tests",
+    "problem": "Several hard-coded database URL suites run migrations without dedicatedTestDatabaseUrl/assert guard, so ambient PGHOST defaults may escape intended local fixture; inventory and guard all mutation fixtures without weakening existing guard.",
+    "priority": "P2",
+    "before": "test-database-ambient-before.json:actual pg connection parameters use unsafe-fixture.example under PGHOST; no connection attempted.",
+    "fix": "Normalize all mutation fixture URLs and perform read-only database/user/host identity guard before migrations/truncate; preserve named local databases and container marker policy.",
+    "tests": "api-full-first.log:48files399tests pass, including3negative dedicated-database safety checks.",
+    "deployed": false,
+    "nativeFollowup": "Layout matrix API URL override lacked host validation for mutating fixtures. Require loopback HTTP /v1 without credentials/query/fragment in setUp and request helper; pure URL allow/reject fixture test pending. No remote request made. native-fixture-url-guard.json:1test passes (2acceptedand8rejectedURLforms), no network orapp UI inthis test. Native target compiled with final role retry label."
+  },
+  {
+    "id": "R11",
+    "status": "fixed_backend_web_native_verified",
+    "path": "apps/api/src/account-deletion.ts",
+    "problem": "hasBilling check and deletion request separate transactions; inspect final SQL locks and purchase/deletion races before classifying.",
+    "priority": "P2",
+    "before": "deletion-checkout-before.log:concurrent checkout commits; deletion returns200 without billing acknowledgement.",
+    "fix": "Lock checkout then sharing and read billing+request deletion atomically; unfinished purchase status shared with profile; Web/iOS existing acknowledgement shown for pending checkout or fresh server demand.",
+    "tests": "deletion-checkout-after.log14pass; native AccountDataTests3pass; Web actual400rejection andpending-onlyUIpass; native-billing-race-ui.json/native-billing-race.jpg showlatependingorderrequiresnewuncheckedbillinganddisableddelete; native-billing-race-api.json confirmsaccountretained. Unsigned test harness could not save Keychain reference; locally ad-hoc signed simulator build resolves that environment issue. Synthetic order removed.",
+    "deployed": false
+  },
+  {
+    "id": "R02",
+    "priority": "P1",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/identity.ts",
+    "problem": "First discovery rejection was cached permanently, so a transient provider/network failure prevented every subsequent Web sign-in until process restart.",
+    "fix": "Clear only failed discovery promise; concurrent calls still share a lookup and successful discovery remains cached.",
+    "before": "identity-discovery-before.log: retry fails with original synthetic outage after provider recovery.",
+    "tests": "identity-discovery-after.log includes recovery/concurrency/cache regression and existing signed identity proof checks.",
+    "deployed": false
+  },
+  {
+    "id": "R03",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/config.ts",
+    "problem": "DATABASE_URL forbids sslmode/sslcert/sslkey/sslrootcert but not ssl=no-verify or ssl=0, which pg may parse over explicit verify-full options.",
+    "priority": "P2",
+    "fix": "Reject ssl query key alongside existing SSL URL keys; preserve managed verification and CA configuration.",
+    "before": "4 new URL variants were accepted; actual pg constructor shows ssl=no-verify disables verification and ssl=0 disables TLS.",
+    "tests": "database-tls-after.log:28pass across6new and22existing config checks.",
+    "deployed": false
+  },
+  {
+    "id": "C07",
+    "status": "merged_into_R09",
+    "path": "apps/api/src/errors.ts",
+    "problem": "Body-parser entity.too.large currently maps to500; pair truthful413 behavior with legitimate file-size limits.",
+    "resolution": "Oversized-body classification repaired and verified with R09."
+  },
+  {
+    "id": "R13",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/overview.ts",
+    "problem": "verifiedEmergencyPlan derives from simulated contact/check and removed consumer simulation; inspect active clients/spec before changing obsolete readiness claims.",
+    "priority": "P2",
+    "before": "readiness-before.log:synthetic count completion returns verifiedEmergencyPlan=true.",
+    "fix": "Retain compatibility field false; centralize duplicate overview/readiness count query in readiness.ts; no unsupported real verification.",
+    "tests": "readiness-after.log:6pass after first399-test API run; no claim earlierfullsuitecoveredthislastchange.",
+    "deployed": false
+  },
+  {
+    "id": "R07",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/recovery-replay.ts + migrations0068/0070/0089",
+    "problem": "Journal stores latest state per entity, replay intersects current grant fields by matter rather than grant lineage. Narrow then broaden, or remove then regrant, may overwrite evidence of irreversible saved-copy redaction and resurrect pre-restriction copied fields on restore. Must inspect final SQL and reproduce with old snapshot and latest journal, retaining unaffected recipients.",
+    "proposedInvestigation": "Use isolated recovery-journal test flow; before snapshot paid saved details; narrow/regrant afterwards; latest journal replay must not restore redacted saved details or old task permissions. Do not implement speculative global revoke.",
+    "staticFollowup": "0089 final recovery_pending emits only current connection status/recipient/version plus matter/level, no grant lineage or retained saved-copy field ceiling. Need actual pg_restore regression. Candidate fix may enrich versioned journal facts with grant IDs and saved-copy field names, conservatively intersect old copies and reject legacy ambiguity; do not store private contents or broaden grants.",
+    "priority": "P1",
+    "before": "recovery-history-before.log:pg_dump/pg_restore resurrects narrowed saved fields and removed/regranted old copies.",
+    "fix": "Migration0092 emits version2 grant lineage, saved field-name ceiling and withdrawn-review bound; replay intersects old state; ambiguous pending legacy updates quarantine instead of guessing.",
+    "tests": "retention-recovery-after.log:17pass including2permission-history,7existing journal,8retention. Actual constrained non-superuser restore preserves unaffected third recipient and idempotence.",
+    "deployed": false
+  },
+  {
+    "id": "R04",
+    "priority": "P1",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/stripe-commerce-executor.ts",
+    "problem": "Locked dispute revalidation received resolved Charge ID rather than original Dispute ID and always failed in actual resolver.",
+    "fix": "Retain original verified event separately for financial refresh; keep resolved Charge for ledger mapping.",
+    "before": "stripe-dispute-before.log:1failed/12passed with actual resolver A Dispute reference is required. Initial harness placement mistake retained separately and not counted as reproduction.",
+    "tests": "stripe-dispute-after.log: production ledger lifecycle plus Stripe test adapter. Regression covers resolution between routing/locked read, revocation, won recovery and duplicate suppression.",
+    "sources": [
+      "https://docs.stripe.com/api/disputes/retrieve",
+      "https://docs.stripe.com/api/disputes/object"
+    ],
+    "deployed": false
+  },
+  {
+    "id": "R05",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/migrate.ts + migrations/0010...",
+    "problem": "runMigrations begins one transaction and takes transaction advisory lock, but many immutable SQL files contain their own BEGIN/COMMIT. First inner COMMIT ends the outer transaction, releases migration lock and commits DDL before checksum insert; crash/failure may leave applied schema without checksum, concurrent migrators can interleave.",
+    "next": "Keep original migration bytes/checksums; normalize only supported transaction wrappers in runner with well-defined handling and real PostgreSQL rollback/concurrency regressions. Never edit applied files.",
+    "priority": "P1",
+    "before": "migration-atomicity-before.log:2fail: DDL survives checksum failure and another client acquires migration lock mid-batch.",
+    "fix": "Remove only outer legacy BEGIN/COMMIT at execution time, preserve original bytes for SHA256; lexically reject unmanaged transaction controls without changing procedure bodies.",
+    "tests": "migration-after.log:18pass across atomicity, SQL boundaries and runtime bootstrap; earlier whitespace-only expected-output error retained in migration-atomicity-after.log.",
+    "deployed": false
+  },
+  {
+    "id": "R08",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/retention-holds.ts + migrations0087/0088",
+    "problem": "Hold lookup/insertion may race periodic retention delete; inspect batch locking and establish hold/retention serialization before marking defect.",
+    "staticFollowup": "0087 retention SELECT FOR UPDATE SKIP LOCKED skips locked target rows, but setRetentionHold only SELECTs without lock. Target row locking before hold insert can serialize correctly; verify explicit non-superuser permissions and grant only column UPDATE required for locks if needed.",
+    "priority": "P1",
+    "before": "retention-race-before.log:worker finishes while in-flight administrative hold has already found its target.",
+    "fix": "Shared transaction advisory lock before hold lookup and before worker due-row snapshots; migration0093 grants minimal ID lookup to constrained administrator.",
+    "tests": "retention-constrained-after.log:9pass including actual concurrent barrier and all5holdcategories through non-superuser/non-bypass role.",
+    "deployed": false
+  },
+  {
+    "id": "R10",
+    "status": "fixed_targeted_verified",
+    "path": "apps/api/src/routes.ts collectStartHerePackage",
+    "problem": "Recipient-directed guide reads current matter values using grants but not live/saved/none commercial access. Compare intended export contract vs recipient saved-copy mode before classifying; owner free manual export must remain available.",
+    "priority": "P2",
+    "before": "recipient-guide-before.log:2fail: guide leaks post-cutoff latest content and redacted directions into recipient-specific export.",
+    "fix": "Recipient-scoped guide uses existing live/saved/paused projection; personal guide remains current and Free.",
+    "tests": "recipient-guide-final.log:28pass (15sharing lifecycle,13P1). First after-run had1test expectation using wrong personal seed index; final matches selected matter ID.",
+    "deployed": false
+  },
+  {
+    "id": "R14",
+    "status": "fixed_browser_verified",
+    "path": "apps/web/src/FamilyMaintenancePanel.jsx + App.jsx + workspaceNavigation.js",
+    "problem": "Shared-review dialog holds local dirty/busy state but does not expose it to App useWorkspaceHistory canLeave. Browser Back may unmount a dirty proposal/settings dialog without the existing discard guard. Need read navigation implementation and reproduce with synthetic browser before fixing; preserve current UI.",
+    "priority": "P2",
+    "before": "review-draft-before.txt:cadence30draftlostwithoutconfirmationonBack.",
+    "fix": "Share review-dialog dirty/busy state with App navigation guard, reset on unmount.",
+    "tests": "navigation-layout-final.log:13actualbrowserchecks pass at1440x1000and390x844,withscreenshots; includesimmediateBack,keep/discard,repeatedBack,Forward,staledialogcancellation;initialpassive-effect timingfailuresretained. Role/sharing/keyguardnotificationsalsosynchronizedbeforepaint;Otherguardcallsitesfullyreviewed;notallindividuallyrenderedandnotclaimedasfullUIjourneycoverage.",
+    "deployed": false
+  },
+  {
+    "id": "R15",
+    "priority": "P2",
+    "status": "fixed_browser_verified",
+    "path": "apps/web/src/workspaceNavigation.js + ConfirmationDialog.jsx",
+    "problem": "Repeated Back while a discard dialog is pending ignored the actual later history entry; cancel then left URL at view=matters/index2 while Newmatter was still open at originalindex3.",
+    "before": "repeated-back-before.txt andCLIevaluation confirmmismatch.",
+    "fix": "Tracklatestpendingdestination; useexactrollbackindex; discardstalescrollcallbacks; canceltheguardifForwardreturnstooriginalentry.",
+    "tests": "navigation-layout-final.log:13actualbrowserchecks pass at1440x1000and390x844,withscreenshots; includesimmediateBack,keep/discard,repeatedBack,Forward,staledialogcancellation;initialpassive-effect timingfailuresretained. Role/sharing/keyguardnotificationsalsosynchronizedbeforepaint;Otherguardcallsitesfullyreviewed;notallindividuallyrenderedandnotclaimedasfullUIjourneycoverage.",
+    "deployed": false
+  },
+  {
+    "id": "R16",
+    "status": "fixed_browser_verified",
+    "path": "apps/web/src/SavedCopyReader.jsx",
+    "problem": "Multiple asynchronous local file reads have no generation guard; earlier slow selection may overwrite the latest selected backup. Test with delayed synthetic File.text before fixing; include close/unmount and unlock response bounds.",
+    "priority": "P2",
+    "before": "file-read-race-before.log:slow earlier file overwrites latest selected copy and resurrects after Close.",
+    "fix": "One selection generation bounds open/unlock/error/close/unmount; reject malformed null/array records with existing supported-format error.",
+    "tests": "file-read-race-after.log:both actual React/file-input paths pass under controlled deferred File.text, no import/server mutation.",
+    "deployed": false
+  },
+  {
+    "id": "R17",
+    "priority": "P2",
+    "status": "fixed_targeted_verified",
+    "path": "apps/web/src/api.js",
+    "problem": "Printable request checked workspace identity before awaiting body but returned the private blob after an intervening known account change.",
+    "before": "late-download-before.log:missingexpectedrejectionwithdeferredblobandactualclientaccount-change latch.",
+    "fix": "Recheckworkspaceafterblobreadbefore returningartifact forautomaticdownload.",
+    "tests": "late-download-after.log:API-clientandsaved-copychecks.",
+    "deployed": false
+  },
+  {
+    "id": "R18",
+    "status": "fixed_native_tests_verified",
+    "path": "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+    "problem": "An old cancelled account-start response can reset the new account Apple purchase coordinator and leave purchases unavailable.",
+    "priority": "P2",
+    "before": "native-commerce-race-before.json:deferred first status returns after cancellation/reset/new account start; new sandbox environment unexpectedly becomes nil.",
+    "fix": "Separate account-lifecycle revision from status refresh revision; stop stale/cancelled starts before launching purchase observers.",
+    "deployed": false,
+    "tests": "native-commerce-after.json:31commerce/store/coordinator tests pass, including deferred previous-account response; local simulator only, no Apple provider transaction."
+  },
+  {
+    "id": "C19",
+    "status": "rejected_existing_server_guard",
+    "path": "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+    "problem": "The explicitly labelled Ive verified my email button calls accept() again without checkEmailVerification; verification refresh runs only on scene activation. A user who verifies on another device while iOS stays active may remain stuck on the cached unverified identity. Check backend refresh contract and reproduce actual native button before fixing.",
+    "resolution": "createSharingRouter POST /invitations/accept explicitly calls emailVerification.refresh whenever the current session lacks verifiedEmailHash, before SQL acceptance. The labelled native retry already reaches this refresh path. No UI/code change required; existing email-verification integration coverage retained."
+  },
+  {
+    "id": "R19",
+    "priority": "P2",
+    "status": "fixed_native_tests_verified",
+    "path": "apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift + Matters/MatterEditorStore.swift + Roles/RoleAssignmentPolicyStore.swift",
+    "problem": "Native editor mutation methods rely on disabled buttons but admit overlapping save/load/revoke calls. Duplicate contact create and state clobber are reproduced in deferred transport tests; same matter/role paths under investigation.",
+    "before": "native-contact-concurrency-before.json:2tests fail/6pass, two create requests and unrelated reload/revoke replacing saving state. native-editors-before.json also reproduces duplicate matter callbacks and overlapping role creation.",
+    "fix": "Serialize each editor load/save/archive/revoke or role mutation using its existing busy state; keep normal failed-request retry behavior.",
+    "deployed": false,
+    "tests": "native-editors-after.json:26contact/matter/role tests pass; deferred write/read interleavings, acknowledged creation/revocation and subsequent retry covered. Label-only UI correction follows this build; final native compile remains due."
+  },
+  {
+    "id": "R20",
+    "status": "fixed_native_tests_verified",
+    "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift",
+    "problem": "Acknowledged role mutation followed by failed reload restores the old assignments and reports the write as failed. Test separately from overlapping editor calls.",
+    "priority": "P2",
+    "before": "native-editors-before.json:acknowledged create followed by read outage reports false and discards saved role.",
+    "fix": "Apply acknowledged create/update/revoke locally before reload; preserve that state and truthful saved notice on refresh failure, expose bounded retry; mutation failures remain failures.",
+    "deployed": false,
+    "tests": "native-editors-after.json:26contact/matter/role tests pass; deferred write/read interleavings, acknowledged creation/revocation and subsequent retry covered. Label-only UI correction follows this build; final native compile remains due."
+  },
+  {
+    "id": "R21",
+    "priority": "P3",
+    "status": "fixed_browser_runtime_verified",
+    "path": "apps/ios-prototype/src/mobile/Carousel.tsx",
+    "problem": "Prototype carousel leaves drag-click suppression latched when touch cancellation produces no click; next deliberate card tap is swallowed. Not part of the shipping SwiftUI app.",
+    "before": "prototype-cancel-before.log:actual Chromium touchStart/move/cancel then card click leaves tapCount0 instead of1; no provider orprivateaccountinvolved.",
+    "deployed": false,
+    "fix": "Clear previous gesture click suppression at the next pointer-down; drag-end click still suppressed. Only affected protected-runtime hash updated after actual behavior passed, under Owner whole-project direct-fix scope.",
+    "tests": "prototype-runtime-after.log:10browserinteraction tests pass; prototype build and4Sites packaging tests pass. Separate historical prototype, no shipping app design/provider effect."
+  },
+  {
+    "id": "R22",
+    "status": "fixed_infrastructure_verified",
+    "path": "infra/aws/lib/rillora-public-web-stack.ts + apps/web/scripts/prepare-public-build.mjs",
+    "problem": "Public deployment marker binds only index.html and ignores changed, extra or missing asset bytes.",
+    "priority": "P2",
+    "before": "public-artifact-before.log:3tampercasesfail/3existingpass; altered, unlisted and missing scripts accepted by actual stack constructor.",
+    "fix": "Public manifestv3 hashes every upload file; shared public/production verifier rejects missing, changed, extra, symlink or non-file entries before provisioning.",
+    "deployed": false,
+    "tests": "public-artifact-after.log12focused checks pass;infra-full-final.log7files53tests pass;infra typecheck and new public manifest build pass. No deployment."
+  },
+  {
+    "id": "R23",
+    "priority": "P2",
+    "status": "fixed_tool_tests_verified",
+    "path": "tools/auth0",
+    "problem": "Provisioning could write after incomplete client inventory, orphaned credential detection, active production bindings or an unreadable default theme.",
+    "before": "auth0-preparation-before.log:4tests/5negative subcases fail; intercepted CLI/provider logs show unintended write attempts.",
+    "fix": "Reject incomplete inventories and unmatched protected files before creation; preserve already activated clients; only confirmed404 selects missing-theme creation.",
+    "tests": "auth0-preparation-after.log4tests pass with all provider calls intercepted.",
+    "deployed": false
+  },
+  {
+    "id": "R24",
+    "priority": "P2",
+    "status": "fixed_tool_tests_verified",
+    "path": "tools/run-ios-layout-matrix.sh",
+    "problem": "Matrix runner reused named simulators and cleanup shut down those names, including an existing personal account session.",
+    "before": "matrix-isolation-before.log2tests fail;existing Pro name reused instead of a fifth fresh device.",
+    "fix": "Per-run unique names, record created IDs, clean only those IDs on success or build failure; unique evidence directory.",
+    "tests": "matrix-isolation-after.log2orchestration tests pass with fake command executables; no existing simulator was operated.",
+    "deployed": false
+  },
+  {
+    "id": "R25",
+    "priority": "P2",
+    "status": "fixed_tool_tests_verified",
+    "path": "tools/release/run_recovery_task.py",
+    "problem": "An uncertain saved RunTask was blindly reissued at any age, without exact current scope or recovery/freeze preconditions. ECS token deduplication expires.",
+    "before": "recovery-task-before-extra.log:expired/future/missing time, changed scope/token/command, live writer and foreign snapshot cases reach intercepted RunTask.",
+    "fix": "Conservative55minute retry window, exact reconstructed payload/token, current clone/snapshot validation and fresh source-writer freeze; preserve original request parameters.",
+    "tests": "recovery-task-final.log8tests pass, including positive migration/restore/commerce retries and expired freeze refusal.",
+    "sources": [
+      "https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html"
+    ],
+    "deployed": false
+  },
+  {
+    "id": "R26",
+    "priority": "P3",
+    "status": "fixed_tool_tests_verified",
+    "path": "tools/ops/health-check.mjs",
+    "problem": "Type-coerced or absent metric identifiers and primitive header configuration could pass validation, losing checks or metric dimensions.",
+    "before": "health-types-before.log1newtest fails/8existingpass.",
+    "fix": "Require string environment/target IDs and an actual header object before any request.",
+    "tests": "health-types-after.log9tests pass; synthetic transports only.",
+    "deployed": false
+  },
+  {
+    "id": "R27",
+    "priority": "P2",
+    "status": "fixed_tool_tests_verified",
+    "path": "tools/godaddy/rillora_dns.py",
+    "problem": "DNS readback checked only value/TTL; wrong or missing MX priority or CAA flag/tag could still be reported applied.",
+    "before": "dns-attributes-before.log4negative subcases fail. Local gddy schema confirms priority/flag/tag fields.",
+    "fix": "Verify every requested typed attribute; add permits an older same-data record with different attributes only when the new exact record also exists.",
+    "tests": "dns-attributes-after.log10tests pass; all provider calls mocked, no DNS changed.",
+    "sources": [
+      "https://developer.godaddy.com/en/docs/api-users/domains/manage/dns"
+    ],
+    "deployed": false
+  },
+  {
+    "id": "R28",
+    "priority": "P2",
+    "status": "fixed_build_and_browser_verified",
+    "path": "apps/ios-prototype/package-lock.json",
+    "problem": "Historical browser prototype retained known-vulnerable PostCSS8.5.16 and nanoid3.3.15 dev dependencies.",
+    "before": "dependency-prototype.json reports two high-severity affected packages.",
+    "fix": "Compatible lock-only patches to PostCSS8.5.28 and nanoid3.3.19; root requirements, unrelated pins and platform metadata retained.",
+    "tests": "prototype-dependency-build/runtime/sites logs: build,10browser checks and4packaging tests pass; npm lock audit has0known vulnerabilities.",
+    "deployed": false
+  },
+  {
+    "id": "U01",
+    "priority": "P3",
+    "status": "upstream_bundled_dependency_limitation",
+    "path": "infra/aws/package-lock.json",
+    "problem": "CDK2.266.0 bundles brace-expansion5.0.9; advisory affects nested brace glob inputs. LatestCDK2.272.0 was actually installed/audited and still bundled5.0.9.",
+    "resolution": "Retained originalCDK lock and avoided an ineffective upgrade or bespoke vendored/postinstall rewrite. CDK only processes owned repository/config inputs and is absent from deployedAPI. One high advisory package remains; cannot call dependency tree clean. Update with a patched upstream bundle and repeat synth checks when available.",
+    "evidence": "dependency-infrastructure.json,dependency-infrastructure-after.json,dependency-infra-upstream-limit.json",
+    "deployed": false
+  }
+]

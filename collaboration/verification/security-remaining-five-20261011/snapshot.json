@@ -1,0 +1,43 @@
+{
+  "capturedFrom": "2026-10-11T14:12:22.987123+00:00",
+  "capturedThrough": "2026-10-11T14:12:23.217413+00:00",
+  "workFiles": 249,
+  "uniqueRawObjects": 232,
+  "workBytes": 2343975,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-032.tar.zst.age",
+      "sha256": "d158301c7ccf9cea24934919f7ff3566a3b2edd84455fb0d6b4e389ed70539fe",
+      "bytes": 345291,
+      "plainBytes": 1819702,
+      "uniqueObjects": 232
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/security-remaining-five-20261011/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "remaining-five-workspace except selected compiled API",
+      "reason": "duplicate source/dependency workspace; current source is normal Git"
+    },
+    {
+      "path": "native probe binaries and compiler/module caches",
+      "reason": "unsigned reproducible compiler products; Swift source, exact synthetic results and failure logs preserved"
+    },
+    {
+      "path": "earlier task TEMP files and archives1–31",
+      "reason": "already preserved; do not duplicate or reseal old evidence"
+    },
+    {
+      "path": "original scan state and source snapshots",
+      "reason": "externally managed originals retained in place; derived group mapping and evidence preserved separately"
+    },
+    {
+      "path": ".local-secrets and provider/database/browser state",
+      "reason": "excluded; existing age identity is only passed to local encryption/verification"
+    }
+  ],
+  "selection": "New remaining-five evidence only: exact failed/passed logs, one candidate review and final diff, unchanged migration evidence, synthetic hardware probes, disposable DB reset guards, compiled API and focused QA. Current source and specs are normal Git.",
+  "boundary": "Local source/synthetic verification and Git preservation only. No deployment, provider mutation, real money, phone installation or TestFlight. Archives1–31 unchanged. Raw compiler caches, credentials and original external scan state excluded."
+}

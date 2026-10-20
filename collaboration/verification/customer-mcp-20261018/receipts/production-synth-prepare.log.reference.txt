@@ -1,0 +1,3341 @@
+
+> rillora-aws-infrastructure@0.1.0 synth
+> cdk synth --profile rillora-cdk-deploy --output /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-customer-mcp-20261018/production-cdk-prepare -c productionFoundationOnly=true -c productionRuntimeEnabled=true -c productionRuntimeDesiredCount=1 -c productionReviewPrepared=true -c productionReviewEnabled=false -c productionLiveEnabled=true -c productionStripeCheckoutEnabled=true -c productionApplePrepared=true -c productionAppleEnabled=true -c productionAppleReviewEnabled=true -c productionRetentionEnabled=true -c productionIdentityServicesEnabled=true -c productionStripeNotificationsSecretArn=arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp -c productionMcpPrepared=true -c productionMcpEnabled=false
+
+WARNING minHealthyPercent has not been configured so the default value of 50% is used. The number of running tasks will decrease below the desired count during deployments etc. See https://github.com/aws/aws-cdk/issues/31705 (Construct Annotations)
+   RilloraProduction/Runtime/IdentityWorker/Service
+   Acknowledge with 'Construct-Annotations::@aws-cdk/aws-ecs:minHealthyPercent'
+Description: Closed Rillora production data foundation and isolated recovery; no public traffic or billing
+Resources:
+  Vpc8378EB38:
+    Type: AWS::EC2::VPC
+    Properties:
+      CidrBlock: 10.43.0.0/16
+      EnableDnsHostnames: true
+      EnableDnsSupport: true
+      InstanceTenancy: default
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/Resource
+  VpcmaintenanceSubnet1SubnetB36026C0:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+      CidrBlock: 10.43.0.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: maintenance
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/maintenanceSubnet1
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet1/Subnet
+  VpcmaintenanceSubnet1RouteTable27EE9B07:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/maintenanceSubnet1
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet1/RouteTable
+  VpcmaintenanceSubnet1RouteTableAssociationCB237A6C:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: VpcmaintenanceSubnet1RouteTable27EE9B07
+      SubnetId:
+        Ref: VpcmaintenanceSubnet1SubnetB36026C0
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet1/RouteTableAssociation
+  VpcmaintenanceSubnet1DefaultRouteE63C1BA8:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: VpcIGWD7BA715C
+      RouteTableId:
+        Ref: VpcmaintenanceSubnet1RouteTable27EE9B07
+    DependsOn:
+      - VpcVPCGWBF912B6E
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet1/DefaultRoute
+  VpcmaintenanceSubnet2Subnet5D5D514C:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs: ""
+      CidrBlock: 10.43.1.0/24
+      MapPublicIpOnLaunch: true
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: maintenance
+        - Key: aws-cdk:subnet-type
+          Value: Public
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/maintenanceSubnet2
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet2/Subnet
+  VpcmaintenanceSubnet2RouteTableB7ABA37E:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/maintenanceSubnet2
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet2/RouteTable
+  VpcmaintenanceSubnet2RouteTableAssociation8F27BC7B:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: VpcmaintenanceSubnet2RouteTableB7ABA37E
+      SubnetId:
+        Ref: VpcmaintenanceSubnet2Subnet5D5D514C
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet2/RouteTableAssociation
+  VpcmaintenanceSubnet2DefaultRoute77601CB0:
+    Type: AWS::EC2::Route
+    Properties:
+      DestinationCidrBlock: 0.0.0.0/0
+      GatewayId:
+        Ref: VpcIGWD7BA715C
+      RouteTableId:
+        Ref: VpcmaintenanceSubnet2RouteTableB7ABA37E
+    DependsOn:
+      - VpcVPCGWBF912B6E
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/maintenanceSubnet2/DefaultRoute
+  VpcdataSubnet1SubnetE2B009FB:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - 0
+          - Fn::GetAZs: ""
+      CidrBlock: 10.43.2.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: data
+        - Key: aws-cdk:subnet-type
+          Value: Isolated
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/dataSubnet1
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet1/Subnet
+  VpcdataSubnet1RouteTableAF5F53E0:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/dataSubnet1
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet1/RouteTable
+  VpcdataSubnet1RouteTableAssociation9E9FDBBB:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: VpcdataSubnet1RouteTableAF5F53E0
+      SubnetId:
+        Ref: VpcdataSubnet1SubnetE2B009FB
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet1/RouteTableAssociation
+  VpcdataSubnet2SubnetAD08DFFF:
+    Type: AWS::EC2::Subnet
+    Properties:
+      AvailabilityZone:
+        Fn::Select:
+          - 1
+          - Fn::GetAZs: ""
+      CidrBlock: 10.43.3.0/24
+      MapPublicIpOnLaunch: false
+      Tags:
+        - Key: aws-cdk:subnet-name
+          Value: data
+        - Key: aws-cdk:subnet-type
+          Value: Isolated
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/dataSubnet2
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet2/Subnet
+  VpcdataSubnet2RouteTable94FA483A:
+    Type: AWS::EC2::RouteTable
+    Properties:
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc/dataSubnet2
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet2/RouteTable
+  VpcdataSubnet2RouteTableAssociation6C8F2058:
+    Type: AWS::EC2::SubnetRouteTableAssociation
+    Properties:
+      RouteTableId:
+        Ref: VpcdataSubnet2RouteTable94FA483A
+      SubnetId:
+        Ref: VpcdataSubnet2SubnetAD08DFFF
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/dataSubnet2/RouteTableAssociation
+  VpcIGWD7BA715C:
+    Type: AWS::EC2::InternetGateway
+    Properties:
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Vpc
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/IGW
+  VpcVPCGWBF912B6E:
+    Type: AWS::EC2::VPCGatewayAttachment
+    Properties:
+      InternetGatewayId:
+        Ref: VpcIGWD7BA715C
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Vpc/VPCGW
+  MigrationNetworkC6D0992C:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: No inbound listener; bounded production migration jobs only
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: AWS HTTPS APIs and image/log delivery
+          FromPort: 443
+          IpProtocol: tcp
+          ToPort: 443
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationNetwork/Resource
+  MigrationNetworktoRilloraProductionDatabaseNetwork7259A9385432FC3F4B4A:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Verified TLS to the production database
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - MigrationNetworkC6D0992C
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationNetwork/to RilloraProductionDatabaseNetwork7259A938:5432
+  RecoveryNetworkB16F29A5:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: No inbound listener; isolated restore probes cannot connect to live data
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: AWS HTTPS APIs and image/log delivery
+          FromPort: 443
+          IpProtocol: tcp
+          ToPort: 443
+        - CidrIp: 17.0.0.0/8
+          Description: Apple certificate OCSP only; signature and online revocation checks remain required
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryNetwork/Resource
+  RecoveryNetworktoRilloraProductionRecoveryDatabaseNetworkF58708D45432F33AFB80:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Verified TLS only to the recovery database
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - RecoveryDatabaseNetworkBA72B18C
+          - GroupId
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - RecoveryNetworkB16F29A5
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryNetwork/to RilloraProductionRecoveryDatabaseNetworkF58708D4:5432
+  DatabaseNetwork56A0AE36:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: RilloraProduction/DatabaseNetwork
+      SecurityGroupEgress:
+        - CidrIp: 255.255.255.255/32
+          Description: Disallow all traffic
+          FromPort: 252
+          IpProtocol: icmp
+          ToPort: 86
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/DatabaseNetwork/Resource
+  DatabaseNetworkfromRilloraProductionMigrationNetwork7A688B2D54325AC54DEE:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Only production migration jobs at this closed foundation stage
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - MigrationNetworkC6D0992C
+          - GroupId
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/DatabaseNetwork/from RilloraProductionMigrationNetwork7A688B2D:5432
+  DatabaseNetworkfromRilloraProductionRuntimeApiNetworkF0B36DFA5432FD98A2AA:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Only the production runtime login
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - RuntimeApiNetwork3B2CC8BA
+          - GroupId
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/DatabaseNetwork/from RilloraProductionRuntimeApiNetworkF0B36DFA:5432
+  DatabaseNetworkfromRilloraProductionRuntimeIdentityWorkerNetwork13E25D3654323CF12547:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Dedicated identity deletion worker
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - RuntimeIdentityWorkerNetworkCAA3DE45
+          - GroupId
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/DatabaseNetwork/from RilloraProductionRuntimeIdentityWorkerNetwork13E25D36:5432
+  RecoveryDatabaseNetworkBA72B18C:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: RilloraProduction/RecoveryDatabaseNetwork
+      SecurityGroupEgress:
+        - CidrIp: 255.255.255.255/32
+          Description: Disallow all traffic
+          FromPort: 252
+          IpProtocol: icmp
+          ToPort: 86
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryDatabaseNetwork/Resource
+  RecoveryDatabaseNetworkfromRilloraProductionRecoveryNetwork6C044D5754321B52D8EF:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Only isolated restore probes
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - RecoveryDatabaseNetworkBA72B18C
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - RecoveryNetworkB16F29A5
+          - GroupId
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryDatabaseNetwork/from RilloraProductionRecoveryNetwork6C044D57:5432
+  PostgresParameters8EA48B37:
+    Type: AWS::RDS::DBParameterGroup
+    Properties:
+      Description: Parameter group for postgres16
+      Family: postgres16
+      Parameters:
+        rds.force_ssl: "1"
+        password_encryption: scram-sha-256
+        log_statement: none
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/PostgresParameters/Resource
+  DatabaseSubnets:
+    Type: AWS::RDS::DBSubnetGroup
+    Properties:
+      DBSubnetGroupDescription: Only isolated subnets for production and quarantined restores
+      SubnetIds:
+        - Ref: VpcdataSubnet1SubnetE2B009FB
+        - Ref: VpcdataSubnet2SubnetAD08DFFF
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/DatabaseSubnets/Default
+  RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description:
+        Fn::Join:
+          - ""
+          - - "Generated by the CDK for stack: "
+            - Ref: AWS::StackName
+      GenerateSecretString:
+        ExcludeCharacters: " @/\\\"'`"
+        GenerateStringKey: password
+        PasswordLength: 30
+        SecretStringTemplate: '{"username":"continuity_admin"}'
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Delete
+    DeletionPolicy: Delete
+    Metadata:
+      aws:cdk:path: RilloraProduction/Database/Secret/Resource
+  DatabaseSecretAttachmentE5D1B020:
+    Type: AWS::SecretsManager::SecretTargetAttachment
+    Properties:
+      SecretId:
+        Ref: RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255
+      TargetId:
+        Ref: DatabaseB269D8BB
+      TargetType: AWS::RDS::DBInstance
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Database/Secret/Attachment/Resource
+  DatabaseB269D8BB:
+    Type: AWS::RDS::DBInstance
+    Properties:
+      AllocatedStorage: "20"
+      BackupRetentionPeriod: 7
+      CopyTagsToSnapshot: true
+      DBInstanceClass: db.t4g.micro
+      DBInstanceIdentifier: rillora-production
+      DBName: rillora
+      DBParameterGroupName:
+        Ref: PostgresParameters8EA48B37
+      DBSubnetGroupName:
+        Ref: DatabaseSubnets
+      DeleteAutomatedBackups: false
+      DeletionProtection: true
+      EnableCloudwatchLogsExports:
+        - postgresql
+      Engine: postgres
+      EngineLifecycleSupport: open-source-rds-extended-support-disabled
+      EngineVersion: "16.13"
+      MasterUserPassword:
+        Fn::Join:
+          - ""
+          - - "{{resolve:secretsmanager:"
+            - Ref: RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255
+            - :SecretString:password::}}
+      MasterUsername: continuity_admin
+      MultiAZ: false
+      PubliclyAccessible: false
+      StorageEncrypted: true
+      StorageType: gp3
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VPCSecurityGroups:
+        - Fn::GetAtt:
+            - DatabaseNetwork56A0AE36
+            - GroupId
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Database/Resource
+  DatabaseLogRetentionpostgresqlFBE8A947:
+    Type: Custom::LogRetention
+    Properties:
+      ServiceToken:
+        Fn::GetAtt:
+          - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A
+          - Arn
+      LogGroupName:
+        Fn::Join:
+          - ""
+          - - /aws/rds/instance/
+            - Ref: DatabaseB269D8BB
+            - /postgresql
+      RetentionInDays: 30
+    Metadata:
+      aws:cdk:path: RilloraProduction/Database/LogRetentionpostgresql/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - logs:PutRetentionPolicy
+              - logs:DeleteRetentionPolicy
+            Effect: Allow
+            Resource: "*"
+        Version: "2012-10-17"
+      PolicyName: LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB
+      Roles:
+        - Ref: LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+    Metadata:
+      aws:cdk:path: RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource
+  LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A:
+    Type: AWS::Lambda::Function
+    Properties:
+      Handler: index.handler
+      Runtime: nodejs24.x
+      Timeout: 900
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-133857166372-eu-central-1
+        S3Key: [PUBLIC_CDK_ASSET_HASH_OMITTED]
+      Role:
+        Fn::GetAtt:
+          - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+          - Arn
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    DependsOn:
+      - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB
+      - LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB
+    Metadata:
+      aws:cdk:path: RilloraProduction/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource
+      aws:asset:path: asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  RuntimeCredential871C86BA:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Production runtime credential; independent of staging and migration identity
+      GenerateSecretString:
+        ExcludeCharacters: " @/\\\"'`"
+        GenerateStringKey: password
+        PasswordLength: 48
+        SecretStringTemplate: '{"username":"continuity_runtime_production"}'
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RuntimeCredential/Resource
+  ContentKey78A057A4:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Rillora production private-content wrapping key
+      EnableKeyRotation: true
+      KeyPolicy:
+        Statement:
+          - Action: kms:*
+            Effect: Allow
+            Principal:
+              AWS:
+                Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :iam::133857166372:root
+            Resource: "*"
+        Version: "2012-10-17"
+      PendingWindowInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    DependsOn:
+      - DatabaseLogRetentionpostgresqlFBE8A947
+      - DatabaseB269D8BB
+      - DatabaseSecretAttachmentE5D1B020
+      - RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/ContentKey/Resource
+  RecoveryJournal06BB91CD:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+        - AttributeName: sk
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      DeletionProtectionEnabled: true
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+        - AttributeName: sk
+          KeyType: RANGE
+      PointInTimeRecoverySpecification:
+        PointInTimeRecoveryEnabled: true
+        RecoveryPeriodInDays: 35
+      SSESpecification:
+        SSEEnabled: true
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+    DependsOn:
+      - DatabaseLogRetentionpostgresqlFBE8A947
+      - DatabaseB269D8BB
+      - DatabaseSecretAttachmentE5D1B020
+      - RilloraProductionDatabaseSecret2EDA0381145d7587a81d8eb10deb319f17c60255
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryJournal/Resource
+  RuntimeBoundariesDatabaseAuthority8ABE4B26:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      GenerateSecretString:
+        ExcludePunctuation: true
+        PasswordLength: 64
+      Name: rillora/production/database-authority
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RuntimeBoundaries/DatabaseAuthority/Resource
+  RuntimeBoundariesEmailMatching5596C652:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      GenerateSecretString:
+        ExcludePunctuation: true
+        PasswordLength: 64
+      Name: rillora/production/email-matching
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RuntimeBoundaries/EmailMatching/Resource
+  RuntimeBoundariesIdentityProof5984CACD:
+    Type: AWS::KMS::Key
+    Properties:
+      Description: Sealed provider identity proof; API encrypts, isolated identity worker decrypts
+      EnableKeyRotation: true
+      KeyPolicy:
+        Statement:
+          - Action: kms:*
+            Effect: Allow
+            Principal:
+              AWS:
+                Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :iam::133857166372:root
+            Resource: "*"
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RuntimeBoundaries/IdentityProof/Resource
+  RuntimeBoundariesDeletionDatabase954442FE:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      GenerateSecretString:
+        ExcludePunctuation: true
+        GenerateStringKey: password
+        PasswordLength: 48
+        SecretStringTemplate: '{"username":"continuity_deletion_production"}'
+      Name: rillora/production/deletion-database
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RuntimeBoundaries/DeletionDatabase/Resource
+  RecoveryAttestationAuthority3E1EF4B9:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      GenerateSecretString:
+        ExcludePunctuation: true
+        PasswordLength: 64
+      Name: rillora/production/recovery-attestation
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryAttestation/Authority/Resource
+  RecoveryAttestationWriterServiceRoleA0203A3F:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryAttestation/Writer/ServiceRole/Resource
+  RecoveryAttestationWriterServiceRoleDefaultPolicyF52836B8:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RecoveryAttestationAuthority3E1EF4B9
+          - Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+            Condition:
+              ForAllValues:StringEquals:
+                dynamodb:LeadingKeys:
+                  - rillora-production
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RecoveryJournal06BB91CD
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: RecoveryAttestationWriterServiceRoleDefaultPolicyF52836B8
+      Roles:
+        - Ref: RecoveryAttestationWriterServiceRoleA0203A3F
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryAttestation/Writer/ServiceRole/DefaultPolicy/Resource
+  RecoveryAttestationWriterED563758:
+    Type: AWS::Lambda::Function
+    Properties:
+      Architectures:
+        - arm64
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-133857166372-eu-central-1
+        S3Key: [PUBLIC_CDK_ASSET_HASH_OMITTED]
+      Environment:
+        Variables:
+          JOURNAL_TABLE:
+            Ref: RecoveryJournal06BB91CD
+          ATTESTATION_SECRET_ARN:
+            Ref: RecoveryAttestationAuthority3E1EF4B9
+      Handler: handler.handler
+      MemorySize: 128
+      Role:
+        Fn::GetAtt:
+          - RecoveryAttestationWriterServiceRoleA0203A3F
+          - Arn
+      Runtime: python3.13
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      Timeout: 10
+    DependsOn:
+      - RecoveryAttestationWriterServiceRoleDefaultPolicyF52836B8
+      - RecoveryAttestationWriterServiceRoleA0203A3F
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryAttestation/Writer/Resource
+      aws:asset:path: asset.f10b88ace5903c70801de4d1c1b6dec56b4590153b38da7aed636f7c73f324a5
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  ClusterEB0386A7:
+    Type: AWS::ECS::Cluster
+    Properties:
+      ClusterSettings:
+        - Name: containerInsights
+          Value: enabled
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Cluster/Resource
+  MaintenanceLogs61C6A99C:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/MaintenanceLogs/Resource
+  MigrationTaskTaskRole9CC4695E:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationTask/TaskRole/Resource
+  MigrationTaskTaskRoleDefaultPolicy0155D82C:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - kms:GenerateDataKey
+              - kms:Decrypt
+            Condition:
+              StringEquals:
+                kms:EncryptionContext:rillora_application: content-v1
+                kms:EncryptionContext:rillora_environment: rillora-production
+              "Null":
+                kms:EncryptionContext:owner_id: "false"
+                kms:EncryptionContext:key_id: "false"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ContentKey78A057A4
+                - Arn
+          - Action:
+              - dynamodb:GetItem
+              - dynamodb:PutItem
+              - dynamodb:Query
+              - dynamodb:Scan
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RecoveryJournal06BB91CD
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RecoveryAttestationWriterED563758
+                        - Arn
+                    - :*
+        Version: "2012-10-17"
+      PolicyName: MigrationTaskTaskRoleDefaultPolicy0155D82C
+      Roles:
+        - Ref: MigrationTaskTaskRole9CC4695E
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationTask/TaskRole/DefaultPolicy/Resource
+  MigrationTask69EAEF9D:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Command:
+            - /bin/sh
+            - -c
+            - node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-private-content.js --enforce && node dist/migrate-email-matches.js
+          Environment:
+            - Name: NODE_ENV
+              Value: production
+            - Name: DATA_REGION
+              Value: eu-central-1
+            - Name: DATABASE_PORT
+              Value: "5432"
+            - Name: DATABASE_NAME
+              Value: rillora
+            - Name: DATABASE_SSL_MODE
+              Value: verify-full
+            - Name: DATABASE_SSL_CA_PATH
+              Value: /app/certs/rds-global-bundle.pem
+            - Name: CONTENT_PROTECTION_MODE
+              Value: encrypted
+            - Name: CONTENT_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - ContentKey78A057A4
+                  - Arn
+            - Name: CONTENT_KEY_NAMESPACE
+              Value: rillora-production
+            - Name: RECOVERY_JOURNAL_TABLE
+              Value:
+                Ref: RecoveryJournal06BB91CD
+            - Name: RECOVERY_ENVIRONMENT
+              Value: production
+            - Name: RECOVERY_JOURNAL_BROKER_ARN
+              Value:
+                Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+            - Name: DATABASE_HOST
+              Value:
+                Fn::GetAtt:
+                  - DatabaseB269D8BB
+                  - Endpoint.Address
+          Essential: true
+          Image:
+            Fn::Sub: 133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: MaintenanceLogs61C6A99C
+              awslogs-stream-prefix: migration
+              awslogs-region: eu-central-1
+          Name: Maintenance
+          Secrets:
+            - Name: DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: DatabaseSecretAttachmentE5D1B020
+                    - ":username::"
+            - Name: DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: DatabaseSecretAttachmentE5D1B020
+                    - ":password::"
+            - Name: RUNTIME_DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeCredential871C86BA
+                    - ":username::"
+            - Name: RUNTIME_DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeCredential871C86BA
+                    - ":password::"
+            - Name: DATABASE_AUTHORITY_KEY
+              ValueFrom:
+                Ref: RuntimeBoundariesDatabaseAuthority8ABE4B26
+            - Name: EMAIL_MATCH_KEY
+              ValueFrom:
+                Ref: RuntimeBoundariesEmailMatching5596C652
+            - Name: DELETION_DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeBoundariesDeletionDatabase954442FE
+                    - ":username::"
+            - Name: DELETION_DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeBoundariesDeletionDatabase954442FE
+                    - ":password::"
+            - Name: RECOVERY_ATTESTATION_KEY
+              ValueFrom:
+                Ref: RecoveryAttestationAuthority3E1EF4B9
+      Cpu: "256"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - MigrationTaskExecutionRole54576998
+          - Arn
+      Family: RilloraProductionMigrationTask3A96A2B6
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: ARM64
+        OperatingSystemFamily: LINUX
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskRoleArn:
+        Fn::GetAtt:
+          - MigrationTaskTaskRole9CC4695E
+          - Arn
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationTask/Resource
+  MigrationTaskExecutionRole54576998:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationTask/ExecutionRole/Resource
+  MigrationTaskExecutionRoleDefaultPolicy91A4C2FE:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - MaintenanceLogs61C6A99C
+                - Arn
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: DatabaseSecretAttachmentE5D1B020
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeCredential871C86BA
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesDatabaseAuthority8ABE4B26
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesEmailMatching5596C652
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesDeletionDatabase954442FE
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RecoveryAttestationAuthority3E1EF4B9
+        Version: "2012-10-17"
+      PolicyName: MigrationTaskExecutionRoleDefaultPolicy91A4C2FE
+      Roles:
+        - Ref: MigrationTaskExecutionRole54576998
+    Metadata:
+      aws:cdk:path: RilloraProduction/MigrationTask/ExecutionRole/DefaultPolicy/Resource
+  RecoveryTaskTaskRole7CAA29D4:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryTask/TaskRole/Resource
+  RecoveryTaskTaskRoleDefaultPolicy6EC2C93F:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: kms:Decrypt
+            Condition:
+              StringEquals:
+                kms:EncryptionContext:rillora_application: content-v1
+                kms:EncryptionContext:rillora_environment: rillora-production
+              "Null":
+                kms:EncryptionContext:owner_id: "false"
+                kms:EncryptionContext:key_id: "false"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ContentKey78A057A4
+                - Arn
+          - Action:
+              - dynamodb:GetItem
+              - dynamodb:Query
+              - dynamodb:Scan
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RecoveryJournal06BB91CD
+                - Arn
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleReviewSecret3201CF49
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleProductionSecret494B0EFB
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource: arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+        Version: "2012-10-17"
+      PolicyName: RecoveryTaskTaskRoleDefaultPolicy6EC2C93F
+      Roles:
+        - Ref: RecoveryTaskTaskRole7CAA29D4
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryTask/TaskRole/DefaultPolicy/Resource
+  RecoveryTaskD940248B:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Command:
+            - node
+            - -e
+            - process.stderr.write('Explicit isolated recovery operation is required\n');process.exit(1)
+          Environment:
+            - Name: NODE_ENV
+              Value: production
+            - Name: DATA_REGION
+              Value: eu-central-1
+            - Name: DATABASE_PORT
+              Value: "5432"
+            - Name: DATABASE_NAME
+              Value: rillora
+            - Name: DATABASE_SSL_MODE
+              Value: verify-full
+            - Name: DATABASE_SSL_CA_PATH
+              Value: /app/certs/rds-global-bundle.pem
+            - Name: CONTENT_PROTECTION_MODE
+              Value: encrypted
+            - Name: CONTENT_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - ContentKey78A057A4
+                  - Arn
+            - Name: CONTENT_KEY_NAMESPACE
+              Value: rillora-production
+            - Name: RECOVERY_JOURNAL_TABLE
+              Value:
+                Ref: RecoveryJournal06BB91CD
+            - Name: RECOVERY_ENVIRONMENT
+              Value: production
+            - Name: RECOVERY_JOURNAL_BROKER_ARN
+              Value:
+                Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+            - Name: APPLE_REVIEW_SECRET_ARN
+              Value:
+                Ref: RuntimeAppleReviewSecret3201CF49
+            - Name: APPLE_ROOT_CERTIFICATE_DIRECTORY
+              Value: /app/certificates/apple
+            - Name: APPLE_PRODUCTION_SECRET_ARN
+              Value:
+                Ref: RuntimeAppleProductionSecret494B0EFB
+            - Name: STRIPE_PRODUCTION_SECRET_ARN
+              Value: arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+          Essential: true
+          Image:
+            Fn::Sub: 133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: MaintenanceLogs61C6A99C
+              awslogs-stream-prefix: recovery
+              awslogs-region: eu-central-1
+          Name: Maintenance
+          Secrets:
+            - Name: DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: DatabaseSecretAttachmentE5D1B020
+                    - ":username::"
+            - Name: DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: DatabaseSecretAttachmentE5D1B020
+                    - ":password::"
+      Cpu: "256"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - RecoveryTaskExecutionRoleE7A0DE57
+          - Arn
+      Family: RilloraProductionRecoveryTask4FA4E62D
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: ARM64
+        OperatingSystemFamily: LINUX
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskRoleArn:
+        Fn::GetAtt:
+          - RecoveryTaskTaskRole7CAA29D4
+          - Arn
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryTask/Resource
+  RecoveryTaskExecutionRoleE7A0DE57:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryTask/ExecutionRole/Resource
+  RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - MaintenanceLogs61C6A99C
+                - Arn
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: DatabaseSecretAttachmentE5D1B020
+        Version: "2012-10-17"
+      PolicyName: RecoveryTaskExecutionRoleDefaultPolicyAB82B7C9
+      Roles:
+        - Ref: RecoveryTaskExecutionRoleE7A0DE57
+    Metadata:
+      aws:cdk:path: RilloraProduction/RecoveryTask/ExecutionRole/DefaultPolicy/Resource
+  Operator41AE602D:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+            Effect: Allow
+            Principal:
+              AWS:
+                Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":iam::"
+                    - Ref: AWS::AccountId
+                    - :user/rillora/rillora-operator
+        Version: "2012-10-17"
+      MaxSessionDuration: 3600
+      Path: /rillora/
+      RoleName: rillora-production-operator
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Operator/Resource
+  OperatorDefaultPolicyA84BD3A6:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecs:DescribeTasks
+              - ecs:StopTask
+            Condition:
+              ArnEquals:
+                ecs:cluster:
+                  Fn::GetAtt:
+                    - ClusterEB0386A7
+                    - Arn
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - ecs:DescribeTaskDefinition
+              - rds:DescribeDBInstances
+              - rds:DescribeDBSnapshots
+            Condition:
+              StringEquals:
+                aws:RequestedRegion: eu-central-1
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:GetLogEvents
+              - logs:DescribeLogStreams
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - MaintenanceLogs61C6A99C
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - MaintenanceLogs61C6A99C
+                        - Arn
+                    - :*
+          - Action: cloudformation:DescribeStacks
+            Effect: Allow
+            Resource:
+              Ref: AWS::StackId
+          - Action:
+              - kms:DescribeKey
+              - kms:GetKeyRotationStatus
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ContentKey78A057A4
+                - Arn
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeCustomerMcpConfiguration020C980A
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleReviewSecret3201CF49
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeWebOidcSecretACD537A8
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeEmailVerificationServiceSecret994FE572
+          - Action:
+              - secretsmanager:DescribeSecret
+              - secretsmanager:PutSecretValue
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleProductionSecret494B0EFB
+          - Action: acm:DescribeCertificate
+            Effect: Allow
+            Resource:
+              Ref: RuntimeCertificateC2895169
+          - Action: ecs:DescribeServices
+            Effect: Allow
+            Resource:
+              - Ref: RuntimeService1702E585
+              - Ref: RuntimeIdentityWorkerServiceD8B21381
+          - Action: ec2:DescribeNetworkInterfaces
+            Condition:
+              StringEquals:
+                aws:RequestedRegion: eu-central-1
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:DescribeLogStreams
+              - logs:GetLogEvents
+              - logs:FilterLogEvents
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RuntimeApiLogs69C9F62B
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RuntimeApiLogs69C9F62B
+                        - Arn
+                    - :*
+              - Fn::GetAtt:
+                  - RuntimeGatewayLogs879CA399
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RuntimeGatewayLogs879CA399
+                        - Arn
+                    - :*
+              - Fn::GetAtt:
+                  - RuntimeIdentityWorkerLogs994C5C24
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RuntimeIdentityWorkerLogs994C5C24
+                        - Arn
+                    - :*
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - MaintenanceBrokerFunctionC542279B
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - MaintenanceBrokerFunctionC542279B
+                        - Arn
+                    - :*
+          - Action:
+              - logs:FilterLogEvents
+              - logs:GetLogEvents
+              - logs:GetLogGroupFields
+              - logs:DescribeLogGroups
+              - logs:DescribeLogStreams
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - MaintenanceBrokerLogsD00139D3
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: OperatorDefaultPolicyA84BD3A6
+      Roles:
+        - Ref: Operator41AE602D
+    Metadata:
+      aws:cdk:path: RilloraProduction/Operator/DefaultPolicy/Resource
+  AssumeProductionOperatorB069B9BD:
+    Type: AWS::IAM::ManagedPolicy
+    Properties:
+      Description: ""
+      Path: /
+      PolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Condition:
+              Bool:
+                aws:MultiFactorAuthPresent: "true"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - Operator41AE602D
+                - Arn
+        Version: "2012-10-17"
+      Users:
+        - rillora-operator
+    Metadata:
+      aws:cdk:path: RilloraProduction/AssumeProductionOperator/Resource
+  RuntimeCertificateC2895169:
+    Type: AWS::CertificateManager::Certificate
+    Properties:
+      CertificateExport: ENABLED
+      DomainName: origin.production.rillora.xyz
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Name
+          Value: RilloraProduction/Runtime/Certificate
+        - Key: Project
+          Value: Rillora
+      ValidationMethod: DNS
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/Certificate/Resource
+  RuntimeApiNetwork3B2CC8BA:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Production HTTPS container; ingress only from its VPC Link
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Outbound AWS and identity HTTPS
+          FromPort: 443
+          IpProtocol: tcp
+          ToPort: 443
+        - CidrIp: 17.0.0.0/8
+          Description: Apple certificate OCSP only; signature and online revocation checks remain required
+          FromPort: 80
+          IpProtocol: tcp
+          ToPort: 80
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiNetwork/Resource
+  RuntimeApiNetworkfromRilloraProductionRuntimeIngressNetwork69779FA9844367B9035E:
+    Type: AWS::EC2::SecurityGroupIngress
+    Properties:
+      Description: Verified TLS from the exact private VPC Link
+      FromPort: 8443
+      GroupId:
+        Fn::GetAtt:
+          - RuntimeApiNetwork3B2CC8BA
+          - GroupId
+      IpProtocol: tcp
+      SourceSecurityGroupId:
+        Fn::GetAtt:
+          - RuntimeIngressNetwork074C0E57
+          - GroupId
+      ToPort: 8443
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiNetwork/from RilloraProductionRuntimeIngressNetwork69779FA9:8443
+  RuntimeApiNetworktoRilloraProductionDatabaseNetwork7259A93854329AAA2FBD:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Verified TLS to private production PostgreSQL
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - RuntimeApiNetwork3B2CC8BA
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiNetwork/to RilloraProductionDatabaseNetwork7259A938:5432
+  RuntimeIngressNetwork074C0E57:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: Private API Gateway VPC Link; only the production HTTPS target
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IngressNetwork/Resource
+  RuntimeIngressNetworktoRilloraProductionRuntimeApiNetworkF0B36DFA84435814AAF1:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Production HTTPS only
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - RuntimeApiNetwork3B2CC8BA
+          - GroupId
+      FromPort: 8443
+      GroupId:
+        Fn::GetAtt:
+          - RuntimeIngressNetwork074C0E57
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 8443
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IngressNetwork/to RilloraProductionRuntimeApiNetworkF0B36DFA:8443
+  RuntimeNamespaceD7248538:
+    Type: AWS::ServiceDiscovery::PrivateDnsNamespace
+    Properties:
+      Name: production.rillora.internal
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      Vpc:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/Namespace/Resource
+  RuntimeNamespaceApiDiscovery35D81D27:
+    Type: AWS::ServiceDiscovery::Service
+    Properties:
+      DnsConfig:
+        DnsRecords:
+          - TTL: 10
+            Type: SRV
+        NamespaceId:
+          Fn::GetAtt:
+            - RuntimeNamespaceD7248538
+            - Id
+        RoutingPolicy: MULTIVALUE
+      Name: api
+      NamespaceId:
+        Fn::GetAtt:
+          - RuntimeNamespaceD7248538
+          - Id
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/Namespace/ApiDiscovery/Resource
+  RuntimeApiLogs69C9F62B:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiLogs/Resource
+  RuntimeApiTaskTaskRole477A5663:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiTask/TaskRole/Resource
+  RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleReviewSecret3201CF49
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAppleProductionSecret494B0EFB
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource: arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+          - Action:
+              - acm:DescribeCertificate
+              - acm:ExportCertificate
+            Effect: Allow
+            Resource:
+              Ref: RuntimeCertificateC2895169
+          - Action:
+              - kms:GenerateDataKey
+              - kms:Decrypt
+            Condition:
+              StringEquals:
+                kms:EncryptionContext:rillora_application: content-v1
+                kms:EncryptionContext:rillora_environment: rillora-production
+              "Null":
+                kms:EncryptionContext:owner_id: "false"
+                kms:EncryptionContext:key_id: "false"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - ContentKey78A057A4
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RecoveryAttestationWriterED563758
+                        - Arn
+                    - :*
+          - Action: kms:GenerateDataKey
+            Condition:
+              StringEquals:
+                kms:EncryptionContext:rillora_application: identity-deletion-proof-v1
+                kms:EncryptionContext:rillora_environment: rillora-production
+              "Null":
+                kms:EncryptionContext:session_id: "false"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RuntimeBoundariesIdentityProof5984CACD
+                - Arn
+        Version: "2012-10-17"
+      PolicyName: RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6
+      Roles:
+        - Ref: RuntimeApiTaskTaskRole477A5663
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiTask/TaskRole/DefaultPolicy/Resource
+  RuntimeApiTaskCF645D67:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Environment:
+            - Name: NODE_ENV
+              Value: production
+            - Name: DATA_REGION
+              Value: eu-central-1
+            - Name: DATABASE_PORT
+              Value: "5432"
+            - Name: DATABASE_NAME
+              Value: rillora
+            - Name: DATABASE_SSL_MODE
+              Value: verify-full
+            - Name: DATABASE_SSL_CA_PATH
+              Value: /app/certs/rds-global-bundle.pem
+            - Name: CONTENT_PROTECTION_MODE
+              Value: encrypted
+            - Name: CONTENT_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - ContentKey78A057A4
+                  - Arn
+            - Name: CONTENT_KEY_NAMESPACE
+              Value: rillora-production
+            - Name: RECOVERY_JOURNAL_TABLE
+              Value:
+                Ref: RecoveryJournal06BB91CD
+            - Name: RECOVERY_ENVIRONMENT
+              Value: production
+            - Name: RECOVERY_JOURNAL_BROKER_ARN
+              Value:
+                Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+            - Name: PRODUCTION_RUNTIME_MODE
+              Value: live
+            - Name: HOST
+              Value: 0.0.0.0
+            - Name: PORT
+              Value: "8443"
+            - Name: DATABASE_HOST
+              Value:
+                Fn::GetAtt:
+                  - DatabaseB269D8BB
+                  - Endpoint.Address
+            - Name: DATABASE_POOL_MAX
+              Value: "5"
+            - Name: DATABASE_CONNECTION_TIMEOUT_MS
+              Value: "10000"
+            - Name: API_TLS_CERTIFICATE_ARN
+              Value:
+                Ref: RuntimeCertificateC2895169
+            - Name: API_TLS_SERVER_NAME
+              Value: origin.production.rillora.xyz
+            - Name: TRUST_PROXY_HOPS
+              Value: "1"
+            - Name: CORS_ORIGINS
+              Value: https://app.rillora.xyz
+            - Name: ALLOW_DEV_AUTH
+              Value: "false"
+            - Name: ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL
+              Value: "false"
+            - Name: ALLOW_STRIPE_TEST_INTEGRATION
+              Value: "false"
+            - Name: ALLOW_APPLE_SANDBOX_INTEGRATION
+              Value: "false"
+            - Name: ALLOW_FAMILY_MAINTENANCE_PREVIEW
+              Value: "false"
+            - Name: ALLOW_APPLE_PRODUCTION_INTEGRATION
+              Value: "true"
+            - Name: ALLOW_STRIPE_PRODUCTION_INTEGRATION
+              Value: "true"
+            - Name: ALLOW_RETENTION_WORKER
+              Value: "true"
+            - Name: DELETION_WORKER_ENABLED
+              Value: "true"
+            - Name: DELETION_PROOF_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - RuntimeBoundariesIdentityProof5984CACD
+                  - Arn
+            - Name: WEB_APP_ORIGIN
+              Value: https://app.rillora.xyz
+            - Name: OIDC_ISSUER_URL
+              Value: https://login.rillora.xyz
+            - Name: OIDC_CLIENT_ID
+              Value: EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz
+            - Name: OIDC_REDIRECT_URI
+              Value: https://app.rillora.xyz/api/auth/callback
+            - Name: NATIVE_OIDC_CLIENT_ID
+              Value: POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4
+            - Name: OIDC_API_AUDIENCE
+              Value: urn:rillora:production:api
+            - Name: ALLOW_APPLE_REVIEW_INTEGRATION
+              Value: "true"
+            - Name: APPLE_REVIEW_SECRET_ARN
+              Value:
+                Ref: RuntimeAppleReviewSecret3201CF49
+            - Name: APPLE_ROOT_CERTIFICATE_DIRECTORY
+              Value: /app/certificates/apple
+            - Name: APPLE_REVIEW_IDENTITY_SHA256
+              Value:
+                Ref: RuntimeAppleReviewIdentityDigests96DB0D87
+            - Name: APPLE_REVIEW_EXPIRES_AT
+              Value:
+                Ref: RuntimeAppleReviewExpiresAt6422F952
+            - Name: APPLE_PRODUCTION_SECRET_ARN
+              Value:
+                Ref: RuntimeAppleProductionSecret494B0EFB
+            - Name: ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+              Value: "true"
+            - Name: STRIPE_PRODUCTION_SECRET_ARN
+              Value: arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+          Essential: true
+          HealthCheck:
+            Command:
+              - CMD
+              - node
+              - dist/healthcheck.js
+            Interval: 30
+            Retries: 3
+            StartPeriod: 45
+            Timeout: 5
+          Image:
+            Fn::Sub: 133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f
+          LinuxParameters:
+            Capabilities:
+              Drop:
+                - ALL
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: RuntimeApiLogs69C9F62B
+              awslogs-stream-prefix: api
+              awslogs-region: eu-central-1
+          Name: Api
+          PortMappings:
+            - ContainerPort: 8443
+              Name: https
+              Protocol: tcp
+          ReadonlyRootFilesystem: true
+          Secrets:
+            - Name: DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeCredential871C86BA
+                    - ":username::"
+            - Name: DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeCredential871C86BA
+                    - ":password::"
+            - Name: DATABASE_AUTHORITY_KEY
+              ValueFrom:
+                Ref: RuntimeBoundariesDatabaseAuthority8ABE4B26
+            - Name: EMAIL_MATCH_KEY
+              ValueFrom:
+                Ref: RuntimeBoundariesEmailMatching5596C652
+            - Name: AUTH0_EMAIL_VERIFICATION_DOMAIN
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeEmailVerificationServiceSecret994FE572
+                    - ":domain::"
+            - Name: AUTH0_EMAIL_VERIFICATION_CLIENT_ID
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeEmailVerificationServiceSecret994FE572
+                    - ":client_id::"
+            - Name: AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeEmailVerificationServiceSecret994FE572
+                    - ":client_secret::"
+            - Name: OIDC_CLIENT_SECRET
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeWebOidcSecretACD537A8
+                    - ":client_secret::"
+      Cpu: "256"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - RuntimeApiTaskExecutionRoleD48730C6
+          - Arn
+      Family: RilloraProductionRuntimeApiTask93405B31
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: ARM64
+        OperatingSystemFamily: LINUX
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskRoleArn:
+        Fn::GetAtt:
+          - RuntimeApiTaskTaskRole477A5663
+          - Arn
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiTask/Resource
+  RuntimeApiTaskExecutionRoleD48730C6:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiTask/ExecutionRole/Resource
+  RuntimeApiTaskExecutionRoleDefaultPolicy98299827:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RuntimeApiLogs69C9F62B
+                - Arn
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeCredential871C86BA
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesDatabaseAuthority8ABE4B26
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesEmailMatching5596C652
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeEmailVerificationServiceSecret994FE572
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeWebOidcSecretACD537A8
+        Version: "2012-10-17"
+      PolicyName: RuntimeApiTaskExecutionRoleDefaultPolicy98299827
+      Roles:
+        - Ref: RuntimeApiTaskExecutionRoleD48730C6
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/ApiTask/ExecutionRole/DefaultPolicy/Resource
+  RuntimeCustomerMcpOAuthState3A8B178F:
+    Type: AWS::DynamoDB::Table
+    Properties:
+      AttributeDefinitions:
+        - AttributeName: pk
+          AttributeType: S
+      BillingMode: PAY_PER_REQUEST
+      DeletionProtectionEnabled: true
+      KeySchema:
+        - AttributeName: pk
+          KeyType: HASH
+      SSESpecification:
+        SSEEnabled: true
+      TableName: rillora-production-mcp-oauth
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TimeToLiveSpecification:
+        AttributeName: expiresAt
+        Enabled: true
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/CustomerMcp/OAuthState/Resource
+  RuntimeCustomerMcpConfiguration020C980A:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Rillora customer OAuth signing, cookie and encrypted temporary-state keys; populate before enablement
+      GenerateSecretString: {}
+      Name: rillora/production/ai-oauth
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/CustomerMcp/Configuration/Resource
+  RuntimeAppleReviewSecret3201CF49:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Sandbox IAP configuration for explicitly enrolled release-review identities only
+      GenerateSecretString: {}
+      Name: rillora/production/apple-review
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/AppleReviewSecret/Resource
+  RuntimeWebOidcSecretACD537A8:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Existing production Web code-flow credential; independent of staging
+      GenerateSecretString: {}
+      Name: rillora/production/web-oidc
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/WebOidcSecret/Resource
+  RuntimeAccountDeletionServiceSecret32D97CCD:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Dedicated production account-deletion Auth0 service. Never reuse Preview credentials.
+      GenerateSecretString: {}
+      Name: rillora/production/account-deletion
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/AccountDeletionServiceSecret/Resource
+  RuntimeEmailVerificationServiceSecret994FE572:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Dedicated production email-verification Auth0 service. Never reuse Preview credentials.
+      GenerateSecretString: {}
+      Name: rillora/production/email-verification
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/EmailVerificationServiceSecret/Resource
+  RuntimeAppleProductionSecret494B0EFB:
+    Type: AWS::SecretsManager::Secret
+    Properties:
+      Description: Rillora App Store Production verification context; independently configured from Sandbox review
+      GenerateSecretString: {}
+      Name: rillora/production/apple-iap
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/AppleProductionSecret/Resource
+  RuntimeIdentityWorkerNetworkCAA3DE45:
+    Type: AWS::EC2::SecurityGroup
+    Properties:
+      GroupDescription: No inbound listener; isolated identity deletion only
+      SecurityGroupEgress:
+        - CidrIp: 0.0.0.0/0
+          Description: Identity and AWS HTTPS
+          FromPort: 443
+          IpProtocol: tcp
+          ToPort: 443
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      VpcId:
+        Ref: Vpc8378EB38
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Network/Resource
+  RuntimeIdentityWorkerNetworktoRilloraProductionDatabaseNetwork7259A9385432698AAC9C:
+    Type: AWS::EC2::SecurityGroupEgress
+    Properties:
+      Description: Dedicated deletion database login
+      DestinationSecurityGroupId:
+        Fn::GetAtt:
+          - DatabaseNetwork56A0AE36
+          - GroupId
+      FromPort: 5432
+      GroupId:
+        Fn::GetAtt:
+          - RuntimeIdentityWorkerNetworkCAA3DE45
+          - GroupId
+      IpProtocol: tcp
+      ToPort: 5432
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Network/to RilloraProductionDatabaseNetwork7259A938:5432
+  RuntimeIdentityWorkerTaskTaskRole54A0D574:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Task/TaskRole/Resource
+  RuntimeIdentityWorkerTaskTaskRoleDefaultPolicy71A13C0E:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: kms:Decrypt
+            Condition:
+              StringEquals:
+                kms:EncryptionContext:rillora_application: identity-deletion-proof-v1
+                kms:EncryptionContext:rillora_environment: rillora-production
+              "Null":
+                kms:EncryptionContext:session_id: "false"
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RuntimeBoundariesIdentityProof5984CACD
+                - Arn
+          - Action: lambda:InvokeFunction
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+              - Fn::Join:
+                  - ""
+                  - - Fn::GetAtt:
+                        - RecoveryAttestationWriterED563758
+                        - Arn
+                    - :*
+        Version: "2012-10-17"
+      PolicyName: RuntimeIdentityWorkerTaskTaskRoleDefaultPolicy71A13C0E
+      Roles:
+        - Ref: RuntimeIdentityWorkerTaskTaskRole54A0D574
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Task/TaskRole/DefaultPolicy/Resource
+  RuntimeIdentityWorkerTask676ED9B0:
+    Type: AWS::ECS::TaskDefinition
+    Properties:
+      ContainerDefinitions:
+        - Command:
+            - node
+            - dist/account-deletion-worker.js
+          Environment:
+            - Name: NODE_ENV
+              Value: production
+            - Name: DATA_REGION
+              Value: eu-central-1
+            - Name: DATABASE_PORT
+              Value: "5432"
+            - Name: DATABASE_NAME
+              Value: rillora
+            - Name: DATABASE_SSL_MODE
+              Value: verify-full
+            - Name: DATABASE_SSL_CA_PATH
+              Value: /app/certs/rds-global-bundle.pem
+            - Name: CONTENT_PROTECTION_MODE
+              Value: encrypted
+            - Name: CONTENT_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - ContentKey78A057A4
+                  - Arn
+            - Name: CONTENT_KEY_NAMESPACE
+              Value: rillora-production
+            - Name: RECOVERY_JOURNAL_TABLE
+              Value:
+                Ref: RecoveryJournal06BB91CD
+            - Name: RECOVERY_ENVIRONMENT
+              Value: production
+            - Name: RECOVERY_JOURNAL_BROKER_ARN
+              Value:
+                Fn::GetAtt:
+                  - RecoveryAttestationWriterED563758
+                  - Arn
+            - Name: DATABASE_HOST
+              Value:
+                Fn::GetAtt:
+                  - DatabaseB269D8BB
+                  - Endpoint.Address
+            - Name: DELETION_PROOF_KMS_KEY_ARN
+              Value:
+                Fn::GetAtt:
+                  - RuntimeBoundariesIdentityProof5984CACD
+                  - Arn
+            - Name: DELETION_ALLOWED_ISSUERS
+              Value: '["https://login.rillora.xyz"]'
+            - Name: DELETION_ALLOWED_CLIENT_IDS
+              Value: '["EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz","POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4"]'
+          Essential: true
+          Image:
+            Fn::Sub: 133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f
+          LinuxParameters:
+            Capabilities:
+              Drop:
+                - ALL
+          LogConfiguration:
+            LogDriver: awslogs
+            Options:
+              awslogs-group:
+                Ref: RuntimeIdentityWorkerLogs994C5C24
+              awslogs-stream-prefix: identity-deletion
+              awslogs-region: eu-central-1
+          Name: IdentityDeletion
+          ReadonlyRootFilesystem: true
+          Secrets:
+            - Name: DATABASE_USER
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeBoundariesDeletionDatabase954442FE
+                    - ":username::"
+            - Name: DATABASE_PASSWORD
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeBoundariesDeletionDatabase954442FE
+                    - ":password::"
+            - Name: AUTH0_DELETION_DOMAIN
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+                    - ":domain::"
+            - Name: AUTH0_DELETION_CLIENT_ID
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+                    - ":client_id::"
+            - Name: AUTH0_DELETION_CLIENT_SECRET
+              ValueFrom:
+                Fn::Join:
+                  - ""
+                  - - Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+                    - ":client_secret::"
+      Cpu: "256"
+      ExecutionRoleArn:
+        Fn::GetAtt:
+          - RuntimeIdentityWorkerTaskExecutionRole3E4D914A
+          - Arn
+      Family: RilloraProductionRuntimeIdentityWorkerTaskCE49E148
+      Memory: "512"
+      NetworkMode: awsvpc
+      RequiresCompatibilities:
+        - FARGATE
+      RuntimePlatform:
+        CpuArchitecture: ARM64
+        OperatingSystemFamily: LINUX
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskRoleArn:
+        Fn::GetAtt:
+          - RuntimeIdentityWorkerTaskTaskRole54A0D574
+          - Arn
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Task/Resource
+  RuntimeIdentityWorkerTaskExecutionRole3E4D914A:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: ecs-tasks.amazonaws.com
+        Version: "2012-10-17"
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Task/ExecutionRole/Resource
+  RuntimeIdentityWorkerTaskExecutionRoleDefaultPolicyC12D3C8B:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action:
+              - ecr:BatchCheckLayerAvailability
+              - ecr:GetDownloadUrlForLayer
+              - ecr:BatchGetImage
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1
+          - Action: ecr:GetAuthorizationToken
+            Effect: Allow
+            Resource: "*"
+          - Action:
+              - logs:CreateLogStream
+              - logs:PutLogEvents
+            Effect: Allow
+            Resource:
+              Fn::GetAtt:
+                - RuntimeIdentityWorkerLogs994C5C24
+                - Arn
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeBoundariesDeletionDatabase954442FE
+          - Action:
+              - secretsmanager:GetSecretValue
+              - secretsmanager:DescribeSecret
+            Effect: Allow
+            Resource:
+              Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+        Version: "2012-10-17"
+      PolicyName: RuntimeIdentityWorkerTaskExecutionRoleDefaultPolicyC12D3C8B
+      Roles:
+        - Ref: RuntimeIdentityWorkerTaskExecutionRole3E4D914A
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Task/ExecutionRole/DefaultPolicy/Resource
+  RuntimeIdentityWorkerLogs994C5C24:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Logs/Resource
+  RuntimeIdentityWorkerServiceD8B21381:
+    Type: AWS::ECS::Service
+    Properties:
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Weight: 1
+      Cluster:
+        Ref: ClusterEB0386A7
+      DeploymentConfiguration:
+        Alarms:
+          AlarmNames: []
+          Enable: false
+          Rollback: false
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+        MaximumPercent: 200
+        MinimumHealthyPercent: 50
+      DeploymentController:
+        Type: ECS
+      DesiredCount: 1
+      EnableECSManagedTags: false
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - Fn::GetAtt:
+                - RuntimeIdentityWorkerNetworkCAA3DE45
+                - GroupId
+          Subnets:
+            - Ref: VpcmaintenanceSubnet1SubnetB36026C0
+            - Ref: VpcmaintenanceSubnet2Subnet5D5D514C
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskDefinition:
+        Ref: RuntimeIdentityWorkerTask676ED9B0
+    DependsOn:
+      - RuntimeIdentityWorkerTaskTaskRoleDefaultPolicy71A13C0E
+      - RuntimeIdentityWorkerTaskTaskRole54A0D574
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/IdentityWorker/Service/Service
+  RuntimeVpcLinkCFD171E5:
+    Type: AWS::ApiGatewayV2::VpcLink
+    Properties:
+      Name: RilloraProductionRuntimeVpcLinkA6C0F70B
+      SecurityGroupIds:
+        - Fn::GetAtt:
+            - RuntimeIngressNetwork074C0E57
+            - GroupId
+      SubnetIds:
+        - Ref: VpcdataSubnet1SubnetE2B009FB
+        - Ref: VpcdataSubnet2SubnetAD08DFFF
+      Tags:
+        CostCenter: Rillora
+        Environment: Production
+        Project: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/VpcLink/Resource
+  RuntimeHttpApi2552D3E3:
+    Type: AWS::ApiGatewayV2::Api
+    Properties:
+      Description: Production transport acceptance only; customer routes remain closed
+      Name: rillora-production-closed
+      ProtocolType: HTTP
+      Tags:
+        CostCenter: Rillora
+        Environment: Production
+        Project: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/HttpApi/Resource
+  RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33:
+    Type: AWS::ApiGatewayV2::Integration
+    Properties:
+      ApiId:
+        Ref: RuntimeHttpApi2552D3E3
+      ConnectionId:
+        Ref: RuntimeVpcLinkCFD171E5
+      ConnectionType: VPC_LINK
+      IntegrationMethod: ANY
+      IntegrationType: HTTP_PROXY
+      IntegrationUri:
+        Fn::GetAtt:
+          - RuntimeNamespaceApiDiscovery35D81D27
+          - Arn
+      PayloadFormatVersion: "1.0"
+      TlsConfig:
+        ServerNameToVerify: origin.production.rillora.xyz
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/HttpApi/DefaultRoute/ProductionHttps/Resource
+  RuntimeHttpApiDefaultRoute86033BE3:
+    Type: AWS::ApiGatewayV2::Route
+    Properties:
+      ApiId:
+        Ref: RuntimeHttpApi2552D3E3
+      AuthorizationType: NONE
+      RouteKey: $default
+      Target:
+        Fn::Join:
+          - ""
+          - - integrations/
+            - Ref: RuntimeHttpApiDefaultRouteProductionHttpsE2AD3A33
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/HttpApi/DefaultRoute/Resource
+  RuntimeHttpApiDefaultStage68EDECFE:
+    Type: AWS::ApiGatewayV2::Stage
+    Properties:
+      AccessLogSettings:
+        DestinationArn:
+          Fn::GetAtt:
+            - RuntimeGatewayLogs879CA399
+            - Arn
+        Format: '{"requestId":"$context.requestId","status":"$context.status","latency":"$context.responseLatency"}'
+      ApiId:
+        Ref: RuntimeHttpApi2552D3E3
+      AutoDeploy: true
+      DefaultRouteSettings:
+        ThrottlingBurstLimit: 20
+        ThrottlingRateLimit: 10
+      StageName: $default
+      Tags:
+        CostCenter: Rillora
+        Environment: Production
+        Project: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/HttpApi/DefaultStage/Resource
+  RuntimeGatewayLogs879CA399:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/GatewayLogs/Resource
+  RuntimeService1702E585:
+    Type: AWS::ECS::Service
+    Properties:
+      CapacityProviderStrategy:
+        - CapacityProvider: FARGATE
+          Weight: 1
+      Cluster:
+        Ref: ClusterEB0386A7
+      DeploymentConfiguration:
+        Alarms:
+          AlarmNames: []
+          Enable: false
+          Rollback: false
+        DeploymentCircuitBreaker:
+          Enable: true
+          Rollback: true
+        MaximumPercent: 200
+        MinimumHealthyPercent: 100
+      DeploymentController:
+        Type: ECS
+      DesiredCount: 1
+      EnableECSManagedTags: true
+      NetworkConfiguration:
+        AwsvpcConfiguration:
+          AssignPublicIp: ENABLED
+          SecurityGroups:
+            - Fn::GetAtt:
+                - RuntimeApiNetwork3B2CC8BA
+                - GroupId
+          Subnets:
+            - Ref: VpcmaintenanceSubnet1SubnetB36026C0
+            - Ref: VpcmaintenanceSubnet2Subnet5D5D514C
+      PropagateTags: SERVICE
+      ServiceRegistries:
+        - ContainerName: Api
+          ContainerPort: 8443
+          RegistryArn:
+            Fn::GetAtt:
+              - RuntimeNamespaceApiDiscovery35D81D27
+              - Arn
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      TaskDefinition:
+        Ref: RuntimeApiTaskCF645D67
+    DependsOn:
+      - RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6
+      - RuntimeApiTaskTaskRole477A5663
+      - RuntimeVpcLinkCFD171E5
+    Metadata:
+      aws:cdk:path: RilloraProduction/Runtime/Service/Service
+  MaintenanceBrokerLogsD00139D3:
+    Type: AWS::Logs::LogGroup
+    Properties:
+      RetentionInDays: 30
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    UpdateReplacePolicy: Retain
+    DeletionPolicy: Retain
+    Metadata:
+      aws:cdk:path: RilloraProduction/MaintenanceBroker/Logs/Resource
+  MaintenanceBrokerFunctionServiceRole1E3E88A2:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Action: sts:AssumeRole
+            Effect: Allow
+            Principal:
+              Service: lambda.amazonaws.com
+        Version: "2012-10-17"
+      ManagedPolicyArns:
+        - Fn::Join:
+            - ""
+            - - "arn:"
+              - Ref: AWS::Partition
+              - :iam::aws:policy/service-role/AWSLambdaBasicExecutionRole
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+    Metadata:
+      aws:cdk:path: RilloraProduction/MaintenanceBroker/Function/ServiceRole/Resource
+  MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001:
+    Type: AWS::IAM::Policy
+    Properties:
+      PolicyDocument:
+        Statement:
+          - Action: ecs:RunTask
+            Condition:
+              ArnEquals:
+                ecs:cluster:
+                  Fn::GetAtt:
+                    - ClusterEB0386A7
+                    - Arn
+            Effect: Allow
+            Resource:
+              - Ref: MigrationTask69EAEF9D
+              - Ref: RecoveryTaskD940248B
+          - Action: iam:PassRole
+            Condition:
+              StringEquals:
+                iam:PassedToService: ecs-tasks.amazonaws.com
+            Effect: Allow
+            Resource:
+              - Fn::GetAtt:
+                  - MigrationTaskTaskRole9CC4695E
+                  - Arn
+              - Fn::GetAtt:
+                  - MigrationTaskExecutionRole54576998
+                  - Arn
+              - Fn::GetAtt:
+                  - RecoveryTaskTaskRole7CAA29D4
+                  - Arn
+              - Fn::GetAtt:
+                  - RecoveryTaskExecutionRoleE7A0DE57
+                  - Arn
+          - Action: rds:CreateDBSnapshot
+            Effect: Allow
+            Resource:
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":rds:eu-central-1:133857166372:db:"
+                    - Ref: DatabaseB269D8BB
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*
+          - Action: rds:RestoreDBInstanceFromDBSnapshot
+            Effect: Allow
+            Resource:
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":rds:eu-central-1:133857166372:pg:"
+                    - Ref: PostgresParameters8EA48B37
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - ":rds:eu-central-1:133857166372:subgrp:"
+                    - Ref: DatabaseSubnets
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :rds:eu-central-1:133857166372:og:default:postgres-16
+          - Action: rds:RestoreDBInstanceFromDBSnapshot
+            Condition:
+              StringEquals:
+                aws:RequestTag/Project: Rillora
+                aws:RequestTag/Environment: RecoveryDrill
+                rds:DatabaseClass: db.t4g.micro
+              Bool:
+                rds:PubliclyAccessible: "false"
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :rds:eu-central-1:133857166372:db:rillora-recovery-*
+          - Action:
+              - rds:AddTagsToResource
+              - rds:ListTagsForResource
+            Effect: Allow
+            Resource:
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*
+              - Fn::Join:
+                  - ""
+                  - - "arn:"
+                    - Ref: AWS::Partition
+                    - :rds:eu-central-1:133857166372:db:rillora-recovery-*
+          - Action:
+              - rds:DescribeDBInstances
+              - rds:DescribeDBSnapshots
+            Condition:
+              StringEquals:
+                aws:RequestedRegion: eu-central-1
+            Effect: Allow
+            Resource: "*"
+          - Action: rds:DeleteDBInstance
+            Condition:
+              StringEquals:
+                aws:ResourceTag/Environment: RecoveryDrill
+                aws:ResourceTag/Project: Rillora
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :rds:eu-central-1:133857166372:db:rillora-recovery-*
+          - Action: rds:DeleteDBSnapshot
+            Condition:
+              StringEquals:
+                aws:ResourceTag/Environment: RecoveryDrill
+                aws:ResourceTag/Project: Rillora
+            Effect: Allow
+            Resource:
+              Fn::Join:
+                - ""
+                - - "arn:"
+                  - Ref: AWS::Partition
+                  - :rds:eu-central-1:133857166372:snapshot:rillora-production-recovery-*
+          - Action: ecs:DescribeServices
+            Effect: Allow
+            Resource:
+              - Ref: RuntimeService1702E585
+              - Ref: RuntimeIdentityWorkerServiceD8B21381
+        Version: "2012-10-17"
+      PolicyName: MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001
+      Roles:
+        - Ref: MaintenanceBrokerFunctionServiceRole1E3E88A2
+    Metadata:
+      aws:cdk:path: RilloraProduction/MaintenanceBroker/Function/ServiceRole/DefaultPolicy/Resource
+  MaintenanceBrokerFunctionC542279B:
+    Type: AWS::Lambda::Function
+    Properties:
+      Architectures:
+        - arm64
+      Code:
+        S3Bucket: cdk-hnb659fds-assets-133857166372-eu-central-1
+        S3Key: [PUBLIC_CDK_ASSET_HASH_OMITTED]
+      Description: Fixed Rillora maintenance commands and capability-bound recovery resources; no caller-supplied credentials
+      Environment:
+        Variables:
+          BROKER_SETTINGS:
+            Fn::Join:
+              - ""
+              - - '{"environment":"production","source":"rillora-production","sourceHost":"'
+                - Fn::GetAtt:
+                    - DatabaseB269D8BB
+                    - Endpoint.Address
+                - '","cluster":"'
+                - Ref: ClusterEB0386A7
+                - '","productionRuntimeMode":"live","appleReviewScope":{"identityDigests":"'
+                - Ref: RuntimeAppleReviewIdentityDigests96DB0D87
+                - '","expiresAt":"'
+                - Ref: RuntimeAppleReviewExpiresAt6422F952
+                - '"},"migrationTask":"'
+                - Ref: MigrationTask69EAEF9D
+                - '","recoveryTask":"'
+                - Ref: RecoveryTaskD940248B
+                - '","subnets":["'
+                - Ref: VpcmaintenanceSubnet1SubnetB36026C0
+                - '","'
+                - Ref: VpcmaintenanceSubnet2Subnet5D5D514C
+                - '"],"migrationSecurityGroup":"'
+                - Fn::GetAtt:
+                    - MigrationNetworkC6D0992C
+                    - GroupId
+                - '","recoveryTaskSecurityGroup":"'
+                - Fn::GetAtt:
+                    - RecoveryNetworkB16F29A5
+                    - GroupId
+                - '","recoveryDatabaseSecurityGroup":"'
+                - Fn::GetAtt:
+                    - RecoveryDatabaseNetworkBA72B18C
+                    - GroupId
+                - '","sourceDatabaseSecurityGroup":"'
+                - Fn::GetAtt:
+                    - DatabaseNetwork56A0AE36
+                    - GroupId
+                - '","vpc":"'
+                - Ref: Vpc8378EB38
+                - '","subnetGroup":"'
+                - Ref: DatabaseSubnets
+                - '","parameterGroup":"'
+                - Ref: PostgresParameters8EA48B37
+                - '","sourceServices":["'
+                - Fn::GetAtt:
+                    - RuntimeService1702E585
+                    - Name
+                - '","'
+                - Fn::GetAtt:
+                    - RuntimeIdentityWorkerServiceD8B21381
+                    - Name
+                - '"],"isolationScriptSha256":"9010a9132add81fa20625f170958a50f7ecfe01c141530dc00853c8b1e1ef08a","securityAuditScriptSha256":"5875a12c0e19ec53166857425a62c608c1cc27e34be596c76c1fcb36e3d84043","securityAuthorityScriptSha256":"93bab139d18e1aa8062cea55aae99ec4b6ca05670fa84966c1a5100cbc72263f"}'
+      Handler: handler.handler
+      LoggingConfig:
+        LogGroup:
+          Ref: MaintenanceBrokerLogsD00139D3
+      MemorySize: 256
+      Role:
+        Fn::GetAtt:
+          - MaintenanceBrokerFunctionServiceRole1E3E88A2
+          - Arn
+      Runtime: nodejs22.x
+      Tags:
+        - Key: CostCenter
+          Value: Rillora
+        - Key: Environment
+          Value: Production
+        - Key: Project
+          Value: Rillora
+      Timeout: 60
+    DependsOn:
+      - MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001
+      - MaintenanceBrokerFunctionServiceRole1E3E88A2
+    Metadata:
+      aws:cdk:path: RilloraProduction/MaintenanceBroker/Function/Resource
+      aws:asset:path: asset.80b4f7adc696047ca9c43cf8bb29529bd5b6bd7a8769ca33f04f47505e8da096
+      aws:asset:is-bundled: false
+      aws:asset:property: Code
+  CDKMetadata:
+    Type: AWS::CDK::Metadata
+    Properties:
+      Analytics: v2:deflate64:H4sIAAAAAAAA/31U227bMAz9lr4r2pACfU/itQvWbYFT9LWgZcZTHUuGLu4Cw/8+SortNC0GBODhoSIeUqSXfHl3x7/ewJtdiLJeHGXB+70DUTOiXnoUS94/t4JtDup5t2E7Xxyl2PtCoQvcjHLtHT5BccSZn7mVtVpIcFKr6TDbGdmBw/mOrXJoCD8Q+wanc9Kzt3Ik60+DyrE9Cm+kOz0Y7duY7r/Et8qgtR/orYr8wExpeb8DAw1S/umObH3FJaEX8UsiAwcFWNwq60AJnAjKaVJ52XoMDsxG1jagoELD+yQuHEzmCUyF7qLm6cCHSKIHdtQV1fGoq5wkq9hqcia5I6bcty9gLWXnq2DI52svanRrksskNLzPdXrHaHea3jy+xhn9jKrLmX9HDKxuSMgPjCEyAytPChpd0mxNExIBiYamKIH3916JcTpGPDAUdNHm6C29QYiM8J56AGG0bJ3hQSo5/vWa0cqBVGguuEep/N/pZe141x5NJ0Ua3gRDejN2KtPUILNtqMzUNIrxHFttpdPmFDsn0Dh5kIJum9915mIBsxtmIOYppRW6Q3OiIUwbkSn7i+TZFpKgz+jP9EIrq7QsXVpbqrWOW3SG351rV60MVDDBTasYUNi+ykw7euXO5+jzUKW8AQwDy9Fqb5KWCccuhRNSVSHw27vWxzGeej8wpUvkr/ZLt1xy+t3evFopF8bT9DbI82T/ARCAN36kBAAA
+    Metadata:
+      aws:cdk:path: RilloraProduction/CDKMetadata/Default
+Outputs:
+  RuntimeCustomerMcpConfigurationSecretArn4F3CE9CA:
+    Value:
+      Ref: RuntimeCustomerMcpConfiguration020C980A
+  RuntimeCustomerMcpOAuthTableEEF59F52:
+    Value:
+      Ref: RuntimeCustomerMcpOAuthState3A8B178F
+  RuntimeCustomerMcpCustomerAccessA21B0BE0:
+    Value: disabled
+  RuntimeAppleReviewSecretArn1673390A:
+    Value:
+      Ref: RuntimeAppleReviewSecret3201CF49
+  RuntimeWebOidcSecretArn7F992744:
+    Value:
+      Ref: RuntimeWebOidcSecretACD537A8
+  RuntimeAccountDeletionServiceSecretArn4C39EFED:
+    Value:
+      Ref: RuntimeAccountDeletionServiceSecret32D97CCD
+  RuntimeEmailVerificationServiceSecretArn7E08F4A1:
+    Value:
+      Ref: RuntimeEmailVerificationServiceSecret994FE572
+  RuntimeAppleProductionSecretArnF8E35DE1:
+    Value:
+      Ref: RuntimeAppleProductionSecret494B0EFB
+  RuntimeStripeNotificationsSecretArn8A76E8A3:
+    Value: arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp
+  RuntimeApiUrl28EC49BD:
+    Value:
+      Fn::GetAtt:
+        - RuntimeHttpApi2552D3E3
+        - ApiEndpoint
+  RuntimeCertificateArnBB7EAC67:
+    Value:
+      Ref: RuntimeCertificateC2895169
+  RuntimeTlsServerName02234589:
+    Value: origin.production.rillora.xyz
+  RuntimeApiTaskDefinitionArn02DA653E:
+    Value:
+      Ref: RuntimeApiTaskCF645D67
+  RuntimeApiServiceNameF8B88348:
+    Value:
+      Fn::GetAtt:
+        - RuntimeService1702E585
+        - Name
+  RuntimeApiSecurityGroupIdDEAE6BF4:
+    Value:
+      Fn::GetAtt:
+        - RuntimeApiNetwork3B2CC8BA
+        - GroupId
+  RuntimeApiLogGroup3DA7AF21:
+    Value:
+      Ref: RuntimeApiLogs69C9F62B
+  RuntimeGatewayLogGroup40748EB6:
+    Value:
+      Ref: RuntimeGatewayLogs879CA399
+  RuntimeCustomerAccess0D914672:
+    Value: live
+  RuntimeReviewAccess8016FD90:
+    Value: disabled
+  MaintenanceBrokerFunctionName:
+    Value:
+      Ref: MaintenanceBrokerFunctionC542279B
+  RecoverySourceServiceNames:
+    Value:
+      Fn::Join:
+        - ""
+        - - '["'
+          - Fn::GetAtt:
+              - RuntimeService1702E585
+              - Name
+          - '","'
+          - Fn::GetAtt:
+              - RuntimeIdentityWorkerServiceD8B21381
+              - Name
+          - '"]'
+  ProductionVpcId:
+    Value:
+      Ref: Vpc8378EB38
+  DatabaseSecurityGroupId:
+    Value:
+      Fn::GetAtt:
+        - DatabaseNetwork56A0AE36
+        - GroupId
+  DatabaseIdentifier:
+    Value:
+      Ref: DatabaseB269D8BB
+  DatabaseHost:
+    Value:
+      Fn::GetAtt:
+        - DatabaseB269D8BB
+        - Endpoint.Address
+  DatabaseSubnetGroup:
+    Value:
+      Ref: DatabaseSubnets
+  DatabaseParameterGroup:
+    Value:
+      Ref: PostgresParameters8EA48B37
+  ClusterName:
+    Value:
+      Ref: ClusterEB0386A7
+  MaintenanceSubnetIds:
+    Value:
+      Fn::Join:
+        - ""
+        - - Ref: VpcmaintenanceSubnet1SubnetB36026C0
+          - ","
+          - Ref: VpcmaintenanceSubnet2Subnet5D5D514C
+  MigrationSecurityGroupId:
+    Value:
+      Fn::GetAtt:
+        - MigrationNetworkC6D0992C
+        - GroupId
+  RecoverySecurityGroupId:
+    Value:
+      Fn::GetAtt:
+        - RecoveryNetworkB16F29A5
+        - GroupId
+  RecoveryDatabaseSecurityGroupId:
+    Value:
+      Fn::GetAtt:
+        - RecoveryDatabaseNetworkBA72B18C
+        - GroupId
+  MigrationTaskDefinitionArn:
+    Value:
+      Ref: MigrationTask69EAEF9D
+  RecoveryTaskDefinitionArn:
+    Value:
+      Ref: RecoveryTaskD940248B
+  MaintenanceLogGroup:
+    Value:
+      Ref: MaintenanceLogs61C6A99C
+  ContentKeyArn:
+    Value:
+      Fn::GetAtt:
+        - ContentKey78A057A4
+        - Arn
+  RecoveryJournalTable:
+    Value:
+      Ref: RecoveryJournal06BB91CD
+  OperatorRoleArn:
+    Value:
+      Fn::GetAtt:
+        - Operator41AE602D
+        - Arn
+  ProductionTrafficReady:
+    Value: "true"
+  BackupRetentionDays:
+    Value: "7"
+Parameters:
+  RuntimeAppleReviewIdentityDigests96DB0D87:
+    Type: String
+    AllowedPattern: "[a-f0-9]{64}(,[a-f0-9]{64}){0,7}"
+    Description: Exact existing identities permitted to use Sandbox purchase routes; no ordinary customer restriction
+    NoEcho: true
+  RuntimeAppleReviewExpiresAt6422F952:
+    Type: String
+    AllowedPattern: "[0-9]{4}-[0-9]{2}-[0-9]{2}T[0-9]{2}:[0-9]{2}:[0-9]{2}Z"
+    Description: UTC Sandbox access expiry; API enforces a maximum 31-day window
+  BootstrapVersion:
+    Type: AWS::SSM::Parameter::Value<String>
+    Default: /cdk-bootstrap/hnb659fds/version
+    Description: Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]
+
+82 feature flags are not configured. Run 'cdk flags --unstable=flags' to learn more.

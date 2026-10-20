@@ -1,0 +1,20 @@
+{
+  "gemini": {
+    "version": "0.64.0",
+    "exitCode": 0,
+    "connected": true
+  },
+  "codex": {
+    "tools": [
+      "get_preparation_gaps",
+      "list_selected_matters"
+    ],
+    "authStatus": "bearerToken"
+  },
+  "modelInvoked": false,
+  "externalOAuth": false,
+  "realUserData": false,
+  "scope": "Actual installed clients against real Rillora service on loopback with local signed synthetic identity; not provider OAuth acceptance",
+  "outputNormalization": "Existing combined CLI output explicitly says Connected; Gemini wrote it to stderr, while the first wrapper checked only stdout. Reparsed the retained receipt without repeating the successful connection.",
+  "passed": true
+}

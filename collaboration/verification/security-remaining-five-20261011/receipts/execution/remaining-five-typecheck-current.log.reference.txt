@@ -1,0 +1,5 @@
+
+> continuity-api@0.1.0 typecheck
+> tsc -p tsconfig.json --noEmit
+
+tests/identity-deletion-proof.test.ts(7,12): error TS2749: 'CryptoKey' refers to a value, but is being used as a type here. Did you mean 'typeof CryptoKey'?

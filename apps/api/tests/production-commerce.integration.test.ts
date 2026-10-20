@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash } from 'node:crypto';
 import pg from 'pg';
 import { afterAll, beforeAll, describe, expect, it, vi } from 'vitest';
@@ -11,9 +12,12 @@ import { productionExecutionConfig } from '../src/stripe-execution-config.js';
 import type { StripeProductionConfig } from '../src/stripe-production-adapter.js';
 import { currentLegalContract } from '../src/legal-contract.js';
 import { purchaseConsentContract } from '../src/purchase-consent.js';
+import Stripe from 'stripe';
+import type { StripeSdkPort } from '../src/stripe-sdk.js';
+import { resolveStripeFinancialSignal } from '../src/stripe-financial-resolution.js';
 
 // A dedicated local test database. Never accept a remote database override.
-const databaseUrl = 'postgresql://127.0.0.1:5432/continuity_production_commerce_test';
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_production_commerce_test', 'continuity_production_commerce_test');
 const plannerPublicId = '77777777-7777-4777-8777-777777777777';
 const billing: StripeProductionConfig = {
   apiKey: 'rk_live_production_integration_fixture_only', webhookSecret: 'whsec_production_integration_fixture_only',
@@ -29,6 +33,7 @@ const config: AppConfig = {
   sessionTtlMinutes: 480, sessionIdleMinutes: 30, authTransactionTtlSeconds: 600, dataRegion: 'eu-central-1',
   oidc: null, nativeOidc: null, stripeTest: null, appleSandbox: null,
   stripeProductionSecretArn: 'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-FIXTUR',
+  stripeProductionCheckoutEnabled: true,
 };
 const consent = { ...purchaseConsentContract, acceptedSubscriptionTerms: true, acceptedAnnualRenewal: true, acknowledgedCancellation: true };
 let captured: Parameters<StripeCommerceProvider['createHostedSubscriptionCheckout']>[0];
@@ -36,6 +41,7 @@ let invoiceReference = 'in_local_fixture', refundInvoiceReference = 'in_local_fi
 const currentState: { value: 'active' | 'cancel_at_period_end' | 'expired_read_only'; mayRenew: boolean | null } = { value: 'active', mayRenew: null };
 const checkoutCall = vi.fn<StripeCommerceProvider['createHostedSubscriptionCheckout']>(async input => {
   captured = input; return { sessionId: 'cs_live_local_fixture', url: 'https://checkout.stripe.com/c/pay/cs_live_local_fixture', expiresAt: null };
+
 });
 const readyCall = vi.fn(async () => {});
 const provider: StripeCommerceProvider = {
@@ -62,15 +68,16 @@ const provider: StripeCommerceProvider = {
     providerInvoiceReference: invoiceReference, source: 'stripe_api' }),
 };
 let pool: DatabasePool, app: ReturnType<typeof createApp>, executor: StripeCommerceExecutor;
-const postCheckout = (proof: unknown = consent, key = 'production-fixture-idempotency-001') => request(app)
+const postCheckout = (proof: unknown = consent, key = 'production-fixture-idempotency-001', locale?: 'en' | 'zh-CN') => request(app)
   .post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id', plannerPublicId).set('idempotency-key', key)
-  .send({ billingPeriod: 'annual', purchaseConsent: proof });
+  .send({ billingPeriod: 'annual', purchaseConsent: proof, ...(locale ? { locale } : {}) });
 
 describe('production commerce ledger with a synthetic provider only', () => {
   beforeAll(async () => {
-    const admin = new pg.Client({ connectionString: 'postgresql://127.0.0.1:5432/postgres' }); await admin.connect();
+    const admin = new pg.Client({ connectionString: new URL('/postgres', databaseUrl).href }); await admin.connect();
     try { if (!(await admin.query("select 1 from pg_database where datname='continuity_production_commerce_test'")).rowCount) await admin.query('create database continuity_production_commerce_test'); }
     finally { await admin.end(); }
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_production_commerce_test');
     await runMigrations(databaseUrl); pool = createPool(config);
     await pool.query('truncate app.commerce_provider_event_inbox,app.planners restart identity cascade');
     await pool.query("update app.commerce_market_policies set sales_enabled=false,status='configured_disabled'");
@@ -82,6 +89,27 @@ describe('production commerce ledger with a synthetic provider only', () => {
   });
   afterAll(async () => { await pool?.end(); });
 
+  it('accepts signed notification-only traffic without exposing quotes, purchases or bypassing authentication',async()=>{
+    const pending={...billing,tax:{mode:'not_configured' as const,productTaxCode:'txcd_fixture'}};
+    const receiver=createApp(pool,{...config,stripeProductionCheckoutEnabled:false},{stripeProductionConfig:pending});
+    await request(receiver).get('/api/v1/commerce/stripe/status').expect(401);
+    await request(receiver).get('/api/v1/commerce/stripe/status').set('x-dev-planner-id',plannerPublicId).expect(200);
+    await request(receiver).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(503);
+    await request(receiver).post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id',plannerPublicId)
+      .set('idempotency-key','notifications-cannot-purchase-001').send({billingPeriod:'annual',purchaseConsent:consent}).expect(503);
+    const body=JSON.stringify({id:'evt_notifications_only_fixture',object:'event',type:'product.updated',created:Math.floor(Date.now()/1000),livemode:true,
+      data:{object:{id:billing.familyProductId,object:'product'}}});
+    const signature=Stripe.webhooks.generateTestHeaderString({payload:body,secret:billing.webhookSecret});
+    const result=await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',signature).send(body).expect(200);
+    expect(result.body).toMatchObject({received:true,status:'ignored',testOnly:false});
+    await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',signature).send(body+' ').expect(400);
+    const testBody=body.replace('"livemode":true','"livemode":false');
+    const testSignature=Stripe.webhooks.generateTestHeaderString({payload:testBody,secret:billing.webhookSecret});
+    await request(receiver).post('/commerce/stripe/webhook').set('content-type','application/json').set('stripe-signature',testSignature).send(testBody).expect(400);
+    expect((await pool.query('select count(*)::int as count from app.commerce_orders')).rows[0].count).toBe(0);
+    expect(checkoutCall).not.toHaveBeenCalled();
+  });
+
   it('requires authentication and separate exact purchase consent; registration consent is insufficient', async () => {
     await request(app).get('/api/v1/commerce/stripe/quote').expect(401);
     await request(app).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id', plannerPublicId).expect(200);
@@ -89,6 +117,18 @@ describe('production commerce ledger with a synthetic provider only', () => {
     await postCheckout({ ...consent, amountMinor: 6800 }).expect(400);
     await postCheckout({ ...consent, acceptedAnnualRenewal: false }).expect(400);
     expect(checkoutCall).not.toHaveBeenCalled();
+  });
+  it('explicitly disabled automatic tax opens quotes but never bypasses the runtime or catalog sales gates',async()=>{
+    const noTax={...billing,tax:{mode:'disabled' as const,productTaxCode:billing.tax.productTaxCode}};
+    const closed=createApp(pool,{...config,stripeProductionCheckoutEnabled:false},{stripeProductionConfig:noTax,stripeExecutor:executor});
+    const ready=createApp(pool,config,{stripeProductionConfig:noTax,stripeExecutor:executor});
+    await request(closed).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(503);
+    const quote=await request(ready).get('/api/v1/commerce/stripe/quote').set('x-dev-planner-id',plannerPublicId).expect(200);
+    expect(quote.body.purchaseConsent).toMatchObject({amountMinor:8899,currency:'USD',billingPeriod:'annual'});
+    const blocked=await request(ready).post('/api/v1/commerce/stripe/checkout').set('x-dev-planner-id',plannerPublicId)
+      .set('idempotency-key','explicit-no-tax-still-closed').send({billingPeriod:'annual',purchaseConsent:consent}).expect(409);
+    expect(blocked.body.error.code).toBe('billing_closed');expect(checkoutCall).not.toHaveBeenCalled();
+    expect((await pool.query('select count(*)::int as n from app.commerce_orders')).rows[0].n).toBe(0);
   });
   it('keeps new sales closed before any provider call or order creation', async () => {
     const result = await postCheckout().expect(409); expect(result.body.error.code).toBe('billing_closed');
@@ -110,13 +150,15 @@ describe('production commerce ledger with a synthetic provider only', () => {
       select id,'stripe','production',$1,'active',$2,$3 from app.commerce_prices where price_code='family_usd_annual_v4'
       on conflict(provider_code,provider_environment,external_product_reference) do update set status='active'`,[billing.annualPriceId,billing.expectedAccountId,billing.familyProductId]);
     checkoutCall.mockImplementationOnce(async input => { captured = input; throw new Error('synthetic ambiguous provider transport failure'); });
-    await postCheckout().expect(500);
+    await postCheckout(consent, 'production-fixture-idempotency-001', 'zh-CN').expect(500);
     // A subscription event may learn the new Customer before the lost response
     // is retried. Preserve the first request's absence of a pre-existing Customer.
     await pool.query("insert into app.commerce_provider_customers(planner_id,commerce_account_id,provider_code,provider_environment,provider_customer_reference,status) select planner_id,id,'stripe','production','cus_local_fixture','active' from app.commerce_accounts where public_id=$1",[captured.commerceAccountReference]);
-    const result = await postCheckout().expect(201);
+    const result = await postCheckout(consent, 'production-fixture-idempotency-001', 'en').expect(201);
     expect(checkoutCall.mock.calls[0]![0]).toEqual(checkoutCall.mock.calls[1]![0]);
     expect(checkoutCall.mock.calls[1]![0].existingStripeCustomerReference).toBeUndefined();
+    expect(checkoutCall.mock.calls[1]![0].locale).toBe('zh-CN');
+    expect((await pool.query('select stripe_checkout_locale from app.commerce_payment_attempts')).rows[0].stripe_checkout_locale).toBe('zh-CN');
     expect(result.body.checkout.testOnly).toBe(false); expect(result.body.boundaries.callbackGrantsAccess).toBe(false);
     const retry = await postCheckout().expect(201); expect(retry.body.checkout.orderReference).toBe(result.body.checkout.orderReference);
     expect(checkoutCall).toHaveBeenCalledTimes(2);
@@ -200,6 +242,9 @@ describe('production commerce ledger with a synthetic provider only', () => {
     await postCheckout(consent,'production-after-fully-ended-006').expect(201);
     expect((await pool.query("select state,renewal_is_possible,grace_ends_at from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0])
       .toMatchObject({state:'expired_read_only',renewal_is_possible:false,grace_ends_at:null});
+    const status = await request(app).get('/api/v1/commerce/stripe/status')
+      .set('x-dev-planner-id', plannerPublicId).expect(200);
+    expect(status.body.subscription).toMatchObject({ state: 'expired_read_only', renewalIsPossible: false });
   });
 
   it('owns subscription reads through commit and retries concurrent cancellation without resurrecting access', async () => {
@@ -229,6 +274,116 @@ describe('production commerce ledger with a synthetic provider only', () => {
       expect(final).toMatchObject({ state: 'expired_read_only', renewal_is_possible: false });
       expect((await pool.query("select count(*)::int as n from app.commerce_entitlement_grants where revoked_at is null and (expires_at is null or expires_at>now()) and subscription_id in(select id from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture')")).rows[0].n).toBe(0);
     } finally { resume(); observation.mockRestore(); }
+  });
+
+  it('keeps the dispute reference for the fresh locked read and reconciles dispute recovery', async () => {
+    currentState.value = 'active'; currentState.mayRenew = true;
+    invoiceReference = 'in_dispute_current';
+    let status: Stripe.Dispute.Status = 'under_review';
+    let resolveBeforeLockedRead = true;
+    const retrieveDispute = vi.fn(async (id: string) => {
+      expect(id).toBe('du_current_fixture');
+      const result = { id, charge: 'ch_dispute_fixture', payment_intent: 'pi_dispute_fixture',
+        livemode: true, status } as Stripe.Dispute;
+      if (resolveBeforeLockedRead) status = 'won';
+      return result;
+    });
+    const sdk = {
+      retrieveDispute,
+      retrieveCharge: async () => ({ id: 'ch_dispute_fixture', livemode: true,
+        customer: 'cus_local_fixture', payment_intent: 'pi_dispute_fixture', amount: 8899, amount_refunded: 0 }),
+      listInvoicePaymentsByPaymentIntent: async () => ({ has_more: false,
+        data: [{ livemode: true, invoice: invoiceReference }] }),
+      retrieveInvoice: async () => ({ id: invoiceReference, livemode: true, customer: 'cus_local_fixture',
+        parent: { subscription_details: { subscription: 'sub_local_fixture' } } }),
+    } as unknown as StripeSdkPort;
+    const disputeProvider: StripeCommerceProvider = {
+      ...provider,
+      verifyWebhook(body, signature) {
+        return { ...provider.verifyWebhook(body, signature), sourceEventType: 'charge.dispute.updated',
+          signalType: 'dispute_changed', providerTransactionReference: 'du_current_fixture', providerRefundReference: null };
+      },
+      resolveFinancialSignal: signal => resolveStripeFinancialSignal(sdk, signal, 'production'),
+    };
+    const disputes = new StripeCommerceExecutor(pool, productionExecutionConfig(billing), disputeProvider);
+    const receive = (id: string) => disputes.acceptWebhook(Buffer.from(JSON.stringify({ id })), 'fixture');
+    const subscription = async () => (await pool.query("select state,financial_state_override from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'")).rows[0];
+
+    await expect(receive('evt_dispute_resolved_during_lookup')).resolves.toMatchObject({ status: 'applied' });
+    expect(retrieveDispute).toHaveBeenCalledTimes(2);
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+
+    resolveBeforeLockedRead = false; status = 'under_review';
+    await receive('evt_dispute_under_review');
+    expect(await subscription()).toMatchObject({ state: 'revoked', financial_state_override: 'revoked' });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBe(0);
+
+    status = 'won';
+    await receive('evt_dispute_won');
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBeGreaterThan(0);
+    const calls = retrieveDispute.mock.calls.length;
+    await expect(receive('evt_dispute_won')).resolves.toMatchObject({ status: 'duplicate' });
+    expect(retrieveDispute).toHaveBeenCalledTimes(calls);
+  });
+
+  it('restores the paid period when a previously succeeded current-invoice refund later fails', async () => {
+    // Stripe's asynchronous refund-failure test card first reports succeeded,
+    // then refund.failed. The money is still paid when the refund is reversed.
+    currentState.value = 'active'; currentState.mayRenew = true;
+    invoiceReference = 'in_async_refund_failure';
+    await executor.acceptWebhook(Buffer.from(JSON.stringify({ id: 'evt_before_async_refund' })), 'fixture');
+    let refundStatus: NonNullable<Stripe.Refund['status']> = 'succeeded';
+    const sdk = {
+      retrieveRefund: async () => ({ id: 're_async_fixture', charge: 'ch_async_fixture',
+        payment_intent: 'pi_async_fixture', amount: 8899, currency: 'usd', status: refundStatus }),
+      retrieveCharge: async () => ({ id: 'ch_async_fixture', livemode: true,
+        customer: 'cus_local_fixture', payment_intent: 'pi_async_fixture', amount: 8899,
+        paid: true, captured: true, status: 'succeeded', currency: 'usd', disputed: false,
+        amount_refunded: refundStatus === 'succeeded' ? 8899 : 0,
+        refunded: refundStatus === 'succeeded' }),
+      listInvoicePaymentsByInvoice: async () => ({ has_more: false, data: [{
+        livemode: true, invoice: invoiceReference, status: 'paid', amount_paid: 8899, currency: 'usd',
+        payment: { type: 'charge', charge: 'ch_async_fixture' },
+      }] }),
+      listRefundsByCharge: async () => ({ has_more: false, data: [{ id: 're_async_fixture',
+        charge: 'ch_async_fixture', amount: 8899, currency: 'usd', status: refundStatus }] }),
+      listChargesByPaymentIntent: async () => { throw new Error('Direct Charge invoice does not require another lookup'); },
+      listDisputesByCharge: async () => ({ has_more: false, data: [] }),
+      listInvoicePaymentsByPaymentIntent: async () => ({ has_more: false,
+        data: [{ livemode: true, invoice: invoiceReference }] }),
+      retrieveInvoice: async () => ({ id: invoiceReference, livemode: true, customer: 'cus_local_fixture',
+        status: 'paid', amount_paid: 8899, currency: 'usd',
+        parent: { subscription_details: { subscription: 'sub_local_fixture' } } }),
+    } as unknown as StripeSdkPort;
+    const refundProvider: StripeCommerceProvider = {
+      ...provider,
+      verifyWebhook(body, signature) {
+        return { ...provider.verifyWebhook(body, signature),
+          sourceEventType: refundStatus === 'failed' ? 'refund.failed' : 'refund.created',
+          signalType: 'refund_changed', providerTransactionReference: null,
+          providerRefundReference: 're_async_fixture' };
+      },
+      resolveFinancialSignal: signal => resolveStripeFinancialSignal(sdk, signal, 'production'),
+    };
+    const refunds = new StripeCommerceExecutor(pool, productionExecutionConfig(billing), refundProvider);
+    const receive = (id: string) => refunds.acceptWebhook(Buffer.from(JSON.stringify({ id })), 'fixture');
+    const subscription = async () => (await pool.query(
+      "select state,financial_state_override from app.commerce_subscriptions where provider_subscription_reference='sub_local_fixture'"
+    )).rows[0];
+
+    await receive('evt_async_refund_initial_success');
+    expect(await subscription()).toMatchObject({ state: 'refunded', financial_state_override: 'refunded' });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBe(0);
+    await executor.acceptWebhook(Buffer.from(JSON.stringify({ id: 'evt_stale_paid_after_refund' })), 'fixture');
+    expect(await subscription()).toMatchObject({ state: 'refunded', financial_state_override: 'refunded' });
+
+    refundStatus = 'failed';
+    await receive('evt_async_refund_later_failed');
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
+    expect((await pool.query('select count(*)::int as count from app.commerce_entitlement_grants where revoked_at is null')).rows[0].count).toBeGreaterThan(0);
+    await expect(receive('evt_async_refund_later_failed')).resolves.toMatchObject({ status: 'duplicate' });
+    expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
   });
 
 });

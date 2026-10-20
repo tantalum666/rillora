@@ -1,0 +1,36 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 115739,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-05T15-57-36-486Z_pid70398_f2279d9c.log",
+      "xcresultPath": "output/qa/rillora-release-12-stripe-20261005/compact-zh-current.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts"
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testLocalizedLargeTextDraftAndPrintableExport",
+        "status": "passed",
+        "durationMs": 76774
+      }
+    ]
+  }
+}

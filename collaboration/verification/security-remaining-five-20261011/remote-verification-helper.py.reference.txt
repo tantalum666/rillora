@@ -1,0 +1,36 @@
+"""Verify only the new archive using fresh GitHub bytes and separate LFS storage."""
+from pathlib import Path
+import datetime,hashlib,json,os,subprocess,sys,tempfile
+ROOT=Path('/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app')
+TEMP=Path('/private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e')
+KEY=Path('/Users/tantalum/Documents/电子遗嘱app/.local-secrets/collaboration-git/identity.txt')
+REF='refs/heads/codex/security-findings-20261011'
+os.environ['GIT_OPTIONAL_LOCKS']='0'
+commit=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()
+remote=subprocess.check_output(['git','-c','http.version=HTTP/1.1','ls-remote','origin',REF],cwd=ROOT,text=True).split()[0]
+assert commit==remote,'Remote branch differs'
+prefix='collaboration/verification/security-remaining-five-20261011'
+def fetch(path):
+ return subprocess.check_output(['gh','api','-H','Accept: application/vnd.github.raw+json',f'repos/tantalum666/rillora/contents/{path}?ref={commit}'])
+raw=fetch(prefix+'/snapshot.json');summary=json.loads(raw);assert len(summary['archives'])==1
+archive=summary['archives'][0];assert archive['path']=='collaboration/archives/raw-work-032.tar.zst.age'
+assert archive==json.loads((ROOT/prefix/'snapshot.json').read_text())['archives'][0]
+cache=TEMP/'fresh-remote-lfs32';assert not cache.exists(),'Use a fresh download location'
+result=subprocess.run(['git','-c','http.version=HTTP/1.1','-c',f'lfs.storage={cache}','lfs','fetch','--include='+archive['path'],'--exclude=','origin',commit],cwd=ROOT,env={**os.environ,'GODEBUG':'http2client=0'},capture_output=True,text=True)
+(TEMP/'remaining-five-fresh-lfs32-fetch.log').write_text(result.stdout+result.stderr)
+if result.returncode:raise RuntimeError('Fresh LFS fetch failed; no verification claim')
+sha=archive['sha256'];downloaded=cache/'objects'/sha[:2]/sha[2:4]/sha
+assert downloaded.stat().st_size==archive['bytes'] and hashlib.sha256(downloaded.read_bytes()).hexdigest()==sha
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+from verify_archives import verify
+with tempfile.TemporaryDirectory(prefix='rillora-remote-remaining-five-',dir=TEMP) as folder:
+ stage=Path(folder);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_bytes(raw)
+ for path in summary['catalogFiles']:
+  assert path==prefix+'/catalog.json'
+  data=fetch(path);assert data==(ROOT/path).read_bytes()
+  out=stage/path;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(data)
+ target=stage/archive['path'];target.parent.mkdir(parents=True,exist_ok=True);os.link(downloaded,target)
+ verified=verify(stage,KEY)
+receipt={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'remoteCommit':commit,'remoteBranchMatched':True,'metadataReadAtImmutableCommit':True,'freshSeparateLfsStorage':True,'previousArchivesDownloadedAgain':False,'archive':archive,'verification':verified,'boundary':'Git and encrypted-original preservation only; not provider/runtime/device/launch acceptance.'}
+(TEMP/'remaining-five-remote-readback.json').write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps({'commit':commit,'freshDownloadedBytes':archive['bytes'],'verification':verified}))

@@ -1,0 +1,114 @@
+"""Prepare the two existing client updates; enforce an asset-only live template diff."""
+from pathlib import Path
+import copy
+import datetime
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-web-rollout-20261009'
+PRIVATE = ROOT / '.local-secrets/web-rollout-20261009'
+stack_name = sys.argv[1]
+assert stack_name in {'RilloraStaging', 'RilloraProductionWeb'}
+def cloud(args):
+    return json.loads(subprocess.check_output(['aws', 'cloudformation', *args, '--stack-name', stack_name,
+                                              '--profile', 'rillora-cdk-deploy', '--region', 'eu-central-1', '--output', 'json']))
+stack = cloud(['describe-stacks'])['Stacks'][0]
+assert stack['StackStatus'] in {'CREATE_COMPLETE', 'UPDATE_COMPLETE'}
+old = cloud(['get-template'])['TemplateBody']
+old = json.loads(old) if isinstance(old, str) else old
+before_path = PRIVATE / (stack_name + '-template-actual-predeploy.json')
+before_path.write_text(json.dumps(old)); before_path.chmod(0o600)
+assembly = QA / ('cdk-' + stack_name)
+if stack_name == 'RilloraProductionWeb':
+    certificate = next(value['Properties']['DistributionConfig']['ViewerCertificate']['AcmCertificateArn']
+                       for value in old['Resources'].values() if value['Type'] == 'AWS::CloudFront::Distribution')
+    env = dict(os.environ, CDK_DEFAULT_ACCOUNT=certificate.split(':')[4], CDK_DEFAULT_REGION='eu-central-1')
+    with (QA / (stack_name + '-synth.log')).open('w') as log:
+        subprocess.run(['npx', 'cdk', 'synth', stack_name, '--quiet', '--output', str(assembly),
+                        '-c', 'productionWebOnly=true', '-c', 'productionWebReviewEnabled=true',
+                        '-c', 'productionWebCertificateArn=' + certificate], cwd=ROOT / 'infra/aws',
+                       env=env, stdout=log, stderr=subprocess.STDOUT, check=True)
+    new = json.loads((assembly / (stack_name + '.template.json')).read_text())
+else:
+    # The staging runtime is independent. Keep the actual cloud template and parameters
+    # intact, publishing only the new client folder and its exact resulting template.
+    prior = ROOT / 'output/qa/rillora-dot-rollout-20261007/cdk-RilloraStaging'
+    assembly.mkdir(parents=True, exist_ok=True)
+    for name in ['manifest.json', 'RilloraStaging.assets.json', 'RilloraStaging.metadata.json', 'tree.json', 'cdk.out']:
+        shutil.copy2(prior / name, assembly / name)
+    manifest = json.loads((assembly / 'manifest.json').read_text())
+    assets = json.loads((assembly / 'RilloraStaging.assets.json').read_text())
+    source = ROOT / 'apps/web/dist/client'
+    files = sorted(p for p in source.rglob('*') if p.is_file())
+    assert len(files) == 86 and (source / 'index.html').exists()
+    digest = hashlib.sha256()
+    for path in files:
+        digest.update(path.relative_to(source).as_posix().encode() + b'\0')
+        digest.update(hashlib.sha256(path.read_bytes()).digest())
+    asset_hash = digest.hexdigest()
+    folder = assembly / ('asset.' + asset_hash)
+    assert not folder.exists(), 'Do not overwrite a prepared asset.'
+    shutil.copytree(source, folder)
+    frontend_entries = [value for value in assets['files'].values() if value['source']['packaging'] == 'zip']
+    template_entries = [value for value in assets['files'].values() if value['source']['path'] == 'RilloraStaging.template.json']
+    assert len(frontend_entries) == len(template_entries) == 1
+    frontend = copy.deepcopy(frontend_entries[0])
+    frontend['source']['path'] = folder.name
+    for destination in frontend['destinations'].values():
+        destination['objectKey'] = asset_hash + '.zip'
+    new = copy.deepcopy(old)
+    deployments = [key for key, value in new['Resources'].items() if value['Type'] == 'Custom::CDKBucketDeployment']
+    assert len(deployments) == 1
+    new['Resources'][deployments[0]]['Properties']['SourceObjectKeys'] = [asset_hash + '.zip']
+    template_bytes = (json.dumps(new, indent=2) + '\n').encode()
+    (assembly / 'RilloraStaging.template.json').write_bytes(template_bytes)
+    template_hash = hashlib.sha256(template_bytes).hexdigest()
+    template_asset = copy.deepcopy(template_entries[0])
+    for destination in template_asset['destinations'].values():
+        destination['objectKey'] = template_hash + '.json'
+    assets['files'] = {asset_hash: frontend, template_hash: template_asset}
+    assets['dockerImages'] = {}
+    properties = manifest['artifacts']['RilloraStaging']['properties']
+    properties['stackTemplateAssetObjectUrl'] = properties['stackTemplateAssetObjectUrl'].rsplit('/', 1)[0] + '/' + template_hash + '.json'
+    (assembly / 'manifest.json').write_text(json.dumps(manifest, indent=2) + '\n')
+    (assembly / 'RilloraStaging.assets.json').write_text(json.dumps(assets, indent=2) + '\n')
+
+changes = []
+def compare(a, b, path=''):
+    if type(a) is not type(b): changes.append(path)
+    elif isinstance(a, dict):
+        for key in sorted(a.keys() | b.keys()):
+            if key not in a or key not in b: changes.append(path + '/' + key)
+            else: compare(a[key], b[key], path + '/' + key)
+    elif isinstance(a, list):
+        if len(a) != len(b): changes.append(path)
+        else:
+            for i, (left, right) in enumerate(zip(a, b)): compare(left, right, path + '/' + str(i))
+    elif a != b: changes.append(path)
+compare(old, new)
+deployments = [key for key, value in old['Resources'].items() if value['Type'] == 'Custom::CDKBucketDeployment']
+assert len(deployments) == 1
+assert changes == ['/Resources/' + deployments[0] + '/Properties/SourceObjectKeys/0'], repr(changes)
+receipt = {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'stack': stack_name,
+           'changedPaths': changes, 'resourceCounts': [len(old['Resources']), len(new['Resources'])],
+           'actualCloudCompared': True, 'assetOnly': True, 'apiDatabaseIdentityParametersAndBillingUnchanged': True,
+           'dockerAssetsExcluded': stack_name == 'RilloraStaging'}
+(QA / (stack_name + '-reviewed-diff.json')).write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps(receipt), flush=True)
+with (QA / (stack_name + '-deploy.log')).open('w') as log:
+    subprocess.run(['npx', 'cdk', 'deploy', stack_name, '--app', str(assembly), '--profile', 'rillora-cdk-session',
+                    '--require-approval', 'never', '--previous-parameters', 'true',
+                    '--outputs-file', str(QA / (stack_name + '-outputs.json'))], cwd=ROOT / 'infra/aws',
+                   stdout=log, stderr=subprocess.STDOUT, check=True)
+actual = cloud(['get-template'])['TemplateBody']
+actual = json.loads(actual) if isinstance(actual, str) else actual
+status = cloud(['describe-stacks'])['Stacks'][0]['StackStatus']
+assert status == 'UPDATE_COMPLETE' and actual == new
+receipt.update(status=status, actualTemplateMatchesReviewedAssembly=True)
+(QA / (stack_name + '-complete.json')).write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps({'stack': stack_name, 'status': status, 'actualTemplateMatches': True}), flush=True)

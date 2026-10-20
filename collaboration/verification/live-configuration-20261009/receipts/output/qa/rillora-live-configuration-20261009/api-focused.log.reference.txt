@@ -1,0 +1,13 @@
+
+> continuity-api@0.1.0 test
+> vitest run tests/production-purchase-contract.test.ts tests/stripe-production-adapter.test.ts tests/production-commerce.integration.test.ts tests/production-closed.test.ts tests/production-review-access.integration.test.ts
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+
+ Test Files  5 passed (5)
+      Tests  36 passed (36)
+   Start at  14:32:46
+   Duration  3.13s (transform 276ms, setup 139ms, import 1.36s, tests 1.07s, environment 0ms)
+

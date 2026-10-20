@@ -1,0 +1,41 @@
+"""Read signature/mapping outcomes and the exact Owner's pending TEST checkout."""
+from pathlib import Path
+import datetime,json,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-stripe-cloud-checkout-20261009'
+PRIVATE=ROOT/'.local-secrets/stripe-webhook-20261009'
+def aws(args,profile='rillora-staging-operator'):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+receipt=QA/'final-inbox-task.json';assert not receipt.exists()
+body=json.loads((ROOT/'.local-secrets/stripe-webhook-20261009/mapping-read-request.json').read_text())
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraStaging'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};assert out['WebUrl']=='https://app.staging.rillora.xyz'
+body['taskDefinition']=out['MigrationTaskDefinitionArn'];body['clientToken']=uuid.uuid4().hex
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-final-stripe-cloud-readback'});await c.connect();
+try{await c.query('begin read only');await c.query("set local statement_timeout='10s'");
+ const p=(await c.query('select id,status from app.planners where public_id=$1::uuid',[process.env.RILLORA_QA_PLANNER])).rows;
+ if(p.length!==1||p[0].status!=='active')throw new Error('exact_active_owner_required');const id=p[0].id;
+ const events=JSON.parse(process.env.RILLORA_QA_EVENTS);
+ const inbox=(await c.query(`select provider_event_reference,event_type,signature_verified,processing_status,last_error_code,attempt_count
+ from app.commerce_provider_event_inbox where provider_code='stripe' and provider_environment='test' and provider_event_reference=any($1::text[]) order by provider_occurred_at,provider_event_reference`,[events])).rows;
+ if(inbox.length!==8||inbox.some(x=>!x.signature_verified||x.processing_status!=='applied'||x.last_error_code!==null))throw new Error('exact_eight_signed_applied_events_required');
+ const orders=(await c.query(`select o.status,o.amount_minor,o.currency_code,(select count(*)::int from app.commerce_payment_attempts a where a.order_id=o.id and a.planner_id=o.planner_id) as attempts
+ from app.commerce_orders o where o.planner_id=$1 and o.public_id=$2::uuid and o.provider_code='stripe' and o.provider_environment='test'`,[id,process.env.RILLORA_QA_ORDER])).rows;
+ if(orders.length!==1||orders[0].status!=='paid_reconciled'||String(orders[0].amount_minor)!=='8899'||orders[0].currency_code!=='USD'||orders[0].attempts!==1)throw new Error('one_exact_test_order_and_attempt_required');
+ const subscriptions=(await c.query(`select state,provider_subscription_reference,current_period_ends_at,cancel_at_period_end from app.commerce_subscriptions where planner_id=$1 and renewal_provider='stripe' and provider_environment='test' and provider_subscription_reference=$2`,[id,process.env.RILLORA_QA_SUBSCRIPTION])).rows;
+ if(subscriptions.length!==1||subscriptions[0].state!=='refunded')throw new Error('exact_refund_state_required');
+ const activeMatterCount=(await c.query('select count(*)::int as n from app.matter_items where planner_id=$1 and archived_at is null',[id])).rows[0].n;
+ await c.query('commit');console.log(JSON.stringify({readOnly:true,tlsVerified:true,inbox,orders,subscriptions,activeMatterCount}));
+}finally{await c.end();}"""
+body['overrides']={'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script],
+ 'environment':[{'name':'RILLORA_QA_PLANNER','value':json.loads((ROOT/'.local-secrets/stripe-webhook-20261009/owner-preview-target.json').read_text())['plannerPublicId']}, {'name':'RILLORA_QA_EVENTS','value':json.dumps([e['id'] for e in json.loads((QA/'provider-final-events.json').read_text())['events']])}, {'name':'RILLORA_QA_ORDER','value':json.loads((QA/'provider-paid.json').read_text())['newOrderReference']}, {'name':'RILLORA_QA_SUBSCRIPTION','value':json.loads((QA/'provider-paid.json').read_text())['subscription']}]}]}
+path=PRIVATE/'final-inbox-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];prior=json.loads((ROOT/'output/qa/rillora-stripe-webhook-20261009/mapping-read-task.json').read_text())
+saved={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'taskArn':arn,'cluster':out['ClusterName'],
+ 'logGroup':prior['logGroup'],'logStream':'migration/Migration/'+arn.rsplit('/',1)[-1],'readOnly':True}
+receipt.write_text(json.dumps(saved,indent=2)+'\n');print(json.dumps(saved))

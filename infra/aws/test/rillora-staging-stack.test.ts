@@ -68,6 +68,9 @@ describe("Rillora staging infrastructure", () => {
     expect(snapshot.Resource).toHaveLength(2);
     expect(JSON.stringify(snapshot.Resource)).toContain(":snapshot:rillora-content-encryption-*");
     expect(snapshot.Resource).not.toContain("*");
+    const outputs=statements.find(statement=>statement.Sid==='ReadOwnMaintenanceOutputs');
+    expect(outputs.Action).toBe('cloudformation:DescribeStacks');
+    expect(outputs.Resource).toEqual({Ref:'AWS::StackId'});
   });
   it("isolates the read-only verification secret and injects it only after activation", () => {
     for (const enabled of [false, true]) {
@@ -89,12 +92,15 @@ describe("Rillora staging infrastructure", () => {
       expect(JSON.stringify(resource)).toContain("HttpApiAccessLogs");
     }
   });
-  it("injects the dedicated deletion credential only after explicit activation", () => {
+  it("injects deletion credentials into a separate worker only after explicit activation", () => {
     for (const enabled of [false, true]) {
       const template = templateFor(1, false, false, false, enabled);
       const api = Object.values(template.findResources("AWS::ECS::TaskDefinition")).flatMap(r => r.Properties.ContainerDefinitions).find(c => c.Name === "Api");
-      expect(api.Secrets.some((s: {Name:string}) => s.Name === "AUTH0_DELETION_CLIENT_SECRET")).toBe(enabled);
-      expect(api.Environment.some((s: {Name:string}) => s.Name === "AUTH0_DELETION_CLIENT_ID")).toBe(enabled);
+      expect(api.Secrets.some((s: {Name:string}) => s.Name === "AUTH0_DELETION_CLIENT_SECRET")).toBe(false);
+      expect(api.Environment.some((s: {Name:string}) => s.Name === "AUTH0_DELETION_CLIENT_ID")).toBe(false);
+      const worker=Object.values(template.findResources("AWS::ECS::TaskDefinition")).flatMap(r=>r.Properties.ContainerDefinitions).find(c=>c.Name==="IdentityDeletion");
+      expect(Boolean(worker)).toBe(enabled);
+      if(enabled)expect(worker.Secrets.some((s:{Name:string})=>s.Name==="AUTH0_DELETION_CLIENT_SECRET")).toBe(true);
       const policies = JSON.stringify(template.findResources("AWS::IAM::Policy"));
       expect(policies).toContain("AccountDeletionClientSecret");
     }
@@ -199,10 +205,10 @@ describe("Rillora staging infrastructure", () => {
 
   it("creates three write-only Apple IAP secrets only when Sandbox Server API is enabled", () => {
     const disabled = templateFor(1);
-    disabled.resourceCountIs("AWS::SecretsManager::Secret", 7);
+    disabled.resourceCountIs("AWS::SecretsManager::Secret", 10);
 
     const enabled = templateFor(1, false, true);
-    enabled.resourceCountIs("AWS::SecretsManager::Secret", 10);
+    enabled.resourceCountIs("AWS::SecretsManager::Secret", 13);
     const enabledTasks = enabled.findResources("AWS::ECS::TaskDefinition");
     const enabledApi = (Object.values(enabledTasks) as Array<{
       Properties: {
@@ -242,7 +248,7 @@ describe("Rillora staging infrastructure", () => {
 
   it("creates write-only operator paths for separate Stripe test secrets and injects them only when enabled", () => {
     const disabled = templateFor(1);
-    disabled.resourceCountIs("AWS::SecretsManager::Secret", 7);
+    disabled.resourceCountIs("AWS::SecretsManager::Secret", 10);
     const disabledTasks = disabled.findResources("AWS::ECS::TaskDefinition");
     const disabledApi = (Object.values(disabledTasks) as Array<{
       Properties: { ContainerDefinitions: Array<{ Name: string; Secrets?: Array<{ Name: string }> }> };

@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-11T11:18:50.541Z",
+  "mode": "same-workflow-compaction-recovery-and-closeout",
+  "priorRecord": "output/qa/rillora-security-remediation-20261011/reading.json",
+  "freshWholeRepositoryReadClaimed": false,
+  "bodyReads": {
+    "AGENTS.md": "1–84 full; current protocol",
+    "docs/product.md": "current October11 decision, 360–567 current locked decisions, Authority Map and dated tail; truncated returned tail reread536–567",
+    "docs/handoff.md": "full current and primary pointer",
+    "docs/decision-log.md": "latest190lines including exact Owner approvals",
+    "docs/security-findings-remediation-20261011.md": "full",
+    "docs/source-control.md": "1–456 full",
+    "collaboration/README.md": "1–169 full",
+    "collaboration/verification/security-remediation-20261011/README.md": "full",
+    "docs/journey/PROJECT_JOURNEY.md": "latest65lines plus authored final addition"
+  },
+  "boundary": "Continues the existing full-read/chained workflow. Prior inventory is a drift map, not a new full-body reading claim."
+}

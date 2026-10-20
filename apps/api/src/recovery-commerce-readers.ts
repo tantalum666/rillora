@@ -10,7 +10,7 @@ import {loadStripeProductionSecret} from './stripe-production-secret.js';
 import {StripeProductionAdapter,type StripeProductionPriceBinding} from './stripe-production-adapter.js';
 
 export type RecoveryProviderObservation={snapshot:AuthoritativeSubscriptionSnapshot;
- apple?:AppleProductionSnapshot;financialOverride?:'refunded'|'revoked'|null;disputeResolved?:boolean;
+ apple?:AppleProductionSnapshot;financialOverride?:'refunded'|'revoked'|null;disputeResolved?:boolean;refundResolved?:boolean;
  stripePrice?:StripeProductionPriceBinding;stripeProduct?:string};
 /** Trusted backend dependency, never a caller-supplied JSON verification claim. */
 export type RecoveryProviderReader=(reference:RecoverySubscriptionReference,plannerPublicId:string)=>Promise<RecoveryProviderObservation>;
@@ -27,7 +27,7 @@ export function createRecoveryProviderReader(pool:DatabasePool,config:{appleProd
     return new AppleProductionSnapshotAdapter(new AppleProductionServerApi(credentials,undefined,context),verifier,await loadAppleProductionPriceBindings(pool,context));
    })());
    const snapshot=await (await apples.get(ref.environment)!).retrieveAuthoritativeSubscription({anyTransactionId:ref.reference,
-    providerSubscriptionReference:ref.reference,expectedAppAccountToken:owner,expectedCommerceAccountReference:ref.account});
+    providerSubscriptionReference:ref.reference,expectedAppAccountToken:ref.appAccountToken??owner,expectedCommerceAccountReference:ref.account});
    return {snapshot,apple:snapshot};
   }
   if(ref.provider==='stripe'&&ref.environment==='production'&&ref.customer){
@@ -36,6 +36,7 @@ export function createRecoveryProviderReader(pool:DatabasePool,config:{appleProd
    const result=await (await stripe).retrieveRecoverySubscription({providerSubscriptionReference:ref.reference,
     expectedCommerceAccountReference:ref.account,expectedStripeCustomerReference:ref.customer});
    return {snapshot:result.snapshot,financialOverride:result.financial.override,disputeResolved:result.financial.resolvedDispute,
+    refundResolved:result.financial.resolvedRefund,
     stripePrice:result.price,stripeProduct:result.product};
   }
   throw Error('Recovery provider environment is unsupported');

@@ -1,5 +1,7 @@
 <!DOCTYPE html>
 {% assign resolved_dir = dir | default: "auto" %}
+{% assign display_chinese = false %}
+{% if locale == "zh-CN" %}{% assign display_chinese = true %}{% endif %}
 <html lang="{{ locale }}" dir="{{ resolved_dir }}">
   <head>
     {%- auth0:head -%}
@@ -208,12 +210,12 @@
       <aside class="rillora-brand" aria-label="Rillora">
         <p class="rillora-wordmark"><img src="https://legal.rillora.xyz/assets/lockup-reversed-Bw_tOiWn.svg" alt="Rillora" width="1700" height="406"></p>
         <div class="rillora-brand-copy">
-          <p class="rillora-kicker">Private continuity</p>
-          <h1 class="rillora-title">A clear plan for what comes next.</h1>
-          <p class="rillora-brand-note">Your account opens the private map you chose to create or continue.</p>
+          <p class="rillora-kicker">{% if display_chinese %}为重要的人，留好指引{% else %}Private continuity{% endif %}</p>
+          <h1 class="rillora-title">{% if display_chinese %}把重要的事，交代清楚。{% else %}A clear plan for what comes next.{% endif %}</h1>
+          <p class="rillora-brand-note">{% if display_chinese %}登录后，继续整理属于你的事项地图。{% else %}Your account opens the private map you chose to create or continue.{% endif %}</p>
         </div>
       </aside>
-      <section class="rillora-auth-panel" aria-label="Account access">
+      <section class="rillora-auth-panel" aria-label="{% if display_chinese %}账号登录{% else %}Account access{% endif %}">
         <div class="rillora-widget-frame">
           <p class="rillora-mobile-wordmark"><img src="https://legal.rillora.xyz/assets/lockup-reversed-Bw_tOiWn.svg" alt="Rillora" width="1700" height="406"></p>
           {%- auth0:widget -%}

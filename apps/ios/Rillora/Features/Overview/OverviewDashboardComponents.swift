@@ -38,12 +38,12 @@ struct OverviewProgressCard: View {
 
     private var progressText: some View {
         VStack(alignment: .leading, spacing: 5) {
-            SectionEyebrow("Map progress")
+            SectionEyebrow(String(localized: "Map progress"))
             Text(progressTitle)
                 .font(.title3.weight(.semibold))
                 .foregroundStyle(RilloraTheme.ink)
                 .contentTransition(.numericText())
-            Text("\(snapshot.readyCount) of \(snapshot.progressTotal) essentials mapped")
+            Text(L10n.format("%1$lld of %2$lld essentials mapped", snapshot.readyCount, snapshot.progressTotal))
                 .font(.subheadline)
                 .foregroundStyle(RilloraTheme.muted)
         }
@@ -64,18 +64,18 @@ struct OverviewProgressCard: View {
                 .animation(reduceMotion ? nil : .easeOut(duration: 0.5), value: progressFraction)
 
             VStack(spacing: 0) {
-                Text("\(snapshot.readyCount)")
+                Text(snapshot.readyCount.formatted())
                     .font(.title2.weight(.bold))
                     .foregroundStyle(RilloraTheme.ink)
                     .contentTransition(.numericText())
-                Text("of \(snapshot.progressTotal)")
+                Text(L10n.format("of %1$lld", snapshot.progressTotal))
                     .font(.caption2.weight(.semibold))
                     .foregroundStyle(RilloraTheme.muted)
             }
         }
         .frame(width: progressRingSize, height: progressRingSize)
         .accessibilityElement()
-        .accessibilityLabel("\(snapshot.readyCount) of \(snapshot.progressTotal) essentials mapped")
+        .accessibilityLabel(L10n.format("%1$lld of %2$lld essentials mapped", snapshot.readyCount, snapshot.progressTotal))
     }
 
     @ViewBuilder
@@ -95,9 +95,9 @@ struct OverviewProgressCard: View {
 
     private var mattersMetric: some View {
         OverviewMetricButton(
-            title: "Matters",
-            value: "\(snapshot.matters.count)",
-            detail: snapshot.matters.isEmpty ? "Add the first" : "\(snapshot.readyCount) added",
+            title: String(localized: "Matters"),
+            value: snapshot.matters.count.formatted(),
+            detail: snapshot.matters.isEmpty ? String(localized: "Add the first") : L10n.format("%1$lld added", snapshot.readyCount),
             systemImage: "square.grid.2x2.fill",
             action: onOpenMatters
         )
@@ -106,9 +106,9 @@ struct OverviewProgressCard: View {
 
     private var contactMetric: some View {
         OverviewMetricButton(
-            title: "Trusted contact",
-            value: snapshot.primaryTrustedContact?.displayName ?? "Not added",
-            detail: snapshot.primaryTrustedContact?.evidenceLabel ?? "Record only",
+            title: String(localized: "Trusted contact"),
+            value: snapshot.primaryTrustedContact?.displayName ?? String(localized: "Not added"),
+            detail: snapshot.primaryTrustedContact?.evidenceLabel ?? String(localized: "Record only"),
             systemImage: "person.2.fill",
             action: onOpenProfile
         )
@@ -122,9 +122,9 @@ struct OverviewProgressCard: View {
 
     private var progressTitle: String {
         let remaining = max(snapshot.progressTotal - snapshot.readyCount, 0)
-        if remaining == 0 { return "Essentials mapped" }
-        if snapshot.readyCount == 0 { return "Ready to begin" }
-        return "\(remaining) essential\(remaining == 1 ? "" : "s") left"
+        if remaining == 0 { return String(localized: "Essentials mapped") }
+        if snapshot.readyCount == 0 { return String(localized: "Ready to begin") }
+        return L10n.format("%1$lld essentials left", remaining)
     }
 }
 
@@ -177,7 +177,7 @@ private struct OverviewMetricButton: View {
             .accessibilityHidden(true)
         }
         .buttonStyle(RilloraQuietButtonStyle())
-        .accessibilityLabel("\(title), \(value), \(detail)")
+        .accessibilityLabel(L10n.format("%1$@, %2$@, %3$@", title, value, detail))
     }
 }
 
@@ -187,15 +187,15 @@ struct MattersSummary: View {
     let onOpenMatter: (Matter) -> Void
 
     private var nextMatters: [Matter] {
-        Array((snapshot.matters.filter { !$0.isReady } + snapshot.matters.filter(\.isReady)).prefix(3))
+        MatterListPresentation.summaryMatters(snapshot.matters)
     }
 
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             HStack(alignment: .firstTextBaseline) {
-                SectionEyebrow("Next matters")
+                SectionEyebrow(String(localized: "Your matters"))
                 Spacer()
-                Button("View all", action: onOpenMatters)
+                Button(String(localized: "View all"), action: onOpenMatters)
                     .font(.subheadline.weight(.semibold))
                     .foregroundStyle(RilloraTheme.tabSelection)
                     .frame(minHeight: 44)
@@ -252,7 +252,7 @@ struct MatterSummaryRow: View {
         }
         .frame(minHeight: 58)
         .accessibilityElement(children: .combine)
-        .accessibilityLabel("\(matter.title), \(matter.preparationLabel.lowercased())")
+        .accessibilityLabel(L10n.format("%1$@, %2$@", matter.title, ownerStatusLabel.lowercased()))
     }
 
     private var matterIcon: some View {
@@ -272,7 +272,7 @@ struct MatterSummaryRow: View {
             Text(matter.title)
                 .font(.body.weight(.semibold))
                 .foregroundStyle(RilloraTheme.ink)
-            Text(matter.institutionName ?? matter.category.replacingOccurrences(of: "_", with: " ").capitalized)
+            Text(matter.institutionName ?? MatterCategory(rawValue: matter.category)?.label ?? matter.category.replacingOccurrences(of: "_", with: " ").capitalized)
                 .font(.footnote)
                 .foregroundStyle(RilloraTheme.muted)
         }
@@ -280,9 +280,13 @@ struct MatterSummaryRow: View {
     }
 
     private var matterStatus: some View {
-        Text(matter.preparationLabel)
+        Text(ownerStatusLabel)
             .font(.caption.weight(.semibold))
             .foregroundStyle(matter.isReady ? RilloraTheme.sage : RilloraTheme.body)
+    }
+
+    private var ownerStatusLabel: String {
+        MatterListPresentation.ownerStatusLabel(for: matter)
     }
 
     private var iconName: String {
@@ -301,10 +305,10 @@ struct MatterSummaryRow: View {
 
 struct CompactSafetyNote: View {
     var body: some View {
-        Label("Directions, not passwords", systemImage: "hand.raised.fill")
+        Label(String(localized: "Directions, not passwords"), systemImage: "hand.raised.fill")
             .font(.footnote.weight(.semibold))
             .foregroundStyle(RilloraTheme.sage)
             .frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
-            .accessibilityLabel("Directions, not passwords. Never save passwords, recovery codes, private keys, or seed phrases in Rillora.")
+            .accessibilityLabel(String(localized: "Directions, not passwords. Never save passwords, recovery codes, private keys, or seed phrases in Rillora."))
     }
 }

@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-08T03:15:23.566786+00:00",
+  "commandExit": 0,
+  "readbackExit": 1,
+  "scope": "Only CNAME legal within rillora.xyz; existing TTL600",
+  "requestedTarget": "rillora-legal-pages.pages.dev",
+  "wrapperResult": {
+    "domain": "rillora.xyz",
+    "applied": true,
+    "result": {
+      "strategy": "single-cname-replacement",
+      "replaced": 1
+    },
+    "unrelatedRecordsUnchanged": true,
+    "snapshot": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/.local/dns-backups/20261008T031509Z-68eaa66e.json"
+  }
+}

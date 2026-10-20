@@ -1,0 +1,830 @@
+- banner "App Store Connect":
+  - heading "App Store Connect" [level=1]:
+    - link "App Store Connect":
+      - /url: /
+  - navigation "全球":
+    - list:
+      - link "App":
+        - /url: /apps
+      - link "Xcode Cloud":
+        - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/xcode-cloud
+      - link "趋势":
+        - /url: /trends
+      - link "报告":
+        - /url: /itc/payments_and_financial_reports
+      - link "商务":
+        - /url: /business
+      - link "用户和访问":
+        - /url: /access/users
+  - button "Yuchen [REDACTED_PRIVATE_VALUE] YUAN|19416635507|1 Account name menu":
+    - generic: Yuchen Yuan
+    - generic: Yuchen YUAN|19416635507|1
+- button "App 菜单，已选择Rillora":
+  - generic "Rillora":
+    - img "Rillora"
+  - generic: Rillora
+- navigation "App":
+  - list:
+    - link "分发":
+      - /url: /apps/6803957639/distribution
+    - link "分析":
+      - /url: /apps/6803957639/analytics
+    - link "TestFlight":
+      - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/apps/6803957639/testflight
+- main:
+  - link "Rillora Family Yearly":
+    - /url: /apps/6803957639/distribution/subscriptions/6803959021
+    - text: Rillora Family Yearly
+  - heading "订阅定价" [level=2]
+  - navigation:
+    - link "订阅价格":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing
+    - link "推介促销优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/intro-offers
+    - link "回归用户优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/win-back-offers
+    - link "优惠代码":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/offer-codes
+    - link "促销优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/promo-offers
+  - heading "订阅价格" [level=3]
+  - link "所有价格和货币":
+    - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing-matrix
+    - paragraph: 所有价格和货币
+  - paragraph:
+    - text: 下方的价格调整日期会反映订阅的当前价格，以及为现有订阅者保留定价的任何开始日期。
+    - text: 点按最初价格或日期，管理当前定价和即将进行的调整。进一步了解
+    - link "订阅定价":
+      - /url: https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-pricing-for-auto-renewable-subscriptions
+    - text: 。
+  - heading "当前价格" [level=4]
+  - button "下载":
+    - text: 下载
+  - grid "当前价格":
+    - rowgroup:
+      - row "日期 国家或地区 操作":
+        - columnheader "日期":
+          - generic: 日期
+        - columnheader "国家或地区":
+          - generic: 国家或地区
+        - columnheader "操作"
+    - rowgroup:
+      - row "最初价格":
+        - rowheader "最初价格":
+          - button "最初价格"
+        - gridcell "175 个国家或地区":
+          - generic: 175 个国家或地区
+        - gridcell
+- dialog "国家或地区价格一览" [active]:
+  - document:
+    - heading "国家或地区价格一览" [level=2]
+    - paragraph: 我们已根据 $119.99 (USD) 自动计算所有国家或地区的价格。你可以针对单个国家或地区选取不同价格。
+    - button "已按国家或地区筛选，显示 所有国家或地区":
+      - text: 所有国家或地区
+    - table:
+      - rowgroup:
+        - row "国家或地区 (175) 价格":
+          - columnheader "国家或地区 (175)"
+          - columnheader "价格"
+    - button "美国和加拿大 (2)" [expanded]:
+      - text: 美国和加拿大 (2)
+    - region "美国和加拿大 (2)":
+      - table:
+        - rowgroup:
+          - row "加拿大 (CAD) $149.99":
+            - cell "加拿大 (CAD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "美国 (USD) $119.99":
+            - cell "美国 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+    - button "欧洲 (42)" [expanded]:
+      - text: 欧洲 (42)
+    - region "欧洲 (42)":
+      - table:
+        - rowgroup:
+          - row "阿尔巴尼亚 (USD) $149.99":
+            - cell "阿尔巴尼亚 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "爱尔兰 (EUR) €129.99":
+            - cell "爱尔兰 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "爱沙尼亚 (EUR) €129.99":
+            - cell "爱沙尼亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "奥地利 (EUR) €129.99":
+            - cell "奥地利 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "白俄罗斯 (USD) $149.99":
+            - cell "白俄罗斯 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "保加利亚 (EUR) €129.99":
+            - cell "保加利亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "北马其顿 (USD) $119.99":
+            - cell "北马其顿 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "比利时 (EUR) €129.99":
+            - cell "比利时 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "冰岛 (USD) $149.99":
+            - cell "冰岛 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "波兰 (PLN) zł 499.99":
+            - cell "波兰 (PLN)"
+            - cell "zł 499.99":
+              - button "zł 499.99"
+          - row "波斯尼亚和黑塞哥维那 (EUR) €129.99":
+            - cell "波斯尼亚和黑塞哥维那 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "丹麦 (DKK) kr 999.00":
+            - cell "丹麦 (DKK)"
+            - cell "kr 999.00":
+              - button "kr 999.00"
+          - row "德国 (EUR) €129.99":
+            - cell "德国 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "俄罗斯 (RUB) ₽9,990.00":
+            - cell "俄罗斯 (RUB)"
+            - cell "₽9,990.00":
+              - button "₽9,990.00"
+          - row "法国 (EUR) €129.99":
+            - cell "法国 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "芬兰 (EUR) €129.99":
+            - cell "芬兰 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "荷兰 (EUR) €129.99":
+            - cell "荷兰 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "黑山 (EUR) €99.99":
+            - cell "黑山 (EUR)"
+            - cell "€99.99":
+              - button "€99.99"
+          - row "捷克共和国 (CZK) Kč 2,990.00":
+            - cell "捷克共和国 (CZK)"
+            - cell "Kč 2,990.00":
+              - button "Kč 2,990.00"
+          - row "科索沃 (EUR) €129.99":
+            - cell "科索沃 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "克罗地亚 (EUR) €129.99":
+            - cell "克罗地亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "拉脱维亚 (EUR) €129.99":
+            - cell "拉脱维亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "立陶宛 (EUR) €129.99":
+            - cell "立陶宛 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "卢森堡 (EUR) €129.99":
+            - cell "卢森堡 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "罗马尼亚 (RON) lei 699.99":
+            - cell "罗马尼亚 (RON)"
+            - cell "lei 699.99":
+              - button "lei 699.99"
+          - row "马耳他 (EUR) €129.99":
+            - cell "马耳他 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "摩尔多瓦 (USD) $149.99":
+            - cell "摩尔多瓦 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "挪威 (NOK) kr 1,490.00":
+            - cell "挪威 (NOK)"
+            - cell "kr 1,490.00":
+              - button "kr 1,490.00"
+          - row "葡萄牙 (EUR) €129.99":
+            - cell "葡萄牙 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "瑞典 (SEK) kr 1,495.00":
+            - cell "瑞典 (SEK)"
+            - cell "kr 1,495.00":
+              - button "kr 1,495.00"
+          - row "瑞士 (CHF) CHF 100.00":
+            - cell "瑞士 (CHF)"
+            - cell "CHF 100.00":
+              - button "CHF 100.00"
+          - row "塞尔维亚 (EUR) €129.99":
+            - cell "塞尔维亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "塞浦路斯 (EUR) €129.99":
+            - cell "塞浦路斯 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "斯洛伐克 (EUR) €129.99":
+            - cell "斯洛伐克 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "斯洛文尼亚 (EUR) €129.99":
+            - cell "斯洛文尼亚 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "土耳其 (TRY) ₺5,999.99":
+            - cell "土耳其 (TRY)"
+            - cell "₺5,999.99":
+              - button "₺5,999.99"
+          - row "乌克兰 (USD) $149.99":
+            - cell "乌克兰 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "西班牙 (EUR) €129.99":
+            - cell "西班牙 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "希腊 (EUR) €129.99":
+            - cell "希腊 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "匈牙利 (HUF) Ft 49,990.00":
+            - cell "匈牙利 (HUF)"
+            - cell "Ft 49,990.00":
+              - button "Ft 49,990.00"
+          - row "意大利 (EUR) €129.99":
+            - cell "意大利 (EUR)"
+            - cell "€129.99":
+              - button "€129.99"
+          - row "英国 (GBP) £119.99":
+            - cell "英国 (GBP)"
+            - cell "£119.99":
+              - button "£119.99"
+    - button "非洲、中东和印度 (57)" [expanded]:
+      - text: 非洲、中东和印度 (57)
+    - region "非洲、中东和印度 (57)":
+      - table:
+        - rowgroup:
+          - row "阿尔及利亚 (USD) $119.99":
+            - cell "阿尔及利亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "阿富汗 (USD) $119.99":
+            - cell "阿富汗 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "阿拉伯联合酋长国 (AED) AED 499.99":
+            - cell "阿拉伯联合酋长国 (AED)"
+            - cell "AED 499.99":
+              - button "AED 499.99"
+          - row "阿曼 (USD) $119.99":
+            - cell "阿曼 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "阿塞拜疆 (USD) $149.99":
+            - cell "阿塞拜疆 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "埃及 (EGP) E£5,999.99":
+            - cell "埃及 (EGP)"
+            - cell "E£5,999.99":
+              - button "E£5,999.99"
+          - row "安哥拉 (USD) $119.99":
+            - cell "安哥拉 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴林 (USD) $129.99":
+            - cell "巴林 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "贝宁 (USD) $149.99":
+            - cell "贝宁 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "博茨瓦纳 (USD) $119.99":
+            - cell "博茨瓦纳 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "布基纳法索 (USD) $119.99":
+            - cell "布基纳法索 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "佛得角 (USD) $119.99":
+            - cell "佛得角 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "冈比亚 (USD) $119.99":
+            - cell "冈比亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "刚果共和国 (USD) $149.99":
+            - cell "刚果共和国 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "刚果民主共和国 (USD) $119.99":
+            - cell "刚果民主共和国 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "格鲁吉亚 (USD) $149.99":
+            - cell "格鲁吉亚 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "几内亚比绍 (USD) $119.99":
+            - cell "几内亚比绍 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "加纳 (USD) $149.99":
+            - cell "加纳 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "加蓬 (USD) $119.99":
+            - cell "加蓬 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "津巴布韦 (USD) $149.99":
+            - cell "津巴布韦 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "喀麦隆 (USD) $149.99":
+            - cell "喀麦隆 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "卡塔尔 (QAR) QAR 399.99":
+            - cell "卡塔尔 (QAR)"
+            - cell "QAR 399.99":
+              - button "QAR 399.99"
+          - row "科特迪瓦 (USD) $149.99":
+            - cell "科特迪瓦 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "科威特 (USD) $119.99":
+            - cell "科威特 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "肯尼亚 (USD) $149.99":
+            - cell "肯尼亚 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "黎巴嫩 (USD) $119.99":
+            - cell "黎巴嫩 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "利比里亚 (USD) $119.99":
+            - cell "利比里亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "利比亚 (USD) $119.99":
+            - cell "利比亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "卢旺达 (USD) $119.99":
+            - cell "卢旺达 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "马达加斯加 (USD) $119.99":
+            - cell "马达加斯加 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "马拉维 (USD) $119.99":
+            - cell "马拉维 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "马里 (USD) $119.99":
+            - cell "马里 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "毛里求斯 (USD) $149.99":
+            - cell "毛里求斯 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "毛里塔尼亚 (USD) $119.99":
+            - cell "毛里塔尼亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "摩洛哥 (USD) $149.99":
+            - cell "摩洛哥 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "莫桑比克 (USD) $119.99":
+            - cell "莫桑比克 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "纳米比亚 (USD) $119.99":
+            - cell "纳米比亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "南非 (ZAR) R 2,499.99":
+            - cell "南非 (ZAR)"
+            - cell "R 2,499.99":
+              - button "R 2,499.99"
+          - row "尼日尔 (USD) $119.99":
+            - cell "尼日尔 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "尼日利亚 (NGN) ₦199,900.00":
+            - cell "尼日利亚 (NGN)"
+            - cell "₦199,900.00":
+              - button "₦199,900.00"
+          - row "塞拉利昂 (USD) $119.99":
+            - cell "塞拉利昂 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "塞内加尔 (USD) $149.99":
+            - cell "塞内加尔 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "塞舌尔 (USD) $119.99":
+            - cell "塞舌尔 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "沙特阿拉伯 (SAR) SAR 499.99":
+            - cell "沙特阿拉伯 (SAR)"
+            - cell "SAR 499.99":
+              - button "SAR 499.99"
+          - row "圣多美和普林西比 (USD) $119.99":
+            - cell "圣多美和普林西比 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "斯威士兰 (USD) $119.99":
+            - cell "斯威士兰 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "坦桑尼亚 (TZS) TZS 349,900.00":
+            - cell "坦桑尼亚 (TZS)"
+            - cell "TZS 349,900.00":
+              - button "TZS 349,900.00"
+          - row "突尼斯 (USD) $119.99":
+            - cell "突尼斯 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "乌干达 (USD) $149.99":
+            - cell "乌干达 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "亚美尼亚 (USD) $149.99":
+            - cell "亚美尼亚 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "也门 (USD) $119.99":
+            - cell "也门 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "伊拉克 (USD) $119.99":
+            - cell "伊拉克 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "以色列 (ILS) ₪399.90":
+            - cell "以色列 (ILS)"
+            - cell "₪399.90":
+              - button "₪399.90"
+          - row "印度 (INR) ₹11,900.00":
+            - cell "印度 (INR)"
+            - cell "₹11,900.00":
+              - button "₹11,900.00"
+          - row "约旦 (USD) $119.99":
+            - cell "约旦 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "赞比亚 (USD) $149.99":
+            - cell "赞比亚 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "乍得 (USD) $119.99":
+            - cell "乍得 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+    - button "拉丁美洲和加勒比海地区 (37)" [expanded]:
+      - text: 拉丁美洲和加勒比海地区 (37)
+    - region "拉丁美洲和加勒比海地区 (37)":
+      - table:
+        - rowgroup:
+          - row "阿根廷 (USD) $119.99":
+            - cell "阿根廷 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "安圭拉 (USD) $119.99":
+            - cell "安圭拉 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "安提瓜和巴布达 (USD) $119.99":
+            - cell "安提瓜和巴布达 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴巴多斯 (USD) $149.99":
+            - cell "巴巴多斯 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "巴哈马 (USD) $129.99":
+            - cell "巴哈马 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "巴拉圭 (USD) $119.99":
+            - cell "巴拉圭 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴拿马 (USD) $119.99":
+            - cell "巴拿马 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴西 (BRL) R$799.90":
+            - cell "巴西 (BRL)"
+            - cell "R$799.90":
+              - button "R$799.90"
+          - row "百慕大 (USD) $119.99":
+            - cell "百慕大 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "玻利维亚 (USD) $119.99":
+            - cell "玻利维亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "伯利兹 (USD) $119.99":
+            - cell "伯利兹 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "多米尼加共和国 (USD) $119.99":
+            - cell "多米尼加共和国 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "多米尼克 (USD) $119.99":
+            - cell "多米尼克 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "厄瓜多尔 (USD) $119.99":
+            - cell "厄瓜多尔 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "哥伦比亚 (COP) $599,900.00":
+            - cell "哥伦比亚 (COP)"
+            - cell "$599,900.00":
+              - button "$599,900.00"
+          - row "哥斯达黎加 (USD) $119.99":
+            - cell "哥斯达黎加 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "格林纳达 (USD) $119.99":
+            - cell "格林纳达 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "圭亚那 (USD) $119.99":
+            - cell "圭亚那 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "洪都拉斯 (USD) $119.99":
+            - cell "洪都拉斯 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "开曼群岛 (USD) $119.99":
+            - cell "开曼群岛 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "蒙特塞拉特 (USD) $119.99":
+            - cell "蒙特塞拉特 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "秘鲁 (PEN) PEN 499.90":
+            - cell "秘鲁 (PEN)"
+            - cell "PEN 499.90":
+              - button "PEN 499.90"
+          - row "墨西哥 (MXN) $2,499.00":
+            - cell "墨西哥 (MXN)"
+            - cell "$2,499.00":
+              - button "$2,499.00"
+          - row "尼加拉瓜 (USD) $119.99":
+            - cell "尼加拉瓜 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "萨尔瓦多 (USD) $119.99":
+            - cell "萨尔瓦多 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "圣基茨和尼维斯 (USD) $119.99":
+            - cell "圣基茨和尼维斯 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "圣卢西亚 (USD) $119.99":
+            - cell "圣卢西亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "圣文森特和格林纳丁斯 (USD) $119.99":
+            - cell "圣文森特和格林纳丁斯 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "苏里南 (USD) $129.99":
+            - cell "苏里南 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "特克斯和凯科斯群岛 (USD) $119.99":
+            - cell "特克斯和凯科斯群岛 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "特立尼达和多巴哥 (USD) $119.99":
+            - cell "特立尼达和多巴哥 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "危地马拉 (USD) $119.99":
+            - cell "危地马拉 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "委内瑞拉 (USD) $119.99":
+            - cell "委内瑞拉 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "乌拉圭 (USD) $119.99":
+            - cell "乌拉圭 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "牙买加 (USD) $119.99":
+            - cell "牙买加 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "英属维尔京群岛 (USD) $119.99":
+            - cell "英属维尔京群岛 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "智利 (CLP) $129,990.00":
+            - cell "智利 (CLP)"
+            - cell "$129,990.00":
+              - button "$129,990.00"
+    - button "亚太地区 (37)" [expanded]:
+      - text: 亚太地区 (37)
+    - region "亚太地区 (37)":
+      - table:
+        - rowgroup:
+          - row "澳大利亚 (AUD) $199.99":
+            - cell "澳大利亚 (AUD)"
+            - cell "$199.99":
+              - button "$199.99"
+          - row "澳门 (USD) $119.99":
+            - cell "澳门 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴布亚新几内亚 (USD) $119.99":
+            - cell "巴布亚新几内亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "巴基斯坦 (PKR) Rs 29,900.00":
+            - cell "巴基斯坦 (PKR)"
+            - cell "Rs 29,900.00":
+              - button "Rs 29,900.00"
+          - row "不丹 (USD) $119.99":
+            - cell "不丹 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "菲律宾 (PHP) ₱7,990.00":
+            - cell "菲律宾 (PHP)"
+            - cell "₱7,990.00":
+              - button "₱7,990.00"
+          - row "斐济 (USD) $119.99":
+            - cell "斐济 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "哈萨克斯坦 (KZT) ₸69,990.00":
+            - cell "哈萨克斯坦 (KZT)"
+            - cell "₸69,990.00":
+              - button "₸69,990.00"
+          - row "韩国 (KRW) ₩199,000.00":
+            - cell "韩国 (KRW)"
+            - cell "₩199,000.00":
+              - button "₩199,000.00"
+          - row "吉尔吉斯斯坦 (USD) $129.99":
+            - cell "吉尔吉斯斯坦 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "柬埔寨 (USD) $129.99":
+            - cell "柬埔寨 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "老挝 (USD) $129.99":
+            - cell "老挝 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "马尔代夫 (USD) $119.99":
+            - cell "马尔代夫 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "马来西亚 (MYR) RM 599.90":
+            - cell "马来西亚 (MYR)"
+            - cell "RM 599.90":
+              - button "RM 599.90"
+          - row "蒙古 (USD) $119.99":
+            - cell "蒙古 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "密克罗尼西亚 (USD) $119.99":
+            - cell "密克罗尼西亚 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "缅甸 (USD) $119.99":
+            - cell "缅甸 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "瑙鲁 (USD) $119.99":
+            - cell "瑙鲁 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "尼泊尔 (USD) $149.99":
+            - cell "尼泊尔 (USD)"
+            - cell "$149.99":
+              - button "$149.99"
+          - row "帕劳 (USD) $119.99":
+            - cell "帕劳 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "日本 (JPY) ¥20,000.00":
+            - cell "日本 (JPY)"
+            - cell "¥20,000.00":
+              - button "¥20,000.00"
+          - row "斯里兰卡 (USD) $119.99":
+            - cell "斯里兰卡 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "所罗门群岛 (USD) $119.99":
+            - cell "所罗门群岛 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "塔吉克斯坦 (USD) $129.99":
+            - cell "塔吉克斯坦 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "台湾 (TWD) NT$3,990.00":
+            - cell "台湾 (TWD)"
+            - cell "NT$3,990.00":
+              - button "NT$3,990.00"
+          - row "泰国 (THB) ฿3,990.00":
+            - cell "泰国 (THB)"
+            - cell "฿3,990.00":
+              - button "฿3,990.00"
+          - row "汤加 (USD) $119.99":
+            - cell "汤加 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "土库曼斯坦 (USD) $119.99":
+            - cell "土库曼斯坦 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "瓦努阿图 (USD) $119.99":
+            - cell "瓦努阿图 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "文莱 (USD) $119.99":
+            - cell "文莱 (USD)"
+            - cell "$119.99":
+              - button "$119.99"
+          - row "乌兹别克斯坦 (USD) $129.99":
+            - cell "乌兹别克斯坦 (USD)"
+            - cell "$129.99":
+              - button "$129.99"
+          - row "香港 (HKD) $888.00":
+            - cell "香港 (HKD)"
+            - cell "$888.00":
+              - button "$888.00"
+          - row "新加坡 (SGD) $179.98":
+            - cell "新加坡 (SGD)"
+            - cell "$179.98":
+              - button "$179.98"
+          - row "新西兰 (NZD) $199.99":
+            - cell "新西兰 (NZD)"
+            - cell "$199.99":
+              - button "$199.99"
+          - row "印度尼西亚 (IDR) Rp 2,299,000.00":
+            - cell "印度尼西亚 (IDR)"
+            - cell "Rp 2,299,000.00":
+              - button "Rp 2,299,000.00"
+          - row "越南 (VND) ₫3,999,000.00":
+            - cell "越南 (VND)"
+            - cell "₫3,999,000.00":
+              - button "₫3,999,000.00"
+          - row "中国大陆 (CNY) ¥798.00":
+            - cell "中国大陆 (CNY)"
+            - cell "¥798.00":
+              - button "¥798.00"
+    - button "返回"
+    - button "取消"
+    - button "下一步"
+- contentinfo:
+  - list:
+    - link "App Store Connect":
+      - /url: /apps
+  - list:
+    - listitem: Copyright © 2026 Apple Inc. 保留所有权利。 |
+    - link "服务条款":
+      - /url: /WebObjects/iTunesConnect.woa/wa/termsOfService
+    - text: "|"
+    - link "隐私政策":
+      - /url: https://www.apple.com/legal/privacy
+    - text: "|"
+    - link "联系我们":
+      - /url: /contact-us

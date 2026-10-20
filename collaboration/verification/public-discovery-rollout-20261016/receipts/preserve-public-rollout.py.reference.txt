@@ -1,0 +1,144 @@
+"""Preserve only the new public-site deployment and search-provider evidence."""
+from pathlib import Path
+import datetime
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+DEST = ROOT / 'collaboration/verification/public-discovery-rollout-20261016'
+ARCHIVE = ROOT / 'collaboration/archives/raw-work-043.tar.zst.age'
+sys.path.insert(0, str(ROOT / 'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion, file_exclusion
+from verify_archives import verify
+
+assert not ARCHIVE.exists(), 'Never reseal an existing archive'
+assert json.loads((QA / 'source-scan.json').read_text())['passed']
+progress = json.loads((QA / 'search-platform-progress.json').read_text())
+assert progress['ownershipVerified'] and progress['bing']['ownershipVerified']
+assert progress['actualGoogleLiveTest']['pageFetch'] == 'Successful'
+assert progress['bing']['persistedSubmission']
+DEST.mkdir(parents=True, exist_ok=True)
+cache = QA / 'publication/frozen'
+cache.mkdir(parents=True, exist_ok=True, mode=0o700)
+public_asset = 'asset.acf228682babe79f77787f2f1eed8618728bbc6db84a4844b4e7ecac744fe25d'
+allowed_images = {
+    'live-article-en.png', 'live-article-zh.png', 'google-live-fetch.png',
+    'google-live-fetch-with-tip.png', 'google-ownership-verified.png',
+    'google-sitemap-report.png', 'google-sitemap-submitted.png',
+    'bing-verified-home.png', 'bing-sitemap-submitted.png',
+}
+excluded = [
+    {'path': '.local-secrets', 'reason': 'credentials, authentication pages/URLs, account identities and raw provider objects'},
+    {'path': '.local/dns-backups', 'reason': 'protected original zone snapshots'},
+    {'path': 'archives001-042', 'reason': 'immutable earlier captures; not recreated or downloaded'},
+]
+selected = []
+for base, dirs, names in os.walk(QA):
+    parent = Path(base)
+    for name in list(dirs):
+        path = parent / name
+        rel = path.relative_to(ROOT).as_posix()
+        reason = directory_exclusion(rel)
+        if public_asset in path.parts:
+            reason = None  # Exact independently verified public release asset, not a vendor cache.
+        if name in {'publication', '.cache'}:
+            reason = 'capture/download cache or deployment cache'
+        if reason or path.is_symlink():
+            dirs.remove(name)
+            excluded.append({'path': rel, 'reason': reason or 'symlink'})
+    for name in names:
+        path = parent / name
+        rel = path.relative_to(ROOT).as_posix()
+        reason = file_exclusion(rel)
+        if parent == QA / 'cdk.out' and name.startswith('asset.'):
+            reason = 'unchanged third-party deployment layer archive'
+        if parent == QA and path.suffix == '.png' and name not in allowed_images:
+            reason = 'unreviewed image'
+        if path.is_symlink():
+            reason = 'symlink'
+        if reason:
+            excluded.append({'path': rel, 'reason': reason})
+        else:
+            selected.append((rel, path))
+
+# Only these post-freeze receipts/helper were absent from the earlier OAuth capture.
+prior_qa = ROOT / 'output/qa/rillora-ai-oauth-20261016'
+late_names = [
+    'completion-markdown-links.json', 'completion-publication-check.json',
+    'final-added-readable-scan.json', 'final-publication-manifest.json',
+    'verify-remote-completion.py', 'remote-lfs-fetch.log',
+]
+for name in late_names:
+    p = prior_qa / name
+    selected.append((p.relative_to(ROOT).as_posix(), p))
+
+# Fail before freezing if the current private ownership proofs or OAuth capability values leaked.
+private = ROOT / '.local-secrets/ai-oauth-20261016'
+needles = []
+for name in ['bing-verification-record.json', 'search-console-txt.json', 'codex-login.json']:
+    obj = json.loads((private / name).read_text())
+    for key in ['name', 'data', 'value', 'authorizationUrl']:
+        value = obj.get(key)
+        if isinstance(value, str) and len(value) >= 24:
+            needles.append(value.encode())
+
+objects = {}
+records = []
+started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+for name, path in sorted(selected):
+    frozen, digest = snapshot.freeze_file(path, cache)
+    data = frozen.read_bytes()
+    assert not any(value in data for value in needles), 'Protected provider value found in ' + name
+    blob = objects.setdefault(digest, {'id': uuid.uuid4().hex, 'sha256': digest, 'bytes': len(data), 'source': str(frozen), 'paths': []})
+    blob['paths'].append(name)
+    record = {'sourcePath': name, 'bytes': len(data), 'rawObject': blob['id'], 'rawArchive': ARCHIVE.relative_to(ROOT).as_posix()}
+    # Small reviewed top-level receipts and exact helpers are directly readable by Dot.
+    if path.parent == QA and path.suffix in {'.json', '.py', '.js', '.log'} and name not in {
+        (QA / 'final-public-template.json').relative_to(ROOT).as_posix(),
+        (QA / 'staged-public-template.json').relative_to(ROOT).as_posix(),
+    }:
+        suffix = '.reference.txt' if path.suffix in {'.py', '.js', '.log'} else ''
+        target = DEST / 'receipts' / (path.name + suffix)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(frozen, target)
+        record['readablePath'] = target.relative_to(ROOT).as_posix()
+    elif path.parent == QA and path.name in allowed_images:
+        target = DEST / 'images' / path.name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(frozen, target)
+        record['previewPath'] = target.relative_to(ROOT).as_posix()
+    records.append(record)
+
+identity = ROOT / '.local-secrets/collaboration-git/identity.txt'
+assert identity.stat().st_mode & 0o077 == 0
+recipient = subprocess.check_output(['age-keygen', '-y', str(identity)], text=True).strip()
+archive = snapshot.seal_chunk(43, list(objects.values()), recipient)
+catalog = DEST / 'catalog.json'
+catalog.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
+summary = {
+    'capturedFrom': started, 'capturedThrough': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'workFiles': len(records), 'uniqueRawObjects': len(objects), 'workBytes': sum(x['bytes'] for x in records),
+    'archives': [archive], 'catalogFiles': [catalog.relative_to(ROOT).as_posix()], 'excluded': excluded,
+    'selection': 'New public release, exact HTTP/S3 readbacks, two-phase deployment, search ownership/submission and late OAuth closeout evidence only. Duplicate public bytes deduplicated within the new capture.',
+    'boundary': 'Website actually deployed; search ownership and submission verified; indexing, AI recommendations and hosted MCP not proven. App14/API/data/prices/billing and FanPass unchanged.',
+}
+(DEST / 'snapshot.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+with tempfile.TemporaryDirectory(prefix='rillora-public-archive-') as temporary:
+    stage = Path(temporary)
+    (stage / 'collaboration').mkdir()
+    (stage / 'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'], *summary['catalogFiles']]:
+        target = stage / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        os.link(ROOT / name, target)
+    verified = verify(stage, identity)
+(DEST / 'archive-verification.json').write_text(json.dumps(verified, indent=2) + '\n')
+print(json.dumps({'paths': len(records), 'objects': len(objects), 'encryptedBytes': archive['bytes'], 'locallyVerified': verified['passed']}))

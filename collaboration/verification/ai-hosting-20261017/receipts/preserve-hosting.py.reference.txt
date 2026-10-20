@@ -1,0 +1,62 @@
+"""Append only the new hosting workflow; never rewrite an earlier archive."""
+from pathlib import Path
+import datetime,hashlib,json,os,shutil,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent
+DEST=ROOT/'collaboration/verification/ai-hosting-20261017';ARCHIVE=ROOT/'collaboration/archives/raw-work-045.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+assert not ARCHIVE.exists(),'Never reseal previous work'
+for name in ['source-scan-final.json','auth0-final-readback.json','worker-source-readback.json','claude-revocation-read.json','cursor-revocation-read.json','hosted-boundary-readback.json']:
+ assert json.loads((QA/name).read_text())['passed'],name
+# Supplied from the running workflow's memory, with terminal echo disabled. Not saved.
+secret_needles=[value.encode() for value in json.loads(sys.stdin.readline()) if isinstance(value,str) and len(value)>=20]
+assert len(secret_needles)>=8
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+excluded=[{'path':'.local-secrets','reason':'credentials, auth URLs/codes, client token caches, private provider metadata and operator account screenshots'},
+ {'path':'archives001-044','reason':'immutable earlier captures; not resealed or downloaded'},
+ {'path':'provider databases','reason':'no raw database copy; synthetic aggregate readbacks only'}]
+selected=[]
+for base,dirs,names in os.walk(QA):
+ parent=Path(base)
+ for name in list(dirs):
+  path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+  if name=='publication' or name.startswith('vendor-'):reason='reproducible upstream dependency, source cache or publication cache'
+  if reason or path.is_symlink():dirs.remove(name);excluded.append({'path':rel,'reason':reason or 'symlink'})
+ for name in names:
+  path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+  if name in {'upload.gz.b64','cursor-install-official.sh','browser-transfer-public.pem'}:reason='reproducible transport/vendor installer or ephemeral public transfer key'
+  if reason or path.is_symlink():excluded.append({'path':rel,'reason':reason or 'symlink'})
+  else:selected.append((rel,path))
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for rel,path in sorted(selected):
+ frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+ assert not any(needle in data for needle in secret_needles),'Protected value in '+rel
+ blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(rel)
+ record={'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+ relative=path.relative_to(QA)
+ generated=relative.parts[0].startswith(('worker-bundle','probe-bundle','migration-plan'))
+ if path.suffix in {'.json','.py','.mjs','.mts','.log','.txt'} and not generated:
+  suffix='.reference.txt' if path.suffix in {'.py','.mjs','.mts','.log','.txt'} else ''
+  target=DEST/'receipts'/(str(relative)+suffix);target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(frozen,target);record['readablePath']=target.relative_to(ROOT).as_posix()
+ elif path.name in {'claude-active-connection.png','connections-revoked.png'}:
+  target=DEST/'images'/path.name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(frozen,target);record['previewPath']=target.relative_to(ROOT).as_posix()
+ records.append(record)
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip()
+archive=snapshot.seal_chunk(45,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'workFiles':len(records),
+ 'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),'archives':[archive],
+ 'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,'exactCurrentSecretMatches':0,
+ 'selection':'New isolated hosting original evidence, failures, migration plans, source scans, targeted tests, safe browser results and exact deployed Worker artifacts.',
+ 'boundary':'Synthetic hosted service and actual Claude Code/Cursor OAuth/read/refresh/revoke; not production KMS/recovery, customer enablement, Qwen OAuth, consumer accounts, model usage or directory approval.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-hosting-archive-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+ for name in [archive['path'],*summary['catalogFiles']]:
+  target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+ result=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'locallyVerified':result['passed']}))

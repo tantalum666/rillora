@@ -71,12 +71,18 @@ if (operationsOnly !== undefined && ![true, false, "true", "false"].includes(ope
 }
 if (productionWebSelected) {
   const review = app.node.tryGetContext('productionWebReviewEnabled');
+  const live = app.node.tryGetContext('productionWebLiveEnabled');
+  const mcp = app.node.tryGetContext('productionWebMcpEnabled');
+  if (mcp !== undefined && ![true,false,'true','false'].includes(mcp)) throw new Error('productionWebMcpEnabled must be true or false');
   if (review !== undefined && ![true, false, 'true', 'false'].includes(review)) throw new Error('productionWebReviewEnabled must be true or false');
+  if (live !== undefined && ![true, false, 'true', 'false'].includes(live)) throw new Error('productionWebLiveEnabled must be true or false');
   new RilloraProductionWebStack(app, 'RilloraProductionWeb', {
     env: { account: process.env.CDK_DEFAULT_ACCOUNT || undefined, region: 'eu-central-1' },
     description: 'Closed production Web client and same-origin API delivery; no account activation',
     certificateArn: app.node.tryGetContext('productionWebCertificateArn') ?? '',
     reviewEnabled: review === true || review === 'true',
+    liveEnabled: live === true || live === 'true',
+    customerMcpEnabled: mcp === true || mcp === 'true',
   });
 } else if (publicWebSelected) {
   new RilloraPublicWebStack(app, 'RilloraPublicWeb', {
@@ -102,8 +108,13 @@ if (productionWebSelected) {
     description:"Closed Rillora production data foundation and isolated recovery; no public traffic or billing",
     runtimeEnabled:runtime===true||runtime==='true',runtimeDesiredCount:runtimeDesiredCount as 0|1,
     reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
+    liveEnabled:reviewFlag('productionLiveEnabled'),stripeCheckoutEnabled:reviewFlag('productionStripeCheckoutEnabled'),
+    customerMcpPrepared:reviewFlag('productionMcpPrepared'),customerMcpEnabled:reviewFlag('productionMcpEnabled'),
+    appleProductionPrepared:reviewFlag('productionApplePrepared'),appleProductionEnabled:reviewFlag('productionAppleEnabled'),
+    appleReviewEnabled:reviewFlag('productionAppleReviewEnabled'),
     retentionEnabled:reviewFlag('productionRetentionEnabled'),
     identityServicesEnabled:reviewFlag('productionIdentityServicesEnabled'),
+    stripeNotificationsSecretArn:app.node.tryGetContext('productionStripeNotificationsSecretArn'),
     runtimeImageTag:app.node.tryGetContext('productionRuntimeImageTag'),
   });
 } else if(preflightSelected){

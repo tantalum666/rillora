@@ -1,0 +1,67 @@
+"""Prepare/execute/read only the exact reviewed Rillora cutover changesets."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,os,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('operation',choices=['prepare','execute','status']);parser.add_argument('environment',choices=['staging','production']);parser.add_argument('phase',choices=['stopped','running']);args=parser.parse_args()
+name='RilloraStaging' if args.environment=='staging' else 'RilloraProduction'
+prefix=args.environment+'-'+args.phase
+ci=json.loads((Q/'ci-readback.json').read_text());assert ci['conclusion']=='success' and len(ci['jobs'])==3
+head=subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip();assert head==ci['source']
+assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=ROOT).returncode==0
+assembly=Q/(prefix+'-assembly');path=assembly/(name+'.template.json');wanted=json.loads(path.read_text())
+review=next(x for x in json.loads((Q/'reviewed-cutover-templates.json').read_text())['environments'] if x['environment']==args.environment)
+assert hashlib.sha256(path.read_bytes()).hexdigest()==review[args.phase+'TemplateSha256']
+expected=json.loads((P/(name+'-before-template.json')).read_text()) if args.phase=='stopped' else json.loads((Q/(args.environment+'-stopped-assembly')/(name+'.template.json')).read_text())
+def aws(operation,payload):
+ r=subprocess.run(['aws','cloudformation',operation,'--profile','rillora-cdk-deploy','--region','eu-central-1','--cli-input-json',json.dumps(payload),'--output','json'],capture_output=True,text=True,timeout=60)
+ if r.returncode:raise RuntimeError(operation+': '+r.stderr[:700])
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def actual_template():
+ v=aws('get-template',{'StackName':name})['TemplateBody'];return json.loads(v) if isinstance(v,str) else v
+def verified_changeset():
+ state=json.loads((P/(prefix+'-changeset.json')).read_text());result=aws('describe-change-set',{'StackName':name,'ChangeSetName':state['id']})
+ assert result['Status']=='CREATE_COMPLETE'
+ assert result['StackName']==name
+ for row in result['Changes']:
+  change=row['ResourceChange'];assert change['Action']!='Remove','Resource removal refused'
+  if change['Action']=='Modify' and change.get('Replacement') not in ('False',False,None):
+   telemetry=change['LogicalResourceId']=='CDKMetadata' and change['ResourceType']=='AWS::CDK::Metadata' and change['Replacement']=='Conditional' and all(d.get('Target',{}).get('Name')=='Analytics' for d in change.get('Details',[]))
+   frontend_upload=(args.environment=='staging' and args.phase=='running'
+    and change['LogicalResourceId']=='WebDeploymentCustomResource08EEC474'
+    and change['ResourceType']=='Custom::CDKBucketDeployment' and change['Replacement']=='Conditional'
+    and bool(change.get('Details'))
+    and all(d.get('Target',{}).get('Name')=='SourceObjectKeys' for d in change['Details'])
+    and {k:v for k,v in expected['Resources'][change['LogicalResourceId']]['Properties'].items() if k!='SourceObjectKeys'}
+     =={k:v for k,v in wanted['Resources'][change['LogicalResourceId']]['Properties'].items() if k!='SourceObjectKeys'})
+   assert change['ResourceType']=='AWS::ECS::TaskDefinition' or telemetry or frontend_upload,'Unexpected resource replacement'
+ return state,result
+stack=aws('describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation=='prepare':
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==expected,'Current template differs; do not deploy stale candidates'
+ assert not (P/(prefix+'-changeset.json')).exists(),'Changeset already recorded'
+ if args.phase=='running':assert json.loads((Q/(args.environment+'-migration-acceptance.json')).read_text())['passed']
+ if args.environment=='production':assert json.loads((Q/'staging-running-deployed.json').read_text())['templateMatched']
+ changeset='rillora-security-'+ci['source'][:9]+'-'+prefix
+ command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session','--require-approval','never','--previous-parameters','true','--method','prepare-change-set','--change-set-name',changeset,'--outputs-file',str(P/(prefix+'-outputs.json'))]
+ for param in stack.get('Parameters',[]):
+  if param['ParameterKey']!='BootstrapVersion' and param.get('ParameterValue')!='****':command+=['--parameters',param['ParameterKey']+'='+param['ParameterValue']]
+ with (Q/(prefix+'-prepare.log')).open('w') as log:
+  result=subprocess.run(command,cwd=ROOT/'infra/aws',env={**os.environ,'CDK_DOCKER':'/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-web-rollout-20261009/cdk-docker-buildx.sh'},stdout=log,stderr=subprocess.STDOUT)
+ assert result.returncode==0,'Preparation did not complete; inspect before retrying'
+ description=aws('describe-change-set',{'StackName':name,'ChangeSetName':changeset})
+ save(P/(prefix+'-changeset.json'),{'id':description['ChangeSetId'],'source':ci['source'],'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat()})
+ state,description=verified_changeset();assert description['ExecutionStatus']=='AVAILABLE';save(P/(prefix+'-changeset-details.json'),description)
+ print(json.dumps({'environment':args.environment,'phase':args.phase,'prepared':True,'changes':len(description['Changes']),'executed':False}))
+elif args.operation=='execute':
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==expected
+ state,description=verified_changeset();assert description['ExecutionStatus']=='AVAILABLE'
+ marker=P/(prefix+'-execute-request.json');assert not marker.exists(),'Execution already attempted; use status'
+ request={'StackName':name,'ChangeSetName':state['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex};save(marker,request)
+ aws('execute-change-set',request);print(json.dumps({'environment':args.environment,'phase':args.phase,'executionRequested':True,'completed':False}))
+else:
+ result={'environment':args.environment,'phase':args.phase,'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':stack['StackStatus'],'templateMatched':False}
+ if stack['StackStatus']=='UPDATE_COMPLETE':
+  result['templateMatched']=actual_template()==wanted
+  if result['templateMatched']:(Q/(prefix+'-deployed.json')).write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps(result))

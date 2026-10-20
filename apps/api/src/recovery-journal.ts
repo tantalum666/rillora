@@ -1,27 +1,43 @@
 import { DynamoDBClient, GetItemCommand, PutItemCommand } from '@aws-sdk/client-dynamodb';
+import { LambdaClient, InvokeCommand } from '@aws-sdk/client-lambda';
 import type { Pool, PoolClient } from 'pg';
 import { z } from 'zod';
 import { ApiError } from './errors.js';
 
-const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access','retention_hold']),
+const eventSchema=z.object({key:z.string().min(1).max(100),kind:z.enum(['account','connection','matter','person','free_slot','unreconciled_access','retention_hold','ai_connection']),
  id:z.uuid(),revision:z.string().regex(/^[1-9][0-9]{0,18}$/),recordedAt:z.string(),facts:z.record(z.string(),z.unknown())}).strict()
  .refine(e=>e.key===`${e.kind}:${e.id}`,'Invalid journal key');
 export type RecoveryControl=z.infer<typeof eventSchema>;
-export interface RecoveryJournalPublisher {publish(event:RecoveryControl):Promise<void>;checkCoverage?(generation:string):Promise<void>}
+export type RecoveryEnvelope = {version:1;generation:string;transaction:string;event:string;signature:string};
+export interface RecoveryJournalPublisher {
+ publish(event:RecoveryControl):Promise<void>;
+ publishAttested?(envelope:RecoveryEnvelope):Promise<string>;
+ checkCoverage?(generation:string):Promise<void>;
+}
 const publishers=new WeakMap<Pool,RecoveryJournalPublisher>();
 
 export function configureRecoveryPool(pool:Pool,publisher:RecoveryJournalPublisher):void{publishers.set(pool,publisher);}
 const deleted=z.object({deleted:z.literal(true)}).strict();
+const grantLevel=z.enum(['name','directions','details']);
+const recordSequence=z.string().regex(/^[1-9][0-9]{0,18}$/);
+const savedField=z.enum(['title','category','institutionName','locationHint','desiredOutcome',
+ 'accountHint','valueBand','currencyCode','importance','notes','assetType','debtType','documentType',
+ 'deviceModel','billingCycle','renewalDate','cryptoCustody','network','walletAddress','walletLabel','assetSymbol']);
+const connectionBase={status:z.enum(['pending','accepted','revoked']),recipient:z.uuid().nullable(),version:z.number().int().positive()};
+export const recoveryConnectionHistorySchema=z.object({...connectionBase,historyVersion:z.literal(2),
+ grants:z.array(z.object({matter:z.uuid(),level:grantLevel,grantId:recordSequence,
+  savedFieldNames:z.array(savedField).max(21).nullable(),revokedReviewThrough:recordSequence.nullable()}).strict()).max(5000)}).strict();
 export const recoveryCommerceInventorySchema=z.object({version:z.literal(1),manualAccess:z.boolean(),
  subscriptions:z.array(z.object({provider:z.enum(['stripe','storekit','paddle','wechat','alipay','unionpay','local_web']),
   environment:z.enum(['production','sandbox','test','internal']),reference:z.string().min(1).max(255).nullable(),
   account:z.uuid(),customer:z.string().max(255).nullable(),market:z.string().max(40),plane:z.string().max(40),
-  acquisition:z.enum(['purchased','preview','migration','support_override'])}).strict()).max(100)}).strict();
+  acquisition:z.enum(['purchased','preview','migration','support_override']),appAccountToken:z.uuid().nullable().optional()}).strict()).max(100)}).strict();
 export type RecoverySubscriptionReference=z.infer<typeof recoveryCommerceInventorySchema>['subscriptions'][number];
 const factsByKind={
+ ai_connection:z.object({revokeOnRestore:z.literal(true)}).strict(),
  account:z.union([deleted,z.object({status:z.enum(['active','locked','deletion_pending','closed'])}).strict()]),
- connection:z.union([deleted,z.object({status:z.enum(['pending','accepted','revoked']),recipient:z.uuid().nullable(),version:z.number().int().positive(),
-  grants:z.array(z.object({matter:z.uuid(),level:z.enum(['name','directions','details'])}).strict()).max(5000)}).strict()]),
+ connection:z.union([deleted,recoveryConnectionHistorySchema,z.object({...connectionBase,
+  grants:z.array(z.object({matter:z.uuid(),level:grantLevel}).strict()).max(5000)}).strict()]),
  matter:z.union([deleted,z.object({version:z.number().int().positive(),archived:z.boolean(),private:z.boolean()}).strict()]),
  person:z.union([deleted,z.object({version:z.number().int().positive(),restricted:z.boolean()}).strict()]),
  free_slot:z.union([deleted,z.object({connection:z.uuid().nullable()}).strict()]),
@@ -62,7 +78,31 @@ export class DynamoRecoveryJournal implements RecoveryJournalPublisher {
 
 export function recoveryPublisherFromEnvironment():RecoveryJournalPublisher|null{
  const table=process.env.RECOVERY_JOURNAL_TABLE;
- return table?new DynamoRecoveryJournal(table,process.env.CONTENT_KEY_NAMESPACE??''):null;
+ if(!table)return null;
+ const broker=process.env.RECOVERY_JOURNAL_BROKER_ARN;
+ if(!broker)throw new Error('Recovery publication requires the independent attestation broker');
+ return new BrokerRecoveryJournal(broker);
+}
+
+export class BrokerRecoveryJournal implements RecoveryJournalPublisher {
+ constructor(private arn:string,private client=new LambdaClient({region:'eu-central-1',maxAttempts:2})) {
+  if(!/^arn:aws:lambda:eu-central-1:\d{12}:function:[A-Za-z0-9_-]+$/.test(arn))throw new Error('Invalid recovery broker');
+ }
+ async publish(_event:RecoveryControl):Promise<void>{throw new Error('An authenticated database envelope is required');}
+ private async invoke(body:unknown):Promise<Record<string,unknown>> {
+  const response=await this.client.send(new InvokeCommand({FunctionName:this.arn,InvocationType:'RequestResponse',Payload:Buffer.from(JSON.stringify(body))}),
+   {abortSignal:AbortSignal.timeout(10000)});
+  if(response.FunctionError||!response.Payload||response.Payload.length>2048)throw new Error('Recovery broker unavailable');
+  return JSON.parse(Buffer.from(response.Payload).toString('utf8')) as Record<string,unknown>;
+ }
+ async publishAttested(envelope:RecoveryEnvelope):Promise<string>{
+  const result=await this.invoke({operation:'publish',envelope});
+  if(typeof result.receipt!=='string'||!/^[a-f0-9]{64}$/.test(result.receipt))throw new Error('Recovery broker returned no receipt');
+  return result.receipt;
+ }
+ async checkCoverage(generation:string):Promise<void>{
+  if((await this.invoke({operation:'coverage',generation})).ready!==true)throw new Error('Recovery coverage unavailable');
+ }
 }
 
 export async function checkRecoveryJournal(pool:Pool):Promise<void>{
@@ -70,6 +110,8 @@ export async function checkRecoveryJournal(pool:Pool):Promise<void>{
  const client=await pool.connect();let policy;
  try{
   await client.query('begin');await client.query('set local role continuity_auth');
+  const {bindDatabaseAuthority}=await import('./database-authority.js');
+  await bindDatabaseAuthority(pool,client,'continuity_auth');
   policy=(await client.query('select app.recovery_status() as policy')).rows[0]?.policy;
   await client.query('commit');
  }catch(error){await client.query('rollback');throw error;}finally{client.release();}
@@ -80,6 +122,19 @@ export async function checkRecoveryJournal(pool:Pool):Promise<void>{
 export async function publishRecoveryTransaction(pool:Pool,client:PoolClient):Promise<void>{
  const publisher=publishers.get(pool);
  if(!publisher)return; // SQL's deferred guard still rejects unjournaled writes when enforced.
+ if(publisher.publishAttested){
+  const envelopes=(await client.query<{envelopes:RecoveryEnvelope[]}>('select app.recovery_envelopes() as envelopes')).rows[0]?.envelopes??[];
+  for(const envelope of envelopes){
+   const event=parseRecoveryControl(JSON.parse(envelope.event));
+   try{
+    const receipt=await publisher.publishAttested(envelope);
+    await client.query('select app.recovery_mark_attested($1,$2,$3)',[event.revision,envelope.event,receipt]);
+   }catch{
+    throw new ApiError(503,'recovery_journal_unavailable','Changes could not be saved safely. Please try again shortly.');
+   }
+  }
+  return;
+ }
  const result=await client.query<{events:unknown[]}>('select app.recovery_pending() as events');
  for(const raw of result.rows[0]?.events??[]){
   const event=parseRecoveryControl(raw);

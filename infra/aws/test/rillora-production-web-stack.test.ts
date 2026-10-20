@@ -21,6 +21,50 @@ function fixture() {
 const certificateArn = 'arn:aws:acm:us-east-1:111111111111:certificate/11111111-1111-4111-8111-111111111111';
 
 describe('Closed production client delivery', () => {
+  it('requires matching explicit live mode, retaining closed and review isolation', () => {
+    const assetDirectory = fixture();
+    try {
+      expect(() => verifyProductionClientArtifact(assetDirectory, false, true)).toThrow('access mode');
+      const path = join(assetDirectory, 'production-build.json');
+      const manifest = JSON.parse(readFileSync(path, 'utf8')); manifest.customerAccess = 'live';
+      writeFileSync(path, JSON.stringify(manifest));
+      expect(() => verifyProductionClientArtifact(assetDirectory)).toThrow('access mode');
+      expect(() => verifyProductionClientArtifact(assetDirectory, true)).toThrow('access mode');
+      expect(() => verifyProductionClientArtifact(assetDirectory, true, true)).toThrow('access mode');
+      expect(() => verifyProductionClientArtifact(assetDirectory, false, true)).not.toThrow();
+      const t = Template.fromStack(new RilloraProductionWebStack(new App(), 'LiveWebTest', {
+        env: {account:'111111111111',region:'eu-central-1'},certificateArn,assetDirectory,liveEnabled:true,
+      }));
+      t.hasOutput('CustomerAccess', {Value:'live'});
+      for (const type of ['AWS::ECS::Service','AWS::RDS::DBInstance','AWS::SecretsManager::Secret']) t.resourceCountIs(type,0);
+    } finally {rmSync(assetDirectory,{recursive:true});}
+  });
+  it('requires an explicit matching customer MCP artifact and exact uncached discovery routes', () => {
+    const assetDirectory=fixture();
+    try {
+      const path=join(assetDirectory,'production-build.json'), manifest=JSON.parse(readFileSync(path,'utf8'));
+      manifest.customerAccess='live';manifest.aiConnections=true;
+      mkdirSync(join(assetDirectory,'integrations'));
+      const download='synthetic download fixture';
+      writeFileSync(join(assetDirectory,'integrations/rillora-ai-v1.zip'),download);
+      manifest.files['integrations/rillora-ai-v1.zip']=createHash('sha256').update(download).digest('hex');
+      writeFileSync(path,JSON.stringify(manifest));
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,true)).toThrow('access mode');
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,false,true)).toThrow('access mode');
+      const t=Template.fromStack(new RilloraProductionWebStack(new App(),'McpWebTest',{
+        env:{account:'111111111111',region:'eu-central-1'},certificateArn,assetDirectory,liveEnabled:true,customerMcpEnabled:true,
+      }));
+      const d=(Object.values(t.findResources('AWS::CloudFront::Distribution'))[0] as any).Properties.DistributionConfig;
+      expect(d.Origins).toHaveLength(2);
+      expect(d.CacheBehaviors.map((b:any)=>b.PathPattern)).toEqual(['/api/*',
+        '/.well-known/oauth-authorization-server/api/ai/oauth','/.well-known/openid-configuration/api/ai/oauth',
+        '/.well-known/oauth-protected-resource/api/mcp']);
+      expect(d.CacheBehaviors.every((b:any)=>b.CachePolicyId===cloudfront.CachePolicy.CACHING_DISABLED.cachePolicyId)).toBe(true);
+      manifest.aiConnections=false;delete manifest.files['integrations/rillora-ai-v1.zip'];
+      rmSync(join(assetDirectory,'integrations/rillora-ai-v1.zip'));writeFileSync(path,JSON.stringify(manifest));
+      expect(()=>verifyProductionClientArtifact(assetDirectory,false,true,true)).toThrow('access mode');
+    } finally {rmSync(assetDirectory,{recursive:true});}
+  });
   it('uses only private assets and the exact API; never creates or changes the database/runtime', () => {
     const assetDirectory = fixture();
     try {

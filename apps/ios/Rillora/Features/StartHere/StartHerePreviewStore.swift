@@ -43,7 +43,7 @@ final class StartHerePreviewStore {
 
     func loadRecipients() async {
         do { recipients = try await service.exportRecipients(); recipientError = nil }
-        catch { recipientError = "Connected people could not be loaded. Try again." }
+        catch { recipientError = String(localized: "Connected people could not be loaded. Try again.") }
     }
 
     func resetPreview() {
@@ -64,7 +64,7 @@ final class StartHerePreviewStore {
             state = previousState
             return nil
         } catch let error as RilloraAPIError {
-            state = .failed(message: error.localizedDescription)
+            state = error.isReauthenticationRequired ? previousState : .failed(message: error.localizedDescription)
             return nil
         } catch {
             state = .failed(message: error.localizedDescription)
@@ -94,7 +94,9 @@ final class StartHerePreviewStore {
             encryptedState = previousState
             return nil
         } catch let error as RilloraAPIError {
-            encryptedState = .failed(message: error.localizedDescription)
+            // The API client presents the shared sign-in prompt. A generic error
+            // alert here can hide it; retain this context for an explicit retry.
+            encryptedState = error.isReauthenticationRequired ? previousState : .failed(message: error.localizedDescription)
             return nil
         } catch {
             encryptedState = .failed(message: error.localizedDescription)
@@ -116,7 +118,7 @@ final class StartHerePreviewStore {
             printableState = previousState
             return nil
         } catch let error as RilloraAPIError {
-            printableState = .failed(message: error.localizedDescription)
+            printableState = error.isReauthenticationRequired ? previousState : .failed(message: error.localizedDescription)
             return nil
         } catch {
             printableState = .failed(message: error.localizedDescription)

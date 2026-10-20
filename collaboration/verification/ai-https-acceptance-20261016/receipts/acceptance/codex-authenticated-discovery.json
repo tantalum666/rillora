@@ -1,0 +1,164 @@
+{
+  "data": [
+    {
+      "name": "rillora_https_acceptance_20261016",
+      "runtimeStatus": null,
+      "pluginId": null,
+      "httpOrigin": "https://unto-assess-comp-grades.trycloudflare.com",
+      "serverInfo": {
+        "name": "rillora",
+        "title": "Rillora",
+        "version": "0.1.0",
+        "description": null,
+        "icons": null,
+        "websiteUrl": null
+      },
+      "serverCapabilities": {
+        "tools": {
+          "listChanged": true
+        }
+      },
+      "tools": {
+        "list_selected_matters": {
+          "name": "list_selected_matters",
+          "title": "Read selected Rillora matters",
+          "description": "Use when the connected user asks about matters they explicitly selected in Rillora. Returns titles, categories and statuses only. Do not use for general digital-legacy advice, unselected records, passwords, transfers or release of information.",
+          "inputSchema": {
+            "type": "object",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "matters": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "publicId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "title": {
+                      "type": "string"
+                    },
+                    "category": {
+                      "type": "string"
+                    },
+                    "status": {
+                      "type": "string"
+                    }
+                  },
+                  "required": [
+                    "publicId",
+                    "title",
+                    "category",
+                    "status"
+                  ],
+                  "additionalProperties": false
+                }
+              }
+            },
+            "required": [
+              "matters"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        },
+        "get_preparation_gaps": {
+          "name": "get_preparation_gaps",
+          "title": "Check selected Rillora matters for missing information",
+          "description": "Use when the connected user asks about missing common information in their explicitly selected Rillora matters. Checks required provider/location hints and stated wishes only, not category-specific details, legal authority or recipient readiness. Reports field names, not private values. Never release information.",
+          "inputSchema": {
+            "type": "object",
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "properties": {},
+            "additionalProperties": false
+          },
+          "outputSchema": {
+            "$schema": "https://json-schema.org/draft/2020-12/schema",
+            "type": "object",
+            "properties": {
+              "matters": {
+                "maxItems": 20,
+                "type": "array",
+                "items": {
+                  "type": "object",
+                  "properties": {
+                    "publicId": {
+                      "type": "string",
+                      "format": "uuid",
+                      "pattern": "^([0-9a-fA-F]{8}-[0-9a-fA-F]{4}-[1-8][0-9a-fA-F]{3}-[89abAB][0-9a-fA-F]{3}-[0-9a-fA-F]{12}|00000000-0000-0000-0000-000000000000|ffffffff-ffff-ffff-ffff-ffffffffffff)$"
+                    },
+                    "missingFields": {
+                      "maxItems": 3,
+                      "type": "array",
+                      "items": {
+                        "type": "string",
+                        "enum": [
+                          "provider",
+                          "location",
+                          "intended_outcome"
+                        ]
+                      }
+                    }
+                  },
+                  "required": [
+                    "publicId",
+                    "missingFields"
+                  ],
+                  "additionalProperties": false
+                }
+              },
+              "assessment": {
+                "type": "string",
+                "const": "selected_common_fields_only"
+              },
+              "notAssessed": {
+                "minItems": 3,
+                "maxItems": 3,
+                "type": "array",
+                "items": {
+                  "type": "string",
+                  "enum": [
+                    "category_specific_details",
+                    "legal_authority",
+                    "recipient_readiness"
+                  ]
+                }
+              }
+            },
+            "required": [
+              "matters",
+              "assessment",
+              "notAssessed"
+            ],
+            "additionalProperties": false
+          },
+          "annotations": {
+            "readOnlyHint": true,
+            "destructiveHint": false,
+            "idempotentHint": true,
+            "openWorldHint": false
+          }
+        }
+      },
+      "toolsError": null,
+      "resources": [],
+      "resourceTemplates": [],
+      "authStatus": "oAuth"
+    }
+  ],
+  "nextCursor": null
+}

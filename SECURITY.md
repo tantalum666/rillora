@@ -1,6 +1,56 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-09-30 (request identity and route-bound recent authentication)
+Last updated: 2026-10-11 (remaining five boundaries locally verified; online unchanged)
+
+## October11 remaining five boundaries — source and local evidence
+
+[Groups31–35](docs/security-remaining-five-20261011.md) now add connection/transaction/role/owner-bound database authority, forced RLS and narrow definer owners; an independently attested journal writer; an isolated deletion worker validating sealed provider-signed recent identity; owner-scoped keyed email matching; and user-presence Secure Enclave storage for the named operator tools. API519/519, infra58/58 and the scoped operational checks pass locally. This supersedes treating those five groups as classification-only. The prior journal classification was too narrow: SQL alone could forge its unsigned publication acknowledgement, and that path is now denied to actual runtime logins.
+
+The signing application, privileged migrations and approved use of an unlocked host remain trust roots. Bound authority contains stolen SQL credentials and altered tenant/role/transaction context; it is not a guarantee against all injection inside an already authorized purpose or complete API RCE. The deletion worker cannot erase an arbitrary Auth0 user without independently verified proof; compromise of a currently authenticated legitimate user's flow remains separate. ID tokens used for deletion proof are sealed, session-bound and short-lived, with bounded cleanup and retention only for an outstanding authorized deletion job. Provider access/refresh tokens are not persisted.
+
+Ordinary HTTP execution cannot read deletion credentials, decrypt identity proofs or directly write the journal. Every source writer, including the deletion worker, must be stopped before financial recovery. Named local credential readers refuse legacy plaintext until explicit migration and verify the Rillora-signed helper; old files/backups have not been migrated or erased in this task. Existing1–99migration bytes and original scan exports stay unchanged;0100–0103 are local-only. No deployment, credential rotation, new scan or independent certification is implied.
+
+## October11 report-driven remediation
+
+The [current repair record](docs/security-findings-remediation-20261011.md) maps73exported findings to35boundaries and records a separate investigator/candidate review. The new source protects freshness, signed consent, invitation metadata, ownership correlation, package commitments, bounded work, recovery holds and privileged maintenance. Owner explicitly approved the protected production-mode and exact fixture-registry changes;495API cases and the source scan pass. Local verification is not a deployment or a new successful full scan, and Owner requires the online configuration to remain unchanged in this turn.
+
+Calibration does not expand the claimed security model: the application is trusted to decrypt and to select session-derived tenant context. Arbitrary SQL as its credential, complete API RCE and same-user access to protected operational files are different prerequisites from an ordinary authenticated planner or a database-only reader. The preceding495-case checkpoint did not address those five boundaries; the newer section above records their targeted containment and exact limits. Existing1–94migration bytes and original scan exports are retained.
+
+## October8 dependency follow-up
+
+Targeted lockfile patches update source-map-js to1.2.2 across Web/API/prototype/infra and
+API proxy-addr to2.0.8. Current Web/API/prototype npm audits show no known advisories;
+the previously documented CDK-bundled brace-expansion development advisory remains.
+Rillora validates proxy trust as a numeric hop count, not the IPv4-mapped IPv6 subnet
+configuration in GHSA-jqcg-44mw-7w3h. Version presence alone does not establish a remote
+application exploit. CI100 validates the patched source; production API16 has not been
+redeployed in this integration. See [review scope](docs/dot-integration-20261008.md).
+
+## Current security boundary and October3 review
+
+Restricted production uses independent RDS/KMS, private TLS, regular Fargate,
+constrained runtime roles, separate Auth0 services and Resend. Release endpoint
+configuration, the bounded QQ reset/login/shared-field journey and internal
+TestFlight upload now have dated evidence; these are not public-release or purchase
+proof. See [current release state](docs/handoff.md). Earlier dated sections below
+preserve their original limits and must not become new unmet implementation claims.
+
+Strict review repairs migration atomicity, runtime role validation, parsed auth
+returns/discovery retry, protected file limits, saved-grant lineage/redaction on
+restore and hold/cleanup serialization. Deletion and commerce share locks; stale
+account responses are rejected on both clients. Recovery retries reconstruct exact
+parameters and recheck current isolation/freeze. Native fixtures can only mutate an
+explicit disposable local database and task-created simulators. All new changes are
+locally verified and undeployed; applied001–0091migration bytes are retained.
+
+[The all-source review](docs/code-review-20261002.md) records coverage and negative
+regressions. The optional security coordinator failed before starting, so there is
+no independent scan result. Five npm lock audits find no known advisories in API,
+shipping Web or snapshot-retention; prototype advisories are patched. CDK still
+bundles brace-expansion5.0.9 even in latest2.272.0. This dev-only build dependency
+processes owned source/config, is absent from the API container and remains an
+explicit upstream limitation. Do not expose synthesis to untrusted glob inputs or
+claim a zero-vulnerability dependency tree.
 
 ## September30 supplied review repair
 
@@ -140,7 +190,27 @@ The principal security objectives are confidentiality between planners, integrit
 - Product progress events are server-generated after successful mutations, use exact event/property allowlists, carry only coarse client provenance and remain insert-only to the application role. A 90-day expiry marker is not proof of automatic deletion.
 - Deletion, correction, retention and data-region requirements remain implementable; core product data is not made immutable through blockchain storage.
 
-### Assumptions and current limits
+### Current assumptions and limits
+
+- Production access is restricted by exact identities and expiry; public customers,
+  live charging and actual death/claim release remain closed.
+- Existing application-layer encryption protects database-only exposure; the
+  authorized application can decrypt. It is not full online E2EE.
+- Backups require quarantined privacy/permission replay and current commerce proof.
+  New0092/0093 repairs must be deployed and validated before relying on their effect.
+- Historical local simulations, disposable-identity ceremonies and real Owner
+  journeys retain separate scopes; native physical-device and real purchase work
+  remains Owner-deferred. A green local test is not provider completion.
+- Provider credentials/session state never belong in Git or diagnostic output.
+  DNS tooling has an account-wide OAuth grant but restricts operations to Rillora;
+  exact provider-record verification is required after an authorized change.
+
+### HISTORICAL early implementation assumptions
+
+The bullets below describe the earlier implementation only. Statements about
+unconfigured Release, absent KMS, Fargate Spot or future identity binding have been
+superseded by the dated deployment/acceptance contracts above.
+
 
 - The current Web API client and native SwiftUI planning/rehearsal client are local implementation evidence; the separate iOS prototype remains interaction/design evidence. Contact mutations prove only Rillora record semantics; official checks are planner self-reports; count simulations and role-policy state machines are non-operative snapshots. The latter now prove distinct death/incapacity/missing transitions and exact planner-visible role projections, but do not verify evidence, run a timer, notify a person or disclose data. Start Here creates a 15-minute no-file preview bound to the complete safe snapshot. After separate literal acknowledgements, clients can request a minimum-disclosure plaintext response or locally encrypt the same safe payload with AES-256-GCM and RFC 9180 HPKE key wrapping. The plaintext path retains no file copy. The encrypted path stores only bounded ciphertext, public material and wrapped keys; recovery and synthetic recipient private keys stay client-side. Saved, shared or printed copies cannot be revoked by Rillora. A production-forbidden local rehearsal proves one-time synthetic acceptance, public-key enrollment/revocation and recipient-side decrypt behavior, but binds no external identity and sends nothing. This proves local protocol, policy projection and client-encryption behavior, not real recipient identity/consent/delivery, production end-to-end encryption, provider configuration, legal authority, real recovery rights, complete native parity, legal validity or market validation.
 - The native Debug client now uses Auth0.swift Code + PKCE by default. It persists only the Rillora opaque session in Keychain with `AfterFirstUnlockThisDeviceOnly`; the Auth0 provider access token is used once for server exchange and discarded. Release still has no reviewed production endpoint/domain configuration and fails closed. Web Passkey is verified only with an isolated virtual WebAuthn authenticator; native Apple Passkey and complete recovery remain unverified.
@@ -169,7 +239,7 @@ Attackers control JSON bodies, query parameters, labels, notes, institution name
 
 ### Invitations and role confusion
 
-A malicious planner or intercepted recipient capability may attempt to bind the wrong identity, reuse an expired token, enroll an attacker key or convert a trusted-contact invitation into executor authority. The local rehearsal exchanges a one-time hashed acceptance capability in a request body for a different hashed short-lived session; neither value enters a URL, Cookie, Web Storage, Keychain or logs. Its least-privilege database role is scoped by forced RLS to one rehearsal, and only public P-256 keys are accepted. Recursive secret-field rejection, unique active keys, exact key-set finalization and revocation limit further abuse. The flow deliberately has no real identity proof or delivery, so its acceptance is labelled synthetic and cannot establish legal authority or release eligibility. A production invitation must later add purpose-limited delivery, identity binding, explicit consent, audit, recovery and abuse handling under an independently reviewed contract.
+A malicious planner or intercepted recipient capability may attempt to bind the wrong identity, reuse an expired token, enroll an attacker key or convert a trusted-contact invitation into executor authority. The local rehearsal exchanges a one-time hashed acceptance capability in a request body for a different hashed short-lived session; neither value enters a URL, Cookie, Web Storage, Keychain or logs. Its least-privilege database role is scoped by forced RLS to one rehearsal, and only public P-256 keys are accepted. Recursive secret-field rejection, unique active keys, exact key-set finalization and revocation limit further abuse. The flow deliberately has no real identity proof or delivery, so its acceptance is labelled synthetic and cannot establish legal authority or release eligibility. The separate production sharing flow now binds invitations to verified identity and explicit acceptance, with scoped audit/revocation and abuse checks; it must not use the synthetic rehearsal as authority. User-driven link/QR delivery and the assisted mail test are distinct from an automated invitation outbox. See docs/trusted-sharing.md.
 
 ### False claims and unsafe disclosure
 

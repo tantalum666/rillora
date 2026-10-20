@@ -1,0 +1,15 @@
+
+> rillora-ai-candidate@0.1.0 build
+> wrangler deploy --dry-run --minify --outdir ../../output/qa/rillora-ai-hosting-20261017/worker-bundle
+
+
+ ⛅️ wrangler 4.151.1
+────────────────────
+Total Upload: 1442.85 KiB / gzip: 384.46 KiB
+Your Worker has access to the following bindings:
+Binding                                                  Resource                  
+env.OAUTH_KV (3dbec952169e4b1782ef358932214049)          KV Namespace              
+env.DATABASE (4f27cc101d784395aaa249c92e3bad18)          Hyperdrive Config         
+env.HOSTING_MODE ("synthetic-only")                      Environment Variable      
+
+--dry-run: exiting now.

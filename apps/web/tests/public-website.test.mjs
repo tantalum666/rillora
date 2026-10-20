@@ -32,7 +32,7 @@ test("public routing serves only public pages and fixed asset paths", () => {
     "/legal/licenses",
     "/legal/licenses/",
   ])
-    assert.equal(request(path).uri, "/index.html");
+    assert.equal(request(path).uri, `/pages/en${path.replace(/\/+$/, "") || "/index"}.html`);
   assert.equal(request("/assets/logo-123.svg").uri, "/assets/logo-123.svg");
   for (const extension of ["jpg", "jpeg", "webp"]) {
     const uri = `/assets/folio-fixture.${extension}`;
@@ -88,4 +88,24 @@ test("public routing rejects writes without an API or account fallback", () => {
     assert.equal(request("/", method).statusCode, 405);
     assert.equal(request("/assets/logo-123.svg", method).statusCode, 405);
   }
+});
+
+
+test("guide redirects retain only an explicitly supported language enum", () => {
+  for (const language of ["en", "zh-CN", "zh-HK", "javascript:alert(1)", "zh-CN&return_to=https://evil.test", "", undefined]) {
+    const result = handler({ request: { uri: "/guides", method: "GET", querystring: {
+      service: { value: "google" }, lang: { value: language },
+      token: { value: "private" }, return_to: { value: "https://evil.test" },
+    } } });
+    const expected = `${entry.appOrigin}/account?next=guides&service=google${["en", "zh-CN"].includes(language) ? `&lang=${language}` : ""}`;
+    assert.equal(result.headers.location.value, expected);
+    assert.equal(result.headers["cache-control"].value, "no-store");
+  }
+});
+
+test('guide redirects pass only a safe automatic hint and explicit selection wins',()=>{
+  const redirect=querystring=>handler({request:{uri:'/guides',method:'GET',querystring}}).headers.location.value;
+  assert.equal(redirect({langHint:{value:'zh-CN'}}),`${entry.appOrigin}/account?next=guides&langHint=zh-CN`);
+  assert.equal(redirect({langHint:{value:'zh-CN'},lang:{value:'en'}}),`${entry.appOrigin}/account?next=guides&lang=en`);
+  assert.equal(redirect({langHint:{value:'zh-CN&token=secret'}}),`${entry.appOrigin}/account?next=guides`);
 });

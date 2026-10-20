@@ -1,0 +1,169 @@
+{
+  "code_commit": "f95a1c23ba702bffe1955a66386d50d582fe579a",
+  "browser_run": "https://github.com/tantalum666/rillora/actions/runs/37501697429",
+  "source_run": "https://github.com/tantalum666/rillora/actions/runs/37501697399",
+  "artifact_id": 11430421225,
+  "artifact_sha256": "0afe3eccda79ac74c16834c4258976666848b6f878e421d7b3e596b92c54d15b",
+  "stats": {
+    "startTime": "2026-10-06T17:13:04.590Z",
+    "duration": 131515.067,
+    "expected": 20,
+    "skipped": 0,
+    "unexpected": 0,
+    "flaky": 0
+  },
+  "scenarios": [
+    {
+      "name": "public pages en 320",
+      "status": "expected",
+      "duration_ms": 4904,
+      "errors": []
+    },
+    {
+      "name": "public pages en 390",
+      "status": "expected",
+      "duration_ms": 4699,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1280",
+      "status": "expected",
+      "duration_ms": 5468,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1440",
+      "status": "expected",
+      "duration_ms": 5877,
+      "errors": []
+    },
+    {
+      "name": "public pages en 1920",
+      "status": "expected",
+      "duration_ms": 4119,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 320",
+      "status": "expected",
+      "duration_ms": 4460,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 390",
+      "status": "expected",
+      "duration_ms": 4609,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1280",
+      "status": "expected",
+      "duration_ms": 4847,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1440",
+      "status": "expected",
+      "duration_ms": 4118,
+      "errors": []
+    },
+    {
+      "name": "public pages zh-CN 1920",
+      "status": "expected",
+      "duration_ms": 4124,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers en 390",
+      "status": "expected",
+      "duration_ms": 13472,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers en 1440",
+      "status": "expected",
+      "duration_ms": 15762,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers zh-CN 390",
+      "status": "expected",
+      "duration_ms": 13957,
+      "errors": []
+    },
+    {
+      "name": "workspace routes and all provider identifiers zh-CN 1440",
+      "status": "expected",
+      "duration_ms": 15780,
+      "errors": []
+    },
+    {
+      "name": "Chinese website handoff, account consent, auth return and reload stay Chinese",
+      "status": "expected",
+      "duration_ms": 2392,
+      "errors": []
+    },
+    {
+      "name": "blocked storage, explicit app language and guide navigation preserve locale",
+      "status": "expected",
+      "duration_ms": 1692,
+      "errors": []
+    },
+    {
+      "name": "failed logos retain distinct local fallbacks without remote icon services",
+      "status": "expected",
+      "duration_ms": 701,
+      "errors": []
+    },
+    {
+      "name": "identity is visible, bilingual, handles missing email and never displays a stale account",
+      "status": "expected",
+      "duration_ms": 1248,
+      "errors": []
+    },
+    {
+      "name": "draft text and discard decisions survive a real cross-tab language change",
+      "status": "expected",
+      "duration_ms": 1237,
+      "errors": []
+    },
+    {
+      "name": "late identity responses cannot reappear after the active account is invalidated",
+      "status": "expected",
+      "duration_ms": 568,
+      "errors": []
+    }
+  ],
+  "console": {
+    "total_messages": 132,
+    "expected_fixture_failures": 132,
+    "unexpected_network_attempts": 0,
+    "description": "Expected network errors come from deliberately mocked unavailable commerce/reviews, signed-out responses and forced image failures; no unexpected runtime errors were accepted."
+  },
+  "local_checks": {
+    "web_node_ssr": {
+      "passed": 174,
+      "failed": 0
+    },
+    "legal_packaging": {
+      "passed": 7,
+      "failed": 0
+    },
+    "api_focused": {
+      "passed": 17,
+      "failed": 0
+    },
+    "api_typecheck": "passed",
+    "api_build": "passed",
+    "web_internal_build": "passed",
+    "web_public_build": "passed",
+    "local_browser": "blocked before navigation: socket EPERM"
+  },
+  "boundaries": [
+    "Synthetic browser data only",
+    "No real auth provider, billing or user-data writes",
+    "No deployment or merge",
+    "Cloud route cannot verify staging artifact",
+    "Official provider guidance and accepted legal originals remain English"
+  ]
+}

@@ -1,0 +1,178 @@
+"""Scoped, resumable public-site rollout. No application stack or account mutation."""
+from pathlib import Path
+import copy, datetime, hashlib, json, os, subprocess, sys, urllib.request, zipfile
+from concurrent.futures import ThreadPoolExecutor
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+PRIVATE = ROOT / '.local-secrets/ai-seo-20261018'
+ARTIFACT = ROOT / 'apps/web/dist-public'
+STACK = 'RilloraPublicWeb'
+REGION = 'eu-central-1'
+DEPLOYMENT = 'PublicDeploymentCustomResource947B276F'
+FUNCTION = 'PublicRoutesC0C4D2B4'
+WEBSITE = 'Website32962D0B'
+
+def read(path): return json.loads(path.read_text())
+def save(path, data): path.write_text(json.dumps(data, indent=2) + '\n')
+def aws(args, profile='rillora-cdk-deploy', env=None):
+    command = ['aws', *args, '--region', REGION, '--output', 'json']
+    if profile: command += ['--profile', profile]
+    result = subprocess.run(command, capture_output=True, text=True, env=env)
+    if result.returncode:
+        (PRIVATE / 'rollout-aws-error.txt').write_text(result.stderr)
+        raise RuntimeError('AWS operation failed; private diagnostic saved')
+    return json.loads(result.stdout) if result.stdout.strip() else {}
+def template():
+    value = aws(['cloudformation', 'get-template', '--stack-name', STACK, '--template-stage', 'Original'])['TemplateBody']
+    return json.loads(value) if isinstance(value, str) else value
+def stack(): return aws(['cloudformation', 'describe-stacks', '--stack-name', STACK])['Stacks'][0]
+def sha(data): return hashlib.sha256(data).hexdigest()
+def fetch(path):
+    with urllib.request.urlopen('https://www.rillora.xyz' + path, timeout=30) as response:
+        return response.read()
+def object_get(bucket, key, target):
+    target.parent.mkdir(parents=True, exist_ok=True)
+    aws(['s3api', 'get-object', '--bucket', bucket, '--key', key, str(target)], 'rillora-operator')
+    return target.read_bytes()
+def verify_artifact(marker):
+    assert read(ARTIFACT / 'public-build.json') == marker
+    for path, digest in marker['files'].items(): assert sha((ARTIFACT / path).read_bytes()) == digest, path
+def changed(before, after):
+    assert set(before) == set(after)
+    assert all(before[k] == after[k] for k in before if k != 'Resources')
+    assert set(before['Resources']) == set(after['Resources'])
+    return sorted(k for k in before['Resources'] if before['Resources'][k] != after['Resources'][k])
+def review_changes(changes, final, required=None):
+    ids = {v['LogicalResourceId'] for v in changes}
+    assert (required or {DEPLOYMENT, FUNCTION}) <= ids <= {DEPLOYMENT, FUNCTION, WEBSITE}
+    assert all(v['Action'] == 'Modify' and v.get('Replacement') in ['False', 'Conditional'] for v in changes)
+    for value in changes:
+        if value['LogicalResourceId'] != DEPLOYMENT: assert value['Replacement'] == 'False'
+        if value['LogicalResourceId'] == WEBSITE:
+            assert read(QA / 'before-template.json')['Resources'][WEBSITE] == final['Resources'][WEBSITE]
+            assert value['Details'] and all(d['Evaluation'] == 'Dynamic'
+                and d['ChangeSource'] == 'ResourceAttribute' and d['CausingEntity'] == FUNCTION + '.FunctionARN'
+                and d['Target'] == {'Attribute': 'Properties', 'Name': 'DistributionConfig', 'RequiresRecreation': 'Never'}
+                for d in value['Details'])
+
+action = sys.argv[1]
+final = read(QA / 'cdk.out/RilloraPublicWeb.template.json')
+marker = read(ARTIFACT / 'public-build.json')
+verify_artifact(marker)
+
+if action == 'prepare-stage':
+    assert template() == read(QA / 'pre-adjustment-template.json')
+    assert changed(read(QA / 'pre-adjustment-template.json'), read(QA / 'staged-template.json')) == [DEPLOYMENT]
+    assets = read(QA / 'cdk.out/RilloraPublicWeb.assets.json')['files']
+    asset = next(v for v in assets.values() if v.get('displayName') == 'PublicDeployment/Asset1')
+    destination = next(iter(asset['destinations'].values()))
+    source = QA / 'cdk.out' / asset['source']['path']
+    assert read(source / 'public-build.json') == marker
+    bundle = PRIVATE / 'public-candidate.zip'
+    with zipfile.ZipFile(bundle, 'w', zipfile.ZIP_DEFLATED) as archive:
+        for path in sorted(source.rglob('*')):
+            if path.is_file(): archive.write(path, path.relative_to(source).as_posix())
+    with zipfile.ZipFile(bundle) as archive:
+        assert set(archive.namelist()) == set(marker['files']) | {'public-build.json'}
+        for path, digest in marker['files'].items(): assert sha(archive.read(path)) == digest
+    role = destination['assumeRoleArn'].replace('${AWS::Partition}', 'aws')
+    credentials = aws(['sts', 'assume-role', '--role-arn', role, '--role-session-name', 'rillora-public-seo-20261018', '--duration-seconds', '900'], 'rillora-operator')['Credentials']
+    env = os.environ.copy()
+    env.pop('AWS_PROFILE', None); env.pop('AWS_DEFAULT_PROFILE', None)
+    env.update(AWS_ACCESS_KEY_ID=credentials['AccessKeyId'], AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'], AWS_SESSION_TOKEN=credentials['SessionToken'])
+    aws(['s3api', 'put-object', '--bucket', destination['bucketName'], '--key', destination['objectKey'], '--body', str(bundle)], None, env)
+    env.clear(); credentials.clear()
+    name = 'rillora-seo-20261018-stage-nav'
+    result = aws(['cloudformation', 'create-change-set', '--stack-name', STACK, '--change-set-name', name,
+                  '--change-set-type', 'UPDATE', '--template-body', 'file://' + str(QA / 'staged-template.json'), '--capabilities', 'CAPABILITY_IAM'])
+    save(QA / 'stage-reference.json', result)
+    print('Candidate source uploaded and staging change set prepared')
+
+elif action in ['execute-stage', 'execute-live']:
+    phase = action.removeprefix('execute-')
+    if phase == 'live':
+        assert read(QA / 'router-published.json')['passed']
+        assert read(QA / 'new-routes-ready.json')['passed']
+        assert read(QA / 'source-ci.json')['passed']
+    reference = read(QA / (phase + '-reference.json'))
+    result = aws(['cloudformation', 'describe-change-set', '--stack-name', STACK, '--change-set-name', reference['Id']])
+    assert result['Status'] == 'CREATE_COMPLETE' and result['ExecutionStatus'] == 'AVAILABLE'
+    changes = [v['ResourceChange'] for v in result['Changes']]
+    if phase == 'stage':
+        assert {v['LogicalResourceId'] for v in changes} == {DEPLOYMENT}
+        assert all(d['Evaluation'] == 'Static' and d['ChangeSource'] == 'DirectModification'
+            and d['Target']['Name'] == 'SourceObjectKeys' for d in changes[0]['Details'])
+    review_changes(changes, final, {DEPLOYMENT} if phase == 'stage' else None)
+    save(QA / (phase + '-review.json'), {'changes': changes, 'nonPublicResourcesChanged': False})
+    aws(['cloudformation', 'execute-change-set', '--stack-name', STACK, '--change-set-name', reference['Id']])
+    print(phase + ' execution accepted; completion must be read separately')
+
+elif action == 'check-stage':
+    current = stack(); assert current['StackStatus'] == 'UPDATE_COMPLETE'
+    assert current['Outputs'] == read(PRIVATE / 'public-stack-before.json')['Outputs']
+    assert template() == read(QA / 'staged-template.json')
+    current_deployment = aws(['cloudformation', 'describe-stack-resource', '--stack-name', STACK, '--logical-resource-id', DEPLOYMENT])['StackResourceDetail']['PhysicalResourceId']
+    assert current_deployment == read(QA / 'deployment-resource-before.json')['physicalId']
+    old = read(QA / 'before-public-build.json')
+    bucket = next(o['OutputValue'] for o in current['Outputs'] if o['OutputKey'] == 'BucketName')
+    for key in ['public-build.json', 'index.html', 'sitemap.xml', 'robots.txt']:
+        data = object_get(bucket, key, QA / 'stage-root-readback' / key)
+        assert json.loads(data) == old if key == 'public-build.json' else sha(data) == old['files'][key]
+    checked = []
+    def check_old_page(page):
+        assert sha(fetch(page['path'])) == old['files'][page['file']], page['path']
+    with ThreadPoolExecutor(max_workers=6) as pool: list(pool.map(check_old_page, old['pages']))
+    staged_files = [(key, digest) for key, digest in marker['files'].items() if key.startswith('assets/') or key in read(QA / 'rollout-plan.json')['newPageFiles']]
+    def check_object(item):
+        key, digest = item
+        assert sha(object_get(bucket, key, QA / 'stage-object-readback' / key)) == digest
+        return key
+    with ThreadPoolExecutor(max_workers=6) as pool: checked = list(pool.map(check_object, staged_files))
+    fn = final['Resources'][FUNCTION]['Properties']['Name']
+    aws(['cloudfront', 'get-function', '--name', fn, '--stage', 'LIVE', str(QA / 'stage-live-function.js')], 'rillora-operator')
+    assert (QA / 'stage-live-function.js').read_text() == read(QA / 'before-template.json')['Resources'][FUNCTION]['Properties']['FunctionCode']
+    save(QA / 'stage-verified.json', {'passed': True, 'oldPagesUnchanged': len(old['pages']), 'rootAndDiscoveryUnchanged': True,
+         'newAssetsAndPagesVerified': len(checked), 'liveFunctionUnchanged': True, 'outputsUnchanged': True})
+    print('Staged objects verified; all 20 old pages and live routing unchanged')
+
+elif action == 'prepare-live':
+    assert read(QA / 'stage-verified.json')['passed']
+    assert template() == read(QA / 'staged-template.json')
+    result = aws(['cloudformation', 'create-change-set', '--stack-name', STACK, '--change-set-name', 'rillora-seo-20261018-live-nav',
+                  '--change-set-type', 'UPDATE', '--template-body', 'file://' + str(QA / 'final-template.json'), '--capabilities', 'CAPABILITY_IAM'])
+    save(QA / 'live-reference.json', result)
+    print('Final public switch prepared')
+
+elif action == 'publish-router':
+    # CloudFormation can update the upload and function concurrently. Make the
+    # additive route available before old HTML acquires links to the new pages.
+    assert read(QA / 'stage-verified.json')['passed']
+    assert template() == read(QA / 'staged-template.json')
+    reference = read(QA / 'live-reference.json')
+    pending = aws(['cloudformation', 'describe-change-set', '--stack-name', STACK, '--change-set-name', reference['Id']])
+    assert pending['Status'] == 'CREATE_COMPLETE' and pending['ExecutionStatus'] == 'AVAILABLE'
+    changes = [v['ResourceChange'] for v in pending['Changes']]
+    review_changes(changes, final)
+    fn = final['Resources'][FUNCTION]['Properties']
+    development = aws(['cloudfront', 'get-function', '--name', fn['Name'], '--stage', 'DEVELOPMENT', str(QA / 'router-development.js')], 'rillora-operator')
+    assert (QA / 'router-development.js').read_text() == fn['FunctionCode']
+    aws(['cloudfront', 'publish-function', '--name', fn['Name'], '--if-match', development['ETag']], 'rillora-operator')
+    aws(['cloudfront', 'get-function', '--name', fn['Name'], '--stage', 'LIVE', str(QA / 'router-live-before-html.js')], 'rillora-operator')
+    assert (QA / 'router-live-before-html.js').read_text() == fn['FunctionCode']
+    save(QA / 'router-published.json', {'passed': True, 'at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+         'exactValidatedCodePublished': True, 'onlyAdditivePublicRoutes': True, 'oldHtmlNotYetReplaced': True})
+    print('Validated additive public router published before HTML replacement')
+
+elif action == 'verify-new-routes':
+    assert read(QA / 'router-published.json')['passed']
+    new_files = read(QA / 'rollout-plan.json')['newPageFiles']
+    pages = [page for page in marker['pages'] if page['file'] in new_files]
+    assert len(pages) == 8
+    def check_route(page):
+        assert sha(fetch(page['path'])) == marker['files'][page['file']], page['path']
+        return page['path']
+    with ThreadPoolExecutor(max_workers=6) as pool: paths = list(pool.map(check_route, pages))
+    save(QA / 'new-routes-ready.json', {'passed': True, 'paths': paths, 'httpBytesMatchCorrectedArtifact': True})
+    print('Eight new public routes serve the corrected HTML before the final page switch')
+else: raise SystemExit('Unknown scoped rollout action')

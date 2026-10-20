@@ -3,8 +3,8 @@ import Foundation
 enum SharingDetailLevel: String, Codable, CaseIterable, Identifiable, Sendable {
     case name, directions, details
     var id: String { rawValue }
-    var title: String { switch self { case .name: "Name"; case .directions: "Directions"; case .details: "Details" } }
-    var summary: String { switch self { case .name: "Title · Category"; case .directions: "Provider · Location · Wishes"; case .details: "All saved details" } }
+    var title: String { switch self { case .name: String(localized: "Name"); case .directions: String(localized: "Directions"); case .details: String(localized: "Details") } }
+    var summary: String { switch self { case .name: String(localized: "Title · Category"); case .directions: String(localized: "Provider · Location · Wishes"); case .details: String(localized: "All saved details") } }
     var allowedFields: Set<String> {
         let basic: Set<String> = ["title", "category"]
         let directions = basic.union(["institutionName", "locationHint", "desiredOutcome"])
@@ -18,7 +18,7 @@ struct SharingGrant: Codable, Equatable, Sendable, Identifiable {
 }
 enum SharingConnectionStatus: String, Codable, Sendable {
     case pending, expired, accepted, revoked
-    var label: String { switch self { case .pending: "Invitation pending"; case .expired: "Link expired"; case .accepted: "Connected"; case .revoked: "Disconnected" } }
+    var label: String { switch self { case .pending: String(localized: "Invitation pending"); case .expired: String(localized: "Link expired"); case .accepted: String(localized: "Connected"); case .revoked: String(localized: "Disconnected") } }
 }
 struct SharingConnection: Decodable, Equatable, Sendable, Identifiable {
     var access: SharingConnectionAccess? = nil
@@ -37,8 +37,8 @@ struct SharingConnection: Decodable, Equatable, Sendable, Identifiable {
     var isActive: Bool { status != .revoked }
     var statusLabel: String {
         if status == .revoked { return status.label }
-        if access?.mode == .saved { return "Updates paused" }
-        if access?.mode == .paused { return "Updates paused" }
+        if access?.mode == .saved { return String(localized: "Updates paused") }
+        if access?.mode == .paused { return String(localized: "Updates paused") }
         return status.label
     }
     var isValid: Bool { readOnly && purpose == "planner_directed" && version > 0 && UUID(uuidString: publicId) != nil && UUID(uuidString: personPublicId) != nil && grants.count <= 100 && Set(grants.map(\.matterPublicId)).count == grants.count && grants.allSatisfy { UUID(uuidString: $0.matterPublicId) != nil } }
@@ -133,12 +133,12 @@ struct SharedMatterItem: Decodable, Equatable, Sendable, Identifiable {
     let detailLevel: SharingDetailLevel
     let fields: [String: String]
     var id: String { "\(connectionPublicId):\(matterPublicId)" }
-    var title: String { fields["title"] ?? "Shared matter" }
+    var title: String { fields["title"] ?? String(localized: "Shared matter") }
     var savedCopyLabel: String? {
         guard accessMode == .saved else { return nil }
         let fractional = ISO8601DateFormatter(); fractional.formatOptions = [.withInternetDateTime, .withFractionalSeconds]
         let date = savedAt.flatMap { fractional.date(from: $0) ?? ISO8601DateFormatter().date(from: $0) }
-        return "Updates paused · Saved \(date?.formatted(date: .abbreviated, time: .omitted) ?? "during the paid period")"
+        return L10n.format("Updates paused · Saved %1$@", date?.formatted(date: .abbreviated, time: .omitted) ?? String(localized: "during the paid period"))
     }
     var isValid: Bool { UUID(uuidString: connectionPublicId) != nil && UUID(uuidString: matterPublicId) != nil && fields["title"] != nil && fields["category"] != nil && Set(fields.keys).isSubset(of: detailLevel.allowedFields) }
 }
@@ -157,7 +157,10 @@ struct ReceivedInvitation: Identifiable {
     let token: String?
     let id = UUID()
     static func token(from value: String) -> String? {
-        guard let url = URLComponents(string: value), ["https", "http", "rillora"].contains(url.scheme?.lowercased() ?? ""),
+        guard let url = URLComponents(string: value), url.scheme?.lowercased() == "https",
+              ["app.rillora.xyz", "app.staging.rillora.xyz"].contains(url.host?.lowercased() ?? ""),
+              url.user == nil, url.password == nil, url.port == nil,
+              url.path == "/invite" || url.path.hasPrefix("/invite/"),
               let fragment = url.fragment, let token = URLComponents(string: "?\(fragment)")?.queryItems?.first(where: { $0.name == "invitation" })?.value,
               token.range(of: "^[A-Za-z0-9_-]{43}$", options: .regularExpression) != nil else { return nil }
         return token
@@ -182,24 +185,24 @@ protocol SharingServing: Sendable {
 }
 extension SharingServing {
     func checkEmailVerification() async throws -> Bool {
-        throw RilloraAPIError.requestFailed("Email verification could not be checked. Keep this invitation open and try again.")
+        throw RilloraAPIError.requestFailed(String(localized: "Email verification could not be checked. Keep this invitation open and try again."))
     }
     func previewSharing(grants: [SharingGrant], connectionPublicID: String?) async throws -> SharingPreview {
         try await previewSharing(grants: grants)
     }
     func pauseSharingLive(publicID: String, request: SharingPauseRequest) async throws -> SharingMutation {
-        throw RilloraAPIError.requestFailed("Updates could not be paused. Try again when connected.")
+        throw RilloraAPIError.requestFailed(String(localized: "Updates could not be paused. Try again when connected."))
     }
     func fetchSharingAllowance() async throws -> SharingAllowance? { nil }
     func selectSharingLive(publicID: String, request: SharingLiveRequest) async throws -> SharingMutation {
-        throw RilloraAPIError.requestFailed("Sharing could not be resumed. Try again when connected.")
+        throw RilloraAPIError.requestFailed(String(localized: "Sharing could not be resumed. Try again when connected."))
     }
     func previewSharing(grants: [SharingGrant]) async throws -> SharingPreview {
-        throw RilloraAPIError.requestFailed("The sharing preview is unavailable. Try again when connected.")
+        throw RilloraAPIError.requestFailed(String(localized: "The sharing preview is unavailable. Try again when connected."))
     }
 }
 struct UnavailableSharingService: SharingServing {
-    private var unavailable: RilloraAPIError { .requestFailed("Sharing is not available. Try again when connected.") }
+    private var unavailable: RilloraAPIError { .requestFailed(String(localized: "Sharing is not available. Try again when connected.")) }
     func fetchSharingConnections() async throws -> [SharingConnection] { throw unavailable }
     func createSharingConnection(request: SharingCreateRequest) async throws -> SharingMutation { throw unavailable }
     func updateSharingConnection(publicID: String, request: SharingUpdateRequest) async throws -> SharingMutation { throw unavailable }

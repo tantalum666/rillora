@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-12T16:17:44.883208+00:00",
+  "skills": [
+    "stripe-best-practices",
+    "frontend-testing-debugging",
+    "vercel-react-best-practices"
+  ],
+  "noNewDependencies": true,
+  "existingHookOrderAndPrimitiveDependencies": true,
+  "explicitEventOnlyConsent": true,
+  "noAcceptanceOnLoad": true,
+  "synchronousDuplicateClickLock": true,
+  "staleResponseNavigationGuard": true,
+  "providerSpecificManagement": true,
+  "currencyFromValidatedCatalog": true,
+  "scopedNodePassed": 13,
+  "browserCasesPassed": 23,
+  "firstBrowserRun": {
+    "passed": 21,
+    "failedFixtureAssertions": 2
+  },
+  "onlyFailedCasesRetried": 2,
+  "nativeSourceOnly": [
+    "ApplePurchaseSection.swift",
+    "PlanAccessView.swift consumer route"
+  ],
+  "phoneOrProviderTransactionsRepeated": false,
+  "unscopedHistoricalLinkCheck": "Old dated output references absent in this worktree; only new links checked separately, all13valid.",
+  "ci133AllJobsPassed": true,
+  "i18nFollowupPassed": 7,
+  "previousCiFailure": "Only obsolete regex assertions requiring the rejected checkbox; removed in favor of rendered behavior coverage."
+}

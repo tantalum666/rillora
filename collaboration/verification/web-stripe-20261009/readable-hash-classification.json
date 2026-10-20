@@ -1,0 +1,79 @@
+{
+  "at": "2026-10-08T20:40:29.905251+00:00",
+  "firstScanFindings": 46,
+  "classification": "Generic-key heuristic matched public CDK S3 asset content hashes and one Git commit hash. All matched values are40or64lowercase hex, optionally.zip. Exact originals stay in unchanged archive26; readable copies omit these ambiguous key-shaped values. No scanner rule/exception changed.",
+  "changedFiles": [
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/RilloraStaging.template.json",
+      "publicHashFieldsOmitted": 4
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-stripe-webhook-20261009/cdk-runtime/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/RilloraProductionWeb.assets.json",
+      "publicHashFieldsOmitted": 3
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/RilloraProductionWeb.template.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraProductionWeb/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/RilloraStaging.assets.json",
+      "publicHashFieldsOmitted": 1
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/RilloraStaging.template.json",
+      "publicHashFieldsOmitted": 4
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-RilloraStaging/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/RilloraPublicWeb.assets.json",
+      "publicHashFieldsOmitted": 3
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/RilloraPublicWeb.template.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-public/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/RilloraStaging.template.json",
+      "publicHashFieldsOmitted": 4
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-api/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/RilloraStaging.template.json",
+      "publicHashFieldsOmitted": 4
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-arm64-prepare/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/RilloraStaging.template.json",
+      "publicHashFieldsOmitted": 4
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare/tree.json",
+      "publicHashFieldsOmitted": 2
+    },
+    {
+      "path": "collaboration/verification/web-stripe-20261009/receipts/output/qa/rillora-web-rollout-20261009/checkpoint.json",
+      "publicHashFieldsOmitted": 1
+    }
+  ]
+}

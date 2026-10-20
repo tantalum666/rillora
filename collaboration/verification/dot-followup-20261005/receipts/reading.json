@@ -1,0 +1,31 @@
+{
+  "continuationOfReleaseWorkflow": true,
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "priorFocusedReads": "output/qa/rillora-real-core-closeout-20261005/focused-reading.json",
+  "newAndChangedRemoteMarkdown": "remote-inventory.json",
+  "supplementedTruncation": {
+    "docs/architecture/ai-mcp-plan-20261005.md": "141-245; complete other sections previously displayed"
+  },
+  "currentRead": [
+    "AGENTS.md complete",
+    "docs/product.md 1-82 plus Authority Map; retained unchanged body",
+    "docs/handoff.md complete",
+    "docs/decision-log.md latest260lines",
+    "docs/journey/PROJECT_JOURNEY.md latest80lines",
+    "docs/chat-resume-20260930.md complete",
+    "collaboration/README.md complete",
+    "docs/source-control.md complete",
+    "apps/web/AGENTS.md complete at Dot tip"
+  ],
+  "exclusions": [
+    "dependencies",
+    "build outputs",
+    "caches",
+    "output generated evidence",
+    "collaboration/evidence",
+    "collaboration/catalog",
+    "collaboration/archives"
+  ],
+  "completedAt": "2026-10-05T06:18:52.367662+00:00",
+  "doesNotClaimNewFullRepoRead": true
+}

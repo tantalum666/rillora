@@ -1,0 +1,33 @@
+"""Check local project Markdown references after final documentation-only edits."""
+from pathlib import Path
+import datetime, json, re, subprocess, urllib.parse
+ROOT=Path('/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app')
+PRIMARY=Path('/Users/tantalum/Documents/电子遗嘱app')
+QA=ROOT/'output/qa/rillora-security-remediation-20261011'
+prior=json.loads((QA/'reading.json').read_text())
+files={x['path'] for x in prior['files']}
+files.update(['docs/handoff-history-20261011-security-before-approval.md',
+              'docs/handoff-history-20261011-before-git-closeout.md',
+              'collaboration/verification/security-remediation-20261011/README.md'])
+missing=[]; count=0; historical=0
+for name in sorted(files):
+ p=ROOT/name
+ body=re.sub(r'\x60{3}[\s\S]*?\x60{3}','',p.read_text())
+ links=re.findall(r'\]\((<[^>]+>|[^\n)]+)\)',body)+re.findall(r'^\s*\[[^]]+\]:\s*(\S+)',body,re.M)
+ for raw in links:
+  target=raw.strip().strip('<>').split(' "')[0]
+  if not target or target.startswith('#') or re.match(r'^[a-zA-Z][a-zA-Z+.-]*:',target):continue
+  target=urllib.parse.unquote(target.split('#')[0]);count+=1
+  candidate=(p.parent/target).resolve()
+  if candidate.exists():continue
+  try:rel=candidate.relative_to(ROOT)
+  except ValueError:rel=None
+  if rel and (PRIMARY/rel).exists():
+   historical+=1;continue
+  missing.append({'file':name,'target':target})
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'files':len(files),'localLinks':count,'historicalPrimaryReferences':historical,
+        'missing':missing,'passed':not missing,
+        'boundary':'Local Markdown destinations only; historical output references retain their source location; not new product tests or an external HTTP link check.'}
+(QA/'markdown-links-closeout.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(report,ensure_ascii=False));raise SystemExit(bool(missing))

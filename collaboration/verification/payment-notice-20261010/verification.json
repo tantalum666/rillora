@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-10T09:27:10.178Z",
+  "purpose": "Owner clarification: Auth0 free-first and Gmail Stripe failure notice",
+  "auth0": {
+    "freeFirstReaffirmed": true,
+    "paidUpgradePerformed": false,
+    "blockedFeature": "existing custom Universal Login shell template",
+    "existingEvidence": "HTTP402 template API and no ticket-create access; bilingual widgets/Forms already applied",
+    "publicCommunityPostAuthorized": false
+  },
+  "latestMail": {
+    "subject": "您的 Stripe 账户测试模式的退款未成功",
+    "sentHongKong": "2026-10-10 01:51:30",
+    "refundExactlyMatchesPriorFailureTest": true,
+    "amountMinor": 8899,
+    "currency": "USD",
+    "officialTestCardLast4": "5126",
+    "providerMode": "test",
+    "refundStatus": "failed",
+    "failureReason": "expired_or_canceled_card",
+    "qaScenario": "official-async-refund-failure",
+    "failedEventPendingWebhooks": 0,
+    "realMoneyMoved": false
+  },
+  "olderMail": {
+    "subject": "Stripe Webhook 针对预览环境的投递问题 [测试模式]",
+    "sentHongKong": "2026-10-09 01:06:53",
+    "reportedHttp500Requests": 13,
+    "priorFixSource": "8b1f91798",
+    "currentEndpointEnabled": true,
+    "enabledEvents": 14
+  },
+  "actions": {
+    "readOnlyGmail": true,
+    "readOnlyStripe": true,
+    "newTransaction": false,
+    "newDeployment": false,
+    "notificationSettingsChanged": false
+  },
+  "retainedEvidence": "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+  "documents": [
+    "docs/payment-recheck-20261009.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decisionLog": "No new product/pricing/provider purchase decision. Owner reaffirms free-first; no upgrade or public-outreach consent inferred."
+}

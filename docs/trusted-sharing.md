@@ -1,8 +1,36 @@
 # Account-bound invitations and directed sharing
 
-Status: SHARING CONTRACT RETAINED; RESTRICTED PRODUCTION RECENT-AUTH GUARDS VERIFIED; REAL PRODUCTION JOURNEY OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: SHARING CONTRACT RETAINED; ACTUAL NATIVE-TO-WEB SCOPE AND REVOCATION VERIFIED
+Last updated: 2026-10-19 (Asia/Hong_Kong)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## October19 future recipient notice — design only
+
+Owner now requires designated people to know an arrangement exists while its contents remain sealed during the planner's life. The [next-version design](conditional-disclosure-vnext-20261019.md) records a separate future-recipient relationship with no present Matter grants, titles or counts. It is not the existing Name level, an accepted live-sharing connection or an already delivered copy. Current sharing, recipient quotas, prices and APIs remain unchanged; no notice has been sent and no conditional release is implemented.
+
+## October11 local invitation repair
+
+The [remaining-five repair](security-remaining-five-20261011.md) removes globally comparable email SHA values from active sessions and replaces connection matching with a secret HMAC scoped to the owner. Migration0101 and the controlled backfill convert the previous32-byte digest without recovering the raw email, preserve accepted relationships and same-owner duplicate detection, and refuse a mismatched key. Current verified-email proof is transient during acceptance; normal production cannot fall back to the old global digest. A pending expired token still produces the established expiry error; an already bound recipient may repeat acceptance idempotently without reopening public metadata. Masks, relationship metadata and old backups remain personal information, not anonymous/E2EE data. These compatibility tests pass locally; no existing cloud invitation was migrated or resent.
+
+The [current security candidate](security-findings-remediation-20261011.md) checks recent authentication and current provider-verified email when accepting an invitation. Cached proof is cleared on change, revocation or provider failure. Public lookup exposes metadata only while the invitation is pending and unexpired; an accepted recipient uses the authenticated shared list. Native links accept exact owned HTTPS origins, with AASA deployment still separate. Production handoff cookies are host-bound. Failed native sign-out cannot continue into another-account login, and the invitation view keeps the failure visible. These changes do not create legal authority, extra sharing places or automated release.
+
+## October3 strict-review implementation boundary
+
+The live/saved/paused projection also governs recipient-specific printable guides.
+Restores retain historical redaction and grant lineage under0092; removing then
+regranting access cannot revive a prior saved copy. Ambiguous legacy history stays
+quarantined rather than inventing missing evidence. Existing real QQ acceptance/login
+and limited field proof retain their October2 scope. The new replay/export repairs
+were locally verified at review closeout and subsequently deployed under
+[the October3 rollout](review-rollout-20261003.md). [Review and limitations](code-review-20261002.md).
+
+October4 native-to-Web acceptance used the existing synthetic record and actual
+Google/QQ sessions. Name reduction returned onlytitle/category; Details expansion
+was blocked until actual recent authentication and an explicit Save sharing retry.
+Native Stop sharing then showed Disconnected/0of1place, while the already-open QQ
+detail cleared without reload. Its actual HTTP200response has empty connections/items
+and readOnly=true. Downloaded copies remain readable; no remote-erasure claim or
+new family delivery. [Actual evidence](real-core-acceptance-20261004.md).
 
 ## September30 recent authentication for expanded access
 

@@ -1,0 +1,34 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000 test/rillora-public-web-stack.test.ts
+
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/infra/aws
+
+ ❯ test/rillora-public-web-stack.test.ts (6 tests | 3 failed) 1505ms
+     × rejects changed public assets after packaging 217ms
+     × rejects extra public assets after packaging 31ms
+     × rejects missing public assets after packaging 37ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-public-web-stack.test.ts > Public information hosting > rejects changed public assets after packaging
+ FAIL  test/rillora-public-web-stack.test.ts > Public information hosting > rejects extra public assets after packaging
+ FAIL  test/rillora-public-web-stack.test.ts > Public information hosting > rejects missing public assets after packaging
+AssertionError: expected [Function] to throw an error
+ ❯ test/rillora-public-web-stack.test.ts:30:113
+     28|       if (mutation === 'extra') writeFileSync(join(assetDirectory, 'as…
+     29|       if (mutation === 'missing') rmSync(join(assetDirectory, 'assets/…
+     30|       expect(() => new RilloraPublicWebStack(new App(), 'ChangedArtifa…
+       |                                                                                                                 ^
+     31|     } finally { rmSync(assetDirectory, { recursive: true }); }
+     32|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  3 failed | 3 passed (6)
+   Start at  01:54:45
+   Duration  1.91s (transform 40ms, setup 0ms, import 275ms, tests 1.50s, environment 0ms)
+

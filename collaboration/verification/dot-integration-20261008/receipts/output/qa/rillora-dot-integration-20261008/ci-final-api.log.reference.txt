@@ -1,0 +1,787 @@
+﻿2026-10-08T15:40:57.2696664Z Current runner version: '2.337.0'
+2026-10-08T15:40:57.2734035Z ##[group]Runner Image Provisioner
+2026-10-08T15:40:57.2735508Z Hosted Compute Agent
+2026-10-08T15:40:57.2736777Z Version: 20261002.596
+2026-10-08T15:40:57.2737898Z Commit: c3d12f3313a95f25162a1503be624f3b0617f8c0
+2026-10-08T15:40:57.2739178Z Build Date: 2026-10-02T22:28:27Z
+2026-10-08T15:40:57.2740527Z Worker ID: {5afcf305-01d7-44da-9454-08c76ad34c90}
+2026-10-08T15:40:57.2741761Z Region: westus
+2026-10-08T15:40:57.2742941Z Cloud: Azure
+2026-10-08T15:40:57.2744018Z ##[endgroup]
+2026-10-08T15:40:57.2746299Z ##[group]Operating System
+2026-10-08T15:40:57.2747429Z Ubuntu
+2026-10-08T15:40:57.2748321Z 24.04.5
+2026-10-08T15:40:57.2749259Z LTS
+2026-10-08T15:40:57.2750235Z ##[endgroup]
+2026-10-08T15:40:57.2751230Z ##[group]Runner Image
+2026-10-08T15:40:57.2752400Z Image: ubuntu-24.04
+2026-10-08T15:40:57.2754024Z Version: 20261004.327.1
+2026-10-08T15:40:57.2756426Z Included Software: https://github.com/actions/runner-images/blob/ubuntu24/20261004.327/images/ubuntu/Ubuntu2404-Readme.md
+2026-10-08T15:40:57.2759364Z Image Release: https://github.com/actions/runner-images/releases/tag/ubuntu24%2F20261004.327
+2026-10-08T15:40:57.2761273Z ##[endgroup]
+2026-10-08T15:40:57.2763581Z ##[group]GITHUB_TOKEN Permissions
+2026-10-08T15:40:57.2766361Z Contents: read
+2026-10-08T15:40:57.2767398Z Metadata: read
+2026-10-08T15:40:57.2768347Z ##[endgroup]
+2026-10-08T15:40:57.2771684Z Secret source: Actions
+2026-10-08T15:40:57.2774025Z Cache mode: write
+2026-10-08T15:40:57.2775344Z Prepare workflow directory
+2026-10-08T15:40:57.3621753Z Prepare all required actions
+2026-10-08T15:40:57.3695100Z Getting action download info
+2026-10-08T15:40:57.7769168Z Download action repository 'actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1' (SHA:3d3c42e5aac5ba805825da76410c181273ba90b1)
+2026-10-08T15:40:57.8887956Z Download action repository 'actions/setup-node@820762786026740c76f36085b0efc47a31fe5020' (SHA:820762786026740c76f36085b0efc47a31fe5020)
+2026-10-08T15:40:58.1387428Z Complete job name: api
+2026-10-08T15:40:58.1914003Z ##[group]Checking docker version
+2026-10-08T15:40:58.1927634Z ##[command]/usr/bin/docker version --format '{{.Server.APIVersion}}'
+2026-10-08T15:40:59.4245609Z '1.48'
+2026-10-08T15:40:59.4256828Z Docker daemon API version: '1.48'
+2026-10-08T15:40:59.4257352Z ##[command]/usr/bin/docker version --format '{{.Client.APIVersion}}'
+2026-10-08T15:40:59.4441534Z '1.48'
+2026-10-08T15:40:59.4457415Z Docker client API version: '1.48'
+2026-10-08T15:40:59.4462801Z ##[endgroup]
+2026-10-08T15:40:59.4465747Z ##[group]Clean up resources from previous jobs
+2026-10-08T15:40:59.4471305Z ##[command]/usr/bin/docker ps --all --quiet --no-trunc --filter "label=1c207c"
+2026-10-08T15:40:59.4845052Z ##[command]/usr/bin/docker network prune --force --filter "label=1c207c"
+2026-10-08T15:40:59.4995693Z ##[endgroup]
+2026-10-08T15:40:59.4996048Z ##[group]Create local container network
+2026-10-08T15:40:59.5005871Z ##[command]/usr/bin/docker network create --label 1c207c github_network_5021288a67d1424f93a69f2c68f3b2d4
+2026-10-08T15:40:59.5725415Z 052750628bb3d457025112c278c00e52e9c0b4a44c42815489bd170e0082fa9b
+2026-10-08T15:40:59.5745555Z ##[endgroup]
+2026-10-08T15:40:59.5769583Z ##[group]Starting postgres service container
+2026-10-08T15:40:59.5791431Z ##[command]/usr/bin/docker pull postgres:16.13
+2026-10-08T15:41:00.5153986Z 16.13: Pulling from library/postgres
+2026-10-08T15:41:00.8075485Z 57fb71246055: Pulling fs layer
+2026-10-08T15:41:00.8099575Z 20a683cffcdc: Pulling fs layer
+2026-10-08T15:41:00.8106414Z deb6f5b1d4fc: Pulling fs layer
+2026-10-08T15:41:00.8113488Z 70f810f97521: Pulling fs layer
+2026-10-08T15:41:00.8120369Z 28c7b001f7c1: Pulling fs layer
+2026-10-08T15:41:00.8126059Z 89bd933b3504: Pulling fs layer
+2026-10-08T15:41:00.8126792Z 6fd786e9d2d8: Pulling fs layer
+2026-10-08T15:41:00.8127403Z 538b1755faee: Pulling fs layer
+2026-10-08T15:41:00.8128011Z 18f64d703d89: Pulling fs layer
+2026-10-08T15:41:00.8128422Z a5321ae1fd27: Pulling fs layer
+2026-10-08T15:41:00.8129046Z 9ece4c1ed352: Pulling fs layer
+2026-10-08T15:41:00.8130134Z ec732245c890: Pulling fs layer
+2026-10-08T15:41:00.8130645Z e40701225891: Pulling fs layer
+2026-10-08T15:41:00.8131051Z 33b67bd603bd: Pulling fs layer
+2026-10-08T15:41:00.8132835Z 538b1755faee: Waiting
+2026-10-08T15:41:00.8138898Z 18f64d703d89: Waiting
+2026-10-08T15:41:00.8139667Z a5321ae1fd27: Waiting
+2026-10-08T15:41:00.8140249Z 9ece4c1ed352: Waiting
+2026-10-08T15:41:00.8140661Z ec732245c890: Waiting
+2026-10-08T15:41:00.8141026Z e40701225891: Waiting
+2026-10-08T15:41:00.8141408Z 33b67bd603bd: Waiting
+2026-10-08T15:41:00.8141775Z 70f810f97521: Waiting
+2026-10-08T15:41:00.8142135Z 28c7b001f7c1: Waiting
+2026-10-08T15:41:00.8142924Z 89bd933b3504: Waiting
+2026-10-08T15:41:00.8143546Z 6fd786e9d2d8: Waiting
+2026-10-08T15:41:01.0315175Z 20a683cffcdc: Verifying Checksum
+2026-10-08T15:41:01.0316408Z 20a683cffcdc: Download complete
+2026-10-08T15:41:01.0687923Z deb6f5b1d4fc: Verifying Checksum
+2026-10-08T15:41:01.0689377Z deb6f5b1d4fc: Download complete
+2026-10-08T15:41:01.1373420Z 57fb71246055: Verifying Checksum
+2026-10-08T15:41:01.1374550Z 57fb71246055: Download complete
+2026-10-08T15:41:01.2574887Z 70f810f97521: Verifying Checksum
+2026-10-08T15:41:01.2600091Z 70f810f97521: Download complete
+2026-10-08T15:41:01.3754839Z 89bd933b3504: Verifying Checksum
+2026-10-08T15:41:01.3758683Z 89bd933b3504: Download complete
+2026-10-08T15:41:01.4068812Z 28c7b001f7c1: Verifying Checksum
+2026-10-08T15:41:01.4071177Z 28c7b001f7c1: Download complete
+2026-10-08T15:41:01.4636257Z 6fd786e9d2d8: Verifying Checksum
+2026-10-08T15:41:01.4648415Z 6fd786e9d2d8: Download complete
+2026-10-08T15:41:01.6022877Z 538b1755faee: Download complete
+2026-10-08T15:41:01.6837200Z a5321ae1fd27: Verifying Checksum
+2026-10-08T15:41:01.6840418Z a5321ae1fd27: Download complete
+2026-10-08T15:41:01.8183303Z 9ece4c1ed352: Verifying Checksum
+2026-10-08T15:41:01.8187349Z 9ece4c1ed352: Download complete
+2026-10-08T15:41:01.9030111Z ec732245c890: Verifying Checksum
+2026-10-08T15:41:01.9031505Z ec732245c890: Download complete
+2026-10-08T15:41:02.0581051Z e40701225891: Verifying Checksum
+2026-10-08T15:41:02.0582171Z e40701225891: Download complete
+2026-10-08T15:41:02.1544623Z 33b67bd603bd: Verifying Checksum
+2026-10-08T15:41:02.1546961Z 33b67bd603bd: Download complete
+2026-10-08T15:41:02.1669715Z 18f64d703d89: Verifying Checksum
+2026-10-08T15:41:02.1670672Z 18f64d703d89: Download complete
+2026-10-08T15:41:02.6676160Z 57fb71246055: Pull complete
+2026-10-08T15:41:05.7129289Z 20a683cffcdc: Pull complete
+2026-10-08T15:41:05.9280343Z deb6f5b1d4fc: Pull complete
+2026-10-08T15:41:05.9856943Z 70f810f97521: Pull complete
+2026-10-08T15:41:06.3517551Z 28c7b001f7c1: Pull complete
+2026-10-08T15:41:06.4477523Z 89bd933b3504: Pull complete
+2026-10-08T15:41:06.4563177Z 6fd786e9d2d8: Pull complete
+2026-10-08T15:41:06.4765069Z 538b1755faee: Pull complete
+2026-10-08T15:41:10.9694378Z 18f64d703d89: Pull complete
+2026-10-08T15:41:10.9959349Z a5321ae1fd27: Pull complete
+2026-10-08T15:41:11.0084132Z 9ece4c1ed352: Pull complete
+2026-10-08T15:41:11.0194574Z ec732245c890: Pull complete
+2026-10-08T15:41:11.0327373Z e40701225891: Pull complete
+2026-10-08T15:41:11.0424199Z 33b67bd603bd: Pull complete
+2026-10-08T15:41:11.0494283Z Digest: sha256:5d143123fdf80462d1778cd4f24b9f7ca13c87174bca19141fb194c5a1ebca59
+2026-10-08T15:41:11.0510961Z Status: Downloaded newer image for postgres:16.13
+2026-10-08T15:41:11.0528510Z docker.io/library/postgres:16.13
+2026-10-08T15:41:11.0581230Z ##[command]/usr/bin/docker create --name d4f53a2b64234b6ca8cc09623e38bc3b_postgres1613_20c1a3 --label 1c207c --network github_network_5021288a67d1424f93a69f2c68f3b2d4 --network-alias postgres -p 127.0.0.1:5432:5432 --health-cmd pg_isready --health-interval 5s --health-timeout 5s --health-retries 12 -e "POSTGRES_HOST_AUTH_METHOD=trust" -e GITHUB_ACTIONS=true -e CI=true postgres:16.13
+2026-10-08T15:41:11.0860934Z 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:11.0887566Z ##[command]/usr/bin/docker start 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:12.1106808Z 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:12.1130910Z ##[command]/usr/bin/docker ps --all --filter id=9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746 --filter status=running --no-trunc --format "{{.ID}} {{.Status}}"
+2026-10-08T15:41:12.1337330Z 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746 Up 1 second (health: starting)
+2026-10-08T15:41:12.1349543Z ##[command]/usr/bin/docker port 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:12.1584088Z 5432/tcp -> 127.0.0.1:5432
+2026-10-08T15:41:12.1658331Z ##[endgroup]
+2026-10-08T15:41:12.1670355Z ##[group]Waiting for all services to be ready
+2026-10-08T15:41:12.1688864Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:12.1911893Z starting
+2026-10-08T15:41:12.1939316Z postgres service is starting, waiting 2 seconds before checking again.
+2026-10-08T15:41:14.1931327Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:14.2072374Z starting
+2026-10-08T15:41:14.2087209Z postgres service is starting, waiting 4 seconds before checking again.
+2026-10-08T15:41:18.5835294Z ##[command]/usr/bin/docker inspect --format="{{if .Config.Healthcheck}}{{print .State.Health.Status}}{{end}}" 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:41:18.5988902Z healthy
+2026-10-08T15:41:18.6008111Z postgres service is healthy.
+2026-10-08T15:41:18.6008837Z ##[endgroup]
+2026-10-08T15:41:18.6379027Z ##[group]Run actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+2026-10-08T15:41:18.6379720Z with:
+2026-10-08T15:41:18.6379955Z   persist-credentials: false
+2026-10-08T15:41:18.6380233Z   repository: tantalum666/rillora
+2026-10-08T15:41:18.6383831Z   token: ***
+2026-10-08T15:41:18.6384072Z   ssh-strict: true
+2026-10-08T15:41:18.6384285Z   ssh-user: git
+2026-10-08T15:41:18.6384481Z   clean: true
+2026-10-08T15:41:18.6384700Z   sparse-checkout-cone-mode: true
+2026-10-08T15:41:18.6384966Z   fetch-depth: 1
+2026-10-08T15:41:18.6385173Z   fetch-tags: false
+2026-10-08T15:41:18.6385387Z   show-progress: true
+2026-10-08T15:41:18.6385606Z   lfs: false
+2026-10-08T15:41:18.6385799Z   submodules: false
+2026-10-08T15:41:18.6386013Z   set-safe-directory: true
+2026-10-08T15:41:18.6386263Z   allow-unsafe-pr-checkout: false
+2026-10-08T15:41:18.6386815Z env:
+2026-10-08T15:41:18.6387020Z   PGHOST: 127.0.0.1
+2026-10-08T15:41:18.6387236Z   PGPORT: 5432
+2026-10-08T15:41:18.6387478Z   PGUSER: postgres
+2026-10-08T15:41:18.6387680Z ##[endgroup]
+2026-10-08T15:41:18.7553650Z Syncing repository: tantalum666/rillora
+2026-10-08T15:41:18.7555778Z ##[group]Getting Git version info
+2026-10-08T15:41:18.7556411Z Working directory is '/home/runner/work/rillora/rillora'
+2026-10-08T15:41:18.7557337Z [command]/usr/bin/git version
+2026-10-08T15:41:18.7714749Z git version 2.55.0
+2026-10-08T15:41:18.7754339Z ##[endgroup]
+2026-10-08T15:41:18.7774545Z Temporarily overriding HOME='/home/runner/work/_temp/76eb2143-66c7-4080-a49a-2550a7d7b867' before making global git config changes
+2026-10-08T15:41:18.7783720Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T15:41:18.7807939Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rillora/rillora
+2026-10-08T15:41:18.7863633Z Deleting the contents of '/home/runner/work/rillora/rillora'
+2026-10-08T15:41:18.7884009Z ##[group]Determining repository object format
+2026-10-08T15:41:18.7885093Z ##[endgroup]
+2026-10-08T15:41:18.7886116Z ##[group]Initializing the repository
+2026-10-08T15:41:18.7886926Z [command]/usr/bin/git init /home/runner/work/rillora/rillora
+2026-10-08T15:41:18.8009390Z hint: Using 'master' as the name for the initial branch. This default branch name
+2026-10-08T15:41:18.8013988Z hint: will change to "main" in Git 3.0. To configure the initial branch name
+2026-10-08T15:41:18.8033161Z hint: to use in all of your new repositories, which will suppress this warning,
+2026-10-08T15:41:18.8043108Z hint: call:
+2026-10-08T15:41:18.8043701Z hint:
+2026-10-08T15:41:18.8044427Z hint: 	git config --global init.defaultBranch <name>
+2026-10-08T15:41:18.8045075Z hint:
+2026-10-08T15:41:18.8045811Z hint: Names commonly chosen instead of 'master' are 'main', 'trunk' and
+2026-10-08T15:41:18.8046881Z hint: 'development'. The just-created branch can be renamed via this command:
+2026-10-08T15:41:18.8047743Z hint:
+2026-10-08T15:41:18.8048270Z hint: 	git branch -m <name>
+2026-10-08T15:41:18.8048856Z hint:
+2026-10-08T15:41:18.8049641Z hint: Disable this message with "git config set advice.defaultBranchName false"
+2026-10-08T15:41:18.8050874Z Initialized empty Git repository in /home/runner/work/rillora/rillora/.git/
+2026-10-08T15:41:18.8056233Z [command]/usr/bin/git remote add origin https://github.com/tantalum666/rillora
+2026-10-08T15:41:18.8119487Z ##[endgroup]
+2026-10-08T15:41:18.8120327Z ##[group]Disabling automatic garbage collection
+2026-10-08T15:41:18.8121073Z [command]/usr/bin/git config --local gc.auto 0
+2026-10-08T15:41:18.8191243Z ##[endgroup]
+2026-10-08T15:41:18.8192221Z ##[group]Setting up auth
+2026-10-08T15:41:18.8203197Z Removing SSH command configuration
+2026-10-08T15:41:18.8218686Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T15:41:18.8269137Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T15:41:18.8763667Z Removing HTTP extra header
+2026-10-08T15:41:18.8783507Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T15:41:18.8841337Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T15:41:18.9105510Z Removing includeIf entries pointing to credentials config files
+2026-10-08T15:41:18.9113615Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T15:41:18.9136894Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T15:41:18.9406140Z [command]/usr/bin/git config --file /home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config http.https://github.com/.extraheader AUTHORIZATION: basic ***
+2026-10-08T15:41:18.9430806Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/rillora/rillora/.git.path /home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:18.9469265Z [command]/usr/bin/git config --local includeIf.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path /home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:18.9511306Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git.path /github/runner_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:18.9553036Z [command]/usr/bin/git config --local includeIf.gitdir:/github/workspace/.git/worktrees/*.path /github/runner_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:18.9619509Z ##[endgroup]
+2026-10-08T15:41:18.9620602Z ##[group]Fetching the repository
+2026-10-08T15:41:18.9622393Z [command]/usr/bin/git -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +13b5648ac9a15d096b10a453529ebac8420423af:refs/remotes/pull/2/merge
+2026-10-08T15:41:23.8780756Z From https://github.com/tantalum666/rillora
+2026-10-08T15:41:23.8781548Z  * [new ref]         13b5648ac9a15d096b10a453529ebac8420423af -> pull/2/merge
+2026-10-08T15:41:23.8794335Z ##[endgroup]
+2026-10-08T15:41:23.8795308Z ##[group]Determining the checkout info
+2026-10-08T15:41:23.8796017Z ##[endgroup]
+2026-10-08T15:41:23.8797337Z [command]/usr/bin/git sparse-checkout disable
+2026-10-08T15:41:23.8857266Z [command]/usr/bin/git config --local --unset-all extensions.worktreeConfig
+2026-10-08T15:41:23.8894619Z ##[group]Checking out the ref
+2026-10-08T15:41:23.8899244Z [command]/usr/bin/git checkout --progress --force refs/remotes/pull/2/merge
+2026-10-08T15:41:24.9193830Z Updating files:  18% (2199/12092)
+2026-10-08T15:41:24.9263564Z Updating files:  19% (2298/12092)
+2026-10-08T15:41:24.9353475Z Updating files:  20% (2419/12092)
+2026-10-08T15:41:24.9413396Z Updating files:  21% (2540/12092)
+2026-10-08T15:41:24.9466282Z Updating files:  22% (2661/12092)
+2026-10-08T15:41:24.9535159Z Updating files:  23% (2782/12092)
+2026-10-08T15:41:24.9593762Z Updating files:  24% (2903/12092)
+2026-10-08T15:41:24.9700997Z Updating files:  25% (3023/12092)
+2026-10-08T15:41:24.9805589Z Updating files:  26% (3144/12092)
+2026-10-08T15:41:24.9882955Z Updating files:  27% (3265/12092)
+2026-10-08T15:41:24.9954624Z Updating files:  28% (3386/12092)
+2026-10-08T15:41:25.0020927Z Updating files:  29% (3507/12092)
+2026-10-08T15:41:25.0090394Z Updating files:  30% (3628/12092)
+2026-10-08T15:41:25.0141037Z Updating files:  31% (3749/12092)
+2026-10-08T15:41:25.0224520Z Updating files:  32% (3870/12092)
+2026-10-08T15:41:25.0343340Z Updating files:  33% (3991/12092)
+2026-10-08T15:41:25.0423788Z Updating files:  34% (4112/12092)
+2026-10-08T15:41:25.0489190Z Updating files:  35% (4233/12092)
+2026-10-08T15:41:25.0555046Z Updating files:  36% (4354/12092)
+2026-10-08T15:41:25.0621485Z Updating files:  37% (4475/12092)
+2026-10-08T15:41:25.0679685Z Updating files:  38% (4595/12092)
+2026-10-08T15:41:25.0735459Z Updating files:  39% (4716/12092)
+2026-10-08T15:41:25.0843637Z Updating files:  40% (4837/12092)
+2026-10-08T15:41:25.0930977Z Updating files:  41% (4958/12092)
+2026-10-08T15:41:25.1394081Z Updating files:  42% (5079/12092)
+2026-10-08T15:41:25.1535207Z Updating files:  43% (5200/12092)
+2026-10-08T15:41:25.1833021Z Updating files:  44% (5321/12092)
+2026-10-08T15:41:25.1986556Z Updating files:  45% (5442/12092)
+2026-10-08T15:41:25.2092958Z Updating files:  46% (5563/12092)
+2026-10-08T15:41:25.2184259Z Updating files:  47% (5684/12092)
+2026-10-08T15:41:25.2301416Z Updating files:  48% (5805/12092)
+2026-10-08T15:41:25.2398263Z Updating files:  49% (5926/12092)
+2026-10-08T15:41:25.2480401Z Updating files:  50% (6046/12092)
+2026-10-08T15:41:25.2574516Z Updating files:  51% (6167/12092)
+2026-10-08T15:41:25.2684873Z Updating files:  52% (6288/12092)
+2026-10-08T15:41:25.2814097Z Updating files:  53% (6409/12092)
+2026-10-08T15:41:25.2886205Z Updating files:  54% (6530/12092)
+2026-10-08T15:41:25.2975739Z Updating files:  55% (6651/12092)
+2026-10-08T15:41:25.3033877Z Updating files:  56% (6772/12092)
+2026-10-08T15:41:25.3122871Z Updating files:  57% (6893/12092)
+2026-10-08T15:41:25.3214658Z Updating files:  58% (7014/12092)
+2026-10-08T15:41:25.3294269Z Updating files:  59% (7135/12092)
+2026-10-08T15:41:25.3370397Z Updating files:  60% (7256/12092)
+2026-10-08T15:41:25.3432839Z Updating files:  61% (7377/12092)
+2026-10-08T15:41:25.3494499Z Updating files:  62% (7498/12092)
+2026-10-08T15:41:25.3576484Z Updating files:  63% (7618/12092)
+2026-10-08T15:41:25.3868051Z Updating files:  64% (7739/12092)
+2026-10-08T15:41:25.3952906Z Updating files:  65% (7860/12092)
+2026-10-08T15:41:25.4197020Z Updating files:  66% (7981/12092)
+2026-10-08T15:41:25.4249715Z Updating files:  67% (8102/12092)
+2026-10-08T15:41:25.4317794Z Updating files:  68% (8223/12092)
+2026-10-08T15:41:25.4687322Z Updating files:  69% (8344/12092)
+2026-10-08T15:41:25.4763079Z Updating files:  70% (8465/12092)
+2026-10-08T15:41:25.4888969Z Updating files:  71% (8586/12092)
+2026-10-08T15:41:25.5199614Z Updating files:  72% (8707/12092)
+2026-10-08T15:41:25.5322334Z Updating files:  73% (8828/12092)
+2026-10-08T15:41:25.5443048Z Updating files:  74% (8949/12092)
+2026-10-08T15:41:25.5511975Z Updating files:  75% (9069/12092)
+2026-10-08T15:41:25.5623308Z Updating files:  76% (9190/12092)
+2026-10-08T15:41:25.5701937Z Updating files:  77% (9311/12092)
+2026-10-08T15:41:25.5762928Z Updating files:  78% (9432/12092)
+2026-10-08T15:41:25.5830672Z Updating files:  79% (9553/12092)
+2026-10-08T15:41:25.5899917Z Updating files:  80% (9674/12092)
+2026-10-08T15:41:25.6412647Z Updating files:  81% (9795/12092)
+2026-10-08T15:41:25.7080928Z Updating files:  82% (9916/12092)
+2026-10-08T15:41:25.7284133Z Updating files:  83% (10037/12092)
+2026-10-08T15:41:25.7432027Z Updating files:  84% (10158/12092)
+2026-10-08T15:41:25.7614786Z Updating files:  85% (10279/12092)
+2026-10-08T15:41:25.7820081Z Updating files:  86% (10400/12092)
+2026-10-08T15:41:25.7913679Z Updating files:  87% (10521/12092)
+2026-10-08T15:41:25.8154858Z Updating files:  88% (10641/12092)
+2026-10-08T15:41:25.8264525Z Updating files:  89% (10762/12092)
+2026-10-08T15:41:25.8356632Z Updating files:  90% (10883/12092)
+2026-10-08T15:41:25.8478575Z Updating files:  91% (11004/12092)
+2026-10-08T15:41:25.8581544Z Updating files:  92% (11125/12092)
+2026-10-08T15:41:25.8649350Z Updating files:  93% (11246/12092)
+2026-10-08T15:41:25.8746958Z Updating files:  94% (11367/12092)
+2026-10-08T15:41:25.8820312Z Updating files:  95% (11488/12092)
+2026-10-08T15:41:25.8889423Z Updating files:  96% (11609/12092)
+2026-10-08T15:41:25.9009895Z Updating files:  97% (11730/12092)
+2026-10-08T15:41:25.9052212Z Updating files:  98% (11851/12092)
+2026-10-08T15:41:25.9141736Z Updating files:  98% (11899/12092)
+2026-10-08T15:41:25.9226387Z Updating files:  99% (11972/12092)
+2026-10-08T15:41:25.9227297Z Updating files: 100% (12092/12092)
+2026-10-08T15:41:25.9228343Z Updating files: 100% (12092/12092), done.
+2026-10-08T15:41:25.9369005Z Note: switching to 'refs/remotes/pull/2/merge'.
+2026-10-08T15:41:25.9369466Z 
+2026-10-08T15:41:25.9371561Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-10-08T15:41:25.9373268Z changes and commit them, and you can discard any commits you make in this
+2026-10-08T15:41:25.9374881Z state without impacting any branches by switching back to a branch.
+2026-10-08T15:41:25.9375702Z 
+2026-10-08T15:41:25.9376540Z If you want to create a new branch to retain commits you create, you may
+2026-10-08T15:41:25.9379068Z do so (now or later) by using -c with the switch command. Example:
+2026-10-08T15:41:25.9385674Z 
+2026-10-08T15:41:25.9386524Z   git switch -c <new-branch-name>
+2026-10-08T15:41:25.9387117Z 
+2026-10-08T15:41:25.9387794Z Or undo this operation with:
+2026-10-08T15:41:25.9391910Z 
+2026-10-08T15:41:25.9392087Z   git switch -
+2026-10-08T15:41:25.9392277Z 
+2026-10-08T15:41:25.9392847Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-10-08T15:41:25.9393393Z 
+2026-10-08T15:41:25.9393987Z HEAD is now at 13b5648 Merge 8cdaf2eaa76e4971013ab226a9461daf9a4880bb into 06da360715ad68e165bd3e1334dec32911aad345
+2026-10-08T15:41:26.0250766Z ##[endgroup]
+2026-10-08T15:41:26.0306790Z [command]/usr/bin/git log -1 --format=%H
+2026-10-08T15:41:26.0345403Z 13b5648ac9a15d096b10a453529ebac8420423af
+2026-10-08T15:41:26.0355326Z ##[group]Removing auth
+2026-10-08T15:41:26.0356747Z Removing SSH command configuration
+2026-10-08T15:41:26.0358226Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T15:41:26.0414202Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T15:41:26.0665234Z Removing HTTP extra header
+2026-10-08T15:41:26.0668029Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T15:41:26.0712127Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T15:41:26.0980196Z Removing includeIf entries pointing to credentials config files
+2026-10-08T15:41:26.0984488Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T15:41:26.1021614Z includeif.gitdir:/home/runner/work/rillora/rillora/.git.path
+2026-10-08T15:41:26.1023697Z includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path
+2026-10-08T15:41:26.1025275Z includeif.gitdir:/github/workspace/.git.path
+2026-10-08T15:41:26.1026374Z includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T15:41:26.1033520Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/rillora/rillora/.git.path
+2026-10-08T15:41:26.1068090Z /home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:26.1153800Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/rillora/rillora/.git.path \/home\/runner\/work\/_temp\/git\-credentials\-96d5469f\-b1ff\-4f02\-97e8\-0ce0f44f213f\.config
+2026-10-08T15:41:26.1160640Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path
+2026-10-08T15:41:26.1187038Z /home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:26.1195782Z [command]/usr/bin/git config --local --unset includeif.gitdir:/home/runner/work/rillora/rillora/.git/worktrees/*.path \/home\/runner\/work\/_temp\/git\-credentials\-96d5469f\-b1ff\-4f02\-97e8\-0ce0f44f213f\.config
+2026-10-08T15:41:26.1243113Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git.path
+2026-10-08T15:41:26.1286689Z /github/runner_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:26.1296176Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git.path \/github\/runner_temp\/git\-credentials\-96d5469f\-b1ff\-4f02\-97e8\-0ce0f44f213f\.config
+2026-10-08T15:41:26.1344648Z [command]/usr/bin/git config --local --get-all includeif.gitdir:/github/workspace/.git/worktrees/*.path
+2026-10-08T15:41:26.1369765Z /github/runner_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config
+2026-10-08T15:41:26.1379437Z [command]/usr/bin/git config --local --unset includeif.gitdir:/github/workspace/.git/worktrees/*.path \/github\/runner_temp\/git\-credentials\-96d5469f\-b1ff\-4f02\-97e8\-0ce0f44f213f\.config
+2026-10-08T15:41:26.1419688Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T15:41:26.1675630Z Removing credentials config '/home/runner/work/_temp/git-credentials-96d5469f-b1ff-4f02-97e8-0ce0f44f213f.config'
+2026-10-08T15:41:26.1687903Z ##[endgroup]
+2026-10-08T15:41:26.1944705Z ##[group]Run actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+2026-10-08T15:41:26.1945112Z with:
+2026-10-08T15:41:26.1945325Z   node-version: 22.22.3
+2026-10-08T15:41:26.1945560Z   cache: npm
+2026-10-08T15:41:26.1945827Z   cache-dependency-path: apps/api/package-lock.json
+2026-10-08T15:41:26.1946171Z   check-latest: false
+2026-10-08T15:41:26.1949197Z   token: ***
+2026-10-08T15:41:26.1949458Z   package-manager-cache: true
+2026-10-08T15:41:26.1949710Z env:
+2026-10-08T15:41:26.1949899Z   PGHOST: 127.0.0.1
+2026-10-08T15:41:26.1950110Z   PGPORT: 5432
+2026-10-08T15:41:26.1950315Z   PGUSER: postgres
+2026-10-08T15:41:26.1950532Z ##[endgroup]
+2026-10-08T15:41:26.3329974Z Attempting to download 22.22.3...
+2026-10-08T15:41:26.9708358Z Acquiring 22.22.3 - x64 from https://github.com/actions/node-versions/releases/download/22.22.3-25838401827/node-22.22.3-linux-x64.tar.gz
+2026-10-08T15:41:27.7124670Z Extracting ...
+2026-10-08T15:41:27.7275420Z [command]/usr/bin/tar xz --strip 1 --warning=no-unknown-keyword --overwrite -C /home/runner/work/_temp/c5d09de4-60df-416b-a5ba-d09b518a3679 -f /home/runner/work/_temp/2afb53d6-cf3c-4a9a-9ef6-ea2d2c014245
+2026-10-08T15:41:29.1323332Z Adding to the cache ...
+2026-10-08T15:41:32.1845092Z ##[group]Environment details
+2026-10-08T15:41:32.6033840Z node: v22.22.3
+2026-10-08T15:41:32.6034639Z npm: 10.9.8
+2026-10-08T15:41:32.6035146Z yarn: 1.22.22
+2026-10-08T15:41:32.6036583Z ##[endgroup]
+2026-10-08T15:41:32.6072307Z [command]/opt/hostedtoolcache/node/22.22.3/x64/bin/npm config get cache
+2026-10-08T15:41:32.7035692Z /home/runner/.npm
+2026-10-08T15:41:32.9864258Z npm cache is not found
+2026-10-08T15:41:33.0060186Z ##[group]Run for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test continuity_apple_commerce_test continuity_apple_delivery_test continuity_apple_purchase_test continuity_apple_review_test continuity_production_commerce_test rillora_migration_atomicity_test rillora_recovery_history_test rillora_recovery_history_restore_test; do
+2026-10-08T15:41:33.0065449Z [36;1mfor database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test continuity_apple_commerce_test continuity_apple_delivery_test continuity_apple_purchase_test continuity_apple_review_test continuity_production_commerce_test rillora_migration_atomicity_test rillora_recovery_history_test rillora_recovery_history_restore_test; do[0m
+2026-10-08T15:41:33.0090375Z [36;1m  createdb "$database"[0m
+2026-10-08T15:41:33.0090926Z [36;1m  psql -d postgres -v ON_ERROR_STOP=1 -c "COMMENT ON DATABASE \"$database\" IS 'rillora-disposable-test:$database'"[0m
+2026-10-08T15:41:33.0091471Z [36;1mdone[0m
+2026-10-08T15:41:33.0321009Z shell: /usr/bin/bash -e {0}
+2026-10-08T15:41:33.0321366Z env:
+2026-10-08T15:41:33.0321620Z   PGHOST: 127.0.0.1
+2026-10-08T15:41:33.0321908Z   PGPORT: 5432
+2026-10-08T15:41:33.0322173Z   PGUSER: postgres
+2026-10-08T15:41:33.0322635Z ##[endgroup]
+2026-10-08T15:41:33.2862860Z COMMENT
+2026-10-08T15:41:33.3781620Z COMMENT
+2026-10-08T15:41:33.4817462Z COMMENT
+2026-10-08T15:41:33.5701851Z COMMENT
+2026-10-08T15:41:33.7083428Z COMMENT
+2026-10-08T15:41:33.7974379Z COMMENT
+2026-10-08T15:41:33.8983698Z COMMENT
+2026-10-08T15:41:33.9983974Z COMMENT
+2026-10-08T15:41:34.0894437Z COMMENT
+2026-10-08T15:41:34.1801469Z COMMENT
+2026-10-08T15:41:34.2813595Z COMMENT
+2026-10-08T15:41:34.3730596Z COMMENT
+2026-10-08T15:41:34.4683955Z COMMENT
+2026-10-08T15:41:34.6689524Z COMMENT
+2026-10-08T15:41:34.9657392Z COMMENT
+2026-10-08T15:41:35.2116968Z COMMENT
+2026-10-08T15:41:35.4634886Z COMMENT
+2026-10-08T15:41:36.1564181Z COMMENT
+2026-10-08T15:41:36.5288324Z COMMENT
+2026-10-08T15:41:36.7080261Z COMMENT
+2026-10-08T15:41:37.0244932Z COMMENT
+2026-10-08T15:41:37.1314233Z COMMENT
+2026-10-08T15:41:37.2292039Z COMMENT
+2026-10-08T15:41:37.2348983Z ##[group]Run npm ci
+2026-10-08T15:41:37.2349280Z [36;1mnpm ci[0m
+2026-10-08T15:41:37.2411979Z shell: /usr/bin/bash -e {0}
+2026-10-08T15:41:37.2412245Z env:
+2026-10-08T15:41:37.2412612Z   PGHOST: 127.0.0.1
+2026-10-08T15:41:37.2412834Z   PGPORT: 5432
+2026-10-08T15:41:37.2413043Z   PGUSER: postgres
+2026-10-08T15:41:37.2413259Z ##[endgroup]
+2026-10-08T15:41:40.0883758Z npm warn deprecated jsrsasign@11.1.5: This package is no longer maintained.
+2026-10-08T15:41:42.7924884Z 
+2026-10-08T15:41:42.7925978Z added 256 packages, and audited 257 packages in 5s
+2026-10-08T15:41:42.7926778Z 
+2026-10-08T15:41:42.7930968Z 60 packages are looking for funding
+2026-10-08T15:41:42.7931841Z   run `npm fund` for details
+2026-10-08T15:41:42.7937442Z 
+2026-10-08T15:41:42.7937853Z found 0 vulnerabilities
+2026-10-08T15:41:42.8469267Z ##[group]Run npm run typecheck && npm run build && npm test
+2026-10-08T15:41:42.8470096Z [36;1mnpm run typecheck && npm run build && npm test[0m
+2026-10-08T15:41:42.8563993Z shell: /usr/bin/bash -e {0}
+2026-10-08T15:41:42.8564440Z env:
+2026-10-08T15:41:42.8564776Z   PGHOST: 127.0.0.1
+2026-10-08T15:41:42.8565144Z   PGPORT: 5432
+2026-10-08T15:41:42.8565503Z   PGUSER: postgres
+2026-10-08T15:41:42.8565881Z ##[endgroup]
+2026-10-08T15:41:42.9660429Z 
+2026-10-08T15:41:42.9661289Z > continuity-api@0.1.0 typecheck
+2026-10-08T15:41:42.9662241Z > tsc -p tsconfig.json --noEmit
+2026-10-08T15:41:42.9663059Z 
+2026-10-08T15:41:45.2748203Z 
+2026-10-08T15:41:45.2749016Z > continuity-api@0.1.0 build
+2026-10-08T15:41:45.2749858Z > tsc -p tsconfig.build.json
+2026-10-08T15:41:45.2750368Z 
+2026-10-08T15:41:46.8189234Z 
+2026-10-08T15:41:46.8190108Z > continuity-api@0.1.0 test
+2026-10-08T15:41:46.8191265Z > vitest run
+2026-10-08T15:41:46.8191828Z 
+2026-10-08T15:41:47.1921625Z 
+2026-10-08T15:41:47.1934750Z [1m[30m[46m RUN [49m[39m[22m [36mv4.1.11 [39m[90m/home/runner/work/rillora/rillora/apps/api[39m
+2026-10-08T15:41:47.1962900Z 
+2026-10-08T15:41:51.6471125Z [90mstderr[2m | tests/api.integration.test.ts[2m > [22m[2mContinuity API[2m > [22m[2mrejects browser origins outside the explicit allowlist
+2026-10-08T15:41:51.6478186Z [22m[39mTEST_HTTP_403 {
+2026-10-08T15:41:51.6479220Z   type: [32m'application/json; charset=utf-8'[39m,
+2026-10-08T15:41:51.6480337Z   server: [90mundefined[39m,
+2026-10-08T15:41:51.6481319Z   code: [32m'origin_not_allowed'[39m,
+2026-10-08T15:41:51.6483068Z   text: [32m'{"error":{"code":"origin_not_allowed","message":"This origin is not allowed."}}'[39m
+2026-10-08T15:41:51.6484309Z }
+2026-10-08T15:41:51.6484776Z 
+2026-10-08T15:41:51.6538727Z  [32m✓[39m tests/api.integration.test.ts [2m([22m[2m59 tests[22m[2m)[22m[33m 2841[2mms[22m[39m
+2026-10-08T15:42:00.0786438Z  [32m✓[39m tests/apple-production-intake.integration.test.ts [2m([22m[2m20 tests[22m[2m)[22m[33m 7420[2mms[22m[39m
+2026-10-08T15:42:00.0794668Z      [33m[2m✓[22m[39m stops retry storms at a bounded attempt limit and exposes unresolved queue health [33m 392[2mms[22m[39m
+2026-10-08T15:42:00.0827405Z      [33m[2m✓[22m[39m reconciles a prepared purchase and retains its exact consent with paid financial records on erasure [33m 946[2mms[22m[39m
+2026-10-08T15:42:00.0843704Z      [33m[2m✓[22m[39m restores an older paid receipt without inventing a second paid order [33m 568[2mms[22m[39m
+2026-10-08T15:42:00.0847346Z      [33m[2m✓[22m[39m does not let an old expired notification cancel a later unfinished purchase [33m 325[2mms[22m[39m
+2026-10-08T15:42:00.0864078Z      [33m[2m✓[22m[39m mounts isolated authenticated/CSRF-protected production routes; delivery acknowledgement means durable receipt only [33m 373[2mms[22m[39m
+2026-10-08T15:42:00.4731850Z  [32m✓[39m tests/stripe-test-adapter.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 27[2mms[22m[39m
+2026-10-08T15:42:02.8166818Z  [32m✓[39m tests/production-commerce.integration.test.ts [2m([22m[2m13 tests[22m[2m)[22m[33m 1450[2mms[22m[39m
+2026-10-08T15:42:05.9875993Z  [32m✓[39m tests/p1-repair.integration.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 2215[2mms[22m[39m
+2026-10-08T15:42:05.9877776Z      [33m[2m✓[22m[39m round-trips an actual exported backup at the 2 MiB boundary with its import envelope [33m 718[2mms[22m[39m
+2026-10-08T15:42:12.7546704Z  [32m✓[39m tests/sharing-lifecycle.integration.test.ts [2m([22m[2m15 tests[22m[2m)[22m[33m 5861[2mms[22m[39m
+2026-10-08T15:42:12.7561582Z      [33m[2m✓[22m[39m serializes concurrent Free reservations and keeps contact creation/incoming access free [33m 390[2mms[22m[39m
+2026-10-08T15:42:12.7618491Z      [33m[2m✓[22m[39m reissuing one reservation is not a new seat, expired/revoked reservations free their seat [33m 382[2mms[22m[39m
+2026-10-08T15:42:12.7620810Z      [33m[2m✓[22m[39m caps Family at five including pending invitations and rejects duplicate targets [33m 404[2mms[22m[39m
+2026-10-08T15:42:12.7622867Z      [33m[2m✓[22m[39m keeps the paid-term version when a later edit occurs before any expiry job/read [33m 419[2mms[22m[39m
+2026-10-08T15:42:12.7625047Z      [33m[2m✓[22m[39m redacts narrowed/removed grants permanently and never backfills new saved content [33m 405[2mms[22m[39m
+2026-10-08T15:42:12.7626881Z      [33m[2m✓[22m[39m requires an explicit included-person choice and does not resume everyone after repurchase [33m 466[2mms[22m[39m
+2026-10-08T15:42:12.7628891Z      [33m[2m✓[22m[39m does not let a pending over-limit invite activate after expiry; choosing it preserves explicit acceptance [33m 306[2mms[22m[39m
+2026-10-08T15:42:12.7635524Z      [33m[2m✓[22m[39m clears saved retrieval immediately on matter privacy, archive and connection revocation [33m 330[2mms[22m[39m
+2026-10-08T15:42:12.7638233Z      [33m[2m✓[22m[39m replaces the Free recipient atomically and rolls back a failed replacement [33m 362[2mms[22m[39m
+2026-10-08T15:42:12.7640520Z      [33m[2m✓[22m[39m captures an existing Free recipient at paid activation before any new edit [33m 384[2mms[22m[39m
+2026-10-08T15:42:16.3244021Z  [32m✓[39m tests/family-maintenance.integration.test.ts [2m([22m[2m14 tests[22m[2m)[22m[33m 2529[2mms[22m[39m
+2026-10-08T15:42:21.0540748Z  [32m✓[39m tests/apple-review.integration.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 3788[2mms[22m[39m
+2026-10-08T15:42:21.0583566Z      [33m[2m✓[22m[39m prepares only an explicit Sandbox offer while production sales and Web88.99 remain unchanged [33m 308[2mms[22m[39m
+2026-10-08T15:42:21.0585398Z      [33m[2m✓[22m[39m atomically reconciles the prepared test purchase; a duplicate restore re-fetches a later refund [33m 334[2mms[22m[39m
+2026-10-08T15:42:21.0586828Z      [33m[2m✓[22m[39m uses a distinct review response contract, requires authentication, and remains absent by default [33m 320[2mms[22m[39m
+2026-10-08T15:42:24.0941950Z  [32m✓[39m tests/sharing.integration.test.ts [2m([22m[2m12 tests[22m[2m)[22m[33m 2150[2mms[22m[39m
+2026-10-08T15:42:24.5129006Z  [32m✓[39m tests/commerce-provider-adapters.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 44[2mms[22m[39m
+2026-10-08T15:42:24.8914388Z  [32m✓[39m tests/config.test.ts [2m([22m[2m22 tests[22m[2m)[22m[32m 50[2mms[22m[39m
+2026-10-08T15:42:26.4740657Z  [32m✓[39m tests/retention.integration.test.ts [2m([22m[2m9 tests[22m[2m)[22m[33m 1076[2mms[22m[39m
+2026-10-08T15:42:29.6315795Z  [32m✓[39m tests/recent-authentication.integration.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 2266[2mms[22m[39m
+2026-10-08T15:42:29.6334017Z      [33m[2m✓[22m[39m guards the actual handlers under both prefixes, case variants and trailing slashes [33m 907[2mms[22m[39m
+2026-10-08T15:42:32.0786029Z  [32m✓[39m tests/private-content.integration.test.ts [2m([22m[2m10 tests[22m[2m)[22m[33m 1542[2mms[22m[39m
+2026-10-08T15:42:32.5827536Z  [32m✓[39m tests/apple-production-server-api.test.ts [2m([22m[2m15 tests[22m[2m)[22m[32m 72[2mms[22m[39m
+2026-10-08T15:42:34.6043391Z  [32m✓[39m tests/apple-commerce.integration.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1117[2mms[22m[39m
+2026-10-08T15:42:34.9858436Z  [32m✓[39m tests/stripe-production-adapter.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 25[2mms[22m[39m
+2026-10-08T15:42:39.3911918Z  [32m✓[39m tests/apple-purchase-preflight.integration.test.ts [2m([22m[2m11 tests[22m[2m)[22m[33m 3820[2mms[22m[39m
+2026-10-08T15:42:39.3931947Z      [33m[2m✓[22m[39m expires only a never-opened quote and permits a fresh purchase after explicit native cancellation [33m 369[2mms[22m[39m
+2026-10-08T15:42:42.9684394Z  [32m✓[39m tests/recovery-journal.integration.test.ts [2m([22m[2m7 tests[22m[2m)[22m[33m 2640[2mms[22m[39m
+2026-10-08T15:42:42.9688749Z      [33m[2m✓[22m[39m takes a database snapshot before later revocation and account erasure [33m 377[2mms[22m[39m
+2026-10-08T15:42:42.9691094Z      [33m[2m✓[22m[39m replays a real database copy without regranting C or disturbing B [33m 1170[2mms[22m[39m
+2026-10-08T15:42:45.4921586Z  [32m✓[39m tests/private-content-migration.integration.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1522[2mms[22m[39m
+2026-10-08T15:42:47.5838400Z  [32m✓[39m tests/recovery-commerce.integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 1483[2mms[22m[39m
+2026-10-08T15:42:50.9463571Z  [32m✓[39m tests/recovery-permission-history.integration.test.ts [2m([22m[2m2 tests[22m[2m)[22m[33m 2446[2mms[22m[39m
+2026-10-08T15:42:50.9474331Z      [33m[2m✓[22m[39m does not resurrect saved fields, removed grant identities or withdrawn review tasks [33m 1139[2mms[22m[39m
+2026-10-08T15:42:52.9834542Z  [32m✓[39m tests/email-verification.integration.test.ts [2m([22m[2m8 tests[22m[2m)[22m[33m 1151[2mms[22m[39m
+2026-10-08T15:42:53.4050486Z  [32m✓[39m tests/apple-production-runtime.test.ts [2m([22m[2m5 tests[22m[2m)[22m[32m 54[2mms[22m[39m
+2026-10-08T15:42:53.8238563Z  [32m✓[39m tests/apple-storekit-adapter.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+2026-10-08T15:42:55.8709405Z  [32m✓[39m tests/matter-details.integration.test.ts [2m([22m[2m6 tests[22m[2m)[22m[33m 1120[2mms[22m[39m
+2026-10-08T15:42:56.3294417Z  [32m✓[39m tests/apple-production-verification.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 21[2mms[22m[39m
+2026-10-08T15:42:56.7273484Z  [32m✓[39m tests/apple-storekit-server-api.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 9[2mms[22m[39m
+2026-10-08T15:42:58.4644803Z  [32m✓[39m tests/production-review-access.integration.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 836[2mms[22m[39m
+2026-10-08T15:42:59.1847704Z  [32m✓[39m tests/bootstrap-runtime.test.ts [2m([22m[2m8 tests[22m[2m)[22m[32m 182[2mms[22m[39m
+2026-10-08T15:42:59.6225585Z  [32m✓[39m tests/production-purchase-contract.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 28[2mms[22m[39m
+2026-10-08T15:43:00.6869761Z Managed TLS certificate renewed.
+2026-10-08T15:43:00.6969023Z  [32m✓[39m tests/managed-tls.test.ts [2m([22m[2m3 tests[22m[2m)[22m[33m 815[2mms[22m[39m
+2026-10-08T15:43:01.0589373Z  [32m✓[39m tests/account-identity.test.ts [2m([22m[2m9 tests[22m[2m)[22m[32m 14[2mms[22m[39m
+2026-10-08T15:43:01.6540385Z  [32m✓[39m tests/migration-atomicity.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 102[2mms[22m[39m
+2026-10-08T15:43:01.8735202Z  [32m✓[39m tests/stripe-recovery-financial-state.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+2026-10-08T15:43:02.3218912Z  [32m✓[39m tests/email-verification.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 19[2mms[22m[39m
+2026-10-08T15:43:02.6854675Z  [32m✓[39m tests/private-content-kms.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 10[2mms[22m[39m
+2026-10-08T15:43:03.6660627Z  [32m✓[39m tests/production-closed.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 107[2mms[22m[39m
+2026-10-08T15:43:04.0205118Z  [32m✓[39m tests/identity-proof.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 114[2mms[22m[39m
+2026-10-08T15:43:04.2342321Z  [32m✓[39m tests/dedicated-test-database.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 15[2mms[22m[39m
+2026-10-08T15:43:04.5324786Z  [32m✓[39m tests/identity-discovery.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 10[2mms[22m[39m
+2026-10-08T15:43:04.9484949Z  [32m✓[39m tests/apple-price-bindings.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 11[2mms[22m[39m
+2026-10-08T15:43:05.4309345Z  [32m✓[39m tests/request-logging.test.ts [2m([22m[2m1 test[22m[2m)[22m[32m 41[2mms[22m[39m
+2026-10-08T15:43:05.8980464Z  [32m✓[39m tests/security-cors.test.ts [2m([22m[2m2 tests[22m[2m)[22m[32m 42[2mms[22m[39m
+2026-10-08T15:43:06.1578995Z  [32m✓[39m tests/legal-contract.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 13[2mms[22m[39m
+2026-10-08T15:43:06.3984464Z  [32m✓[39m tests/rate-limit-key.test.ts [2m([22m[2m4 tests[22m[2m)[22m[32m 20[2mms[22m[39m
+2026-10-08T15:43:06.9538801Z  [32m✓[39m tests/apple-verification-retry.test.ts [2m([22m[2m3 tests[22m[2m)[22m[32m 8[2mms[22m[39m
+2026-10-08T15:43:07.3229639Z  [32m✓[39m tests/database-tls-config.test.ts [2m([22m[2m6 tests[22m[2m)[22m[32m 18[2mms[22m[39m
+2026-10-08T15:43:07.5213986Z  [32m✓[39m tests/migration-sql.test.ts [2m([22m[2m14 tests[22m[2m)[22m[32m 12[2mms[22m[39m
+2026-10-08T15:43:07.5253023Z 
+2026-10-08T15:43:07.5303809Z [2m Test Files [22m [1m[32m49 passed[39m[22m[90m (49)[39m
+2026-10-08T15:43:07.5329380Z [2m      Tests [22m [1m[32m413 passed[39m[22m[90m (413)[39m
+2026-10-08T15:43:07.5370116Z [2m   Start at [22m 15:41:47
+2026-10-08T15:43:07.5426310Z [2m   Duration [22m 80.31s[2m (transform 2.07s, setup 1.59s, import 21.15s, tests 51.18s, environment 6ms)[22m
+2026-10-08T15:43:07.5433400Z 
+2026-10-08T15:43:07.5813936Z Post job cleanup.
+2026-10-08T15:43:07.7319624Z [command]/usr/bin/tar --posix -cf cache.tzst --exclude cache.tzst -P -C /home/runner/work/rillora/rillora --files-from manifest.txt --use-compress-program zstdmt
+2026-10-08T15:43:09.2430140Z Sent 14942208 of 48902926 (30.6%), 14.3 MBs/sec
+2026-10-08T15:43:10.2028398Z Sent 48902926 of 48902926 (100.0%), 23.8 MBs/sec
+2026-10-08T15:43:10.5060967Z Cache saved with the key: node-cache-Linux-x64-npm-806a275b86aad2566f741e85afc3abe35c0ec4fa3a513cf2e7c89da5c02fb6a2
+2026-10-08T15:43:10.5244116Z Post job cleanup.
+2026-10-08T15:43:10.6248894Z [command]/usr/bin/git version
+2026-10-08T15:43:10.6343371Z git version 2.55.0
+2026-10-08T15:43:10.6375955Z Temporarily overriding HOME='/home/runner/work/_temp/111444bf-3be0-4265-94b0-f6f6999ef08f' before making global git config changes
+2026-10-08T15:43:10.6377623Z Adding repository directory to the temporary git global config as a safe directory
+2026-10-08T15:43:10.6379108Z [command]/usr/bin/git config --global --add safe.directory /home/runner/work/rillora/rillora
+2026-10-08T15:43:10.6460221Z Removing SSH command configuration
+2026-10-08T15:43:10.6480678Z [command]/usr/bin/git config --local --name-only --get-regexp core\.sshCommand
+2026-10-08T15:43:10.6512905Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :"
+2026-10-08T15:43:10.6884654Z Removing HTTP extra header
+2026-10-08T15:43:10.6904021Z [command]/usr/bin/git config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-10-08T15:43:10.6988532Z [command]/usr/bin/git submodule foreach --recursive sh -c "git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :"
+2026-10-08T15:43:10.7333734Z Removing includeIf entries pointing to credentials config files
+2026-10-08T15:43:10.7373695Z [command]/usr/bin/git config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-10-08T15:43:10.7473553Z [command]/usr/bin/git submodule foreach --recursive git config --local --show-origin --name-only --get-regexp remote.origin.url
+2026-10-08T15:43:10.8336594Z Print service container logs: d4f53a2b64234b6ca8cc09623e38bc3b_postgres1613_20c1a3
+2026-10-08T15:43:10.8341412Z ##[command]/usr/bin/docker logs --details 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:43:10.8528777Z  ********************************************************************************
+2026-10-08T15:43:10.8529688Z  The files belonging to this database system will be owned by user "postgres".
+2026-10-08T15:43:10.8530602Z  This user must also own the server process.
+2026-10-08T15:43:10.8531858Z  WARNING: POSTGRES_HOST_AUTH_METHOD has been set to "trust". This will allow
+2026-10-08T15:43:10.8533533Z           anyone with access to the Postgres port to access your database without
+2026-10-08T15:43:10.8534923Z           a password, even if POSTGRES_PASSWORD is set. See PostgreSQL
+2026-10-08T15:43:10.8535985Z           documentation about "trust":
+2026-10-08T15:43:10.8536882Z           https://www.postgresql.org/docs/current/auth-trust.html
+2026-10-08T15:43:10.8538342Z           In Docker's default configuration, this is effectively any other
+2026-10-08T15:43:10.8539300Z           container on the same system.
+2026-10-08T15:43:10.8540051Z  
+2026-10-08T15:43:10.8540803Z           It is not recommended to use POSTGRES_HOST_AUTH_METHOD=trust. Replace
+2026-10-08T15:43:10.8541941Z           it with "-e POSTGRES_PASSWORD=password" instead to set a password in
+2026-10-08T15:43:10.8543110Z           "docker run".
+2026-10-08T15:43:10.8543769Z  ********************************************************************************
+2026-10-08T15:43:10.8544699Z  initdb: warning: enabling "trust" authentication for local connections
+2026-10-08T15:43:10.8546152Z  initdb: hint: You can change this by editing pg_hba.conf or using the option -A, or --auth-local and --auth-host, the next time you run initdb.
+2026-10-08T15:43:10.8548082Z  2026-10-08 15:41:13.066 UTC [1] LOG:  starting PostgreSQL 16.13 (Debian 16.13-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-10-08T15:43:10.8549238Z  
+2026-10-08T15:43:10.8549945Z  2026-10-08 15:41:13.066 UTC [1] LOG:  listening on IPv4 address "0.0.0.0", port 5432
+2026-10-08T15:43:10.8550954Z  2026-10-08 15:41:13.066 UTC [1] LOG:  listening on IPv6 address "::", port 5432
+2026-10-08T15:43:10.8552079Z  2026-10-08 15:41:13.067 UTC [1] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-08T15:43:10.8553513Z  2026-10-08 15:41:13.073 UTC [63] LOG:  database system was shut down at 2026-10-08 15:41:12 UTC
+2026-10-08T15:43:10.8554702Z  2026-10-08 15:41:13.077 UTC [1] LOG:  database system is ready to accept connections
+2026-10-08T15:43:10.8555712Z  2026-10-08 15:41:17.178 UTC [75] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8556601Z  2026-10-08 15:41:22.268 UTC [83] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8557475Z  2026-10-08 15:41:27.377 UTC [92] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8558634Z  2026-10-08 15:41:32.453 UTC [100] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8559473Z  The database cluster will be initialized with locale "en_US.utf8".
+2026-10-08T15:43:10.8563308Z  2026-10-08 15:41:37.565 UTC [154] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8564159Z  The default database encoding has accordingly been set to "UTF8".
+2026-10-08T15:43:10.8564948Z  The default text search configuration will be set to "english".
+2026-10-08T15:43:10.8565575Z  
+2026-10-08T15:43:10.8565945Z  Data page checksums are disabled.
+2026-10-08T15:43:10.8566411Z  
+2026-10-08T15:43:10.8566951Z  fixing permissions on existing directory /var/lib/postgresql/data ... ok
+2026-10-08T15:43:10.8567687Z  creating subdirectories ... ok
+2026-10-08T15:43:10.8568264Z  selecting dynamic shared memory implementation ... posix
+2026-10-08T15:43:10.8568930Z  selecting default max_connections ... 100
+2026-10-08T15:43:10.8569466Z  selecting default shared_buffers ... 128MB
+2026-10-08T15:43:10.8569997Z  selecting default time zone ... Etc/UTC
+2026-10-08T15:43:10.8570779Z  creating configuration files ... ok
+2026-10-08T15:43:10.8571305Z  running bootstrap script ... ok
+2026-10-08T15:43:10.8571843Z  performing post-bootstrap initialization ... ok
+2026-10-08T15:43:10.8572612Z  syncing data to disk ... ok
+2026-10-08T15:43:10.8573041Z  
+2026-10-08T15:43:10.8573361Z  
+2026-10-08T15:43:10.8573772Z  Success. You can now start the database server using:
+2026-10-08T15:43:10.8574332Z  
+2026-10-08T15:43:10.8574759Z      pg_ctl -D /var/lib/postgresql/data -l logfile start
+2026-10-08T15:43:10.8575298Z  
+2026-10-08T15:43:10.8576435Z  waiting for server to start....2026-10-08 15:41:12.824 UTC [49] LOG:  starting PostgreSQL 16.13 (Debian 16.13-1.pgdg13+1) on x86_64-pc-linux-gnu, compiled by gcc (Debian 14.2.0-19) 14.2.0, 64-bit
+2026-10-08T15:43:10.8578028Z  2026-10-08 15:41:12.825 UTC [49] LOG:  listening on Unix socket "/var/run/postgresql/.s.PGSQL.5432"
+2026-10-08T15:43:10.8578714Z  2026-10-08 15:41:12.827 UTC [52] LOG:  database system was shut down at 2026-10-08 15:41:12 UTC
+2026-10-08T15:43:10.8579512Z  2026-10-08 15:41:12.831 UTC [49] LOG:  database system is ready to accept connections
+2026-10-08T15:43:10.8579909Z   done
+2026-10-08T15:43:10.8580106Z  server started
+2026-10-08T15:43:10.8580312Z  
+2026-10-08T15:43:10.8580657Z  /usr/local/bin/docker-entrypoint.sh: ignoring /docker-entrypoint-initdb.d/*
+2026-10-08T15:43:10.8581078Z  
+2026-10-08T15:43:10.8581357Z  2026-10-08 15:41:12.943 UTC [49] LOG:  received fast shutdown request
+2026-10-08T15:43:10.8581908Z  waiting for server to shut down....2026-10-08 15:41:12.944 UTC [49] LOG:  aborting any active transactions
+2026-10-08T15:43:10.8583627Z  2026-10-08 15:41:12.947 UTC [49] LOG:  background worker "logical replication launcher" (PID 55) exited with exit code 1
+2026-10-08T15:43:10.8584566Z  2026-10-08 15:41:12.947 UTC [50] LOG:  shutting down
+2026-10-08T15:43:10.8585003Z  2026-10-08 15:41:12.947 UTC [50] LOG:  checkpoint starting: shutdown immediate
+2026-10-08T15:43:10.8586106Z  2026-10-08 15:41:12.949 UTC [50] LOG:  checkpoint complete: wrote 3 buffers (0.0%); 0 WAL file(s) added, 0 removed, 0 recycled; write=0.001 s, sync=0.001 s, total=0.003 s; sync files=2, longest=0.001 s, average=0.001 s; distance=0 kB, estimate=0 kB; lsn=0/14F2A58, redo lsn=0/14F2A58
+2026-10-08T15:43:10.8587211Z  2026-10-08 15:41:42.672 UTC [162] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8587628Z  2026-10-08 15:41:47.788 UTC [171] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8588266Z  2026-10-08 15:41:50.349 UTC [174] ERROR:  duplicate key value violates unique constraint "commerce_subscriptions_one_active_renewal_idx"
+2026-10-08T15:43:10.8589020Z  2026-10-08 15:41:50.349 UTC [174] DETAIL:  Key (commerce_account_id, plan_code)=(1, family) already exists.
+2026-10-08T15:43:10.8589606Z  2026-10-08 15:41:50.349 UTC [174] STATEMENT:  insert into app.commerce_subscriptions (
+2026-10-08T15:43:10.8590136Z  	           planner_id, commerce_account_id, plan_version_id, plan_code, price_id,
+2026-10-08T15:43:10.8590641Z  	           acquisition_type, renewal_provider, provider_environment, state
+2026-10-08T15:43:10.8591132Z  	         ) values ($1, $2, $3, 'family', $4, 'migration', 'storekit', 'internal', 'active')
+2026-10-08T15:43:10.8591915Z  2026-10-08 15:41:50.357 UTC [175] ERROR:  insert or update on table "commerce_subscriptions" violates foreign key constraint "commerce_subscriptions_price_plan_fk"
+2026-10-08T15:43:10.8593913Z  2026-10-08 15:41:50.357 UTC [175] DETAIL:  Key (price_id, plan_version_id)=(1, 1) is not present in table "commerce_prices".
+2026-10-08T15:43:10.8594804Z  2026-10-08 15:41:50.357 UTC [175] STATEMENT:  insert into app.commerce_subscriptions (
+2026-10-08T15:43:10.8595348Z  	           planner_id, commerce_account_id, plan_version_id, plan_code, price_id,
+2026-10-08T15:43:10.8595848Z  	           acquisition_type, renewal_provider, provider_environment, state
+2026-10-08T15:43:10.8596357Z  	         ) values ($1, $2, $3, 'free', $4, 'migration', 'stripe', 'internal', 'expired_read_only')
+2026-10-08T15:43:10.8597160Z  2026-10-08 15:41:50.649 UTC [176] ERROR:  permission denied for table commerce_provider_event_inbox
+2026-10-08T15:43:10.8597763Z  2026-10-08 15:41:50.649 UTC [176] STATEMENT:  insert into app.commerce_provider_event_inbox (
+2026-10-08T15:43:10.8598288Z  	           provider_code, provider_environment, provider_event_reference,
+2026-10-08T15:43:10.8598755Z  	           event_type, signal_type, payload_sha256, signature_verified,
+2026-10-08T15:43:10.8599132Z  	           provider_occurred_at
+2026-10-08T15:43:10.8599449Z  	         ) values ('stripe', 'test', 'evt_forbidden_app_role',
+2026-10-08T15:43:10.8599882Z  	                   'checkout.session.completed', 'subscription_changed',
+2026-10-08T15:43:10.8600282Z  	                   decode(repeat('00', 32), 'hex'), true, now())
+2026-10-08T15:43:10.8600754Z  2026-10-08 15:41:50.651 UTC [176] ERROR:  permission denied for table commerce_entitlement_grants
+2026-10-08T15:43:10.8601340Z  2026-10-08 15:41:50.651 UTC [176] STATEMENT:  insert into app.commerce_entitlement_grants (
+2026-10-08T15:43:10.8601984Z  	           planner_id, commerce_account_id, capability_code, source_type,
+2026-10-08T15:43:10.8602367Z  	           source_reference, effective_at
+2026-10-08T15:43:10.8603053Z  	         ) select app.current_planner_id(), account.id, 'household_coplanner',
+2026-10-08T15:43:10.8603512Z  	                  'manual_override', 'forbidden-test-grant', now()
+2026-10-08T15:43:10.8603875Z  	           from app.commerce_accounts account
+2026-10-08T15:43:10.8604241Z  	          where account.planner_id = app.current_planner_id()
+2026-10-08T15:43:10.8604576Z  	          limit 1
+2026-10-08T15:43:10.8604914Z  2026-10-08 15:41:50.742 UTC [176] ERROR:  permission denied for table audit_events
+2026-10-08T15:43:10.8605466Z  2026-10-08 15:41:50.742 UTC [176] STATEMENT:  update app.audit_events set action = 'rewritten'
+2026-10-08T15:43:10.8606263Z  2026-10-08 15:41:50.921 UTC [176] ERROR:  new row for relation "disclosure_rehearsals" violates check constraint "disclosure_rehearsals_non_operative"
+2026-10-08T15:43:10.8608071Z  2026-10-08 15:41:50.921 UTC [176] DETAIL:  Failing row contains (5, 002d080a-195b-41e8-96bc-f7c310ba7af2, 1, 1, missing, missing_report_opened, disclosure-rehearsal-2026-08-10-v1, {"planner": {"timeZone": "Asia/Shanghai", "displayName": "Alex C..., [{"code": "missing_report_opened", "label": "Report recorded onl..., t, f, f, f, f, f, t, null, null, null, null, 1, 2026-10-08 15:41:50.911501+00, 2026-10-08 15:41:50.911501+00, null, null).
+2026-10-08T15:43:10.8609785Z  2026-10-08 15:41:50.921 UTC [176] STATEMENT:  update app.disclosure_rehearsals set data_released = true where public_id = $1
+2026-10-08T15:43:10.8610610Z  2026-10-08 15:41:51.119 UTC [177] ERROR:  new row for relation "product_events" violates check constraint "product_events_property_contract"
+2026-10-08T15:43:10.8611769Z  2026-10-08 15:41:51.119 UTC [177] DETAIL:  Failing row contains (16, fbb74c1b-b96f-4026-9107-c367d5346c94, 1, start_here_exported, web, 1, {"title": "leak", "format": "plaintext"}, 2026-10-08 15:41:51.119316+00, 2027-01-06 15:41:51.119316+00).
+2026-10-08T15:43:10.8613031Z  2026-10-08 15:41:51.119 UTC [177] STATEMENT:  insert into app.product_events (planner_id, event_name, client_source, properties)
+2026-10-08T15:43:10.8613721Z  	       select id, 'start_here_exported', 'web', '{"format":"plaintext","title":"leak"}'::jsonb
+2026-10-08T15:43:10.8614180Z  	       from app.planners where public_id = $1
+2026-10-08T15:43:10.8614550Z  2026-10-08 15:41:52.906 UTC [188] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8615191Z  2026-10-08 15:41:56.513 UTC [190] ERROR:  duplicate key value violates unique constraint "commerce_subscriptions_one_active_renewal_idx"
+2026-10-08T15:43:10.8616127Z  2026-10-08 15:41:56.513 UTC [190] STATEMENT:  insert into app.commerce_subscriptions(
+2026-10-08T15:43:10.8616778Z  	        planner_id,commerce_account_id,plan_version_id,plan_code,price_id,acquisition_type,
+2026-10-08T15:43:10.8617528Z  	        renewal_provider,provider_environment,provider_subscription_reference,state,
+2026-10-08T15:43:10.8618126Z  	        current_period_starts_at,current_period_ends_at,grace_ends_at,cancel_at_period_end,
+2026-10-08T15:43:10.8618758Z  	        provider_observed_at,provider_invoice_reference,financial_state_override,renewal_is_possible)
+2026-10-08T15:43:10.8619421Z  	      values(app.current_planner_id(),$1,$2,'family',$3,'purchased',$4,$5,$6,$7,$8,$9,$10,$11,$12,$13,$14,$15)
+2026-10-08T15:43:10.8619889Z  	      returning id::text
+2026-10-08T15:43:10.8620205Z  2026-10-08 15:41:57.997 UTC [198] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8620614Z  2026-10-08 15:42:03.096 UTC [211] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8621180Z  2026-10-08 15:42:04.972 UTC [214] ERROR:  new row violates row-level security policy for table "official_setup_checks"
+2026-10-08T15:43:10.8622136Z  2026-10-08 15:42:04.972 UTC [214] STATEMENT:  insert into app.official_setup_checks(planner_id,plan_id,provider_key,policy_version,completed) values($1,$2,'apple','not allowed',false)
+2026-10-08T15:43:10.8623453Z  2026-10-08 15:42:05.977 UTC [215] WARNING:  there is no transaction in progress
+2026-10-08T15:43:10.8623917Z  2026-10-08 15:42:07.899 UTC [219] ERROR:  sharing_limit_reached
+2026-10-08T15:43:10.8624440Z  2026-10-08 15:42:07.899 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_reserve(bigint) line 15 at RAISE
+2026-10-08T15:43:10.8625013Z  2026-10-08 15:42:07.899 UTC [219] STATEMENT:  select app.sharing_reserve(null)
+2026-10-08T15:43:10.8625464Z  2026-10-08 15:42:08.198 UTC [228] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8625866Z  2026-10-08 15:42:08.310 UTC [219] ERROR:  sharing_limit_reached
+2026-10-08T15:43:10.8626374Z  2026-10-08 15:42:08.310 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_reserve(bigint) line 15 at RAISE
+2026-10-08T15:43:10.8626951Z  2026-10-08 15:42:08.310 UTC [219] STATEMENT:  select app.sharing_reserve($1) as id
+2026-10-08T15:43:10.8627413Z  2026-10-08 15:42:08.611 UTC [219] ERROR:  sharing_duplicate_recipient
+2026-10-08T15:43:10.8627964Z  2026-10-08 15:42:08.611 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_connection_before() line 9 at RAISE
+2026-10-08T15:43:10.8628558Z  2026-10-08 15:42:08.611 UTC [219] STATEMENT:  insert into app.sharing_connections(
+2026-10-08T15:43:10.8629200Z  	        planner_id, person_id, recipient_email_hash, recipient_email_label, invitation_token_hash, invitation_expires_at)
+2026-10-08T15:43:10.8629927Z  	        values(app.current_planner_id(), $1, $2, $3, $4, now() + interval '7 days') returning id::text, public_id
+2026-10-08T15:43:10.8630462Z  2026-10-08 15:42:08.740 UTC [219] ERROR:  sharing_limit_reached
+2026-10-08T15:43:10.8630980Z  2026-10-08 15:42:08.740 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_reserve(bigint) line 15 at RAISE
+2026-10-08T15:43:10.8631544Z  2026-10-08 15:42:08.740 UTC [219] STATEMENT:  select app.sharing_reserve(null)
+2026-10-08T15:43:10.8631976Z  2026-10-08 15:42:10.577 UTC [219] ERROR:  sharing_changed
+2026-10-08T15:43:10.8632827Z  2026-10-08 15:42:10.577 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_select_live(uuid,integer,integer,boolean) line 7 at RAISE
+2026-10-08T15:43:10.8633560Z  2026-10-08 15:42:10.577 UTC [219] STATEMENT:  select app.sharing_select_live($1,$2,$3,$4) as access
+2026-10-08T15:43:10.8634214Z  2026-10-08 15:42:10.875 UTC [219] ERROR:  permission denied for function apply_verified_subscription_entitlements
+2026-10-08T15:43:10.8634866Z  2026-10-08 15:42:10.875 UTC [219] STATEMENT:  select app.apply_verified_subscription_entitlements($1)
+2026-10-08T15:43:10.8635379Z  2026-10-08 15:42:11.568 UTC [219] ERROR:  sharing_changed
+2026-10-08T15:43:10.8635940Z  2026-10-08 15:42:11.568 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_pause_live(uuid,integer,integer) line 8 at RAISE
+2026-10-08T15:43:10.8636575Z  2026-10-08 15:42:11.568 UTC [219] STATEMENT:  select app.sharing_pause_live($1,$2,$3)
+2026-10-08T15:43:10.8637055Z  2026-10-08 15:42:12.743 UTC [219] ERROR:  sharing_change_rate_limited
+2026-10-08T15:43:10.8637786Z  2026-10-08 15:42:12.743 UTC [219] CONTEXT:  PL/pgSQL function app.sharing_activation_rate_limit(bigint) line 9 at RAISE
+2026-10-08T15:43:10.8638420Z  	SQL statement "SELECT app.sharing_activation_rate_limit(actor)"
+2026-10-08T15:43:10.8639084Z  	PL/pgSQL function app.sharing_reserve(bigint) line 9 at PERFORM
+2026-10-08T15:43:10.8639711Z  2026-10-08 15:42:12.743 UTC [219] STATEMENT:  select app.sharing_reserve(null)
+2026-10-08T15:43:10.8640170Z  2026-10-08 15:42:13.295 UTC [237] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8640583Z  2026-10-08 15:42:18.396 UTC [253] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8640987Z  2026-10-08 15:42:23.506 UTC [264] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8641442Z  2026-10-08 15:42:26.279 UTC [269] ERROR:  permission denied for table retention_holds
+2026-10-08T15:43:10.8642003Z  2026-10-08 15:42:26.279 UTC [269] STATEMENT:  update app.retention_holds set released_at=now()
+2026-10-08T15:43:10.8642640Z  2026-10-08 15:42:26.295 UTC [269] ERROR:  invalid retention batch bound
+2026-10-08T15:43:10.8643422Z  2026-10-08 15:42:26.295 UTC [269] CONTEXT:  PL/pgSQL function app.run_retention_batch(integer) line 4 at RAISE
+2026-10-08T15:43:10.8644046Z  2026-10-08 15:42:26.295 UTC [269] STATEMENT:  select app.run_retention_batch($1) as removed
+2026-10-08T15:43:10.8644546Z  2026-10-08 15:42:26.297 UTC [269] ERROR:  invalid retention batch bound
+2026-10-08T15:43:10.8645093Z  2026-10-08 15:42:26.297 UTC [269] CONTEXT:  PL/pgSQL function app.run_retention_batch(integer) line 4 at RAISE
+2026-10-08T15:43:10.8645705Z  2026-10-08 15:42:26.297 UTC [269] STATEMENT:  select app.run_retention_batch($1) as removed
+2026-10-08T15:43:10.8646190Z  2026-10-08 15:42:26.299 UTC [269] ERROR:  invalid retention batch bound
+2026-10-08T15:43:10.8646736Z  2026-10-08 15:42:26.299 UTC [269] CONTEXT:  PL/pgSQL function app.run_retention_batch(integer) line 4 at RAISE
+2026-10-08T15:43:10.8647337Z  2026-10-08 15:42:26.299 UTC [269] STATEMENT:  select app.run_retention_batch($1) as removed
+2026-10-08T15:43:10.8647824Z  2026-10-08 15:42:28.631 UTC [283] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8648237Z  2026-10-08 15:42:31.602 UTC [286] ERROR:  content_plaintext_rejected
+2026-10-08T15:43:10.8648843Z  2026-10-08 15:42:31.602 UTC [286] CONTEXT:  PL/pgSQL function app.content_assert_value(text,bigint,uuid,text) line 6 at RAISE
+2026-10-08T15:43:10.8649562Z  	SQL statement "SELECT app.content_assert_value(kv.value,new.planner_id,new.public_id,kv.key)"
+2026-10-08T15:43:10.8650089Z  	PL/pgSQL function app.content_guard() line 6 at PERFORM
+2026-10-08T15:43:10.8650600Z  2026-10-08 15:42:31.602 UTC [286] STATEMENT:  update app.matter_items set notes=$2 where public_id=$1
+2026-10-08T15:43:10.8651124Z  2026-10-08 15:42:31.605 UTC [286] ERROR:  content_reference_invalid
+2026-10-08T15:43:10.8651718Z  2026-10-08 15:42:31.605 UTC [286] CONTEXT:  PL/pgSQL function app.content_assert_value(text,bigint,uuid,text) line 11 at RAISE
+2026-10-08T15:43:10.8652572Z  	SQL statement "SELECT app.content_assert_value(kv.value,new.planner_id,new.public_id,kv.key)"
+2026-10-08T15:43:10.8653112Z  	PL/pgSQL function app.content_guard() line 6 at PERFORM
+2026-10-08T15:43:10.8653688Z  2026-10-08 15:42:31.605 UTC [286] STATEMENT:  update app.matter_items set notes=$1 where planner_id=app.current_planner_id()
+2026-10-08T15:43:10.8654353Z  2026-10-08 15:42:31.607 UTC [286] ERROR:  permission denied for table private_content_values
+2026-10-08T15:43:10.8654886Z  2026-10-08 15:42:31.607 UTC [286] STATEMENT:  select * from app.private_content_values
+2026-10-08T15:43:10.8655374Z  2026-10-08 15:42:32.071 UTC [286] ERROR:  content_access_denied
+2026-10-08T15:43:10.8655948Z  2026-10-08 15:42:32.071 UTC [286] CONTEXT:  PL/pgSQL function app.content_write_target(text,uuid,boolean) line 16 at RAISE
+2026-10-08T15:43:10.8656626Z  	SQL statement "select *             from app.content_write_target(p_kind,p_public,p_preview)"
+2026-10-08T15:43:10.8657204Z  	PL/pgSQL function app.content_key_for_write(text,uuid,boolean) line 4 at SQL statement
+2026-10-08T15:43:10.8657901Z  2026-10-08 15:42:32.071 UTC [286] STATEMENT:  select app.content_key_for_write($1,$2,$3) as info
+2026-10-08T15:43:10.8658411Z  2026-10-08 15:42:33.743 UTC [297] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8659245Z  2026-10-08 15:42:34.557 UTC [298] ERROR:  insert or update on table "commerce_apple_price_bindings" violates foreign key constraint "commerce_apple_price_bindings_price_id_purchase_channel_fkey"
+2026-10-08T15:43:10.8660301Z  2026-10-08 15:42:34.557 UTC [298] DETAIL:  Key (price_id, purchase_channel)=(9, apple_app_store) is not present in table "commerce_prices".
+2026-10-08T15:43:10.8661085Z  2026-10-08 15:42:34.557 UTC [298] STATEMENT:  insert into app.commerce_apple_price_bindings(binding_code,price_id,
+2026-10-08T15:43:10.8661665Z  	      product_reference,storefront_country_code,effective_from)
+2026-10-08T15:43:10.8662571Z  	      select 'fixture_wrong_channel',id,'com.rillora.family.annual','USA','2026-09-01'
+2026-10-08T15:43:10.8663263Z  	      from app.commerce_prices where price_code='family_usd_annual_v4'
+2026-10-08T15:43:10.8664044Z  2026-10-08 15:42:34.573 UTC [299] ERROR:  permission denied for table commerce_apple_transaction_receipts
+2026-10-08T15:43:10.8664766Z  2026-10-08 15:42:34.573 UTC [299] STATEMENT:  update app.commerce_apple_transaction_receipts set price_milliunits=1
+2026-10-08T15:43:10.8665344Z  2026-10-08 15:42:38.841 UTC [312] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8665773Z  2026-10-08 15:42:41.408 UTC [317] ERROR:  recovery_journal_unavailable
+2026-10-08T15:43:10.8666338Z  2026-10-08 15:42:41.408 UTC [317] CONTEXT:  PL/pgSQL function app.recovery_require_publication() line 5 at RAISE
+2026-10-08T15:43:10.8666859Z  2026-10-08 15:42:41.408 UTC [317] STATEMENT:  commit
+2026-10-08T15:43:10.8667266Z  2026-10-08 15:42:41.409 UTC [317] WARNING:  there is no transaction in progress
+2026-10-08T15:43:10.8667712Z  2026-10-08 15:42:43.936 UTC [329] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8668122Z  2026-10-08 15:42:49.037 UTC [350] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8668527Z  2026-10-08 15:42:54.241 UTC [367] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8669029Z  2026-10-08 15:42:59.116 UTC [379] ERROR:  permission denied for function content_migration_active
+2026-10-08T15:43:10.8669573Z  2026-10-08 15:42:59.116 UTC [379] STATEMENT:  select app.content_migration_active()
+2026-10-08T15:43:10.8670118Z  2026-10-08 15:42:59.118 UTC [379] ERROR:  permission denied to set role "continuity_content_service"
+2026-10-08T15:43:10.8670675Z  2026-10-08 15:42:59.118 UTC [379] STATEMENT:  set role continuity_content_service
+2026-10-08T15:43:10.8671122Z  2026-10-08 15:42:59.341 UTC [387] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8671550Z  2026-10-08 15:43:01.604 UTC [393] ERROR:  synthetic checksum storage failure
+2026-10-08T15:43:10.8672152Z  2026-10-08 15:43:01.604 UTC [393] CONTEXT:  PL/pgSQL function app.reject_migration_receipt() line 2 at RAISE
+2026-10-08T15:43:10.8673264Z  2026-10-08 15:43:01.604 UTC [393] STATEMENT:  insert into app.schema_migrations (name, checksum) values ($1, $2)
+2026-10-08T15:43:10.8673846Z  2026-10-08 15:43:04.448 UTC [404] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8674282Z  2026-10-08 15:43:09.521 UTC [414] FATAL:  role "root" does not exist
+2026-10-08T15:43:10.8674700Z  2026-10-08 15:41:12.954 UTC [49] LOG:  database system is shut down
+2026-10-08T15:43:10.8675038Z   done
+2026-10-08T15:43:10.8675236Z  server stopped
+2026-10-08T15:43:10.8675450Z  
+2026-10-08T15:43:10.8675701Z  PostgreSQL init process complete; ready for start up.
+2026-10-08T15:43:10.8676017Z  
+2026-10-08T15:43:10.8681471Z Stop and remove container: d4f53a2b64234b6ca8cc09623e38bc3b_postgres1613_20c1a3
+2026-10-08T15:43:10.8688269Z ##[command]/usr/bin/docker rm --force 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:43:11.1185721Z 9d3cb01ecc205b1618ad34ff781f58d46c7e97cbfd5f65b2d4b0cfd9259b9746
+2026-10-08T15:43:11.1217778Z Remove container network: github_network_5021288a67d1424f93a69f2c68f3b2d4
+2026-10-08T15:43:11.1222947Z ##[command]/usr/bin/docker network rm github_network_5021288a67d1424f93a69f2c68f3b2d4
+2026-10-08T15:43:11.1929637Z github_network_5021288a67d1424f93a69f2c68f3b2d4
+2026-10-08T15:43:11.2002745Z Cleaning up orphan processes
+

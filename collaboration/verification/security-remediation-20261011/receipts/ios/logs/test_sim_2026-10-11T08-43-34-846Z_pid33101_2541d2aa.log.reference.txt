@@ -1,0 +1,956 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -project /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/Rillora.xcodeproj -scheme Rillora -configuration Debug -skipMacroValidation -destination "platform=iOS Simulator,id=EFA7FD85-FBF3-4862-AE14-2ADAE7B920FA" -collect-test-diagnostics never COMPILER_INDEX_STORE_ENABLE=NO ONLY_ACTIVE_ARCH=YES -packageCachePath /Users/tantalum/Library/Caches/org.swift.swiftpm -derivedDataPath /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived CODE_SIGNING_ALLOWED=NO -parallel-testing-enabled NO -testLanguage en -testRegion US -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-11T08-43-34-847Z_pid33101_a060884b.xctestproducts build-for-testing
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+    COMPILER_INDEX_STORE_ENABLE = NO
+    ONLY_ACTIVE_ARCH = YES
+
+2026-10-11 16:43:35.604 xcodebuild[51535:298319] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-11T08-43-34-847Z_pid33101_a060884b.xctestproducts
+Resolve Package Graph
+
+
+Resolved source packages:
+  InteropForGoogle: https://github.com/google/interop-ios-for-google-sdks.git @ 101.0.0
+  SwiftUI-Shimmer: https://github.com/markiv/SwiftUI-Shimmer @ 1.5.1
+  Promises: https://github.com/google/promises.git @ 2.4.1
+  JWTDecode: https://github.com/auth0/JWTDecode.swift.git @ 4.0.0
+  GoogleSignIn: https://github.com/google/GoogleSignIn-iOS @ 9.2.0
+  Auth0: https://github.com/auth0/Auth0.swift @ 3.0.2
+  GTMAppAuth: https://github.com/google/GTMAppAuth.git @ 5.0.0
+  GTMSessionFetcher: https://github.com/google/gtm-session-fetcher.git @ 3.5.0
+  SimpleKeychain: https://github.com/auth0/SimpleKeychain.git @ 1.3.0
+  AppAuth: https://github.com/openid/AppAuth-iOS.git @ 2.1.0
+  Pow: https://github.com/EmergeTools/Pow @ 1b4b1dd
+  GoogleUtilities: https://github.com/google/GoogleUtilities.git @ 8.1.3
+  AppCheck: https://github.com/google/app-check.git @ 11.3.1
+
+ComputePackagePrebuildTargetDependencyGraph
+
+Prepare packages
+
+CreateBuildRequest
+
+SendProjectDescription
+
+CreateBuildOperation
+
+ComputeTargetDependencyGraph
+note: Building targets in dependency order
+note: Target dependency graph (43 targets)
+    Target 'RilloraTests' in project 'Rillora'
+        ➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+    Target 'Rillora' in project 'Rillora'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer'
+        ➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+    Target 'Shimmer' in project 'SwiftUI-Shimmer' (no dependencies)
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow' in project 'Pow'
+        ➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+    Target 'Pow_Pow' in project 'Pow' (no dependencies)
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+        ➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+    Target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher' (no dependencies)
+    Target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth' (no dependencies)
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'AppCheckCore' in project 'AppCheck'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+    Target 'GULUserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+    Target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities' (no dependencies)
+    Target 'GULEnvironment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+        ➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+    Target 'third-party-IsAppEncrypted' in project 'GoogleUtilities' (no dependencies)
+    Target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities' (no dependencies)
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'FBLPromises' in project 'Promises'
+        ➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+    Target 'Promises_FBLPromises' in project 'Promises' (no dependencies)
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+    Target 'AppAuthCore' in project 'AppAuth'
+        ➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+    Target 'AppAuth_AppAuthCore' in project 'AppAuth' (no dependencies)
+    Target 'AppAuth_AppAuth' in project 'AppAuth' (no dependencies)
+    Target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn' (no dependencies)
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode'
+        ➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+    Target 'JWTDecode' in project 'JWTDecode' (no dependencies)
+    Target 'SimpleKeychain' in project 'SimpleKeychain'
+        ➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+    Target 'SimpleKeychain' in project 'SimpleKeychain' (no dependencies)
+    Target 'Auth0_Auth0' in project 'Auth0' (no dependencies)
+
+GatherProvisioningInputs
+
+CreateBuildDescription
+
+ClangStatCache /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/Rillora.xcodeproj
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+
+SwiftDriver RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.4-simulator -g -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -sdk-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftCompile normal arm64 Compiling\ StartHereEncryptionServiceTests.swift /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/StartHereEncryptionServiceTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    
+
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RilloraTests (in target 'RilloraTests' from project 'Rillora')
+EmitSwiftModule normal arm64 (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ ProductionConnectionTests.swift /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/ProductionConnectionTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/ProductionConnectionTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    
+
+SwiftCompile normal arm64 Compiling\ StartHerePreviewStoreTests.swift /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftCompile normal arm64 /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    
+
+SwiftDriverJobDiscovery normal arm64 Compiling ProductionConnectionTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling StartHereEncryptionServiceTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriverJobDiscovery normal arm64 Compiling StartHerePreviewStoreTests.swift (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.4-simulator -g -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -sdk-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios -experimental-emit-module-separately -disable-cmo
+
+SwiftDriverJobDiscovery normal arm64 Emitting module for RilloraTests (in target 'RilloraTests' from project 'Rillora')
+
+SwiftDriver\ Compilation\ Requirements RilloraTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraTests -Onone @/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList -DDEBUG -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuth.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppAuthCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Logger.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-Environment.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/third-party-IsAppEncrypted.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleUtilities-UserDefaults.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/AppCheckCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GTMSessionFetcherCore.modulemap -Xcc -fmodule-map-file\=/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/GeneratedModuleMaps-iphonesimulator/GoogleSignIn.modulemap -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.4-simulator -g -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -Xfrontend -serialize-debugging-options -profile-coverage-mapping -profile-generate -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -sdk-module-cache-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/ModuleCache.noindex/Session.modulevalidation -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_const_extract_protocols.json -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-generated-files.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-own-target-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests-project-headers.hmap -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuth -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/AppAuth-iOS/Sources/AppAuthCore -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/promises/Sources/FBLPromises/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Logger/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/Environment/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/third_party/IsAppEncrypted/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleUtilities/GoogleUtilities/UserDefaults/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/app-check/AppCheckCore/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/gtm-session-fetcher/Sources/Core/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/SourcePackages/checkouts/GoogleSignIn-iOS/GoogleSignIn/Sources/Public -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/include -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources-normal/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources/arm64 -Xcc -I/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-Swift.h -working-directory /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios -experimental-emit-module-separately -disable-cmo
+
+Copy /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftsourceinfo (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftsourceinfo /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+
+Copy /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+
+Copy /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.abi.json /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/RilloraTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+
+Ld /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests normal (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.4-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -F/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -filelist /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/PackageFrameworks -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -bundle_loader /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora -Xlinker -object_path_lto -Xlinker /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -debug_variant -Xlinker -dependency_info -Xlinker /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat -fobjc-link-runtime -fprofile-instr-generate -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.swiftmodule @/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests-linker-args.resp -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -Wl,-no_warn_duplicate_libraries -framework CoreGraphics -framework CoreText -framework Foundation -framework LocalAuthentication -framework Security -framework UIKit -framework Security -framework DeviceCheck -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/Rillora.debug.dylib -o /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests
+
+ExtractAppIntentsMetadata (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RilloraTests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 17.4 --bundle-identifier com.rillora.ios.tests --output /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest --target-triple arm64-apple-ios17.4-simulator --binary-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --dependency-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests_dependency_info.dat --stringsdata-file /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftFileList --metadata-file-list /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyMetadataFileList --static-metadata-file-list /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/RilloraTests.DependencyStaticMetadataFileList --swift-const-vals-list /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/Objects-normal/arm64/RilloraTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-11 16:43:40.328 appintentsmetadataprocessor[51606:298690] Starting appintentsmetadataprocessor export
+2026-10-11 16:43:40.332 appintentsmetadataprocessor[51606:298690] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+
+CopySwiftLibs /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-swiftStdLibTool --copy --verbose --scan-executable /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests --scan-folder /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --scan-folder /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/PlugIns --scan-folder /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/SystemExtensions --scan-folder /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Extensions --platform iphonesimulator --toolchain /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --destination /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/Frameworks --strip-bitcode --scan-executable /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib/libXCTestSwiftSupport.dylib --strip-bitcode-tool /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/bitcode_strip --emit-dependency-info /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraTests.build/SwiftStdLibToolInputDependencies.dep --filter-for-swift-os
+Ignoring --strip-bitcode because --sign was not passed
+
+GenerateDSYMFile /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests (in target 'RilloraTests' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest/RilloraTests -o /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app/PlugIns/RilloraTests.xctest.dSYM
+
+Validate /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app (in target 'Rillora' from project 'Rillora')
+    cd /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios
+    builtin-validationUtility /var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/ios-derived/Build/Products/Debug-iphonesimulator/Rillora.app -shallow-bundle -infoplist-subpath Info.plist
+
+** TEST BUILD SUCCEEDED **
+
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-11T08-43-34-847Z_pid33101_a060884b.xctestproducts -destination "platform=iOS Simulator,id=EFA7FD85-FBF3-4862-AE14-2ADAE7B920FA" -collect-test-diagnostics never CODE_SIGNING_ALLOWED=NO -parallel-testing-enabled NO -testLanguage en -testRegion US -resultBundlePath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-11T08-43-34-847Z_pid33101_eb5c4ca0.xcresult test-without-building
+
+Build settings from command line:
+    CODE_SIGNING_ALLOWED = NO
+
+2026-10-11 16:43:41.353 xcodebuild[51608:298699] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-11T08-43-34-847Z_pid33101_eb5c4ca0.xcresult
+
+2026-10-11 16:43:41.360 xcodebuild[51608:298699] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-11 16:43:42.629 xcodebuild[51608:298699] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-11 16:43:43.347 xcodebuild[51608:298699] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-11 16:43:43.487 xcodebuild[51608:298699] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-11 16:43:58.332989+0800 Rillora[51842:301429] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+Test Suite 'All tests' started at 2026-10-11 16:43:59.022.
+Test Suite 'RilloraTests.xctest' started at 2026-10-11 16:43:59.022.
+Test Suite 'APIClientTests' started at 2026-10-11 16:43:59.022.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement]' passed (0.028 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateDefaultsClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testAppleSignInFeatureGateRequiresExplicitEnablement]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' started.
+Test Case '-[RilloraTests.APIClientTests testAuthenticationFailureIsPreservedForTheUI]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceContractRejectsClientGrantedAccessBoundary]' passed (0.009 seconds).
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' started.
+Test Case '-[RilloraTests.APIClientTests testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndArchiveMatterUseTheSharedMutationContract]' passed (0.010 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' started.
+Test Case '-[RilloraTests.APIClientTests testCreateAndRevokeTrustedContactUseExplicitEvidenceContract]' passed (0.006 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereRejectsRetainedServerCopyClaim]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' started.
+Test Case '-[RilloraTests.APIClientTests testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' started.
+2026-10-11 16:43:59.101374+0800 Rillora[51842:301402] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields]' passed (0.018 seconds).
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' started.
+Test Case '-[RilloraTests.APIClientTests testDisclosureRehearsalUsesVersionedSimulationOnlyMutations]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' started.
+Test Case '-[RilloraTests.APIClientTests testEmailVerificationRejectsUnprovenProviderState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary]' passed (0.017 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdateOfficialSetupUseSelfReportedContract]' passed (0.010 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion]' passed (0.006 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' started.
+Test Case '-[RilloraTests.APIClientTests testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' started.
+Test Case '-[RilloraTests.APIClientTests testLegalLinksUseThePublicCustomDomain]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' started.
+Test Case '-[RilloraTests.APIClientTests testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' started.
+Test Case '-[RilloraTests.APIClientTests testMatterVersionConflictIsPreservedForRecoveryUI]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' started.
+Test Case '-[RilloraTests.APIClientTests testNativePasskeyRequiresExplicitEnablement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' started.
+Test Case '-[RilloraTests.APIClientTests testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' started.
+Test Case '-[RilloraTests.APIClientTests testOfficialSetupRejectsEvidenceThatIsNotSelfReported]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' started.
+Test Case '-[RilloraTests.APIClientTests testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField]' passed (0.007 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary]' passed (0.002 seconds).
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' started.
+Test Case '-[RilloraTests.APIClientTests testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly]' passed (0.003 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationRejectsAnyOperativeResponse]' passed (0.004 seconds).
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' started.
+Test Case '-[RilloraTests.APIClientTests testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' started.
+Test Case '-[RilloraTests.APIClientTests testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof]' passed (0.000 seconds).
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' started.
+Test Case '-[RilloraTests.APIClientTests testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody]' passed (0.011 seconds).
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' started.
+Test Case '-[RilloraTests.APIClientTests testStartHereRejectsAResponseThatClaimsAnEncryptedPackage]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary]' passed (0.005 seconds).
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' started.
+Test Case '-[RilloraTests.APIClientTests testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' started.
+Test Case '-[RilloraTests.APIClientTests testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession]' passed (0.012 seconds).
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' started.
+Test Case '-[RilloraTests.APIClientTests testUpdateMatterSendsOptimisticVersionAndExplicitNulls]' passed (0.001 seconds).
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' started.
+Test Case '-[RilloraTests.APIClientTests testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement]' passed (0.001 seconds).
+Test Suite 'APIClientTests' passed at 2026-10-11 16:43:59.227.
+	 Executed 42 tests, with 0 failures (0 unexpected) in 0.193 (0.205) seconds
+Test Suite 'AccountDataTests' started at 2026-10-11 16:43:59.227.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testBillingAcknowledgementIncludesPendingPurchaseAndDecodesOlderProfiles]' passed (0.002 seconds).
+Test Case '-[RilloraTests.AccountDataTests testBoundedFileReadRejectsActualBytesBeforeDecoding]' started.
+Test Case '-[RilloraTests.AccountDataTests testBoundedFileReadRejectsActualBytesBeforeDecoding]' passed (0.029 seconds).
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' started.
+Test Case '-[RilloraTests.AccountDataTests testDeletionReferenceIsPortableAndCannotBeAnAccountToken]' passed (0.003 seconds).
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' started.
+Test Case '-[RilloraTests.AccountDataTests testLocalReaderRejectsUnknownPartialAndOversizeFiles]' passed (0.003 seconds).
+Test Suite 'AccountDataTests' passed at 2026-10-11 16:43:59.265.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.037 (0.038) seconds
+Test Suite 'AccountIdentityTests' started at 2026-10-11 16:43:59.266.
+Test Case '-[RilloraTests.AccountIdentityTests testAccountSwitchDiscardsTheOldLateResponse]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAccountSwitchDiscardsTheOldLateResponse]' passed (0.003 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityAuthenticationFailure]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityAuthenticationFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityPermissionFailure]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityPermissionFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityServerFailure]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterIdentityServerFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterMalformedIdentitySuccessResponse]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientDoesNotFallBackAfterMalformedIdentitySuccessResponse]' passed (0.005 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientFallsBackOnlyFrom404ToTheAuthenticatedCurrentProfile]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientFallsBackOnlyFrom404ToTheAuthenticatedCurrentProfile]' passed (0.005 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientFetchesIdentityThroughTheAuthenticatedReadOnlyEndpoint]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAPIClientFetchesIdentityThroughTheAuthenticatedReadOnlyEndpoint]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testAuxiliaryAuthenticationFailureClearsThePrivateOverview]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testAuxiliaryAuthenticationFailureClearsThePrivateOverview]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testClearOnLogoutDiscardsPrivateFieldsAndPendingResponses]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testClearOnLogoutDiscardsPrivateFieldsAndPendingResponses]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testIdentityDecodesVerifiedAccountAndPreservesUserText]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testIdentityDecodesVerifiedAccountAndPreservesUserText]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testMalformedAccountIDNeverMatchesEvenAnotherMalformedID]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testMalformedAccountIDNeverMatchesEvenAnotherMalformedID]' passed (0.000 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testMismatchedResultRequiresAuthenticationAndPublishesNoIdentity]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testMismatchedResultRequiresAuthenticationAndPublishesNoIdentity]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testMissingServiceOrInvalidSessionCannotStartARead]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testMissingServiceOrInvalidSessionCannotStartARead]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testNavigationCancellationDoesNotPublishALateResult]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testNavigationCancellationDoesNotPublishALateResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testOpeningStoreDoesNotFetchOrUseAnAccountHint]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testOpeningStoreDoesNotFetchOrUseAnAccountHint]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testRevokedSessionIsDifferentFromAnUnavailableProvider]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testRevokedSessionIsDifferentFromAnUnavailableProvider]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testUnavailableEmailDoesNotHideTheAuthenticatedAccountName]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testUnavailableEmailDoesNotHideTheAuthenticatedAccountName]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testUnverifiedOrUnavailableEmailIsNeverPresented]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testUnverifiedOrUnavailableEmailIsNeverPresented]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountIdentityTests testVerifiedResultIsBoundToTheCurrentAccountAndNotFetchedTwice]' started.
+Test Case '-[RilloraTests.AccountIdentityTests testVerifiedResultIsBoundToTheCurrentAccountAndNotFetchedTwice]' passed (0.001 seconds).
+Test Suite 'AccountIdentityTests' passed at 2026-10-11 16:43:59.298.
+	 Executed 19 tests, with 0 failures (0 unexpected) in 0.025 (0.032) seconds
+Test Suite 'AccountLocalizationTests' started at 2026-10-11 16:43:59.298.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testEnglishAccountResourcesRemainAvailable]' passed (0.007 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testFormattingPreservesPrivateTitleAndPercentSigns]' passed (0.005 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testImportedMatterPluralUsesTheSelectedResourceBundle]' passed (0.003 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testProviderPriceAndCurrencyRemainUnmodified]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' started.
+Test Case '-[RilloraTests.AccountLocalizationTests testSimplifiedChineseAccountAndPurchaseResources]' passed (0.001 seconds).
+Test Suite 'AccountLocalizationTests' passed at 2026-10-11 16:43:59.316.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.016 (0.018) seconds
+Test Suite 'AppAppearanceTests' started at 2026-10-11 16:43:59.316.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testOldHomePreferenceMigratesWithoutReplacingExistingAppChoice]' passed (0.009 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testReadingTextAndPrimaryActionsRemainReadableInBothSchemes]' passed (0.001 seconds).
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' started.
+Test Case '-[RilloraTests.AppAppearanceTests testSystemHasNoForcedSchemeAndInvalidLegacyValueDoesNotPersist]' passed (0.005 seconds).
+Test Suite 'AppAppearanceTests' passed at 2026-10-11 16:43:59.332.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.015 (0.016) seconds
+Test Suite 'ApplePurchaseCoordinatorTests' started at 2026-10-11 16:43:59.332.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession]' passed (0.005 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCanceledAppAuthenticationStaysQuietAndCanBeRetried]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCanceledAppAuthenticationStaysQuietAndCanBeRetried]' passed (0.018 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase]' passed (0.006 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherPurchaseButtonTap]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedPriceRequiresAnotherPurchaseButtonTap]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedQuoteReturnsTheNewPriceForFreshConsent]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testChangedQuoteReturnsTheNewPriceForFreshConsent]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testForeignOwnerAndSandboxNeverReachProductionReceiptIntake]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testHistoryOutageIsNotPresentedAsHavingNoPurchases]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testInconsistentFinishResponseIsRejectedEvenByInjectedService]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingHistoryUsesExplicitSyncThenServerVerification]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testMissingHistoryUsesExplicitSyncThenServerVerification]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOlderCatalogResponseCannotReplaceNewerDisplayedQuote]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOlderCatalogResponseCannotReplaceNewerDisplayedQuote]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOnlyCommittedServerStateCanFinishThenRestoreRetries]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOpeningPageAndMissingDisplayedQuoteCannotPurchase]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOpeningPageAndMissingDisplayedQuoteCannotPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPartialHistoryIsNotReportedAsCompletelyRestored]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPartialHistoryIsNotReportedAsCompletelyRestored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testPendingAndCanceledOutcomesArePreservedWithoutFinishing]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitPriceMismatchCannotShowOrStartAnOffer]' passed (0.005 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitReceivesTheExactDisplayedMoneyAndCurrency]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testStoreKitReceivesTheExactDisplayedMoneyAndCurrency]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake]' started.
+Test Case '-[RilloraTests.ApplePurchaseCoordinatorTests testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake]' passed (0.001 seconds).
+Test Suite 'ApplePurchaseCoordinatorTests' passed at 2026-10-11 16:43:59.405.
+	 Executed 26 tests, with 0 failures (0 unexpected) in 0.066 (0.072) seconds
+Test Suite 'AppleStoreKitClientTests' started at 2026-10-11 16:43:59.405.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' started.
+/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:16: -[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Test skipped - The installed iOS 26.4 and 26.5 Simulator runtimes fail or hang while SKTestSession synchronizes the local configuration with storekitd; Apple documents the related Simulator fix in iOS 26.6. Set RILLORA_RUN_UNSTABLE_STOREKITTEST=1 only for an explicit retry; the Xcode Run transaction path is verified separately.
+Test Case '-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase]' skipped (0.013 seconds).
+Test Suite 'AppleStoreKitClientTests' passed at 2026-10-11 16:43:59.418.
+	 Executed 1 test, with 1 test skipped and 0 failures (0 unexpected) in 0.013 (0.013) seconds
+Test Suite 'CommerceStoreTests' started at 2026-10-11 16:43:59.418.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testCancelledPreviousAccountStartCannotResetNewPurchaseCoordinator]' passed (0.006 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseFinishesOnlyAfterMatchingVerifiedEvidence]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalStoreKitPurchaseRejectsWrongAccountTokenWithoutFinishing]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testLocalSubscriptionLifecycleStatesNeverMutateServerAccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMatchingTransactionUpdateIsRecordedAndFinishedWithoutChangingAccess]' passed (0.004 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testMissingStorefrontFailsClosedWithoutCallingPurchaseRoute]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRefreshRoutesWithCurrentStorefrontAndReevaluatesOnChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreHistoricalMonthlyPurchaseStillRefreshesLocalEvidence]' passed (0.003 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRestoreIgnoresEntitlementBoundToAnotherRilloraAccount]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testRetiredMonthlyProductCannotStartANewPurchase]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogDiagnosticLoadsWithoutAPrivateCommerceSession]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogLoadsAppStoreGroupWithoutOpeningPurchasePath]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxCatalogRejectsXcodeLocalSubscriptionGroup]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseFinishesOnlyAfterDurableServerAuthorization]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSandboxPurchaseRemainsUnfinishedWhileAuthoritativeSnapshotIsPending]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusOutsideLocalAccountIsIgnored]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testSubscriptionStatusUpdateRefreshesLifecycleWithoutFinishingOrGrantingAccess]' passed (0.003 seconds).
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' started.
+Test Case '-[RilloraTests.CommerceStoreTests testUnverifiedLocalStoreKitPurchaseNeverFinishes]' passed (0.001 seconds).
+Test Suite 'CommerceStoreTests' passed at 2026-10-11 16:43:59.479.
+	 Executed 18 tests, with 0 failures (0 unexpected) in 0.033 (0.061) seconds
+Test Suite 'ContactSharingStoreTests' started at 2026-10-11 16:43:59.479.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testAcceptedRecipientStopsShowingThePendingInvitationLink]' passed (0.007 seconds).
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' started.
+Test Case '-[RilloraTests.ContactSharingStoreTests testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion]' passed (0.001 seconds).
+Test Suite 'ContactSharingStoreTests' passed at 2026-10-11 16:43:59.487.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'CoreLocalizationTests' started at 2026-10-11 16:43:59.487.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testChineseCoreTerminologyAndGuideBoundary]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testFormattingPreservesSuppliedNamesAndFormatCharacters]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testGuideGroupTranslationDoesNotMutateItsSourceTitle]' passed (0.002 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterCountGrammarUsesTheSelectedLanguage]' passed (0.001 seconds).
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' started.
+Test Case '-[RilloraTests.CoreLocalizationTests testMatterRequestsPreserveSavedTextAndStableMachineValues]' passed (0.002 seconds).
+Test Suite 'CoreLocalizationTests' passed at 2026-10-11 16:43:59.495.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.007 (0.008) seconds
+Test Suite 'DisclosureRehearsalStoreTests' started at 2026-10-11 16:43:59.495.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testActionUsesLatestOptimisticVersionAndFixedAcknowledgement]' passed (0.003 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCancellationRestoresIdleAndFailureCanRecoverWithoutDiscardingResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' started.
+Test Case '-[RilloraTests.DisclosureRehearsalStoreTests testCreateUsesSelectedDistinctEventAndPublishesRehearsal]' passed (0.001 seconds).
+Test Suite 'DisclosureRehearsalStoreTests' passed at 2026-10-11 16:43:59.501.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'FamilyMaintenanceTests' started at 2026-10-11 16:43:59.501.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testChangedSourceOrScopeDoesNotCountAsCompleted]' passed (0.005 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testExpiredWriteClearsPrivateCache]' passed (0.016 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testIncomingResponseCannotGrantOwnerControl]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testReviewFieldsCannotContainHiddenDataOrDisclosureChanges]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' started.
+Test Case '-[RilloraTests.FamilyMaintenanceTests testSettingsEncodeExplicitNullForRemovingCollaboratorAndDate]' passed (0.002 seconds).
+Test Suite 'FamilyMaintenanceTests' passed at 2026-10-11 16:43:59.527.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.024 (0.025) seconds
+Test Suite 'FirstUseGuideStoreTests' started at 2026-10-11 16:43:59.527.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testOptionalMotivationAdvancesToMatterStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testPausedGuideRemainsReachableAndResumesItsSavedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testSaveAndExitPersistsPausedStep]' passed (0.001 seconds).
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' started.
+Test Case '-[RilloraTests.FirstUseGuideStoreTests testStartRecordsInProgressStepOneWithoutChangingReadiness]' passed (0.001 seconds).
+Test Suite 'FirstUseGuideStoreTests' passed at 2026-10-11 16:43:59.531.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.003 (0.004) seconds
+Test Suite 'HostedLegalAcceptanceProofTests' started at 2026-10-11 16:43:59.531.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testCurrentHostedReceiptProducesTheExistingAPIProof]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testEveryConsentBooleanMustBeExplicitlyTrue]' passed (0.002 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingAndUnexpectedFieldsAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testMissingClaimAndMalformedTokensFailClosed]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testStaleVersionsAndWrongDigestAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' started.
+Test Case '-[RilloraTests.HostedLegalAcceptanceProofTests testUnsignedReceiptIsRejectedBeforeExchange]' passed (0.001 seconds).
+Test Suite 'HostedLegalAcceptanceProofTests' passed at 2026-10-11 16:43:59.539.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.006 (0.008) seconds
+Test Suite 'LocalizationTests' started at 2026-10-11 16:43:59.539.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' started.
+Test Case '-[RilloraTests.LocalizationTests testBothNativeLanguageResourcesExist]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseCoreTerminology]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' started.
+Test Case '-[RilloraTests.LocalizationTests testChineseKnownErrorUsesCodeNotServerText]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishFallbackStaysReadable]' passed (0.001 seconds).
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' started.
+Test Case '-[RilloraTests.LocalizationTests testEnglishServerMessageContractIsPreserved]' passed (0.000 seconds).
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' started.
+Test Case '-[RilloraTests.LocalizationTests testFormattedPrivateValueIsNotAKeyOrFormatString]' passed (0.000 seconds).
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' started.
+Test Case '-[RilloraTests.LocalizationTests testUnknownChineseErrorDoesNotExposeOrTranslateServerContent]' passed (0.001 seconds).
+Test Suite 'LocalizationTests' passed at 2026-10-11 16:43:59.547.
+	 Executed 7 tests, with 0 failures (0 unexpected) in 0.004 (0.008) seconds
+Test Suite 'MatterEditorStoreTests' started at 2026-10-11 16:43:59.547.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testArchiveUsesTheLatestOptimisticVersion]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCategoryDetailsAndNotesRoundTripWithoutLeakingHiddenDraftFields]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testCreateRetryKeepsTheSameRequestIdentityAndDraft]' passed (0.006 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testFirstUseDraftKeepsChosenCategoryWithoutPrefillingMatter]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testHiddenFieldsAreNeitherSubmittedNorValidationTrapsAfterTypeChange]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testNewMatterUsesCreateContract]' passed (0.002 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testOverlappingCreateReturnsOnlyOneResultToTheOverview]' passed (0.005 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testReloadAndArchiveCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testRequiredLocatorsAndCryptoBranchesStopTransport]' passed (0.003 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testSaveUsesCurrentVersionAndAppliesServerResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testValidationStopsAnEmptyTitleBeforeTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' started.
+Test Case '-[RilloraTests.MatterEditorStoreTests testVersionConflictKeepsDraftAndOffersRecoveryState]' passed (0.001 seconds).
+Test Suite 'MatterEditorStoreTests' passed at 2026-10-11 16:43:59.576.
+	 Executed 12 tests, with 0 failures (0 unexpected) in 0.025 (0.028) seconds
+Test Suite 'MatterListPresentationTests' started at 2026-10-11 16:43:59.576.
+Test Case '-[RilloraTests.MatterListPresentationTests testCategoryFilteringDoesNotUseOwnerOrSharedReviewStatus]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testCategoryFilteringDoesNotUseOwnerOrSharedReviewStatus]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testCryptoNextActionFollowsCustodyAndRequiredPublicLocators]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testCryptoNextActionFollowsCustodyAndRequiredPublicLocators]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testDocumentAndDeviceRequireLocationButNotProvider]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testDocumentAndDeviceRequireLocationButNotProvider]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testEveryCategoryHasOneFilterAndUsesItsRawCategory]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testEveryCategoryHasOneFilterAndUsesItsRawCategory]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testNextActionDependsOnMissingLocatorNotReadinessOrOptionalChoices]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testNextActionDependsOnMissingLocatorNotReadinessOrOptionalChoices]' passed (0.000 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testOwnerStatusLabelIsNeutralWithoutChangingPersistedStatus]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testOwnerStatusLabelIsNeutralWithoutChangingPersistedStatus]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testProviderRequirementsReuseEachCategoryEditorRules]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testProviderRequirementsReuseEachCategoryEditorRules]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testSearchCombinesCategoryWithTrimmedTitleProviderAndRawCategory]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testSearchCombinesCategoryWithTrimmedTitleProviderAndRawCategory]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testSearchIncludesTranslatedCategoryLabelsAndKeepsUnknownCategoriesInAll]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testSearchIncludesTranslatedCategoryLabelsAndKeepsUnknownCategoriesInAll]' passed (0.001 seconds).
+Test Case '-[RilloraTests.MatterListPresentationTests testSummaryPrioritizesActualMissingLocatorsAndKeepsStableOrderWithinGroups]' started.
+Test Case '-[RilloraTests.MatterListPresentationTests testSummaryPrioritizesActualMissingLocatorsAndKeepsStableOrderWithinGroups]' passed (0.001 seconds).
+Test Suite 'MatterListPresentationTests' passed at 2026-10-11 16:43:59.586.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.006 (0.010) seconds
+Test Suite 'NativeAuthenticationCallbackTests' started at 2026-10-11 16:43:59.586.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testDisabledGoogleDoesNotReceiveAnyCallback]' passed (0.001 seconds).
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' started.
+Test Case '-[RilloraTests.NativeAuthenticationCallbackTests testHostedLoginSharingAndForeignSchemesNeverReachGoogle]' passed (0.001 seconds).
+Test Suite 'NativeAuthenticationCallbackTests' passed at 2026-10-11 16:43:59.589.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.001 (0.004) seconds
+Test Suite 'OfficialProviderGuideCatalogTests' started at 2026-10-11 16:43:59.590.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testAppleAndGoogleProvideSetupAndAfterDeathRoutes]' passed (0.014 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testBinanceIsNotPresentedAsAProactiveLegacyContactFeature]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testCatalogContainsUniqueActionableCommonProviderGuides]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testEveryGuideUsesHTTPSOnAnOfficialHost]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testMissingChineseOverlayFallsBackToEnglish]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testMissingChineseOverlayFallsBackToEnglish]' passed (0.002 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testRegionalGuidesAndAliasesRemainDistinct]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' started.
+Test Case '-[RilloraTests.OfficialProviderGuideCatalogTests testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches]' passed (0.059 seconds).
+Test Suite 'OfficialProviderGuideCatalogTests' passed at 2026-10-11 16:43:59.670.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.078 (0.080) seconds
+Test Suite 'OfficialSetupStoreTests' started at 2026-10-11 16:43:59.670.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testCancelledUpdateRollsBackOptimisticDisplayWithoutFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testConflictKeepsConfirmedServerStateAndOffersReload]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testNoOpDoesNotWriteAnUnchangedSelfReport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testReloadPublishesOfficialSetupChecks]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' started.
+Test Case '-[RilloraTests.OfficialSetupStoreTests testUpdateUsesOptimisticVersionAndAppliesSelfReport]' passed (0.001 seconds).
+Test Suite 'OfficialSetupStoreTests' passed at 2026-10-11 16:43:59.675.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'OverviewStoreTests' started at 2026-10-11 16:43:59.675.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testAuthenticationFailureBecomesSignedOutInsteadOfAnErrorWall]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testCancelledLoadRestoresItsPreviousState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testExpiredSessionDiscardsPreviouslyLoadedPrivateMap]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testFailedRefreshKeepsLoadedMapAndRetryClearsNotice]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testMutationReconciliationDoesNotKeepAnExpiredSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOlderRefreshCannotOverwriteAConfirmedSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testOldSessionRefreshCannotClearTheNewSession]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesLoadedSnapshot]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSafeFailureState]' passed (0.003 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testReloadPublishesSignedOutWithoutFetchingPrivateOverview]' passed (0.001 seconds).
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' started.
+Test Case '-[RilloraTests.OverviewStoreTests testVerifiedLoginSnapshotEntersAppWithoutAnotherOverviewRequest]' passed (0.001 seconds).
+Test Suite 'OverviewStoreTests' passed at 2026-10-11 16:43:59.691.
+	 Executed 11 tests, with 0 failures (0 unexpected) in 0.011 (0.016) seconds
+Test Suite 'PasswordResetTests' started at 2026-10-11 16:43:59.691.
+Test Case '-[RilloraTests.PasswordResetTests testBilingualConfirmationIsConditionalAndNeverClaimsDelivery]' started.
+Test Case '-[RilloraTests.PasswordResetTests testBilingualConfirmationIsConditionalAndNeverClaimsDelivery]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testBuildConfigurationParsesResetIndependentlyOfSignIn]' started.
+Test Case '-[RilloraTests.PasswordResetTests testBuildConfigurationParsesResetIndependentlyOfSignIn]' passed (0.003 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testCancellationAndNetworkErrorsAreSafeAndRetryable]' started.
+Test Case '-[RilloraTests.PasswordResetTests testCancellationAndNetworkErrorsAreSafeAndRetryable]' passed (0.008 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testClearIgnoresLateCompletionAndDiscardsPrivateFormData]' started.
+Test Case '-[RilloraTests.PasswordResetTests testClearIgnoresLateCompletionAndDiscardsPrivateFormData]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testConfigurationDefaultsToUnavailableAndAcceptsOnlyReviewedConnection]' started.
+Test Case '-[RilloraTests.PasswordResetTests testConfigurationDefaultsToUnavailableAndAcceptsOnlyReviewedConnection]' passed (0.000 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testDefaultAndClosedAuthenticationCannotResetPasswords]' started.
+Test Case '-[RilloraTests.PasswordResetTests testDefaultAndClosedAuthenticationCannotResetPasswords]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testDuplicateSubmissionsAreIgnoredWhileRequestIsPending]' started.
+Test Case '-[RilloraTests.PasswordResetTests testDuplicateSubmissionsAreIgnoredWhileRequestIsPending]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testEmailValidationIsLocalAndPreservesTheExplicitAddress]' started.
+Test Case '-[RilloraTests.PasswordResetTests testEmailValidationIsLocalAndPreservesTheExplicitAddress]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testInvalidAndUnavailableRequestsFailBeforeTransport]' started.
+Test Case '-[RilloraTests.PasswordResetTests testInvalidAndUnavailableRequestsFailBeforeTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testOldCompletionCannotClearANewerRequest]' started.
+Test Case '-[RilloraTests.PasswordResetTests testOldCompletionCannotClearANewerRequest]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testOpeningAndEditingTheFormNeverSendsARequest]' started.
+Test Case '-[RilloraTests.PasswordResetTests testOpeningAndEditingTheFormNeverSendsARequest]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testRateLimitUsesSafeMessageWithoutAutomaticRetry]' started.
+Test Case '-[RilloraTests.PasswordResetTests testRateLimitUsesSafeMessageWithoutAutomaticRetry]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testResetDoesNotChangeGlobalAuthenticationOrOverviewState]' started.
+Test Case '-[RilloraTests.PasswordResetTests testResetDoesNotChangeGlobalAuthenticationOrOverviewState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testSDKNetworkCancellationIsNotDisplayedAsFailure]' started.
+Test Case '-[RilloraTests.PasswordResetTests testSDKNetworkCancellationIsNotDisplayedAsFailure]' passed (0.039 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testSDKRateLimitNetworkAndFailureAreMappedWithoutProviderText]' started.
+2026-10-11 16:43:59.757283+0800 Rillora[51842:301429] [Default] Task <E571C94A-7959-4C02-A9CE-D771C4E6C2D8>.<1> finished with error [-1009] Error Domain=NSURLErrorDomain Code=-1009 "(null)" UserInfo={_NSURLErrorRelatedURLSessionTaskErrorKey=(
+    "LocalDataTask <E571C94A-7959-4C02-A9CE-D771C4E6C2D8>.<1>"
+), _NSURLErrorFailingURLSessionTaskErrorKey=LocalDataTask <E571C94A-7959-4C02-A9CE-D771C4E6C2D8>.<1>}
+Test Case '-[RilloraTests.PasswordResetTests testSDKRateLimitNetworkAndFailureAreMappedWithoutProviderText]' passed (0.003 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testSDKRequestUsesOnlyReviewedPublicResetPayloadAndLeavesTokenUntouched]' started.
+Test Case '-[RilloraTests.PasswordResetTests testSDKRequestUsesOnlyReviewedPublicResetPayloadAndLeavesTokenUntouched]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testServiceRejectsMissingConfigurationAndBadEmailBeforeSDKCall]' started.
+Test Case '-[RilloraTests.PasswordResetTests testServiceRejectsMissingConfigurationAndBadEmailBeforeSDKCall]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testSuccessClearsEmailAndDoesNotResend]' started.
+Test Case '-[RilloraTests.PasswordResetTests testSuccessClearsEmailAndDoesNotResend]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testTaskCancellationCannotPublishSuccessOrFailure]' started.
+Test Case '-[RilloraTests.PasswordResetTests testTaskCancellationCannotPublishSuccessOrFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PasswordResetTests testUnknownProviderErrorsNeverExposeEmailOrAccountExistence]' started.
+Test Case '-[RilloraTests.PasswordResetTests testUnknownProviderErrorsNeverExposeEmailOrAccountExistence]' passed (0.003 seconds).
+Test Suite 'PasswordResetTests' passed at 2026-10-11 16:43:59.766.
+	 Executed 20 tests, with 0 failures (0 unexpected) in 0.067 (0.075) seconds
+Test Suite 'PlanMotivationStoreTests' started at 2026-10-11 16:43:59.766.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledLatestLoadRestoresReadyState]' passed (0.002 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testCancelledSaveReturnsToReadyWithoutChangingSource]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testConflictKeepsSelectedMotivationForRecovery]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testLoadLatestAppliesServerMotivationAndVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.PlanMotivationStoreTests testSaveUsesLatestVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Suite 'PlanMotivationStoreTests' passed at 2026-10-11 16:43:59.773.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.005 (0.006) seconds
+Test Suite 'ProductionConnectionTests' started at 2026-10-11 16:43:59.773.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testBothNativeRevocationsUseTheProductionProxyAndRequireServerSuccess]' passed (0.002 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testClosedServiceDoesNotOpenHostedAuthentication]' passed (0.003 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testPreparedProductionConnectionIsValidButDoesNotOpenAccounts]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testProductionRejectsTestIdentityUnsafeOriginsAndDevelopmentIdentity]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testSessionAndDeletionProofNamespacesCannotCrossOrigins]' passed (0.001 seconds).
+Test Case '-[RilloraTests.ProductionConnectionTests testSignOutReportsRemoteAndKeychainFailuresWithoutFalseSuccess]' started.
+Test Case '-[RilloraTests.ProductionConnectionTests testSignOutReportsRemoteAndKeychainFailuresWithoutFalseSuccess]' passed (0.002 seconds).
+Test Suite 'ProductionConnectionTests' passed at 2026-10-11 16:43:59.784.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.009 (0.011) seconds
+Test Suite 'RoleAssignmentPolicyStoreTests' started at 2026-10-11 16:43:59.784.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRevocationStaysRemovedWhenTheFollowingRefreshFails]' passed (0.002 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testAcknowledgedRoleIsRetainedWhenTheFollowingRefreshFails]' passed (0.002 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testCreateUsesMatterScopeAndMarksEarlierRehearsalsStale]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testFailedMutationPreservesAssignmentsAndExposesConflict]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testLoadKeepsPlanWideAndCurrentMatterAssignmentsSeparate]' passed (0.001 seconds).
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' started.
+Test Case '-[RilloraTests.RoleAssignmentPolicyStoreTests testReloadAndDuplicateCreateCannotReplaceAnInFlightRoleMutation]' passed (0.001 seconds).
+Test Suite 'RoleAssignmentPolicyStoreTests' passed at 2026-10-11 16:43:59.793.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.007 (0.009) seconds
+Test Suite 'SelectedLanguageTests' started at 2026-10-11 16:43:59.793.
+Test Case '-[RilloraTests.SelectedLanguageTests testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent]' started.
+Test Case '-[RilloraTests.SelectedLanguageTests testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SelectedLanguageTests testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText]' started.
+Test Case '-[RilloraTests.SelectedLanguageTests testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText]' passed (0.002 seconds).
+Test Suite 'SelectedLanguageTests' passed at 2026-10-11 16:43:59.796.
+	 Executed 2 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SharedAccessStoreTests' started at 2026-10-11 16:43:59.800.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testANameOnlyResponseWithPrivateDetailsFailsClosed]' passed (0.002 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' started.
+Test Case '-[RilloraTests.SharedAccessStoreTests testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent]' passed (0.001 seconds).
+Test Suite 'SharedAccessStoreTests' passed at 2026-10-11 16:43:59.805.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'SharingLocalizationTests' started at 2026-10-11 16:43:59.805.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testLocalizationDoesNotChangeSharingWireValuesOrScope]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testReviewRequestAndExportCountsUsePluralResources]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' started.
+Test Case '-[RilloraTests.SharingLocalizationTests testSimplifiedChineseSharingTermsAndSafetyMessages]' passed (0.001 seconds).
+Test Suite 'SharingLocalizationTests' passed at 2026-10-11 16:43:59.808.
+	 Executed 4 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SharingPreviewTests' started at 2026-10-11 16:43:59.810.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testExactSelectedFieldsAreAccepted]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testFuturePrivateFieldsAndUnselectedMatterAreRejected]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' started.
+Test Case '-[RilloraTests.SharingPreviewTests testMorePermissiveLevelCannotReplaceTheSelectedLevel]' passed (0.001 seconds).
+Test Suite 'SharingPreviewTests' passed at 2026-10-11 16:43:59.813.
+	 Executed 3 tests, with 0 failures (0 unexpected) in 0.002 (0.003) seconds
+Test Suite 'SharingTests' started at 2026-10-11 16:43:59.813.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' started.
+Test Case '-[RilloraTests.SharingTests testDetailsRemainBoundedToSafeFields]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' started.
+Test Case '-[RilloraTests.SharingTests testDirectionsRejectFinancialDetails]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' started.
+Test Case '-[RilloraTests.SharingTests testEnvelopeRejectsWriteOrReleaseAuthority]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' started.
+Test Case '-[RilloraTests.SharingTests testInvitationCapabilityMustBeACompleteFragment]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' started.
+Test Case '-[RilloraTests.SharingTests testItemsMustBelongToAVisibleConnection]' passed (0.000 seconds).
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' started.
+Test Case '-[RilloraTests.SharingTests testNameAccessRejectsUnexpectedLocation]' passed (0.002 seconds).
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' started.
+Test Case '-[RilloraTests.SharingTests testReplacementRequestNamesBothCurrentVersions]' passed (0.002 seconds).
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' started.
+Test Case '-[RilloraTests.SharingTests testSavedCopyDecodesItsActualDateAndStaysWithinItsSavedScope]' passed (0.004 seconds).
+Test Suite 'SharingTests' passed at 2026-10-11 16:43:59.831.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.018) seconds
+Test Suite 'SimulationStoreTests' started at 2026-10-11 16:43:59.831.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testAPIFailureProducesRecoverableFailureState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testCancellationRestoresPreviousReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testChangingScenarioClearsThePreviousScenarioResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testMismatchedResponseDoesNotBecomeTheChosenScenarioResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' started.
+Test Case '-[RilloraTests.SimulationStoreTests testRunUsesSelectedDistinctLifeEventAndPublishesResult]' passed (0.001 seconds).
+Test Suite 'SimulationStoreTests' passed at 2026-10-11 16:43:59.836.
+	 Executed 5 tests, with 0 failures (0 unexpected) in 0.004 (0.005) seconds
+Test Suite 'StartHereEncryptionServiceTests' started at 2026-10-11 16:43:59.837.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testDecryptsPackageGeneratedByPinnedWebHPKELibrary]' passed (0.019 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testEncryptsAndLocallyRecoversWithoutPuttingPrivateKeyInArtifact]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsAuthenticCiphertextWhosePackageDoesNotMatchItsCommitment]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsAuthenticCiphertextWhosePackageDoesNotMatchItsCommitment]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testRejectsCiphertextTamperingBeforeDecryption]' passed (0.002 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testSyntheticRecipientDecryptsWithMemoryOnlyDeviceKeyAndRejectsAnotherKey]' passed (0.007 seconds).
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' started.
+Test Case '-[RilloraTests.StartHereEncryptionServiceTests testWrapsTheContentKeyForEveryEligibleRecipientDevice]' passed (0.003 seconds).
+Test Suite 'StartHereEncryptionServiceTests' passed at 2026-10-11 16:43:59.875.
+	 Executed 6 tests, with 0 failures (0 unexpected) in 0.037 (0.039) seconds
+Test Suite 'StartHerePreviewStoreTests' started at 2026-10-11 16:43:59.875.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCancellationRestoresReadyState]' passed (0.004 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreateEncryptedPublishesOnlyAfterLocalRecoveryAndFinalize]' passed (0.023 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePreviewPublishesNoFileResult]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testCreatePrintablePublishesShareableInMemoryArtifact]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedFinalizeReauthenticationKeepsPreviewUntilExplicitRetry]' passed (0.006 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testEncryptedPreparationReauthenticationDoesNotFinalizeOrPublish]' passed (0.003 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testFailureCanReturnToReadyState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testOtherForbiddenExportsStillPublishTheirFailure]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableCancellationRestoresIdleState]' passed (0.001 seconds).
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' started.
+Test Case '-[RilloraTests.StartHerePreviewStoreTests testPrintableReauthenticationKeepsPreviewAndRequiresExplicitRetry]' passed (0.001 seconds).
+Test Suite 'StartHerePreviewStoreTests' passed at 2026-10-11 16:43:59.919.
+	 Executed 10 tests, with 0 failures (0 unexpected) in 0.041 (0.043) seconds
+Test Suite 'TrustedContactEditorStoreTests' started at 2026-10-11 16:43:59.919.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testEditUsesLatestOptimisticVersionAndAppliesResponse]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testNewContactUsesRecordOnlyCreateContract]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOpeningExistingContactLoadsLatestServerVersion]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testOverlappingSavesCannotCreateTheContactTwice]' passed (0.005 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testReloadAndRevokeCannotReplaceAnInFlightSave]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testRevokeUsesPersistedIdentityAndExplicitRevokedStatus]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testValidationStopsEmptyNameBeforeTransport]' passed (0.001 seconds).
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' started.
+Test Case '-[RilloraTests.TrustedContactEditorStoreTests testVersionConflictKeepsContactDraftForRecovery]' passed (0.001 seconds).
+Test Suite 'TrustedContactEditorStoreTests' passed at 2026-10-11 16:43:59.932.
+	 Executed 8 tests, with 0 failures (0 unexpected) in 0.011 (0.013) seconds
+Test Suite 'RilloraTests.xctest' passed at 2026-10-11 16:43:59.933.
+	 Executed 285 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.783 (0.911) seconds
+Test Suite 'All tests' passed at 2026-10-11 16:43:59.933.
+	 Executed 285 tests, with 1 test skipped and 0 failures (0 unexpected) in 0.783 (0.911) seconds
+2026-10-11 16:44:00.367 xcodebuild[51608:298699] [MT] IDETestOperationsObserverDebug: 17.734 elapsed -- Testing started completed.
+2026-10-11 16:44:00.367 xcodebuild[51608:298699] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-11 16:44:00.367 xcodebuild[51608:298699] [MT] IDETestOperationsObserverDebug: 17.734 sec, +17.734 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-11T08-43-34-847Z_pid33101_eb5c4ca0.xcresult
+
+** TEST EXECUTE SUCCEEDED **
+
+Testing started

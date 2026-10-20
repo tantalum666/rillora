@@ -1,0 +1,36 @@
+from pathlib import Path
+import json,subprocess,sys,datetime,re,uuid
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent
+primary=Path('/Users/tantalum/Documents/电子遗嘱app')
+sys.path.insert(0,str(w/'tools/security'));from credential_store import run_with_private_json
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+receipt=q/'apple-production-secret-installed.json';assert not receipt.exists(),'Read back an existing installation, do not repeat it'
+aws=Aws('rillora-production-operator');who=aws.call('sts','get-caller-identity')
+assert who['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in who['Arn']
+stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};arn=next(v for k,v in out.items() if k.startswith('RuntimeAppleProductionSecretArn'))
+assert re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-iap-[A-Za-z0-9]{6}',arn)
+description=aws.call('secretsmanager','describe-secret',{'SecretId':arn});assert description['Name']=='rillora/production/apple-iap'
+source=primary/'.local-secrets/storekit'
+# Reuse the already authorized cloud configuration via existing IAM permission.
+# The local Secure Enclave envelope remains untouched; no plaintext fallback is read.
+reviewArn=next(v for k,v in out.items() if k.startswith('RuntimeAppleReviewSecretArn'))
+assert re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/apple-review-[A-Za-z0-9]{6}',reviewArn)
+cloud=Aws('rillora-operator').call('secretsmanager','get-secret-value',{'SecretId':reviewArn,'VersionStage':'AWSCURRENT'})
+body=json.loads(cloud['SecretString'])
+assert body['environment']=='sandbox' and body['allowedStorefronts']==['USA','HKG','AUS']
+assert body['keyId']==(source/'key-id').read_text().strip() and body['issuerId']==(source/'issuer-id').read_text().strip()
+body={**body,'environment':'production','allowedStorefronts':['USA','HKG']}
+check=subprocess.run(['node','--input-type=module','-e',"import {readFileSync} from 'node:fs';import {parseAppleProductionSecret} from './apps/api/dist/apple-production-secret.js';parseAppleProductionSecret(readFileSync(0,'utf8'));"],cwd=w,input=json.dumps(body),capture_output=True,text=True)
+assert check.returncode==0,'Credential schema rejected; private values suppressed'
+version=str(uuid.uuid4())
+command=['aws','secretsmanager','put-secret-value','--profile','rillora-production-operator','--region','eu-central-1','--output','json']
+r=run_with_private_json(command,{'SecretId':arn,'SecretString':json.dumps(body),'ClientRequestToken':version})
+assert r.returncode==0,'Protected installation did not finish; private values suppressed'
+response=json.loads(r.stdout);assert response['VersionId']==version
+after=aws.call('secretsmanager','describe-secret',{'SecretId':arn});assert 'AWSCURRENT' in after['VersionIdsToStages'][version]
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'name':'rillora/production/apple-iap',
+ 'currentVersionMatched':True,'versionId':version,'allowedStorefronts':['USA','HKG'],'originalIapKeyReused':True,
+ 'plaintextFileWritten':False,'keyRotated':False,'sandboxVaultChanged':False,'runtimeEnabled':False}
+result['credentialSource']='Existing authorized AWS review configuration, memory only'
+receipt.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

@@ -5,7 +5,7 @@ import AuthenticationServices
 
 @MainActor
 @Observable
-final class AuthenticationStore {
+final class AuthenticationStore: PasswordResetRequesting {
     private(set) var isWorking = false
     var errorMessage: String?
     var deletionReference: AccountDeletionReference?
@@ -22,6 +22,24 @@ final class AuthenticationStore {
         self.service = service
         self.overviewStore = overviewStore
         self.commerceStore = commerceStore
+    }
+
+    /// Only app-authored errors are translated; provider descriptions are not catalog keys.
+    private static func displayMessage(for error: Error, fallback: String = String(localized: "Sign in could not be completed. Please try again.")) -> String {
+        if error is HostedLegalAcceptanceProof.Failure {
+            return String(localized: "The sign-in service did not confirm the current Terms and Privacy acknowledgement. Please try again.")
+        }
+        if error is NativeAuthenticationError || error is SessionTokenStoreError || error is RilloraAPIError {
+            return error.localizedDescription
+        }
+        return L10n.isSimplifiedChinese(bundle: .main) ? fallback : error.localizedDescription
+    }
+
+    var canResetPassword: Bool { service.canResetPassword }
+
+    /// Reset feedback belongs to PasswordResetStore; do not alter authentication state.
+    func requestPasswordReset(email: String) async throws {
+        try await service.requestPasswordReset(email: email)
     }
 
     var canSignIn: Bool { service.isConfigured }
@@ -79,7 +97,7 @@ final class AuthenticationStore {
         } catch is CancellationError {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -96,7 +114,7 @@ final class AuthenticationStore {
                authorizationError.code == .canceled {
                 return false
             }
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         case .success(let authorization):
             guard let credential = authorization.credential as? ASAuthorizationAppleIDCredential,
@@ -134,7 +152,7 @@ final class AuthenticationStore {
         } catch let error as WebAuthError where error == .userCancelled {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -158,7 +176,7 @@ final class AuthenticationStore {
         } catch is CancellationError {
             return false
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error)
             return false
         }
     }
@@ -172,19 +190,32 @@ final class AuthenticationStore {
         overviewStore.reset()
         await overviewStore.reload()
         if case .loaded = overviewStore.state { return true }
-        errorMessage = "Rillora could not load your private plan after sign in."
+        errorMessage = String(localized: "Rillora could not load your private plan after sign in.")
         return false
     }
 
-    func signOut() async {
-        guard !isWorking else { return }
+    @discardableResult
+    func signOut() async -> Bool {
+        guard !isWorking else { return false }
         isWorking = true
         errorMessage = nil
-        await service.signOut()
-        commerceStore?.reset()
-        overviewStore.reset()
-        await overviewStore.reload()
-        isWorking = false
+        defer { isWorking = false }
+        do {
+            try await service.signOut()
+            commerceStore?.reset()
+            overviewStore.reset()
+            await overviewStore.reload()
+            return true
+        } catch {
+            errorMessage = Self.displayMessage(for: error, fallback: String(localized: "Could not sign out. Please try again."))
+            return false
+        }
+    }
+
+    @discardableResult
+    func useAnotherAccount() async -> Bool {
+        guard await signOut() else { return false }
+        return await signIn()
     }
 
     func endSessionAfterDeletion(_ reference: AccountDeletionReference) async {
@@ -206,7 +237,7 @@ final class AuthenticationStore {
             overviewStore.reset()
             await overviewStore.reload()
         } catch {
-            errorMessage = error.localizedDescription
+            errorMessage = Self.displayMessage(for: error, fallback: String(localized: "Could not sign out all devices. Please try again."))
         }
     }
 }

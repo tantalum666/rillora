@@ -1,0 +1,1103 @@
+{
+  "status": "COMPLETE_READ_ONLY_CONTINUATION_PREFLIGHT",
+  "completed_at_utc": "2026-10-06T16:11:41.738607+00:00",
+  "target_commit_prefix": "e229c466",
+  "current_materialized_markdown_count": 211,
+  "inherited_baseline": {
+    "source": "/workspace/scratch/c46bfe37469e/rillora-chinese-ios/docs/qa/chinese-ios-20261005/inherited-reading-coverage.json",
+    "base_commit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+    "completed_at_utc": "2026-10-05T00:05:34Z",
+    "full_body_file_count": 194,
+    "line_count": 33195,
+    "byte_count": 3587490,
+    "retained_not_newly_reread": true
+  },
+  "scope": "Root AGENTS full current body, all 44 materialized exact old-to-current Markdown deltas/full new bodies, with unchanged baseline bodies retained. This is not a claim that all 211 files were newly reread.",
+  "root_instructions": {
+    "path": "AGENTS.md",
+    "current_full_read_ranges": [
+      [
+        1,
+        84
+      ]
+    ],
+    "read_complete": true
+  },
+  "delta_source": "output/qa/ios-ux-refinement-20261006/document-deltas.json",
+  "delta_sha256": "2f0bea3c1acda2e4745e767d0d54abc62722576018397390dbf35a65cabaea55",
+  "delta_file_count": 44,
+  "retained_files_with_complete_delta": 17,
+  "new_full_bodies_read": 27,
+  "delta_text_lines_read": 3815,
+  "delta_text_characters_read": 236595,
+  "delta_outputs_truncated": false,
+  "coverage_gaps": [],
+  "unchanged_current_baseline_files": [
+    "AGENTS.md",
+    "DESIGN.md",
+    "SECURITY.md",
+    "THIRD_PARTY_NOTICES.md",
+    "apps/ios-prototype/AGENTS.md",
+    "apps/ios-prototype/src/mobile/COMPONENTS.md",
+    "assets/brand/rillora-identity-02-open-folio-20260919/README.md",
+    "assets/brand/rillora-identity-03-legacy-imprint-20260919/README.md",
+    "assets/brand/rillora-identity-05-line-tree-20260919/README.md",
+    "assets/brand/rillora-identity-20260919/README.md",
+    "assets/brand/rillora/README.md",
+    "assets/concepts/rillora-authenticated-motion-20260911/README.md",
+    "assets/concepts/rillora-landing-20260928-v2/implementation-target.md",
+    "assets/concepts/rillora-landing-20260928-v3/implementation-target.md",
+    "assets/concepts/rillora-logo-gate2-dual-embrace-20260808/README.md",
+    "assets/concepts/rillora-public-motion-20260909/README.md",
+    "assets/concepts/rillora-trusted-sharing-20260909/README.md",
+    "assets/concepts/rillora-ui-directions-20260814/README.md",
+    "assets/illustrations/rillora-folio-cutout-20260929/README.md",
+    "design-qa.md",
+    "docs/account-matter-ux.md",
+    "docs/annual-brand-capacity-20260921.md",
+    "docs/app-store-presentation-20260930.md",
+    "docs/apple-watch-death-signal-research.md",
+    "docs/asset-licenses.md",
+    "docs/auth0-cognito-migration-20260928.md",
+    "docs/backend.md",
+    "docs/blockchain.md",
+    "docs/brand-font-license-20260919.md",
+    "docs/chat-resume-20260930.md",
+    "docs/cloud-cost-options-20260924.md",
+    "docs/code-review-20261002.md",
+    "docs/code-review-repair-20260930.md",
+    "docs/commercial-completion-20260916.md",
+    "docs/competitor-ux-audit.md",
+    "docs/component-preview-20260918.md",
+    "docs/dark-ui-redesign-brief.md",
+    "docs/death-verification-evidence-research.md",
+    "docs/disclosure-rehearsal.md",
+    "docs/e2ee-effort-20260922.md",
+    "docs/family-maintenance.md",
+    "docs/free-paid-ui-audit.md",
+    "docs/global-mainland-commerce-plan.md",
+    "docs/handoff-history-20260910.md",
+    "docs/handoff-history-20260911.md",
+    "docs/handoff-history-20260915-p1-start.md",
+    "docs/handoff-history-20260915.md",
+    "docs/handoff-history-20260916-before-behavior-release.md",
+    "docs/handoff-history-20260916-before-commercial-completion.md",
+    "docs/handoff-history-20260916-before-ui-scope-correction.md",
+    "docs/handoff-history-20260916-p1-deployment.md",
+    "docs/handoff-history-20260917-invitation-complete.md",
+    "docs/handoff-history-20260917-provider-acceptance-in-progress.md",
+    "docs/handoff-history-20260917-stripe-complete.md",
+    "docs/handoff-history-20260918-component-preview.md",
+    "docs/handoff-history-20260918-filter-components.md",
+    "docs/handoff-history-20260918-platform-library.md",
+    "docs/handoff-history-20260918-surface-motion.md",
+    "docs/handoff-history-20260919-before-approved-brand.md",
+    "docs/handoff-history-20260919-before-logo-alternative.md",
+    "docs/handoff-history-20260919-before-logo-reset.md",
+    "docs/handoff-history-20260919-before-logo03.md",
+    "docs/handoff-history-20260919-before-release-preparation.md",
+    "docs/handoff-history-20260919-before-tree-variants.md",
+    "docs/handoff-history-20260919-contextual-guidance.md",
+    "docs/handoff-history-20260919-icon-practice.md",
+    "docs/handoff-history-20260919-provider-marks.md",
+    "docs/handoff-history-20260920-before-logo-consistency.md",
+    "docs/handoff-history-20260921-before-annual-only.md",
+    "docs/handoff-history-20260921-before-channel-pricing.md",
+    "docs/handoff-history-20260921-before-security-positioning.md",
+    "docs/handoff-history-20260921-before-subscription-review.md",
+    "docs/handoff-history-20260922-before-content-implementation.md",
+    "docs/handoff-history-20260922-before-e2ee-effort.md",
+    "docs/handoff-history-20260923-before-production-start.md",
+    "docs/handoff-history-20260923-before-release-gap-review.md",
+    "docs/handoff-history-20260923-production-attempts.md",
+    "docs/handoff-history-20260924-access-recovery.md",
+    "docs/handoff-history-20260924-before-identity.md",
+    "docs/handoff-history-20260924-before-runtime.md",
+    "docs/handoff-history-20260925-before-clients.md",
+    "docs/handoff-history-20260926-before-apple.md",
+    "docs/handoff-history-20260926-before-channel-correction.md",
+    "docs/handoff-history-20260926-before-commerce.md",
+    "docs/handoff-history-20260926-before-launch-goal.md",
+    "docs/handoff-history-20260926-before-web-88-99.md",
+    "docs/handoff-history-20260928-before-landing-v2.md",
+    "docs/handoff-history-20260928-before-theme-closeout.md",
+    "docs/handoff-history-20260929-before-appearance-closeout.md",
+    "docs/handoff-history-20260929-before-native-home.md",
+    "docs/handoff-history-20260929-before-ui-ux-closeout.md",
+    "docs/handoff-history-20260930-before-apple-closeout.md",
+    "docs/handoff-history-20260930-before-dot-review.md",
+    "docs/handoff-history-20260930-before-full-git.md",
+    "docs/handoff-history-20260930-before-review-runtime.md",
+    "docs/handoff-history-20261001-before-release-123.md",
+    "docs/handoff-history-20261001-before-resend.md",
+    "docs/handoff-history-20261002-before-independent-preparation.md",
+    "docs/handoff-history-20261002-before-strict-review.md",
+    "docs/handoff-history-20261003-before-reviewed-rollout.md",
+    "docs/handoff-history-20261004-before-real-core.md",
+    "docs/handoff-history-20261004-mid-core.md",
+    "docs/identity-data-region.md",
+    "docs/independent-release-closeout-20261002.md",
+    "docs/individual-operator-launch-plan.md",
+    "docs/infrastructure-roadmap.md",
+    "docs/interaction-experience.md",
+    "docs/invitation-motion-ux.md",
+    "docs/ios-external-payment-research.md",
+    "docs/ios-layout-matrix.md",
+    "docs/landing-page-20260928-v2-history.md",
+    "docs/landing-page-20260928.md",
+    "docs/legal-candidate-zh.md",
+    "docs/logo-ai-workflow.md",
+    "docs/logo-design-20260919.md",
+    "docs/logo-discovery.md",
+    "docs/logo-form-brief.md",
+    "docs/monetization.md",
+    "docs/mvp.md",
+    "docs/native-home-20260929.md",
+    "docs/p1-reliability-repair-20260915.md",
+    "docs/pricing-68-20260911.md",
+    "docs/pricing-88-80-20260919.md",
+    "docs/pricing-band-20260910.md",
+    "docs/product-events.md",
+    "docs/production-apple-20260926.md",
+    "docs/production-clients-20260925.md",
+    "docs/production-identity-mail-20260924.md",
+    "docs/production-recovery-20260923.md",
+    "docs/production-runtime-20260924.md",
+    "docs/provider-death-account-guides-history-20260820.md",
+    "docs/provider-death-account-guides.md",
+    "docs/provider-icon-practice-research.md",
+    "docs/provider-mark-usage.md",
+    "docs/public-legal-pages.md",
+    "docs/public-product-website-20260924.md",
+    "docs/quality-gates.md",
+    "docs/recovery-control-journal.md",
+    "docs/release-123-20261001.md",
+    "docs/release-engineering-20260930.md",
+    "docs/research.md",
+    "docs/review-rollout-20261003.md",
+    "docs/role-assignment-policy.md",
+    "docs/security-hardening-20260921/context.md",
+    "docs/security-hardening-20260921/hardening.md",
+    "docs/security-hardening-20260921/implementation/envelope.md",
+    "docs/security-hardening-20260921/implementation/operations.md",
+    "docs/security-hardening-20260921/proposals/private-content-boundary.md",
+    "docs/security-positioning-20260921.md",
+    "docs/solo-operations-and-portability.md",
+    "docs/subscription-value-20260921.md",
+    "docs/surface-motion-20260917.md",
+    "docs/transaction-mail-resend-20261001.md",
+    "docs/trust-safety-legal.md",
+    "docs/trusted-sharing.md",
+    "docs/ui-ux-audit-20260915.md",
+    "docs/ui-ux-audit-20260929.md",
+    "docs/unit-economics-history-20260910.md",
+    "docs/unit-economics-pricing-reset-history-20260910.md",
+    "docs/unit-economics.md",
+    "docs/ux-behavior-repair-20260916.md",
+    "docs/website-appearance-controls-20260929.md",
+    "infra/auth0/README.md",
+    "infra/auth0/hosted-consent/README.md",
+    "infra/aws/README.md",
+    "tools/godaddy/README.md",
+    "tools/resend/README.md"
+  ],
+  "unchanged_current_baseline_blob_verification": "167 current bodies match retained source blob SHAs; hashes verify unchanged bodies only, not substitute for reading.",
+  "baseline_paths_not_materialized_here": [
+    "collaboration/README.md",
+    "collaboration/verification/README.md",
+    "collaboration/verification/email-logo-20261002/README.md",
+    "collaboration/verification/independent-release-20261002/README.md",
+    "collaboration/verification/real-core-20261004-followup/README.md",
+    "collaboration/verification/real-core-20261004/README.md",
+    "collaboration/verification/release-123-20261002/README.md",
+    "collaboration/verification/resend-20261001/README.md",
+    "collaboration/verification/review-rollout-20261003/README.md",
+    "collaboration/verification/strict-review-20261003/README.md"
+  ],
+  "exclusions": [
+    "output/ generated evidence",
+    "collaboration/evidence generated copies",
+    "collaboration/catalog generated indexes",
+    "collaboration/archives encrypted history",
+    "dependencies and caches"
+  ],
+  "files": [
+    {
+      "path": "README.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          19
+        ]
+      ],
+      "delta_text_lines": 19,
+      "all_text_read": true,
+      "current_file_sha256": "9292620bec82a62cc5adf82da583cb7bc42cb36119f49b939f006a8831d0ee3b",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          15
+        ]
+      ]
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          15
+        ]
+      ],
+      "delta_text_lines": 15,
+      "all_text_read": true,
+      "current_file_sha256": "bf4a16f95945f821e9626b36ea2248dc25bcfbcde0bede89a6bc7d4f1dbc3cbf",
+      "current_source_hunk_ranges": [
+        [
+          35,
+          46
+        ]
+      ]
+    },
+    {
+      "path": "docs/apple-review-validation-20260929.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "delta_text_lines": 38,
+      "all_text_read": true,
+      "current_file_sha256": "788244c6a39d607deab61402fd2a8b337e1555f6467113010fa1e6ea6606ba0e",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          34
+        ]
+      ]
+    },
+    {
+      "path": "docs/architecture/ai-mcp-plan-20261005.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          190
+        ],
+        [
+          191,
+          385
+        ]
+      ],
+      "delta_text_lines": 385,
+      "all_text_read": true,
+      "current_file_sha256": "05d65cd68fb482e908b2d24a3e8809a933814f7fd84701edd233f78335a058d7",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          385
+        ]
+      ]
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          45
+        ]
+      ],
+      "delta_text_lines": 45,
+      "all_text_read": true,
+      "current_file_sha256": "96fb630c173513fdeaea138eab811a13346be60db9186288f255a7965bcd7cf0",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          40
+        ]
+      ]
+    },
+    {
+      "path": "docs/channel-pricing-20260921.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "delta_text_lines": 31,
+      "all_text_read": true,
+      "current_file_sha256": "c5fbaf508baf73fbf306ecd00d730f5b995d938542844e75551b03523d05efb7",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          25
+        ]
+      ]
+    },
+    {
+      "path": "docs/chinese-copy-guidelines-20261005.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          62
+        ]
+      ],
+      "delta_text_lines": 62,
+      "all_text_read": true,
+      "current_file_sha256": "4c8dfca2d8fbd6cef237d008a645f0808c549bab19be195e5cb0261eb2f87f7e",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          62
+        ]
+      ]
+    },
+    {
+      "path": "docs/decision-log.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          191
+        ]
+      ],
+      "delta_text_lines": 191,
+      "all_text_read": true,
+      "current_file_sha256": "b2ab0e3a6a196ab524dfc2d4236e471f8f1258adc9adc49cc239b09d9ae3ded8",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          16
+        ],
+        [
+          3047,
+          3216
+        ]
+      ]
+    },
+    {
+      "path": "docs/device-config-20261006.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          111
+        ]
+      ],
+      "delta_text_lines": 111,
+      "all_text_read": true,
+      "current_file_sha256": "402098655278edc4d6847327843b08d467e3c072755c3e6096b1e19e5b7b40e3",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          111
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-before-chinese-ios.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          81
+        ]
+      ],
+      "delta_text_lines": 81,
+      "all_text_read": true,
+      "current_file_sha256": "30a1087934c15eb3824246980e3f539dd8d7b8efdff3a49128202c2b576894eb",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          81
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-before-chinese-web.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          83
+        ]
+      ],
+      "delta_text_lines": 83,
+      "all_text_read": true,
+      "current_file_sha256": "94bc86846566012229b7348cf5b258feb489d4459715214ef493b7f9bce1818d",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          83
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-before-dot-integration.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          77
+        ]
+      ],
+      "delta_text_lines": 77,
+      "all_text_read": true,
+      "current_file_sha256": "5659386936aa1a957c59b7094661545095272770a608945d31e23c92d6593a2b",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          77
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-before-release-12-stripe.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          65
+        ]
+      ],
+      "delta_text_lines": 65,
+      "all_text_read": true,
+      "current_file_sha256": "26511f5234d4a49e26deb782f69c4092fd996b676fc9cd46dee1b5311175ef57",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          65
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-before-web-repair-rollout.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          90
+        ]
+      ],
+      "delta_text_lines": 90,
+      "all_text_read": true,
+      "current_file_sha256": "4e6c9a85decea6bb9a7484c6f3ef6ccedee9f9d0aaaf5bb4b82d08cf8eba9a9a",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          90
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-dot-ai.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          101
+        ]
+      ],
+      "delta_text_lines": 101,
+      "all_text_read": true,
+      "current_file_sha256": "59dc07c6f379c0d4062e2a98dde40f90ae2a9a5b04512ac5156e47b855d5d27a",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          101
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-dot-ios.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          48
+        ]
+      ],
+      "delta_text_lines": 48,
+      "all_text_read": true,
+      "current_file_sha256": "3217621120447a50a43426fb294e03f4c50ba733982be8941a0b708e22fa75bb",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          48
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261005-dot-web.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          46
+        ]
+      ],
+      "delta_text_lines": 46,
+      "all_text_read": true,
+      "current_file_sha256": "482ca7cd82b1a6a67ebc2a3fceb7d89f6b09e7cfece8435155b99ff23f21b314",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          46
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff-history-20261006-before-device-config.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "delta_text_lines": 73,
+      "all_text_read": true,
+      "current_file_sha256": "ae4657f07e6dfee01dcd530892a00ab2c27cb398766d6f2191b3f40b72db28fa",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          73
+        ]
+      ]
+    },
+    {
+      "path": "docs/handoff.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          126
+        ]
+      ],
+      "delta_text_lines": 126,
+      "all_text_read": true,
+      "current_file_sha256": "7b6ac89b1dedb7b3a6ec698577d25f2a2f15fa59b853a45236a3909f0b5e247b",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          55
+        ]
+      ]
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          230
+        ]
+      ],
+      "delta_text_lines": 230,
+      "all_text_read": true,
+      "current_file_sha256": "158d00d7296a2041e114455d5f7d47edd31cf91abb400d31da44f4323af73c7b",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          11
+        ],
+        [
+          3215,
+          3428
+        ]
+      ]
+    },
+    {
+      "path": "docs/native-localization-20261005.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          83
+        ]
+      ],
+      "delta_text_lines": 83,
+      "all_text_read": true,
+      "current_file_sha256": "c49bb879eb5ecb1508f69ebec793e9712ef618923aca12456f4f6ee0d66857f0",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          83
+        ]
+      ]
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          47
+        ]
+      ],
+      "delta_text_lines": 47,
+      "all_text_read": true,
+      "current_file_sha256": "b394b07889795479ffec161332d611dac368c84b372a8ba62d5815497e18f212",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          40
+        ]
+      ]
+    },
+    {
+      "path": "docs/pricing-88-99-20260926.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          31
+        ]
+      ],
+      "delta_text_lines": 31,
+      "all_text_read": true,
+      "current_file_sha256": "9cd3c6ac6de6ccb62aec6c44b64d6181fc36f8321194cb2987b211f782eebf9c",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          25
+        ]
+      ]
+    },
+    {
+      "path": "docs/product.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          93
+        ]
+      ],
+      "delta_text_lines": 93,
+      "all_text_read": true,
+      "current_file_sha256": "e8f4afc1ad337fed72b8f1cd38447904ef71c25c4c211ead59fbd6c216433567",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          52
+        ],
+        [
+          349,
+          365
+        ],
+        [
+          382,
+          398
+        ]
+      ]
+    },
+    {
+      "path": "docs/production-commerce-20260926.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          64
+        ]
+      ],
+      "delta_text_lines": 64,
+      "all_text_read": true,
+      "current_file_sha256": "1748c5247d23221acb82db0441a5837b2172e7fc620d5323f0f8101beb126210",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          59
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          11
+        ]
+      ],
+      "delta_text_lines": 11,
+      "all_text_read": true,
+      "current_file_sha256": "289e50a56c51c2cd75af18b33595d1ca73400e36bc0b8931fce27ccbd24038d0",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          11
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/ai-mcp-plan-20261005/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          81
+        ]
+      ],
+      "delta_text_lines": 81,
+      "all_text_read": true,
+      "current_file_sha256": "7c2c9eac6c7b8c77169d6492a5a4218fae521bd94e90caf1e423ccc86e3c7b08",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          81
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/chinese-ios-20261005/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          72
+        ]
+      ],
+      "delta_text_lines": 72,
+      "all_text_read": true,
+      "current_file_sha256": "1d3ee9c14710b8f7d13ce9f53c101230083ca757312cdeba18b53e122c174ece",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          72
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/chinese-web-20261005/BROWSER-QA.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          37
+        ]
+      ],
+      "delta_text_lines": 37,
+      "all_text_read": true,
+      "current_file_sha256": "bdea8ccffab9d0714ad16cf98b0178631ce24596156d44d3ab1819cdd5805e57",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          37
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/chinese-web-20261005/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          38
+        ]
+      ],
+      "delta_text_lines": 38,
+      "all_text_read": true,
+      "current_file_sha256": "2ef68a9f1c42862a431b7c6bc6dce721d96a40bd36501b52c1a55caa3663da5c",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          38
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/dot-followup-20261005/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          96
+        ]
+      ],
+      "delta_text_lines": 96,
+      "all_text_read": true,
+      "current_file_sha256": "f6c374ae4ba222525bf83b3cfe347a46f14445b1e3b82bf00e4d4a7d8e66b659",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          96
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/README.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "delta_text_lines": 36,
+      "all_text_read": true,
+      "current_file_sha256": "53e5475d6406e1ae93b5052bcf7fdab5d943e12136607a1163819732a42d721c",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          36
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-01.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          114
+        ]
+      ],
+      "delta_text_lines": 114,
+      "all_text_read": true,
+      "current_file_sha256": "e6d170c4e15d7a85b24f4ce305530f66a72f6a246c408b7bdad8dda7a494cabc",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          114
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-02.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          67
+        ]
+      ],
+      "delta_text_lines": 67,
+      "all_text_read": true,
+      "current_file_sha256": "fc77fea0221baa61a50737b7e53510bf52b82a73d3de86646446d6bee8460b7a",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          67
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/evidence-index.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          73
+        ]
+      ],
+      "delta_text_lines": 73,
+      "all_text_read": true,
+      "current_file_sha256": "b10e6dc3c72a0cb66de83ffd54faa678e30c8b9208bf002db43e79842c37c5d5",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          73
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/final-report.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          218
+        ]
+      ],
+      "delta_text_lines": 218,
+      "all_text_read": true,
+      "current_file_sha256": "99a1d09acc4fe25a4dbbaa4c57d9e81545fcbbcfa772b6fd9614d3289b446fca",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          218
+        ]
+      ]
+    },
+    {
+      "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          35
+        ]
+      ],
+      "delta_text_lines": 35,
+      "all_text_read": true,
+      "current_file_sha256": "b4fd70eb1d6857f50d70f7e9298fc4c9ec66d85f0c48fb86f0bef2c5595640fe",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          35
+        ]
+      ]
+    },
+    {
+      "path": "docs/real-core-acceptance-20261004.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          127
+        ]
+      ],
+      "delta_text_lines": 127,
+      "all_text_read": true,
+      "current_file_sha256": "ff95145682e801f940344bf0ba8ce90bd55aee0c8389c04e7609bf687b951d8b",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          64
+        ],
+        [
+          135,
+          176
+        ]
+      ]
+    },
+    {
+      "path": "docs/release-12-stripe-20261005.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          170
+        ]
+      ],
+      "delta_text_lines": 170,
+      "all_text_read": true,
+      "current_file_sha256": "85bc3b098631c586418de0de8770d8e36d6fe414eccfb696ac289c916b382c86",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          170
+        ]
+      ]
+    },
+    {
+      "path": "docs/release-readiness.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          153
+        ]
+      ],
+      "delta_text_lines": 153,
+      "all_text_read": true,
+      "current_file_sha256": "45ed4dc4469cb3d756f3978f9742b8586cf7e3f1df104dbaf42498404cba8e92",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          75
+        ],
+        [
+          149,
+          194
+        ]
+      ]
+    },
+    {
+      "path": "docs/source-control.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          72
+        ]
+      ],
+      "delta_text_lines": 72,
+      "all_text_read": true,
+      "current_file_sha256": "eb7795f92344c4f4413b1fafb490ec7830f6c6141b65edd6cd405af149a5177a",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          11
+        ],
+        [
+          250,
+          305
+        ]
+      ]
+    },
+    {
+      "path": "docs/start-here-export.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          45
+        ]
+      ],
+      "delta_text_lines": 45,
+      "all_text_read": true,
+      "current_file_sha256": "303eb1c335167296f15a8326c8d3dbc50ddb334ad4ff3bf4ae5b441cf6b5faf9",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          39
+        ]
+      ]
+    },
+    {
+      "path": "docs/storekit.md",
+      "mode": "retained_full_body_plus_complete_delta",
+      "delta_text_read_ranges": [
+        [
+          1,
+          36
+        ]
+      ],
+      "delta_text_lines": 36,
+      "all_text_read": true,
+      "current_file_sha256": "8e8298a77b9b6080cbdc908f9cc16897f8fb996e0fe22322990ef95bfeb1d0fe",
+      "current_source_hunk_ranges": [
+        [
+          1,
+          32
+        ]
+      ]
+    },
+    {
+      "path": "docs/web-localization-20261005.md",
+      "mode": "new_full_body_read",
+      "delta_text_read_ranges": [
+        [
+          1,
+          99
+        ]
+      ],
+      "delta_text_lines": 99,
+      "all_text_read": true,
+      "current_file_sha256": "bfe24ca3cc7663020a11feb518bf81bb092bc7e22ad05dd0e6611285058c302a",
+      "current_source_full_read_ranges": [
+        [
+          1,
+          99
+        ]
+      ]
+    }
+  ],
+  "relevant_constraints": [
+    "Latest explicit UX instruction supersedes earlier visible-control placement only; permissions, domain schemas, saved content, operative English legal texts/digests and prices remain.",
+    "Apple USA USD119.99/year is owner-locked; Web USD88.99/year and Free1/Family5 persist. HKG HKD888 Sandbox route appended; old USD68 binding retired for new quotes only. No actual Apple purchase/restore or SBP15% proof.",
+    "Preserve account/session generation guards, explicit recent-auth retry, draft/parent export state, verified StoreKit environments and silent startup. AppTransaction.refresh is explicit-Restore-only.",
+    "No repeat builds/provider/cloud/device actions merely to continue; inherited native build5/6 and tests retain their dates. Retained deletion account and two external invites remain deferred.",
+    "Current review-identity expiry remains 2026-10-06T17:08:57Z, with no implicit renewal. UI-only work does not require exercising production identity.",
+    "Finish requires focused spec, decision-log for new supersession, current single-next-step handoff with historical predecessor, append-only journey and accurate QA evidence/links/dates."
+  ],
+  "actions_taken": "Read-only file inspection and this requested QA coverage JSON only; no implementation edits, Git, provider, cloud, device, build or test action."
+}

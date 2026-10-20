@@ -1,0 +1,462 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🧪 Test\n\nDiscovered 53 test(s):\n   RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement\n   RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed\n   RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement\n   RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI\n   RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary\n   RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts\n   (...and 47 more)\n\nTest Failures (6):\n\n  ✗ APIClientTests / testLegalLinksUseThePublicCustomDomain: XCTAssertEqual failed: (\"https://legal.rillora.xyz/terms?lang=en\") is not equal to (\"https://legal.rillora.xyz/terms\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:78\n\n  ✗ APIClientTests / testLegalLinksUseThePublicCustomDomain: XCTAssertEqual failed: (\"https://legal.rillora.xyz/privacy?lang=en\") is not equal to (\"https://legal.rillora.xyz/privacy\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:82\n\n  ✗ APIClientTests / testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct: XCTAssertEqual failed: (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"ui_locales\": \"en\", \"prompt\": \"login\"]\") is not equal to (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"prompt\": \"login\"]\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:127\n\n  ✗ APIClientTests / testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct: XCTAssertEqual failed: (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"ui_locales\": \"en\", \"prompt\": \"login\", \"screen_hint\": \"signup\"]\") is not equal to (\"[\"prompt\": \"login\", \"screen_hint\": \"signup\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:131\n\n  ✗ APIClientTests / testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct: XCTAssertEqual failed: (\"[\"max_age\": \"86400\", \"prompt\": \"login\", \"ui_locales\": \"en\", \"connection\": \"google-oauth2\", \"rillora_auth_ui\": \"single-hosted-v1\"]\") is not equal to (\"[\"prompt\": \"login\", \"connection\": \"google-oauth2\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:135\n\n  ✗ APIClientTests / testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct: XCTAssertEqual failed: (\"[\"max_age\": \"86400\", \"prompt\": \"login\", \"ui_locales\": \"en\", \"login_hint\": \"Person@Example.com\", \"rillora_auth_ui\": \"single-hosted-v1\"]\") is not equal to (\"[\"prompt\": \"login\", \"login_hint\": \"Person@Example.com\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:139\n\n❌ 2 tests failed, 51 passed, 0 skipped (⏱️ 32.8s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-09T15-59-30-567Z_pid69719_c8ce0369.log — Build Logs\n     │   └── test-products/test_sim_2026-10-09T15-59-30-567Z_pid69719_b14d601c.xctestproducts — Test Products\n     └── output/qa/rillora-payment-recheck-20261009/native-selected-language-en.xcresult — Result Bundle\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.test-result",
+    "schemaVersion": "3",
+    "didError": true,
+    "error": "Tests failed",
+    "data": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 32849,
+        "counts": {
+          "passed": 51,
+          "failed": 2,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-09T15-59-30-567Z_pid69719_c8ce0369.log",
+        "xcresultPath": "output/qa/rillora-payment-recheck-20261009/native-selected-language-en.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-09T15-59-30-567Z_pid69719_b14d601c.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+          "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+          "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+          "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+          "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+          "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+          "RilloraTests/APIClientTests/testCreateAndArchiveMatterUseTheSharedMutationContract",
+          "RilloraTests/APIClientTests/testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+          "RilloraTests/APIClientTests/testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+          "RilloraTests/APIClientTests/testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+          "RilloraTests/APIClientTests/testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+          "RilloraTests/APIClientTests/testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+          "RilloraTests/APIClientTests/testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+          "RilloraTests/APIClientTests/testEmailVerificationRejectsUnprovenProviderState",
+          "RilloraTests/APIClientTests/testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+          "RilloraTests/APIClientTests/testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+          "RilloraTests/APIClientTests/testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+          "RilloraTests/APIClientTests/testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+          "RilloraTests/APIClientTests/testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+          "RilloraTests/APIClientTests/testLegalLinksUseThePublicCustomDomain",
+          "RilloraTests/APIClientTests/testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+          "RilloraTests/APIClientTests/testMatterVersionConflictIsPreservedForRecoveryUI",
+          "RilloraTests/APIClientTests/testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+          "RilloraTests/APIClientTests/testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+          "RilloraTests/APIClientTests/testNativePasskeyRequiresExplicitEnablement",
+          "RilloraTests/APIClientTests/testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+          "RilloraTests/APIClientTests/testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+          "RilloraTests/APIClientTests/testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+          "RilloraTests/APIClientTests/testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+          "RilloraTests/APIClientTests/testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+          "RilloraTests/APIClientTests/testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+          "RilloraTests/APIClientTests/testRunSimulationRejectsAnyOperativeResponse",
+          "RilloraTests/APIClientTests/testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+          "RilloraTests/APIClientTests/testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+          "RilloraTests/APIClientTests/testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+          "RilloraTests/APIClientTests/testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+          "RilloraTests/APIClientTests/testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+          "RilloraTests/APIClientTests/testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+          "RilloraTests/APIClientTests/testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+          "RilloraTests/APIClientTests/testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+          "RilloraTests/APIClientTests/testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+          "RilloraTests/APIClientTests/testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+          "RilloraTests/AccountLocalizationTests/testEnglishAccountResourcesRemainAvailable",
+          "RilloraTests/AccountLocalizationTests/testFormattingPreservesPrivateTitleAndPercentSigns",
+          "RilloraTests/AccountLocalizationTests/testImportedMatterPluralUsesTheSelectedResourceBundle",
+          "RilloraTests/AccountLocalizationTests/testProviderPriceAndCurrencyRemainUnmodified",
+          "RilloraTests/AccountLocalizationTests/testSimplifiedChineseAccountAndPurchaseResources",
+          "RilloraTests/SelectedLanguageTests/testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent",
+          "RilloraTests/SelectedLanguageTests/testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText",
+          "RilloraTests/SharingLocalizationTests/testLocalizationDoesNotChangeSharingWireValuesOrScope",
+          "RilloraTests/SharingLocalizationTests/testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+          "RilloraTests/SharingLocalizationTests/testReviewRequestAndExportCountsUsePluralResources",
+          "RilloraTests/SharingLocalizationTests/testSimplifiedChineseSharingTermsAndSafetyMessages"
+        ],
+        "discovered": {
+          "total": 53,
+          "items": [
+            "RilloraTests/APIClientTests/testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+            "RilloraTests/APIClientTests/testAppleSignInFeatureGateDefaultsClosed",
+            "RilloraTests/APIClientTests/testAppleSignInFeatureGateRequiresExplicitEnablement",
+            "RilloraTests/APIClientTests/testAuthenticationFailureIsPreservedForTheUI",
+            "RilloraTests/APIClientTests/testCommerceContractRejectsClientGrantedAccessBoundary",
+            "RilloraTests/APIClientTests/testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "APIClientTests",
+            "test": "testLegalLinksUseThePublicCustomDomain",
+            "message": "XCTAssertEqual failed: (\"https://legal.rillora.xyz/terms?lang=en\") is not equal to (\"https://legal.rillora.xyz/terms\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:78"
+          },
+          {
+            "suite": "APIClientTests",
+            "test": "testLegalLinksUseThePublicCustomDomain",
+            "message": "XCTAssertEqual failed: (\"https://legal.rillora.xyz/privacy?lang=en\") is not equal to (\"https://legal.rillora.xyz/privacy\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:82"
+          },
+          {
+            "suite": "APIClientTests",
+            "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+            "message": "XCTAssertEqual failed: (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"ui_locales\": \"en\", \"prompt\": \"login\"]\") is not equal to (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"prompt\": \"login\"]\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:127"
+          },
+          {
+            "suite": "APIClientTests",
+            "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+            "message": "XCTAssertEqual failed: (\"[\"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\", \"ui_locales\": \"en\", \"prompt\": \"login\", \"screen_hint\": \"signup\"]\") is not equal to (\"[\"prompt\": \"login\", \"screen_hint\": \"signup\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:131"
+          },
+          {
+            "suite": "APIClientTests",
+            "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+            "message": "XCTAssertEqual failed: (\"[\"max_age\": \"86400\", \"prompt\": \"login\", \"ui_locales\": \"en\", \"connection\": \"google-oauth2\", \"rillora_auth_ui\": \"single-hosted-v1\"]\") is not equal to (\"[\"prompt\": \"login\", \"connection\": \"google-oauth2\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:135"
+          },
+          {
+            "suite": "APIClientTests",
+            "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+            "message": "XCTAssertEqual failed: (\"[\"max_age\": \"86400\", \"prompt\": \"login\", \"ui_locales\": \"en\", \"login_hint\": \"Person@Example.com\", \"rillora_auth_ui\": \"single-hosted-v1\"]\") is not equal to (\"[\"prompt\": \"login\", \"login_hint\": \"Person@Example.com\", \"rillora_auth_ui\": \"single-hosted-v1\", \"max_age\": \"86400\"]\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/APIClientTests.swift:139"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "APIClientTests",
+          "test": "testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+          "status": "passed",
+          "durationMs": 28
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testAppleSignInFeatureGateDefaultsClosed",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testAppleSignInFeatureGateRequiresExplicitEnablement",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testAuthenticationFailureIsPreservedForTheUI",
+          "status": "passed",
+          "durationMs": 5
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCommerceContractRejectsClientGrantedAccessBoundary",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+          "status": "passed",
+          "durationMs": 4
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCreateAndArchiveMatterUseTheSharedMutationContract",
+          "status": "passed",
+          "durationMs": 5
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+          "status": "passed",
+          "durationMs": 5
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+          "status": "passed",
+          "durationMs": 15
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testEmailVerificationRejectsUnprovenProviderState",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+          "status": "passed",
+          "durationMs": 4
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testLegalLinksUseThePublicCustomDomain",
+          "status": "failed",
+          "durationMs": 393
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testMatterVersionConflictIsPreservedForRecoveryUI",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+          "status": "failed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testNativePasskeyRequiresExplicitEnablement",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+          "status": "passed",
+          "durationMs": 3
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testRunSimulationRejectsAnyOperativeResponse",
+          "status": "passed",
+          "durationMs": 4
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+          "status": "passed",
+          "durationMs": 0
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+          "status": "passed",
+          "durationMs": 4
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+          "status": "passed",
+          "durationMs": 8
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "APIClientTests",
+          "test": "testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testEnglishAccountResourcesRemainAvailable",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testFormattingPreservesPrivateTitleAndPercentSigns",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testImportedMatterPluralUsesTheSelectedResourceBundle",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testProviderPriceAndCurrencyRemainUnmodified",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "AccountLocalizationTests",
+          "test": "testSimplifiedChineseAccountAndPurchaseResources",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SelectedLanguageTests",
+          "test": "testHostedAuthenticationUsesAppLanguageWithoutChangingIdentityIntent",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SelectedLanguageTests",
+          "test": "testSharedDisclosureResourceCoversBothLanguagesAndDoesNotEchoUnknownText",
+          "status": "passed",
+          "durationMs": 2
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testLocalizationDoesNotChangeSharingWireValuesOrScope",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testPrivateTitleIsPreservedWithoutBeingUsedAsAFormatKey",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testReviewRequestAndExportCountsUsePluralResources",
+          "status": "passed",
+          "durationMs": 1
+        },
+        {
+          "suite": "SharingLocalizationTests",
+          "test": "testSimplifiedChineseSharingTermsAndSafetyMessages",
+          "status": "passed",
+          "durationMs": 1
+        }
+      ]
+    }
+  },
+  "isError": true
+}

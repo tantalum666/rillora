@@ -1,13 +1,30 @@
 # Apple review validation and distribution preparation
 
 Role: current TestFlight/App Review engineering and provider evidence
-Status: INTERNAL TESTFLIGHT BUILD UPLOADED; REAL TRANSACTIONS AND DECLARATIONS OPEN
-Last updated: 2026-10-02 (Asia/Shanghai)
+Status: FIRST SANDBOX PURCHASE VERIFIED; BUILD8 DISTRIBUTED; RESTORE AND FINAL DECLARATIONS OPEN
+Last updated: 2026-10-07 (Asia/Hong_Kong)
 
 Owner requests Apple-related release work. Existing UI, annual-only new sales,
 WebUS$88.99, differential Apple pricing, historical receipts and FanPass stay intact.
 The launch workflow's147-file full reading baseline remains valid; this is a focused
 continuation, not a new project scan. [QA](../output/qa/rillora-apple-release-20260929/work-state.json).
+
+## October7 current physical purchase and internal build
+
+The first actual TestFlight Sandbox purchase has signed HKG/HKD888.00 evidence and
+active Family access; initial notification and client receipt applied. Build6 remains
+the physically observed version. USA119.99/HKG888/AUS199.99 review-only catalog is
+loaded into unchanged API14/schema0093; annual draft9territories, ordinary sales closed.
+
+Owner's simplified purchase page removes the extra checkbox and visible fixture controls,
+shows actual benefits/full currency/year amount/one Subscribe action, and retains fresh
+price/storefront checks. Build8 has39focused passes/1retained platform skip,11static
+checks, bilingual rendered checks and13distribution checks. Source08afb3821/CI63pass;
+8uploaded/processed, test notes and original1-person internal group saved/reloaded,
+App Store draft selects8and manual release. Build7 remains undistributed. Physical8
+update, post-purchase Restore and cross-client access remain separately unverified.
+No new purchase, real charge, SBP approval or App Review submission is inferred.
+[Current exact evidence](device-config-20261006.md).
 
 ## October2 independent distribution follow-up
 

@@ -18,6 +18,28 @@ export const officialProviderGuides = Object.freeze(catalog.guides.map(guide => 
   links: guide.links.map(link => [link.title, link.urlString]),
 })));
 export function getOfficialProviderGuide(key) { return officialProviderGuides.find(guide => guide.key === key) ?? null; }
+// English remains the canonical reviewed source. An overlay is all-or-nothing,
+// so a stale/incomplete translation never silently omits a requirement or warning.
+export function localizeOfficialProviderGuide(guide, locale = "en") {
+  if (!guide) return guide;
+  const canonical = getOfficialProviderGuide(guide.key ?? guide.id) ?? guide;
+  const language = String(locale).replaceAll("_", "-").toLowerCase();
+  const text = canonical.translations?.["zh-Hans"];
+  const valid = text && ["prepareSteps", "laterSteps", "usuallyRequested", "links"].every(key =>
+    Array.isArray(text[key]) && text[key].length === canonical[key].length)
+    && [text.summary, text.boundary, ...text.prepareSteps, ...text.laterSteps,
+      ...text.usuallyRequested, ...text.links.flatMap(link => [link?.title, link?.detail])]
+      .every(value => typeof value === "string" && value.trim());
+  if (!(language === "zh" || language.startsWith("zh-")) || !valid) return { ...canonical, contentLocale: "en" };
+  const links = canonical.linkDetails.map((link, index) => ({ ...link, title: text.links[index].title, detail: text.links[index].detail }));
+  return { ...canonical, summary: text.summary, detail: text.summary,
+    prepareSteps: text.prepareSteps, doNow: text.prepareSteps,
+    laterSteps: text.laterSteps, later: text.laterSteps,
+    usuallyRequested: text.usuallyRequested, requirements: text.usuallyRequested,
+    boundary: text.boundary, linkDetails: links,
+    links: links.map(link => [link.title, link.urlString]), contentLocale: "zh-Hans" };
+}
+
 export function guideMatchesQuery(guide, query) {
   const needle = query.trim().toLocaleLowerCase();
   return !needle || [guide.label, guide.detail, ...guide.aliases].some(value => value.toLocaleLowerCase().includes(needle));
@@ -50,3 +72,4 @@ export function suggestedAccountGuides({ title = "", institutionName, category, 
   const suppressed = new Set(matches.flatMap(guide => guide.matterMatch.suppresses));
   return matches.filter(guide => !suppressed.has(guide.key)).slice(0, 3);
 }
+

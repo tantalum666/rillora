@@ -1,0 +1,31 @@
+{
+  "at": "2026-10-08T02:23:15.505777+00:00",
+  "source": "35f37e1b20fe4d62039020e80f08779d79c270cf",
+  "implementationFiles": [
+    "apps/ios/Rillora/Features/Matters/MattersView.swift",
+    "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift"
+  ],
+  "docs": [
+    "docs/matter-category-refinement-20261008.md",
+    "docs/direct-device-iteration-20261008.md",
+    "docs/apple-plan-restore-20261007.md",
+    "docs/product.md",
+    "docs/decision-log.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decisionReason": "Owner requests a scoped category-layout refinement; single-row design is an Agent reversible implementation choice.",
+  "simulatorValidation": [
+    "Chinese category/search UI pass",
+    "English category/search UI pass",
+    "Chinese light and dark inspected",
+    "last category empty/reset pass"
+  ],
+  "guardsPassed": 14,
+  "deviceSignatureChecksPassed": 12,
+  "installAndReadbackAndLaunch": true,
+  "providerDeployment": false,
+  "newPurchase": false,
+  "noTestFlightDistribution": true,
+  "firstLaunchArgumentFailurePreserved": true
+}

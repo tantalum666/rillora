@@ -1,0 +1,74 @@
+[
+  {
+    "path": "/",
+    "status": 200,
+    "headers": {
+      "accept-ranges": "bytes",
+      "cache-control": "public,max-age=300,must-revalidate",
+      "connection": "keep-alive",
+      "content-length": "972",
+      "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+      "content-type": "text/html",
+      "date": "Sat, 03 Oct 2026 10:33:42 GMT",
+      "etag": "\"3ed273a60954654cda576a74369fe1e3\"",
+      "last-modified": "Sat, 03 Oct 2026 10:20:38 GMT",
+      "referrer-policy": "no-referrer",
+      "server": "AmazonS3",
+      "strict-transport-security": "max-age=31536000",
+      "via": "1.1 1b0ec06e2dc8a07d495632f96e0234b4.cloudfront.net (CloudFront)",
+      "x-amz-cf-id": "reu91euxq9bJ85ygcbzWxFrGLuDfH0El3QK8OF6X1XE3_bQwo-Otbw==",
+      "x-amz-cf-pop": "LAX53-P3",
+      "x-amz-server-side-encryption": "AES256",
+      "x-amz-version-id": "dC8Q6b1PENlaGWByYXVCRcMnJ6fa6uqV",
+      "x-cache": "Miss from cloudfront",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY"
+    },
+    "sha256": "61ad7a7072ddb5f6cd49546c0eb0299899091bcce32b8695f8c6c080b92a51b0",
+    "bodyPrefix": "[artifact bytes omitted]"
+  },
+  {
+    "path": "/assets/FamilyMaintenancePanel-CS5YIdMF.js",
+    "status": 403,
+    "headers": {
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+      "content-type": "application/xml",
+      "date": "Sat, 03 Oct 2026 10:33:42 GMT",
+      "referrer-policy": "no-referrer",
+      "server": "AmazonS3",
+      "strict-transport-security": "max-age=31536000",
+      "transfer-encoding": "chunked",
+      "via": "1.1 38a1b6b88186539189dcd472aa234808.cloudfront.net (CloudFront)",
+      "x-amz-cf-id": "xj11gArbiNs5wxTlf26qOAr3sSQ77JIZU0MaCJckuHBdWgewVWPlRQ==",
+      "x-amz-cf-pop": "LAX53-P3",
+      "x-cache": "Error from cloudfront",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY"
+    },
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "bodyPrefix": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>"
+  },
+  {
+    "path": "/assets/FamilyMaintenancePanel-CS5YIdMF.js?release=20261003",
+    "status": 403,
+    "headers": {
+      "connection": "keep-alive",
+      "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+      "content-type": "application/xml",
+      "date": "Sat, 03 Oct 2026 10:33:42 GMT",
+      "referrer-policy": "no-referrer",
+      "server": "AmazonS3",
+      "strict-transport-security": "max-age=31536000",
+      "transfer-encoding": "chunked",
+      "via": "1.1 1b0ec06e2dc8a07d495632f96e0234b4.cloudfront.net (CloudFront)",
+      "x-amz-cf-id": "shPrWdjR76IkPw_-Rxqv-iFctmsbr5Wru3tf41Gi-kXvS19CVRfU7g==",
+      "x-amz-cf-pop": "LAX53-P3",
+      "x-cache": "Error from cloudfront",
+      "x-content-type-options": "nosniff",
+      "x-frame-options": "DENY"
+    },
+    "sha256": "a824bc7739e226e1b40ea0f8c4e4f4c6f796fc3b4abfa6e9abe3bd119a30d938",
+    "bodyPrefix": "<?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<Error><Code>AccessDenied</Code><Message>Access Denied</Message></Error>"
+  }
+]

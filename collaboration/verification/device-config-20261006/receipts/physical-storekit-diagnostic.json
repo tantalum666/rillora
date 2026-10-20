@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-06T13:41:22.863958+00:00",
+  "installedVersion": "1.0(6)",
+  "ownerAuthorizedMirroring": true,
+  "ownerAppleAuthenticationCompleted": true,
+  "observedVerifiedSandboxBadge": true,
+  "restorationPassed": false,
+  "observedMessage": "无法完成请求",
+  "afterAuthenticationScreen": "iOS Settings > App Store",
+  "diagnosticFacts": {
+    "signedAppTransactionInitiallyMissing": true,
+    "storefrontNumericId": "143463",
+    "separateAppleSandboxResponseStatus": 410,
+    "appleResponseHost": "sandbox.itunes.apple.com",
+    "laterSyncErrorDomain": "SKInternalErrorDomain",
+    "laterSyncErrorCode": 12,
+    "laterSyncErrorStorefrontCountry": "AUS",
+    "clientEnvironment": "Sandbox",
+    "storeKitProductResponseCount": 1
+  },
+  "boundaries": [
+    "No purchase attempted",
+    "Missing quote and history sync failure are separate",
+    "Raw system logs stay protected and excluded from Git",
+    "No main Apple account switch or device settings change",
+    "The country in the later sync error differs from the earlier numeric storefront; do not infer one stable country from only the earlier sample"
+  ]
+}

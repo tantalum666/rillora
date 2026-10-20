@@ -1,6 +1,6 @@
 import { withCommerceAccountDatabase, type DatabasePool } from './db.js';
 import type { AppleProductionSnapshot } from './apple-production-server-api.js';
-import { requireAppleLease, type AppleDelivery } from './apple-production-inbox.js';
+import { findApplePurchaseOwner, requireAppleLease, type AppleDelivery } from './apple-production-inbox.js';
 import { persistAppleReceipt, resolveAppleReceiptPrice } from './apple-production-receipts.js';
 import { recordSubscriptionObservation, persistReconciliation } from './commerce-subscription-ledger.js';
 import { appleProductionContext, assertAppleContext, requireAppleReviewEnrollment, type AppleExecutionContext } from './apple-execution-context.js';
@@ -13,12 +13,15 @@ export async function commitAppleObservation(pool: DatabasePool, job: AppleDeliv
   if (job.signal.providerEnvironment !== execution.environment) throw new Error('Apple delivery environment mismatch');
   if (!job.accountReference || !job.signal.accountBindingReference) throw new Error('Apple delivery lacks its owner');
   const result = await withCommerceAccountDatabase(pool, job.accountReference, async (client, context) => {
+    // Match intake's lock order: original owner, then queue row. Taking the
+    // queue lease first can deadlock with a duplicate delivery being inserted.
+    const owner = await findApplePurchaseOwner(client, job.signal, execution);
+    if (!owner || owner.plannerId !== context.plannerId || owner.commerceAccountReference !== context.publicId) {
+      throw new Error('Apple account is no longer active');
+    }
     await client.query("select pg_advisory_xact_lock(hashtextextended('sharing:' || app.current_planner_id()::text,0))");
     await requireAppleLease(client, job, execution);
     await requireAppleReviewEnrollment(client, execution);
-    if (!(await client.query(`select 1 from app.resolve_apple_transaction_account($1,$3)
-      where planner_id=app.current_planner_id() and commerce_account_reference=$2`,
-    [job.signal.accountBindingReference, context.publicId, execution.environment])).rowCount) throw new Error('Apple account is no longer active');
     if (snapshot.provider !== 'storekit' || snapshot.providerEnvironment !== execution.environment
       || snapshot.source !== 'app_store_server_api_signed_status' || snapshot.commerceAccountReference !== context.publicId
       || snapshot.providerSubscriptionReference !== job.signal.providerSubscriptionReference
@@ -29,6 +32,17 @@ export async function commitAppleObservation(pool: DatabasePool, job: AppleDeliv
       throw new Error('Apple current status conflicts with its signed receipt');
     }
     const price = await resolveAppleReceiptPrice(client, snapshot.receipt, execution);
+    // Local fetch completion is not evidence that Apple's signed state covers
+    // the notification. Leave lagging observations retryable instead of acking.
+    if ((job.signal.receipt?.renewalSignedAt !== undefined
+        && Date.parse(snapshot.renewalSignedAt) < Date.parse(job.signal.receipt.renewalSignedAt))
+      || (job.signal.receipt?.transactionId === snapshot.providerTransactionReference
+        && Date.parse(snapshot.transactionSignedAt) < Date.parse(job.signal.receipt.signedAt))
+      || (['REVOKE','REFUND'].includes(job.signal.sourceEventType.split(':')[0]!)
+        && job.signal.providerTransactionReference === snapshot.providerTransactionReference
+        && !['revoked','refunded','expired_read_only'].includes(snapshot.state))) {
+      throw new Error('Apple status does not yet cover the signed delivery');
+    }
     if (price.binding_code !== snapshot.priceBindingId || price.price_code !== snapshot.priceCode
       || price.plan_version !== snapshot.planVersion) throw new Error('Apple catalog changed before commit');
     const previous = (await client.query<{ transaction_reference: string; transaction_signed_at: Date;
@@ -83,7 +97,8 @@ export async function commitAppleObservation(pool: DatabasePool, job: AppleDeliv
           and receipt.currency_code=orders.currency_code
           and session.binding_code=receipt.binding_code then 'completed' else 'closed' end,updated_at=now()
         from app.commerce_apple_transaction_receipts receipt,app.commerce_orders orders,app.commerce_prices price
-        where session.planner_id=app.current_planner_id() and session.state in ('prepared','started','pending')
+        where session.planner_id=app.current_planner_id() and session.state in ('prepared','started','pending','closed')
+          and (session.original_transaction_reference=$4 or ($2 and session.state='prepared'))
           and receipt.transaction_reference=$1 and receipt.planner_id=session.planner_id
           and receipt.provider_environment=$3 and orders.provider_environment=$3
           and orders.id=session.order_id and price.id=orders.price_id
@@ -91,8 +106,8 @@ export async function commitAppleObservation(pool: DatabasePool, job: AppleDeliv
         returning session.order_id,session.state)
       update app.commerce_orders set status=case when finished.state='completed' then 'paid_reconciled' else 'canceled' end,
         updated_at=now() from finished where app.commerce_orders.id=finished.order_id
-        and app.commerce_orders.status in ('created','pending')`,
-    [snapshot.providerTransactionReference,decision.directive==='grant',execution.environment]);
+        and app.commerce_orders.status in ('created','pending','canceled')`,
+    [snapshot.providerTransactionReference,decision.directive==='grant',execution.environment,snapshot.providerSubscriptionReference]);
     await client.query(`update app.commerce_provider_events set processing_status='applied',processed_at=now() where id=$1`, [event.id]);
     await client.query(`update app.commerce_provider_event_inbox set processing_status='applied',processed_at=now(),
       last_error_code=null,lease_token=null,lease_until=null where public_id=$1 and lease_token=$2`, [job.publicId, job.leaseToken]);

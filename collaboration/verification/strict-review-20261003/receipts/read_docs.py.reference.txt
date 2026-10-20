@@ -1,0 +1,28 @@
+from pathlib import Path
+import sys,json,hashlib,datetime,re
+root=Path.cwd();base=root/'output/qa/rillora-strict-review-20261002';ledger=base/'markdown-reading.json';data=json.loads(ledger.read_text());pending=base/'pending-reading.json'
+if '--ack' in sys.argv and pending.exists():
+ for item in json.loads(pending.read_text()):
+  row=next(r for r in data['files'] if r['path']==item['path']);assert hashlib.sha256((root/row['path']).read_bytes()).hexdigest()==row['sha256'];row['readRanges'].append([item['start'],item['end']])
+ pending.unlink();ledger.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+if '--agents-read' in sys.argv:
+ row=next(r for r in data['files'] if r['path']=='AGENTS.md');row['readRanges']=[[1,row['lines']]];ledger.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n')
+if '--status' in sys.argv:
+ print(json.dumps({'readFiles':sum(bool(r['readRanges']) and max(t[1] for t in r['readRanges'])==r['lines'] for r in data['files']),'totalFiles':len(data['files']),'readLines':sum(b-a+1 for r in data['files'] for a,b in r['readRanges']),'totalLines':sum(r['lines'] for r in data['files'])}));raise SystemExit
+budget=int(sys.argv[sys.argv.index('--chars')+1]) if '--chars' in sys.argv else 10000
+cost=(lambda s: len(s)) if '--chars' in sys.argv else (lambda s: len(s)/3+len(re.findall(r'[\u3400-\u9fff]',s))*0.9)
+emitted=[];used=0
+for row in data['files']:
+ start=max((r[1] for r in row['readRanges']),default=0)+1
+ if start>row['lines']:continue
+ lines=(root/row['path']).read_text().splitlines(keepends=True);end=start-1;chosen=[]
+ for index in range(start-1,len(lines)):
+  line=lines[index]
+  if used+sum(map(cost,chosen))+cost(line)>budget and (chosen or emitted):break
+  chosen.append(line);end=index+1
+ if not chosen:break
+ body=''.join(chosen);used+=cost(body);print(f'\nFILE {row["path"]} L{start}-{end}/{row["lines"]}\n{body}',end='');emitted.append({'path':row['path'],'start':start,'end':end})
+ if end<row['lines'] or used>=budget:break
+pending.write_text(json.dumps(emitted,ensure_ascii=False,indent=2)+'\n')
+if not emitted:
+ data['completedAt']=datetime.datetime.now(datetime.timezone.utc).isoformat();ledger.write_text(json.dumps(data,ensure_ascii=False,indent=2)+'\n');print('FULL MARKDOWN READING COMPLETE')

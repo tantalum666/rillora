@@ -1,0 +1,22 @@
+{
+  "at": "2026-10-06T20:07:00.886857+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "desired": 1,
+  "running": 1,
+  "health": "HEALTHY",
+  "rollout": "COMPLETED",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:16",
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:3a0e033942aa93b43adaf602931eb15817ca092b949fcac3eee7d5e2e63d59b3",
+  "imageDigest": "sha256:c43336c743d5ecc0cdd24d92b13ca46dd6db2eb47f918b075f91a19bf919fb43",
+  "onlyTaskChanges": [
+    "application image",
+    "retained review expiry"
+  ],
+  "rolesSecretsNetworkAndOtherEnvironmentUnchanged": true,
+  "reviewIdentityCount": 3,
+  "expiresAt": "2026-10-08T20:00:00Z",
+  "productionTrafficReady": "false",
+  "schemaFloor": 93,
+  "schemaFloorEvidence": "retained successful0093migration and unchanged migration set; no migration executed this turn",
+  "migrationRun": false
+}

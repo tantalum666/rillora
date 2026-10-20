@@ -53,184 +53,45 @@ struct ProfileActionLabel: View {
 }
 
 struct RilloraSafetyPrivacyView: View {
+    var authenticationStore: AuthenticationStore? = nil
+
     var body: some View {
         RilloraList {
-            Section("Choose a safety check") {
-                NavigationLink {
-                    RilloraSafeInformationChecklistView()
-                } label: {
-                    ProfileActionLabel(
-                        title: "What to record",
-                        detail: "",
-                        systemImage: "checklist.checked"
-                    )
+            if let authenticationStore, authenticationStore.canResetPassword {
+                Section {
+                    NavigationLink { PasswordResetView(authenticationStore: authenticationStore) } label: {
+                        Label(String(localized: "Reset password"), systemImage: "key")
+                    }
+                    .accessibilityIdentifier("profile.security.password-reset")
+                } header: {
+                    Text(String(localized: "Account security"))
+                } footer: {
+                    Text(String(localized: "Passkey and two-step verification management is not available in this app yet. This does not mean those protections are turned off."))
                 }
-                .accessibilityIdentifier("profile.safety.safe-information")
-
-                NavigationLink {
-                    RilloraReleaseSafeguardsView()
-                } label: {
-                    ProfileActionLabel(
-                        title: "Disclosure checks",
-                        detail: "",
-                        systemImage: "arrow.triangle.branch"
-                    )
-                }
-                .accessibilityIdentifier("profile.safety.disclosure")
             }
-            .rilloraProfileActionRows()
-            Section("Policies") {
+            Section(String(localized: "Policies")) {
                 Link(destination: RilloraLegalURLs.privacy) {
-                    Label("Privacy Policy", systemImage: "hand.raised")
+                    Label(String(localized: "Privacy Policy"), systemImage: "hand.raised")
                 }
                 Link(destination: RilloraLegalURLs.terms) {
-                    Label("Terms", systemImage: "doc.text")
+                    Label(String(localized: "Terms"), systemImage: "doc.text")
                 }
+            }
+            Section {
+                NavigationLink { RilloraDesignCreditsView() } label: {
+                    Text(String(localized: "Licenses & acknowledgements"))
+                        .font(.footnote)
+                        .foregroundStyle(RilloraTheme.muted)
+                        .frame(minHeight: 44, alignment: .leading)
+                }
+                .accessibilityIdentifier("profile.safety.design-credits")
             }
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
-        .navigationTitle("Safety & privacy")
+        .navigationTitle(String(localized: "Safety & privacy"))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("profile.safety.view")
-    }
-}
-
-struct RilloraSafeInformationChecklistView: View {
-    @State private var category = "keep"
-    @RilloraReduceMotion private var reduceMotion
-
-    var body: some View {
-        RilloraForm {
-            Section {
-                RilloraTaskTabs(tabs: [
-                    .init(id: "keep", title: "Keep", symbol: "checkmark.shield"),
-                    .init(id: "avoid", title: "Leave out", symbol: "key.slash"),
-                ], selection: $category, identifierPrefix: "profile.safety.information")
-            }
-            .listRowBackground(Color.clear)
-            Section {
-                RilloraTaskEmblem(systemImage: category == "keep" ? "checkmark.shield" : "key.slash")
-                    .frame(maxWidth: .infinity, minHeight: 100)
-                    .accessibilityHidden(true)
-                if category == "keep" {
-                    SafetyChecklistRow("Provider name", isAllowed: true)
-                    SafetyChecklistRow("Masked hint or location", isAllowed: true)
-                    SafetyChecklistRow("Intended next step", isAllowed: true)
-                } else {
-                    SafetyChecklistRow("Passwords or complete recovery codes", isAllowed: false)
-                    SafetyChecklistRow("Seed phrases or private keys", isAllowed: false)
-                    SafetyChecklistRow("Secrets that can move money", isAllowed: false)
-                }
-            }
-        }
-        .rilloraStructuredList()
-        .rilloraFocusedTask()
-        .navigationTitle("Safe information")
-        .navigationBarTitleDisplayMode(.inline)
-        .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: category)
-        .accessibilityIdentifier("profile.safety.safe-information.view")
-    }
-}
-
-private struct SafetyChecklistRow: View {
-    let title: String
-    let isAllowed: Bool
-
-    init(_ title: String, isAllowed: Bool) {
-        self.title = title
-        self.isAllowed = isAllowed
-    }
-
-    var body: some View {
-        Label {
-            Text(title)
-                .foregroundStyle(RilloraTheme.body)
-        } icon: {
-            Image(systemName: isAllowed ? "checkmark.circle.fill" : "xmark.octagon.fill")
-                .foregroundStyle(isAllowed ? RilloraTheme.tabSelection : RilloraTheme.clay)
-        }
-        .labelStyle(RilloraAlignedLabelStyle())
-    }
-}
-
-private enum ReleaseSafetyTopic: Hashable {
-    case death
-    case incapacity
-    case unreachable
-}
-
-struct RilloraReleaseSafeguardsView: View {
-    @State private var expandedTopic: ReleaseSafetyTopic?
-    @RilloraReduceMotion private var reduceMotion
-
-    var body: some View {
-        RilloraList {
-            Section("Separate events") {
-                releaseTopic(
-                    .death,
-                    title: "Death reported",
-                    detail: "A report alone must never release information. A live claims service is not available yet."
-                )
-                releaseTopic(
-                    .incapacity,
-                    title: "Incapacity reported",
-                    detail: "Authority and scope must be checked for this event separately."
-                )
-                releaseTopic(
-                    .unreachable,
-                    title: "Person unreachable",
-                    detail: "Rillora does not run welfare checks. Silence never releases information."
-                )
-            }
-            .rilloraProfileActionRows()
-
-            Section("Before disclosure") {
-                RilloraFlowLayout(spacing: 14, rowSpacing: 14) {
-                    safeguard("Evidence", symbol: "doc.text.magnifyingglass")
-                    safeguard("Identity", symbol: "person.crop.rectangle")
-                    safeguard("Authority", symbol: "building.columns")
-                    safeguard("Scope", symbol: "eye")
-                }
-            }
-        }
-        .rilloraStructuredList()
-        .rilloraFocusedTask()
-        .navigationTitle("Disclosure safeguards")
-        .navigationBarTitleDisplayMode(.inline)
-        .animation(reduceMotion ? nil : .easeOut(duration: 0.2), value: expandedTopic)
-        .accessibilityIdentifier("profile.safety.disclosure.view")
-    }
-
-    private func safeguard(_ title: String, symbol: String) -> some View {
-        VStack(spacing: 8) {
-            Image(systemName: symbol).font(.title2).foregroundStyle(RilloraTheme.tabSelection)
-            Text(title).font(.footnote).foregroundStyle(RilloraTheme.body)
-        }
-        .frame(width: 74, height: 68)
-    }
-
-    private func releaseTopic(
-        _ topic: ReleaseSafetyTopic,
-        title: String,
-        detail: String
-    ) -> some View {
-        DisclosureGroup(
-            isExpanded: Binding(
-                get: { expandedTopic == topic },
-                set: { isExpanded in expandedTopic = isExpanded ? topic : nil }
-            )
-        ) {
-            Text(detail)
-                .font(.subheadline)
-                .foregroundStyle(RilloraTheme.body)
-                .padding(.vertical, 6)
-        } label: {
-            Text(title)
-                .font(.headline)
-                .foregroundStyle(RilloraTheme.ink)
-        }
-        .accessibilityIdentifier("profile.safety.disclosure.\(topic)")
     }
 }
 
@@ -247,15 +108,15 @@ struct AboutRilloraView: View {
                 .padding(.vertical, 6)
             }
 
-            Section("Installed app") {
-                LabeledContent("Version", value: appVersion)
-                LabeledContent("Build", value: buildNumber)
+            Section(String(localized: "Installed app")) {
+                LabeledContent(String(localized: "Version"), value: appVersion)
+                LabeledContent(String(localized: "Build"), value: buildNumber)
             }
 
             Section {
                 Button(action: copyAppInformation) {
                     ProfileActionLabel(
-                        title: didCopyAppInformation ? "Copied" : "Copy app information",
+                        title: didCopyAppInformation ? String(localized: "Copied") : String(localized: "Copy app information"),
                         detail: "",
                         systemImage: didCopyAppInformation ? "checkmark.circle.fill" : "doc.on.doc",
                         accessory: .copy
@@ -268,22 +129,17 @@ struct AboutRilloraView: View {
             .rilloraProfileActionRows()
 
             Section {
-                RilloraInfoDisclosure("About Rillora") {
-                    Text("A planning map, not a password vault or legal authority.")
+                RilloraInfoDisclosure(String(localized: "About Rillora")) {
+                    Text(String(localized: "A planning map, not a password vault or legal authority."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                 }
-                NavigationLink {
-                    RilloraDesignCreditsView()
-                } label: {
-                    Label("Design credits", systemImage: "text.book.closed")
-                }
-                .accessibilityIdentifier("profile.about.design-credits")
+
             }
             .rilloraAlignedLabelRows()
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
-        .navigationTitle("About Rillora")
+        .navigationTitle(String(localized: "About Rillora"))
         .navigationBarTitleDisplayMode(.inline)
         .accessibilityIdentifier("profile.about.view")
         .animation(reduceMotion ? nil : .easeOut(duration: 0.18), value: didCopyAppInformation)
@@ -312,7 +168,7 @@ struct RilloraDesignCreditsView: View {
     private var credits: String {
         guard let url = Bundle.main.url(forResource: "DesignCredits", withExtension: "txt"),
               let text = try? String(contentsOf: url, encoding: .utf8) else {
-            return "Design credits are unavailable in this build."
+            return String(localized: "Design credits are unavailable in this build.")
         }
         return text
     }
@@ -327,7 +183,7 @@ struct RilloraDesignCreditsView: View {
                 .padding(20)
         }
         .background(RilloraTheme.canvas)
-        .navigationTitle("Design credits")
+        .navigationTitle(String(localized: "Design credits"))
         .navigationBarTitleDisplayMode(.inline)
         .rilloraFocusedTask()
         .accessibilityIdentifier("profile.design-credits")

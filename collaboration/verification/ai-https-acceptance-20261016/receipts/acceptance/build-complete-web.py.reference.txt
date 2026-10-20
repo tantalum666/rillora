@@ -1,0 +1,53 @@
+"""Use the approved public legal fields; never log or publish their raw configuration."""
+from pathlib import Path
+import hashlib
+import json
+import os
+import shlex
+import subprocess
+import datetime
+import sys
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+keys = {'VITE_LEGAL_OPERATOR_NAME', 'VITE_LEGAL_OPERATOR_COUNTRY', 'VITE_LEGAL_SERVICE_ADDRESS',
+        'VITE_LEGAL_SUPPORT_EMAIL', 'VITE_LEGAL_PRIVACY_EMAIL', 'VITE_LEGAL_SECURITY_EMAIL'}
+values = {}
+for line in (ROOT / '.local-secrets/legal/release.env').read_text().splitlines():
+    key, separator, value = line.strip().removeprefix('export ').strip().partition('=')
+    if separator and key in keys:
+        parts = shlex.split(value)
+        values[key] = parts[0] if parts else ''
+assert set(values) == keys
+environment = {k: v for k, v in os.environ.items() if not k.startswith('VITE_')}
+environment.update(values)
+environment['VITE_RILLORA_AI_CONNECTIONS'] = 'true'
+target = QA / 'web-complete'
+assert not target.exists()
+with (QA / 'complete-web-build.log').open('wb') as output:
+    subprocess.run(['node', 'scripts/validate-legal-release.mjs'], cwd=ROOT / 'apps/web', env=environment,
+                   stdout=output, stderr=subprocess.STDOUT, check=True)
+    subprocess.run(['node', 'node_modules/vite/bin/vite.js', 'build', '--mode', 'production-live', '--outDir', str(target)],
+                   cwd=ROOT / 'apps/web', env=environment, stdout=output, stderr=subprocess.STDOUT, check=True)
+index = target / 'index.html'
+index.write_text(index.read_text().replace('<head>', '<head>\n    <meta name="robots" content="noindex, nofollow, noarchive" />', 1))
+(target / 'robots.txt').write_text('User-agent: *\nDisallow: /\n')
+files = sorted(p for p in target.rglob('*') if p.is_file())
+text = '\n'.join(p.read_text() for p in files if p.suffix in {'.js', '.html'})
+assert values['VITE_LEGAL_OPERATOR_NAME'] in text and values['VITE_LEGAL_SERVICE_ADDRESS'] in text
+old = QA / ('web-before-cookie-prefix' if '--cookie-prefix' in sys.argv else 'web-unconfigured')
+assert not old.exists()
+(QA / 'web').rename(old)
+try:
+    target.rename(QA / 'web')
+except Exception:
+    old.rename(QA / 'web')
+    raise
+receipt = {'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'approvedPublicFieldsReused': 6,
+           'releaseValidatorPassed': True, 'publicIdentityValuesPrinted': False, 'existingReleaseDirectoriesChanged': False,
+           'candidateOnly': True, 'artifactCount': len(files), 'apiOrAuth0Restarted': False,
+           'configurationDigest': hashlib.sha256(json.dumps(values, sort_keys=True).encode()).hexdigest(),
+           'artifacts': [{'path': str(p.relative_to(target)), 'sha256': hashlib.sha256((QA / 'web' / p.relative_to(target)).read_bytes()).hexdigest()} for p in files],
+           'publicationBoundary': 'Compiled operator-bearing artifacts remain sealed-only; raw env remains protected.'}
+(QA / 'complete-web-artifact.json').write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps({k: v for k, v in receipt.items() if k not in {'artifacts', 'configurationDigest'}}))

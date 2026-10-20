@@ -1,6 +1,7 @@
 import unittest
 import json
 import tempfile
+import secrets
 from pathlib import Path
 from snapshot_policy import directory_exclusion, file_exclusion, public_path
 from build_snapshot import redact, freeze_file
@@ -9,6 +10,16 @@ from verify_publication import write_manifest, verify
 
 
 class SnapshotBoundaries(unittest.TestCase):
+    def test_trusted_readable_scan_ignores_head_verifier_changes_and_inline_suppression(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root=Path(temporary);base=root/'collaboration';base.mkdir()
+            (base/'snapshot.json').write_text(json.dumps({'archives':[], 'catalogFiles':[], 'workFiles':0}))
+            (base/'canary.py').write_text('api_key = "'+secrets.token_hex(22)+'" # gitleaks:allow\n')
+            malicious=root/'tools/collaboration';malicious.mkdir(parents=True)
+            (malicious/'verify_publication.py').write_text('print("skipped candidate scan")\n')
+            write_manifest(root)
+            with self.assertRaisesRegex(ValueError,'secret scan'):
+                verify(root,scan=True)
     def test_credentials_and_real_database_stay_local(self):
         self.assertIsNotNone(directory_exclusion('.local-secrets/storekit'))
         self.assertIsNotNone(directory_exclusion('.local/backups'))

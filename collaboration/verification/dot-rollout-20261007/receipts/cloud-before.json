@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-06T19:44:40.934680+00:00",
+  "stacks": [
+    {
+      "stack": "RilloraProduction",
+      "status": "UPDATE_COMPLETE",
+      "outputs": [
+        {
+          "key": "ProductionTrafficReady",
+          "value": "false"
+        }
+      ]
+    },
+    {
+      "stack": "RilloraProductionWeb",
+      "status": "UPDATE_COMPLETE",
+      "outputs": [
+        {
+          "key": "CustomerAccess",
+          "value": "closed"
+        },
+        {
+          "key": "DistributionId",
+          "value": "E2D4X9TBTJK942"
+        },
+        {
+          "key": "ReviewAccess",
+          "value": "identity-allowlist"
+        }
+      ]
+    },
+    {
+      "stack": "RilloraPublicWeb",
+      "status": "UPDATE_COMPLETE",
+      "outputs": [
+        {
+          "key": "DistributionId",
+          "value": "E1H3EWWIZNTZDO"
+        }
+      ]
+    },
+    {
+      "stack": "RilloraStaging",
+      "status": "UPDATE_COMPLETE",
+      "outputs": [
+        {
+          "key": "WebUrl",
+          "value": "https://app.staging.rillora.xyz"
+        }
+      ]
+    }
+  ]
+}

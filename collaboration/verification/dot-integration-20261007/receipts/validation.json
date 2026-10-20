@@ -1,0 +1,40 @@
+{
+  "at": "2026-10-06T18:39:13.302394+00:00",
+  "merged": true,
+  "pr": "https://github.com/tantalum666/rillora/pull/1",
+  "mergeCommit": "eb5fb1a70290eefdcbfea029586c75bb32f9a640",
+  "reviewedSource": "5a547339a689fadd4f2241d4d17d2e2756931be2",
+  "nativeUnit": {
+    "passed": 272,
+    "failed": 0,
+    "skipped": 1
+  },
+  "nativeUi": {
+    "passed": 6,
+    "languages": [
+      "en",
+      "zh-Hans"
+    ],
+    "initialHarnessFailuresRetained": true
+  },
+  "nativeBuild": [
+    "Debug",
+    "Release"
+  ],
+  "webTests": 174,
+  "apiFocusedTests": 17,
+  "releaseGuards": 66,
+  "sourceCi": 73,
+  "browserCi": {
+    "run": 37509506235,
+    "passed": 20,
+    "failed": 0,
+    "skipped": 0,
+    "flaky": 0
+  },
+  "preservedCloudBrowserZipCount": 4,
+  "archive21": "pending",
+  "deployed": false,
+  "testFlightBuildUnchanged": "1.0(8)",
+  "cleanup": "Synthetic fixture stopped; task simulator already shutdown; no other simulator changed"
+}

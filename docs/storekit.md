@@ -4,8 +4,42 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: SHARED PRODUCTION/REVIEW FLOW LOCALLY VERIFIED; REAL PROVIDER AND CLOUD ACCEPTANCE OPEN
-Last updated: 2026-09-30 (Apple review flow and signed preparation artifact; historical provider evidence retained)
+Status: SEPARATE RUNTIMES DEPLOYED; PRERELEASE401 EXPLAINED; PRODUCTION CHECK AFTER RELEASE BEFORE SALES; PHONE14 AND WEB TEST ENTITLEMENT MATCH
+Last updated: 2026-10-14 (Asia/Hong_Kong)
+
+## October13 current release preparation
+
+Sourceeb2b3c4d2/CI145is compatibly deployed after the independent Apple contexts and bounded reviewer preparation. Production and review use separate existing-key vault configurations, signatures, routes and finite reviewer access. The owner and dedicated synthetic reviewer have existing-only enrollment throughOctober27; no identity consent or financial result is fabricated by provisioning. The official Sandbox TEST succeeded; the same verified JWT getsSandbox200/Production401, and a later Production-only read still401. Keep the two new Production Apple routes disabled independently of the Web market, preserve existing entitlements, and do not rotate valid keys speculatively.
+
+Four production worker alarms now supplement the unchanged Sandbox alarms; all readOKand the updated cloud health probe succeeds. Native14and the current Web show the same owner's Apple test Family access, withHKD888on the phone and management of the original channel on both. No new purchase/restore/refund was executed. App/annualSKUdrafts now selectUSA/HKGonly; historical prices and other Sandbox evidence remain dated. Annual review material, build14/manual release, Owner-confirmed privacy and protected reviewer credential delivery are recorded in[App Store preparation](app-store-preflight-20261013.md). No TestFlight distribution occurred. The three-item App Review packet was prematurely submitted during UI preflight and then explicitly withdrawn; readback confirms Removed/Developer Rejected, not an Apple rejection. Complete the dedicated reviewer/device acceptance before resubmission. An Apple Commerce Engineer confirms that Production API access requires a production release. The unreleased-app401is therefore no longer a prerequisite blocking submission; retain dedicated Sandbox review, then approved-build streamlined-purchasing configuration, manual release, fresh Production authorization/notification/reconciliation checks, and only then ordinary Apple sales. Do not implement blanket401Sandbox fallback. The original support case102995248851 received our closure request; Closed is not yet shown. [Evidence and limits](provider-diagnostics-20261013.md).
+
+## October12 delivery and evidence boundary
+
+The security implementation is deployed throughbfe9baaf5, both schemas103, and direct phone14. Owner confirms native login and original matters; this does not add a new purchase or restore. Current Web reports Free and no effective validationOnly, consistent with the prior sandbox-enrollment deadline. It is not a fresh provider expiry/refund result. Reuse the actual purchase/renewal/restoration record; remaining current physical and active-entitlement comparison is scoped in [the acceptance continuation](native-cross-platform-acceptance-20261012.md). No TestFlight or ordinary sales activation occurred.
+
+## October11 ownership and recovery repair
+
+New purchases use a random server-created intent token rather than treating the public planner UUID as first-purchase authority. Only pre-cutover existing intents retain the legacy token path. A started/pending payment remains reconcilable after a delay; pending cannot regress to a new purchase. Verified receipts retain the current token so a snapshot predating preparation can recover ownership and still process later refunds/revocations. Financial retention after account deletion omits that correlation. [The scoped repair](security-findings-remediation-20261011.md) records60local Apple/recovery cases and the separate native checks. It does not replace the Owner's real Sandbox/HKD888 evidence, change119.99US pricing, install a phone build or reopen TestFlight distribution.
+
+## October7 current physical purchase and simplified paywall
+
+Owner completed a real TestFlight Sandbox subscription in build6. Signed server evidence
+is HKG/HKD888.00, active through October7 14:25:09UTC; initial notification and client
+receipt are applied. The old AUD199.99 preflight is closed/canceled, not rewritten.
+USA119.99 is the approved base price; HKG888 and AUS199.99 are saved Apple local prices.
+The annual draft has9territories after the scoped AUS Sandbox catalog correction.
+Normal markets/sales remain closed; API14/schema0093 are unchanged.
+
+Build7 adds explicit currency, fresh Product loading before purchase and cancellation
+on any storefront change. It is uploaded/processed but held from distribution. The
+Owner then removed the extra native consent checkbox and visible preview controls:
+build8 shows actual Family benefits, full currency/year price and one Subscribe button,
+with renewal/cancellation/policy text and secondary Restore. The button captures the
+visible quote; a changed quote needs another tap. Signup consent is unchanged.
+The latest targeted regression has39passes/0failures/1retained platform skip;11native
+static checks and English/Chinese rendered previews pass. Build8 distribution and
+post-purchase physical Restore remain separate evidence. No real charge or review
+submission is implied. See [the current device contract](device-config-20261006.md).
 
 ## September29–30 review/TestFlight path — current
 

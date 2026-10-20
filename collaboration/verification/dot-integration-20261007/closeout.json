@@ -1,0 +1,63 @@
+{
+  "at": "2026-10-06T19:03:00.677082+00:00",
+  "status": "MERGED_AND_COMPLETE_WORK_PRESERVATION_REMOTE_VERIFIED",
+  "pr": "https://github.com/tantalum666/rillora/pull/1",
+  "source": "5a547339a689fadd4f2241d4d17d2e2756931be2",
+  "merge": "eb5fb1a70290eefdcbfea029586c75bb32f9a640",
+  "exactMergeTreeMatches": true,
+  "artifactAttached": true,
+  "nativeUnitPassed": 272,
+  "nativeUnitSkipped": 1,
+  "nativeUiPassed": 6,
+  "nativeBuilds": [
+    "Debug",
+    "Release"
+  ],
+  "webUnitPassed": 174,
+  "apiFocusedPassed": 17,
+  "releaseGuardsPassed": 66,
+  "sourceCi": 73,
+  "browserPassed": 20,
+  "browserSkipped": 0,
+  "sourceScanUnknownFindings": 0,
+  "archive": 21,
+  "rawObjects": 913,
+  "rawPaths": 7314,
+  "rawBytes": 233637603,
+  "fourCloudZipDigestsMatch": true,
+  "deployed": false,
+  "build8Preserved": true,
+  "reviewAccessExtended": false,
+  "realDataAndFanPassPreserved": true,
+  "documentsSynchronized": [
+    "docs/dot-integration-20261007.md",
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/source-control.md",
+    "docs/native-ux-refinement-20261006.md",
+    "docs/web-ux-refinement-20261006.md",
+    "docs/native-localization-20261005.md",
+    "docs/account-identity-display-20261006.md",
+    "docs/release-readiness.md",
+    "collaboration/README.md",
+    "collaboration/verification/dot-integration-20261007/README.md"
+  ],
+  "newDecision": "Owner authorized review, direct repair and merge; old cloud no-merge scope superseded; no new pricing/legal/real-payment decision.",
+  "readableScan": {
+    "passed": true,
+    "unreviewedFindings": 0
+  },
+  "artifactCommit": "06519bde858d044414d735cb6217ca2da3e6172e",
+  "freshRemoteDownload": true,
+  "remoteRawVerification": {
+    "verifiedObjects": 913,
+    "coveredWorkFiles": 7314,
+    "restoredFiles": 0,
+    "archives": 1,
+    "passed": true
+  },
+  "everyReadablePathIncludedInGit": true,
+  "sourceAndBinaryChecksNotRerunForReceiptOnlyUpdate": true
+}

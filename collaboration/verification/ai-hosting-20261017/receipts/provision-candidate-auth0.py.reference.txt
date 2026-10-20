@@ -1,0 +1,38 @@
+from pathlib import Path
+import importlib.util,json,secrets,datetime
+root=Path(__file__).resolve().parents[3]; q=Path(__file__).resolve().parent;p=root/'.local-secrets/ai-hosting-20261017'
+spec=importlib.util.spec_from_file_location('helper',root/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+baseline=json.loads((p/'auth0-before.json').read_text()); name='Rillora AI Candidate Login'
+fields='client_id,name,app_type,client_metadata,grant_types,callbacks,is_first_party,global,token_endpoint_auth_method'
+before=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100')
+assert before==baseline['clients'] and len([x for x in before if not x.get('global')])==9
+origin='https://rillora-ai-candidate.rillora-candidate.workers.dev'
+created=h.api('post','clients',{'name':name,'app_type':'regular_web','is_first_party':True,'oidc_conformant':True,
+ 'token_endpoint_auth_method':'client_secret_post','grant_types':['authorization_code'],'callbacks':[origin+'/callback'],
+ 'allowed_logout_urls':[origin],'web_origins':[origin], 'jwt_configuration':{'alg':'RS256','lifetime_in_seconds':900},
+ 'client_metadata':{'purpose':'rillora-ai-candidate','data_scope':'synthetic-only','created':'2026-10-17'}})
+cid=created['client_id']; progress={'clientId':cid,'connectionId':None,'userId':None}
+def save():
+ (p/'auth0-candidate-resources.json').write_text(json.dumps(progress));(p/'auth0-candidate-resources.json').chmod(0o600)
+save()
+for c in baseline['connections']:
+ if cid in h.connection_clients(c['id']): h.api('patch',f"connections/{c['id']}/clients",[{'client_id':cid,'status':False}])
+connection=h.api('post','connections',{'name':'rillora-ai-hosting-synthetic','strategy':'auth0','is_domain_connection':False,
+ 'enabled_clients':[cid],'options':{'disable_signup':True,'passwordPolicy':'excellent','brute_force_protection':True}})
+progress['connectionId']=connection['id'];save()
+password=secrets.token_urlsafe(32)+'!Aa7'
+user=h.api('post','users',{'connection':connection['name'],'email':'rillora-ai-hosting-20261017@example.test',
+ 'password':password,'email_verified':True,'verify_email':False,'name':'Rillora Synthetic AI Hosting',
+ 'app_metadata':{'purpose':'rillora-ai-candidate','synthetic':True}})
+progress['userId']=user['user_id'];save()
+after=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100')
+assert [x for x in after if x['client_id']!=cid]==baseline['clients']
+assert {c['id']:h.connection_clients(c['id']) for c in baseline['connections']}==baseline['bindings']
+assert h.api('get','tenants/settings')==baseline['settings']
+assert h.connection_clients(connection['id'])==[cid]
+receipt={'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'ordinaryClients':10,'oldClientsUnchanged':True,
+ 'oldBindingsUnchanged':True,'tenantSettingsUnchanged':True,'dedicatedConnection':True,'signupDisabled':True,'domainConnection':False,'syntheticAccount':True}
+q.joinpath('auth0-provision-readback.json').write_text(json.dumps(receipt,indent=2)+'\n')
+# Captured only by the orchestration process for immediate encrypted secret bindings; never forwarded to chat or Git.
+print(json.dumps({'clientId':cid,'clientSecret':created['client_secret'],'connection':connection['name'],
+ 'subject':user['user_id'],'username':user['email'],'password':password,'receipt':receipt}))

@@ -1,0 +1,59 @@
+{
+  "at": "2026-10-12T18:01:46.687175+00:00",
+  "mode": "same-workflow-focused-continuation",
+  "prior": "output/qa/rillora-plan-purchase-page-20261012/reading.json",
+  "fullNewReadClaimed": false,
+  "fullBodies": [
+    "AGENTS.md",
+    "current handoff",
+    "docs/live-configuration-20261009.md",
+    "new activation/status documents authored in full",
+    "apps/api/src/stripe-production-adapter.ts",
+    "apps/api/src/stripe-production-secret.ts",
+    "apps/api/src/configure-production-web-billing.ts",
+    "apps/api/tests/stripe-production-adapter.test.ts",
+    "apps/api/tests/production-commerce.integration.test.ts",
+    "apps/api/tests/production-web-activation.integration.test.ts",
+    "infra/aws/bin/rillora.ts",
+    "infra/aws/lib/rillora-production-runtime.ts",
+    "infra/aws/lib/rillora-production-stack.ts",
+    "infra/aws/test/rillora-production-stack.test.ts",
+    "tools/maintenance-broker/core.mjs",
+    "tools/maintenance-broker/core.test.mjs",
+    "tools/maintenance-broker/handler.mjs",
+    "infra/auth0/hosted-consent/post-login-action.cjs",
+    "infra/auth0/hosted-consent/production-review-action.cjs",
+    ".github/workflows/verify.yml"
+  ],
+  "focusedRanges": {
+    "apps/api/migrations/0022_provider_neutral_commerce.sql": "1-205",
+    "apps/api/src/app.ts": "113-145",
+    "apps/api/src/config.ts": "protected runtime guards and database config",
+    "docs/production-commerce-20260926.md": "current contract and existing preserved history baseline"
+  },
+  "skills": [
+    "Stripe best practices and billing/tax references",
+    "Auth0 tooling CLI"
+  ],
+  "noNewScopeApprovalRequired": "Current explicit Owner ignore-tax instruction and retained release authorization; no invented exemption or new account credentials.",
+  "focusedContinuationAfterCompaction": {
+    "at": "2026-10-12T20:21:39.569855+00:00",
+    "ranges": {
+      "AGENTS.md": "full current body",
+      "docs/product.md": "1-20,389-542 current locked rules and routing; historical omitted portions retained from baseline",
+      "docs/handoff.md": "full old and full new authored",
+      "docs/decision-log.md": "latest65lines and new appended decision",
+      "docs/web-billing-activation-20261013.md": "full original and full replacement authored",
+      "docs/production-identity-mail-20260924.md": "1-62 and230-273 plus new current section",
+      "docs/release-engineering-20260930.md": "50-83 identity token contract",
+      "docs/release-readiness.md": "current1-82 and replaced current table",
+      "docs/live-configuration-20261009.md": "1-70 and new current section",
+      "docs/source-control.md": "1-135 current preservation contract",
+      "collaboration/README.md": "1-130 current preservation contract",
+      "apps/web/src/publicEntry.js": "full",
+      "apps/web/tests/landing-model.test.mjs": "full",
+      "config/public-entry.json": "full"
+    },
+    "freshFullProjectReadClaimed": false
+  }
+}

@@ -1,0 +1,87 @@
+{
+  "at": "2026-10-12T16:15:50.765750+00:00",
+  "mode": "same-release-workflow-focused-continuation",
+  "prior": "output/qa/rillora-native-cross-platform-20261012/reading.json",
+  "newWholeRepositoryReadClaimed": false,
+  "bodiesRead": [
+    "apps/web/src/PlanAccessPreview.jsx",
+    "apps/web/src/ProductionBillingControls.jsx",
+    "apps/web/src/TestBillingControls.jsx",
+    "apps/web/src/LegalConsentText.jsx",
+    "apps/web/src/productionBilling.js",
+    "apps/web/src/commercialAccess.js",
+    "apps/web/src/plan-access.css",
+    "apps/web/tests/production-billing.test.mjs",
+    "apps/web/tests/plan-access-render.test.mjs",
+    "apps/web/e2e/plan-access.spec.mjs",
+    "apps/web/e2e/fixtures.mjs",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+    "AGENTS.md",
+    "docs/handoff.md",
+    "current product/decision/journey and focused contract sections",
+    "prior source-control and collaboration guidance reused; new top/current sections read",
+    "all newly authored specification/history text",
+    "apps/web/tests/workspace-i18n.test.mjs complete"
+  ],
+  "focusedRanges": {
+    "apps/ios/Rillora/Features/Account/PlanAccessView.swift": "1-137",
+    "docs/platform-contract.md": "1-65",
+    "docs/monetization.md": "1-24",
+    "docs/release-readiness.md": "1-24"
+  },
+  "exclusions": [
+    "unchanged generated output and historical evidence copies",
+    "dependencies and reproducible caches",
+    "secrets and authentication state"
+  ],
+  "codeFingerprints": [
+    {
+      "path": "apps/web/src/PlanAccessPreview.jsx",
+      "sha256": "7809514b155304ebc9ef98e48959d0a3814f8ccbf70e4cae395bfdc22aee5c6d"
+    },
+    {
+      "path": "apps/web/src/ProductionBillingControls.jsx",
+      "sha256": "731c0a5700ccb1d5a02a0d9e19e8c42c57f524befc00379640d66c61144e2f1a"
+    },
+    {
+      "path": "apps/web/src/TestBillingControls.jsx",
+      "sha256": "c6f411716a66d353f1d7fb568ddbf6e84d9e2b948bd263d73447fac651f95429"
+    },
+    {
+      "path": "apps/web/src/LegalConsentText.jsx",
+      "sha256": "23a798886c3793f6f480b46cd8539ef8cf1c129d0b52a94dcc4e562e0ae5ae93"
+    },
+    {
+      "path": "apps/web/src/productionBilling.js",
+      "sha256": "741b5c21a89432b84caf214a61a45095b812832ddf4be1dbd4ff6b1cc72d43bf"
+    },
+    {
+      "path": "apps/web/src/commercialAccess.js",
+      "sha256": "fda4b2a63a9f91675434aa3588ac0296247dbc3a64bd6e4d57f24575247d1672"
+    },
+    {
+      "path": "apps/web/src/plan-access.css",
+      "sha256": "f32f13e30e1e0c51c94e90dc70e085f38213f0f398fb72154919dd753f911739"
+    },
+    {
+      "path": "apps/web/tests/production-billing.test.mjs",
+      "sha256": "100a584d01704e919a1c215f403a59c947dba2c9fb1759bcbc6517ccff0a9e1e"
+    },
+    {
+      "path": "apps/web/tests/plan-access-render.test.mjs",
+      "sha256": "1d6b8b6c097a017e65a5fdcc94bd2111da902bb69467d01bc8827a244d6b1bb8"
+    },
+    {
+      "path": "apps/web/e2e/plan-access.spec.mjs",
+      "sha256": "d585d9bc5fd4d1d02cad7ad248fd7b829bd3eb9ed6005dc78cd7febbd25cc909"
+    },
+    {
+      "path": "apps/web/e2e/fixtures.mjs",
+      "sha256": "f24e7a0f3a610f039429a5b6fa675d1afaa8af12c77190efb9d5b343f320a91c"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+      "sha256": "3f23e7d43b061532f87b8d59798bb11bde8191c58f9c5c14b708d236c4c7c470"
+    }
+  ]
+}

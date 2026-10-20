@@ -100,6 +100,9 @@ export function createApiClient({
     ) ? await response.json() : null;
     if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     if (!response.ok) {
+      if (response.status === 401 && !context.publicAuth && !context.publicRehearsal && typeof window !== 'undefined') {
+        window.dispatchEvent(new Event('rillora:session-expired'));
+      }
       if (payload?.error?.code === 'account_changed') throw rejectAccountChange();
       if (response.status === 403 && payload?.error?.code === 'reauthentication_required' && typeof window !== 'undefined') {
         window.dispatchEvent(new Event('rillora:reauthentication-required'));
@@ -131,8 +134,10 @@ export function createApiClient({
           requestId,
         );
       }
+      const blob = await response.blob();
+      if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
       return {
-        blob: await response.blob(),
+        blob,
         filename: filenameMatch[1],
         exportPublicId,
         serverCopyRetained: false,
@@ -142,6 +147,13 @@ export function createApiClient({
   }
 
   return {
+    getAiConnections: () => request('/account/ai-connections'),
+    getAiOAuthInteraction: () => request('/account/ai-connections/oauth'),
+    completeAiOAuth: input => request('/account/ai-connections/oauth/complete', {method:'POST',body:input}),
+    cancelAiOAuth: interactionUid => request('/account/ai-connections/oauth/cancel', {method:'POST',body:{interactionUid}}),
+    getAiSelectableMatters: cursor => request(`/account/ai-connections/selectable${cursor ? `?cursor=${encodeURIComponent(cursor)}` : ''}`),
+    authorizeAiConnection: input => request('/account/ai-connections', { method: 'POST', body: input }),
+    revokeAiConnection: (publicId, expectedVersion) => request(`/account/ai-connections/${encodeURIComponent(publicId)}`, { method: 'DELETE', body: { expectedVersion } }),
     getMatter: id => request(`/matters/${encodeURIComponent(id)}`),
     getCreatedMatter: (requestId) => request(`/matters/creation/${encodeURIComponent(requestId)}`),
     archiveMatter: (id, expectedVersion) => request(`/matters/${encodeURIComponent(id)}`, {method:"DELETE",headers:{"if-match":String(expectedVersion)}}),
@@ -159,6 +171,21 @@ export function createApiClient({
     selectSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/live`, { method: "POST", body: input }),
     pauseSharingLive: (id, input) => request(`/sharing/connections/${encodeURIComponent(id)}/pause`, { method: "POST", body: input }),
     previewSharing: (grants, connectionPublicId) => request("/sharing/preview", { method: "POST", body: { grants, ...(connectionPublicId ? { connectionPublicId } : {}) } }).then(value => validateSharingPreview(value, grants)),
+    getAccountIdentity: async () => {
+      let value;
+      try { value = await request("/account/identity"); }
+      catch (error) {
+        if (error.status !== 404 || error.code !== "not_found") throw error;
+        const profile = await request("/account/profile");
+        value = { account: { ...profile.account, verifiedEmail: null }, emailStatus: "unavailable" };
+      }
+      bindWorkspace({ plannerPublicId: value?.account?.publicId });
+      if (typeof value.account.displayName !== "string" || !["available", "not_provided", "unavailable"].includes(value.emailStatus)
+        || (value.emailStatus === "available" && (typeof value.account.verifiedEmail !== "string" || !value.account.verifiedEmail.trim()))) {
+        throw new ApiClientError(502, "invalid_identity", "The account identity could not be verified.");
+      }
+      return { ...value, account: { ...value.account, verifiedEmail: value.emailStatus === "available" ? value.account.verifiedEmail.trim() : null } };
+    },
     getAccountProfile: () => request("/account/profile"),
     requestAccountDeletion: (receipt, acknowledgesBilling = false) => request("/account/delete", {method:"POST",body:{confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling}}),
     getAccountDeletionStatus: receipt => request("/account-deletions/status", {headers:{authorization:`Deletion-Receipt ${receipt}`}}, {publicAuth:true}),
@@ -208,15 +235,15 @@ export function createApiClient({
     getTestBillingStatus: () => request("/commerce/test/status"),
     getProductionBillingStatus: () => request("/commerce/stripe/status"),
     getProductionPurchaseQuote: () => request("/commerce/stripe/quote"),
-    startProductionCheckout: (purchaseConsent, idempotencyKey) => request("/commerce/stripe/checkout", {
-      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod: "annual", purchaseConsent },
+    startProductionCheckout: (purchaseConsent, idempotencyKey, locale) => request("/commerce/stripe/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod: "annual", purchaseConsent, ...(locale ? { locale } : {}) },
     }),
-    openProductionBillingPortal: () => request("/commerce/stripe/portal", { method: "POST", body: {} }),
+    openProductionBillingPortal: (locale) => request("/commerce/stripe/portal", { method: "POST", body: locale ? { locale } : {} }),
     cancelProductionCheckout: () => request("/commerce/stripe/checkout/cancel", { method: "POST", body: {} }),
-    startTestCheckout: (billingPeriod, idempotencyKey) => request("/commerce/test/checkout", {
-      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod },
+    startTestCheckout: (billingPeriod, idempotencyKey, locale) => request("/commerce/test/checkout", {
+      method: "POST", headers: { "idempotency-key": idempotencyKey }, body: { billingPeriod, ...(locale ? { locale } : {}) },
     }),
-    openTestBillingPortal: () => request("/commerce/test/portal", { method: "POST", body: {} }),
+    openTestBillingPortal: (locale) => request("/commerce/test/portal", { method: "POST", body: locale ? { locale } : {} }),
     cancelTestCheckout: () => request("/commerce/test/checkout/cancel", { method: "POST", body: {} }),
     updatePlan: (input) => request("/plan", {
       method: "PATCH",
@@ -280,12 +307,13 @@ export function createApiClient({
       method: "POST",
       body: recipientConnectionPublicId ? { recipientConnectionPublicId } : {},
     }),
-    createPrintableStartHere: (previewPublicId) => request("/exports/start-here/printable", {
+    createPrintableStartHere: (previewPublicId, locale) => request("/exports/start-here/printable", {
       method: "POST",
       body: {
         previewPublicId,
         acknowledgesPlaintext: true,
         acknowledgesNoRevocation: true,
+        ...(locale ? { locale } : {}),
       },
       responseKind: "printable-start-here",
     }),
@@ -452,14 +480,18 @@ function containsForbiddenDisclosureKey(value) {
   ));
 }
 
-function readCsrfCookie() {
+export function readCsrfCookie() {
   if (typeof document === "undefined") return null;
-  const prefix = "continuity_csrf=";
-  const cookie = document.cookie
+  const local = typeof window !== 'undefined' && window.location.protocol === 'http:'
+    && ['localhost','127.0.0.1','[::1]'].includes(window.location.hostname);
+  const prefix = local ? 'continuity_csrf=' : '__Host-continuity_csrf=';
+  const cookies = document.cookie
     .split(";")
     .map((value) => value.trim())
-    .find((value) => value.startsWith(prefix));
-  return cookie ? decodeURIComponent(cookie.slice(prefix.length)) : null;
+    .filter((value) => value.startsWith(prefix));
+  if (cookies.length !== 1) return null;
+  try { return decodeURIComponent(cookies[0].slice(prefix.length)); }
+  catch { return null; }
 }
 
 const viteEnvironment = import.meta.env ?? {};

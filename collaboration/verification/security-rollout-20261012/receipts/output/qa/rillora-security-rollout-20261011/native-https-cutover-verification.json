@@ -1,0 +1,27 @@
+{
+  "at": "2026-10-12T12:28:27.984017+00:00",
+  "results": [
+    {
+      "environment": "production",
+      "httpsOnly": true,
+      "legacyCallbacksRemoved": 1,
+      "providerAssociationVerified": true,
+      "sameSignedNativeImplementation": true,
+      "freshNativeLoginObserved": true
+    },
+    {
+      "environment": "staging",
+      "httpsOnly": true,
+      "legacyCallbacksRemoved": 2,
+      "providerAssociationVerified": true,
+      "sameSignedNativeImplementation": true,
+      "freshNativeLoginObserved": false
+    }
+  ],
+  "ownerPhoneVersion": "1.0(14)",
+  "ownerOriginalMattersConfirmed": true,
+  "productionProviderSuccessAndCodeExchangeObserved": true,
+  "callbackUrlLoggedByProvider": false,
+  "callbackProofBoundary": "HTTPS is established by the signed installed implementation, association files and exact callback allowlists; the provider logs independently record successful authentication/code exchange, not the redirect URI.",
+  "testFlight": false
+}

@@ -1,24 +1,22 @@
 import SwiftUI
 
 struct OfficialSetupView: View {
-    @State private var setupStore: OfficialSetupStore?
     @State private var searchText = ""
+    @FocusState private var searchIsFocused: Bool
     @Environment(\.dynamicTypeSize) private var dynamicTypeSize
     let overviewStore: OverviewStore?
 
+    // Retain caller compatibility; browsing no longer observes self-reported status.
     init(service: (any OfficialSetupEditing)? = nil, overviewStore: OverviewStore? = nil) {
-        _setupStore = State(initialValue: service.map { OfficialSetupStore(service: $0) })
         self.overviewStore = overviewStore
     }
 
     var body: some View {
         RilloraList {
-            reviewStatus
-
             ForEach(OfficialProviderGuideCatalog.groups) { group in
                 let guides = filtered(OfficialProviderGuideCatalog.all.filter { $0.group == group.id })
                 if !guides.isEmpty {
-                    Section(group.title) {
+                    Section(group.localizedTitle) {
                         ForEach(guides) { guideRow($0) }
                     }
                 }
@@ -26,88 +24,51 @@ struct OfficialSetupView: View {
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
-        .refreshable {
-            await setupStore?.reload()
-        }
-        .searchable(text: $searchText, placement: .navigationBarDrawer(displayMode: .always), prompt: "Search platforms")
+        .accessibilityIdentifier("official-setup.view")
+        // Keep search in this screen's safe-area layout. A navigation-bar drawer
+        // changes the bar's height during push/pop and can cover the first rows.
+        .safeAreaInset(edge: .top, spacing: 0) { searchField }
         .overlay {
             if !OfficialProviderGuideCatalog.isAvailable {
-                ContentUnavailableView("Guides unavailable", systemImage: "book.closed", description: Text("The guide library could not be loaded."))
+                ContentUnavailableView(String(localized: "Guides unavailable"), systemImage: "book.closed", description: Text(String(localized: "The guide library could not be loaded.")))
             } else if filtered(OfficialProviderGuideCatalog.all).isEmpty {
                 ContentUnavailableView.search(text: searchText)
             }
         }
-        .navigationTitle("Account inheritance")
+        .navigationTitle(String(localized: "Account inheritance"))
         .navigationBarTitleDisplayMode(.inline)
-        .task {
-            await setupStore?.loadIfNeeded()
-        }
-        .alert(
-            setupStore?.mutationFailure?.conflict == true
-                ? "This check changed"
-                : "Check not saved",
-            isPresented: Binding(
-                get: { setupStore?.mutationFailure != nil },
-                set: { if !$0 { setupStore?.clearMutationFailure() } }
-            )
-        ) {
-            if setupStore?.mutationFailure?.conflict == true {
-                Button("Reload latest") {
-                    setupStore?.clearMutationFailure()
-                    Task { await setupStore?.reload() }
-                }
-                Button("Keep current view", role: .cancel) {
-                    setupStore?.clearMutationFailure()
-                }
-            } else {
-                Button("OK", role: .cancel) {
-                    setupStore?.clearMutationFailure()
-                }
-            }
-        } message: {
-            Text(setupStore?.mutationFailure?.message ?? "")
-        }
-        .accessibilityIdentifier("official-setup.view")
+        .onDisappear { searchIsFocused = false }
     }
 
     private func filtered(_ guides: [OfficialProviderGuide]) -> [OfficialProviderGuide] {
         let query = searchText.trimmingCharacters(in: .whitespacesAndNewlines)
-        return guides.filter { $0.matches(query) }
+        return guides.filter { $0.matches(query) || $0.localized().matches(query) }
     }
 
-    @ViewBuilder
-    private var reviewStatus: some View {
-        if let setupStore { switch setupStore.state {
-        case .idle, .loading:
-            Section {
-                HStack(spacing: 10) {
-                    ProgressView()
-                    Text("Loading your review status…")
-                        .foregroundStyle(RilloraTheme.muted)
-                }
-            }
-        case .failed(let message, _):
-            Section {
-                Button {
-                    Task { await setupStore.reload() }
-                } label: {
-                    Label("Retry review status", systemImage: "arrow.clockwise")
-                }
-                Text(message)
-                    .font(.footnote)
-                    .foregroundStyle(RilloraTheme.muted)
-            }
-        case .loaded:
-            EmptyView()
-        } }
+    private var searchField: some View {
+        HStack(spacing: 10) {
+            Image(systemName: "magnifyingglass").accessibilityHidden(true)
+            TextField(String(localized: "Search platforms"), text: $searchText)
+                .textInputAutocapitalization(.never)
+                .autocorrectionDisabled()
+                .focused($searchIsFocused)
+                .frame(minHeight: 44)
+                .accessibilityIdentifier("official-setup.search")
+        }
+        .font(.body)
+        .padding(.horizontal, 12)
+        .background(RilloraTheme.actionSurface, in: RoundedRectangle(cornerRadius: 14))
+        .contentShape(Rectangle())
+        .onTapGesture { searchIsFocused = true }
+        .padding(.horizontal, 20)
+        .padding(.vertical, 8)
+        .background(RilloraTheme.canvas)
     }
 
     private func guideRow(_ guide: OfficialProviderGuide) -> some View {
         NavigationLink {
             OfficialProviderGuideDetailView(
-                guide: guide,
-                setupStore: setupStore,
-                overviewStore: overviewStore
+                guide: guide
             )
         } label: {
             Group {
@@ -116,7 +77,6 @@ struct OfficialSetupView: View {
                         HStack {
                             guideIcon(guide)
                             Spacer(minLength: 12)
-                            reviewStatusIcon(guide)
                         }
                         guideText(guide)
                     }
@@ -124,7 +84,6 @@ struct OfficialSetupView: View {
                     HStack(spacing: 13) {
                         guideIcon(guide)
                         guideText(guide)
-                        reviewStatusIcon(guide)
                     }
                 }
             }
@@ -142,7 +101,7 @@ struct OfficialSetupView: View {
             Text(guide.name)
                 .font(.body.weight(.semibold))
                 .foregroundStyle(RilloraTheme.ink)
-            Text(guide.summary)
+            Text(guide.localized().summary)
                 .font(.footnote)
                 .foregroundStyle(RilloraTheme.muted)
                 .lineLimit(dynamicTypeSize.isAccessibilitySize ? 4 : 2)
@@ -150,34 +109,18 @@ struct OfficialSetupView: View {
         .frame(maxWidth: .infinity, alignment: .leading)
     }
 
-    @ViewBuilder
-    private func reviewStatusIcon(_ guide: OfficialProviderGuide) -> some View {
-        if let check = check(for: guide), check.completed {
-            Image(systemName: "checkmark.circle.fill")
-                .foregroundStyle(RilloraTheme.sage)
-                .accessibilityLabel("Reviewed in Rillora")
-        }
-    }
-
-    private func check(for guide: OfficialProviderGuide) -> OfficialSetupCheck? {
-        setupStore?.checks.first { $0.providerKey == guide.id }
-    }
 }
 
 struct OfficialProviderGuideDetailView: View {
-    let guide: OfficialProviderGuide
-    let setupStore: OfficialSetupStore?
-    let overviewStore: OverviewStore?
-
+    private let sourceGuide: OfficialProviderGuide
+    private var guide: OfficialProviderGuide { sourceGuide.localized() }
     @State private var activePart: String
     @State private var stepIndex = 0
     @RilloraReduceMotion private var reduceMotion
     @ScaledMetric(relativeTo: .title3) private var stepMarkerSize = 38.0
 
-    init(guide: OfficialProviderGuide, setupStore: OfficialSetupStore? = nil, overviewStore: OverviewStore? = nil, initialPart: String? = nil) {
-        self.guide = guide
-        self.setupStore = setupStore
-        self.overviewStore = overviewStore
+    init(guide: OfficialProviderGuide, initialPart: String? = nil) {
+        self.sourceGuide = guide
         _activePart = State(initialValue: initialPart ?? guide.initialPart)
     }
 
@@ -185,37 +128,25 @@ struct OfficialProviderGuideDetailView: View {
 
     var body: some View {
         ScrollView {
-            LazyVStack(alignment: .leading, spacing: 18) {
+            VStack(alignment: .leading, spacing: 18) {
                 guideHeader
+                    .accessibilityElement(children: .combine)
+                    .accessibilityIdentifier("official-guide.header.\(guide.id)")
                 RilloraTaskTabs(tabs: taskTabs, selection: Binding(get: { activePart }, set: { stepIndex = 0; activePart = $0 }), identifierPrefix: "official-guide.part.\(guide.id)")
 
                 if activePart == "details" {
                     requirementsCard
                     boundaryCard
-                    if guide.supportsSelfReportedCheck { selfReportedCard }
-                    RilloraInfoDisclosure("About this route") {
+                    RilloraInfoDisclosure(String(localized: "About this route")) {
                         Text(guide.summary).font(.subheadline).foregroundStyle(RilloraTheme.body)
-                        Text("Sources reviewed \(guide.lastReviewed). Requirements can change.")
+                        Text(L10n.format("Sources reviewed %1$@. Requirements can change.", guide.lastReviewed))
                             .font(.footnote).foregroundStyle(RilloraTheme.muted)
                     }
                 } else {
                     stepReader
                 }
                 officialLinksCard
-                RilloraInfoDisclosure("Original source links") {
-                    ForEach(guide.links) { link in
-                        if let url = link.url {
-                            VStack(alignment: .leading, spacing: 5) {
-                                Text(link.title).font(.subheadline.weight(.semibold))
-                                Link(link.urlString, destination: url)
-                                    .font(.footnote).multilineTextAlignment(.leading)
-                                    .fixedSize(horizontal: false, vertical: true)
-                                ShareLink(item: url) { Label("Share link", systemImage: "square.and.arrow.up") }
-                                    .font(.footnote).frame(minHeight: 44)
-                            }
-                        }
-                    }
-                }
+
             }
             .padding(.horizontal, 20)
             .padding(.vertical, 18)
@@ -261,9 +192,9 @@ struct OfficialProviderGuideDetailView: View {
 
     private var taskTabs: [RilloraTaskTab] {
         var tabs: [RilloraTaskTab] = []
-        if !guide.prepareSteps.isEmpty { tabs.append(.init(id: "now", title: "Prepare", symbol: "checklist")) }
-        if !guide.laterSteps.isEmpty { tabs.append(.init(id: "later", title: "After a death", symbol: "person.2")) }
-        tabs.append(.init(id: "details", title: "Documents", symbol: "doc.text"))
+        if !guide.prepareSteps.isEmpty { tabs.append(.init(id: "now", title: String(localized: "Prepare"), symbol: "checklist")) }
+        if !guide.laterSteps.isEmpty { tabs.append(.init(id: "later", title: String(localized: "After a death"), symbol: "person.2")) }
+        tabs.append(.init(id: "details", title: String(localized: "Documents"), symbol: "doc.text"))
         return tabs
     }
 
@@ -274,12 +205,12 @@ struct OfficialProviderGuideDetailView: View {
             if !currentSteps.isEmpty {
                 let index = min(stepIndex, currentSteps.count - 1)
                 HStack(spacing: 12) {
-                    Text("\(index + 1)")
+                    Text((index + 1).formatted())
                         .font(.title3.weight(.semibold))
                         .foregroundStyle(RilloraTheme.canvas)
                         .frame(width: stepMarkerSize, height: stepMarkerSize)
                         .background(RilloraTheme.tabSelection, in: Circle())
-                    Text("of \(currentSteps.count)").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(L10n.format("of %1$lld", currentSteps.count)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     Spacer()
                 }
                 Text(currentSteps[index])
@@ -293,12 +224,12 @@ struct OfficialProviderGuideDetailView: View {
                     : AnyLayout(HStackLayout())
                 controls {
                     Button { stepIndex = max(0, stepIndex - 1) } label: {
-                        Label("Previous", systemImage: "arrow.left").frame(minHeight: 44)
+                        Label(String(localized: "Previous"), systemImage: "arrow.left").frame(minHeight: 44)
                     }
                     .disabled(index == 0)
                     if !dynamicTypeSize.isAccessibilitySize { Spacer() }
                     Button { stepIndex = min(currentSteps.count - 1, stepIndex + 1) } label: {
-                        Label("Next", systemImage: "arrow.right").frame(minHeight: 44)
+                        Label(String(localized: "Next"), systemImage: "arrow.right").frame(minHeight: 44)
                     }
                     .disabled(index == currentSteps.count - 1)
                     .accessibilityIdentifier("official-guide.next.\(guide.id)")
@@ -312,7 +243,7 @@ struct OfficialProviderGuideDetailView: View {
 
     private var requirementsCard: some View {
         VStack(alignment: .leading, spacing: 12) {
-            SectionEyebrow("Documents & information")
+            SectionEyebrow(String(localized: "Documents & information"))
             ForEach(guide.usuallyRequested, id: \.self) { item in
                 Label(item, systemImage: "doc.text")
                     .font(.subheadline)
@@ -324,7 +255,7 @@ struct OfficialProviderGuideDetailView: View {
 
     private var officialLinksCard: some View {
         VStack(alignment: .leading, spacing: 10) {
-            SectionEyebrow("Official links")
+            SectionEyebrow(String(localized: "Official links"))
             ForEach(Array(guide.links(for: activePart).enumerated()), id: \.element.id) { index, link in
                 if let url = link.url {
                     Link(destination: url) {
@@ -395,38 +326,11 @@ struct OfficialProviderGuideDetailView: View {
                 .fixedSize(horizontal: false, vertical: true)
         }
         .rilloraCard()
+        .accessibilityElement(children: .combine)
+        .accessibilityIdentifier("official-guide.boundary.\(guide.id)")
     }
 
-    @ViewBuilder
-    private var selfReportedCard: some View {
-        if let check, let setupStore {
-            VStack(alignment: .leading, spacing: 10) {
-                Toggle(
-                    "I reviewed this guide",
-                    isOn: Binding(
-                        get: { setupStore.displayedCompleted(for: check) },
-                        set: { completed in
-                            Task {
-                                guard await setupStore.setCompleted(
-                                    publicID: check.publicId,
-                                    completed: completed
-                                ) != nil else { return }
-                                await overviewStore?.reconcileAfterMutation()
-                            }
-                        }
-                    )
-                )
-                .disabled(setupStore.isSaving(check))
-                .accessibilityIdentifier("official-setup.toggle.\(check.providerKey)")
 
-            }
-            .rilloraCard()
-        }
-    }
-
-    private var check: OfficialSetupCheck? {
-        setupStore?.checks.first { $0.providerKey == guide.id }
-    }
 }
 
 struct OfficialProviderMark: View {

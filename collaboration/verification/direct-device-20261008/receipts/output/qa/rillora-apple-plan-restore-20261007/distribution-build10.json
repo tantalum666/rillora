@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-07T02:35:42.007638+00:00",
+  "version": "1.0(10)",
+  "ipa": "output/release/rillora-apple-plan-restore-20261007/export10/Rillora.ipa",
+  "bytes": 7219564,
+  "sha256": "9085a8b60ede11873e4b6c4b229876f62384f507422c72003e1286e717383764",
+  "checks": {
+    "strictSignature": true,
+    "correctVersion": true,
+    "passwordResetConnection": true,
+    "bundle": true,
+    "team": true,
+    "notDebuggable": true,
+    "noDeviceList": true,
+    "notEnterprise": true,
+    "noStoreKitFixture": true,
+    "exactRetainedProductionConfiguration": true,
+    "bilingual": true,
+    "approvedCryptoMetadata": true,
+    "privacyUnchanged": true,
+    "sourceInputsMatch": true
+  },
+  "uploaded": true,
+  "physicalFixVerified": false,
+  "ownerExistingHkdPurchasePreserved": true,
+  "uploadedAt": "2026-10-07T02:38:33Z",
+  "distributed": false,
+  "held": true,
+  "holdReason": "Full-page restore tap found a borderless-button hit-area regression; build11 will retain native Form button handling."
+}

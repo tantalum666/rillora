@@ -1,0 +1,42 @@
+from pathlib import Path
+import argparse,datetime,json,re,secrets,sys,uuid
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+parser=argparse.ArgumentParser();parser.add_argument('action',choices=['start','status']);parser.add_argument('label');parser.add_argument('--operation',choices=['inspect','activate','close-new-sales']);parser.add_argument('--expected');args=parser.parse_args()
+assert re.fullmatch('[a-z0-9-]{1,48}',args.label)
+aws=Aws('rillora-production-operator');identity=aws.call('sts','get-caller-identity')
+assert identity['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in identity['Arn']
+stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};state_file=p/('catalog-'+args.label+'.json')
+def save(data):state_file.write_text(json.dumps(data,indent=2)+'\n');state_file.chmod(0o600)
+if args.action=='start':
+ assert args.operation and not state_file.exists(),'Inspect any prior invocation instead of duplicating it'
+ if args.operation=='activate' and (q/'preview-identity-retired.json').exists():
+  deadline=datetime.datetime.fromisoformat(json.loads((q/'preview-identity-retired.json').read_text())['earliestCustomerActivationAt'])
+  assert datetime.datetime.now(datetime.timezone.utc)>=deadline,'Old identity token lifetime plus tolerance has not elapsed'
+ if args.operation=='activate':assert out['ProductionTrafficReady']=='true'
+ run=secrets.token_hex(8);token=secrets.token_urlsafe(32);client_token=uuid.uuid4().hex
+ env=[{'name':'RECOVERY_RUN','value':run}]
+ if args.operation!='inspect':
+  assert args.expected and re.fullmatch('[a-f0-9]{64}',args.expected)
+  env.append({'name':'RILLORA_BILLING_EXPECTED_SNAPSHOT','value':args.expected})
+ else:assert args.expected is None
+ request={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':client_token,
+  'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+  'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','dist/configure-production-web-billing.js',args.operation],'environment':env}]}}
+ payload={'operation':'task','run':run,'runToken':token,'request':request}
+ state={'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'operation':args.operation,'payload':payload};save(state)
+ response=aws.invoke_broker(out['MaintenanceBrokerFunctionName'],payload)
+ assert not response.get('failures') and len(response.get('tasks',[]))==1
+ state['taskArn']=response['tasks'][0]['taskArn'];save(state);print(json.dumps({'started':True,'label':args.label,'operation':args.operation}))
+else:
+ state=json.loads(state_file.read_text());assert state.get('taskArn'),'Investigate an ambiguous invocation using its saved request/token'
+ response=aws.call('ecs','describe-tasks',{'cluster':out['ClusterName'],'tasks':[state['taskArn']]});assert not response.get('failures') and len(response['tasks'])==1
+ task=response['tasks'][0];report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'label':args.label,'operation':state['operation'],'status':task['lastStatus'],'exitCode':task['containers'][0].get('exitCode')}
+ if task['lastStatus']=='STOPPED':
+  logs=aws.call('logs','get-log-events',{'logGroupName':out['MaintenanceLogGroup'],'logStreamName':'migration/Maintenance/'+state['taskArn'].rsplit('/',1)[1],'startFromHead':True})
+  messages=[json.loads(x['message']) for x in logs['events'] if x['message'].startswith('{')]
+  report['result']=next((x for x in messages if x.get('operation')==state['operation']),None)
+  report['passed']=report['exitCode']==0 and report['result'] is not None
+  (q/('catalog-'+args.label+'.json')).write_text(json.dumps(report,indent=2)+'\n')
+ print(json.dumps({k:v for k,v in report.items() if k!='result'}))

@@ -1,0 +1,111 @@
+"""Append this workflow's reviewed synthetic HTTPS evidence; never reseal prior work."""
+from pathlib import Path
+import datetime
+import hashlib
+import json
+import os
+import shutil
+import subprocess
+import sys
+import tempfile
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+PREFLIGHT = ROOT / 'output/qa/rillora-ai-hosted-preflight-20261016'
+DEST = ROOT / 'collaboration/verification/ai-https-acceptance-20261016'
+ARCHIVE = ROOT / 'collaboration/archives/raw-work-044.tar.zst.age'
+sys.path.insert(0, str(ROOT / 'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion, file_exclusion
+from verify_archives import verify
+
+assert not ARCHIVE.exists(), 'Do not reseal immutable work'
+assert json.loads((QA / 'source-scan-final.json').read_text())['passed']
+assert json.loads((QA / 'final-cleanup-readback.json').read_text())['passed']
+for name in ['before-revoke-tool-results.json', 'after-revoke-tool-results.json', 'public-transport-boundaries.json']:
+    assert json.loads((QA / name).read_text())['passed']
+DEST.mkdir(parents=True, exist_ok=True)
+cache = QA / 'publication/frozen'
+cache.mkdir(parents=True, exist_ok=True, mode=0o700)
+images = {'account-consent-pending.png', 'selected-synthetic-grant.png', 'revoked-synthetic-grant.png', 'tenant-limit-banner.png'}
+previous = {'status.json': 'hosted-preflight-status.json', 'identity-capacity.json': 'hosted-identity-capacity.json', 'reopened.json': 'hosted-browser-reopened.json'}
+excluded = [
+ {'path': '.local-secrets', 'reason': 'credentials, generated identity, capability URLs, raw provider objects, diagnostic headers and original operator configuration'},
+ {'path': 'archives001-043', 'reason': 'immutable captures; not resealed or downloaded'},
+ {'path': 'local synthetic database files', 'reason': 'disposable local database state; only safe receipts preserved'},
+]
+selected = []
+for source_root in [PREFLIGHT, QA]:
+ for base, dirs, names in os.walk(source_root):
+  parent = Path(base)
+  for name in list(dirs):
+   path = parent / name
+   reason = directory_exclusion(path.relative_to(ROOT).as_posix())
+   if name in {'publication', '.cache'}: reason = 'capture/download cache'
+   if reason or path.is_symlink():
+    dirs.remove(name); excluded.append({'path': path.relative_to(ROOT).as_posix(), 'reason': reason or 'symlink'})
+  for name in names:
+   path = parent / name; rel = path.relative_to(ROOT).as_posix()
+   reason = file_exclusion(rel)
+   if path.is_symlink(): reason = 'symlink'
+   if parent == PREFLIGHT and name in previous:
+    old = ROOT / 'collaboration/verification/public-discovery-rollout-20261016/receipts' / previous[name]
+    assert old.read_bytes() == path.read_bytes()
+    reason = 'already preserved byte-for-byte at ' + old.relative_to(ROOT).as_posix()
+   if parent == QA and name == 'auth0-mutable-schema.json': reason = 'reproducible upstream API-schema excerpt'
+   if reason: excluded.append({'path': rel, 'reason': reason})
+   else: selected.append((source_root, rel, path))
+
+# No provider identity or authorization capability may enter any capture.
+private = ROOT / '.local-secrets/ai-https-20261016'
+needles = []
+for path in private.rglob('registration.json'):
+ obj = json.loads(path.read_text())
+ for key in ['clientId','webClientId','syntheticUserId']:
+  value = obj.get(key)
+  if isinstance(value,str) and len(value)>20: needles.append(value.encode())
+for path in private.rglob('codex-login.json'):
+ obj = json.loads(path.read_text())
+ if obj.get('authorizationUrl'): needles.append(obj['authorizationUrl'].encode())
+objects = {}; records = []
+started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+for source_root, rel, path in sorted(selected,key=lambda x:x[1]):
+ frozen, digest = snapshot.freeze_file(path,cache)
+ data = frozen.read_bytes()
+ assert not any(value in data for value in needles), 'Protected value found in ' + rel
+ blob = objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]})
+ blob['paths'].append(rel)
+ record = {'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+ relative = path.relative_to(source_root)
+ is_build = relative.parts[0].startswith('web') and path.parent != source_root
+ is_image = path.name in images and path.parent == source_root
+ is_small_reviewed_text = path.suffix in {'.json','.py','.mts','.mjs','.js','.log'} and not is_build
+ if path.name == 'cloudflared-install.log': is_small_reviewed_text = False
+ if is_small_reviewed_text:
+  suffix = '.reference.txt' if path.suffix in {'.py','.mts','.mjs','.js','.log'} else ''
+  target = DEST / 'receipts' / ('preflight' if source_root == PREFLIGHT else 'acceptance') / (str(relative)+suffix)
+  target.parent.mkdir(parents=True,exist_ok=True); shutil.copyfile(frozen,target)
+  record['readablePath'] = target.relative_to(ROOT).as_posix()
+ elif is_image:
+  target = DEST/'images'/path.name;target.parent.mkdir(parents=True,exist_ok=True);shutil.copyfile(frozen,target)
+  record['previewPath']=target.relative_to(ROOT).as_posix()
+ records.append(record)
+identity = ROOT / '.local-secrets/collaboration-git/identity.txt'
+assert identity.stat().st_mode & 0o077 == 0
+recipient = subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip()
+archive=snapshot.seal_chunk(44,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(x['bytes'] for x in records),
+ 'archives':[archive],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,
+ 'selection':'Only new temporary HTTPS acceptance, failures, targeted regressions, provider recovery, safe UI and exact candidate artifacts. Public operator-bearing builds remain sealed-only.',
+ 'boundary':'Synthetic Web selection to real OAuth and public HTTPS MCP scoped read/revocation passed. No model selection, consumer directory, long-term hosting or production release claim. Default App authentication-method normalization is explicitly retained.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-https-archive-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+ for name in [archive['path'],*summary['catalogFiles']]:
+  target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+ verified=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(verified,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'locallyVerified':verified['passed']}))

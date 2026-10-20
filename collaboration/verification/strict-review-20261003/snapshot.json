@@ -1,0 +1,27 @@
+{
+  "capturedFrom": "2026-10-02T19:23:17.468298+00:00",
+  "capturedThrough": "2026-10-02T19:23:18.470684+00:00",
+  "workFiles": 1433,
+  "uniqueRawObjects": 934,
+  "workBytes": 14412702,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-012.tar.zst.age",
+      "sha256": "15527d7a26b5f2fe4c73ef901d54e652cb3ea1a757279a3a8c670b6c3d8f9115",
+      "bytes": 7533297,
+      "plainBytes": 12761709,
+      "uniqueObjects": 934
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/strict-review-20261003/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-strict-review-20261002/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    }
+  ],
+  "selection": "Strict review QA and its five locally built output trees; builds encrypted only. Previous archives untouched. Task-specific /tmp derived compiler output is reproducible cache and excluded.",
+  "boundary": "No credential store, raw recovery image/link, browser authentication state, device inventory, or unrelated project included."
+}

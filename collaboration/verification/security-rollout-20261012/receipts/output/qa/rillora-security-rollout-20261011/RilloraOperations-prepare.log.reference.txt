@@ -1,0 +1,34 @@
+
+✨  Synthesis time: 0.24s
+
+RilloraOperations: start: Building HealthCheck/Code
+RilloraOperations: success: Built HealthCheck/Code
+RilloraOperations: start: Building SnapshotRetirement/Worker/Code
+RilloraOperations: success: Built SnapshotRetirement/Worker/Code
+RilloraOperations: start: Building RilloraOperations Template
+RilloraOperations: success: Built RilloraOperations Template
+RilloraOperations: start: Publishing HealthCheck/Code (133857166372-eu-central-1-fe6165be)
+RilloraOperations: start: Publishing SnapshotRetirement/Worker/Code (133857166372-eu-central-1-e541f63f)
+RilloraOperations: start: Publishing RilloraOperations Template (133857166372-eu-central-1-8ebd8146)
+RilloraOperations: success: Published SnapshotRetirement/Worker/Code (133857166372-eu-central-1-e541f63f)
+RilloraOperations: success: Published HealthCheck/Code (133857166372-eu-central-1-fe6165be)
+RilloraOperations: success: Published RilloraOperations Template (133857166372-eu-central-1-8ebd8146)
+RilloraOperations: creating CloudFormation changeset...
+Changeset arn:aws:cloudformation:eu-central-1:133857166372:changeSet/rillora-security-bfe9baaf5-rilloraoperations/209aef21-5171-46a0-9c03-54b8b2c8d989 created and waiting in review for manual execution (--no-execute)
+RilloraOperations: deploying... [1/1]
+
+✅  RilloraOperations
+
+✨  Deployment time: 0s
+
+Outputs:
+RilloraOperations.ActivationBoundary = Requires deploy, real cloud invocation, verified subscriber delivery and missing-heartbeat drill
+RilloraOperations.AlertTopicArn = arn:aws:sns:eu-central-1:133857166372:RilloraOperations-Alerts91F83244-3hyvJ2Vrg4zo
+RilloraOperations.CheckerFunctionName = RilloraOperations-HealthCheckA1C381C7-1C2bQQnv9BUn
+RilloraOperations.SnapshotRetirementFunctionNameEA07C724 = RilloraOperations-[PUBLIC_IDENTIFIER_OMITTED]-aCdjTQVMw7CS
+RilloraOperations.SnapshotRetirementLogGroupNameD0C870D7 = RilloraOperations-SnapshotRetirementLogs5CFC046D-jmnjBCRzFwqO
+Stack ARN:
+arn:aws:cloudformation:eu-central-1:133857166372:stack/RilloraOperations/61327be0-b1ed-11f1-96b7-02118794ecd3
+
+✨  Total time: 34.5s
+

@@ -1,7 +1,7 @@
 import { randomBytes } from 'node:crypto';
 import type { Pool } from 'pg';
 import { DynamoDBClient, QueryCommand } from '@aws-sdk/client-dynamodb';
-import { parseRecoveryControl, type RecoveryControl } from './recovery-journal.js';
+import { parseRecoveryControl, recoveryConnectionHistorySchema, type RecoveryControl } from './recovery-journal.js';
 
 export type RecoveryCoverage={version:1;startedAt:string;databaseGeneration?:string};
 export function validateRecoveryWindow(snapshotTime:string,coverage:RecoveryCoverage,clock=Date.now()):void{
@@ -59,13 +59,19 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   // traffic, not silently reset to the values in an old backup.
   if(pending.some(e=>e.kind==='unreconciled_access'))throw new Error('Post-snapshot entitlement changes require provider reconciliation');
   let applied=0;
+  const hasAiConnections=Boolean((await client.query("select to_regclass('app.ai_connections') as table_name")).rows[0]?.table_name);
   for(const event of pending){
    const facts=event.facts;
-   if(event.kind==='retention_hold'){
+   if(event.kind==='ai_connection'){
+    if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=coalesce(revoked_at,now()),version=version+1 where public_id=$1',[event.id]);
+   }else if(event.kind==='retention_hold'){
+    // Publication precedes the source SQL commit. An external release can
+    // survive a rolled-back transaction, so it cannot loosen a restored hold.
+    // Releasing recovered holds requires a fresh administrative decision.
     await client.query(`insert into app.retention_holds(public_id,category,record_id,reason_code,released_at)
-     values($1,$2,$3,$4,case when $5 then null else now() end)
-     on conflict(category,record_id,reason_code) do update set public_id=excluded.public_id,released_at=excluded.released_at`,
-     [event.id,facts.category,facts.recordId,facts.reason,facts.active]);
+     values($1,$2,$3,$4,null)
+     on conflict(category,record_id,reason_code) do update set public_id=excluded.public_id,released_at=null`,
+     [event.id,facts.category,facts.recordId,facts.reason]);
    }else if(event.kind==='account'){
     const planner=(await client.query('select id::text,status from app.planners where public_id=$1',[event.id])).rows[0];
     if(planner){
@@ -82,11 +88,8 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
        // The durable terminal deletion proves the source already completed its
        // identity cleanup. Preserve snapshot financial records via the existing
        // erasure function, rather than raw-cascading that retention away.
-       await client.query("update app.account_deletions set lease_until=null,next_attempt_at=now() where public_id=$1",[job]);
-       await client.query('set local role continuity_auth');
-       const claimed=(await client.query('select app.claim_account_deletion($1) as job',[job])).rows[0].job;
-       if(!claimed)throw new Error('Restored deletion job could not be reclaimed');
-       const finished=(await client.query('select app.finish_account_deletion($1,$2,true) as finished',[job,claimed.leaseToken])).rows[0].finished;
+       await client.query('set local role continuity_recovery_service');
+       const finished=(await client.query('select app.recover_completed_account_deletion($1) as finished',[job])).rows[0].finished;
        if(!finished)throw new Error('Restored account erasure did not complete');
        await client.query('reset role');
       }
@@ -101,13 +104,30 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
      if(facts.deleted===true||facts.status!=='accepted'||connection.status!=='accepted'||facts.recipient!==connection.recipient){
       await client.query("update app.sharing_connections set status='revoked',revoked_at=coalesce(revoked_at,now()),version=version+1 where id=$1",[connection.id]);
      }else{
-      const grants=facts.grants as {matter:string;level:string}[];
-      if(!Array.isArray(grants)||grants.some(g=>!['name','directions','details'].includes(g.level)))throw new Error('Invalid journal grant ceiling');
+      // Latest disclosure level alone cannot prove that a prior narrowing or
+      // remove/regrant did not permanently redact this snapshot's saved copy.
+      if(facts.historyVersion!==2)throw new Error('Legacy connection journal requires permission-history reconciliation');
+      const {grants}=recoveryConnectionHistorySchema.parse(facts);
+      const encoded=JSON.stringify(grants);
+      await client.query(`update app.family_review_tasks t set access_revoked_at=coalesce(access_revoked_at,now())
+       where t.connection_id=$1 and (not exists(select 1 from jsonb_to_recordset($2::jsonb) x("grantId" bigint) where x."grantId"=t.grant_id)
+        or exists(select 1 from jsonb_to_recordset($2::jsonb) x("grantId" bigint,"revokedReviewThrough" bigint)
+          where x."grantId"=t.grant_id and t.id<=x."revokedReviewThrough"))`,[connection.id,encoded]);
       await client.query(`delete from app.sharing_grants g using app.matter_items m where g.connection_id=$1 and m.id=g.matter_item_id
-       and not exists(select 1 from jsonb_to_recordset($2::jsonb) x(matter uuid,level text) where x.matter=m.public_id)`,[connection.id,JSON.stringify(grants)]);
+       and not exists(select 1 from jsonb_to_recordset($2::jsonb) x(matter uuid,"grantId" bigint) where x.matter=m.public_id and x."grantId"=g.id)`,[connection.id,encoded]);
       await client.query(`update app.sharing_grants g set detail_level=x.level from app.matter_items m,
-       jsonb_to_recordset($2::jsonb) x(matter uuid,level text) where g.connection_id=$1 and m.id=g.matter_item_id and m.public_id=x.matter
-       and array_position(array['name','directions','details'],x.level)<array_position(array['name','directions','details'],g.detail_level)`,[connection.id,JSON.stringify(grants)]);
+       jsonb_to_recordset($2::jsonb) x(matter uuid,level text,"grantId" bigint) where g.connection_id=$1 and m.id=g.matter_item_id and m.public_id=x.matter and g.id=x."grantId"
+       and array_position(array['name','directions','details'],x.level)<array_position(array['name','directions','details'],g.detail_level)`,[connection.id,encoded]);
+      await client.query(`delete from app.sharing_saved_items s using app.sharing_grants g,
+       jsonb_to_recordset($2::jsonb) x("grantId" bigint,"savedFieldNames" text[]) where g.connection_id=$1
+        and s.grant_id=g.id and g.id=x."grantId" and x."savedFieldNames" is null`,[connection.id,encoded]);
+      await client.query(`update app.sharing_saved_items s set
+        fields=(select coalesce(jsonb_object_agg(k,v),'{}'::jsonb) from jsonb_each(s.fields) f(k,v) where k=any(x."savedFieldNames")),
+        detail_level=case when not ('locationHint'=any(x."savedFieldNames") or 'institutionName'=any(x."savedFieldNames") or 'desiredOutcome'=any(x."savedFieldNames")) then 'name'
+          when not (x."savedFieldNames" && array['accountHint','valueBand','currencyCode','importance','notes','assetType','debtType','documentType','deviceModel','billingCycle','renewalDate','cryptoCustody','network','walletAddress','walletLabel','assetSymbol'])
+            and s.detail_level='details' then 'directions' else s.detail_level end
+       from app.sharing_grants g,jsonb_to_recordset($2::jsonb) x("grantId" bigint,"savedFieldNames" text[])
+       where g.connection_id=$1 and s.grant_id=g.id and g.id=x."grantId" and x."savedFieldNames" is not null`,[connection.id,encoded]);
      }
     }
    }else if(event.kind==='matter'){
@@ -128,6 +148,9 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
    applied++;
   }
   const invalidated=await client.query('delete from app.auth_sessions');
+  // External OAuth tokens are not part of this database. Require fresh explicit
+  // grants after a restore, even when an old access token is still valid.
+  if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=now(),version=version+1 where revoked_at is null');
   await client.query('delete from app.auth_transactions');
   await client.query('delete from app.sharing_handoffs');
   await client.query("update app.recipient_rehearsals set status='revoked',revoked_at=coalesce(revoked_at,now()) where status<>'revoked'");

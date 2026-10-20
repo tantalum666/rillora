@@ -1,0 +1,10 @@
+{
+  "observedRequest": "POST /authorize",
+  "status": 403,
+  "origin": "null",
+  "secFetchSite": "same-origin",
+  "browserDisplayed": "ERR_BLOCKED_BY_CLIENT",
+  "cause": "no-referrer on the HTML document causes a native navigation POST to serialize Origin as null",
+  "correction": "same-origin referrer policy for HTML and redirects; strict origin and browser-bound consent checks retained",
+  "sensitiveHeadersPreserved": false
+}

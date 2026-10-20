@@ -2,13 +2,37 @@
 
 Role: focused client-delivery and environment-isolation contract
 Status: CLOSED CLIENT DELIVERY VERIFIED; CUSTOMER ACTIVATION STILL CLOSED
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Last updated: 2026-10-08 (Asia/Hong_Kong)
 
 Owner explicitly asks to start the remaining release engineering. Continue the
 existing release workflow and reading baseline. Preserve the current UI/brand,
 annual-only offer, test accounts/data, private data/recovery foundation and
 FanPass. Public customer access remains closed until the separate release gates
 are accepted.
+
+## October8 current native delivery
+
+Owner pauses incremental TestFlight distribution and chooses direct phone installation.
+Current sourcec0cec8680/retained Release11was development-signed and installed wirelessly
+over the same Rillora app; version1.0(11)and foreground launch are read back. No new
+TestFlight upload/distribution or cloud deployment was performed today. Previous provider
+checkpoints below retain their dates; physical UI/restore acceptance is separate.
+[Current direct workflow](direct-device-iteration-20261008.md).
+
+## October7 current client delivery
+
+Production Web86/WWW31and Preview86files match the new deployed artifacts. Native1.0(9)
+passed14artifact checks and uploaded; Apple login recovery is needed before processing/
+distribution readback. Build8 remains the last verified draft/internal version.
+[Current execution](dot-rollout-20261007.md).
+
+## HISTORICAL — October3 reviewed clients
+
+Restricted production Web and WWW are deployed, with86/30actual file hashes matched.
+Native1.0(3) is signed, uploaded and processed with normal distribution eligibility;
+Owner-confirmed encryption declaration is saved and Apple showsReady to Submit. No testers or AppReview
+submission, actual purchase or public activation follows. [Execution](review-rollout-20261003.md).
+
 
 ## September30 client security and distribution preparation
 

@@ -1,0 +1,41 @@
+{
+  "capturedFrom": "2026-10-17T18:39:23.099768+00:00",
+  "capturedThrough": "2026-10-17T18:39:23.574273+00:00",
+  "workFiles": 220,
+  "uniqueRawObjects": 111,
+  "workBytes": 6545632,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-047.tar.zst.age",
+      "sha256": "8327e2a7fa353ae287e4ff951f9184a0e4f6e7f5ca9a8994288886f822a15eb0",
+      "bytes": 1306039,
+      "plainBytes": 2945099,
+      "uniqueObjects": 111
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/public-seo-rollout-20261018/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, auth URLs, token stores, AWS account and MFA screens"
+    },
+    {
+      "path": "archives001-046",
+      "reason": "previous immutable captures; not resealed or downloaded"
+    },
+    {
+      "path": "output/qa/rillora-public-seo-rollout-20261018/publication",
+      "reason": "capture cache or expanded deployment dependencies; exact public artifact and template copied separately"
+    },
+    {
+      "path": "output/qa/rillora-public-seo-rollout-20261018/cdk.out",
+      "reason": "capture cache or expanded deployment dependencies; exact public artifact and template copied separately"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "sourceSecretScan": "passed; 32 existing reviewed nonsecrets, zero unreviewed",
+  "selection": "New public rollout, corrected navigation, exact public artifact, online integrity, source/tests, safe browser results and search-provider receipts.",
+  "boundary": "Public website delivery only. Production API, customer data, prices, billing, App14 and TestFlight are unchanged. Search submission and parsing do not prove indexing or AI recommendations."
+}

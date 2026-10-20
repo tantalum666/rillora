@@ -1,0 +1,60 @@
+{
+  "account": "acct_1U6B2RCxTlowhyiG",
+  "environment": "live",
+  "name": "Rillora production billing runtime",
+  "permissions": [
+    {
+      "level": "读",
+      "resource": "Charges and Refunds"
+    },
+    {
+      "level": "写",
+      "resource": "Customers"
+    },
+    {
+      "level": "读",
+      "resource": "Payment Disputes"
+    },
+    {
+      "level": "读",
+      "resource": "Payment Intents"
+    },
+    {
+      "level": "读",
+      "resource": "Products"
+    },
+    {
+      "level": "写",
+      "resource": "Customer Portal"
+    },
+    {
+      "level": "读",
+      "resource": "Invoices"
+    },
+    {
+      "level": "读",
+      "resource": "Prices"
+    },
+    {
+      "level": "读",
+      "resource": "Subscriptions"
+    },
+    {
+      "level": "写",
+      "resource": "Checkout Sessions"
+    },
+    {
+      "level": "读",
+      "resource": "Accounts"
+    },
+    {
+      "level": "读",
+      "resource": "Tax Settings, Registrations"
+    }
+  ],
+  "created": true,
+  "ownerApprovedAtActionTime": true,
+  "requiredEmailVerificationCompletedByOwner": true,
+  "readback": "stripe-runtime-key-readback.json",
+  "protectedVaultReadback": "stripe-prepared-vault.json"
+}

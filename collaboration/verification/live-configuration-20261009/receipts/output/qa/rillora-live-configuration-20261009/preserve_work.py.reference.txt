@@ -1,0 +1,157 @@
+"""Preserve Live notification configuration, guarded catalog binding and production deployment evidence."""
+import datetime
+import json
+import os
+from pathlib import Path
+import re
+import shlex
+import subprocess
+import sys
+import tempfile
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / 'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion, file_exclusion, readable_text
+from verify_archives import verify
+
+QA = ROOT / 'output/qa/rillora-live-configuration-20261009'
+QA_ROOTS = [QA]
+RELEASE = ROOT / 'output/release/rillora-live-configuration-20261009'
+SOURCE_ROOTS = [*QA_ROOTS, RELEASE]
+DEST = ROOT / 'collaboration/verification/live-configuration-20261009'
+ARCHIVE = ROOT / 'collaboration/archives/raw-work-028.tar.zst.age'
+assert not ARCHIVE.exists(), 'Do not reseal an already preserved archive.'
+DEST.mkdir(parents=True, exist_ok=True)
+cache = QA / 'publication/frozen'
+cache.mkdir(parents=True, mode=0o700, exist_ok=True)
+safe_images = set()
+vendor_caches = {'stripe-webhooks-docs.md', 'stripe-docs-error.log'}
+
+files = []
+exclusions = []
+for source_root in SOURCE_ROOTS:
+    for base, dirs, names in os.walk(source_root):
+        parent = Path(base)
+        for name in list(dirs):
+            path = parent / name
+            rel = path.relative_to(ROOT).as_posix()
+            reason = directory_exclusion(rel)
+            if name in {'publication', 'ipa-inspection', 'inspection', 'vendor-docs'}:
+                reason = 'reproducible_verification_or_extracted_ipa_copy'
+            if path.is_symlink():
+                reason = 'machine_specific_link'
+            if reason:
+                dirs.remove(name)
+                exclusions.append({'path': rel, 'reason': reason})
+        for name in names:
+            path = parent / name
+            rel = path.relative_to(ROOT).as_posix()
+            reason = file_exclusion(rel)
+            if path.name in {'stripe-live-grant-review.png', 'auth0-session-restored.png'}:
+                reason = 'actual_authentication_handoff_screen'
+            if path.name in vendor_caches:
+                reason = 'reproducible_vendor_documentation_cache'
+            if path.is_symlink():
+                reason = 'machine_specific_link'
+            if reason:
+                exclusions.append({'path': rel, 'reason': reason})
+            else:
+                files.append((rel, path))
+assert len(files) == len({name for name, _ in files})
+
+values = snapshot.sensitive_values()
+for name, key in [('stripe-live-runtime-key.json','apiKey'),('stripe-live-webhook.json','webhookSecret')]:
+    secret = json.loads((ROOT / '.local-secrets/device-config-20261006' / name).read_text())[key]
+    assert len(secret) >= 20 and secret.startswith(('rk_live_', 'whsec_'))
+    values.add(secret)
+exclusions.append({'path': '.local-secrets/stripe-cloud-checkout-20261009', 'reason': 'authentication_full_provider_objects_hosted_capability_urls_private_identity_and_full_personal_UI_not_archived'})
+legal = set()
+for line in (ROOT / '.local-secrets/legal/release.env').read_text().splitlines():
+    line = line.strip().removeprefix('export ').strip()
+    if line.startswith(('VITE_LEGAL_OPERATOR_NAME=', 'VITE_LEGAL_SERVICE_ADDRESS=')):
+        legal.update(shlex.split(line.partition('=')[2])[:1])
+needles = {value.encode() for value in values - legal if len(value) >= 16}
+invite_path = ROOT / '.local-secrets/production-review/acceptance-invite-20261001.txt'
+if invite_path.exists():
+    needles.add(invite_path.read_text().strip().encode())
+for private_reference in (ROOT / '.local-secrets/real-core-closeout-20261005').glob('rillora-deletion-reference*.json'):
+    receipt = json.loads(private_reference.read_text()).get('receipt')
+    if receipt:
+        needles.add(receipt.encode())
+started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+objects, records = {}, []
+for name, path in sorted(files):
+    frozen, digest = snapshot.freeze_file(path, cache)
+    data = frozen.read_bytes()
+    if any(value in data for value in needles):
+        raise RuntimeError('Credential/capability match; do not archive: ' + name)
+    blob = objects.setdefault(digest, {
+        'id': uuid.uuid4().hex, 'sha256': digest, 'bytes': len(data),
+        'source': str(frozen), 'paths': [],
+    })
+    blob['paths'].append(name)
+    record = {
+        'sourcePath': name, 'bytes': len(data), 'rawObject': blob['id'],
+        'rawArchive': ARCHIVE.relative_to(ROOT).as_posix(),
+    }
+    # Signed artifacts and manifests remain raw encrypted, not public source copies.
+    text = None
+    if (readable_text(name) and (any(folder in path.parents for folder in QA_ROOTS) or path.suffix == '.md')
+            and path.suffix not in {'.pbxproj', '.plist', '.resolved'}
+            and 'test-products' not in path.parts
+            and not any(part.endswith(('.xcresult', '.dSYM', '.xctestproducts', '.app', '.framework', '.bundle', '.xctest')) for part in path.parts)):
+        try:
+            text = data.decode('utf-8')
+        except UnicodeDecodeError:
+            pass  # Binary plist/test-package metadata remains in the encrypted raw archive.
+    if text is not None:
+        text, changed = snapshot.redact(text, values | {json.loads((ROOT / '.local-secrets/stripe-webhook-20261009/owner-preview-target.json').read_text())['plannerPublicId']})
+        # Public client identifiers are not credentials, but do not duplicate
+        # ambiguous key-shaped values in generated readable receipt mirrors.
+        text = re.sub(r'("RilloraAuth0ClientID"\s*:\s*")[^"]+',
+                      r'\1[PUBLIC_IDENTIFIER_OMITTED]', text)
+        text = re.sub(r'("(?:objectKey|s3Key|S3Key|newApiSource)"\s*:\s*")([a-f0-9]{40}|[a-f0-9]{64})(\.zip)?(")',
+                      r'\1[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]\4', text)
+        relative = name
+        if path.suffix in {'.py', '.sh', '.log', '.md', '.mjs', '.cjs', '.js', '.ts'}:
+            relative += '.reference.txt'
+        target = DEST / 'receipts' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text)
+        record.update(readablePath=target.relative_to(ROOT).as_posix(),
+                      privacyRedactions=bool(changed) or text.encode() != data)
+    elif path.parent in QA_ROOTS and path.name in safe_images:
+        target = DEST / path.name
+        target.write_bytes(data)
+        record.update(readablePath=target.relative_to(ROOT).as_posix(), privacyRedactions=False)
+    records.append(record)
+
+recipient = subprocess.check_output(['age-keygen', '-y', str(snapshot.IDENTITY)], text=True).strip()
+archive = snapshot.seal_chunk(28, list(objects.values()), recipient)
+catalog = DEST / 'catalog.json'
+catalog.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
+summary = {
+    'capturedFrom': started,
+    'capturedThrough': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'workFiles': len(records), 'uniqueRawObjects': len(objects),
+    'workBytes': sum(record['bytes'] for record in records),
+    'archives': [archive], 'catalogFiles': [catalog.relative_to(ROOT).as_posix()],
+    'excluded': exclusions,
+    'selection': 'All eligible new Live configuration QA, exact provider/catalog summaries, staged/promoted vault metadata without secret bytes, initial failed/passed type and source checks, CFN/IAM/image/HTTP/read-only signature evidence, guarded catalog binding, operational helpers and local compiled API output. Archives1-27 unchanged. Authentication, full private cloud/provider objects, vault bytes and vendor/expanded asset caches excluded.',
+    'boundary': 'Source987327d37/CI37894861343 deployed as productionAPI17; actual Live configuration event signature verified, normal18event endpoint enabled. No customer checkout activation, tax fact invention, Live money, migration, new phone/TestFlight or FanPass change. Final remote receipts follow frozen capture.',
+}
+(DEST / 'snapshot.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+with tempfile.TemporaryDirectory(prefix='rillora-independent-verify-') as temporary:
+    stage = Path(temporary)
+    (stage / 'collaboration').mkdir()
+    (stage / 'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'], *summary['catalogFiles']]:
+        target = stage / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        os.link(ROOT / name, target)
+    result = verify(stage, snapshot.IDENTITY)
+(DEST / 'archive-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps({'files': len(records), 'objects': len(objects),
+                  'archiveBytes': archive['bytes'], 'verified': result['passed']}))

@@ -1,0 +1,50 @@
+{
+  "capturedFrom": "2026-10-04T15:06:55.686467+00:00",
+  "capturedThrough": "2026-10-04T15:06:57.170147+00:00",
+  "workFiles": 387,
+  "uniqueRawObjects": 262,
+  "workBytes": 122587508,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-015.tar.zst.age",
+      "sha256": "405dac275cbfa71046a198bf24461a10603fbdeb3877222edb00d47a48f8215c",
+      "bytes": 35005928,
+      "plainBytes": 120406387,
+      "uniqueObjects": 262
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/real-core-20261004-followup/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "output/qa/rillora-real-core-20261004/publication",
+      "reason": "reproducible_verification_or_extracted_ipa_copy"
+    },
+    {
+      "path": "output/qa/rillora-real-core-20261004/aws-mfa-required.jpg",
+      "reason": "actual_authentication_handoff_screen"
+    },
+    {
+      "path": "output/qa/rillora-real-core-20261004/native-account-terms.jpg",
+      "reason": "actual_authentication_handoff_screen"
+    }
+  ],
+  "unchangedPriorPathsRetained": [
+    "output/qa/rillora-real-core-20261004/continuation-reading.json",
+    "output/qa/rillora-real-core-20261004/exports/qq-empty-map.json",
+    "output/qa/rillora-real-core-20261004/installed-native-before.json",
+    "output/qa/rillora-real-core-20261004/native-artifact-check.json",
+    "output/qa/rillora-real-core-20261004/native-build.log",
+    "output/qa/rillora-real-core-20261004/preserve_work.py",
+    "output/qa/rillora-real-core-20261004/web-baseline.json",
+    "output/qa/rillora-real-core-20261004/web-copy-and-reauth.json",
+    "output/qa/rillora-real-core-20261004/web-delete-unconfirmed.jpg",
+    "output/qa/rillora-real-core-20261004/web-empty-copy-read.jpg",
+    "output/qa/rillora-real-core-20261004/web-recent-auth-required.jpg",
+    "output/qa/rillora-real-core-20261004/web-recipient-baseline.jpg",
+    "output/qa/rillora-real-core-20261004/web-signin-required.jpg"
+  ],
+  "selection": "New or changed QA since archive14, the fixed simulator and new signed build4 only. Old unchanged paths and all prior archives retained. Actual authentication/MFA screens, recovery keys, runtime session logs and reproducible caches excluded.",
+  "boundary": "No credential store, recovery private key, deletion receipt/capability, browser authentication state, device inventory, or unrelated project included. Disposable consent/import/delete remains pending at this checkpoint."
+}

@@ -4,6 +4,7 @@ import type { DatabasePool } from "./db.js";
 import {
   stripeTestCheckoutRequestSchema,
   stripeTestIdempotencyKeySchema,
+  billingPortalRequestSchema,
 } from "./domain.js";
 import { ApiError, asyncHandler } from "./errors.js";
 import { StripeCommerceExecutor } from "./stripe-commerce-executor.js";
@@ -54,6 +55,7 @@ export function createStripeTestCommerceRouter(
         plannerId: request.auth.plannerId,
         billingPeriod: input.billingPeriod,
         idempotencySeed,
+        ...(input.locale ? { locale: input.locale } : {}),
       });
       response.status(201).json({
         contractVersion: "commerce-stripe-test-v1",
@@ -73,7 +75,8 @@ export function createStripeTestCommerceRouter(
     "/portal",
     requireCsrf,
     asyncHandler(async (request, response) => {
-      const portal = await executor.createPortal(request.auth.plannerId);
+      const { locale } = billingPortalRequestSchema.parse(request.body ?? {});
+      const portal = await executor.createPortal(request.auth.plannerId, locale);
       response.status(201).json({
         contractVersion: "commerce-stripe-test-v1",
         portal,

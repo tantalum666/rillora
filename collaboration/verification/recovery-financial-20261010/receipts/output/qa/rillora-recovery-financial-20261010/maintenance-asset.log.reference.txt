@@ -1,0 +1,9 @@
+[Warning] Template validation found issues in your templates (reported as warnings).
+Set feature flag "@aws-cdk/core:validateAgainstDefaultRules" to true to turn these into errors.
+
+output/qa/rillora-recovery-financial-20261010/prepare-maintenance-asset.cjs:6:15
+WARNING Resources section must exist and be non-empty (CloudFormation Validate)
+   RilloraRecoveryAsset aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::F0001'
+
+A copy of this report can be found in: output/qa/rillora-recovery-financial-20261010/cdk-maintenance-asset/validation-report.json

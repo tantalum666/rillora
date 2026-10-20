@@ -8,10 +8,10 @@ struct PublicHomeSharingDemo: View {
 
     var body: some View {
         VStack(alignment: .leading, spacing: 24) {
-            Text("Let the right people\nsee the right details.")
+            Text(String(localized: "Let the right people\nsee the right details."))
                 .font(.system(.largeTitle, design: .serif)).foregroundStyle(palette.ink)
                 .fixedSize(horizontal: false, vertical: true).accessibilityAddTraits(.isHeader)
-            Text("Choose a person. Choose their view.")
+            Text(String(localized: "Choose a person. Choose their view."))
                 .font(.body).foregroundStyle(palette.muted)
             HStack(spacing: 32) {
                 ForEach(PublicHomeExamplePerson.allCases) { candidate in
@@ -42,7 +42,7 @@ struct PublicHomeSharingDemo: View {
                 }
             }
             .frame(maxWidth: .infinity)
-            Text("INTERACTIVE EXAMPLE")
+            Text(String(localized: "INTERACTIVE EXAMPLE"))
                 .font(.caption).tracking(1.5).foregroundStyle(palette.muted)
                 .frame(maxWidth: .infinity)
             sheet
@@ -53,7 +53,7 @@ struct PublicHomeSharingDemo: View {
 
     private var sheet: some View {
         VStack(alignment: .leading, spacing: 0) {
-            Text("Shared with \(person.title)")
+            Text(L10n.format("Shared with %1$@", person.title))
                 .font(.system(.title2, design: .serif)).foregroundStyle(palette.ink)
                 .padding(.bottom, 20).accessibilityAddTraits(.isHeader)
             ForEach(person.matters) { matter in
@@ -77,7 +77,7 @@ struct PublicHomeSharingDemo: View {
                         .frame(minHeight: 54).contentShape(Rectangle())
                     }
                     .buttonStyle(.plain)
-                    .accessibilityValue(expandedID == matter.id ? "Expanded" : "Collapsed")
+                    .accessibilityValue(expandedID == matter.id ? String(localized: "Expanded") : String(localized: "Collapsed"))
                     .accessibilityIdentifier("public-home.example.\(matter.id)")
                     if expandedID == matter.id {
                         Text(matter.note).font(.subheadline).foregroundStyle(palette.muted)
@@ -87,7 +87,7 @@ struct PublicHomeSharingDemo: View {
                     palette.rule.frame(height: 1)
                 }
             }
-            Text("\(person.matters.count) \(person.matters.count == 1 ? "matter" : "matters") shared. Everything else stays private.")
+            Text(L10n.format("%1$lld matters shared. Everything else stays private.", person.matters.count))
                 .font(.footnote).foregroundStyle(palette.muted).padding(.top, 16)
                 .fixedSize(horizontal: false, vertical: true)
         }
@@ -100,18 +100,18 @@ struct PublicHomeSharingDemo: View {
 enum PublicHomeExamplePerson: String, CaseIterable, Identifiable {
     case mum, alex
     var id: String { rawValue }
-    var title: String { self == .mum ? "Mum" : "Alex" }
+    var title: String { self == .mum ? String(localized: "Mum") : "Alex" }
     var initial: String { self == .mum ? "M" : "A" }
     var matters: [PublicHomeExampleMatter] {
         switch self {
         case .mum:
-            [PublicHomeExampleMatter(id: "insurance", title: "Insurance", detail: "Policy location", symbol: "doc.text",
-                note: "Example: policy documents are in the green folder at home. Contact the insurer for the next step."),
-             PublicHomeExampleMatter(id: "home", title: "Home documents", detail: "Where to find them", symbol: "house",
-                note: "Example: property records and the solicitor’s contact details are kept together in the home documents folder.")]
+            [PublicHomeExampleMatter(id: "insurance", title: String(localized: "Insurance"), detail: String(localized: "Policy location"), symbol: "doc.text",
+                note: String(localized: "Example: policy documents are in the green folder at home. Contact the insurer for the next step.")),
+             PublicHomeExampleMatter(id: "home", title: String(localized: "Home documents"), detail: String(localized: "Where to find them"), symbol: "house",
+                note: String(localized: "Example: property records and the solicitor’s contact details are kept together in the home documents folder."))]
         case .alex:
-            [PublicHomeExampleMatter(id: "crypto", title: "Crypto account", detail: "Exchange and next steps", symbol: "building.columns",
-                note: "Example: the account is held at an exchange. Use its official estate request process; no passwords or recovery phrases belong here.")]
+            [PublicHomeExampleMatter(id: "crypto", title: String(localized: "Crypto account"), detail: String(localized: "Exchange and next steps"), symbol: "building.columns",
+                note: String(localized: "Example: the account is held at an exchange. Use its official estate request process; no passwords or recovery phrases belong here."))]
         }
     }
 }

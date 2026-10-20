@@ -1,0 +1,45 @@
+name: Web UX browser regression
+on:
+  push:
+    branches: ['codex/web-ux-refinement-20261006', 'codex/guide-layout-locale-20261008', 'codex/web-plan-layout-20261008']
+    paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']
+  pull_request:
+    paths: ['apps/web/**', 'config/provider-guides.json', '.github/workflows/web-ux-browser.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: web-ux-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  browser:
+    runs-on: ubuntu-24.04
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020
+        with:
+          node-version: '22.22.3'
+          cache: npm
+          cache-dependency-path: apps/web/package-lock.json
+      - name: Install locked test dependencies
+        working-directory: apps/web
+        run: npm ci
+      - name: Install isolated Chromium
+        working-directory: apps/web
+        run: npx playwright install --with-deps chromium
+      - name: Exercise synthetic Web routes and interactions
+        working-directory: apps/web
+        run: npm run test:browser
+      - name: Retain synthetic screenshots and exact results
+        if: always()
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
+        with:
+          name: web-ux-synthetic-${{ github.sha }}
+          path: |
+            apps/web/browser-results
+            apps/web/browser-report
+          retention-days: 7
+          if-no-files-found: warn

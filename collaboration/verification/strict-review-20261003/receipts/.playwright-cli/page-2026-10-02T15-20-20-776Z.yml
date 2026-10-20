@@ -1,0 +1,40 @@
+- generic [ref=f1e11]:
+  - complementary "Primary navigation" [ref=f1e12]:
+    - navigation [ref=f1e13]:
+      - button "Overview" [ref=f1e14] [cursor=pointer]
+      - button "My plan" [ref=f1e18] [cursor=pointer]
+      - button "Matters" [ref=f1e22] [cursor=pointer]
+      - button "Trusted contacts" [ref=f1e26] [cursor=pointer]
+      - button "Shared with me" [ref=f1e30] [cursor=pointer]
+      - button "Shared reviews" [active] [ref=f1e34] [cursor=pointer]
+      - button "Account inheritance" [ref=f1e38] [cursor=pointer]
+      - button "Plan & access" [ref=f1e42] [cursor=pointer]
+      - button "Activity" [ref=f1e46] [cursor=pointer]
+    - generic [ref=f1e51]:
+      - strong [ref=f1e54]: Directions, not passwords.
+      - button "Safety & privacy" [ref=f1e55] [cursor=pointer]
+    - button "Settings" [ref=f1e56] [cursor=pointer]
+  - main [ref=f1e60]:
+    - generic [ref=f1e61]:
+      - paragraph [ref=f1e62]: Local QA · test data
+      - 'button "Appearance: system" [ref=f1e65] [cursor=pointer]'
+    - generic [ref=f1e134]:
+      - heading "Shared reviews" [level=1] [ref=f1e135]
+      - generic [ref=f1e136]:
+        - generic [ref=f1e137]:
+          - group "Review inbox" [ref=f1e138]:
+            - button "My plan" [pressed] [ref=f1e139] [cursor=pointer]
+            - button "For me" [ref=f1e140] [cursor=pointer]
+          - button "Refresh reviews" [ref=f1e141] [cursor=pointer]
+        - generic [ref=f1e144]:
+          - img "Shared review" [ref=f1e145]:
+            - strong [ref=f1e149]
+          - generic [ref=f1e152]:
+            - text: Family preview
+            - heading "Keep directions current" [level=2] [ref=f1e153]
+            - paragraph [ref=f1e154]: Next review · Not scheduled
+        - button "Connect someone and share directions" [ref=f1e155] [cursor=pointer]
+        - button "Review schedule & collaborator Not scheduled · In app" [ref=f1e161] [cursor=pointer]:
+          - generic [ref=f1e164]:
+            - strong [ref=f1e165]: Review schedule & collaborator
+            - generic [ref=f1e166]: Not scheduled · In app

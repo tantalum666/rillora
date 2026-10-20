@@ -1,0 +1,28 @@
+infra/aws/bin/rillora.ts:140:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+infra/aws/bin/rillora.ts:140:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+infra/aws/bin/rillora.ts:140:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+infra/aws/bin/rillora.ts:140:8
+WARNING Parameters/Auth0DeletionClientId: Parameter 'Auth0DeletionClientId' is not referenced anywhere in the template (CloudFormation Validate)
+   RilloraStaging aws-cdk-lib.Stack
+   Acknowledge with 'CloudFormation-Validate::W2001'
+
+✨  Synthesis time: 0.44s
+
+RilloraStaging: start: Building WebDeployment/Asset1
+RilloraStaging: success: Built WebDeployment/Asset1
+RilloraStaging: start: Publishing WebDeployment/Asset1 (current_account-eu-central-1-68c5b8bf)
+RilloraStaging: success: Published WebDeployment/Asset1 (current_account-eu-central-1-68c5b8bf)
+RilloraStaging: creating CloudFormation changeset...
+S3 object does not exist. Bucket: cdk-hnb659fds-assets-133857166372-eu-central-1, Key: 84f35cc28f2749b41e884f30d046fe3da28023b3360a2b71135e19a077b3c224.json. Error: NoSuchKey

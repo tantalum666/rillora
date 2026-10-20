@@ -1,0 +1,94 @@
+TAP version 13
+# Subtest: hosted entry starts unchecked and creates no receipt before submission
+ok 1 - hosted entry starts unchecked and creates no receipt before submission
+  ---
+  duration_ms: 1.302
+  type: 'test'
+  ...
+# Subtest: a checked, current form produces the exact API contract
+ok 2 - a checked, current form produces the exact API contract
+  ---
+  duration_ms: 0.777125
+  type: 'test'
+  ...
+# Subtest: unchecked, missing and coerced values cannot produce a receipt
+ok 3 - unchecked, missing and coerced values cannot produce a receipt
+  ---
+  duration_ms: 0.223667
+  type: 'test'
+  ...
+# Subtest: a different form or stale server-side contract is rejected
+ok 4 - a different form or stale server-side contract is rejected
+  ---
+  duration_ms: 0.115333
+  type: 'test'
+  ...
+# Subtest: other applications are not changed by this iOS migration
+ok 5 - other applications are not changed by this iOS migration
+  ---
+  duration_ms: 0.172625
+  type: 'test'
+  ...
+# Subtest: existing iOS versions are not given an extra hosted consent step
+ok 6 - existing iOS versions are not given an extra hosted consent step
+  ---
+  duration_ms: 0.050625
+  type: 'test'
+  ...
+# Subtest: form contains only one required legal field and the ordinary continue action
+ok 7 - form contains only one required legal field and the ordinary continue action
+  ---
+  duration_ms: 0.11475
+  type: 'test'
+  ...
+# Subtest: Chinese form has the same required acceptance and produces the same versioned proof
+ok 8 - Chinese form has the same required acceptance and produces the same versioned proof
+  ---
+  duration_ms: 0.682125
+  type: 'test'
+  ...
+# Subtest: preserves other clients and denies unknown identities and expired review access
+ok 9 - preserves other clients and denies unknown identities and expired review access
+  ---
+  duration_ms: 6.094291
+  type: 'test'
+  ...
+# Subtest: native consent starts unchecked and only exact affirmative continuation sets a receipt
+ok 10 - native consent starts unchecked and only exact affirmative continuation sets a receipt
+  ---
+  duration_ms: 0.553458
+  type: 'test'
+  ...
+# Subtest: Web keeps the existing API clickwrap and receives no invented hosted receipt
+ok 11 - Web keeps the existing API clickwrap and receives no invented hosted receipt
+  ---
+  duration_ms: 0.453542
+  type: 'test'
+  ...
+# Subtest: both named review participants can authenticate while a third identity stays denied
+ok 12 - both named review participants can authenticate while a third identity stays denied
+  ---
+  duration_ms: 0.535541
+  type: 'test'
+  ...
+# Subtest: malformed, duplicate or oversized review lists fail closed
+ok 13 - malformed, duplicate or oversized review lists fail closed
+  ---
+  duration_ms: 1.545417
+  type: 'test'
+  ...
+# Subtest: Chinese native review uses an unchecked Chinese form under the same access gate
+ok 14 - Chinese native review uses an unchecked Chinese form under the same access gate
+  ---
+  duration_ms: 0.40925
+  type: 'test'
+  ...
+1..14
+# tests 14
+# suites 0
+# pass 14
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 103.046417

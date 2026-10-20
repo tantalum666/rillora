@@ -1,0 +1,29 @@
+{
+  "at": "2026-10-13T08:34:35.781Z",
+  "readOnly": true,
+  "sameJwtForBothRequests": true,
+  "officialLibraryUsed": true,
+  "signatureSelfCheck": true,
+  "tokenLifetimeSeconds": 300,
+  "bundleMatches": true,
+  "credentialsPrintedOrSaved": false,
+  "actualPurchase": false,
+  "observations": [
+    {
+      "environment": "sandbox",
+      "status": 200,
+      "serverDate": "Tue, 13 Oct 2026 08:34:35 GMT",
+      "requestId": "T34SG2RZAXG6NZCS45YM7KI7NA",
+      "serverClockSkewSeconds": 0,
+      "recordCount": 0
+    },
+    {
+      "environment": "production",
+      "status": 401,
+      "serverDate": "Tue, 13 Oct 2026 08:34:35 GMT",
+      "requestId": "EFK7K2WB36LGY3NEZ7A6YUN6YM",
+      "serverClockSkewSeconds": -1,
+      "apiError": null
+    }
+  ]
+}

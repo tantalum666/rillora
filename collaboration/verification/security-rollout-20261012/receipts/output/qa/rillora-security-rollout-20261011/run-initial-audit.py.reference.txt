@@ -1,0 +1,58 @@
+"""Start/check one fixed read-only probe on the unchanged, currently deployed maintenance task."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,os,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3]
+P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('operation',choices=['start','check']);parser.add_argument('environment',choices=['production','staging']);args=parser.parse_args()
+profile='rillora-'+args.environment+'-operator';stackName='RilloraProduction' if args.environment=='production' else 'RilloraStaging'
+def aws(service,operation,payload):
+ reader='rillora-cdk-deploy' if service=='cloudformation' else profile
+ r=subprocess.run(['aws','--profile',reader,'--region','eu-central-1',service,operation,'--cli-input-json',json.dumps(payload),'--output','json'],capture_output=True,text=True,timeout=60)
+ if r.returncode:raise RuntimeError(service+'/'+operation+': '+r.stderr[:500])
+ return json.loads(r.stdout)
+def save(path,v):
+ path.write_text(json.dumps(v,indent=2)+'\n');path.chmod(0o600)
+receipt=P/(args.environment+'-initial-audit.json')
+if args.operation=='start':
+ assert not receipt.exists(),'An initial probe is already recorded; inspect it instead'
+ identity=aws('sts','get-caller-identity',{});assert identity['Account']=='133857166372' and ':assumed-role/'+profile+'/' in identity['Arn']
+ stack=aws('cloudformation','describe-stacks',{'StackName':stackName})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+ actual=aws('cloudformation','get-template',{'StackName':stackName})['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+ assert actual==json.loads((P/(stackName+'-before-template.json')).read_text()),'Current template differs from baseline'
+ o={r['OutputKey']:r['OutputValue'] for r in stack['Outputs']}
+ task=aws('ecs','describe-task-definition',{'taskDefinition':o['MigrationTaskDefinitionArn']})['taskDefinition'];container=task['containerDefinitions'][0]
+ assert len(task['containerDefinitions'])==1 and container['name']==('Maintenance' if args.environment=='production' else 'Migration')
+ env={r['name']:r['value'] for r in container.get('environment',[])}
+ assert env.get('CONTENT_KEY_NAMESPACE') in ([None,'rillora-staging'] if args.environment=='staging' else ['rillora-production']) and env['DATABASE_SSL_MODE']=='verify-full'
+ source=(ROOT/'tools/release/probe_security_rollout.mjs').read_text()
+ overrides={'containerOverrides':[{'name':container['name'],'command':['node','--input-type=module','-e',source],
+  'environment':[{'name':'RILLORA_DEPLOYMENT_AUDIT_ENVIRONMENT','value':args.environment}]}]}
+ assert len(json.dumps(overrides).encode())<=8192
+ request={'cluster':o['ClusterName'],'taskDefinition':task['taskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+  'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds' if args.environment=='production' else 'PublicSubnetIds'].split(','),
+   'securityGroups':[o['MigrationSecurityGroupId' if args.environment=='production' else 'TaskSecurityGroupId']],'assignPublicIp':'ENABLED'}},'overrides':overrides}
+ save(P/(args.environment+'-initial-audit-request.json'),request)
+ log=container['logConfiguration']['options']
+ state={'requestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scriptSha256':hashlib.sha256(source.encode()).hexdigest(),'cluster':o['ClusterName'],'logGroup':log['awslogs-group'],'logPrefix':log['awslogs-stream-prefix'],'container':container['name'],'request':request}
+ save(receipt,state)
+ response=aws('ecs','run-task',request);assert not response.get('failures') and len(response.get('tasks',[]))==1
+ state['arn']=response['tasks'][0]['taskArn'];save(receipt,state)
+ print(json.dumps({'environment':args.environment,'readOnlyProbeStarted':True,'taskArn':state['arn'],'servicePaused':False}))
+else:
+ state=json.loads(receipt.read_text());assert state.get('arn'),'Investigate the saved idempotent request before repeating'
+ response=aws('ecs','describe-tasks',{'cluster':state['cluster'],'tasks':[state['arn']]});assert not response.get('failures') and len(response['tasks'])==1
+ task=response['tasks'][0];c=task['containers'][0];result={'environment':args.environment,'status':task['lastStatus'],'exitCode':c.get('exitCode')}
+ if task['lastStatus']=='STOPPED':
+  log=aws('logs','get-log-events',{'logGroupName':state['logGroup'],'logStreamName':state['logPrefix']+'/'+state['container']+'/'+state['arn'].rsplit('/',1)[1],'startFromHead':True})
+  save(P/(args.environment+'-initial-audit-log.json'),log)
+  values=[]
+  for line in log['events']:
+   try:values.append(json.loads(line['message']))
+   except (ValueError,TypeError):pass
+  if c.get('exitCode')==0:
+   reports=[v for v in values if isinstance(v,dict) and v.get('readOnly') is True and 'fingerprints' in v];assert len(reports)==1
+   report=reports[0];save(P/(args.environment+'-initial-data-baseline.json'),report)
+   result.update({'passed':True,'migrations':len(report['migrations']),'pendingIdentityDeletions':report['pendingIdentityDeletions'],'fingerprintedTables':len(report['fingerprints']),'contentProtectionEnforced':report['contentProtectionEnforced'],'hardenedSchema':report['hardenedSchema']})
+  else:result['diagnostics']=[v for v in values if isinstance(v,dict) and v.get('auditFailed')]
+  (Q/(args.environment+'-initial-audit-result.json')).write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps(result))

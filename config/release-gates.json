@@ -1,12 +1,12 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-02",
+  "updatedAt": "2026-10-15",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
     {
       "id": "production-runtime",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Separate production runtime and data",
       "evidence": [
@@ -25,13 +25,33 @@
         "collaboration/verification/resend-20261001/aws-session-boundary.json",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
-        "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json"
+        "collaboration/verification/release-123-20261002/receipts/ocsp-deploy-outputs.json",
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "output/qa/rillora-real-core-20261004/disposable-access-add-complete.json",
+        "output/qa/rillora-real-core-closeout-20261005/disposable-access-remove-complete.json",
+        "docs/qa/dot-followup-20261005/README.md",
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/live-configuration-20261009.md",
+        "docs/web-rollout-20261009.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Repairs and restricted review runtime/Web/WWW are deployed. API10 deployment outputs and Apple TEST delivery are retained; schema0091 is unchanged. Finish remaining real Web/native journeys and controlled customer cutover. A later expired AWS session is not a reason to repeat completed rollout."
+      "next": "The unchanged protected API/schema remains; October15 completes the existing Web admission/catalog/static cutover after fresh old-token denial evidence. Both frontend stacks preserve all other resources/parameters,117HTTPS files match40c76496f/CI153. No new API or DB deployment."
     },
     {
       "id": "production-identity",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Production identity and recovery",
       "evidence": [
@@ -66,13 +86,24 @@
         "collaboration/verification/release-123-20261002/signup-copy-applied.json",
         "collaboration/verification/email-logo-20261002/reset-completion.json",
         "collaboration/verification/email-logo-20261002/qq-shared-api-fields.json",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/real-core-acceptance-20261004.md",
+        "output/qa/rillora-real-core-closeout-20261005/deletion-owner-deferred.json",
+        "docs/release-readiness.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "QQ reset/new-password Web login, native cross-platform read and exact Directions fields are verified. Planner fresh genuine consent/authentication remains parked, followed by remaining scope/revoke/export/delete/recent-auth journeys. QQ image source/preview are healthy; receiving-client cause remains unproven. Preserve current identities and physical-device deferral."
+      "next": "Four old Preview issuers remain disabled and twoM2Mrequests still403after the measured deadline. Current source-matching production consent Action is deployed with unchanged otherAction/order and mandatory native current consent. Dedicated reviewer Web/native login and original Google phone login succeed. Owner-deferred Auth0 outer-shell cosmetics remain unresolved but are not this identity safety gate."
     },
     {
       "id": "production-billing",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Ordinary customer purchase lifecycle",
       "evidence": [
@@ -82,17 +113,41 @@
         "output/qa/rillora-web-price-88-99-20260926/work-state.json",
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
-        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json"
+        "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/stripe-cloud-acceptance-20261009.md",
+        "docs/live-configuration-20261009.md",
+        "docs/release-readiness.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "collaboration/verification/stripe-tax-deferral-20261010/verification.json",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Production schema0091 retains Web8899 annual-only and historical prices. Recovery current-provider reconciliation is implemented and locally verified; live Stripe remains disabled pending Owner-deferred merchant/tax facts and actual provider configuration/transactions. No repeated schema0070 rollout or new monthly offer is needed."
+      "next": "Original Web route/market opened after fresh provider readiness and catalog fingerprint;USD88.99annual,disabledautomaticTax,existing signed callback/test-refund evidence retained. No new self-payment or customer revenue claim. Two Apple Production routes stay independently closed; Apple lifecycle is separately gated."
     },
     {
       "id": "merchant-market",
-      "status": "owner_deferred",
+      "status": "verified",
       "required": true,
       "title": "Merchant and ready-market facts",
-      "evidence": [],
-      "next": "Owner says to defer Hong Kong business/registration; do not request documents again or mark this verified. Keep live charging and public market activation closed."
+      "evidence": [
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/live-configuration-20261009.md",
+        "docs/decision-log.md",
+        "collaboration/verification/stripe-tax-deferral-20261010/verification.json",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
+      ],
+      "next": "Rillora Live account/product/price readiness passes. Owner removed tax strategy as the opening prerequisite; explicit disabled tax automation retained without invented tax exemption. Only the existing GLOBAL_US Web route is opened, with no new regions or Apple availability."
     },
     {
       "id": "apple-transactions",
@@ -113,9 +168,24 @@
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/receipts/apple-test-notification-after-fix.json",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/matter-category-refinement-20261008.md",
+        "docs/direct-device-iteration-20261008.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Restricted review enrollment and official TEST delivery are complete. Internal TestFlight1.0(2) is uploaded/processed but Missing Compliance; no tester invite or install. Export-compliance determination and Owner-resumed physical Apple interaction precede actual purchase/restore/lifecycle and provider reconciliation. Original review expiry and prices remain."
+      "next": "Retain actualHKD888Sandboxpurchase/restore and native14evidence. Dedicated reviewer remains enrolled throughOctober27. Apple prereleaseProduction401is not a presubmission blocker. After approval configure streamlined purchasing, manually release, then verify Productionauthorization/notifications/reconciliation before enabling two new-sale routes. No generic401fallback."
     },
     {
       "id": "operations",
@@ -134,13 +204,15 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/retention-worker-heartbeats.json",
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
-        "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json"
+        "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md"
       ],
-      "next": "Fourteen public targets and separate Sandbox worker alarms are retained. The bounded retention worker emits a successful production heartbeat and its three enabled alarms readOK. Manual-snapshot worker retains the exact snapshot until its deadline. Prior delivered-alarm/silence proof keeps its original date; no new delivery or SLA claim."
+      "next": "Fourteen public targets retain existing schedules and recipients; production session probes now require401 and reject503. Four new Production StoreKit worker alarms supplement Sandbox/retention alarms, all readOKwith exact existing SNS actions. The updated cloud checker returnsoktrue/failed0; previous notification/silence drills retain their original date, not rerun."
     },
     {
       "id": "backup-retention",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Restore and deletion/retention operations",
       "evidence": [
@@ -153,13 +225,23 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/release-acceptance-retry-result.json",
         "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
-        "output/qa/rillora-launch-resume-20260930/api-final-regression.json"
+        "output/qa/rillora-launch-resume-20260930/api-final-regression.json",
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "docs/stripe-cloud-acceptance-20261009.md",
+        "docs/live-configuration-20261009.md",
+        "docs/release-readiness.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/recovery-financial-acceptance-20261010.md",
+        "output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
+        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json"
       ],
-      "next": "Bounded retention, independent retention holds and exact90day manual-snapshot retirement are deployed. Current-provider post-restore reconciliation and freeze/isolation guards are implemented and locally tested. Preserve the prior real RDS/KMS/privacy replay proof; actual reconciliation against later real Apple/Stripe transactions depends on the still-open purchase/provider gates."
+      "next": "Current scoped restore/retention acceptance completed: real production snapshot and isolated clone, current signed Apple Sandbox reconciliation, real Stripe TEST-backed local restores, fresh-proof/coverage/forced-RLS guards and original-network/KMS/journal denial checks. Source service resumed; exact temporary clone/snapshot absent; source encrypted/private/protected with7day backups. Missing post-snapshot identity/catalog/full historical accounting still requires explicit recovery; no automatic promotion or lossless failover promise. Owner-retained account deletion is a separate deferred identity acceptance."
     },
     {
       "id": "release-security",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Release artifact and security acceptance",
       "evidence": [
@@ -172,9 +254,32 @@
         "docs/code-review-repair-20260930.md",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/ci43.json",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
+        "output/qa/rillora-real-core-closeout-20261005/deletion-owner-deferred.json",
+        "docs/qa/dot-followup-20261005/README.md",
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/dot-integration-20261007.md",
+        "docs/dot-integration-20261008.md",
+        "docs/web-rollout-20261009.md",
+        "docs/live-configuration-20261009.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/recovery-financial-acceptance-20261010.md",
+        "output/qa/rillora-recovery-financial-20261010/acceptance-summary.json",
+        "output/qa/rillora-recovery-financial-20261010/cleanup-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Route-bound reauthentication, account-bound browser requests and serialized Stripe observations are deployed. CI43 covers the changed source. Complete actual provider reauthentication/remaining core user journeys and general customer cutover without treating local or deployment evidence as acceptance."
+      "next": "Retain schema103/security/recovery evidence. October15fresh verification closes the expired86400+300second Preview token window;fourissuersstaydisabled/two403. No auth/certification bypass. GitHub private-plan enforced checks remain unavailable; current source CI153passes."
     },
     {
       "id": "apple-submission",
@@ -188,21 +293,55 @@
         "docs/release-engineering-20260930.md",
         "output/qa/rillora-launch-resume-20260930/native-final-distribution-check.json",
         "docs/app-store-presentation-20260930.md",
-        "docs/independent-release-closeout-20261002.md"
+        "docs/independent-release-closeout-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "output/qa/rillora-real-core-20261004/apple-build4-readback.json",
+        "docs/qa/dot-followup-20261005/README.md",
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/direct-device-iteration-20261008.md",
+        "docs/matter-category-refinement-20261008.md",
+        "docs/release-readiness.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/provider-diagnostics-20261013.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Internal TestFlight1.0(2) is strictly checked, uploaded and processed; Apple reports Missing Compliance. Four iPhone/two iPad designs and beta basics are saved/read back; public listing matches source. Final declarations/contact/market/price, operative reviewer access and acceptance remain; a new build number with external-distribution configuration is required for eventual submission. No review or public release."
+      "next": "Apple accepted submission6537a10c-38f2-425e-8b8e-c76e5fa730b1atHong Kong2026-10-15 09:49. App1.0(14),FamilyannualandgroupallWaitingforReview. DedicatedreviewerWeb/nativeandroundtrippassed;Ownercancelledfurtherphysicaltesting. No monthlyproductorTestFlight. AwaitAppleoutcome;manualreleaseandpost-releaseProductionverificationremain."
     },
     {
       "id": "physical-device",
       "status": "owner_deferred",
       "required": true,
       "title": "Physical-device acceptance",
-      "evidence": [],
-      "next": "Owner explicitly reaffirmed physical-device deferral on October2. A paired device and prepared development build do not resume that scope. No installation or phone interaction; Simulator production sign-in is separate evidence."
+      "evidence": [
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "output/qa/rillora-device-config-20261006/apple-purchase-readback-result.json",
+        "output/qa/rillora-device-config-20261006/distribution-build8.json",
+        "docs/direct-device-iteration-20261008.md",
+        "docs/matter-category-refinement-20261008.md",
+        "docs/dot-integration-20261008.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/final-readiness-20261013.md",
+        "docs/app-store-preflight-20261013.md",
+        "docs/app-review-preflight-20261014.md"
+      ],
+      "next": "Owner explicitly says no further physical-device verification onOctober15. Stop and do not request it again. Original phone14account/matter and HKD888test-plan evidence retained; Owner explicitly confirms legal return preserves account/data. Unsubscribed-device/VoiceOver tests are cancelled, not passed. Dedicated reviewer simulator round trip is separate."
     },
     {
       "id": "public-surface",
-      "status": "in_progress",
+      "status": "verified",
       "required": true,
       "title": "Public product and support entry",
       "evidence": [
@@ -215,9 +354,26 @@
         "output/qa/rillora-ui-ux-audit-20260929/online-readback.json",
         "docs/code-review-repair-20260930.md",
         "docs/release-123-20261001.md",
-        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json"
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
+        "docs/code-review-20261002.md",
+        "docs/review-rollout-20261003.md",
+        "docs/qa/dot-followup-20261005/README.md",
+        "docs/chinese-copy-guidelines-20261005.md",
+        "docs/device-config-20261006.md",
+        "docs/release-12-stripe-20261005.md",
+        "collaboration/verification/release-12-stripe-20261006/closeout.json",
+        "docs/web-rollout-20261009.md",
+        "docs/stripe-cloud-acceptance-20261009.md",
+        "docs/dot-integration-20261008.md",
+        "docs/payment-recheck-20261009.md",
+        "output/qa/rillora-payment-recheck-20261009/final-payment-verification.json",
+        "docs/security-rollout-20261012.md",
+        "docs/native-cross-platform-acceptance-20261012.md",
+        "docs/web-billing-activation-20261013.md",
+        "collaboration/verification/web-billing-activation-20261013/README.md",
+        "docs/app-review-preflight-20261014.md"
       ],
-      "next": "The WWW subscription-terms correction and product invitation router are deployed. Retain domain/TLS/hosting and focused route readbacks; final public customer transition remains dependent on the other release gates."
+      "next": "October15production App/public website deployed from40c76496f/CI153;onlyoneexistingstaticassetperstack,allotherresources/parametersunchanged.117HTTPShashesmatchandactualZH/ENpricing/entryreadbackpasses. CustomerAccesslive now matches actual ordinary Web admission/new-sales state."
     },
     {
       "id": "review-remediation",
@@ -272,6 +428,8 @@
     "Bank integrations",
     "Enterprise multi-tenancy",
     "Full online E2EE (Owner deferred)",
-    "SOC2 certification as a self-imposed first-release requirement"
+    "SOC2 certification as a self-imposed first-release requirement",
+    "Enabling the optional Stripe Tax automation service; actual tax obligations remain separate",
+    "Owner-deferred Auth0 outer-shell cosmetic/localization work (October14)"
   ]
 }

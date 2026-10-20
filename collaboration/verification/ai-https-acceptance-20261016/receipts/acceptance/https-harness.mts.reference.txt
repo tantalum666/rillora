@@ -1,0 +1,221 @@
+// Temporary public HTTPS acceptance. Only a newly created synthetic identity and local data.
+import pg from '../../../apps/api/node_modules/pg/lib/index.js';
+import express from '../../../apps/api/node_modules/express/index.js';
+import helmet from '../../../apps/api/node_modules/helmet/index.mjs';
+import { Client, StreamableHTTPClientTransport } from '../../../apps/api/node_modules/@modelcontextprotocol/client/dist/index.mjs';
+import { createServer } from 'node:http';
+import { randomBytes, createHash } from 'node:crypto';
+import { spawn, execFileSync } from 'node:child_process';
+import { createInterface } from 'node:readline';
+import { readFile, writeFile, appendFile } from 'node:fs/promises';
+import { resolve } from 'node:path';
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from '../../../apps/api/tests/dedicated-test-database.js';
+import { runMigrations } from '../../../apps/api/src/migrate.js';
+import { bootstrapRuntimeRole } from '../../../apps/api/src/bootstrap-runtime.js';
+import { createPool, configureContentPool } from '../../../apps/api/src/db.js';
+import { TestContentKeys } from '../../../apps/api/tests/content-test-keys.js';
+import { loadConfig } from '../../../apps/api/src/config.js';
+import { currentLegalContract } from '../../../apps/api/src/legal-contract.js';
+import { createApp } from '../../../apps/api/src/app.js';
+import { createOidcIdentityProvider } from '../../../apps/api/src/identity.js';
+import { MCP_SCOPES, loadMcpConfig } from '../../../apps/api/src/mcp/config.js';
+import { createMcpTokenVerifier } from '../../../apps/api/src/mcp/identity.js';
+import { McpIntegration } from '../../../apps/api/src/mcp/integration.js';
+
+const root=process.cwd(),qa=resolve(root,'output/qa/rillora-ai-https-20261016');
+const privateDir=resolve(root,'.local-secrets/ai-https-20261016');
+const registration=JSON.parse(await readFile(resolve(privateDir,'registration.json'),'utf8'));
+if(registration.purpose!=='mcp-https-synthetic-20261016'||registration.restored||!registration.syntheticUserId)throw Error('Wrong synthetic registration');
+const origin=new URL(registration.origin);
+if(origin.protocol!=='https:'||!origin.hostname.endsWith('.trycloudflare.com'))throw Error('Unexpected temporary origin');
+const save=(name:string,value:any)=>writeFile(resolve(qa,name),JSON.stringify(value,null,2)+'\n');
+const db='rillora_mcp_https_test',role='continuity_runtime_mcp_https_test';
+const url=dedicatedTestDatabaseUrl('postgresql:///'+db,db);
+await assertDedicatedTestDatabase(url,db);await runMigrations(url);
+const admin=new pg.Client({connectionString:url});await admin.connect();
+if(Number((await admin.query('select count(*) from app.planners')).rows[0].count)!==0)throw Error('Synthetic database is not empty');
+const password=randomBytes(32).toString('hex'),authority=randomBytes(48).toString('base64url');
+await bootstrapRuntimeRole(admin,role,password,true,authority);
+const runtime=new URL(url);runtime.username=role;runtime.password=password;
+// Existing Web credential remains in this process only, never a file, URL, argument or child environment.
+function readWebSecret(){
+ try{return JSON.parse(execFileSync('auth0',['api','get',`clients/${registration.webClientId}?fields=client_secret&include_fields=true`,
+  '--tenant','rillora-dev.eu.auth0.com','--no-input'],{encoding:'utf8',stdio:['ignore','pipe','pipe']})).client_secret;}
+ catch{throw Error('Unable to read the existing test Web credential');}
+}
+const clientSecret=readWebSecret();
+if(typeof clientSecret!=='string'||clientSecret.length<16)throw Error('Web credential unavailable');
+const env={NODE_ENV:'test',DATABASE_URL:runtime.toString(),DATABASE_AUTHORITY_KEY:authority,ALLOW_DEV_AUTH:'false',
+  REQUIRE_RECENT_AUTHENTICATION:'true',TRUST_PROXY_HOPS:'1',CORS_ORIGINS:origin.origin,WEB_APP_ORIGIN:origin.origin,
+  OIDC_ISSUER_URL:'https://login.rillora.xyz',OIDC_CLIENT_ID:registration.webClientId,OIDC_CLIENT_SECRET:clientSecret,
+  OIDC_REDIRECT_URI:origin.origin+'/api/auth/callback',ALLOW_MCP_INTEGRATION:'true',MCP_RESOURCE_URL:registration.resource,
+  MCP_CLIENTS_JSON:JSON.stringify([{key:'codex',name:'Codex',clientId:registration.clientId,privacyUrl:'https://openai.com/policies/privacy-policy/'}])};
+const config=loadConfig(env),pool=createPool(config);
+const contentKeys=new TestContentKeys();
+configureContentPool(pool,{mode:'encrypted',namespace:'mcp-https-test',region:'eu-central-1',kmsKeyArn:'test-only-provider'},false,contentKeys);
+const mcpConfig=loadMcpConfig(env,config)!;
+const verifier=createMcpTokenVerifier(mcpConfig);let acceptedToken:string|undefined;
+const mcp=new McpIntegration(pool,config,mcpConfig,{async verifyAccessToken(token:string){
+  const auth=await verifier.verifyAccessToken(token);
+  if((auth.extra?.actor as any)?.subject!==registration.syntheticUserId)throw Error('Only synthetic fixture identity is allowed');
+  acceptedToken=token;
+  await save('verified-token-boundaries.json',{realAuth0Signature:true,expectedIssuerAudienceClient:true,onlySyntheticSubject:true,
+    scopes:auth.scopes,rawCredentialPersisted:false,remainingLifetimeSeconds:Math.round(auth.expiresAt-Date.now()/1000)});
+  return auth;
+}});
+const provider=createOidcIdentityProvider(config.oidc!);
+const api=createApp(pool,config,{mcp,identityProvider:{
+  createAuthorizationUrl:(...args:any[])=>provider.createAuthorizationUrl(...args),
+  async exchangeAuthorizationCode(...args:any[]){const identity=await provider.exchangeAuthorizationCode(...args);
+    if(identity.subject!==registration.syntheticUserId||identity.issuer!=='https://login.rillora.xyz')throw Error('Only synthetic fixture identity is allowed');return identity;},
+}});
+let owner:any,selected:any,hidden:any,codex:any,sequence=0,cleanupPromise:Promise<void>|undefined;
+const pending=new Map<number,any>();
+const app=express();app.disable('x-powered-by');app.set('trust proxy',1);app.use(helmet({referrerPolicy:{policy:'no-referrer'}}));
+app.use((req,res,next)=>{
+  const host=(req.get('host')??'').split(':')[0];
+  if(![origin.hostname,'127.0.0.1','localhost'].includes(host)){res.status(403).end();return;}
+  if(req.get('x-dev-planner-id')){res.status(401).json({error:{code:'development_identity_disabled'}});return;}
+  const path=req.path.toLowerCase();
+  if(path==='/api'||path.startsWith('/api/')||path==='/mcp'||path.startsWith('/mcp/')||path.startsWith('/health/')){api(req,res,next);return;}
+  next();
+});
+app.use(express.static(resolve(qa,'web'),{dotfiles:'deny',index:false,fallthrough:true}));
+app.use((req,res)=>{
+  if(req.method==='GET'&&!req.path.split('/').some(part=>part.startsWith('.'))&&!/\.[^/]+$/.test(req.path)){
+    res.set('cache-control','no-store').sendFile(resolve(qa,'web/index.html'));
+  }else res.status(404).end();
+});
+const server=createServer(app);server.requestTimeout=15000;server.headersTimeout=20000;server.keepAliveTimeout=5000;
+const name='rillora_https_acceptance_20261016';
+const overrides=['-c',`mcp_servers.${name}.url=${JSON.stringify(registration.resource)}`,
+ '-c',`mcp_servers.${name}.oauth.client_id=${JSON.stringify(registration.clientId)}`,
+ '-c',`mcp_servers.${name}.oauth.callback_port=58443`,'-c','mcp_oauth_credentials_store="keyring"'];
+const rpc=(method:string,params:any)=>new Promise<any>((resolve,reject)=>{
+ const id=++sequence,timer=setTimeout(()=>{pending.delete(id);reject(Error('Client request timed out'))},45000);
+ pending.set(id,(j:any)=>{clearTimeout(timer);j.error?reject(Error('Client request rejected')):resolve(j.result)});
+ codex.stdin.write(JSON.stringify({jsonrpc:'2.0',id,method,params})+'\n');
+});
+async function startCodex(){
+ if(codex)return;
+ codex=spawn('codex',['app-server','--stdio',...overrides],{cwd:qa,stdio:['pipe','pipe','pipe']});
+ codex.stderr.on('data',d=>void appendFile(resolve(privateDir,'codex-errors.log'),d,{mode:0o600}));
+ createInterface({input:codex.stdout}).on('line',line=>{let j;try{j=JSON.parse(line)}catch{return}
+  if(pending.has(j.id)){pending.get(j.id)(j);pending.delete(j.id)}
+  else if(j.method==='mcpServer/oauthLogin/completed'){
+   void save('codex-oauth-completion.json',{success:j.params.success});console.log(JSON.stringify({oauthCompleted:j.params.success}));
+  }});
+ await rpc('initialize',{clientInfo:{name:'rillora_https_acceptance',version:'0.1.0'},capabilities:{experimentalApi:true,explicitGatewayOauth:true}});
+ codex.stdin.write(JSON.stringify({jsonrpc:'2.0',method:'initialized',params:{}})+'\n');
+}
+async function tools(label:string){
+ if(!acceptedToken)throw Error('Real client has not presented an accepted token');
+ const sdk=new Client({name:'rillora-https-protocol-check',version:'0.1.0'},{versionNegotiation:{mode:'legacy'}});
+ await sdk.connect(new StreamableHTTPClientTransport(new URL(registration.resource),{requestInit:{headers:{authorization:'Bearer '+acceptedToken}}}));
+ try{
+  const summary=await sdk.callTool({name:'list_selected_matters',arguments:{}}),gaps=await sdk.callTool({name:'get_preparation_gaps',arguments:{}});
+  const output=JSON.stringify({summary,gaps});
+  if(output.includes(acceptedToken)||output.includes(registration.syntheticUserId))throw Error('Sensitive identifier in tool response');
+  const passed=label==='after-revoke'?summary.isError===true&&gaps.isError===true:
+   !summary.isError&&!gaps.isError&&(summary.structuredContent as any)?.matters?.length===1
+   &&(summary.structuredContent as any).matters[0].publicId===selected.publicId&&!output.includes(hidden.publicId)&&!output.includes('Private synthetic note');
+  await save(label+'-tool-results.json',{summary,gaps,passed,transport:'actual temporary public HTTPS',modelSelectedTools:false});
+  if(!passed)throw Error('Selected-scope result mismatch');console.log(JSON.stringify({toolBoundary:label,passed}));
+ }finally{await sdk.close()}
+}
+function cleanup(){
+ if(cleanupPromise)return cleanupPromise;
+ cleanupPromise=(async()=>{
+  const failures:string[]=[];
+  if(codex){
+   if(codex.exitCode===null)await new Promise(r=>{codex.once('close',r);codex.kill();});
+   try{execFileSync('codex',['mcp','logout',name,...overrides],{cwd:qa,stdio:['ignore','pipe','pipe']});}catch{failures.push('scopedCodexLogout');}
+  }
+  if(server.listening)await new Promise<void>(r=>server.close(()=>r()));
+  let count:number|null=null;
+  try{
+   await pool.end();
+   if(owner)await admin.query('delete from app.planners where id=$1',[owner.id]);
+   await admin.query(`drop role if exists ${role}`);
+   count=Number((await admin.query('select count(*) from app.planners')).rows[0].count);await admin.end();
+  }catch{failures.push('localDatabaseCleanup');}
+  contentKeys.root.fill(0);acceptedToken=undefined;
+  try{execFileSync('python3',[resolve(qa,'provider-fixture.py'),'restore'],{cwd:root,stdio:['ignore','pipe','pipe']});}
+  catch(error:any){failures.push('providerRestoration');await writeFile(resolve(privateDir,'provider-restore-errors.log'),String(error?.stderr??'Provider restoration failed'),{mode:0o600});}
+  try{
+   const tunnel=JSON.parse(await readFile(resolve(privateDir,'tunnel-process.json'),'utf8'));
+   let command:string|undefined;
+   try{command=execFileSync('ps',['-p',String(tunnel.pid),'-o','command='],{encoding:'utf8'}).trim();}
+   catch(error:any){if(error.status!==1)throw error;}
+   if(command){
+    const started=execFileSync('ps',['-p',String(tunnel.pid),'-o','lstart='],{encoding:'utf8'}).trim();
+    if(command!==tunnel.command||started!==tunnel.started)throw Error('Tunnel process identity changed');
+    process.kill(tunnel.pid,'SIGTERM');
+   }
+  }catch{failures.push('tunnelStopNeedsReadback');}
+  await save('local-cleanup.json',{syntheticPlannersRemaining:count,listenerClosed:true,failures,
+   providerRestoreAttempted:true,ownedTunnelStopAttempted:true});
+  if(failures.length)process.exitCode=1;
+  console.log(JSON.stringify({localCleanup:failures.length===0,remaining:count,failures}));
+ })();return cleanupPromise;
+}
+process.on('SIGTERM',()=>void cleanup().finally(()=>process.exit(process.exitCode??0)));
+process.on('SIGINT',()=>void cleanup().finally(()=>process.exit(process.exitCode??0)));
+const deadline=setTimeout(()=>void cleanup().finally(()=>process.exit(process.exitCode??0)),45*60_000);deadline.unref();
+try{
+ owner=(await admin.query('insert into app.planners(display_name) values($1) returning id::text,public_id',['Rillora HTTPS synthetic acceptance'])).rows[0];
+ await admin.query('insert into app.plans(planner_id) values($1)',[owner.id]);
+ const mapped=(await admin.query('insert into app.identity_accounts(planner_id,issuer,subject) values($1,$2,$3) returning id',
+  [owner.id,'https://login.rillora.xyz',registration.syntheticUserId])).rows[0];
+ // Existing synthetic legal fixture makes records seedable; browser sign-in still requires its normal current acceptance.
+ await admin.query(`insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,consent_text_version,
+  legal_bundle_sha256,accepted_terms,acknowledged_privacy,accepted_electronic_records,client_surface,identity_reference_sha256)
+  values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7)`,[owner.id,mapped.id,currentLegalContract.termsVersion,
+  currentLegalContract.privacyVersion,currentLegalContract.consentTextVersion,Buffer.from(currentLegalContract.bundleSha256,'hex'),
+  createHash('sha256').update('https://login.rillora.xyz\u001f'+registration.syntheticUserId).digest()]);
+ const bootstrap=createServer(createApp(pool,{...config,allowDevAuth:true}));
+ await new Promise<void>(r=>bootstrap.listen(0,'127.0.0.1',r));
+ try{
+  const base='http://127.0.0.1:'+(bootstrap.address() as any).port;
+  const create=async(title:string)=>{const response=await fetch(base+'/v1/matters',{method:'POST',headers:{'content-type':'application/json','x-dev-planner-id':owner.public_id},
+   body:JSON.stringify({category:'account',title,institutionName:'Synthetic platform',locationHint:'Synthetic shelf',notes:'Private synthetic note never exposed',details:{}})});
+   if(response.status!==201){const body=await response.json();throw Error('Synthetic seeding failed '+response.status+' '+body.error?.code);}return(await response.json()).matter;};
+  selected=await create('Selected synthetic matter');hidden=await create('Unselected synthetic matter');
+ }finally{await new Promise<void>(r=>bootstrap.close(()=>r()))}
+ if((await admin.query('select bool_and(title like $1) as encrypted from app.matter_items',['rce1_%'])).rows[0]?.encrypted!==true)throw Error('Synthetic content was not encrypted');
+ await mcp.checkReady();
+ await new Promise<void>(r=>server.listen(58441,'127.0.0.1',r));
+ for(const path of ['/api/v1/session','/api/v1/account/ai-connections']){
+  const result=await fetch('http://127.0.0.1:58441'+path);if(result.status!==401)throw Error('Unauthenticated private endpoint did not reject');
+  const dev=await fetch('http://127.0.0.1:58441'+path,{headers:{'x-dev-planner-id':owner.public_id}});if(dev.status!==401)throw Error('Development header was accepted');
+ }
+ await save('fixture-boundaries.json',{origin:origin.origin,database:db,localOnlyDatabase:true,syntheticMatters:2,aiGrantsInitially:0,
+  encryptedContent:true,testOnlyKeyProvider:true,realOidc:true,onlySyntheticSubjectAllowed:true,allowDevAuth:false,
+  bootstrapListenerClosed:true,unauthenticatedAndDevelopmentHeadersRejected:true,paymentsEnabled:false,productionChanged:false,
+  temporaryTestingTransport:true,cloudKmsAndRecoveryValidationClaimed:false});
+ await writeFile(resolve(privateDir,'fixture-records.json'),JSON.stringify({plannerId:owner.id,plannerPublicId:owner.public_id,selected,hidden}),{mode:0o600});
+ console.log(JSON.stringify({ready:true,origin:origin.origin,commands:['status','login','client-status','tools','revoked-tools','stop']}));
+ for await(const command of createInterface({input:process.stdin})){try{
+  if(command==='status'){
+   const values=(await admin.query(`select (select count(*)::int from app.auth_sessions where revoked_at is null) as sessions,
+    (select count(*)::int from app.ai_connections where revoked_at is null) as active_connections`)).rows[0];console.log(JSON.stringify(values));
+  }else if(command==='login'){
+   await startCodex();const result=await rpc('mcpServer/oauth/login',{name,scopes:[...MCP_SCOPES],timeoutSecs:600});
+   const target=new URL(result.authorizationUrl);
+   if(target.origin!=='https://login.rillora.xyz'||target.searchParams.getAll('resource').length!==1||target.searchParams.get('resource')!==registration.resource||target.searchParams.get('code_challenge_method')!=='S256')throw Error('Unexpected real OAuth request');
+   await writeFile(resolve(privateDir,'codex-login.json'),JSON.stringify(result),{mode:0o600});
+   const safe={authorizationOrigin:target.origin,redirectUri:target.searchParams.get('redirect_uri'),resource:registration.resource,
+    resourceCount:1,pkce:'S256',scopes:target.searchParams.get('scope')?.split(' ')};
+   await save('codex-authorization-request.json',safe);console.log(JSON.stringify(safe));
+  }else if(command==='client-status'){
+   const result=await rpc('mcpServerStatus/list',{serverName:name,detail:'toolsAndAuthOnly'});
+   await save('codex-authenticated-discovery.json',result);console.log(JSON.stringify(result));
+  }else if(command==='tools')await tools('before-revoke');
+  else if(command==='revoked-tools')await tools('after-revoke');
+  else if(command==='stop')break;
+ }catch(error){console.log(JSON.stringify({commandFailed:command,message:error instanceof Error?error.message:'Unknown failure'}))}}
+}catch(error){
+ await writeFile(resolve(privateDir,'startup-failure.txt'),error instanceof Error?error.stack??error.message:'Unknown failure',{mode:0o600});
+ await save('runtime-failure.json',{startupFailed:true,errorName:error instanceof Error?error.name:'unknown',detailsProtected:true});
+ process.exitCode=1;
+}finally{clearTimeout(deadline);await cleanup();process.exit(process.exitCode??0)}

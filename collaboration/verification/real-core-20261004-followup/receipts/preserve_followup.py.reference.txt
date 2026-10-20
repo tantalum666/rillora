@@ -1,0 +1,159 @@
+"""Preserve the actual core-acceptance follow-up, fixed simulator and new signed candidate; keep completion boundaries explicit."""
+import datetime
+import json
+import os
+from pathlib import Path
+import re
+import shlex
+import subprocess
+import sys
+import tempfile
+import tarfile
+import uuid
+
+ROOT = Path(__file__).resolve().parents[3]
+sys.path.insert(0, str(ROOT / 'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion, file_exclusion, readable_text
+from verify_archives import verify
+
+QA = ROOT / 'output/qa/rillora-real-core-20261004'
+RELEASE = ROOT / 'output/release/rillora-core-simulator-20261004'
+DEST = ROOT / 'collaboration/verification/real-core-20261004-followup'
+ARCHIVE = ROOT / 'collaboration/archives/raw-work-015.tar.zst.age'
+assert not ARCHIVE.exists(), 'Do not reseal an already preserved archive.'
+DEST.mkdir(parents=True, exist_ok=True)
+cache = QA / 'publication/followup-frozen'
+cache.mkdir(parents=True, mode=0o700, exist_ok=True)
+safe_images = {'web-revocation-cleared.jpg','native-export-reauth-fixed.jpg',
+    'native-encrypted-copy-ready.jpg','native-logout-public-profile.jpg',
+    'native-logout-restarted.jpg','web-logout-private-route.jpg','apple-build4-details.jpg',
+    'disposable-account-terms-pending.jpg'}
+
+# Read only the old sealed path/hash manifest to identify unchanged versions.
+# This is not another remote download or a repeat of the previous acceptance.
+manifest_path = QA / 'publication/archive14-manifest.json'
+if not manifest_path.exists():
+    age = subprocess.Popen(['age','-d','-i',str(snapshot.IDENTITY),
+        str(ROOT/'collaboration/archives/raw-work-014.tar.zst.age')], stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    unpack = subprocess.Popen(['zstd','-q','-d'], stdin=age.stdout, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+    age.stdout.close()
+    prior_manifest = None
+    with tarfile.open(fileobj=unpack.stdout, mode='r|') as source:
+        for member in source:
+            if member.name == 'manifest.json': prior_manifest = json.load(source.extractfile(member))
+    assert unpack.wait() == 0 and age.wait() == 0 and prior_manifest is not None
+    manifest_path.write_text(json.dumps(prior_manifest))
+else:
+    prior_manifest = json.loads(manifest_path.read_text())
+baseline = {name: item['sha256'] for item in prior_manifest for name in item['paths']}
+retained = []
+
+files = []
+exclusions = []
+for source_root in (QA, RELEASE / 'reauth-fix', ROOT / 'output/release/rillora-review-20261004'):
+    for base, dirs, names in os.walk(source_root):
+        parent = Path(base)
+        for name in list(dirs):
+            path = parent / name
+            rel = path.relative_to(ROOT).as_posix()
+            reason = directory_exclusion(rel)
+            if name in {'publication', 'ipa-inspection'}:
+                reason = 'reproducible_verification_or_extracted_ipa_copy'
+            if path.is_symlink():
+                reason = 'machine_specific_link'
+            if reason:
+                dirs.remove(name)
+                exclusions.append({'path': rel, 'reason': reason})
+        for name in names:
+            path = parent / name
+            rel = path.relative_to(ROOT).as_posix()
+            reason = file_exclusion(rel)
+            if path.name in {'native-account-terms.jpg', 'aws-mfa-required.jpg'}:
+                reason = 'actual_authentication_handoff_screen'
+            if path.is_symlink():
+                reason = 'machine_specific_link'
+            if reason:
+                exclusions.append({'path': rel, 'reason': reason})
+            else:
+                files.append((rel, path))
+assert len(files) == len({name for name, _ in files})
+
+values = snapshot.sensitive_values()
+legal = set()
+for line in (ROOT / '.local-secrets/legal/release.env').read_text().splitlines():
+    line = line.strip().removeprefix('export ').strip()
+    if line.startswith(('VITE_LEGAL_OPERATOR_NAME=', 'VITE_LEGAL_SERVICE_ADDRESS=')):
+        legal.update(shlex.split(line.partition('=')[2])[:1])
+needles = {value.encode() for value in values - legal if len(value) >= 16}
+invite_path = ROOT / '.local-secrets/production-review/acceptance-invite-20261001.txt'
+if invite_path.exists():
+    needles.add(invite_path.read_text().strip().encode())
+started = datetime.datetime.now(datetime.timezone.utc).isoformat()
+objects, records = {}, []
+for name, path in sorted(files):
+    frozen, digest = snapshot.freeze_file(path, cache)
+    data = frozen.read_bytes()
+    if baseline.get(name) == digest:
+        retained.append(name)
+        continue
+    if any(value in data for value in needles):
+        raise RuntimeError('Credential/capability match; do not archive: ' + name)
+    blob = objects.setdefault(digest, {
+        'id': uuid.uuid4().hex, 'sha256': digest, 'bytes': len(data),
+        'source': str(frozen), 'paths': [],
+    })
+    blob['paths'].append(name)
+    record = {
+        'sourcePath': name, 'bytes': len(data), 'rawObject': blob['id'],
+        'rawArchive': ARCHIVE.relative_to(ROOT).as_posix(),
+    }
+    # Signed artifacts and manifests remain raw encrypted, not public source copies.
+    if readable_text(name) and (QA in path.parents or path.suffix == '.md'):
+        text = data.decode('utf-8')
+        text, changed = snapshot.redact(text, values)
+        # Public client identifiers are not credentials, but do not duplicate
+        # ambiguous key-shaped values in generated readable receipt mirrors.
+        text = re.sub(r'("RilloraAuth0ClientID"\s*:\s*")[^"]+',
+                      r'\1[PUBLIC_IDENTIFIER_OMITTED]', text)
+        relative = path.relative_to(QA).as_posix() if QA in path.parents else name
+        if path.suffix in {'.py', '.sh', '.log', '.md', '.mjs', '.cjs', '.js', '.ts'}:
+            relative += '.reference.txt'
+        target = DEST / 'receipts' / relative
+        target.parent.mkdir(parents=True, exist_ok=True)
+        target.write_text(text)
+        record.update(readablePath=target.relative_to(ROOT).as_posix(),
+                      privacyRedactions=bool(changed) or text.encode() != data)
+    elif path.parent == QA and path.name in safe_images:
+        target = DEST / path.name
+        target.write_bytes(data)
+        record.update(readablePath=target.relative_to(ROOT).as_posix(), privacyRedactions=False)
+    records.append(record)
+
+recipient = subprocess.check_output(['age-keygen', '-y', str(snapshot.IDENTITY)], text=True).strip()
+archive = snapshot.seal_chunk(15, list(objects.values()), recipient)
+catalog = DEST / 'catalog.json'
+catalog.write_text(json.dumps(records, ensure_ascii=False, indent=2) + '\n')
+summary = {
+    'capturedFrom': started,
+    'capturedThrough': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+    'workFiles': len(records), 'uniqueRawObjects': len(objects),
+    'workBytes': sum(record['bytes'] for record in records),
+    'archives': [archive], 'catalogFiles': [catalog.relative_to(ROOT).as_posix()],
+    'excluded': exclusions, 'unchangedPriorPathsRetained': retained,
+    'selection': 'New or changed QA since archive14, the fixed simulator and new signed build4 only. Old unchanged paths and all prior archives retained. Actual authentication/MFA screens, recovery keys, runtime session logs and reproducible caches excluded.',
+    'boundary': 'No credential store, recovery private key, deletion receipt/capability, browser authentication state, device inventory, or unrelated project included. Disposable consent/import/delete remains pending at this checkpoint.',
+}
+(DEST / 'snapshot.json').write_text(json.dumps(summary, ensure_ascii=False, indent=2) + '\n')
+with tempfile.TemporaryDirectory(prefix='rillora-independent-verify-') as temporary:
+    stage = Path(temporary)
+    (stage / 'collaboration').mkdir()
+    (stage / 'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'], *summary['catalogFiles']]:
+        target = stage / name
+        target.parent.mkdir(parents=True, exist_ok=True)
+        os.link(ROOT / name, target)
+    result = verify(stage, snapshot.IDENTITY)
+(DEST / 'archive-verification.json').write_text(json.dumps(result, indent=2) + '\n')
+print(json.dumps({'files': len(records), 'objects': len(objects),
+                  'archiveBytes': archive['bytes'], 'verified': result['passed']}))

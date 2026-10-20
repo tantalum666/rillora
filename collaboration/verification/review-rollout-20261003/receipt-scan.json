@@ -1,0 +1,26 @@
+{
+  "checkedAt": "2026-10-03T11:47:29.792576+00:00",
+  "scanner": "gitleaks",
+  "filesScanned": 16,
+  "paths": [
+    "collaboration/README.md",
+    "collaboration/verification/review-rollout-20261003/README.md",
+    "collaboration/verification/review-rollout-20261003/artifact-commit.log.reference.txt",
+    "collaboration/verification/review-rollout-20261003/artifact-fresh-lfs-fetch.log.reference.txt",
+    "collaboration/verification/review-rollout-20261003/artifact-push.log.reference.txt",
+    "collaboration/verification/review-rollout-20261003/closeout.json",
+    "collaboration/verification/review-rollout-20261003/receipt-source-candidate.json",
+    "collaboration/verification/review-rollout-20261003/receipt-source-check.json",
+    "collaboration/verification/review-rollout-20261003/remote-readback.json",
+    "collaboration/verification/review-rollout-20261003/verify_remote.py.reference.txt",
+    "collaboration/verification/review-rollout-20261003/workflow-closeout.json",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/product.md",
+    "docs/review-rollout-20261003.md",
+    "docs/source-control.md"
+  ],
+  "unreviewedFindings": 0,
+  "scanRulesChanged": false,
+  "boundary": "New or changed receipt-only files; earlier scans and encrypted-original verification retained."
+}

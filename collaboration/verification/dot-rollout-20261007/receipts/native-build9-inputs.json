@@ -1,0 +1,717 @@
+{
+  "at": "2026-10-06T19:49:17.912263+00:00",
+  "source": "58fadf35781fb165afe0920be3b6c213480089ed",
+  "retainedSourceValidation": "272native units/6UI/174Web/17API/CI73+20browser; unchanged runtime tree",
+  "inputs": [
+    {
+      "path": "apps/ios/Rillora/App/AppDependencies.swift",
+      "sha256": "1077418c8df747936fe57ed88870b0d0007226c1c1cc55e827a45e4cfad97bcb",
+      "bytes": 7090
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppShellView.swift",
+      "sha256": "ace75925866fddff9f397e937e4aff02992f3dea42afce3e8f47a30a6ed1db61",
+      "bytes": 15478
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppTab.swift",
+      "sha256": "ecc1d36f2d4ee881d27d6ab82901b821257ba19dc4133eabc7c93be9936c80e3",
+      "bytes": 560
+    },
+    {
+      "path": "apps/ios/Rillora/App/RilloraApp.swift",
+      "sha256": "27354c66dbf152b0ca6ea73fa377b24d0130e7f093ec06a07c853d7e9d62eaed",
+      "bytes": 4498
+    },
+    {
+      "path": "apps/ios/Rillora/App/UITestPresentationFixtures.swift",
+      "sha256": "4a8100fc12f901f0534bcac83ae302b18abff69dc71a12f50df64d54b2efae01",
+      "bytes": 996
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIClient.swift",
+      "sha256": "123fb170b997851de96ab91c6ba9d8d714963991ea6262f1c709aac03d6bdbf1",
+      "bytes": 56544
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIConfiguration.swift",
+      "sha256": "f095ffba036c8acdcb9b5e9999b46e16c001354dc328f98b4b835b021592519d",
+      "bytes": 10975
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/HTTPTransport.swift",
+      "sha256": "c2802be384bdd3e853bf65552d5a4c7329dc2f1bc2425524f76dacf451dfbfd5",
+      "bytes": 1145
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/RilloraAPIError.swift",
+      "sha256": "c0fa0bc1641a25070e89edf3301fb60c01ca03a23a51eee5244813ea5b63dfb7",
+      "bytes": 1348
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift",
+      "sha256": "a6679034500a0106d181bf78f83d314bcbb8fc691aa7bb062db1644418d6a866",
+      "bytes": 7848
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift",
+      "sha256": "bb389c03684786bd1125e489128c397dd779a8e0b8eed66d509a21192d103ba6",
+      "bytes": 2153
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/LegalConsentContract.swift",
+      "sha256": "c0f589743b2e00a785e83743123ca346fa902eb6c503216a1fe293a9e21785dd",
+      "bytes": 1060
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationCallback.swift",
+      "sha256": "b0f5fe26d4abbac03aeb5b4333f163ee9827c840b3c662c2d784646405e09e76",
+      "bytes": 629
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+      "sha256": "f376732055b078c1022603eaabe3f6081bdffc1a04b0fe3a551ea42222c4612d",
+      "bytes": 22801
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/NativeReauthenticationPrompt.swift",
+      "sha256": "0080fb75342505c72d08961878d64a3b98f6301f4f766904038a4c1527aaa98e",
+      "bytes": 3086
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/PasswordResetStore.swift",
+      "sha256": "06aebd34b40d741ed9f1efc0743f956a84a7b961e7e41bd55abaa5cb8e7ed5d6",
+      "bytes": 4858
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/SessionStorageNamespace.swift",
+      "sha256": "e9f026f50481d94498cc87f6f1207554c91814dc30a87194c9077420c4e9da0f",
+      "bytes": 884
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Authentication/SessionTokenStore.swift",
+      "sha256": "310ca9762610ea44a46c2df5b9f70c4508934ee14e07d2fd8b01398ce4553029",
+      "bytes": 3077
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+      "sha256": "ae55bda9bf082a8c447b699f09acc3e0e273225867ddcb5234ea03e31df6f09e",
+      "bytes": 12973
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/ApplePurchaseServing.swift",
+      "sha256": "923f03772815327ce33558085816ae5db4db477e7c1be976b479fe1eb0c2cbf0",
+      "bytes": 1756
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+      "sha256": "66a4397a9ee769982e3ffa17af7345e40cb2ac19a1320a61377564763cb65d5e",
+      "bytes": 25844
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStorefrontProvider.swift",
+      "sha256": "26674346420b8f1eef811a4a052c75f398a5cf242711af119a777f37c6b840c4",
+      "bytes": 1059
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/RilloraStoreKitCatalog.swift",
+      "sha256": "4bfed2625fd1b3d4d7658efbb96ab59eb0acc5f4a9716d3d48e4df113cf588b9",
+      "bytes": 1511
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+      "sha256": "0e90555c6fe1fc56a8025dfc3334a1843c990ca3abf7a6fae83deabaa38960d6",
+      "bytes": 21758
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/AppAppearance.swift",
+      "sha256": "28d8054cc43247dba40b5eee463d75531857d16c481acb79d9ceee04b6b28289",
+      "bytes": 2239
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/AppLanguageView.swift",
+      "sha256": "e134578f810f7e1a92280fad2295db21d9761134b2cee29e4a3e4290731451b9",
+      "bytes": 2579
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/L10n.swift",
+      "sha256": "c65e99fcdcfc2f152b2fcc3a1bcf1e9eb6bd11830692b9d99f3c374287d9dea1",
+      "bytes": 3271
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraBrand.swift",
+      "sha256": "6bb3ab733fee55f593fee0bd0862b9ada30e1b8cf6ecdc8a693c60be0101c4e9",
+      "bytes": 593
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift",
+      "sha256": "8eec4cf07daf4731445398f30ee4f2d6857c9b9358a89c8e8215ecd1fabefa87",
+      "bytes": 21036
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraLibraryEffects.swift",
+      "sha256": "2447fef108c98b5654b4bd351c588e4bb61b561adaf011ee4938d016b1780273",
+      "bytes": 2646
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraSharingMotion.swift",
+      "sha256": "f09871b957ea6d0d9c0021bddf3a6ab8bb61011ebacc861d9b1118cb243f2fce",
+      "bytes": 6181
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraSurfaceMotion.swift",
+      "sha256": "ad154bf727b16b05729814d64d4ab0b90ef9f75171693e8fc025d2780ddd7431",
+      "bytes": 4183
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Design/RilloraTheme.swift",
+      "sha256": "0674f58d126fc45f9e6da1335504999e9f3a3b4b665eaa4d7f841aa8287de9b2",
+      "bytes": 16507
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+      "sha256": "c03e27a6b9271e4a5f0a943cce639d48150640d7f22400486581be3e98348afa",
+      "bytes": 5755
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/AccountIdentityModels.swift",
+      "sha256": "7d65ddb01d7d5c09999064cae014ccabbb2a0c802008b99d515827c855fcd743",
+      "bytes": 1237
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift",
+      "sha256": "ff42630ffbe789f559a677ac7f0ed7a9ce4d8aced51dd3dacd46ee9b354d95fe",
+      "bytes": 5804
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/CommerceModels.swift",
+      "sha256": "29586cab1656877755b94ea75b610cc94c5b856936d5b2d28aed5762abbd1873",
+      "bytes": 6232
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift",
+      "sha256": "add10023e03fc34dbda1cd68300b338af48cda7cdb0ec763071f546113145a40",
+      "bytes": 8233
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/MatterDetailFields.swift",
+      "sha256": "a3745ea29484a8b8432785d2e6ee82c0087514fa9117d32abd358313951eb2c7",
+      "bytes": 5544
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/Models.swift",
+      "sha256": "b85ec44bc31ccacebac785c9c45b963aa0d962b1172ed8abd717a3c8ca4bb072",
+      "bytes": 44477
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/SharingModels.swift",
+      "sha256": "aacdea1ed463a1de7e07d1c8bcad0cd2ab9a015ba740390f6d5b21b8ff815a6b",
+      "bytes": 12359
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountDataView.swift",
+      "sha256": "b25a3a1df2e0a14e6d3ca97c8f1f3b3e9b2465deacd2b85438b7c3efc923e1a1",
+      "bytes": 13614
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountDeletionView.swift",
+      "sha256": "73d1dfd5e066a7f8b972388751297fb4f9171f9aec247e339460c597ef545b15",
+      "bytes": 8560
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityStore.swift",
+      "sha256": "82873a22ab76111482702c63d75a8918998ed20024110962644bf2fa816402f1",
+      "bytes": 2314
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountIdentityView.swift",
+      "sha256": "2ae9a2cb8f87f7e16610a01108f9f6374873c5492b7eff7eed2ba59f0c671a92",
+      "bytes": 3732
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AccountView.swift",
+      "sha256": "01f21efe852df796ee4f568995f141c6bb8da543eebf81212cc59e2a2433db46",
+      "bytes": 5437
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AppPreferencesView.swift",
+      "sha256": "c9428dfb4b2f33abadbd2853848c6d3acc7b4f12fccd16a72d54569f491bfb0f",
+      "bytes": 2046
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseEntryView.swift",
+      "sha256": "07c300a3eed2c6efdd215ab634af77d788d3cf0bcdcbeb7120269c86ea0da454",
+      "bytes": 1615
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+      "sha256": "d1c330dd809cc6d80994fff2333900c790c2312d6f918fa0b6816928e8535525",
+      "bytes": 4221
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+      "sha256": "52f7d45ce275698c5c06667b946d3649f4a4fda6e9d616b7b8a6035cb23bf3bd",
+      "bytes": 9612
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PasswordResetView.swift",
+      "sha256": "890e7ebef764a8431c01f91a72e9479badeb4e48d025797817a58b5998f2ada5",
+      "bytes": 3928
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+      "sha256": "7d4d2c773aee452e9ab125ea85e2c66598641f1a7f37c6d73a6d6a8a31d1a30f",
+      "bytes": 19016
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift",
+      "sha256": "f74de1ccaf6be5de76c89e0ab833cd017a4d265d0d4b5c6ab81228014dffe300",
+      "bytes": 8886
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+      "sha256": "ff59ab61671fa14b3b97165691112efe3e1c7b6da639cde3f192e33a58b0df09",
+      "bytes": 7085
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/StoreKitSandboxCatalogView.swift",
+      "sha256": "85a7aa0653ec7afdcc64b4254944cdc670811ad9f4fcb040399d890291b7f464",
+      "bytes": 6080
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/ContactSharingStore.swift",
+      "sha256": "946e48e02bf00344dc54367313afab7914849f2d6b00d201dd22d67b23e05ef9",
+      "bytes": 7513
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift",
+      "sha256": "ee0e4c00548dedf1ba55b35327241d0445afd40068959b9a6fe0d1cd4f79ee77",
+      "bytes": 20143
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+      "sha256": "d4acff691e75f0a3e7931ebf9f26cf4500ab06ea8f1d8f6bc0110b2e02164377",
+      "bytes": 10145
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/MatterPeopleSection.swift",
+      "sha256": "4acac927c5a611f62a55fb32acf11ae8aff52cdbf1a1957582c032dd628e855a",
+      "bytes": 3852
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift",
+      "sha256": "c8754e67f46bc72bcccb60ed408760b481fa9355ecd65c8e930aacb8284419d1",
+      "bytes": 1401
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift",
+      "sha256": "80f6598f57ca1d056d8fe7f169e7f8ad746096dbd09b689b74211bbcbccbc8e2",
+      "bytes": 10646
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharingPreviewContent.swift",
+      "sha256": "3f776083d8689d225542fae292c7139b91522fdf05d81e2739805725c0b45520",
+      "bytes": 2462
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift",
+      "sha256": "3bbcf5b8057844a8f5c83b100107b58c9cca6e0fbc8c0b1a46632498a133b7e3",
+      "bytes": 7286
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift",
+      "sha256": "3895c8c2ef6863df1893403f793806cb5a12ffed9a23cfd29a540a67369fa309",
+      "bytes": 11065
+    },
+    {
+      "path": "apps/ios/Rillora/Features/FirstUse/FirstUseGuideStore.swift",
+      "sha256": "11821f132b84c898f1ad42d5c609558e1e42ccaa8535dbd37b2a3f2a4efb2fba",
+      "bytes": 2535
+    },
+    {
+      "path": "apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift",
+      "sha256": "90873048a984e1eb9b4a9131b986b08595477f0885afef8127eb0594b2b959cc",
+      "bytes": 5457
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift",
+      "sha256": "87833d423eb5356c5522808723f411f91e71ac4a8c75acff758f9468d21da4e5",
+      "bytes": 1953
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift",
+      "sha256": "aaba973f2383feeb5205d9225bc050ae170f518716983be469025bdbb431cd16",
+      "bytes": 13944
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Maintenance/FamilyReviewSheetView.swift",
+      "sha256": "534fed10af436eb2a7f75e0b32ff0d5fee83407b8a470fb09884e6937f4c7f02",
+      "bytes": 15332
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterEditorStore.swift",
+      "sha256": "6021f5ed304a3b80cfd136a77d33e5589a108fbc0449dd144dffd0116186001f",
+      "bytes": 9908
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterEditorView.swift",
+      "sha256": "d4468b352b16d6530cc124ddfe45a8f195cf47942134172b28db5904f6145279",
+      "bytes": 15414
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MatterListPresentation.swift",
+      "sha256": "b9cc55a2acf309ee53209c4d41d8240a556774a8dd53ed358157dd7b35dbe421",
+      "bytes": 3192
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Matters/MattersView.swift",
+      "sha256": "332d9f92827a02e7f576cdc53ebd2baed1e0cff1eea93a2e8dd7e95e89b23492",
+      "bytes": 7180
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/MatterAccountGuides.swift",
+      "sha256": "afb415314b1a9db243d3b611bf68f55626b7714e913a97d6790eb2a1d82ef66b",
+      "bytes": 2195
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialProviderGuideCatalog.swift",
+      "sha256": "9d54d2798aa41ba6c6e680e9cffb8e1c8d7f68da3617817eeba8e322b571b7df",
+      "bytes": 6198
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupStore.swift",
+      "sha256": "1fd10b5b31c7e0f83438739565ce1f8b94010a3eca6894efb1df4e798681bbc6",
+      "bytes": 3581
+    },
+    {
+      "path": "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+      "sha256": "6bfa5906afde4507c14413835c56a99fabbc774ef47b961b9309912faf605a28",
+      "bytes": 17454
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/ContinuityExplorer.swift",
+      "sha256": "2cd7f16d343944764d1ef3bd73a5409b588aaea0bab47db35c1d0205fec7c635",
+      "bytes": 8957
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift",
+      "sha256": "84691ac05bcff098a8cc55b581bd8ec0e6bb4e096c188b615805699489fe1be4",
+      "bytes": 11841
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStateViews.swift",
+      "sha256": "577606799503fb1e56b593538c842dfcfc1c127a06aab4badab90a68c0a56a4f",
+      "bytes": 2721
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewStore.swift",
+      "sha256": "a3ca4e2c986405e947f90cdcf39200a86c11cd2d5323fd5ff1a126de203049de",
+      "bytes": 7296
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+      "sha256": "f34e86e86f4105698d9855ce7e76741702a585134974987bcf5708d4a8e6f3f9",
+      "bytes": 13629
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PreviewFixtures.swift",
+      "sha256": "ea629ca262990eca0cd390c181f692232ccdec95a89e94a3b2e39ab12e6860d1",
+      "bytes": 3339
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeAppearance.swift",
+      "sha256": "9ef97d3f61bb948388ea4ee0482dcb7da737a5631c65532b49d9e9e4c17b3545",
+      "bytes": 886
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeSharingDemo.swift",
+      "sha256": "415e20e4c5db117dcd5e90fc1f9e4bc0a8ec049a8242161492cb4715a179b514",
+      "bytes": 7077
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/PublicHomeView.swift",
+      "sha256": "1e3c01717e5852b287b7f6b7ae3db69273e1d9b72bac7037c63cce2446479881",
+      "bytes": 7537
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+      "sha256": "70c3ee8316c69b40a0a48c7cbdbd8d00770a2ff876b7ed5f0e75a567fc2693ba",
+      "bytes": 8666
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Plan/PlanMotivationStore.swift",
+      "sha256": "088a1c83fabbfc25c5fb10f0476a704b01c78cb82da72d23a2a00bfe31d42295",
+      "bytes": 2700
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Plan/PlanMotivationView.swift",
+      "sha256": "7ff2a5fce221830d5920d061dba90305b3f9615c8d05b9489216b8037a0bf6fc",
+      "bytes": 4231
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift",
+      "sha256": "bfc86e95327d4f2271bd2db94ab68487bc45371c2f8b3ff7104ddabd4df46666",
+      "bytes": 5403
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+      "sha256": "f2cf3fe7005f2f3c9a0ed472c422b6fe6fa12410569f4d3a8de9904b893568ea",
+      "bytes": 13563
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalStore.swift",
+      "sha256": "a135f034811405b711316cab0f2967848aa7fafa4e2f3486cb85c62f21638b5c",
+      "bytes": 2455
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift",
+      "sha256": "1bbd3dcbb244364e06905105cc3a344b7008460ea1409e90e5a04efb0790eb66",
+      "bytes": 12553
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/SimulationStore.swift",
+      "sha256": "cad0a8acf06475773970cb44e151450c5f2a6d23a3fa4a740b413536cd72a324",
+      "bytes": 1936
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Simulation/SimulationView.swift",
+      "sha256": "24a14b7ed597b2d832f9c3658827b92b7d3df2e0705b539810ea914200ab3852",
+      "bytes": 5953
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/RecipientRehearsalStore.swift",
+      "sha256": "d3877d5ae54b70db58fc6ffcd2b8283c4791b775823d4c93ebf1234c0e67a569",
+      "bytes": 5102
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHereEncryptionService.swift",
+      "sha256": "e8319f290e12d45e4788c843e7279f153e21dd6d22e1d8e4fbeba52897158e41",
+      "bytes": 17032
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift",
+      "sha256": "4148479f84fbad898936cf594f6e2af1bb9d4b63e6f8095b1417ba4e0a0228ad",
+      "bytes": 5044
+    },
+    {
+      "path": "apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift",
+      "sha256": "ecd143c452f674fc4583d1700b4b75203e50f4bcdcec0aba7cb795bd822f67a9",
+      "bytes": 32939
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/AppIcon.appiconset/AppIcon-1024.png",
+      "sha256": "2d11af0fb45b3e337e2c8cd1d50b16632cf4f15df4df2113eb0b7b091c63d0c9",
+      "bytes": 52357
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/AppIcon.appiconset/Contents.json",
+      "sha256": "3c6addf3f20972a12a0c33e6f6fe9e0857a0bdb512dce5d59f4bd007b236c157",
+      "bytes": 208
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/CoinbaseLogo.imageset/Contents.json",
+      "sha256": "17959d64fb36eb6c9ddd33f81fc46dca8403893b4e929e0971237b553cb711d3",
+      "bytes": 230
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/CoinbaseLogo.imageset/coinbase-logo-white.svg",
+      "sha256": "06d71cb6d9a5b5e9b57301f073bc6bff7bb614ebaee7082f5e6892d52b70c593",
+      "bytes": 661
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/Contents.json",
+      "sha256": "0fd49ba3c3585c709678e0046a821c3c60685ec7063720d30d3a3448be3a208b",
+      "bytes": 63
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityGuide.imageset/Contents.json",
+      "sha256": "34ba847afaed12449db7371987c87530692cd53f6e539573c50f2f241c2ec835",
+      "bytes": 149
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityGuide.imageset/guide.png",
+      "sha256": "6593625754d3f73c4aea39ba0a7f3bef7fde2b5b7dfa726437d67a46ea2585c2",
+      "bytes": 904558
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityMap.imageset/Contents.json",
+      "sha256": "5dd9c0be2ae7ecca7deaa38f6c9286c67f118904ee78b8dcc9fe49def1f2a39b",
+      "bytes": 158
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/ContinuityMap.imageset/continuity-map.png",
+      "sha256": "fcab47eaf74ffd7ef78928f0c967bfa597d302b7ecc47d74bbda2b44dd7fec09",
+      "bytes": 895907
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/DropboxGlyph.imageset/Contents.json",
+      "sha256": "8d9e668809a663e6c308c2e8bb5f26fc66f7082f60b2a9ef11680e9b4b0c7fbd",
+      "bytes": 224
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/DropboxGlyph.imageset/dropbox-glyph.svg",
+      "sha256": "c2175e421fbe504b015a2d66c822b529d5eed0cfd76408755b3f0f6dcf1b44e1",
+      "bytes": 553
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/FacebookLogo.imageset/Contents.json",
+      "sha256": "21d37bdc77984ee36f3e05166029221d58402b99aa5163686a95a2f91ae9432c",
+      "bytes": 180
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/FacebookLogo.imageset/facebook-primary.png",
+      "sha256": "2adfd474d91fd20c51084309ed000c1ae6cc7f5f70af14d375930f5a71301308",
+      "bytes": 54771
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GitHubInvertocat.imageset/Contents.json",
+      "sha256": "2190e987a513a14f887dc79661fe80b183f453adc0f7ed7e9934f778dec400c5",
+      "bytes": 242
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GitHubInvertocat.imageset/github-invertocat-white.svg",
+      "sha256": "ccd84c89b1056345608fc3489357f8acc7397e49a3cdc2d418b6c8016911d47b",
+      "bytes": 1559
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/Contents.json",
+      "sha256": "e2acd94cbae20e9d9f1098e654f836fe0e39733454f723e02d092bcc06158ff4",
+      "bytes": 397
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/google-g-logo.png",
+      "sha256": "c26fcccaa60b1f048eef6c6824f10cd8889eb0a61941e7462031ca979657f6c5",
+      "bytes": 1995
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/[REDACTED_EMAIL]",
+      "sha256": "19a1f74bde2c1ee5b2606300814aee26b6789ab016b811322aaa151a61da2882",
+      "bytes": 3562
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/GoogleGLogo.imageset/[REDACTED_EMAIL]",
+      "sha256": "dae3e3f8dc6652c01c0ff030d249c4fb77ade372bd70b8d8ca0aa642d7064329",
+      "bytes": 5671
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/InstagramGlyph.imageset/Contents.json",
+      "sha256": "f3fc7b3be163712bc676520351fd9fe43379898f5cd8b747039a33078295bff5",
+      "bytes": 232
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/InstagramGlyph.imageset/instagram-glyph-white.svg",
+      "sha256": "3347813e9e8f082cdf48495818bd370ccff94b687efb8aa1c8a7b36cfcfb8291",
+      "bytes": 1819
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/LaunchBackground.colorset/Contents.json",
+      "sha256": "2547262587176d5d3a67f315caef6314f853524df7fb375f55490b1355f601a2",
+      "bytes": 259
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/Contents.json",
+      "sha256": "575d84fc24e369eb2bfc2c0408bd76454c1d2a44f922125f1a2848a2efd994d2",
+      "bytes": 335
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/dark.jpg",
+      "sha256": "c4930d686fd5d6d19ca7596b85af2753a8ee27d9c5d239b9af4db0cc182b080a",
+      "bytes": 273952
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/PublicHomeHero.imageset/light.jpg",
+      "sha256": "7cb10aad337b5dd8b80c2c78269462439ce821b57a01c3d16c354663c5339516",
+      "bytes": 319766
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandCompact.imageset/Contents.json",
+      "sha256": "dbf7f4dafa73da6de38f395dbfcb91764f8edbdf6aa205b39f856728f5d84685",
+      "bytes": 277
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandCompact.imageset/lockup-small-reversed.svg",
+      "sha256": "c4a633b53deee79482429ffcf0eae67eba1d0cce85c9263cc69c1511fc36e48a",
+      "bytes": 8674
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandLockup.imageset/Contents.json",
+      "sha256": "5b78f6f685bb6d3728ff736f2c04d867c057d626a35a85a52d3b6497a257cb1a",
+      "bytes": 271
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraBrandLockup.imageset/lockup-reversed.svg",
+      "sha256": "b4dc6b2fccbab27b29f341425e0059b219af4a968ecafe21535815b2839522cd",
+      "bytes": 8839
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolio.imageset/Contents.json",
+      "sha256": "d1d9c20509ba06a67dae7355823252a2cd0ca25afa72c697e258aa9b2228cd4b",
+      "bytes": 156
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolio.imageset/rillora-folio.jpg",
+      "sha256": "536cf7e6658ce0be63fd74964f51c66870c6d39b0b9f7223343c3a8cd21f9901",
+      "bytes": 87765
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolioCutout.imageset/Contents.json",
+      "sha256": "e0a268e7f1719c774dd92308118f36f6bd9e652a34cfa2fab5e5a9e6798a8c76",
+      "bytes": 156
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/RilloraFolioCutout.imageset/folio-cutout.png",
+      "sha256": "62b6769b48f66e315ecd47587b7b5aa584daf312100aeeec5d6a4f8a978bedf3",
+      "bytes": 572254
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/XLogo.imageset/Contents.json",
+      "sha256": "f9879fb3eb44a86caf7dcd93aa917d95212c1f0e32a7a6b003ac9166eb67c2f3",
+      "bytes": 184
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Assets.xcassets/XLogo.imageset/x-logo-white.png",
+      "sha256": "432bdd47255b48366843ec21d209e774f93b807e1fd0894fc983aad0dc7bd03b",
+      "bytes": 103016
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/DesignCredits.txt",
+      "sha256": "4c86745fcce33c456cd1b13c95fa8982f77e91bfccd977f525cb7e517c72cd48",
+      "bytes": 31240
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Fonts/GoogleSans-SemiBold.ttf",
+      "sha256": "3f9e55d5a74e96e8d6c047a2b8ecc0993fb7ad65986aa8a6a6284715a8a9e909",
+      "bytes": 1906192
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Info.plist",
+      "sha256": "355a4aaf0a5395115e30b57dbeae2d9939fad2fe47ac7a91cd8d30dfd19f5bf7",
+      "bytes": 3737
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Localizable.xcstrings",
+      "sha256": "8e3e0b1d8981add7c8d587a5d3a6d257c6a1f1eb09a1034413510e4a18676be3",
+      "bytes": 471654
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/PrivacyInfo.xcprivacy",
+      "sha256": "03e0fa61628dea9b9b45dba38ca4103cfc643156c342f9253e9f86ea3a06b48d",
+      "bytes": 608
+    },
+    {
+      "path": "apps/ios/Rillora/Rillora.entitlements",
+      "sha256": "92a56cbb8ee949d70279c43bad9ebe9286511a00bd89a117f69f59f447ac411d",
+      "bytes": 400
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "sha256": "fd60f7bf8771bb1cc23f4dbd672ee8ab104b111002c49448bfbe4c2ec40e376b",
+      "bytes": 128378
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved",
+      "sha256": "fd8dab864fb7175dd7cb874b3483827dee526bfae5c84fb943b8fe4c6837c1f3",
+      "bytes": 3626
+    }
+  ]
+}

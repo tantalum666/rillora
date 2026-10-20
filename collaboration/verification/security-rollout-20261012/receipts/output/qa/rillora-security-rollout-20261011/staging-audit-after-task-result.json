@@ -1,0 +1,16 @@
+{
+  "environment": "staging",
+  "phase": "audit-after",
+  "status": "STOPPED",
+  "exitCode": 0,
+  "passed": true,
+  "hardenedSchema": true,
+  "checks": {
+    "noGlobalSessionEmailDigest": true,
+    "noLegacyEmailMatches": true,
+    "apiCannotClaimDeletion": true
+  },
+  "migrations": 103,
+  "pendingIdentityDeletions": 0,
+  "fingerprintedTables": 68
+}

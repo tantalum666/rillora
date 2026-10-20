@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomUUID } from "node:crypto";
 import request from "./http-fixture.js";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
@@ -7,9 +8,10 @@ import { createPool, withPlannerDatabase, type DatabasePool } from "../src/db.js
 import { runMigrations } from "../src/migrate.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId as A } from "../src/seed-dev.js";
 import { currentLegalContract } from "../src/legal-contract.js";
-import { verifiedEmailDigest } from "../src/sharing-identity.js";
+import {EmailIdentityFixture} from './email-identity-fixture.js';
+const emailIdentityVerifier=new EmailIdentityFixture();
 
-const databaseUrl="postgresql:///continuity_family_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_family_test", "continuity_family_test");
 const config=loadConfig({NODE_ENV:"test",DATABASE_URL:databaseUrl,ALLOW_DEV_AUTH:"true",ALLOW_FAMILY_MAINTENANCE_PREVIEW:"true",CORS_ORIGINS:"http://localhost:4211"});
 const hash=(s:string)=>createHash('sha256').update(s).digest();
 const csrf='r'.repeat(43); const owner={"x-dev-planner-id":A};
@@ -20,6 +22,7 @@ let bm:string;let cm:string;let privateMatter:string;
 let bc:string;let cc:string;let pending:string;let roundId:string;
 let startInput:{requestKey:string;dueAt:string;items:{connectionPublicId:string;matterPublicId:string}[]};
 async function actor(name:string) {
+  emailIdentityVerifier.register('https://family.example',`review|${name}`,`${name.toLowerCase()}@family.test`);
   const row=(await pool.query("select * from app.provision_oidc_planner($1,$2,$3,'en','UTC')",['https://family.example',`review|${name}`,name])).rows[0];
   const token=name.repeat(43).slice(0,43);
   await pool.query(`with a as (insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,
@@ -28,7 +31,7 @@ async function actor(name:string) {
     insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,expires_at,verified_email_hash)
     select $1,$2,id,$8,$9,now()+interval '1 hour',$10 from a`,[row.planner_id,row.identity_account_id,currentLegalContract.termsVersion,
     currentLegalContract.privacyVersion,currentLegalContract.consentTextVersion,Buffer.from(currentLegalContract.bundleSha256,'hex'),
-    hash(`https://family.example\u001freview|${name}`),hash(token),hash(csrf),verifiedEmailDigest(`${name.toLowerCase()}@family.test`)]);
+    hash(`https://family.example\u001freview|${name}`),hash(token),hash(csrf),null]);
   return {id:String(row.planner_id),headers:{cookie:`continuity_session=${token}`,'x-csrf-token':csrf,'x-rillora-planner':row.planner_public_id}};
 }
 async function matter(title:string) {
@@ -51,9 +54,9 @@ const due=()=>new Date(Date.now()+7*86_400_000).toISOString();
 
 describe.sequential('Family maintenance — scoped ongoing work',()=>{
   beforeAll(async()=>{
-    if(!databaseUrl.endsWith('/continuity_family_test'))throw new Error('Dedicated Family database required');
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_family_test');
     await runMigrations(databaseUrl);pool=createPool(config);await pool.query('truncate app.planners restart identity cascade');
-    await seedDevelopmentFixture(pool);app=createApp(pool,config);closed=createApp(pool,{...config,allowFamilyMaintenancePreview:false});
+    await seedDevelopmentFixture(pool);app=createApp(pool,config,{emailIdentityVerifier});closed=createApp(pool,{...config,allowFamilyMaintenancePreview:false},{emailIdentityVerifier});
     B=await actor('B');C=await actor('C');X=await actor('X');ownId=String((await pool.query('select id from app.planners where public_id=$1',[A])).rows[0].id);
     bm=await matter('Family folder');cm=await matter('Friend project');privateMatter=await matter('Owner private');
     bc=await connect('B',bm,B);cc=await connect('C',cm,C);pending=await connect('Pending',bm);

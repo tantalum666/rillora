@@ -1,0 +1,47 @@
+"""Independently confirm the deployment after local CDK polling lost DNS."""
+from pathlib import Path
+import copy,datetime,json,subprocess,urllib.request,urllib.error
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-live-configuration-20261009';PRIVATE=ROOT/'.local-secrets/live-configuration-20261009'
+def aws(args,profile='rillora-cdk-session'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE';out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+actual=aws(['cloudformation','get-template','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+assert actual==json.loads((QA/'cdk-candidate/RilloraProduction.template.json').read_text())
+old_stack=json.loads((PRIVATE/'production-stack-before.json').read_text());old_outputs={x['OutputKey']:x['OutputValue'] for x in old_stack['Outputs']}
+service=next(v for k,v in out.items() if k.startswith('RuntimeApiServiceName'));cluster=out['ClusterName']
+sv=aws(['ecs','describe-services','--cluster',cluster,'--services',service])['services'][0]
+assert sv['desiredCount']==sv['runningCount']==1 and sv['pendingCount']==0 and len(sv['deployments'])==1 and sv['deployments'][0]['rolloutState']=='COMPLETED'
+old=aws(['ecs','describe-task-definition','--task-definition',next(v for k,v in old_outputs.items() if k.startswith('RuntimeApiTaskDefinitionArn'))])['taskDefinition']
+new=aws(['ecs','describe-task-definition','--task-definition',sv['taskDefinition']])['taskDefinition']
+keys=['family','taskRoleArn','executionRoleArn','networkMode','containerDefinitions','volumes','requiresCompatibilities','cpu','memory','runtimePlatform','ephemeralStorage']
+a=copy.deepcopy({k:old.get(k) for k in keys});b=copy.deepcopy({k:new.get(k) for k in keys})
+assert len(a['containerDefinitions'])==len(b['containerDefinitions'])==1
+oc=a['containerDefinitions'][0];nc=b['containerDefinitions'][0];old_image=oc.pop('image');image=nc.pop('image')
+oe={x['name']:x['value'] for x in oc.pop('environment')};ne={x['name']:x['value'] for x in nc.pop('environment')}
+assert ne.pop('ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS')=='true';assert ne.pop('STRIPE_PRODUCTION_SECRET_ARN')==json.loads((QA/'staged-secret-version.json').read_text())['secretArn']
+assert oe==ne and a==b and ne['PRODUCTION_REVIEW_EXPIRES_AT']=='2026-10-08T20:00:00Z'
+assert image.endswith(':675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f')
+ids=aws(['ecs','list-tasks','--cluster',cluster,'--service-name',service])['taskArns'];assert len(ids)==1
+task=aws(['ecs','describe-tasks','--cluster',cluster,'--tasks',ids[0]])['tasks'][0];assert task['healthStatus']=='HEALTHY' and task['taskDefinitionArn']==sv['taskDefinition']
+for name,data in [('production-stack-after',stack),('production-task-after',new)]:
+ f=PRIVATE/(name+'.json');f.write_text(json.dumps(data));f.chmod(0o600)
+checks=[]
+for method,path,expected in [('GET','/health/live',200),('GET','/health/ready',200),('POST','/api/commerce/stripe/webhook',400),('GET','/api/v1/commerce/stripe/quote',403)]:
+ base=next(v for k,v in out.items() if k.startswith('RuntimeApiUrl')) if path.startswith('/health/') else 'https://app.rillora.xyz'
+ request=urllib.request.Request(base+path,method=method,headers={'Content-Type':'application/json'},data=b'{}' if method=='POST' else None)
+ try:
+  with urllib.request.urlopen(request,timeout=30) as response:status=response.status;body=response.read()
+ except urllib.error.HTTPError as error:status=error.code;body=error.read()
+ assert status==expected,(method,path,status)
+ decoded=json.loads(body);checks.append({'method':method,'path':path,'surface':'direct_api' if path.startswith('/health/') else 'formal_web','status':status,'body':decoded})
+ assert path!='/api/commerce/stripe/webhook' or decoded.get('error',{}).get('code')=='stripe_signature_required'
+r={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'987327d37d639379b0914073427c04d83b7ccf68','stackStatus':stack['StackStatus'],
+ 'actualTemplateMatches':True,'taskDefinition':sv['taskDefinition'],'previousTaskDefinition':old['taskDefinitionArn'],
+ 'health':'HEALTHY','running':1,'rollout':'COMPLETED','image':image,'imageDigest':task['containers'][0]['imageDigest'],
+ 'originalSettingsAndReviewWindowUnchanged':True,'reviewIdentityCount':len(ne['PRODUCTION_REVIEW_IDENTITY_SHA256'].split(',')),
+ 'newCheckoutEnabled':ne['ALLOW_STRIPE_PRODUCTION_INTEGRATION']=='true','migrationsRun':False,'schemaFloor':93,'httpChecks':checks,
+ 'localCdkPollingDnsFailureRecoveredByReadback':True}
+(QA/'runtime-verified.json').write_text(json.dumps(r,indent=2)+'\n')
+complete=json.loads((QA/'reviewed-production-delta.json').read_text());complete.update(completedAt=r['at'],stackStatus='UPDATE_COMPLETE',actualTemplateMatches=True,completedByIndependentReadback=True)
+(QA/'production-deployment-complete.json').write_text(json.dumps(complete,indent=2)+'\n');print(json.dumps(r))

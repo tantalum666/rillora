@@ -1,0 +1,5 @@
+UNSENT — proposed public Auth0 Community question; Owner authorization required before posting.
+
+Title: Supported way to remove a retained Universal Login page template when the template API returns HTTP 402
+
+A tenant on its current plan still renders a previously configured Universal Login page template. The login widget correctly follows en/zh-CN, but static text in the surrounding template does not. GET /api/v2/branding/templates/universal-login returns HTTP 402 requiring a paid subscription. The support portal also says this account cannot create a ticket. Is there a supported no-cost way to reset only the page template to the standard Universal Login shell, preserving the custom domain, branding theme, connections, Actions and users? We are not seeking to bypass plan restrictions or switch to Classic Login. No tenant identifiers, credentials or user details are included.

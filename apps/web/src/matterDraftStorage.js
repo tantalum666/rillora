@@ -74,11 +74,11 @@ export function clearMatchingMatterDraft(owner, drawer, store = storage()) {
   return true;
 }
 
-export function matterStatusLabel(matter) {
+export function matterStatusLabel(matter, t) {
   switch (matter.recordStatus ?? matter.status) {
-    case "ready": case "added": return "Directions added";
-    case "needs_review": return "Needs review";
-    case "archived": return "Archived";
-    default: return "Draft";
+    case "ready": case "added": return t ? t("workspace.matterStatus.ready") : "Directions added";
+    case "needs_review": return t ? t("workspace.matterStatus.needs_review") : "Needs review";
+    case "archived": return t ? t("workspace.matterStatus.archived") : "Archived";
+    default: return t ? t("workspace.matterStatus.draft") : "Draft";
   }
 }

@@ -4,7 +4,7 @@ const fs=require('node:fs');const vm=require('node:vm');const crypto=require('no
 const subject='auth0|synthetic-review';
 const digest=crypto.createHash('sha256').update(`https://login.rillora.xyz\u001f${subject}`).digest('hex');
 function run(expiry=new Date(Date.now()+60_000).toISOString(),digests=[digest]){
- const code=fs.readFileSync(__dirname+'/production-review-action.cjs','utf8').replace('__REVIEW_IDENTITY_DIGEST__',digests.join(',')).replace('__REVIEW_EXPIRES_AT__',expiry).replace('__RILLORA_FORM_ID__','ap_fixture');
+ const code=fs.readFileSync(__dirname+'/production-review-action.cjs','utf8').replace('__REVIEW_IDENTITY_DIGEST__',digests.join(',')).replace('__REVIEW_EXPIRES_AT__',expiry).replace('__RILLORA_FORM_ID__','ap_fixture').replace('__RILLORA_FORM_ZH_ID__','ap_chinesefixture');
  const context={exports:{},require,Date};vm.runInNewContext(code,context);return context.exports;
 }
 function fixture(client='POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4'){
@@ -43,4 +43,14 @@ test('malformed, duplicate or oversized review lists fail closed',async()=>{
   const f=fixture();await run(undefined,values).onExecutePostLogin(f.event,f.api);
   assert.equal(f.calls.denied.length,1);assert.equal(f.calls.forms.length,0);
  }
+});
+
+test('Chinese native review uses an unchecked Chinese form under the same access gate',async()=>{
+ const f=fixture(), action=run(); f.event.transaction={locale:'zh-CN'};
+ await action.onExecutePostLogin(f.event,f.api);
+ assert.equal(f.calls.forms[0][0],'ap_chinesefixture');assert.equal(f.calls.forms[0][1].fields.rillora_legal_accepted,false);
+ f.event.prompt={id:'ap_chinesefixture',fields:{rillora_legal_accepted:true},vars:f.calls.forms[0][1].vars};
+ await action.onContinuePostLogin(f.event,f.api);assert.equal(f.calls.claims.length,1);
+ const stranger=fixture();stranger.event.transaction={locale:'zh-CN'};stranger.event.user.user_id='auth0|stranger';
+ await action.onExecutePostLogin(stranger.event,stranger.api);assert.equal(stranger.calls.forms.length,0);assert.equal(stranger.calls.denied.length,1);
 });

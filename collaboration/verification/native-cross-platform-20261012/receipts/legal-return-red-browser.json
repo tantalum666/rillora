@@ -1,0 +1,422 @@
+{
+  "config": {
+    "argv": [
+      "/opt/homebrew/Cellar/node@22/22.22.3/bin/node",
+      "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/node_modules/.bin/playwright",
+      "test",
+      "--config",
+      "output/qa/rillora-native-cross-platform-20261012/playwright-remaining.config.mjs"
+    ],
+    "configFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/playwright-remaining.config.mjs",
+    "rootDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+    "failOnFlakyTests": false,
+    "forbidOnly": false,
+    "fullyParallel": false,
+    "globalSetup": null,
+    "globalTeardown": null,
+    "globalTimeout": 0,
+    "grep": {},
+    "grepInvert": null,
+    "maxFailures": 0,
+    "metadata": {
+      "actualWorkers": 1
+    },
+    "preserveOutput": "always",
+    "projects": [
+      {
+        "outputDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts",
+        "repeatEach": 1,
+        "retries": 0,
+        "metadata": {
+          "actualWorkers": 1
+        },
+        "id": "",
+        "name": "",
+        "testDir": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e",
+        "testIgnore": [],
+        "testMatch": [
+          "legal-return.spec.mjs"
+        ],
+        "timeout": 15000
+      }
+    ],
+    "quiet": false,
+    "reporter": [
+      [
+        "list",
+        null
+      ],
+      [
+        "json",
+        {
+          "outputFile": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser.json"
+        }
+      ]
+    ],
+    "reportSlowTests": {
+      "max": 5,
+      "threshold": 300000
+    },
+    "shard": null,
+    "tags": [],
+    "updateSnapshots": "missing",
+    "updateSourceMethod": "patch",
+    "version": "1.63.0",
+    "workers": 1,
+    "webServer": {
+      "command": "npm run dev -- --host 127.0.0.1 --port 4174 --strictPort",
+      "cwd": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web",
+      "url": "http://127.0.0.1:4174",
+      "reuseExistingServer": false
+    }
+  },
+  "suites": [
+    {
+      "title": "legal-return.spec.mjs",
+      "file": "legal-return.spec.mjs",
+      "column": 0,
+      "line": 0,
+      "specs": [
+        {
+          "title": "legal return rechecks an existing session without another login en",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 0,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7179,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:21:46",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                      "column": 46,
+                      "line": 21
+                    },
+                    "snippet": "  19 |     expect(reads).toEqual([]);\n  20 |     await page.locator('.legal-back').click();\n> 21 |     await expect(page.locator('.app-shell')).toBeVisible();\n     |                                              ^\n  22 |     await expect(page.locator('.workspace-chrome')).toContainText('owner@example.test');\n  23 |     expect(reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n  24 |     await expect(page.getByRole('heading', { name: locale === 'en' ? 'My matter map' : '我的事项地图', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                        "column": 46,
+                        "line": 21
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n\n  19 |     expect(reads).toEqual([]);\n  20 |     await page.locator('.legal-back').click();\n> 21 |     await expect(page.locator('.app-shell')).toBeVisible();\n     |                                              ^\n  22 |     await expect(page.locator('.workspace-chrome')).toContainText('owner@example.test');\n  23 |     expect(reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n  24 |     await expect(page.getByRole('heading', { name: locale === 'en' ? 'My matter map' : '我的事项地图', exact: true })).toBeVisible();\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:21:46"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:30:16.812Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--edee4-on-without-another-login-en/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--edee4-on-without-another-login-en/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--edee4-on-without-another-login-en/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                    "column": 46,
+                    "line": 21
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-33996bd3f850ab2a75e5",
+          "file": "legal-return.spec.mjs",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "legal return rechecks an existing session without another login zh-CN",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 1,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6892,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:21:46",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                      "column": 46,
+                      "line": 21
+                    },
+                    "snippet": "  19 |     expect(reads).toEqual([]);\n  20 |     await page.locator('.legal-back').click();\n> 21 |     await expect(page.locator('.app-shell')).toBeVisible();\n     |                                              ^\n  22 |     await expect(page.locator('.workspace-chrome')).toContainText('owner@example.test');\n  23 |     expect(reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n  24 |     await expect(page.getByRole('heading', { name: locale === 'en' ? 'My matter map' : '我的事项地图', exact: true })).toBeVisible();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                        "column": 46,
+                        "line": 21
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n\n  19 |     expect(reads).toEqual([]);\n  20 |     await page.locator('.legal-back').click();\n> 21 |     await expect(page.locator('.app-shell')).toBeVisible();\n     |                                              ^\n  22 |     await expect(page.locator('.workspace-chrome')).toContainText('owner@example.test');\n  23 |     expect(reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n  24 |     await expect(page.getByRole('heading', { name: locale === 'en' ? 'My matter map' : '我的事项地图', exact: true })).toBeVisible();\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:21:46"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:30:25.359Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--94aab-without-another-login-zh-CN/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--94aab-without-another-login-zh-CN/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--94aab-without-another-login-zh-CN/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                    "column": 46,
+                    "line": 21
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-62a970fa991b730b4b53",
+          "file": "legal-return.spec.mjs",
+          "line": 15,
+          "column": 3
+        },
+        {
+          "title": "saved-copy Account link resumes the existing workspace",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 2,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 6578,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:38:44",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                      "column": 44,
+                      "line": 38
+                    },
+                    "snippet": "  36 |   expect(reads).toEqual([]);\n  37 |   await page.locator('.public-header').getByRole('link', { name: 'Account', exact: true }).click();\n> 38 |   await expect(page.locator('.app-shell')).toBeVisible();\n     |                                            ^\n  39 |   expect(state.writes).toEqual([]);\n  40 |   expect(state.errors).toEqual([]);\n  41 |   await context.close();"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                        "column": 44,
+                        "line": 38
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mlocator\u001b[39m\u001b[2m).\u001b[22mtoBeVisible\u001b[2m(\u001b[22m\u001b[2m)\u001b[22m failed\n\nLocator: locator('.app-shell')\nExpected: visible\nTimeout: 5000ms\nError: element(s) not found\n\nCall log:\n\u001b[2m  - Expect \"toBeVisible\" locator('.app-shell') with timeout 5000ms\u001b[22m\n\u001b[2m  - waiting for locator('.app-shell')\u001b[22m\n\n\n  36 |   expect(reads).toEqual([]);\n  37 |   await page.locator('.public-header').getByRole('link', { name: 'Account', exact: true }).click();\n> 38 |   await expect(page.locator('.app-shell')).toBeVisible();\n     |                                            ^\n  39 |   expect(state.writes).toEqual([]);\n  40 |   expect(state.errors).toEqual([]);\n  41 |   await context.close();\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:38:44"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:30:33.542Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-saved-copy-Ac-0533e-umes-the-existing-workspace/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-saved-copy-Ac-0533e-umes-the-existing-workspace/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-saved-copy-Ac-0533e-umes-the-existing-workspace/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                    "column": 44,
+                    "line": 38
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-a58df57e87384e784f4c",
+          "file": "legal-return.spec.mjs",
+          "line": 32,
+          "column": 1
+        },
+        {
+          "title": "legal return keeps signed-out visitors public without accepting terms",
+          "ok": false,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 3,
+                  "parallelIndex": 0,
+                  "status": "failed",
+                  "duration": 7030,
+                  "error": {
+                    "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate",
+                    "stack": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:50:91",
+                    "location": {
+                      "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                      "column": 91,
+                      "line": 50
+                    },
+                    "snippet": "  48 |   expect(reads).toEqual([]);\n  49 |   await page.locator('.legal-back').click();\n> 50 |   await expect.poll(() => reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n     |                                                                                           ^\n  51 |   await expect(page.locator('.public-shell-home')).toBeVisible();\n  52 |   await expect(page.locator('.app-shell')).toHaveCount(0);\n  53 |   expect(state.writes).toEqual([]);"
+                  },
+                  "errors": [
+                    {
+                      "location": {
+                        "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                        "column": 91,
+                        "line": 50
+                      },
+                      "message": "Error: \u001b[2mexpect(\u001b[22m\u001b[31mreceived\u001b[39m\u001b[2m).\u001b[22mtoBe\u001b[2m(\u001b[22m\u001b[32mexpected\u001b[39m\u001b[2m) // Object.is equality\u001b[22m\n\nExpected: \u001b[32mtrue\u001b[39m\nReceived: \u001b[31mfalse\u001b[39m\n\nCall Log:\n- Timeout 5000ms exceeded while waiting on the predicate\n\n  48 |   expect(reads).toEqual([]);\n  49 |   await page.locator('.legal-back').click();\n> 50 |   await expect.poll(() => reads.some(url => new URL(url).pathname.endsWith('/overview'))).toBe(true);\n     |                                                                                           ^\n  51 |   await expect(page.locator('.public-shell-home')).toBeVisible();\n  52 |   await expect(page.locator('.app-shell')).toHaveCount(0);\n  53 |   expect(state.writes).toEqual([]);\n    at /Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs:50:91"
+                    }
+                  ],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:30:41.136Z",
+                  "annotations": [],
+                  "attachments": [
+                    {
+                      "name": "screenshot",
+                      "contentType": "image/png",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--13199-lic-without-accepting-terms/test-failed-1.png"
+                    },
+                    {
+                      "name": "error-context",
+                      "contentType": "text/markdown",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--13199-lic-without-accepting-terms/error-context.md"
+                    },
+                    {
+                      "name": "trace",
+                      "contentType": "application/zip",
+                      "path": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/output/qa/rillora-native-cross-platform-20261012/legal-return-red-browser-artifacts/legal-return-legal-return--13199-lic-without-accepting-terms/trace.zip"
+                    }
+                  ],
+                  "errorLocation": {
+                    "file": "/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/apps/web/e2e/legal-return.spec.mjs",
+                    "column": 91,
+                    "line": 50
+                  }
+                }
+              ],
+              "status": "unexpected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-38400abf72607e1dd26c",
+          "file": "legal-return.spec.mjs",
+          "line": 44,
+          "column": 1
+        },
+        {
+          "title": "moving between public legal pages never fetches private workspace data",
+          "ok": true,
+          "tags": [],
+          "tests": [
+            {
+              "timeout": 15000,
+              "annotations": [],
+              "expectedStatus": "passed",
+              "projectId": "",
+              "projectName": "",
+              "results": [
+                {
+                  "workerIndex": 4,
+                  "parallelIndex": 0,
+                  "status": "passed",
+                  "duration": 1565,
+                  "errors": [],
+                  "stdout": [],
+                  "stderr": [],
+                  "retry": 0,
+                  "startTime": "2026-10-12T14:30:49.151Z",
+                  "annotations": [],
+                  "attachments": []
+                }
+              ],
+              "status": "expected"
+            }
+          ],
+          "id": "d8e67988729ff5bc7c24-34752021ad022e3bc6b2",
+          "file": "legal-return.spec.mjs",
+          "line": 58,
+          "column": 1
+        }
+      ]
+    }
+  ],
+  "errors": [],
+  "stats": {
+    "startTime": "2026-10-12T14:30:15.500Z",
+    "duration": 35808.085,
+    "expected": 1,
+    "skipped": 0,
+    "unexpected": 4,
+    "flaky": 0
+  }
+}

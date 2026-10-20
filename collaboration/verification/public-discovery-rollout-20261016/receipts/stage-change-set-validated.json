@@ -1,0 +1,26 @@
+{
+  "validatedAt": "2026-10-16T09:04:20.657113+00:00",
+  "changes": [
+    {
+      "logicalId": "PublicDeploymentCustomResource947B276F",
+      "type": "Custom::CDKBucketDeployment",
+      "replacement": "Conditional"
+    },
+    {
+      "logicalId": "PublicRoutesC0C4D2B4",
+      "type": "AWS::CloudFront::Function",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "Website32962D0B",
+      "type": "AWS::CloudFront::Distribution",
+      "replacement": "False"
+    }
+  ],
+  "customResourceConditionalExplained": "CDK handler returns existing PhysicalResourceId for Update; destination and service token unchanged, prune false, retain on delete defaults true",
+  "distributionDependencyOnly": true,
+  "liveRouterRemainsOld": true,
+  "rootFilesExcluded": true,
+  "realAwsResourceReplacement": false,
+  "sourceCi165": "success"
+}

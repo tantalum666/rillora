@@ -1,0 +1,62 @@
+TAP version 13
+# Subtest: complete backup preserves private Notes and cannot claim restored sharing
+ok 1 - complete backup preserves private Notes and cannot claim restored sharing
+  ---
+  duration_ms: 0.7585
+  type: 'test'
+  ...
+# Subtest: reader rejects partial, malformed and oversized files
+ok 2 - reader rejects partial, malformed and oversized files
+  ---
+  duration_ms: 0.304084
+  type: 'test'
+  ...
+# Subtest: directions require exact safety boundaries
+ok 3 - directions require exact safety boundaries
+  ---
+  duration_ms: 0.066542
+  type: 'test'
+  ...
+# Subtest: deletion references are random portable status-only receipts
+ok 4 - deletion references are random portable status-only receipts
+  ---
+  duration_ms: 5.803958
+  type: 'test'
+  ...
+# Subtest: a maximum-size backup downloads into the same file boundary its reader accepts
+not ok 5 - a maximum-size backup downloads into the same file boundary its reader accepts
+  ---
+  duration_ms: 9.778041
+  type: 'test'
+  location: '/Users/tantalum/Documents/电子遗嘱app/apps/web/tests/saved-copy.test.mjs:11:1'
+  failureType: 'testCodeFailure'
+  error: |-
+    Expected values to be strictly equal:
+    + actual - expected
+    
+    + 2126223
+    - 2097152
+    
+  code: 'ERR_ASSERTION'
+  name: 'AssertionError'
+  expected: 2097152
+  actual: 2126223
+  operator: 'strictEqual'
+  stack: |-
+    TestContext.<anonymous> (file:///Users/tantalum/Documents/%E7%94%B5%E5%AD%90%E9%81%97%E5%98%B1app/apps/web/tests/saved-copy.test.mjs:26:12)
+    Test.runInAsyncScope (node:async_hooks:214:14)
+    Test.run (node:internal/test_runner/test:1047:25)
+    Test.processPendingSubtests (node:internal/test_runner/test:744:18)
+    Test.postRun (node:internal/test_runner/test:1173:19)
+    Test.run (node:internal/test_runner/test:1101:12)
+    async Test.processPendingSubtests (node:internal/test_runner/test:744:7)
+  ...
+1..5
+# tests 5
+# suites 0
+# pass 4
+# fail 1
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 123.128792

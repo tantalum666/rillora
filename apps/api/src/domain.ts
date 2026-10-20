@@ -47,8 +47,11 @@ export const purchaseRouteRequestSchema = z
 export const stripeTestCheckoutRequestSchema = z
   .object({
     billingPeriod: z.enum(["monthly", "annual"]),
+    locale: z.enum(["en", "zh-CN"]).optional(),
   })
   .strict();
+
+export const billingPortalRequestSchema = z.object({ locale: z.enum(["en", "zh-CN"]).optional() }).strict();
 
 export const stripeTestIdempotencyKeySchema = z
   .string()
@@ -278,6 +281,7 @@ export const createPrintableStartHereSchema = z
     previewPublicId: publicIdSchema,
     acknowledgesPlaintext: z.literal(true),
     acknowledgesNoRevocation: z.literal(true),
+    locale: z.enum(["en", "zh-CN"]).default("en"),
   })
   .strict();
 

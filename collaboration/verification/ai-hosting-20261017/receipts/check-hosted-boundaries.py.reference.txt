@@ -1,0 +1,30 @@
+from pathlib import Path
+import subprocess,json,datetime,concurrent.futures
+origin='https://rillora-ai-candidate.rillora-candidate.workers.dev'
+cases=[
+ ('oauth metadata','GET','/.well-known/oauth-authorization-server',200,{}),
+ ('protected metadata','GET','/.well-known/oauth-protected-resource/mcp',200,{}),
+ ('anonymous MCP','POST','/mcp',401,{}),
+ ('invalid token','POST','/mcp',401,{'Authorization':'Bearer invalid-synthetic-token'}),
+ ('foreign browser origin','POST','/mcp',403,{'Origin':'https://foreign.example.test'}),
+ ('null form origin','POST','/authorize',403,{'Origin':'null'}),
+ ('operator denied','POST','/operator/status',401,{}),
+ ('malformed operator credential','POST','/operator/status',401,{'Authorization':'Bearer not-a-key'}),
+ ('DCR absent','POST','/register',404,{}),
+ ('invalid client','GET','/authorize?client_id=unknown&response_type=code',400,{}),
+]
+def run(case):
+ label,method,path,expected,headers=case
+ args=['curl','-sS','--max-time','25','-X',method,'-w','\n%{http_code}',origin+path]
+ for k,v in headers.items():args.extend(['-H',k+': '+v])
+ if method=='POST':args.extend(['-H','Content-Type: application/json','--data','{}'])
+ result=subprocess.run(args,capture_output=True,text=True);body,_,status=result.stdout.rpartition('\n')
+ record={'check':label,'expected':expected,'actual':int(status) if status.isdigit() else None,'passed':status==str(expected) and result.returncode==0}
+ if label=='oauth metadata' and record['passed']:
+  obj=json.loads(body);record['passed']=obj['issuer']==origin and 'registration_endpoint' not in obj and obj.get('client_id_metadata_document_supported') is False and obj['code_challenge_methods_supported']==['S256']
+ if label=='protected metadata' and record['passed']:
+  obj=json.loads(body);record['passed']=obj['resource']==origin+'/mcp' and obj['authorization_servers']==[origin]
+ return record
+with concurrent.futures.ThreadPoolExecutor(max_workers=3) as pool:results=list(pool.map(run,cases))
+receipt={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'scope':'New isolated hosted candidate only; no credential or account mutation','checks':results,'passed':all(r['passed'] for r in results)}
+Path(__file__).with_name('hosted-boundary-readback.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt));raise SystemExit(0 if receipt['passed'] else 1)

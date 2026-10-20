@@ -1,0 +1,95 @@
+{
+  "completedAt": "2026-10-15T11:05:30.882456+08:00",
+  "mode": "same-workflow-owner-steering-to-next-version-research",
+  "retainedFullRead": "collaboration/verification/app-review-20261015/receipts/reading.json",
+  "retainedFullReadOrigin": "output/qa/rillora-final-readiness-20261013/reading.json",
+  "fullRepositoryReadRepeated": false,
+  "read": [
+    {
+      "path": "AGENTS.md",
+      "range": "complete Owner-provided instructions plus retained repository baseline",
+      "sha256": "435d9bfaf85f5584d7895aa8ed98ce7d3ddfa18e212c571e72c3de1a4163c334"
+    },
+    {
+      "path": "docs/product.md",
+      "range": "1-100,485-520 plus retained complete baseline",
+      "sha256": "9e736bb2e8b469b1fa1e738380b583486f40f16b967756f7a2f93818828cc71a"
+    },
+    {
+      "path": "docs/handoff.md",
+      "range": "1-31 complete before replacement",
+      "sha256": "b7cf0d50fdea804e3a4126149329bb0612e9a8bca43727785dcbebb3be51eb24"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "range": "latest110 lines plus retained complete baseline; latest October15 section supplemented",
+      "sha256": "6cec5cd0a03db3b4e54847dacdfb6c215211de599a57117903d43d021cebefb7"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "range": "latest80 lines plus retained complete baseline",
+      "sha256": "6f7cd33523f4148fe1293a8e9d684580ef4ac9630fac3cfdf035ae3e93c9869e"
+    },
+    {
+      "path": "docs/architecture/ai-mcp-plan-20261005.md",
+      "range": "1-180,181-304,305-385; full385lines; truncated batch supplemented",
+      "sha256": "05d65cd68fb482e908b2d24a3e8809a933814f7fd84701edd233f78335a058d7"
+    },
+    {
+      "path": "collaboration/README.md",
+      "range": "1-188 complete before update; truncated108-165 and final180-188 supplemented",
+      "sha256": "2d0c45e4dc334afa3630db22b7e197f8a134c676d323354ca25bef4f47863b21"
+    },
+    {
+      "path": "docs/source-control.md",
+      "range": "1-275 plus retained complete baseline",
+      "sha256": "56b36c927679b77f40b75f96111f51f4504a1ad26882f3422266a716805651f6"
+    },
+    {
+      "path": "docs/trust-safety-legal.md",
+      "range": "1-60,120-145 plus retained complete baseline",
+      "sha256": "d622b1ecabdeb97d7ab90d6074647e6e8b30b6447705fb5866bd0a0e300c4692"
+    },
+    {
+      "path": "apps/web/index.html",
+      "range": "full",
+      "sha256": "a086506d6591d9fec2e7c69427bb8872b98c797f6f3b487114c8f7916b629641"
+    },
+    {
+      "path": "apps/web/public.html",
+      "range": "full",
+      "sha256": "4cce33ff9af78e1e82776a94f2854317e453237a47e0fdbb3f8fe567e4c53a3b"
+    },
+    {
+      "path": "apps/web/package.json",
+      "range": "full",
+      "sha256": "affa32adb21dc9c88c52baae746b1f1e422cfbc66bf42c086728d42c6005e6f3"
+    },
+    {
+      "path": "apps/web/scripts/prepare-public-build.mjs",
+      "range": "full",
+      "sha256": "75862a8b178ed1d62483f0141eb3f8a977985d88021976d0aa0f148760d2849b"
+    },
+    {
+      "path": "apps/web/worker/public-router.js",
+      "range": "full",
+      "sha256": "4fb139a641934e3a6354f9f82a9d778da676f3340cef14882e226c53ddb207cf"
+    },
+    {
+      "path": "collaboration/verification/app-review-20261015/receipts/reading.json",
+      "range": "full retained reading-chain receipt",
+      "sha256": "bd9c5dbb0fd240d0ea1087e87dd9475d7e2980ff83cd0b8e1c15183806687cc9"
+    }
+  ],
+  "exclusions": [
+    "dependency/vendor/cache/build outputs",
+    "generated output evidence packages",
+    "collaboration/evidence, catalog and archives generated copies/index/ciphertext"
+  ],
+  "notes": [
+    "Hashes record change detection only; full original architecture proposal body was read.",
+    "Initial combined outputs truncated; relevant proposal and collaboration ranges were supplemented. Broad rg accidentally matched generated dist content; it is excluded from conclusions.",
+    "Official OpenAI Docs search and fetch failed HTTP403 challenge; actual public official page bodies were read through web fallback.",
+    "No runtime implementation or provider mutation in this research turn."
+  ]
+}

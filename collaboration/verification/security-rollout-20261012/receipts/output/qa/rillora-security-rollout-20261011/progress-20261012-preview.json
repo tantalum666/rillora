@@ -1,0 +1,63 @@
+{
+  "recordedAt": "2026-10-12T08:07:17Z",
+  "source": "bfe9baaf520e051e70081daf7ed459f0926264b4",
+  "ci": {
+    "run": 38210647070,
+    "jobsPassed": 3
+  },
+  "preview": {
+    "stoppedTemplateMatched": true,
+    "backupAvailableEncryptedSourceMatched": true,
+    "backupCreationTags": false,
+    "backupOwnershipProof": "authenticated successful CreateDBSnapshot response and exact fresh identity/source/ARN/create time",
+    "migrationTask": "9141ef7031ec47768906ee90e525b650",
+    "migrationExitCode": 0,
+    "migrationsAfter": 103,
+    "allMigrationChecksumsMatch": true,
+    "originalBusinessDataFingerprintTablesMatched": 68,
+    "pendingIdentityDeletions": 0,
+    "dataProbePassed": true,
+    "authorityProbePassed": true,
+    "runningStackReadbackAt": "2026-10-12T08:06:48.710913+00:00",
+    "runningStackStatus": "UPDATE_COMPLETE",
+    "runningTemplateMatched": true,
+    "postStartHttpTasksAndWorkerLogsVerified": true
+  },
+  "auth0": {
+    "configurationReadbackPassed": true,
+    "legacyCallbacksRetained": true,
+    "reviewExpiryChanged": false,
+    "bindingOrderPreserved": true,
+    "nativeLoginVerified": false
+  },
+  "productionChanged": true,
+  "auxiliaryCandidates": {
+    "RilloraProductionWeb": "synthesized-not-deployed",
+    "RilloraPublicWeb": "synthesized-not-deployed",
+    "RilloraOperations": "synthesized-not-deployed"
+  },
+  "pricesOrSalesSwitchesChanged": false,
+  "realPaymentOrAccountDeletionPerformed": false,
+  "testFlightDistributed": false,
+  "realLocalCredentialsMigrated": false,
+  "newFullTestsClaimed": false,
+  "postCommitQaAndDocsPushed": false,
+  "next": "Complete production post-start checks and deploy the three prepared auxiliary stacks, then fix/install the local helper and deliver the native app.",
+  "production": {
+    "stoppedStackMatched": true,
+    "frozenAuditPassed": true,
+    "encryptedBackupAvailable": true,
+    "migrationTask": "2249e0fbc90e44fb95151195b40fc224",
+    "migrationExitCode": 0,
+    "postMigrationVerification": "passed",
+    "servicesRestored": true,
+    "all103ChecksumsMatch": true,
+    "original68BusinessTableFingerprintsMatch": true,
+    "forgedJournalEnvelopeDenied": true,
+    "runningStackTemplateMatched": true,
+    "postStartVerification": "in progress"
+  },
+  "permissionsResolved": true,
+  "status": "HISTORICAL_CHECKPOINT",
+  "supersededBy": "current-work-state.json"
+}

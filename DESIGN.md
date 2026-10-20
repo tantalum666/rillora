@@ -5,7 +5,17 @@ Authority scope: Rillora brand-name application, public-entry and private-worksp
 Superseded by: a later Owner-approved visual decision recorded in `docs/decision-log.md`  
 Do not use for: trademark clearance, legal claims, production security proof or Chinese naming  
 Status: GLOBAL GRAPHITE CONTINUITY DIRECTION OWNER-DIRECTED AND IMPLEMENTED LOCALLY; SIGNED-OUT／AUTHENTICATED ROOTS, PROFILE ACTIONS AND FOCUSED-TASK DENSITY VERIFIED; EXTERNAL AND RELEASE GATES OPEN  
-Last updated: 2026-09-20 (full03 geometry in mobile and desktop brand lockups)
+Last updated: 2026-10-07 (owner-directed native UX refinement; current runtime gate remains open)
+
+## Current appearance and public-home authority
+
+The September29 Owner decisions supersede earlier fixed-dark and folded-map home
+descriptions below. Web and native use System by default with explicit Light/Dark
+preferences across roots, pushed views and sheets. Public Home uses the approved
+paper/forest book composition; the signed-in hierarchy remains unchanged.
+[Appearance](docs/ui-ux-audit-20260929.md), [public controls](docs/website-appearance-controls-20260929.md)
+and [native Home](docs/native-home-20260929.md) own the current details. The October3
+code review repairs state/interaction correctness without changing this visual target.
 
 ## Installed motion review — 2026-09-18
 
@@ -48,13 +58,13 @@ The product name is **Rillora**. Use that exact capitalization in Web, iOS, prod
 
 Owner explicitly selects identity03 **Legacy Imprint** (“还是用这版吧”). The original symbol, Source Serif4 SemiBold outlined wordmark and forest/paper/bronze identity are canonical. Use [approved assets](assets/brand/rillora/README.md) and [brand configuration](config/brand.json); preserve the existing Graphite/Prepared Folio UI palette, composition and navigation.
 
-Existing dark headers use the paper-coloured lockup. Compact headers use the exact complete03 symbol and outlined wordmark, scaled proportionally. Do not replace the symbol with the micro variant based on device width or a compact flag. Tiny browser favicons retain their separate optical assets. The main iOS App icon is the approved dark1024px image, with platform-applied masking. Do not replace navigation titles such as Matters/Profile with branding or add decorative brand cards.
+Existing dark headers use the paper-coloured lockup. Compact headers use the exact complete03 symbol and outlined wordmark, scaled proportionally. Do not replace the symbol with the micro variant based on device width or a compact flag. Browser favicons also preserve the approved full03 geometry. The main iOS App icon is the approved dark1024px image, with platform-applied masking. Do not replace navigation titles such as Matters/Profile with branding or add decorative brand cards.
 
 All earlier Logo-specific exclusions and staged approval gates were revoked by Owner before this selection. Their history remains in [discovery](docs/logo-discovery.md);01/02/04/05 are not active alternatives. Source Serif4 and Inter permit commercial use underOFL1.1; retain font-software copyright/full licences as documented in [font verification](docs/brand-font-license-20260919.md). Font permission and Owner adoption do not establish trademark clearance or release acceptance.
 
 ## Selected Visual Truth
 
-Owner feedback on 2026-08-15 supersedes the earlier public-dark/private-light split. Rillora now uses one default graphite visual system across signed-out discovery, authenticated workspace, editors, preparation tools, rehearsal and export. Dark appearance is product chrome, not a theme toggle or isolated landing treatment.
+Owner feedback on 2026-08-15 established a consistent graphite direction. September29 subsequently added System/Light/Dark across the product and the approved paper/forest public Home. The older boards below retain composition and hierarchy context, but no longer require fixed dark appearance.
 
 The selected four-board visual specification is recorded in `docs/dark-ui-redesign-brief.md`:
 
@@ -136,7 +146,7 @@ Clay actions use graphite `canvas` text, not limestone. The measured relationshi
 
 ## Web Composition
 
-- Web defaults to the global graphite token set for both public and authenticated routes. Workspace density and route hierarchy may change after authentication; canvas, surface, type and action grammar do not switch to a light product.
+- Web defaults to System and applies the selected Light/Dark appearance consistently to public and authenticated routes; workspace density and route hierarchy retain their existing contracts.
 - The unauthenticated root is a full public introduction, not a centered sign-in card. It explains the product promise, three-step workflow, separate life-event paths and map-not-password boundary before asking for an account.
 - `Account` is a distinct `/account` surface. Public calls to action move there first; only its neutral `Sign in` and `Create account` choices enter Auth0. It does not turn Free/no-card reassurance into a heading, plan card or action label. Private plan reads and every write remain authenticated.
 - Public Web and iOS use a generated folded-map illustration with directly selectable What / Next step / Who relationships. Selection updates the diagram and concise caption, without authentication or API mutation. Three short separate-event facts precede the Add intent. Categories expand to one short guidance line and the correctly seeded Add action. Account remains a quiet utility; public discovery contains no plan comparison or price. This replaces the earlier static-row product map.
@@ -158,7 +168,7 @@ The iOS domain notice remains system-owned. This overrides the earlier native
 Account/chooser rules below; other graphite and whole-app rules remain active.
 
 
-- The app defaults to dark appearance across all three roots, pushed routes, sheets, editors and loading/failure states. A tab change must never switch canvas or system chrome from graphite to cream.
+- The app defaults to System; its explicit Light/Dark preference covers all three roots, pushed routes, sheets, editors and loading/failure states. A tab change must not reset the selected appearance.
 - Native safe areas, navigation, scrolling and bottom-tab behavior are preserved. The iOS launch screen uses the graphite asset from the first frame, and the app declares portrait and both landscape orientations. QA must verify actual interface dimensions rather than a rotation command alone.
 - A signed-out launch opens a useful public `Overview`. Every private/create/sign-in intent starts the hosted authentication transaction directly. There is no native Account intermediary, email preflight or method chooser. The hosted transaction owns the compact unchecked legal confirmation and its receipt; the ordinary iOS domain notice remains system-owned. Cancel returns to the originating product route. See `docs/authentication-experience.md` for the exact contract and current runtime evidence.
 - Signed-out Overview uses a generated map with selectable What / Next step / Who relationships and short changing feedback. The three separate-event facts precede the Add action. It contains no fake records, numbered article, Free/price promotion or repeated disclaimer. Reduce Motion preserves clear selection feedback without continuous motion. The full-depth contract is `docs/interaction-experience.md`.
@@ -171,9 +181,9 @@ Account/chooser rules below; other graphite and whole-app rules remain active.
 - iOS may use SF Symbols or the prototype runtime's closest system-like icon family; it must not embed hand-drawn SVG icons.
 - Every pushed editor, safety page, plan page, preparation tool and official-guide root hides the Tab Bar while focused. Root tabs keep the system Tab Bar; deep tasks must not let it cover controls or create a second navigation target.
 - Safety truth uses progressive disclosure and compact `RilloraFactStrip` facts where the same boundary would otherwise become a caption paragraph plus a second disclosure list. Primary task context uses at least footnote／subheadline semantic sizes; `caption2` is otherwise reserved for nonessential micro-status; the hosted legal confirmation follows its focused authentication contract and supported renderer.
-- Overview’s named next-matter action opens that exact editor. Its summary rows are tappable and prioritize matters needing review; the Matters list uses the same order, omits empty sections and supports native search with a recoverable no-results state.
+- Overview’s named next action opens that exact editor only when required locator information is missing; otherwise it opens Matters without implying a mandatory shared review. Summary rows prioritize missing locator information. Matters filters real categories independently from owner status and recipient review, preserves input order and offers recoverable native search.
 - Profile preparation and support actions are full-width rows with a task name, a one-line purpose and an internal chevron. External destinations retain the outward arrow. These rows replace the unexplained two-column tool tiles from the earlier condensed hierarchy.
-- Static safety facts use wrapping icon-and-text rows without nested card borders or button-like fills. Rehearsal and guide pages explain the useful task before its concise limits. Provider-owned links appear directly below the provider header, followed by preparation detail.
+- Safety & privacy contains actual supported account-security tasks and policies, with licenses in a quiet secondary row; it does not repeat passive suitable-content or disclosure-checklist cards. Language & appearance lives in a separate secondary Profile page. Rehearsal and guide pages explain the useful task before its concise limits. Provider-owned links appear directly below the provider header, followed by preparation detail.
 - Editable fields keep persistent labels and explicit required/optional meaning. Literal prompts use muted gray, entered text uses body gray and focus uses the existing sage tint. Value/review details are optional disclosure content. Matter and contact cancellation protects dirty drafts; unchanged forms cancel immediately.
 - Start Here shows an in-app preview first, then a single printable/encrypted format choice with the relevant unchecked acknowledgements. Encryption implementation details are secondary disclosure content. Synthetic recipient diagnostics are Debug-only; no export, recovery key or share is created just by entering the page or choosing a format.
 - Background refresh preserves the loaded map on a connection failure and exposes retry. A rejected stored session clears private content and returns to useful public exploration; it must never replace Overview with a Welcome back-only login wall. The account row can explain recovery, and a private action opens hosted authentication. The UI must not claim a fresh fetch when showing the last loaded map.

@@ -1,0 +1,111 @@
+- log
+- log
+- banner "App Store Connect":
+  - heading "App Store Connect" [level=1]:
+    - link "App Store Connect":
+      - /url: /
+  - navigation "全球":
+    - list:
+      - link "App":
+        - /url: /apps
+      - link "Xcode Cloud":
+        - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/xcode-cloud
+      - link "趋势":
+        - /url: /trends
+      - link "报告":
+        - /url: /itc/payments_and_financial_reports
+      - link "商务":
+        - /url: /business
+      - link "用户和访问":
+        - /url: /access/users
+  - button "Yuchen [REDACTED_PRIVATE_VALUE] YUAN|19416635507|1 Account name menu":
+    - generic: Yuchen Yuan
+    - generic: Yuchen YUAN|19416635507|1
+- button "App 菜单，已选择Rillora":
+  - generic "Rillora":
+    - img "Rillora"
+  - generic: Rillora
+- navigation "App":
+  - list:
+    - link "分发":
+      - /url: /apps/6803957639/distribution
+    - link "分析":
+      - /url: /apps/6803957639/analytics
+    - link "TestFlight":
+      - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/apps/6803957639/testflight
+- main:
+  - link "iOS 构建版本":
+    - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/apps/6803957639/testflight/ios
+    - text: iOS 构建版本
+  - heading "1.0 (8)" [level=2]
+  - button "将构建版本设为过期"
+  - button "保存" [disabled]
+  - tablist:
+    - tab "测试信息" [selected]:
+      - generic: 测试信息
+    - tab "构建版本元数据":
+      - generic: 构建版本元数据
+  - heading "测试详细信息" [level=3]
+  - button "英语（美国）" [disabled]
+  - generic: 测试内容
+  - button "更多信息": "?"
+  - paragraph: 告诉测试员你希望他们在此构建版本中测试的内容。此信息将提供给所有群组中可访问此构建版本的测试员。
+  - textbox "测试内容": "Simplified Plan & access: Family benefits, explicit currency and annual price, and one Subscribe with Apple button. Renewal and cancellation details appear beside the policy links. The extra checkbox is removed. Fresh StoreKit price and storefront checks prevent starting with a stale quote. For the existing enrolled Owner test account: retain the successful HKD888 Sandbox subscription, update without uninstalling, and verify Restore purchases and access. Do not repeat the purchase. TestFlight transactions are Sandbox and do not charge real money. 购买页已简化：权益、明确币种的年价、一个购买按钮。保留已有测试订阅，请直接更新，不要卸载或重复购买。"
+  - status "剩余字符": 3,395
+  - separator
+  - heading "群组 (1)" [level=3]
+  - button "添加群组":
+  - paragraph: 添加群组至此构建版本。这些群组中的所有测试员都将可以访问此构建版本。
+  - grid "群组 (1)":
+    - rowgroup:
+      - row "群组名称 群组类型 测试员 操作":
+        - columnheader "群组名称":
+          - button "群组名称":
+            - generic: 群组名称
+        - columnheader "群组类型":
+          - generic: 群组类型
+        - columnheader "测试员":
+          - generic: 测试员
+        - columnheader "操作"
+    - rowgroup:
+      - row "Rillora Owner QA 内部 1":
+        - rowheader "Rillora Owner QA":
+          - link "Rillora Owner QA":
+            - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/apps/6803957639/testflight/groups/77d1c323-8ac4-4c4a-8d98-1b784e497c31
+            - generic: Rillora Owner QA
+        - rowheader "内部":
+          - paragraph: 内部
+        - rowheader "1":
+          - paragraph: "1"
+        - gridcell "删除":
+          - button "删除":
+  - heading "独立测试员 (0)" [level=3]
+  - button "添加测试员":
+  - paragraph: 将独立测试员添加到此特定构建版本中。
+  - grid "ITC.apps.tf.labels.testersNotInGroups":
+    - rowgroup:
+      - row "全选 测试员 状态":
+        - columnheader "全选":
+          - generic: 全选
+        - columnheader "测试员":
+          - generic: 测试员
+        - columnheader "状态":
+          - generic: 状态
+    - rowgroup:
+      - row "没有为此构建版本添加测试员。":
+        - rowheader "没有为此构建版本添加测试员。":
+          - paragraph: 没有为此构建版本添加测试员。
+- contentinfo:
+  - list:
+    - link "App Store Connect":
+      - /url: /apps
+  - list:
+    - listitem: Copyright © 2026 Apple Inc. 保留所有权利。 |
+    - link "服务条款":
+      - /url: /WebObjects/iTunesConnect.woa/wa/termsOfService
+    - text: "|"
+    - link "隐私政策":
+      - /url: https://www.apple.com/legal/privacy
+    - text: "|"
+    - link "联系我们":
+      - /url: /contact-us

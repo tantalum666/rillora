@@ -1,0 +1,33 @@
+{
+  "checkedAt": "2026-10-03T10:21:59.275Z",
+  "checks": [
+    {
+      "path": "/api/health/live",
+      "status": 200,
+      "cacheControl": "no-store",
+      "setCookie": false,
+      "body": "{\"status\":\"ok\"}"
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store",
+      "setCookie": false,
+      "body": "{\"status\":\"ready\"}"
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store",
+      "setCookie": false,
+      "body": "{\"error\":{\"code\":\"authentication_required\",\"message\":\"Authentication is required.\"}}"
+    },
+    {
+      "path": "/api/v1/overview",
+      "status": 401,
+      "cacheControl": "no-store",
+      "setCookie": false,
+      "body": "{\"error\":{\"code\":\"authentication_required\",\"message\":\"Authentication is required.\"}}"
+    }
+  ]
+}

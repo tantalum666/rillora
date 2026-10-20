@@ -1,0 +1,26 @@
+{
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "PublicDeploymentCustomResource947B276F",
+      "PhysicalResourceId": "aws.cdk.s3deployment.6fe6bee6-4426-49ba-81bb-cf359728e816",
+      "ResourceType": "Custom::CDKBucketDeployment",
+      "Replacement": "Conditional",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "SourceObjectKeys",
+            "RequiresRecreation": "Conditionally"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    }
+  ],
+  "nonPublicResourcesChanged": false
+}

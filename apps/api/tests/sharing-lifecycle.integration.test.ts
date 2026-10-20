@@ -8,9 +8,11 @@ import { createPool, withCommercePlannerDatabase, withPlannerDatabase, type Data
 import { runMigrations } from "../src/migrate.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId } from "../src/seed-dev.js";
 import { currentLegalContract } from "../src/legal-contract.js";
-import { verifiedEmailDigest } from "../src/sharing-identity.js";
+import {EmailIdentityFixture} from './email-identity-fixture.js';
+const emailIdentityVerifier=new EmailIdentityFixture();
 
-const databaseUrl = "postgresql:///continuity_commercial_sharing_test";
+import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from './dedicated-test-database.js';
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_commercial_sharing_test","continuity_commercial_sharing_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191", ALLOW_FAMILY_MAINTENANCE_PREVIEW: "true" });
 const owner = { "x-dev-planner-id": developmentPlannerPublicId };
 const digest = (s: string) => createHash("sha256").update(s).digest();
@@ -25,6 +27,7 @@ async function invite(email: string, p?: string) {
 }
 async function recipient(email: string) {
   const actor = (await pool.query("select * from app.provision_oidc_planner($1,$2,$3,'en','UTC')", ["https://qa.example.test", `lifecycle|${++serial}`, "Recipient"])).rows[0];
+  emailIdentityVerifier.register('https://qa.example.test',`lifecycle|${serial}`,email);
   const token = randomBytes(32).toString("base64url"), csrf = randomBytes(32).toString("base64url");
   await pool.query(`with legal as (insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,
     consent_text_version,legal_bundle_sha256,accepted_terms,acknowledged_privacy,accepted_electronic_records,client_surface,identity_reference_sha256)
@@ -32,7 +35,7 @@ async function recipient(email: string) {
     insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,expires_at,verified_email_hash)
     select $1,$2,id,$8,$9,now()+interval '1 hour',$10 from legal`,
   [actor.planner_id, actor.identity_account_id, currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
-    currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"), digest(`qa-${serial}`), digest(token), digest(csrf), verifiedEmailDigest(email)]);
+    currentLegalContract.consentTextVersion, Buffer.from(currentLegalContract.bundleSha256, "hex"), digest(`qa-${serial}`), digest(token), digest(csrf), null]);
   return { cookie: `continuity_session=${token}`, "x-csrf-token": csrf, "x-rillora-planner": actor.planner_public_id };
 }
 async function accept(result: Response, actor: Record<string, string>) {
@@ -66,7 +69,7 @@ async function scope(publicId: string, level: string | null) {
 }
 
 describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive permissions", () => {
-  beforeAll(async () => { await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config); });
+  beforeAll(async () => { await assertDedicatedTestDatabase(databaseUrl,'continuity_commercial_sharing_test'); await runMigrations(databaseUrl); pool = createPool(config); app = createApp(pool, config,{emailIdentityVerifier}); });
   beforeEach(async () => {
     await pool.query("truncate app.planners restart identity cascade");
     await pool.query("update app.commerce_runtime_policy set sharing_limits_enabled=true");
@@ -125,6 +128,11 @@ describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive per
       .send({ connectionPublicId: invitation.body.connection.publicId, grants: [{ matterPublicId: matterId, detailLevel: "details" }] }).expect(200)).body;
     expect(actualPreview.accessMode).toBe("saved");
     expect(actualPreview.items[0].fields).toEqual(item.fields);
+    const guide=(await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:invitation.body.connection.publicId}).expect(201)).body;
+    expect(guide.package.matters[0]).toMatchObject({title:doc.title,locationHint:doc.locationHint});
+    const personal=(await request(app).post('/v1/exports/start-here/preview').set(owner).send({}).expect(201)).body;
+    expect(personal.package.matters.find((m:{publicId:string})=>m.publicId===matterId)).toMatchObject({title:'AFTER EXPIRY',locationHint:'New folder'});
     expect((await access()).used).toBe(0);
   });
 
@@ -134,8 +142,13 @@ describe.sequential("Commercial sharing: quotas, paid cutoff and restrictive per
     const id = invitation.body.connection.publicId;
     await scope(id, "name"); await scope(id, "details");
     expect((await shared(actor)).items[0].fields).toEqual({ title: doc.title, category: "document" });
+    const guide=(await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:id}).expect(201)).body;
+    expect(guide.package.matters[0].locationHint).toBeNull();
     await scope(id, null); await scope(id, "details");
     expect((await shared(actor)).items).toEqual([]);
+    expect((await request(app).post('/v1/exports/start-here/preview').set(owner)
+      .send({recipientConnectionPublicId:id}).expect(201)).body.package.matters).toEqual([]);
   });
 
   it("requires an explicit included-person choice and does not resume everyone after repurchase", async () => {

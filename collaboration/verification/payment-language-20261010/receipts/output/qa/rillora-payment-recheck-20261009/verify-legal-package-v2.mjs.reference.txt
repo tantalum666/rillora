@@ -1,0 +1,26 @@
+import { readFile, writeFile } from 'node:fs/promises';
+import { createHash } from 'node:crypto';
+import assert from 'node:assert/strict';
+const root=process.cwd(), dir=root+'/.local-secrets/payment-recheck-20261009/legal-pages-package-v2';
+const worker=(await import('data:text/javascript;base64,'+(await readFile(dir+'/_worker.js')).toString('base64'))).default;
+const manifest=JSON.parse(await readFile(dir+'/asset-manifest.json','utf8'));
+const routes=['/privacy','/terms','/subscription-terms','/refund-policy','/acceptable-use','/cookies','/legal'];
+let checks=0;
+for(const route of routes) for(const method of ['GET','HEAD','POST','PUT','PATCH','DELETE','OPTIONS']) {
+ const r=await worker.fetch(new Request('https://legal.rillora.xyz'+route+'?lang=zh-CN',{method}));
+ assert.equal(r.status,['GET','HEAD'].includes(method)?200:404);
+ assert.match(r.headers.get('content-security-policy'),/connect-src 'none'/);
+ assert.equal(r.headers.get('x-frame-options'),'DENY');
+ if(method==='HEAD')assert.equal(await r.text(),'');checks++;
+}
+for(const file of manifest.files) {
+ const r=await worker.fetch(new Request('https://legal.rillora.xyz'+file.path));
+ assert.equal(r.status,200);const sha=createHash('sha256').update(Buffer.from(await r.arrayBuffer())).digest('hex');assert.equal(sha,file.sha256);checks++;
+ const head=await worker.fetch(new Request('https://legal.rillora.xyz'+file.path,{method:'HEAD'}));assert.equal(head.status,200);assert.equal(await head.text(),'');checks++;
+ const conditional=await worker.fetch(new Request('https://legal.rillora.xyz'+file.path,{headers:{'If-None-Match':head.headers.get('etag')}}));assert.equal(conditional.status,304);checks++;
+ const write=await worker.fetch(new Request('https://legal.rillora.xyz'+file.path,{method:'POST'}));assert.equal(write.status,404);checks++;
+}
+for(const p of ['/account','/api/auth/start','/unknown','/assets/missing.js']) {assert.equal((await worker.fetch(new Request('https://legal.rillora.xyz'+p))).status,404);checks++;}
+const redirect=await worker.fetch(new Request('https://legal.rillora.xyz/?lang=zh-CN&discard=1'));assert.equal(redirect.headers.get('location'),'https://legal.rillora.xyz/terms?lang=zh-CN');checks++;
+const result={at:new Date().toISOString(),checks,allPassed:true,assets:manifest.files.length,workerSha256:manifest.workerSha256,workerBytes:manifest.workerBytes,liveDeployment:false};
+await writeFile(root+'/output/qa/rillora-payment-recheck-20261009/locale-legal-package-v2-verified.json',JSON.stringify(result,null,2)+'\n');console.log(JSON.stringify(result));

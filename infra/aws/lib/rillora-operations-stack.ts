@@ -158,8 +158,8 @@ export class RilloraOperationsStack extends Stack {
       new iam.PolicyStatement({ actions: ["lambda:InvokeFunction", "lambda:GetFunctionConfiguration"], resources: [checker.functionArn] }),
       new iam.PolicyStatement({ actions: ["logs:DescribeLogStreams", "logs:GetLogEvents", "logs:FilterLogEvents"], resources: [logGroup.logGroupArn, `${logGroup.logGroupArn}:*`] }),
       new iam.PolicyStatement({ actions: ["sqs:GetQueueAttributes"], resources: [queue.queueArn] }),
-      new iam.PolicyStatement({ actions: ["cloudwatch:DescribeAlarms", "cloudwatch:DescribeAlarmHistory", "cloudwatch:SetAlarmState"], resources: alarmDefinitions.map(alarm => alarm.alarmArn) }),
-      new iam.PolicyStatement({ actions: ["sns:Subscribe", "sns:ListSubscriptionsByTopic", "sns:GetTopicAttributes", "sns:Publish"], resources: [alerts.topicArn] }),
+      new iam.PolicyStatement({ actions: ["cloudwatch:DescribeAlarms", "cloudwatch:DescribeAlarmHistory"], resources: alarmDefinitions.map(alarm => alarm.alarmArn) }),
+      new iam.PolicyStatement({ actions: ["sns:ListSubscriptionsByTopic", "sns:GetTopicAttributes"], resources: [alerts.topicArn] }),
     ] });
     new CfnOutput(this, "AlertTopicArn", { value: alerts.topicArn });
     new CfnOutput(this, "CheckerFunctionName", { value: checker.functionName });

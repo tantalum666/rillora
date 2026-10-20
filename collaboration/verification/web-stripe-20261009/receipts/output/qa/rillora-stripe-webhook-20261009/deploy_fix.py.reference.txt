@@ -1,0 +1,63 @@
+"""Publish the tested webhook fix to the two existing staging task images only."""
+from pathlib import Path
+import copy, datetime, hashlib, json, os, shutil, subprocess
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-stripe-webhook-20261009'
+WEB=ROOT/'output/qa/rillora-web-rollout-20261009'
+PRIVATE=ROOT/'.local-secrets/stripe-webhook-20261009'
+def cloud(args):
+    return json.loads(subprocess.check_output(['aws','cloudformation',*args,'--stack-name','RilloraStaging',
+        '--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json']))
+assert json.loads((WEB/'staging-migration-complete.json').read_text())['schemaCount']==93
+assert cloud(['describe-stacks'])['Stacks'][0]['StackStatus']=='UPDATE_COMPLETE'
+old=cloud(['get-template'])['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old
+p=PRIVATE/'template-before-fix.json';p.write_text(json.dumps(old));p.chmod(0o600)
+new=copy.deepcopy(old);asset_root=QA/'cdk-api-asset'
+asset_manifest=json.loads((asset_root/'RilloraStagingRuntimeAsset.assets.json').read_text())
+assert len(asset_manifest['dockerImages'])==1
+image_hash,image=next(iter(asset_manifest['dockerImages'].items()))
+assert image['source']['platform']=='linux/arm64'
+tasks=[k for k,v in new['Resources'].items() if v['Type']=='AWS::ECS::TaskDefinition']
+assert len(tasks)==2 and len(old['Resources'])==81
+for key in tasks:
+    task=new['Resources'][key]['Properties'];assert task['RuntimePlatform']['CpuArchitecture']=='ARM64'
+    container=task['ContainerDefinitions'][0];prefix,prior=container['Image']['Fn::Sub'].rsplit(':',1)
+    assert prior=='7e230879fcdeb659bede997ebf43f8aee92b66d85041b054af12f684ccabc1d9'
+    container['Image']={'Fn::Sub':prefix+':'+image_hash}
+changes=[]
+def diff(a,b,path=''):
+    if type(a)!=type(b):changes.append(path)
+    elif isinstance(a,dict):
+        for k in sorted(a.keys()|b.keys()):
+            if k not in a or k not in b:changes.append(path+'/'+k)
+            else:diff(a[k],b[k],path+'/'+k)
+    elif isinstance(a,list):
+        if len(a)!=len(b):changes.append(path)
+        else:
+            for i,(x,y) in enumerate(zip(a,b)):diff(x,y,path+'/'+str(i))
+    elif a!=b:changes.append(path)
+diff(old,new)
+assert sorted(changes)==sorted('/Resources/'+k+'/Properties/ContainerDefinitions/0/Image/Fn::Sub' for k in tasks)
+assembly=QA/'cdk-runtime';assert not assembly.exists();assembly.mkdir()
+base=WEB/'cdk-RilloraStaging'
+for name in ['manifest.json','RilloraStaging.metadata.json','tree.json','cdk.out']:shutil.copy2(base/name,assembly/name)
+manifest=json.loads((assembly/'manifest.json').read_text());prior_assets=json.loads((base/'RilloraStaging.assets.json').read_text())
+template_asset=next(copy.deepcopy(v) for v in prior_assets['files'].values() if v['source']['path']=='RilloraStaging.template.json')
+data=(json.dumps(new,indent=2)+'\n').encode();template_hash=hashlib.sha256(data).hexdigest();(assembly/'RilloraStaging.template.json').write_bytes(data)
+for dest in template_asset['destinations'].values():dest['objectKey']=template_hash+'.json'
+shutil.copytree(asset_root/image['source']['directory'],assembly/image['source']['directory'])
+assets={'version':asset_manifest['version'],'files':{template_hash:template_asset},'dockerImages':{image_hash:image}}
+(assembly/'RilloraStaging.assets.json').write_text(json.dumps(assets,indent=2)+'\n')
+props=manifest['artifacts']['RilloraStaging']['properties'];props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+template_hash+'.json'
+(assembly/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+receipt={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'8b1f91798ff5a216db7b903fa7225c063b3fae98',
+ 'imageAssetHash':image_hash,'changedPaths':changes,'onlyTwoImagesChanged':True,'schemaUnchanged':93,'frontendAndRuntimeSettingsUnchanged':True}
+(QA/'deployment-diff.json').write_text(json.dumps(receipt,indent=2)+'\n');print(json.dumps(receipt),flush=True)
+with (QA/'deploy.log').open('w') as log:
+    subprocess.run(['npx','cdk','deploy','RilloraStaging','--app',str(assembly),'--profile','rillora-cdk-session',
+      '--require-approval','never','--previous-parameters','true','--outputs-file',str(QA/'deployment-outputs.json')],
+      cwd=ROOT/'infra/aws',env=dict(os.environ,CDK_DOCKER=str(WEB/'cdk-docker-buildx.sh')),stdout=log,stderr=subprocess.STDOUT,check=True)
+actual=cloud(['get-template'])['TemplateBody'];actual=json.loads(actual) if isinstance(actual,str) else actual
+assert actual==new and cloud(['describe-stacks'])['Stacks'][0]['StackStatus']=='UPDATE_COMPLETE'
+receipt.update(stackStatus='UPDATE_COMPLETE',actualTemplateMatches=True)
+(QA/'deployment-complete.json').write_text(json.dumps(receipt,indent=2)+'\n');print('Webhook fix deployment complete; real redelivery verification pending.',flush=True)

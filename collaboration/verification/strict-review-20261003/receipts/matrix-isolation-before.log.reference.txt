@@ -1,0 +1,25 @@
+FF
+======================================================================
+FAIL: test_build_failure_cannot_close_a_preexisting_device (test_matrix_isolation.MatrixIsolationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_matrix_isolation.py", line 63, in test_build_failure_cannot_close_a_preexisting_device
+    self.run_matrix(fail_build=True)
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_matrix_isolation.py", line 51, in run_matrix
+    self.assertEqual(len(created), 5, 'An existing named simulator must never replace a fresh per-run device')
+AssertionError: 4 != 5 : An existing named simulator must never replace a fresh per-run device
+
+======================================================================
+FAIL: test_matrix_uses_and_cleans_only_five_fresh_devices (test_matrix_isolation.MatrixIsolationTests)
+----------------------------------------------------------------------
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_matrix_isolation.py", line 60, in test_matrix_uses_and_cleans_only_five_fresh_devices
+    self.run_matrix()
+  File "/Users/tantalum/Documents/电子遗嘱app/tools/release/test_matrix_isolation.py", line 51, in run_matrix
+    self.assertEqual(len(created), 5, 'An existing named simulator must never replace a fresh per-run device')
+AssertionError: 4 != 5 : An existing named simulator must never replace a fresh per-run device
+
+----------------------------------------------------------------------
+Ran 2 tests in 6.337s
+
+FAILED (failures=2)

@@ -1,0 +1,26 @@
+{
+  "at": "2026-10-08T00:33:14.797002+00:00",
+  "continuation": true,
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "retainedIncrementalRead": "output/qa/rillora-dot-rollout-20261007/reading.json",
+  "focusedReads": [
+    "AGENTS complete",
+    "product latest75lines",
+    "handoff complete",
+    "decision latest50lines",
+    "apple-plan-restore complete"
+  ],
+  "ownerInstruction": "Directly install on phone; pause TestFlight iteration until issues are addressed together",
+  "implementationUnchanged": true,
+  "recoveryAt": "2026-10-08T01:21:47.248794+00:00",
+  "postCompactionFocusedReads": [
+    "AGENTS.md complete",
+    "docs/product.md lines 1-110",
+    "docs/handoff.md complete",
+    "docs/direct-device-iteration-20261008.md complete",
+    "docs/apple-plan-restore-20261007.md complete",
+    "docs/decision-log.md latest 45 lines",
+    "docs/journey/PROJECT_JOURNEY.md latest 58 lines",
+    "StoreKit restore coordinator and client authentication methods"
+  ]
+}

@@ -1,4 +1,6 @@
-import {randomUUID} from 'node:crypto';
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
+import {randomBytes,randomUUID} from 'node:crypto';
+import pg from 'pg';
 import {beforeAll,beforeEach,afterAll,describe,it,expect,vi} from 'vitest';
 import {loadConfig} from '../src/config.js';
 import {createPool,withCommercePlannerDatabase} from '../src/db.js';
@@ -8,7 +10,7 @@ import {configureRecoveryPool,type RecoveryControl} from '../src/recovery-journa
 import {replayRecoveryControls} from '../src/recovery-replay.js';
 import {reconcileRecoveryCommerce} from '../src/recovery-commerce.js';
 import type {RecoveryProviderObservation} from '../src/recovery-commerce-readers.js';
-const url='postgresql:///rillora_commerce_recovery_test';
+const url = dedicatedTestDatabaseUrl('postgresql:///rillora_commerce_recovery_test', 'rillora_commerce_recovery_test');
 const pool=createPool(loadConfig({NODE_ENV:'test',DATABASE_URL:url}));
 let owner:string,account:string,subscription:string,generation:string,event:RecoveryControl;
 const journal=new Map<string,RecoveryControl>();
@@ -29,7 +31,8 @@ async function simulateOlderBackup(){
  }finally{c.release();}
 }
 describe.sequential('Current provider reconciliation in an isolated restored database',()=>{
- beforeAll(async()=>{await runMigrations(url);});
+ beforeAll(async()=>{await assertDedicatedTestDatabase(url, 'rillora_commerce_recovery_test');
+    await runMigrations(url);});
  beforeEach(async()=>{
   await pool.query('update app.recovery_policy set enforced=false');await pool.query('truncate app.planners,app.recovery_controls cascade');journal.clear();
   await seedDevelopmentFixture(pool);
@@ -78,6 +81,64 @@ describe.sequential('Current provider reconciliation in an isolated restored dat
   }
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{}}],generation,async()=>observation())).rejects.toThrow();
   await expect(reconcileRecoveryCommerce(pool,[{...event,facts:{...event.facts,manualAccess:true}}],generation,async()=>observation())).rejects.toThrow();
+ });
+ it('does not treat a checkpoint copied from the source backup as current provider verification',async()=>{
+  await pool.query(`insert into app.recovery_controls(entity_key,kind,entity_public_id,revision,published)
+   values($1,'unreconciled_access',$2,$3,true)`,[event.key,event.id,event.revision]);
+  const reader=vi.fn(async()=>observation('refunded'));
+  expect(await reconcileRecoveryCommerce(pool,[event],generation,reader)).toMatchObject({reconciledOwners:1,providerReads:1});
+  expect(reader).toHaveBeenCalledOnce();
+  expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
+ });
+ it('rejects missing independent inventory instead of silently skipping restored paid access',async()=>{
+  const reader=vi.fn(async()=>observation('refunded'));
+  await expect(reconcileRecoveryCommerce(pool,[],generation,reader)).rejects.toThrow('inventory');
+  expect(reader).not.toHaveBeenCalled();
+  expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(2);
+ });
+ it.each(['-6 minutes','6 minutes'])('does not reuse out-of-window recovery observations when a current provider read fails: %s',async offset=>{
+  await reconcileRecoveryCommerce(pool,[event],generation,async()=>observation('refunded'));
+  const c=await pool.connect();try{
+   await c.query('begin');
+   await c.query("select set_config('app.recovery_replay','true',true)");
+   const old=(await c.query('update app.commerce_reconciliation_runs set provider_observed_at=now()+$1::interval returning provider_observed_at',[offset])).rows[0].provider_observed_at;
+   await c.query('update app.commerce_subscriptions set provider_observed_at=$1',[old]);
+   await c.query('commit');
+  }finally{c.release();}
+  const reader=vi.fn(async()=>{throw Error('provider unavailable');});
+  await expect(reconcileRecoveryCommerce(pool,[event],generation,reader)).rejects.toThrow('provider unavailable');
+  expect(reader).toHaveBeenCalledOnce();
+ });
+ it('reconciles under a non-superuser recovery login that obeys forced owner policies',async()=>{
+  const role='continuity_commerce_recovery_test',password=randomBytes(32).toString('hex');
+  const quoted=(await pool.query('select quote_ident($1) as name,quote_literal($2) as password',[role,password])).rows[0];
+  if(!(await pool.query('select 1 from pg_roles where rolname=$1',[role])).rowCount)
+   await pool.query(`create role ${quoted.name} login nosuperuser inherit nobypassrls password ${quoted.password}`);
+  else await pool.query(`alter role ${quoted.name} password ${quoted.password}`);
+  await pool.query(`grant continuity_recovery_service,continuity_commerce,continuity_content_service,continuity_app,continuity_auth to ${quoted.name}`);
+  const connection=new URL(url);connection.username=role;connection.password=password;
+  const recovery=new pg.Pool({connectionString:connection.href});
+  try{
+   expect((await recovery.query('select rolsuper,rolbypassrls from pg_roles where rolname=session_user')).rows[0])
+    .toEqual({rolsuper:false,rolbypassrls:false});
+   expect(await reconcileRecoveryCommerce(recovery,[event],generation,async()=>observation('refunded')))
+    .toMatchObject({reconciledOwners:1,providerReads:1});
+   expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n).toBe(0);
+  }finally{await recovery.end();}
+ });
+ it.each([false,true])('clears a restored refund override only with verified refund reversal: %s',async resolved=>{
+  await withCommercePlannerDatabase(pool,owner,async c=>{
+   await c.query("select set_config('app.recovery_replay','true',true)");
+   await c.query("update app.commerce_subscriptions set state='refunded',financial_state_override='refunded' where id=$1",[subscription]);
+   await c.query('select app.apply_verified_subscription_entitlements($1)',[subscription]);
+  });
+  const current=await observation('active');
+  expect(await reconcileRecoveryCommerce(pool,[event],generation,async()=>({...current,refundResolved:resolved})))
+   .toMatchObject({reconciledOwners:1,providerReads:1,customerTrafficEnabled:false});
+  const final=(await pool.query('select state,financial_state_override from app.commerce_subscriptions where id=$1',[subscription])).rows[0];
+  expect(final).toMatchObject(resolved?{state:'active',financial_state_override:null}:{state:'refunded',financial_state_override:'refunded'});
+  const grants=(await pool.query('select count(*)::int n from app.commerce_entitlement_grants where revoked_at is null')).rows[0].n;
+  expect(grants).toBe(resolved?2:0);
  });
  it('restores a provider-owned subscription absent from the old snapshot while keeping the same existing owner and customer binding',async()=>{
   const c=await pool.connect();try{await c.query('begin');await c.query("select set_config('app.recovery_replay','true',true)");

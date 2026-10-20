@@ -1,5 +1,8 @@
+import { appendPlannerAudit } from "./planner-audit.js";
+import { admitPlannerSnapshot } from './snapshot-work-budget.js';
 import type { AppConfig } from "./config.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { accountBillingStatus } from "./account-billing.js";
 import { createHash, randomUUID } from "node:crypto";
 import { protectFields, protectMatterInput } from "./private-content.js";
 import { Router } from "express";
@@ -10,6 +13,8 @@ import { ApiError, asyncHandler } from "./errors.js";
 import { desiredOutcomeSchema, matterCategorySchema, publicIdSchema, valueBandSchema, planMotivationSchema } from "./domain.js";
 import { matterDetailsSchema, validateMatterRequirements } from "./matter-details.js";
 import { getPlan, mapPlan, mapMatter, type MatterRow } from "./planner-records.js";
+
+export const mapBackupMaxBytes = 2 * 1024 * 1024;
 
 const nullableText = (max: number) => z.string().max(max).nullable().optional();
 const backupMatter = z.object({
@@ -52,16 +57,17 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
       const result = await client.query(`select public_id,display_name,locale,time_zone from app.planners where id=app.current_planner_id()`);
       return result.rows[0];
     });
-    const providers = await withPlannerDatabase(pool, request.auth.plannerId, async client => (await client.query<{renewal_provider:string}>("select distinct renewal_provider from app.commerce_subscriptions where planner_id=app.current_planner_id()" )).rows.map(row=>row.renewal_provider));
+    const billing = await withPlannerDatabase(pool, request.auth.plannerId, accountBillingStatus);
     response.json({ account: { publicId:account.public_id,displayName:account.display_name,locale:account.locale,timeZone:account.time_zone },
       session: { mode:request.auth.mode,authenticatedAt:request.auth.authenticatedAt??null },
-      billing: { hasSubscription:providers.length>0,providers },
+      billing,
       mapBackup: { version:"rillora-map-backup-v1",maxMatters:500,importRequiresEmptyMap:true,restoresAccess:false } });
   }));
 
   router.post("/map/export", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async (request,response) => {
     z.object({ acknowledgesPrivateCopy:z.literal(true) }).strict().parse(request.body);
     const backup = await withPlannerSnapshotDatabase(pool, request.auth.plannerId, async client => {
+      await admitPlannerSnapshot(client);
       const planner = (await client.query(`select public_id,display_name,locale,time_zone from app.planners where id=app.current_planner_id()`)).rows[0];
       const plan = await getPlan(client);
       const matters = (await client.query<MatterRow>(`select * from app.matter_items where planner_id=app.current_planner_id() order by id limit 501`)).rows;
@@ -70,7 +76,7 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
       const roles = (await client.query(`select p.public_id as person_public_id,m.public_id as matter_public_id,ra.role,case when ra.matter_item_id is null then 'plan_wide' else 'matter_specific' end as scope,ra.status
         from app.role_assignments ra join app.people p on p.id=ra.person_id and p.planner_id=ra.planner_id
         left join app.matter_items m on m.id=ra.matter_item_id and m.planner_id=ra.planner_id
-        where ra.planner_id=app.current_planner_id() order by ra.id`)).rows;
+        where ra.planner_id=app.current_planner_id() order by ra.id limit 1001`)).rows;
       const checks = (await client.query(`select provider_key,completed,policy_version,completed_at from app.official_setup_checks where planner_id=app.current_planner_id() order by provider_key`)).rows;
       if (roles.length>1000 || checks.length>50) throw new ApiError(413,"backup_size_limit","This map exceeds the current single-file backup limit.");
       return { schemaVersion:"rillora-map-backup-v1",createdAt:new Date().toISOString(),
@@ -85,13 +91,23 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
     const serialized = JSON.stringify(backup);
     const document = JSON.parse(serialized);
     mapBackupSchema.parse(document);
-    if (Buffer.byteLength(serialized, "utf8") > 2 * 1024 * 1024) throw new ApiError(413,"backup_size_limit","This map exceeds the current 2 MB single-file backup limit. No records were omitted.");
+    if (Buffer.byteLength(serialized, "utf8") > mapBackupMaxBytes) throw new ApiError(413,"backup_size_limit","This map exceeds the current 2 MB single-file backup limit. No records were omitted.");
+    await withPlannerDatabase(pool, request.auth.plannerId, client => appendPlannerAudit(
+      client, 'account.map_exported', 'planner_map', null,
+      { schemaVersion: backup.schemaVersion, matterCount: backup.matters.length,
+        personCount: backup.people.length, roleCount: backup.roles.length,
+        clientSurface: request.auth.mode === 'bearer' ? 'ios' : 'web',
+        acknowledgedPrivateCopy: true, serverCopyRetained: false },
+    ));
     response.setHeader("x-rillora-server-copy-retained","false");
     response.json(document);
   }));
 
   router.post("/map/import", recentAuthenticationRequired(config), requireCsrf, asyncHandler(async(request,response)=>{
     const input=z.object({backup:mapBackupSchema,acknowledgesPrivateImport:z.literal(true)}).strict().parse(request.body);
+    if (Buffer.byteLength(JSON.stringify(request.body.backup), "utf8") > mapBackupMaxBytes) {
+      throw new ApiError(413,"backup_size_limit","This backup exceeds the current 2 MB single-file limit.");
+    }
     const backup=input.backup;
     const hash=createHash("sha256").update(JSON.stringify(backup)).digest();
     const result=await withPlannerDatabase(pool,request.auth.plannerId,async client=>{
@@ -145,6 +161,9 @@ export function createAccountDataRouter(pool: DatabasePool, config: AppConfig) {
       if(!result.rows[0])throw new ApiError(409,"version_conflict","This archive changed. Refresh and try again.");
       await client.query(`with removed as (delete from app.sharing_grants where planner_id=app.current_planner_id() and matter_item_id=(select id from app.matter_items where public_id=$1 and planner_id=app.current_planner_id()) returning connection_id)
         update app.sharing_connections set version=version+1,updated_at=now() where planner_id=app.current_planner_id() and id in(select connection_id from removed)`,[id]);
+      await appendPlannerAudit(client, "matter.restored", "matter", result.rows[0].public_id, {
+        status: "draft", sharingRestored: false,
+      });
       return mapMatter(result.rows[0]);
     });response.json({matter,sharingRestored:false});
   }));

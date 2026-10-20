@@ -113,6 +113,34 @@ struct NativeAuthenticationConfiguration: Equatable, Sendable {
     let googleIOSClientID: String?
     let googleServerClientID: String?
     let passkeyNativeSignInEnabled: Bool
+    /// A reviewed database connection, not a social provider or an arbitrary build value.
+    let passwordResetConnection: String?
+
+    init(
+        domain: String,
+        clientID: String,
+        audience: String,
+        sessionExchangeURL: URL,
+        appleNativeSignInEnabled: Bool,
+        googleNativeSignInEnabled: Bool,
+        googleIOSClientID: String?,
+        googleServerClientID: String?,
+        passkeyNativeSignInEnabled: Bool,
+        passwordResetConnection: String? = nil
+    ) {
+        self.domain = domain
+        self.clientID = clientID
+        self.audience = audience
+        self.sessionExchangeURL = sessionExchangeURL
+        self.appleNativeSignInEnabled = appleNativeSignInEnabled
+        self.googleNativeSignInEnabled = googleNativeSignInEnabled
+        self.googleIOSClientID = googleIOSClientID
+        self.googleServerClientID = googleServerClientID
+        self.passkeyNativeSignInEnabled = passkeyNativeSignInEnabled
+        // Missing, unresolved and unreviewed settings disable only password reset.
+        let connection = passwordResetConnection?.trimmingCharacters(in: .whitespacesAndNewlines)
+        self.passwordResetConnection = connection == "Username-Password-Authentication" ? connection : nil
+    }
 
     static func current(
         bundle: Bundle,
@@ -174,6 +202,12 @@ struct NativeAuthenticationConfiguration: Equatable, Sendable {
                 "RilloraPasskeyNativeSignInEnabled",
                 bundle,
                 environment
+            ),
+            passwordResetConnection: optionalValue(
+                "RILLORA_PASSWORD_RESET_CONNECTION",
+                "RilloraPasswordResetConnection",
+                bundle,
+                environment
             )
         )
     }
@@ -227,13 +261,13 @@ enum APIConfigurationError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .missingBaseURL:
-            "No API endpoint is configured for this build."
+            String(localized: "No API endpoint is configured for this build.")
         case .incompleteNativeAuthentication:
-            "Native sign-in configuration is incomplete for this build."
+            String(localized: "Native sign-in configuration is incomplete for this build.")
         case .invalidServiceMarketCode:
-            "No valid service market is configured for this build."
+            String(localized: "No valid service market is configured for this build.")
         case .invalidProductionConfiguration:
-            "This app version cannot connect to the account service."
+            String(localized: "This app version cannot connect to the account service.")
         }
     }
 }

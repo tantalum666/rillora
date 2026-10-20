@@ -1,0 +1,31 @@
+# Provider follow-up drafts — approved and submitted on 2026-10-13
+
+## Auth0 official community — public, no tenant or personal identifiers
+
+Title: Free tenant retains a legacy Universal Login page template but its management endpoint returns 402
+
+Our Free tenant continues to render a previously configured Universal Login page template. The normal hosted login widget and supported English/Simplified Chinese text settings work, but the old custom surrounding copy remains in English.
+
+GET /api/v2/branding/templates/universal-login returns HTTP402 with "A paid subscription is required for this feature." Authentication and other permitted Management API reads still work, so this is a feature limitation rather than a login failure.
+
+What is the supported free way to remove the retained custom shell and return to the standard New Universal Login page? Can Auth0 staff perform that reset without a paid upgrade? We want to retain the existing custom domain, clients, connections, consent Forms/Actions and users, and do not want to switch to Classic Login or bypass plan restrictions.
+
+No credentials, tenant domain, account email or private logs are included in this public question.
+
+## Apple Developer Support — private technical inquiry
+
+Subject: App Store Server API Production returns401 while Sandbox accepts the same JWT before first App Store approval
+
+App: Rillora, bundle com.rillora.ios, Apple app ID6803957639. Version1.0 build14 is processed and being prepared for its first App Store review; it is not approved or publicly released.
+
+Using Apple's official @apple/app-store-server-library3.1.0, an ES256 JWT signed with our existing In-App Purchase key succeeds against Sandbox notification history (HTTP200). The exact same token returnsHTTP401 against Production notification history. Local signature, issuer/audience/bundle claims and300second lifetime checks pass; observed server clock difference is approximately one second. The Production response provides no API error code.
+
+Both separate HTTPS notification URLs are saved in App Store Connect. The official Sandbox TEST notification succeeded and was delivered. No live customer purchase or artificial payment was attempted. A later Production-only read after metadata/URL propagation still returned401.
+
+Most recent Production request:2026-10-13T11:46:10Z, request IDTDMQCBY52JIPCI3FHO2R3NMGAQ. Earlier same-token comparison: ProductionEFK7K2WB36LGY3NEZ7A6YUN6YM; SandboxT34SG2RZAXG6NZCS45YM7KI7NA.
+
+Is Production authorization expected to be unavailable until the app or its first subscription has been approved, or is additional application provisioning/configuration required? Please identify the supported next step. We are retaining manual App Store release and holding new Production Apple sales until this is resolved.
+
+No private key, JWT, account password, user data or financial record is included.
+
+Delivery receipts: Apple private case102995248851 received; Auth0 one post received pending moderator approval, no public URL yet. Exact bodies above were submitted without attachments.

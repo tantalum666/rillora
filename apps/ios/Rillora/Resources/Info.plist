@@ -2,6 +2,10 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>CFBundleLocalizations</key>
+	<array><string>en</string><string>zh-Hans</string></array>
+	<key>UIPrefersShowingLanguageSettings</key>
+	<true/>
 	<key>CFBundleDevelopmentRegion</key>
 	<string>$(DEVELOPMENT_LANGUAGE)</string>
 	<key>CFBundleDisplayName</key>
@@ -53,6 +57,9 @@
 	</array>
 	<key>CFBundleVersion</key>
 	<string>1</string>
+	<!-- OS-provided cryptography; reassess if crypto or dependencies change. -->
+	<key>ITSAppUsesNonExemptEncryption</key>
+	<false/>
 	<key>NSAppTransportSecurity</key>
 	<dict>
 		<key>NSAllowsLocalNetworking</key>
@@ -64,6 +71,8 @@
 	<string>$(RILLORA_APPLE_SIGN_IN_ENABLED)</string>
 	<key>RilloraAuth0Audience</key>
 	<string>$(RILLORA_AUTH0_AUDIENCE)</string>
+	<key>RilloraPasswordResetConnection</key>
+	<string>$(RILLORA_PASSWORD_RESET_CONNECTION)</string>
 	<key>RilloraAuth0ClientID</key>
 	<string>$(RILLORA_AUTH0_CLIENT_ID)</string>
 	<key>RilloraAuth0Domain</key>

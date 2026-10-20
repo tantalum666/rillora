@@ -1,0 +1,17 @@
+{
+  "at": "2026-10-07T01:54:07.397051+00:00",
+  "continuationOf": "output/qa/rillora-build9-distribution-20261007",
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "build9DistributedAndDraftSelected": true,
+  "ownerConfirmedBuild9AndOriginalMatters": true,
+  "ownerReportedFailure": "Paid benefits/price still hidden; Restore again enters App Store settings",
+  "confirmedSourceDefects": [
+    "PlanAccessView selects legacy view for subscribers or unavailable quote",
+    "ApplePurchaseSection hides offer for all subscriptions",
+    "Restore forces AppStore.sync before reading existing verified history"
+  ],
+  "physicalRestorePassed": false,
+  "noRePurchase": true,
+  "scope": "Native plan display and verified history restore; preserve server verification, prices and data",
+  "aws": "CLI expired; saved password login failed; user handoff pending"
+}

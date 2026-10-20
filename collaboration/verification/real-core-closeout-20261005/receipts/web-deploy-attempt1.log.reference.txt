@@ -1,0 +1,18 @@
+
+✨  Synthesis time: 2.63s
+
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+current credentials could not be used to assume 'arn:aws:iam::133857166372:role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1', but are for the right account. Proceeding anyway.
+RilloraProductionWeb: start: Building Deployment/Asset1
+RilloraProductionWeb: success: Built Deployment/Asset1
+RilloraProductionWeb: start: Building RilloraProductionWeb Template
+RilloraProductionWeb: success: Built RilloraProductionWeb Template
+RilloraProductionWeb: start: Publishing RilloraProductionWeb Template (133857166372-eu-central-1-ac91f707)
+RilloraProductionWeb: start: Publishing Deployment/Asset1 (133857166372-eu-central-1-fbbdfeb6)
+RilloraProductionWeb: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/40142ca4694e82073b3431defb4409a66e5a3c9290c91fc60fc42b7db5867cb1.json" because no identity-based policy allows the s3:PutObject action
+RilloraProductionWeb: fail: User: arn:aws:sts::133857166372:assumed-role/cdk-hnb659fds-deploy-role-133857166372-eu-central-1/rillora-cdk-deploy is not authorized to perform: s3:PutObject on resource: "arn:aws:s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/04d63bb1372b0f9e4635824b136891ccb61445bb1cd296b5f2fee6f31f17684c.zip" because no identity-based policy allows the s3:PutObject action
+Failed to publish asset Deployment/Asset1 (133857166372-eu-central-1-fbbdfeb6)
+

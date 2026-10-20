@@ -1,0 +1,17 @@
+from pathlib import Path
+import json,re,hashlib,subprocess
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+old=json.loads((p/'auth0-review-action-before.json').read_text());body=old['deployed_version']['code']
+def extract(name):
+ match=re.search(r"const "+name+r" = '([^']+)';",body);assert match;return match.group(1)
+ios=extract('IOS');web=extract('WEB');form=extract('FORM');zh=extract('FORM_ZH')
+for client,name in [(ios,'Rillora Production iOS'),(web,'Rillora Production Web')]:
+ r=subprocess.run(['auth0','api','get',f'clients/{client}?fields=client_id,name&include_fields=true','--tenant','rillora-dev.eu.auth0.com','--no-input'],capture_output=True,text=True,timeout=30)
+ assert r.returncode==0;actual=json.loads(r.stdout);assert actual['client_id']==client and actual['name']==name
+assert re.fullmatch('ap_[A-Za-z0-9]+',form) and re.fullmatch('ap_[A-Za-z0-9]+',zh)
+code=(w/'infra/auth0/hosted-consent/post-login-action.cjs').read_text().replace('__RILLORA_IOS_CLIENT_ID__',ios).replace('__RILLORA_FORM_ID__',form).replace('__RILLORA_FORM_ZH_ID__',zh)
+assert '__RILLORA_' not in code and 'rillora_legal_accepted: false' in code
+payload={'name':'Rillora production account terms','runtime':'node22','supported_triggers':[{'id':'post-login','version':'v3'}],'code':code}
+f=p/'auth0-live-action-candidate.json';f.write_text(json.dumps(payload));f.chmod(0o600)
+(q/'auth0-live-candidate.json').write_text(json.dumps({'sameActionId':old['id'],'previousName':old['name'],'newName':payload['name'],'template':'infra/auth0/hosted-consent/post-login-action.cjs','nativeConsentPreserved':True,'sameEnglishAndChineseForms':True,'webClickwrapUnchanged':True,'otherActionBindingsUnchanged':True,'oldCodeSha256':hashlib.sha256(body.encode()).hexdigest(),'newCodeSha256':hashlib.sha256(code.encode()).hexdigest(),'deployed':False},indent=2)+'\n')
+print('Prepared production-only native consent Action; current bindings and deployed action unchanged')

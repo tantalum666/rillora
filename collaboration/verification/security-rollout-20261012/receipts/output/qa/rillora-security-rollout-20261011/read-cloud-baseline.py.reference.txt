@@ -1,0 +1,42 @@
+"""Read only current Rillora stacks and ECS definitions; raw config stays protected."""
+from pathlib import Path
+from concurrent.futures import ThreadPoolExecutor
+import datetime,json,subprocess,os
+ROOT=Path(__file__).resolve().parents[3]
+PRIVATE=ROOT/'.local-secrets/security-rollout-20261011'
+QA=ROOT/'output/qa/rillora-security-rollout-20261011'
+def call(profile,service,operation,extra):
+ r=subprocess.run(['aws',service,operation,*extra,'--profile',profile,'--region','eu-central-1','--output','json','--no-cli-pager'],capture_output=True,text=True,timeout=60)
+ if r.returncode:raise RuntimeError(service+'/'+operation+': '+r.stderr[:500])
+ return json.loads(r.stdout)
+def save(name,value):
+ p=PRIVATE/name
+ if p.exists():raise RuntimeError('Readback exists; do not overwrite original baseline')
+ p.write_text(json.dumps(value,indent=2)+'\n');p.chmod(0o600)
+def inspect(name):
+ stack=call('rillora-cdk-deploy','cloudformation','describe-stacks',['--stack-name',name])['Stacks'][0]
+ template=call('rillora-cdk-deploy','cloudformation','get-template',['--stack-name',name])['TemplateBody']
+ if isinstance(template,str):template=json.loads(template)
+ resources=call('rillora-cdk-deploy','cloudformation','describe-stack-resources',['--stack-name',name])['StackResources']
+ save(name+'-before-stack.json',stack);save(name+'-before-template.json',template);save(name+'-before-resources.json',resources)
+ summary={'stack':name,'status':stack['StackStatus'],'resources':len(resources),'services':[],'taskDefinitions':[]}
+ if name in ('RilloraProduction','RilloraStaging'):
+  profile='rillora-production-operator' if name=='RilloraProduction' else 'rillora-staging-operator'
+  cluster=next(r['PhysicalResourceId'] for r in resources if r['ResourceType']=='AWS::ECS::Cluster')
+  services=[r['PhysicalResourceId'] for r in resources if r['ResourceType']=='AWS::ECS::Service']
+  response=call(profile,'ecs','describe-services',['--cluster',cluster,'--services',*services])
+  assert not response.get('failures')
+  save(name+'-before-services.json',response)
+  for s in response['services']:
+   task=call(profile,'ecs','describe-task-definition',['--task-definition',s['taskDefinition']])['taskDefinition']
+   save(name+'-'+s['serviceName']+'-before-task.json',task)
+   env={v['name']:v['value'] for c in task['containerDefinitions'] for v in c.get('environment',[])}
+   summary['services'].append({'name':s['serviceName'],'desired':s['desiredCount'],'running':s['runningCount'],'pending':s['pendingCount'],'taskDefinition':s['taskDefinition'],'deployments':[{k:d.get(k) for k in ['status','rolloutState','desiredCount','runningCount','pendingCount']} for d in s['deployments']]})
+   summary['taskDefinitions'].append({'arn':task['taskDefinitionArn'],'containers':[{'name':c['name'],'image':c['image']} for c in task['containerDefinitions']],'flags':{k:v for k,v in env.items() if k.startswith('ALLOW_') or k in ['PRODUCTION_RUNTIME_MODE','CONTENT_PROTECTION_MODE','DELETION_WORKER_ENABLED']}})
+ return summary
+names=['RilloraProduction','RilloraStaging','RilloraProductionWeb','RilloraPublicWeb','RilloraOperations']
+with ThreadPoolExecutor(max_workers=3) as pool:
+ results=list(pool.map(inspect,names))
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'readOnly':True,'account':'133857166372','stacks':results}
+(QA/'cloud-baseline.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report))

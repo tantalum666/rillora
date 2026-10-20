@@ -1,0 +1,65 @@
+"""Read-only checks of the exact resumed API/worker and public endpoints."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,re,sys,urllib.request,urllib.error
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser();parser.add_argument('environment',choices=['staging','production']);args=parser.parse_args()
+name='RilloraStaging' if args.environment=='staging' else 'RilloraProduction'
+reader=Aws('rillora-cdk-deploy');operator=Aws('rillora-'+args.environment+'-operator')
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+resources=reader.call('cloudformation','describe-stack-resources',{'StackName':name})['StackResources']
+names=[x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::ECS::Service']
+services=operator.call('ecs','describe-services',{'cluster':o['ClusterName'],'services':names})
+save(P/(args.environment+'-post-start-services.json'),services)
+assert not services.get('failures') and len(services['services'])==2
+beforeFiles=list(P.glob(name+'-*-before-task.json'));assert len(beforeFiles)==1
+before=json.loads(beforeFiles[0].read_text());oldenv={v['name']:v['value'] for c in before['containerDefinitions'] for v in c.get('environment',[])}
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'environment':args.environment,'readOnly':True,'services':[],'http':[],'passed':False}
+for service in services['services']:
+ assert service['desiredCount']==service['runningCount']==1 and service['pendingCount']==0
+ assert len(service['deployments'])==1 and service['deployments'][0]['rolloutState']=='COMPLETED'
+ td=operator.call('ecs','describe-task-definition',{'taskDefinition':service['taskDefinition']})['taskDefinition'];container=td['containerDefinitions'][0]
+ env={v['name']:v['value'] for v in container.get('environment',[])}
+ worker=any(x in container.get('command',[]) for x in ['dist/account-deletion-worker.js'])
+ if not worker:
+  flags={k:v for k,v in oldenv.items() if k.startswith('ALLOW_') or k in ['PRODUCTION_RUNTIME_MODE','CONTENT_PROTECTION_MODE']}
+  assert flags and all(env.get(k)==v for k,v in flags.items()),'Commercial/runtime flags changed'
+  report['preservedFlags']=flags
+ log=container['logConfiguration']['options'];group=log['awslogs-group'];prefix=log['awslogs-stream-prefix']+'/'+container['name']+'/'
+ streams=operator.call('logs','describe-log-streams',{'logGroupName':group,'orderBy':'LastEventTime','descending':True,'limit':12})['logStreams']
+ ids={s['logStreamName'].rsplit('/',1)[1] for s in streams if s['logStreamName'].startswith(prefix)}
+ for event in service.get('events',[])[:10]:ids.update(re.findall(r'\btask ([a-f0-9]{32})\b',event.get('message','')))
+ ids={x for x in ids if re.fullmatch('[a-f0-9]{32}',x)}
+ arns=['arn:aws:ecs:eu-central-1:133857166372:task/'+o['ClusterName']+'/'+x for x in sorted(ids)]
+ tasks=operator.call('ecs','describe-tasks',{'cluster':o['ClusterName'],'tasks':arns}) if arns else {'tasks':[]}
+ save(P/(args.environment+'-'+('worker' if worker else 'api')+'-post-start-tasks.json'),tasks)
+ actual=[t for t in tasks['tasks'] if t['taskDefinitionArn']==service['taskDefinition'] and t['lastStatus']=='RUNNING']
+ assert len(actual)==1,'Expected running task was not independently observed'
+ task=actual[0];taskId=task['taskArn'].rsplit('/',1)[1]
+ response=operator.call('logs','get-log-events',{'logGroupName':group,'logStreamName':prefix+taskId,'startFromHead':False,'limit':100})
+ save(P/(args.environment+'-'+('worker' if worker else 'api')+'-post-start-log.json'),response)
+ errors=sum(bool(re.search(r'could not start|pass will retry|startup failed|fatal|unhandled',x['message'],re.I)) for x in response['events'])
+ assert errors==0,'Runtime error appeared in current task logs'
+ report['services'].append({'kind':'worker' if worker else 'api','desired':1,'running':1,'rollout':'COMPLETED','taskDefinition':service['taskDefinition'],'taskArn':task['taskArn'],'image':container['image'],'taskHealth':task.get('healthStatus'),'startedAt':task.get('startedAt'),'logEventsRead':len(response['events']),'startupOrRetryErrors':errors})
+ print(json.dumps({'environment':args.environment,'serviceVerified':report['services'][-1]}),flush=True)
+origin='https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com' if args.environment=='staging' else 'https://j749rhzub7.execute-api.eu-central-1.amazonaws.com'
+web='https://app.staging.rillora.xyz' if args.environment=='staging' else 'https://app.rillora.xyz'
+expired_review=args.environment=='production' and oldenv.get('PRODUCTION_RUNTIME_MODE')=='review' and datetime.datetime.fromisoformat(oldenv['PRODUCTION_REVIEW_EXPIRES_AT'].replace('Z','+00:00'))<=datetime.datetime.now(datetime.timezone.utc)
+session_status=403 if expired_review else 401
+report['originalReviewWindowExpired']=expired_review
+checks=[(origin+'/health/live',200),(origin+'/health/ready',200),(origin+'/v1/session',session_status),(web+'/',200),(web+'/api/v1/session',session_status)]
+for url,status in checks:
+ request=urllib.request.Request(url,headers={'User-Agent':'Rillora-authorized-release-verification/1.0','Cache-Control':'no-cache'})
+ try:
+  with urllib.request.urlopen(request,timeout=20) as r:actual=r.status;headers={k.lower():v for k,v in r.headers.items()};body=r.read()
+ except urllib.error.HTTPError as r:actual=r.code;headers={k.lower():v for k,v in r.headers.items()};body=r.read()
+ assert actual==status,(url,actual,status)
+ if '/session' in url:assert 'no-store' in [x.strip().lower() for x in headers.get('cache-control','').split(',')]
+ if '/session' in url and expired_review:assert json.loads(body)['error']['code']=='service_not_open'
+ if url==web+'/' and args.environment=='staging':assert hashlib.sha256(body).digest()==hashlib.sha256((ROOT/'apps/web/dist/client/index.html').read_bytes()).digest(),'Preview HTML differs'
+ report['http'].append({'url':url,'status':actual,'sha256':hashlib.sha256(body).hexdigest()})
+report['passed']=True;save(Q/(args.environment+'-post-start-verification.json'),report);print(json.dumps(report))

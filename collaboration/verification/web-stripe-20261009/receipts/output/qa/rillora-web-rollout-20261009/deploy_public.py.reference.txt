@@ -1,0 +1,67 @@
+"""Publish the reviewed public artifact while requiring an asset-only cloud diff."""
+from pathlib import Path
+import datetime
+import json
+import os
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = ROOT / 'output/qa/rillora-web-rollout-20261009'
+PRIVATE = ROOT / '.local-secrets/web-rollout-20261009'
+stack = json.loads((PRIVATE / 'public-stack-before.json').read_text())['Stacks'][0]
+assert stack['StackStatus'] in {'CREATE_COMPLETE', 'UPDATE_COMPLETE'}
+outputs = {item['OutputKey']: item['OutputValue'] for item in stack['Outputs']}
+assert outputs['PublicUrl'] == 'https://www.rillora.xyz'
+old = json.loads((PRIVATE / 'public-template-before.json').read_text())['TemplateBody']
+if isinstance(old, str):
+    old = json.loads(old)
+certificate = next(value['Properties']['DistributionConfig']['ViewerCertificate']['AcmCertificateArn']
+                   for value in old['Resources'].values() if value['Type'] == 'AWS::CloudFront::Distribution')
+account = json.loads((PRIVATE / 'sts-restored.json').read_text())['Account']
+assert certificate.split(':')[4] == account
+previous = json.loads((ROOT / 'output/qa/rillora-dot-rollout-20261007/www-deploy-outputs.json').read_text())['RilloraPublicWeb']
+assert outputs['DistributionId'] == previous['DistributionId']
+assert outputs['BucketName'] == previous['BucketName']
+assembly = QA / 'cdk-public'
+args = ['npx', 'cdk', 'synth', 'RilloraPublicWeb', '--quiet', '--output', str(assembly),
+        '-c', 'publicWebOnly=true', '-c', 'publicWebCertificateArn=' + certificate]
+env = dict(os.environ, CDK_DEFAULT_ACCOUNT=account, CDK_DEFAULT_REGION='eu-central-1')
+with (QA / 'public-synth-reviewed.log').open('w') as log:
+    subprocess.run(args, cwd=ROOT / 'infra/aws', env=env, stdout=log, stderr=subprocess.STDOUT, check=True)
+new = json.loads((assembly / 'RilloraPublicWeb.template.json').read_text())
+changes = []
+def compare(a, b, path=''):
+    if type(a) is not type(b):
+        changes.append(path)
+    elif isinstance(a, dict):
+        for key in sorted(a.keys() | b.keys()):
+            if key not in a or key not in b:
+                changes.append(path + '/' + key)
+            else:
+                compare(a[key], b[key], path + '/' + key)
+    elif isinstance(a, list):
+        if len(a) != len(b):
+            changes.append(path)
+        else:
+            for i, (left, right) in enumerate(zip(a, b)):
+                compare(left, right, path + '/' + str(i))
+    elif a != b:
+        changes.append(path)
+compare(old, new)
+deployment = [key for key, value in old['Resources'].items() if value['Type'] == 'Custom::CDKBucketDeployment']
+assert len(deployment) == 1
+allowed = '/Resources/' + deployment[0] + '/Properties/SourceObjectKeys/0'
+assert changes == [allowed], 'Unreviewed cloud change: ' + repr(changes)
+receipt = {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+           'source': 'f82179e4459ac3a5fb738a570891479f0d9dd7e8', 'stack': 'RilloraPublicWeb',
+           'actualCloudTemplateRead': True, 'changedPaths': changes, 'assetOnly': True,
+           'resourceCounts': [len(old['Resources']), len(new['Resources'])],
+           'distributionBucketCertificateIamAndHeadersUnchanged': True}
+(QA / 'public-reviewed-diff.json').write_text(json.dumps(receipt, indent=2) + '\n')
+print(json.dumps(receipt), flush=True)
+with (QA / 'public-deploy.log').open('w') as log:
+    subprocess.run(['npx', 'cdk', 'deploy', 'RilloraPublicWeb', '--app', str(assembly),
+                    '--profile', 'rillora-cdk-session', '--require-approval', 'never',
+                    '--previous-parameters', 'true', '--outputs-file', str(QA / 'public-deploy-outputs.json')],
+                   cwd=ROOT / 'infra/aws', stdout=log, stderr=subprocess.STDOUT, check=True)
+print('Public deployment command completed; live verification is still required.', flush=True)

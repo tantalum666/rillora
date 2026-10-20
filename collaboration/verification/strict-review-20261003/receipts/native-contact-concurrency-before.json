@@ -1,0 +1,132 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": true,
+  "error": "Tests failed",
+  "data": {
+    "summary": {
+      "status": "FAILED",
+      "durationMs": 15773,
+      "counts": {
+        "passed": 6,
+        "failed": 2,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-02T17-17-35-053Z_pid26593_903966f7.log",
+      "xcresultPath": "output/qa/rillora-strict-review-20261002/native-contact-concurrency-before.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-02T17-17-35-053Z_pid26593_6df3d20f.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/TrustedContactEditorStoreTests/testEditUsesLatestOptimisticVersionAndAppliesResponse",
+        "RilloraTests/TrustedContactEditorStoreTests/testNewContactUsesRecordOnlyCreateContract",
+        "RilloraTests/TrustedContactEditorStoreTests/testOpeningExistingContactLoadsLatestServerVersion",
+        "RilloraTests/TrustedContactEditorStoreTests/testOverlappingSavesCannotCreateTheContactTwice",
+        "RilloraTests/TrustedContactEditorStoreTests/testReloadAndRevokeCannotReplaceAnInFlightSave",
+        "RilloraTests/TrustedContactEditorStoreTests/testRevokeUsesPersistedIdentityAndExplicitRevokedStatus",
+        "RilloraTests/TrustedContactEditorStoreTests/testValidationStopsEmptyNameBeforeTransport",
+        "RilloraTests/TrustedContactEditorStoreTests/testVersionConflictKeepsContactDraftForRecovery"
+      ],
+      "discovered": {
+        "total": 8,
+        "items": [
+          "RilloraTests/TrustedContactEditorStoreTests/testEditUsesLatestOptimisticVersionAndAppliesResponse",
+          "RilloraTests/TrustedContactEditorStoreTests/testNewContactUsesRecordOnlyCreateContract",
+          "RilloraTests/TrustedContactEditorStoreTests/testOpeningExistingContactLoadsLatestServerVersion",
+          "RilloraTests/TrustedContactEditorStoreTests/testOverlappingSavesCannotCreateTheContactTwice",
+          "RilloraTests/TrustedContactEditorStoreTests/testReloadAndRevokeCannotReplaceAnInFlightSave",
+          "RilloraTests/TrustedContactEditorStoreTests/testRevokeUsesPersistedIdentityAndExplicitRevokedStatus"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": [
+        {
+          "suite": "TrustedContactEditorStoreTests",
+          "test": "testOverlappingSavesCannotCreateTheContactTwice",
+          "message": "XCTAssertNil failed: \"TrustedContact(publicId: \"55555555-5555-4555-8555-555555555555\", displayName: \"Avery Stone\", relationshipLabel: Optional(\"Sister\"), status: \"draft\", roleStatus: Optional(\"draft\"), invitationStatus: nil, confirmationMode: nil, version: 1, createdAt: \"2026-08-08T00:00:00.000Z\", updatedAt: \"2026-08-08T00:00:00.000Z\")\"",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:18"
+        },
+        {
+          "suite": "TrustedContactEditorStoreTests",
+          "test": "testOverlappingSavesCannotCreateTheContactTwice",
+          "message": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\") - One user draft must produce only one create request",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:19"
+        },
+        {
+          "suite": "TrustedContactEditorStoreTests",
+          "test": "testReloadAndRevokeCannotReplaceAnInFlightSave",
+          "message": "XCTAssertEqual failed: (\"ready\") is not equal to (\"saving\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:36"
+        },
+        {
+          "suite": "TrustedContactEditorStoreTests",
+          "test": "testReloadAndRevokeCannotReplaceAnInFlightSave",
+          "message": "XCTAssertNil failed: \"TrustedContact(publicId: \"55555555-5555-4555-8555-555555555555\", displayName: \"Avery Stone\", relationshipLabel: Optional(\"Sibling\"), status: \"draft\", roleStatus: Optional(\"draft\"), invitationStatus: nil, confirmationMode: nil, version: 2, createdAt: \"2026-08-08T00:00:00.000Z\", updatedAt: \"2026-08-08T00:00:00.000Z\")\"",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:37"
+        },
+        {
+          "suite": "TrustedContactEditorStoreTests",
+          "test": "testReloadAndRevokeCannotReplaceAnInFlightSave",
+          "message": "XCTAssertEqual failed: (\"2\") is not equal to (\"1\")",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/TrustedContactEditorStoreTests.swift:38"
+        }
+      ]
+    },
+    "testCases": [
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testEditUsesLatestOptimisticVersionAndAppliesResponse",
+        "status": "passed",
+        "durationMs": 7
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testNewContactUsesRecordOnlyCreateContract",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testOpeningExistingContactLoadsLatestServerVersion",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testOverlappingSavesCannotCreateTheContactTwice",
+        "status": "failed",
+        "durationMs": 99
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testReloadAndRevokeCannotReplaceAnInFlightSave",
+        "status": "failed",
+        "durationMs": 24
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testRevokeUsesPersistedIdentityAndExplicitRevokedStatus",
+        "status": "passed",
+        "durationMs": 476
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testValidationStopsEmptyNameBeforeTransport",
+        "status": "passed",
+        "durationMs": 5
+      },
+      {
+        "suite": "TrustedContactEditorStoreTests",
+        "test": "testVersionConflictKeepsContactDraftForRecovery",
+        "status": "passed",
+        "durationMs": 4
+      }
+    ]
+  }
+}

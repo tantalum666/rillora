@@ -1,0 +1,16 @@
+{
+  "passed": true,
+  "changes": [
+    {
+      "id": "Client4A7F64DF",
+      "type": "AWS::CloudFront::Distribution"
+    },
+    {
+      "id": "[PUBLIC_IDENTIFIER_OMITTED]",
+      "type": "Custom::CDKBucketDeployment"
+    }
+  ],
+  "sameOriginsCertificatesCacheSecurityPoliciesAndData": true,
+  "customerAccessMarker": "live",
+  "deployed": false
+}

@@ -1,0 +1,74 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/api
+
+ ❯ tests/apple-production-runtime.test.ts (5 tests | 2 failed) 16ms
+     × requires the named secret and real production safeguards, without enabling Stripe or new sales 3ms
+     × pins review to its named Sandbox secret and the same real authentication/encryption boundary 1ms
+ ❯ tests/runtime-mode.test.ts (24 tests | 1 failed) 13ms
+     × preserves an intentional production configuration without implicitly enabling payment providers 6ms
+Managed TLS certificate renewed.
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/apple-production-runtime.test.ts > Apple production runtime boundaries > requires the named secret and real production safeguards, without enabling Stripe or new sales
+Error: Production runtime mode must be explicit; customer access never opens by omission
+ ❯ loadConfig src/config.ts:595:48
+    593|
+    594|   if (parsed.NODE_ENV === 'production') {
+    595|     if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production r…
+       |                                                ^
+    596|     if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Erro…
+    597|     if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+ ❯ tests/apple-production-runtime.test.ts:43:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/apple-production-runtime.test.ts > Apple production runtime boundaries > pins review to its named Sandbox secret and the same real authentication/encryption boundary
+Error: Production runtime mode must be explicit; customer access never opens by omission
+ ❯ loadConfig src/config.ts:595:48
+    593|
+    594|   if (parsed.NODE_ENV === 'production') {
+    595|     if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production r…
+       |                                                ^
+    596|     if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Erro…
+    597|     if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+ ❯ tests/apple-production-runtime.test.ts:75:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/runtime-mode.test.ts > explicit protected production activation > preserves an intentional production configuration without implicitly enabling payment providers
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "closed",
+      "review",
+      "staging"
+    ],
+    "path": [
+      "PRODUCTION_RUNTIME_MODE"
+    ],
+    "message": "Invalid option: expected one of \"closed\"|\"review\"|\"staging\""
+  }
+]
+ ❯ loadConfig src/config.ts:267:31
+    265|
+    266| export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppC…
+    267|   const parsed = configSchema.parse(env);
+       |                               ^
+    268|   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "…
+    269|   const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'rev…
+ ❯ tests/runtime-mode.test.ts:20:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  2 failed | 52 passed (54)
+      Tests  3 failed | 489 passed (492)
+   Start at  16:53:57
+   Duration  41.94s (transform 627ms, setup 1.36s, import 7.85s, tests 26.80s, environment 2ms)
+

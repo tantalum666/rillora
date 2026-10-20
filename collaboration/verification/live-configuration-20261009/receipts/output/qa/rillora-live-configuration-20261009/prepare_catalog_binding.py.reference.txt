@@ -1,0 +1,38 @@
+"""Bind the existing exact Live price without enabling customer sales."""
+from pathlib import Path
+import datetime,json,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-live-configuration-20261009';PRIVATE=ROOT/'.local-secrets/live-configuration-20261009'
+receipt=QA/'catalog-binding-task.json';assert not receipt.exists()
+def aws(args,profile='rillora-production-operator'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};event=json.loads((QA/'live-probe-event.json').read_text())['id']
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-live-catalog-binding'});await c.connect();
+try{await c.query('begin');await c.query("set local statement_timeout='10s'");
+ await c.query("select pg_advisory_xact_lock(hashtextextended('rillora-stripe-live-catalog-v4',0))");
+ const prices=(await c.query(`select p.id,p.price_code,p.amount_minor::text,p.currency_code,p.billing_interval,p.tax_behavior,p.status,pv.plan_code,pv.version from app.commerce_prices p join app.commerce_plan_versions pv on pv.id=p.plan_version_id where p.price_code='family_usd_annual_v4' for update of p`)).rows;
+ if(prices.length!==1)throw new Error('exact_price_required');const p=prices[0];
+ if(p.amount_minor!=='8899'||p.currency_code!=='USD'||p.billing_interval!=='annual'||p.plan_code!=='family'||p.version!==2)throw new Error('unchanged_approved_price_required');
+ const policy=(await c.query('select * from app.commerce_runtime_policy for share')).rows;
+ const markets=(await c.query('select policy_code,version,sales_enabled,status from app.commerce_market_policies order by policy_code,version for share')).rows;
+ if(markets.some(x=>x.sales_enabled)||policy.some(x=>x.production_entitlements_enabled))throw new Error('retain_closed_sales_baseline');
+ const existing=(await c.query(`select external_product_reference,provider_account_reference,external_parent_product_reference,status from app.commerce_storefront_products where price_id=$1 and provider_code='stripe' and provider_environment='production' for update`,[p.id])).rows;
+ if(existing.length>1||existing.some(x=>x.external_product_reference!=='price_1UNXyZCxTlowhyiGJB6HlBR5'||x.provider_account_reference!=='acct_1U6B2RCxTlowhyiG'||x.external_parent_product_reference!=='prod_rillora_family_v2_live'||x.status!=='active'))throw new Error('existing_live_binding_requires_review');
+ if(existing.length===0)await c.query(`insert into app.commerce_storefront_products(price_id,provider_code,provider_environment,external_product_reference,provider_account_reference,external_parent_product_reference,status,effective_from) values($1,'stripe','production','price_1UNXyZCxTlowhyiGJB6HlBR5','acct_1U6B2RCxTlowhyiG','prod_rillora_family_v2_live','active',now())`,[p.id]);
+ const rows=(await c.query(`select provider_code,provider_environment,external_product_reference,provider_account_reference,external_parent_product_reference,status from app.commerce_storefront_products where price_id=$1 and provider_code='stripe' and provider_environment='production'`,[p.id])).rows;
+ if(rows.length!==1)throw new Error('binding_readback_failed');
+ if(JSON.stringify(policy)!==JSON.stringify((await c.query('select * from app.commerce_runtime_policy')).rows)||JSON.stringify(markets)!==JSON.stringify((await c.query('select policy_code,version,sales_enabled,status from app.commerce_market_policies order by policy_code,version')).rows))throw new Error('sales_policy_changed');
+ await c.query('commit');console.log(JSON.stringify({bound:true,created:existing.length===0,binding:rows[0],priceCode:p.price_code,amountMinor:8899,currency:'USD',priceStatusUnchanged:p.status,taxBehaviorUnchanged:p.tax_behavior,marketSalesFlagsUnchanged:true,productionEntitlementsUnchanged:true,noUserDataChanged:true}));
+}catch(error){await c.query('rollback');throw error;}finally{await c.end();}"""
+body={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds'].split(','),'securityGroups':[o['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script],
+ 'environment':[{'name':'RILLORA_PROBE_EVENT','value':event}]}]}}
+path=PRIVATE/'catalog-binding-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];result={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'cluster':o['ClusterName'],'taskArn':arn,
+ 'logGroup':o['MaintenanceLogGroup'],'logStream':'migration/Maintenance/'+arn.rsplit('/',1)[-1],'scope':'one exact Live price binding; sales flags and user data unchanged'}
+receipt.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

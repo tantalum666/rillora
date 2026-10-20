@@ -19,6 +19,10 @@ export const notFoundHandler: RequestHandler = (_request, response) => {
 };
 
 export const errorHandler: ErrorRequestHandler = (error, request, response, _next) => {
+  if (error?.type === "entity.too.large") {
+    response.status(413).json({ error: { code: "request_body_too_large", message: "The request body exceeds this action's size limit." } });
+    return;
+  }
   if(error?.code==='55000'&&error.message==='recovery_journal_unavailable'){
     response.status(503).json({error:{code:'recovery_journal_unavailable',message:'Changes could not be saved safely. Please try again shortly.'}});
     return;

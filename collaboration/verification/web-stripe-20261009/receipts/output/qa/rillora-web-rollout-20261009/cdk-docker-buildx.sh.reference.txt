@@ -1,0 +1,9 @@
+#!/usr/bin/env bash
+set -euo pipefail
+# Scope the installed Buildx helper to this CDK invocation. Preserve Docker's
+# existing context/configuration and pass registry-login stdin through unchanged.
+if [[ "${1:-}" == "build" ]]; then
+  shift
+  exec /opt/homebrew/lib/docker/cli-plugins/docker-buildx build --load "$@"
+fi
+exec /opt/homebrew/bin/docker "$@"

@@ -231,6 +231,7 @@ const fakeIdentityProvider: IdentityProvider = {
     const url = new URL("https://identity.example/authorize");
     url.searchParams.set("state", transaction.state);
     if (intent?.screenHint) url.searchParams.set("screen_hint", intent.screenHint);
+    if (intent?.uiLocales) url.searchParams.set("ui_locales", intent.uiLocales);
     return url;
   },
   async exchangeAuthorizationCode() {
@@ -250,6 +251,7 @@ const fakeNativeIdentityVerifier: NativeIdentityVerifier = {
     return {
       issuer: "https://identity.example",
       subject: "auth0|native-integration-test-planner",
+      legalAcceptance,
       displayName: "Native Test Planner",
       locale: "en",
       authenticatedAt: new Date("2026-08-09T00:00:00.000Z"),
@@ -322,6 +324,15 @@ describe.sequential("Continuity API", () => {
       .expect(200);
     expect(signedIn.body).toEqual({ authenticated: true });
   });
+
+  it.each([['/?lang=zh-CN', 'zh-CN'], ['/?lang=en&langHint=zh-CN', 'en'], ['/?langHint=zh-CN', 'zh-CN'], ['/?lang=untrusted', 'en']])(
+    "carries the selected language from %s to hosted authentication", async (returnTo, locale) => {
+      const login = await request(app).post('/auth/start').send({ intent: 'signin', returnTo, legalAcceptance }).expect(201);
+      const authorization = new URL(login.body.authorizationUrl);
+      expect(authorization.searchParams.get('ui_locales')).toBe(locale);
+      expect(authorization.searchParams.get('state')).toMatch(/^[A-Za-z0-9_-]{43,128}$/);
+    },
+  );
 
   it("exchanges an OIDC Code + PKCE transaction for an opaque local session", async () => {
     const agent = request.agent(app);
@@ -618,16 +629,49 @@ describe.sequential("Continuity API", () => {
     expect(response.body.error.code).toBe("session_management_unavailable");
   });
 
-  it("rejects external OIDC return paths", async () => {
+  it.each([
+    "https://attacker.example",
+    "//attacker.example",
+    "/\\attacker.example",
+    "/\t/attacker.example",
+    "/\n/attacker.example",
+    "/\r/attacker.example",
+  ])("rejects external OIDC return paths including URL-normalized controls: %j", async (returnTo) => {
+    const before = await pool.query("select count(*)::int as count from app.auth_transactions");
     const response = await request(app)
       .post("/auth/start")
       .send({
         intent: "signin",
-        returnTo: "https://attacker.example",
+        returnTo,
         legalAcceptance,
       })
       .expect(400);
     expect(response.body.error.code).toBe("invalid_return_path");
+    expect((await pool.query("select count(*)::int as count from app.auth_transactions")).rows)
+      .toEqual(before.rows);
+  });
+
+  it("preserves a same-origin OIDC return path with query and fragment", async () => {
+    const agent = request.agent(app);
+    const returnTo = "/account?next=guides&service=apple#details";
+    const login = await agent.post("/auth/start").send({ intent: "signin", returnTo, legalAcceptance }).expect(201);
+    const state = new URL(login.body.authorizationUrl).searchParams.get("state");
+    const callback = await agent.get(`/auth/callback?code=test-code&state=${state}`).expect(303);
+    expect(callback.headers.location).toBe(`http://localhost:4173${returnTo}`);
+  });
+
+  it("rejects an unsafe previously stored OIDC return path before issuing a session", async () => {
+    const agent = request.agent(app);
+    const login = await agent.post("/auth/start").send({ intent: "signin", returnTo: "/", legalAcceptance }).expect(201);
+    const state = new URL(login.body.authorizationUrl).searchParams.get("state")!;
+    await pool.query("update app.auth_transactions set return_to=$1 where state_hash=$2", [
+      "/\t/attacker.example", createHash("sha256").update(state).digest(),
+    ]);
+    const before = await pool.query("select count(*)::int as count from app.auth_sessions");
+    const callback = await agent.get(`/auth/callback?code=test-code&state=${state}`).expect(400);
+    expect(callback.body.error.code).toBe("invalid_return_path");
+    expect(callback.headers.location).toBeUndefined();
+    expect((await pool.query("select count(*)::int as count from app.auth_sessions")).rows).toEqual(before.rows);
   });
 
   it("returns the seeded plan and matters for the authenticated planner", async () => {
@@ -1275,6 +1319,33 @@ describe.sequential("Continuity API", () => {
     } finally {
       await pool.query("delete from app.commerce_accounts where planner_id=(select id from app.planners where public_id=$1)",[developmentPlannerPublicId]);
     }
+  });
+
+  it("acknowledges a signed Stripe test event for a nonlocal account without granting access", async () => {
+    const counts = () => pool.query(`select
+      (select count(*)::int from app.commerce_accounts) as accounts,
+      (select count(*)::int from app.commerce_subscriptions) as subscriptions`);
+    const before = (await counts()).rows;
+    const payload = JSON.stringify({
+      id: "evt_rillora_nonlocal_test_account",
+      type: "customer.subscription.created",
+      commerceAccountReference: "88888888-8888-4888-8888-888888888888",
+      orderReference: "99999999-9999-4999-8999-999999999999",
+      paymentAttemptReference: "77777777-7777-4777-8777-777777777777",
+      customerReference: "cus_rillora_nonlocal_test",
+      subscriptionReference: "sub_rillora_nonlocal_test",
+    });
+    for (let attempt = 0; attempt < 2; attempt += 1) {
+      const result = await request(app).post("/api/commerce/stripe/webhook")
+        .set("content-type", "application/json").set("stripe-signature", "t=1,v1=fixture")
+        .send(payload).expect(202);
+      expect(result.body).toEqual({ received: true, status: "needs_mapping", testOnly: true });
+    }
+    expect((await counts()).rows).toEqual(before);
+    const inbox = await pool.query(`select processing_status, last_error_code, attempt_count, signature_verified
+      from app.commerce_provider_event_inbox where provider_event_reference=$1`, ["evt_rillora_nonlocal_test_account"]);
+    expect(inbox.rows).toEqual([{ processing_status: "needs_mapping", last_error_code: "account_mapping_missing",
+      attempt_count: 1, signature_verified: true }]); // One retry after the initial delivery.
   });
 
   it("persists and reconciles the disabled Stripe test Checkout without granting Family access", async () => {
@@ -2315,6 +2386,23 @@ describe.sequential("Continuity API", () => {
     expect(printable.text).toContain("Rillora cannot revoke that copy");
     expect(printable.text).not.toContain(excludedAccountHint);
 
+    const chinese = await asDevelopmentPlanner(
+      request(app).post("/v1/exports/start-here/printable").send({
+        previewPublicId: preview.body.export.publicId,
+        acknowledgesPlaintext: true,
+        acknowledgesNoRevocation: true,
+        locale: "zh-CN",
+      }),
+    ).expect(201);
+    expect(chinese.text).toContain("Rillora");
+    expect(chinese.text).toContain("指引");
+    expect(chinese.text).toContain("无法撤回");
+    expect(chinese.text).toContain("Printable account One line only");
+    expect(chinese.text).toContain("Example Provider");
+    expect(chinese.text).not.toContain("Rillora cannot revoke that copy");
+    expect(chinese.text).not.toContain(excludedAccountHint);
+    expect(chinese.headers["x-rillora-server-copy-retained"]).toBe("false");
+
     const stored = await pool.query<{
       format: string;
       status: string;
@@ -2363,7 +2451,7 @@ describe.sequential("Continuity API", () => {
     );
   });
 
-  it("stores only a recovery-wrapped client-encrypted package and returns the same artifact", async () => {
+  it.each([64, 65_536])("stores only a recovery-wrapped client-encrypted package and returns the same artifact (%i bytes)", async (ciphertextBytes) => {
     const preview = await asDevelopmentPlanner(
       request(app).post("/v1/exports/start-here/preview").send({}),
     ).expect(201);
@@ -2376,7 +2464,7 @@ describe.sequential("Continuity API", () => {
     expect(preparation.body.package.recipientDeliveryPerformed).toBe(false);
     expect(preparation.body.eligibleRecipientKeys).toEqual([]);
 
-    const fixture = encryptedCryptoFixture();
+    const fixture = encryptedCryptoFixture(ciphertextBytes);
     const finalized = await asDevelopmentPlanner(
       request(app)
         .post(`/v1/exports/start-here/encrypted/${preparation.body.package.publicId}/finalize`)
@@ -2430,7 +2518,7 @@ describe.sequential("Continuity API", () => {
     expect(stored.rows[0]).toEqual({
       status: "ready",
       crypto_version: "rillora-hpke-v1",
-      ciphertext_length: 64,
+      ciphertext_length: ciphertextBytes,
       envelope_count: 1,
     });
   });
@@ -2520,7 +2608,7 @@ describe.sequential("Continuity API", () => {
     expect(missingRecipient.body.error.code).toBe("recipient_keys_changed");
   });
 
-  it("rehearses one-time recipient acceptance, public-key enrollment, decryption access and revocation", async () => {
+  it.each([64, 65_536])("rehearses one-time recipient acceptance, public-key enrollment, decryption access and revocation (%i bytes)", async (ciphertextBytes) => {
     const contact = await asDevelopmentPlanner(
       request(app).post("/v1/trusted-contacts").send({
         displayName: "Synthetic Rehearsal Recipient",
@@ -2622,7 +2710,7 @@ describe.sequential("Continuity API", () => {
       }),
     ]);
 
-    const fixture = encryptedCryptoFixture();
+    const fixture = encryptedCryptoFixture(ciphertextBytes);
     await asDevelopmentPlanner(
       request(app)
         .post(
@@ -2675,7 +2763,8 @@ describe.sequential("Continuity API", () => {
     const contact = (await asDevelopmentPlanner(request(app).post("/v1/trusted-contacts").send({ displayName: "Signup recipient" })).expect(201)).body.trustedContact;
     const invitation = (await asDevelopmentPlanner(request(app).post("/v1/sharing/connections").send({ personPublicId: contact.publicId, email: "signup@example.test", grants: [] })).expect(201)).body;
     const token = new URLSearchParams(new URL(invitation.invitationUrl).hash.slice(1)).get("invitation")!;
-    const signedUpApp = createApp(pool, config, { appleSignedDataVerifier: fakeAppleVerifier, stripeProvider: fakeStripeProvider, nativeIdentityVerifier: fakeNativeIdentityVerifier, identityProvider: {
+    const signedUpApp = createApp(pool, config, { appleSignedDataVerifier: fakeAppleVerifier, stripeProvider: fakeStripeProvider, nativeIdentityVerifier: fakeNativeIdentityVerifier,
+      emailIdentityVerifier:{async verifiedEmail(identity){return identity.issuer==='https://identity.example'&&identity.subject==='auth0|new-invitation-recipient'?'signup@example.test':null;}}, identityProvider: {
       ...fakeIdentityProvider,
       async exchangeAuthorizationCode() {
         return { issuer: "https://identity.example", subject: "auth0|new-invitation-recipient", displayName: "New recipient", locale: "en", authenticatedAt: new Date(), authenticationMethods: ["pwd"], verifiedEmail: "signup@example.test" };
@@ -2783,8 +2872,8 @@ function p256PublicPoint(): Buffer {
   return key.getPublicKey(undefined, "uncompressed");
 }
 
-function encryptedCryptoFixture() {
-  const contentCiphertext = Buffer.alloc(64, 7);
+function encryptedCryptoFixture(ciphertextBytes = 64) {
+  const contentCiphertext = Buffer.alloc(ciphertextBytes, 7);
   return {
     contentNonce: Buffer.alloc(12, 3).toString("base64url"),
     contentCiphertext: contentCiphertext.toString("base64url"),

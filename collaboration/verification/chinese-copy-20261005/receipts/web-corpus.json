@@ -1,0 +1,6403 @@
+[
+  {
+    "key": "common.language.label",
+    "en": "Language / 语言",
+    "zh": "Language / 语言"
+  },
+  {
+    "key": "common.language.saved",
+    "en": "Language is saved in this browser only.",
+    "zh": "语言选择仅保存在当前浏览器中。"
+  },
+  {
+    "key": "common.language.temporary",
+    "en": "Language changed for this page. Browser storage is unavailable.",
+    "zh": "已为当前页面切换语言，浏览器存储不可用。"
+  },
+  {
+    "key": "common.language.details",
+    "en": "About language settings",
+    "zh": "了解语言设置"
+  },
+  {
+    "key": "common.language.heading",
+    "en": "Website language",
+    "zh": "网站语言"
+  },
+  {
+    "key": "common.language.description",
+    "en": "English and Simplified Chinese are available for the website and Web interface. The first visit follows your browser language. An explicit choice saves only the language code under rillora.locale.v1 in this browser.",
+    "zh": "网站和 Web 界面提供英语与简体中文。首次访问时跟随浏览器语言；手动选择后，仅将语言代码保存在当前浏览器的 rillora.locale.v1 中。"
+  },
+  {
+    "key": "common.language.privacy",
+    "en": "This preference contains no account or private-map information and is not used for advertising or analytics. Each site stores its own choice; links to the Rillora web app carry only the language code. Clear browser storage to follow your browser language again. If storage is unavailable, switching still works for this page.",
+    "zh": "该偏好不包含账号或私密事务地图信息，也不用于广告或分析。各网站分别保存选择；前往 Rillora Web 应用的链接仅携带语言代码。清除浏览器存储后会重新跟随浏览器语言。存储不可用时，仍可为当前页面切换语言。"
+  },
+  {
+    "key": "common.language.boundary",
+    "en": "Language does not change your service market, currency, price or sharing permissions. Official legal documents, hosted sign-in and provider guidance may remain in English. Your saved content is not translated.",
+    "zh": "语言不会改变服务地区、币种、价格或共享权限。正式法律文件、托管登录和平台指南可能仍为英文。已保存的内容不会被翻译。"
+  },
+  {
+    "key": "common.appearance.label",
+    "en": "Appearance",
+    "zh": "外观"
+  },
+  {
+    "key": "common.appearance.current",
+    "en": "Appearance: {mode}",
+    "zh": "外观：{mode}"
+  },
+  {
+    "key": "common.appearance.change",
+    "en": "Change appearance",
+    "zh": "更改外观"
+  },
+  {
+    "key": "common.appearance.system",
+    "en": "System",
+    "zh": "跟随系统"
+  },
+  {
+    "key": "common.appearance.light",
+    "en": "Light",
+    "zh": "浅色"
+  },
+  {
+    "key": "common.appearance.dark",
+    "en": "Dark",
+    "zh": "深色"
+  },
+  {
+    "key": "common.appearance.saved",
+    "en": "Light or Dark is saved on this device. System clears that choice.",
+    "zh": "浅色或深色选择保存在当前设备。选择跟随系统会清除该偏好。"
+  },
+  {
+    "key": "common.appearance.temporary",
+    "en": "Changed for this page. Browser storage is unavailable.",
+    "zh": "已为当前页面更改外观，浏览器存储不可用。"
+  },
+  {
+    "key": "common.appearance.about",
+    "en": "About this setting",
+    "zh": "了解此设置"
+  },
+  {
+    "key": "common.appearance.heading",
+    "en": "Website appearance",
+    "zh": "网站外观"
+  },
+  {
+    "key": "common.appearance.updated",
+    "en": "29 September 2026 · Website appearance update",
+    "zh": "2026 年 9 月 29 日 · 网站外观更新"
+  },
+  {
+    "key": "common.appearance.storage",
+    "en": "On the Rillora website and web app, choosing Light or Dark saves only that choice in this browser under rillora.website.appearance.v1. It is used only to display your chosen appearance, contains no account or private-map information, and is not used for advertising or analytics.",
+    "zh": "在 Rillora 网站和 Web 应用中，选择浅色或深色时，仅将该选择保存在当前浏览器的 rillora.website.appearance.v1 中。它只用于显示所选外观，不包含账号或私密事务地图信息，也不用于广告或分析。"
+  },
+  {
+    "key": "common.appearance.links",
+    "en": "The choice remains until you select System or clear browser storage. Links from the website carry only this display choice to the web app. Each site keeps its own local preference; nothing is linked to your account. System removes the saved choice and follows your device. If browser storage is unavailable, the control still works for the current page.",
+    "zh": "该选择会保留，直到您选择跟随系统或清除浏览器存储。网站链接只将该显示偏好带到 Web 应用；各网站分别在本地保存偏好，不会关联账号。选择跟随系统会移除已保存的选择，并跟随设备外观。存储不可用时，仍可为当前页面更改外观。"
+  },
+  {
+    "key": "common.appearance.supplement",
+    "en": "This update supplements the storage descriptions below for this website setting only.",
+    "zh": "此更新仅针对该网站设置，补充下方有关存储的说明。"
+  },
+  {
+    "key": "common.appearance.details",
+    "en": "View the website setting details",
+    "zh": "查看网站设置详情"
+  },
+  {
+    "key": "common.error.request",
+    "en": "The request could not be completed. Please try again.",
+    "zh": "未能完成请求，请重试。"
+  },
+  {
+    "key": "common.error.authentication",
+    "en": "Sign in to continue.",
+    "zh": "请登录后继续。"
+  },
+  {
+    "key": "common.error.reauthentication",
+    "en": "Sign in again to confirm it is still you, then retry the action. Your changes stay here.",
+    "zh": "请重新登录以确认身份，然后重试操作。您的更改会保留在此处。"
+  },
+  {
+    "key": "common.error.accountChanged",
+    "en": "The signed-in account changed. Reload before continuing.",
+    "zh": "登录账号已更改。请重新加载后再继续。"
+  },
+  {
+    "key": "common.error.invalidSession",
+    "en": "The account could not be verified. Sign in again.",
+    "zh": "未能验证账号，请重新登录。"
+  },
+  {
+    "key": "common.error.incompleteMap",
+    "en": "The map could not be loaded completely. Please try again.",
+    "zh": "未能完整加载事务地图，请重试。"
+  },
+  {
+    "key": "common.error.conflict",
+    "en": "This record changed elsewhere. Review the latest saved version before continuing.",
+    "zh": "此记录已在其他位置更改。请先查看最新保存的版本。"
+  },
+  {
+    "key": "common.error.savedDraftChanged",
+    "en": "This request was already saved with different content. Review the saved matter before continuing.",
+    "zh": "此请求已保存过，但内容不同。请先查看已保存的事项。"
+  },
+  {
+    "key": "common.error.serviceNotOpen",
+    "en": "Account access is not open for this service yet.",
+    "zh": "此服务尚未开放账号访问。"
+  },
+  {
+    "key": "common.error.verifiedEmail",
+    "en": "Verify the invited email address, then return to accept the invitation.",
+    "zh": "请验证受邀邮箱，然后返回此处接受邀请。"
+  },
+  {
+    "key": "common.error.billingConfirmation",
+    "en": "Confirm that deleting your account does not cancel provider billing before continuing.",
+    "zh": "请先确认：删除账号不会取消平台方的订阅扣费。"
+  },
+  {
+    "key": "common.error.unavailable",
+    "en": "The service is temporarily unavailable. Please try again later.",
+    "zh": "服务暂时不可用，请稍后重试。"
+  },
+  {
+    "key": "common.error.invalidResponse",
+    "en": "The response could not be verified. Please try again.",
+    "zh": "未能验证响应，请重试。"
+  },
+  {
+    "key": "common.error.rateLimit",
+    "en": "Too many requests. Wait a moment and try again.",
+    "zh": "请求过于频繁，请稍候重试。"
+  },
+  {
+    "key": "common.error.permission",
+    "en": "This action is not permitted with the current access. Refresh and review your access.",
+    "zh": "当前访问权限不允许此操作。请刷新并检查访问权限。"
+  },
+  {
+    "key": "public.nav.home",
+    "en": "Home",
+    "zh": "首页"
+  },
+  {
+    "key": "public.nav.product",
+    "en": "Product",
+    "zh": "产品"
+  },
+  {
+    "key": "public.nav.security",
+    "en": "Security",
+    "zh": "安全"
+  },
+  {
+    "key": "public.nav.pricing",
+    "en": "Pricing",
+    "zh": "价格"
+  },
+  {
+    "key": "public.nav.support",
+    "en": "Support",
+    "zh": "帮助"
+  },
+  {
+    "key": "public.nav.account",
+    "en": "Account",
+    "zh": "账号"
+  },
+  {
+    "key": "public.nav.privacy",
+    "en": "Privacy",
+    "zh": "隐私政策（英文）"
+  },
+  {
+    "key": "public.nav.terms",
+    "en": "Terms",
+    "zh": "服务条款（英文）"
+  },
+  {
+    "key": "public.nav.legal",
+    "en": "Legal",
+    "zh": "法律信息"
+  },
+  {
+    "key": "public.nav.homeLabel",
+    "en": "Rillora home",
+    "zh": "Rillora 首页"
+  },
+  {
+    "key": "public.nav.publicLabel",
+    "en": "Public navigation",
+    "zh": "网站导航"
+  },
+  {
+    "key": "public.nav.legalLabel",
+    "en": "Information and legal links",
+    "zh": "帮助与法律信息链接"
+  },
+  {
+    "key": "public.nav.accountLegalLabel",
+    "en": "Legal and account links",
+    "zh": "法律信息与账号链接"
+  },
+  {
+    "key": "public.nav.open",
+    "en": "Open navigation",
+    "zh": "展开导航"
+  },
+  {
+    "key": "public.nav.close",
+    "en": "Close navigation",
+    "zh": "收起导航"
+  },
+  {
+    "key": "public.auth.previewLabel",
+    "en": "Sign in to the Rillora preview",
+    "zh": "登录 Rillora 预览版"
+  },
+  {
+    "key": "public.auth.signinLabel",
+    "en": "Sign in to Rillora",
+    "zh": "登录 Rillora"
+  },
+  {
+    "key": "public.auth.preview",
+    "en": "Preview",
+    "zh": "预览版"
+  },
+  {
+    "key": "public.auth.signin",
+    "en": "Sign in",
+    "zh": "登录"
+  },
+  {
+    "key": "public.auth.signup",
+    "en": "Create account",
+    "zh": "注册账号"
+  },
+  {
+    "key": "public.auth.explore",
+    "en": "Explore Preview",
+    "zh": "探索预览版"
+  },
+  {
+    "key": "public.auth.try",
+    "en": "Try Preview",
+    "zh": "试用预览版"
+  },
+  {
+    "key": "public.auth.invitation",
+    "en": "Received an invitation?",
+    "zh": "收到邀请了？"
+  },
+  {
+    "key": "public.auth.openMap",
+    "en": "Open your private map",
+    "zh": "打开我的私密事务地图"
+  },
+  {
+    "key": "public.footer.providerProcess",
+    "en": "Access and transfers follow each provider’s own process.",
+    "zh": "账号访问和转移须遵循各服务商的流程。"
+  },
+  {
+    "key": "public.footer.preview",
+    "en": "Preview uses the test app. Please use sample information.",
+    "zh": "预览版连接测试应用，请使用示例信息。"
+  },
+  {
+    "key": "public.footer.tagline",
+    "en": "Digital legacy and estate continuity. Directions, not passwords.",
+    "zh": "数字遗产与事务连续性。保存查找指引，不保存密码。"
+  },
+  {
+    "key": "public.home.heroTitle",
+    "en": "Leave less\nfor them to\nfigure out.",
+    "zh": "重要的事，\n替在乎的人\n交代清楚。"
+  },
+  {
+    "key": "public.home.heroDescription",
+    "en": "A private map of your important things,\nshared with the people you choose.",
+    "zh": "将重要事项整理成私密事务地图，只与您选择的人共享。"
+  },
+  {
+    "key": "public.home.exploreProduct",
+    "en": "Explore the product",
+    "zh": "了解产品"
+  },
+  {
+    "key": "public.home.exploreLabel",
+    "en": "Explore Rillora",
+    "zh": "探索 Rillora"
+  },
+  {
+    "key": "public.home.productEyebrow",
+    "en": "Accounts, documents, devices.",
+    "zh": "账号、文件、设备。"
+  },
+  {
+    "key": "public.home.productTitle",
+    "en": "A place for what matters.",
+    "zh": "让重要事项各有归处。"
+  },
+  {
+    "key": "public.home.productDescription",
+    "en": "See what belongs in your map, and how to give each item a next step.",
+    "zh": "了解事务地图可以记录什么，以及如何为每一项留下下一步指引。"
+  },
+  {
+    "key": "public.home.securityEyebrow",
+    "en": "Privacy starts with your choices.",
+    "zh": "隐私保护，从您的选择开始。"
+  },
+  {
+    "key": "public.home.securityTitle",
+    "en": "Stay in control.",
+    "zh": "由您掌握。"
+  },
+  {
+    "key": "public.home.securityDescription",
+    "en": "Choose what to share, change access and keep your own copy.",
+    "zh": "选择共享内容、调整访问权限，并保留自己的副本。"
+  },
+  {
+    "key": "public.home.securityLink",
+    "en": "Security & privacy",
+    "zh": "安全与隐私"
+  },
+  {
+    "key": "public.home.closingTitle",
+    "en": "Make the important\nthings clear.",
+    "zh": "把重要的事，\n交代清楚。"
+  },
+  {
+    "key": "public.home.closingDescription",
+    "en": "Start with one matter and someone you trust.",
+    "zh": "从一项重要事务和一位信任的人开始。"
+  },
+  {
+    "key": "public.sharing.title",
+    "en": "Let the right people\nsee the right details.",
+    "zh": "让合适的人，\n看到您选定的信息。"
+  },
+  {
+    "key": "public.sharing.intro",
+    "en": "Choose a person. Choose their view.",
+    "zh": "选择一个人，再决定对方能看到什么。"
+  },
+  {
+    "key": "public.sharing.chooseRecipient",
+    "en": "Choose an example recipient",
+    "zh": "选择示例接收人"
+  },
+  {
+    "key": "public.sharing.example",
+    "en": "Interactive example",
+    "zh": "交互示例"
+  },
+  {
+    "key": "public.sharing.sharedWith",
+    "en": "Shared with {name}",
+    "zh": "与{name}共享"
+  },
+  {
+    "key": "public.sharing.visibleDescription",
+    "en": "These are the items they can see.",
+    "zh": "这些是对方可以查看的事项。"
+  },
+  {
+    "key": "public.sharing.count",
+    "en": {
+      "one": "{count} matter shared. Everything else stays private.",
+      "other": "{count} matters shared. Everything else stays private."
+    },
+    "zh": {
+      "one": "已共享 {count} 项事项，其他内容仍为私密。",
+      "other": "已共享 {count} 项事项，其他内容仍为私密。"
+    }
+  },
+  {
+    "key": "public.sharing.invitationHow",
+    "en": "How invitations work",
+    "zh": "了解邀请流程"
+  },
+  {
+    "key": "public.example.region",
+    "en": "{title} example",
+    "zh": "{title}示例"
+  },
+  {
+    "key": "public.example.mum",
+    "en": "Mum",
+    "zh": "妈妈"
+  },
+  {
+    "key": "public.example.alex",
+    "en": "Alex",
+    "zh": "Alex"
+  },
+  {
+    "key": "public.example.insurance.title",
+    "en": "Insurance",
+    "zh": "保险"
+  },
+  {
+    "key": "public.example.insurance.detail",
+    "en": "Policy location",
+    "zh": "保单存放位置"
+  },
+  {
+    "key": "public.example.insurance.note",
+    "en": "Example: the policy documents are in the green folder at home. Contact the insurer for the next step.",
+    "zh": "示例：保单文件放在家中的绿色文件夹里。请联系保险公司了解下一步。"
+  },
+  {
+    "key": "public.example.home.title",
+    "en": "Home documents",
+    "zh": "房屋文件"
+  },
+  {
+    "key": "public.example.home.detail",
+    "en": "Where to find them",
+    "zh": "文件存放位置"
+  },
+  {
+    "key": "public.example.home.note",
+    "en": "Example: property records and the solicitor’s contact details are kept together in the home documents folder.",
+    "zh": "示例：房产记录与律师的联系方式一起保存在房屋文件夹中。"
+  },
+  {
+    "key": "public.example.crypto.title",
+    "en": "Crypto account",
+    "zh": "加密资产账号"
+  },
+  {
+    "key": "public.example.crypto.detail",
+    "en": "Exchange and next steps",
+    "zh": "交易平台与后续步骤"
+  },
+  {
+    "key": "public.example.crypto.note",
+    "en": "Example: this account is held at Coinbase. Use its official estate request process; no passwords or recovery phrases belong here.",
+    "zh": "示例：此账号由 Coinbase 提供。请使用其官方遗产申请流程；不要在这里保存密码或助记词。"
+  },
+  {
+    "key": "public.matter.title",
+    "en": "What goes in your map.",
+    "zh": "事务地图可以记录什么。"
+  },
+  {
+    "key": "public.matter.intro",
+    "en": "An account, a document, a device. Give it a place and a next step.",
+    "zh": "一个账号、一份文件、一台设备，记录在哪里，以及接下来该怎么做。"
+  },
+  {
+    "key": "public.matter.choose",
+    "en": "Choose a matter example",
+    "zh": "选择事项示例"
+  },
+  {
+    "key": "public.matter.yourMap",
+    "en": "Your map",
+    "zh": "您的事务地图"
+  },
+  {
+    "key": "public.matter.unsaved",
+    "en": "Interactive example · nothing is saved",
+    "zh": "交互示例 · 不会保存任何内容"
+  },
+  {
+    "key": "public.matter.notes",
+    "en": "Notes",
+    "zh": "备注"
+  },
+  {
+    "key": "public.matter.next",
+    "en": "From what matters, to who it matters to",
+    "zh": "从重要事项，到您在乎的人"
+  },
+  {
+    "key": "public.category.accounts",
+    "en": "Accounts",
+    "zh": "账号"
+  },
+  {
+    "key": "public.category.documents",
+    "en": "Documents",
+    "zh": "文件"
+  },
+  {
+    "key": "public.category.devices",
+    "en": "Devices",
+    "zh": "设备"
+  },
+  {
+    "key": "public.category.digital",
+    "en": "Digital assets",
+    "zh": "数字资产"
+  },
+  {
+    "key": "public.example.account.title",
+    "en": "Everyday account",
+    "zh": "日常账号"
+  },
+  {
+    "key": "public.example.account.type",
+    "en": "Account",
+    "zh": "账号"
+  },
+  {
+    "key": "public.example.account.locationLabel",
+    "en": "Where to find it",
+    "zh": "查找位置"
+  },
+  {
+    "key": "public.example.account.location",
+    "en": "Account provider and a safe reference",
+    "zh": "账号服务商与非敏感的识别信息"
+  },
+  {
+    "key": "public.example.nextLabel",
+    "en": "What happens next",
+    "zh": "下一步"
+  },
+  {
+    "key": "public.example.account.next",
+    "en": "Contact the provider",
+    "zh": "联系服务商"
+  },
+  {
+    "key": "public.example.account.note",
+    "en": "Keep the paperwork together so someone knows where to begin.",
+    "zh": "将相关文件放在一起，让帮助您的人知道从哪里开始。"
+  },
+  {
+    "key": "public.example.document.type",
+    "en": "Document",
+    "zh": "文件"
+  },
+  {
+    "key": "public.example.document.locationLabel",
+    "en": "Document location",
+    "zh": "文件位置"
+  },
+  {
+    "key": "public.example.document.location",
+    "en": "The green folder in the study",
+    "zh": "书房里的绿色文件夹"
+  },
+  {
+    "key": "public.example.document.next",
+    "en": "Speak with the named solicitor",
+    "zh": "联系指定律师"
+  },
+  {
+    "key": "public.example.document.note",
+    "en": "Record where the originals are kept and who can help.",
+    "zh": "记录原件的存放位置，以及可以提供帮助的人。"
+  },
+  {
+    "key": "public.example.device.title",
+    "en": "Work laptop",
+    "zh": "工作笔记本电脑"
+  },
+  {
+    "key": "public.example.device.type",
+    "en": "Device",
+    "zh": "设备"
+  },
+  {
+    "key": "public.example.device.locationLabel",
+    "en": "Device location",
+    "zh": "设备位置"
+  },
+  {
+    "key": "public.example.device.location",
+    "en": "The desk in the study",
+    "zh": "书房的书桌上"
+  },
+  {
+    "key": "public.example.device.next",
+    "en": "Contact the workplace IT team",
+    "zh": "联系工作单位的 IT 团队"
+  },
+  {
+    "key": "public.example.device.note",
+    "en": "Leave handling instructions without recording the device password.",
+    "zh": "留下设备处理指引，但不要记录设备密码。"
+  },
+  {
+    "key": "public.example.digital.title",
+    "en": "Exchange account",
+    "zh": "交易平台账号"
+  },
+  {
+    "key": "public.example.digital.type",
+    "en": "Digital asset",
+    "zh": "数字资产"
+  },
+  {
+    "key": "public.example.digital.providerLabel",
+    "en": "Held with",
+    "zh": "托管平台"
+  },
+  {
+    "key": "public.example.digital.provider",
+    "en": "A named exchange · not a self-custody wallet",
+    "zh": "指定交易平台 · 非自托管钱包"
+  },
+  {
+    "key": "public.example.digital.next",
+    "en": "Use the provider’s official request process",
+    "zh": "使用服务商的官方申请流程"
+  },
+  {
+    "key": "public.example.digital.note",
+    "en": "Record the provider and a safe reference, never a seed phrase or private key.",
+    "zh": "记录服务商与非敏感的识别信息，切勿记录助记词或私钥。"
+  },
+  {
+    "key": "public.product.title",
+    "en": "A clear next step\nfor the people you trust.",
+    "zh": "为信任的人，\n留下清晰的下一步。"
+  },
+  {
+    "key": "public.product.intro",
+    "en": "Bring the important details together, then decide who can see them.",
+    "zh": "整理重要信息，再决定谁可以查看。"
+  },
+  {
+    "key": "public.product.ownAccount",
+    "en": "Everyone uses their own account.",
+    "zh": "每个人都使用自己的账号。"
+  },
+  {
+    "key": "public.product.chooseTitle",
+    "en": "You choose and invite.",
+    "zh": "由您选择并发出邀请。"
+  },
+  {
+    "key": "public.product.chooseDescription",
+    "en": "Select the matters and details a person may see, then send your invitation link or QR code.",
+    "zh": "选择对方可以查看的事项和详细信息，再发送邀请链接或二维码。"
+  },
+  {
+    "key": "public.product.acceptTitle",
+    "en": "They sign in and accept.",
+    "zh": "对方登录后接受邀请。"
+  },
+  {
+    "key": "public.product.acceptDescription",
+    "en": "They can use the web or iOS app. Their own account gives them access to the information you chose.",
+    "zh": "对方可使用网页版或 iOS 应用，通过自己的账号查看您选定的信息。"
+  },
+  {
+    "key": "public.product.guidance",
+    "en": "Relevant account inheritance guidance appears with your matters after sign-in.",
+    "zh": "登录后，相关账号身后处理指南会随事项显示。"
+  },
+  {
+    "key": "public.security.title",
+    "en": "Your information.\nYour choices.",
+    "zh": "您的信息，\n由您做主。"
+  },
+  {
+    "key": "public.security.intro",
+    "en": "Understand what you share and how your information is protected.",
+    "zh": "了解您共享的内容，以及信息受到怎样的保护。"
+  },
+  {
+    "key": "public.security.answers",
+    "en": "Clear answers about access.",
+    "zh": "关于访问权限的清晰解答。"
+  },
+  {
+    "key": "public.support.title",
+    "en": "How can we help?",
+    "zh": "有什么需要帮助的？"
+  },
+  {
+    "key": "public.support.contact",
+    "en": "Contact support",
+    "zh": "联系支持团队"
+  },
+  {
+    "key": "public.support.description",
+    "en": "Start with what happened.\nLeave passwords and private account details out of your message.",
+    "zh": "请先说明遇到的情况。\n不要在消息中包含密码或私密账号信息。"
+  },
+  {
+    "key": "public.support.specific",
+    "en": "Specific support requests",
+    "zh": "专项支持请求"
+  },
+  {
+    "key": "public.support.privacy",
+    "en": "Privacy request",
+    "zh": "隐私请求"
+  },
+  {
+    "key": "public.support.security",
+    "en": "Report a security issue",
+    "zh": "报告安全问题"
+  },
+  {
+    "key": "public.faq.keep.title",
+    "en": "What should I keep in Rillora?",
+    "zh": "Rillora 中应该保存什么？"
+  },
+  {
+    "key": "public.faq.keep.answer",
+    "en": "Account names, document locations, safe references and clear next steps. Keep passwords, seed phrases, private keys and complete recovery codes out of your map.",
+    "zh": "账号名称、文件位置、非敏感的识别信息，以及清晰的后续步骤。不要在事务地图中保存密码、助记词、私钥或完整恢复码。"
+  },
+  {
+    "key": "public.faq.app.title",
+    "en": "Does my family need the app?",
+    "zh": "家人需要安装应用吗？"
+  },
+  {
+    "key": "public.faq.app.answer",
+    "en": "No. They can open your invitation on the web, sign in or create their own account, and accept. They see only the matters and details you choose to share.",
+    "zh": "不需要。对方可以在网页中打开邀请，登录或注册自己的账号，再接受邀请。他们只能看到您选择共享的事项和详细信息。"
+  },
+  {
+    "key": "public.faq.visibility.title",
+    "en": "Who can see my information?",
+    "zh": "谁可以查看我的信息？"
+  },
+  {
+    "key": "public.faq.visibility.answer",
+    "en": "Each person you invite has their own view. You can change or revoke their live access. Copies they already saved are outside that control.",
+    "zh": "每位受邀者看到的内容都可以单独设置。您可以更改或撤销其在线访问权限，但无法收回对方已经保存的副本。"
+  },
+  {
+    "key": "public.faq.transfer.title",
+    "en": "Does Rillora transfer my accounts?",
+    "zh": "Rillora 会转移我的账号吗？"
+  },
+  {
+    "key": "public.faq.transfer.answer",
+    "en": "No. Rillora organises information and directions. After signing in, account inheritance guidance helps you find official processes. Each provider and the applicable legal process decide access, closure or transfer.",
+    "zh": "不会。Rillora 用于整理信息与查找指引。登录后，账号身后处理指南可帮助您找到官方流程。账号访问、关闭或转移由各服务商与适用法律程序决定。"
+  },
+  {
+    "key": "public.faq.preview.title",
+    "en": "Can I try Rillora now?",
+    "zh": "现在可以试用 Rillora 吗？"
+  },
+  {
+    "key": "public.faq.preview.answer",
+    "en": "Yes. Preview sign-in opens our test app. Please use sample information. The production app and paid subscriptions are still being prepared. Specific account inheritance guidance is available after sign-in.",
+    "zh": "可以。预览版登录入口会打开测试应用，请使用示例信息。正式应用和付费订阅仍在准备中。具体账号身后处理指南可在登录后查看。"
+  },
+  {
+    "key": "public.life.death.label",
+    "en": "After a death",
+    "zh": "身故后"
+  },
+  {
+    "key": "public.life.death.title",
+    "en": "A place to begin.",
+    "zh": "知道从哪里开始。"
+  },
+  {
+    "key": "public.life.death.detail",
+    "en": "Find the information and directions already shared with you. Legal authority and each provider’s requirements still apply.",
+    "zh": "查找已经与您共享的信息和指引。仍须具备合法权限，并符合各服务商的要求。"
+  },
+  {
+    "key": "public.life.incapacity.label",
+    "en": "Unable to act",
+    "zh": "无法处理事务时"
+  },
+  {
+    "key": "public.life.incapacity.title",
+    "en": "Help, with the right authority.",
+    "zh": "在合法授权下提供帮助。"
+  },
+  {
+    "key": "public.life.incapacity.detail",
+    "en": "Leave directions for the people helping you. Being a trusted contact does not make someone a legal representative.",
+    "zh": "为帮助您的人留下指引。成为可信联系人，并不意味着拥有法律代表资格。"
+  },
+  {
+    "key": "public.life.unreachable.label",
+    "en": "Out of reach",
+    "zh": "失去联系时"
+  },
+  {
+    "key": "public.life.unreachable.title",
+    "en": "Clarity without assumptions.",
+    "zh": "信息清晰，不擅自推断。"
+  },
+  {
+    "key": "public.life.unreachable.detail",
+    "en": "Being out of touch never triggers an automatic release. Your existing sharing choices remain in control.",
+    "zh": "失去联系绝不会触发自动披露。信息仍依照您已有的共享设置提供。"
+  },
+  {
+    "key": "public.life.title",
+    "en": "Ready for life’s changes.",
+    "zh": "为生活的变化做好准备。"
+  },
+  {
+    "key": "public.life.intro",
+    "en": "Different situations. Clear boundaries.",
+    "zh": "不同情形，各有清晰边界。"
+  },
+  {
+    "key": "public.life.choose",
+    "en": "Explore a life situation",
+    "zh": "了解不同生活情形"
+  },
+  {
+    "key": "public.life.sharingChoice",
+    "en": "Sharing remains your choice",
+    "zh": "共享内容始终由您决定"
+  },
+  {
+    "key": "public.life.youChoose",
+    "en": "You choose what\nto share",
+    "zh": "由您选择\n共享什么"
+  },
+  {
+    "key": "public.life.theySee",
+    "en": "They see only\nwhat you’ve chosen",
+    "zh": "对方只能看到\n您选定的内容"
+  },
+  {
+    "key": "public.control.sharing.title",
+    "en": "Choose what you share",
+    "zh": "选择共享内容"
+  },
+  {
+    "key": "public.control.sharing.answer",
+    "en": "Share selected matters and details with each person. Your other items stay private. A trusted contact does not automatically receive your whole map.",
+    "zh": "为每个人选择可共享的事项和详细信息，其他事项仍为私密。可信联系人不会自动获得您的完整事务地图。"
+  },
+  {
+    "key": "public.control.revoke.title",
+    "en": "Change or revoke access",
+    "zh": "更改或撤销访问权限"
+  },
+  {
+    "key": "public.control.revoke.answer",
+    "en": "You can adjust a person’s live access or remove it. Information they have already copied or downloaded cannot be taken back.",
+    "zh": "您可以调整或取消某人的在线访问权限，但无法收回其已经复制或下载的信息。"
+  },
+  {
+    "key": "public.control.export.title",
+    "en": "Keep your own copy",
+    "zh": "保留自己的副本"
+  },
+  {
+    "key": "public.control.export.answer",
+    "en": "Export your information from My data when signed in. Basic export and privacy controls are available on both plans.",
+    "zh": "登录后，可在“我的数据”中导出信息。两种套餐均提供基础导出和隐私控制功能。"
+  },
+  {
+    "key": "public.control.encryption.title",
+    "en": "Encrypted application data",
+    "zh": "应用层数据加密"
+  },
+  {
+    "key": "public.control.encryption.answer",
+    "en": "Private content uses application-layer encryption with separately managed keys. Rillora’s authorised service can decrypt it to provide the product. This is not end-to-end encryption.",
+    "zh": "私密内容采用应用层加密，密钥独立管理。Rillora 的授权服务可以解密内容以提供产品功能。这并非端到端加密。"
+  },
+  {
+    "key": "public.control.label",
+    "en": "Sharing, export and encryption controls",
+    "zh": "共享、导出与加密控制"
+  },
+  {
+    "key": "public.control.example",
+    "en": "Example export",
+    "zh": "导出示例"
+  },
+  {
+    "key": "public.control.directions",
+    "en": "Shared directions",
+    "zh": "共享的查找指引"
+  },
+  {
+    "key": "public.control.sharedMum",
+    "en": "Shared with Mum",
+    "zh": "与妈妈共享"
+  },
+  {
+    "key": "public.control.portableTitle",
+    "en": "A clear, portable view.",
+    "zh": "清晰易读，随时携带。"
+  },
+  {
+    "key": "public.control.portableDescription",
+    "en": "See how a simple set of directions can read.",
+    "zh": "看看简明的查找指引是什么样的。"
+  },
+  {
+    "key": "public.control.download",
+    "en": "Download an example",
+    "zh": "下载示例"
+  },
+  {
+    "key": "public.control.sample",
+    "en": "Sample text file · no account data",
+    "zh": "示例文本文件 · 不含账号数据"
+  },
+  {
+    "key": "public.control.privacy",
+    "en": "Read our privacy policy",
+    "zh": "阅读隐私政策（英文正式文本）"
+  },
+  {
+    "key": "public.price.title",
+    "en": "A plan that fits your circle.",
+    "zh": "适合您与亲友的套餐。"
+  },
+  {
+    "key": "public.price.intro",
+    "en": "Start with one person. Make more room when you need it.",
+    "zh": "从一个人开始，需要时再增加名额。"
+  },
+  {
+    "key": "public.price.label",
+    "en": "Planned Web pricing",
+    "zh": "计划中的网页版价格"
+  },
+  {
+    "key": "public.price.preview",
+    "en": "Planned Web pricing. Preview access is available now.",
+    "zh": "以下为计划中的网页版价格。现在可以使用预览版。"
+  },
+  {
+    "key": "public.price.caption",
+    "en": "Free and Family planned Web features",
+    "zh": "Free 与 Family 计划提供的网页版功能"
+  },
+  {
+    "key": "public.price.feature",
+    "en": "Feature",
+    "zh": "功能"
+  },
+  {
+    "key": "public.price.free",
+    "en": "Free",
+    "zh": "Free"
+  },
+  {
+    "key": "public.price.family",
+    "en": "Family",
+    "zh": "Family"
+  },
+  {
+    "key": "public.price.perYear",
+    "en": "/ year",
+    "zh": "/ 年"
+  },
+  {
+    "key": "public.price.map",
+    "en": "Private map",
+    "zh": "私密事务地图"
+  },
+  {
+    "key": "public.price.included",
+    "en": "Included",
+    "zh": "包含"
+  },
+  {
+    "key": "public.price.liveSharing",
+    "en": "Live sharing",
+    "zh": "在线实时共享"
+  },
+  {
+    "key": "public.price.onePerson",
+    "en": "1 person",
+    "zh": "1 人"
+  },
+  {
+    "key": "public.price.fivePeople",
+    "en": "Up to 5 people",
+    "zh": "最多 5 人"
+  },
+  {
+    "key": "public.price.reviews",
+    "en": "Shared reviews",
+    "zh": "共同复核"
+  },
+  {
+    "key": "public.price.excluded",
+    "en": "Not included",
+    "zh": "不包含"
+  },
+  {
+    "key": "public.price.export",
+    "en": "Export and privacy controls",
+    "zh": "导出与隐私控制"
+  },
+  {
+    "key": "public.price.notOpen",
+    "en": "Paid subscriptions are not open yet.",
+    "zh": "付费订阅尚未开放。"
+  },
+  {
+    "key": "public.price.note",
+    "en": "Both plans include core privacy and export controls. Receiving an invitation does not require a paid plan.",
+    "zh": "两种套餐均包含核心隐私与导出功能。接受邀请无需付费套餐。"
+  },
+  {
+    "key": "public.price.terms",
+    "en": "Subscription terms",
+    "zh": "订阅条款（英文正式文本）"
+  },
+  {
+    "key": "public.legal.title",
+    "en": "Legal information.",
+    "zh": "法律信息。"
+  },
+  {
+    "key": "public.legal.label",
+    "en": "Legal information",
+    "zh": "法律信息"
+  },
+  {
+    "key": "public.legal.description",
+    "en": "The documents behind Rillora and the acknowledgements for the tools we use.",
+    "zh": "Rillora 的正式法律文件，以及所用工具的致谢与许可说明。正式法律文件以英文提供。"
+  },
+  {
+    "key": "public.legal.terms",
+    "en": "Terms of Service",
+    "zh": "服务条款（英文正式文本）"
+  },
+  {
+    "key": "public.legal.termsDetail",
+    "en": "How you use Rillora",
+    "zh": "您如何使用 Rillora"
+  },
+  {
+    "key": "public.legal.privacy",
+    "en": "Privacy Policy",
+    "zh": "隐私政策（英文正式文本）"
+  },
+  {
+    "key": "public.legal.privacyDetail",
+    "en": "How personal information is handled",
+    "zh": "个人信息如何处理"
+  },
+  {
+    "key": "public.legal.subscriptions",
+    "en": "Subscription Terms",
+    "zh": "订阅条款（英文正式文本）"
+  },
+  {
+    "key": "public.legal.subscriptionsDetail",
+    "en": "Payment, renewal and cancellation",
+    "zh": "支付、续费与取消"
+  },
+  {
+    "key": "public.legal.refunds",
+    "en": "Refund & Cancellation",
+    "zh": "退款与取消（英文正式文本）"
+  },
+  {
+    "key": "public.legal.refundsDetail",
+    "en": "Cancellation and refund information",
+    "zh": "取消与退款说明"
+  },
+  {
+    "key": "public.legal.acceptable",
+    "en": "Acceptable Use",
+    "zh": "可接受使用政策（英文正式文本）"
+  },
+  {
+    "key": "public.legal.acceptableDetail",
+    "en": "Responsible use of the service",
+    "zh": "负责任地使用服务"
+  },
+  {
+    "key": "public.legal.cookies",
+    "en": "Cookie Notice",
+    "zh": "Cookie 声明（英文正式文本）"
+  },
+  {
+    "key": "public.legal.cookiesDetail",
+    "en": "Necessary storage and tracking boundaries",
+    "zh": "必要存储与追踪边界"
+  },
+  {
+    "key": "public.legal.notice",
+    "en": "Legal Notice",
+    "zh": "法律声明（英文正式文本）"
+  },
+  {
+    "key": "public.legal.noticeDetail",
+    "en": "Operator and service information",
+    "zh": "运营者与服务信息"
+  },
+  {
+    "key": "public.legal.thirdParty",
+    "en": "Third-party notices",
+    "zh": "第三方声明"
+  },
+  {
+    "key": "public.legal.thirdPartyDetail",
+    "en": "Open-source software, fonts and artwork",
+    "zh": "开源软件、字体与图像"
+  },
+  {
+    "key": "public.legal.thirdPartyTitle",
+    "en": "Third-party notices.",
+    "zh": "第三方声明。"
+  },
+  {
+    "key": "public.legal.thirdPartyDescription",
+    "en": "Copyright and licence acknowledgements for software, fonts and artwork used in Rillora.",
+    "zh": "Rillora 所用软件、字体与图像的版权和许可说明。下方保留原文。"
+  },
+  {
+    "key": "public.legal.softwareTitle",
+    "en": "Software & components",
+    "zh": "软件与组件"
+  },
+  {
+    "key": "public.legal.softwareDescription",
+    "en": "Open-source components include Motion, Radix, Phosphor and the Figma Simple Design System. Their copyright and licence notices are retained below.",
+    "zh": "开源组件包括 Motion、Radix、Phosphor 和 Figma Simple Design System。下方保留其版权和许可声明。"
+  },
+  {
+    "key": "public.legal.artTitle",
+    "en": "Type & artwork",
+    "zh": "字体与图像"
+  },
+  {
+    "key": "public.legal.artDescription",
+    "en": "Inter and Source Serif 4 use the SIL Open Font License. Identifying platform marks have their own source credits and usage conditions.",
+    "zh": "Inter 和 Source Serif 4 采用 SIL Open Font License。用于平台识别的标志各有其来源说明与使用条件。"
+  },
+  {
+    "key": "public.legal.fullNotices",
+    "en": "Read the full acknowledgements and licences",
+    "zh": "阅读完整致谢与许可原文"
+  },
+  {
+    "key": "public.legal.download",
+    "en": "Download a copy",
+    "zh": "下载副本"
+  },
+  {
+    "key": "public.title.home",
+    "en": "Rillora — Make the important things clear",
+    "zh": "Rillora · 把重要的事交代清楚"
+  },
+  {
+    "key": "public.title.product",
+    "en": "Product — Rillora",
+    "zh": "产品 · Rillora"
+  },
+  {
+    "key": "public.title.security",
+    "en": "Security & privacy — Rillora",
+    "zh": "安全与隐私 · Rillora"
+  },
+  {
+    "key": "public.title.pricing",
+    "en": "Pricing — Rillora",
+    "zh": "价格 · Rillora"
+  },
+  {
+    "key": "public.title.support",
+    "en": "Help & support — Rillora",
+    "zh": "帮助与支持 · Rillora"
+  },
+  {
+    "key": "public.title.legal",
+    "en": "Legal information — Rillora",
+    "zh": "法律信息 · Rillora"
+  },
+  {
+    "key": "public.title.notices",
+    "en": "Third-party notices — Rillora",
+    "zh": "第三方声明 · Rillora"
+  },
+  {
+    "key": "public.title.notFound",
+    "en": "Page not found — Rillora",
+    "zh": "未找到页面 · Rillora"
+  },
+  {
+    "key": "public.title.appHome",
+    "en": "Rillora — A clear plan for what comes next",
+    "zh": "Rillora · 为下一步留下清晰计划"
+  },
+  {
+    "key": "public.title.account",
+    "en": "Account — Rillora",
+    "zh": "账号 · Rillora"
+  },
+  {
+    "key": "public.title.savedCopy",
+    "en": "Open saved copy — Rillora",
+    "zh": "打开已保存副本 · Rillora"
+  },
+  {
+    "key": "public.title.privacy",
+    "en": "Privacy Policy — Rillora",
+    "zh": "隐私政策（英文）· Rillora"
+  },
+  {
+    "key": "public.title.terms",
+    "en": "Terms of Service — Rillora",
+    "zh": "服务条款（英文）· Rillora"
+  },
+  {
+    "key": "public.title.subscriptions",
+    "en": "Subscription Terms — Rillora",
+    "zh": "订阅条款（英文）· Rillora"
+  },
+  {
+    "key": "public.title.refunds",
+    "en": "Refund & Cancellation — Rillora",
+    "zh": "退款与取消（英文）· Rillora"
+  },
+  {
+    "key": "public.title.acceptable",
+    "en": "Acceptable Use — Rillora",
+    "zh": "可接受使用政策（英文）· Rillora"
+  },
+  {
+    "key": "public.title.cookies",
+    "en": "Cookie Notice — Rillora",
+    "zh": "Cookie 声明（英文）· Rillora"
+  },
+  {
+    "key": "public.title.notice",
+    "en": "Legal Notice — Rillora",
+    "zh": "法律声明（英文）· Rillora"
+  },
+  {
+    "key": "public.navigation.skip",
+    "en": "Skip to content",
+    "zh": "跳至正文"
+  },
+  {
+    "key": "public.navigation.loading",
+    "en": "Loading…",
+    "zh": "正在加载…"
+  },
+  {
+    "key": "public.navigation.guides",
+    "en": "Account inheritance",
+    "zh": "账号身后处理指南"
+  },
+  {
+    "key": "public.navigation.notFound",
+    "en": "Page not found",
+    "zh": "未找到页面"
+  },
+  {
+    "key": "public.navigation.signin",
+    "en": "Continue to sign in",
+    "zh": "继续登录"
+  },
+  {
+    "key": "public.navigation.back",
+    "en": "Back to Rillora",
+    "zh": "返回 Rillora"
+  },
+  {
+    "key": "public.savedCopy.open",
+    "en": "Open saved copy",
+    "zh": "打开已保存副本"
+  },
+  {
+    "key": "public.savedCopy.title",
+    "en": "Open a saved copy",
+    "zh": "打开已保存的副本"
+  },
+  {
+    "key": "public.cookie.title",
+    "en": "Necessary cookies only",
+    "zh": "仅使用必要 Cookie"
+  },
+  {
+    "key": "public.cookie.description",
+    "en": "For sign-in, security, draft recovery and your chosen display preferences. No ads or behavioural analytics.",
+    "zh": "用于登录、安全、草稿恢复和您选择的显示偏好。不用于广告或行为分析。"
+  },
+  {
+    "key": "public.cookie.review",
+    "en": "Review Cookie Notice",
+    "zh": "查看 Cookie 声明（英文）"
+  },
+  {
+    "key": "public.cookie.dismiss",
+    "en": "Got it",
+    "zh": "知道了"
+  },
+  {
+    "key": "public.account.launchFailed",
+    "en": "The secure sign-in flow could not be opened.",
+    "zh": "无法打开安全登录流程，请重试。"
+  },
+  {
+    "key": "public.account.guideTitle",
+    "en": "Sign in to view account guidance",
+    "zh": "登录以查看账号身后处理指南"
+  },
+  {
+    "key": "public.account.reviewsTitle",
+    "en": "Open your review inbox",
+    "zh": "打开复核收件箱"
+  },
+  {
+    "key": "public.account.mapTitle",
+    "en": "Your private map",
+    "zh": "您的私密事务地图"
+  },
+  {
+    "key": "public.account.options",
+    "en": "Account options",
+    "zh": "账号选项"
+  },
+  {
+    "key": "public.account.checking",
+    "en": "Checking whether you already have an active session…",
+    "zh": "正在检查您是否已登录…"
+  },
+  {
+    "key": "public.account.notOpen",
+    "en": "Accounts are not open yet. You can still explore Rillora.",
+    "zh": "账号尚未开放，您仍可浏览并了解 Rillora。"
+  },
+  {
+    "key": "public.account.unavailable",
+    "en": "The account service is temporarily unavailable. The public site is still available.",
+    "zh": "账号服务暂时不可用，公开网站仍可浏览。"
+  },
+  {
+    "key": "public.account.retry",
+    "en": "Try account service again",
+    "zh": "重试账号服务"
+  },
+  {
+    "key": "public.account.signingUp",
+    "en": "Opening secure signup…",
+    "zh": "正在打开安全注册…"
+  },
+  {
+    "key": "public.account.signingIn",
+    "en": "Opening secure sign in…",
+    "zh": "正在打开安全登录…"
+  },
+  {
+    "key": "public.account.consentTranslation",
+    "en": "Chinese reference: I agree to the Terms, acknowledge the Privacy Policy, and consent to electronic records. The official legal documents are in English.",
+    "zh": "中文参考：我同意服务条款、确认隐私政策，并同意使用电子记录。正式法律文件为英文。"
+  },
+  {
+    "key": "public.appHome.kicker",
+    "en": "Digital legacy",
+    "zh": "数字遗产"
+  },
+  {
+    "key": "public.appHome.title",
+    "en": "Make the important things clear.",
+    "zh": "把重要的事交代清楚。"
+  },
+  {
+    "key": "public.appHome.intro",
+    "en": "Your important things, connected.",
+    "zh": "将重要事项整理在一起。"
+  },
+  {
+    "key": "public.appHome.processes",
+    "en": "Separate processes",
+    "zh": "不同情形分别处理"
+  },
+  {
+    "key": "public.appHome.death",
+    "en": "Death",
+    "zh": "身故"
+  },
+  {
+    "key": "public.appHome.incapacity",
+    "en": "Incapacity",
+    "zh": "失能"
+  },
+  {
+    "key": "public.appHome.unreachable",
+    "en": "Unreachable",
+    "zh": "失联"
+  },
+  {
+    "key": "public.appHome.explore",
+    "en": "Explore matters",
+    "zh": "探索事项"
+  },
+  {
+    "key": "public.appHome.addFirst",
+    "en": "Add my first matter",
+    "zh": "添加我的第一项事项"
+  },
+  {
+    "key": "public.explorer.what.label",
+    "en": "What",
+    "zh": "有什么"
+  },
+  {
+    "key": "public.explorer.what.title",
+    "en": "What exists",
+    "zh": "有哪些重要事项"
+  },
+  {
+    "key": "public.explorer.what.description",
+    "en": "Keep important accounts, documents and directions together.",
+    "zh": "将重要账号、文件与查找指引集中整理。"
+  },
+  {
+    "key": "public.explorer.next.label",
+    "en": "Next step",
+    "zh": "下一步"
+  },
+  {
+    "key": "public.explorer.next.title",
+    "en": "What happens",
+    "zh": "如何处理"
+  },
+  {
+    "key": "public.explorer.next.description",
+    "en": "Your wishes: keep, transfer or close.",
+    "zh": "记录您的意愿：保留、转移或关闭。"
+  },
+  {
+    "key": "public.explorer.who.label",
+    "en": "Who",
+    "zh": "由谁协助"
+  },
+  {
+    "key": "public.explorer.who.title",
+    "en": "Who can help",
+    "zh": "谁能提供帮助"
+  },
+  {
+    "key": "public.explorer.who.description",
+    "en": "Invite by link. They use their own account and see only what you share.",
+    "zh": "通过链接邀请对方。对方使用自己的账号，只能查看您共享的内容。"
+  },
+  {
+    "key": "public.explorer.explore",
+    "en": "Explore {title}",
+    "zh": "了解{title}"
+  },
+  {
+    "key": "public.explorer.label",
+    "en": "Explore how your map works",
+    "zh": "了解事务地图如何运作"
+  },
+  {
+    "key": "public.explorer.account.detail",
+    "en": "Service · Safe hint · Next step",
+    "zh": "服务商 · 非敏感提示 · 下一步"
+  },
+  {
+    "key": "public.explorer.account.action",
+    "en": "Add an account",
+    "zh": "添加账号"
+  },
+  {
+    "key": "public.explorer.document.detail",
+    "en": "Document · Location · Who needs it",
+    "zh": "文件 · 位置 · 谁需要它"
+  },
+  {
+    "key": "public.explorer.document.action",
+    "en": "Add a document",
+    "zh": "添加文件"
+  },
+  {
+    "key": "public.explorer.device.detail",
+    "en": "Device · Location · Official access route",
+    "zh": "设备 · 位置 · 官方访问途径"
+  },
+  {
+    "key": "public.explorer.device.action",
+    "en": "Add a device",
+    "zh": "添加设备"
+  },
+  {
+    "key": "public.explorer.other.title",
+    "en": "Other matters",
+    "zh": "其他事项"
+  },
+  {
+    "key": "public.explorer.other.detail",
+    "en": "Assets · Debts · Subscriptions",
+    "zh": "资产 · 债务 · 订阅"
+  },
+  {
+    "key": "public.explorer.other.action",
+    "en": "Add a matter",
+    "zh": "添加事项"
+  },
+  {
+    "key": "public.explorer.organise",
+    "en": "What would you like to organise?",
+    "zh": "您想整理什么？"
+  },
+  {
+    "key": "public.explorer.guide",
+    "en": "Explore a related guide",
+    "zh": "查看相关指南"
+  },
+  {
+    "key": "forms.required",
+    "en": "Required",
+    "zh": "必填"
+  },
+  {
+    "key": "forms.optional",
+    "en": "Optional",
+    "zh": "选填"
+  },
+  {
+    "key": "forms.category",
+    "en": "Category",
+    "zh": "类别"
+  },
+  {
+    "key": "forms.name",
+    "en": "Name",
+    "zh": "名称"
+  },
+  {
+    "key": "forms.namePlaceholder",
+    "en": "Name this matter",
+    "zh": "为此事项命名"
+  },
+  {
+    "key": "forms.details",
+    "en": "Details",
+    "zh": "已保存的详细信息"
+  },
+  {
+    "key": "forms.directions",
+    "en": "Directions",
+    "zh": "查找指引"
+  },
+  {
+    "key": "forms.category.account",
+    "en": "Online account",
+    "zh": "在线账号"
+  },
+  {
+    "key": "forms.category.financial_asset",
+    "en": "Financial asset",
+    "zh": "金融资产"
+  },
+  {
+    "key": "forms.category.debt",
+    "en": "Debt",
+    "zh": "债务"
+  },
+  {
+    "key": "forms.category.document",
+    "en": "Document",
+    "zh": "文件"
+  },
+  {
+    "key": "forms.category.device",
+    "en": "Device",
+    "zh": "设备"
+  },
+  {
+    "key": "forms.category.subscription",
+    "en": "Subscription",
+    "zh": "订阅"
+  },
+  {
+    "key": "forms.category.crypto_asset",
+    "en": "Crypto asset",
+    "zh": "加密资产"
+  },
+  {
+    "key": "forms.field.assetType.label",
+    "en": "Asset type",
+    "zh": "资产类型"
+  },
+  {
+    "key": "forms.field.assetType.placeholder",
+    "en": "Savings, investment or insurance",
+    "zh": "储蓄、投资或保险"
+  },
+  {
+    "key": "forms.field.debtType.label",
+    "en": "Debt type",
+    "zh": "债务类型"
+  },
+  {
+    "key": "forms.field.debtType.placeholder",
+    "en": "Mortgage, loan or credit card",
+    "zh": "房贷、贷款或信用卡"
+  },
+  {
+    "key": "forms.field.documentType.label",
+    "en": "Document type",
+    "zh": "文件类型"
+  },
+  {
+    "key": "forms.field.documentType.placeholder",
+    "en": "Will, policy or certificate",
+    "zh": "遗嘱、保单或证明"
+  },
+  {
+    "key": "forms.field.deviceModel.label",
+    "en": "Model",
+    "zh": "型号"
+  },
+  {
+    "key": "forms.field.deviceModel.placeholder",
+    "en": "Device model",
+    "zh": "设备型号"
+  },
+  {
+    "key": "forms.field.renewalDate.label",
+    "en": "Next renewal",
+    "zh": "下次续订日期"
+  },
+  {
+    "key": "forms.field.renewalDate.placeholder",
+    "en": "YYYY-MM-DD",
+    "zh": "YYYY-MM-DD"
+  },
+  {
+    "key": "forms.field.network.label",
+    "en": "Blockchain network",
+    "zh": "区块链网络"
+  },
+  {
+    "key": "forms.field.network.placeholder",
+    "en": "Ethereum, Bitcoin or another network",
+    "zh": "以太坊、比特币或其他网络"
+  },
+  {
+    "key": "forms.field.walletAddress.label",
+    "en": "Public wallet address",
+    "zh": "公开钱包地址"
+  },
+  {
+    "key": "forms.field.walletAddress.placeholder",
+    "en": "Public address only",
+    "zh": "仅填写公开地址"
+  },
+  {
+    "key": "forms.field.walletLabel.label",
+    "en": "Wallet app or device",
+    "zh": "钱包应用或设备"
+  },
+  {
+    "key": "forms.field.walletLabel.placeholder",
+    "en": "Where you manage this wallet",
+    "zh": "管理此钱包的应用或设备"
+  },
+  {
+    "key": "forms.field.assetSymbol.label",
+    "en": "Asset or token",
+    "zh": "资产或代币"
+  },
+  {
+    "key": "forms.field.assetSymbol.placeholder",
+    "en": "BTC, ETH, USDC…",
+    "zh": "BTC、ETH、USDC…"
+  },
+  {
+    "key": "forms.provider.financial_asset",
+    "en": "Institution",
+    "zh": "金融机构"
+  },
+  {
+    "key": "forms.provider.debt",
+    "en": "Creditor",
+    "zh": "债权人"
+  },
+  {
+    "key": "forms.provider.device",
+    "en": "Manufacturer",
+    "zh": "制造商"
+  },
+  {
+    "key": "forms.provider.document",
+    "en": "Issuer",
+    "zh": "签发机构"
+  },
+  {
+    "key": "forms.provider.crypto_asset",
+    "en": "Exchange",
+    "zh": "交易所"
+  },
+  {
+    "key": "forms.provider.default",
+    "en": "Provider",
+    "zh": "服务提供方"
+  },
+  {
+    "key": "forms.location.device",
+    "en": "Where you keep it",
+    "zh": "设备存放位置"
+  },
+  {
+    "key": "forms.location.document",
+    "en": "Document location",
+    "zh": "文件存放位置"
+  },
+  {
+    "key": "forms.location.account",
+    "en": "Recovery information location",
+    "zh": "恢复资料存放位置"
+  },
+  {
+    "key": "forms.location.debt",
+    "en": "Agreement location",
+    "zh": "协议存放位置"
+  },
+  {
+    "key": "forms.location.default",
+    "en": "Where to find the records",
+    "zh": "记录存放位置"
+  },
+  {
+    "key": "forms.location.placeholder",
+    "en": "A useful location, never a password",
+    "zh": "填写可供查找的位置，不要填写密码"
+  },
+  {
+    "key": "forms.custody",
+    "en": "Held in",
+    "zh": "持有方式"
+  },
+  {
+    "key": "forms.custody.choose",
+    "en": "Choose…",
+    "zh": "请选择…"
+  },
+  {
+    "key": "forms.custody.exchange",
+    "en": "An exchange",
+    "zh": "交易所"
+  },
+  {
+    "key": "forms.custody.self_custody",
+    "en": "An on-chain wallet",
+    "zh": "链上钱包"
+  },
+  {
+    "key": "forms.billingCycle",
+    "en": "Billing cycle",
+    "zh": "账期"
+  },
+  {
+    "key": "forms.billingCycle.empty",
+    "en": "Not added",
+    "zh": "未填写"
+  },
+  {
+    "key": "forms.billingCycle.monthly",
+    "en": "Monthly",
+    "zh": "每月"
+  },
+  {
+    "key": "forms.billingCycle.annual",
+    "en": "Annual",
+    "zh": "每年"
+  },
+  {
+    "key": "forms.billingCycle.other",
+    "en": "Other",
+    "zh": "其他"
+  },
+  {
+    "key": "forms.serialHint",
+    "en": "Masked serial hint",
+    "zh": "部分隐藏的序列号提示"
+  },
+  {
+    "key": "forms.accountHint",
+    "en": "Username or masked reference",
+    "zh": "用户名或部分隐藏的标识"
+  },
+  {
+    "key": "forms.accountHint.placeholder",
+    "en": "For example, ending 42",
+    "zh": "例如：末尾为 42"
+  },
+  {
+    "key": "forms.valueOptional",
+    "en": "Value · Optional",
+    "zh": "价值 · 选填"
+  },
+  {
+    "key": "forms.valueBand",
+    "en": "Value range",
+    "zh": "价值范围"
+  },
+  {
+    "key": "forms.valueBand.unknown",
+    "en": "Unknown / not stated",
+    "zh": "未知／未说明"
+  },
+  {
+    "key": "forms.valueBand.none",
+    "en": "No monetary value",
+    "zh": "无货币价值"
+  },
+  {
+    "key": "forms.valueBand.under_1k",
+    "en": "Under 1,000",
+    "zh": "低于 1,000"
+  },
+  {
+    "key": "forms.valueBand.1k_10k",
+    "en": "1,000–10,000",
+    "zh": "1,000–10,000"
+  },
+  {
+    "key": "forms.valueBand.10k_100k",
+    "en": "10,000–100,000",
+    "zh": "10,000–100,000"
+  },
+  {
+    "key": "forms.valueBand.100k_plus",
+    "en": "100,000+",
+    "zh": "100,000 及以上"
+  },
+  {
+    "key": "forms.currency",
+    "en": "Currency",
+    "zh": "币种"
+  },
+  {
+    "key": "forms.currency.placeholder",
+    "en": "USD or HKD",
+    "zh": "USD 或 HKD"
+  },
+  {
+    "key": "forms.outcome",
+    "en": "Preferred outcome",
+    "zh": "期望处理方式"
+  },
+  {
+    "key": "forms.outcome.undecided",
+    "en": "Not decided",
+    "zh": "尚未决定"
+  },
+  {
+    "key": "forms.outcome.notify",
+    "en": "Notify someone",
+    "zh": "通知某人"
+  },
+  {
+    "key": "forms.outcome.transfer_request",
+    "en": "Request transfer",
+    "zh": "申请转移"
+  },
+  {
+    "key": "forms.outcome.close",
+    "en": "Request closure",
+    "zh": "申请关闭"
+  },
+  {
+    "key": "forms.outcome.delete_request",
+    "en": "Request deletion",
+    "zh": "申请删除"
+  },
+  {
+    "key": "forms.outcome.memorialize",
+    "en": "Request memorialization",
+    "zh": "申请设为纪念账号"
+  },
+  {
+    "key": "forms.outcome.delay_disclosure",
+    "en": "Delay disclosure",
+    "zh": "延迟披露"
+  },
+  {
+    "key": "forms.outcome.never_disclose",
+    "en": "Never disclose",
+    "zh": "永不披露"
+  },
+  {
+    "key": "forms.moreOptions",
+    "en": "More options",
+    "zh": "更多选项"
+  },
+  {
+    "key": "forms.importance",
+    "en": "Importance",
+    "zh": "重要程度"
+  },
+  {
+    "key": "forms.importance.standard",
+    "en": "Standard",
+    "zh": "一般"
+  },
+  {
+    "key": "forms.importance.important",
+    "en": "Important",
+    "zh": "重要"
+  },
+  {
+    "key": "forms.importance.critical",
+    "en": "Critical",
+    "zh": "非常重要"
+  },
+  {
+    "key": "forms.preparationStatus",
+    "en": "Preparation status",
+    "zh": "准备状态"
+  },
+  {
+    "key": "forms.status.draft",
+    "en": "Draft",
+    "zh": "草稿"
+  },
+  {
+    "key": "forms.status.ready",
+    "en": "Directions added",
+    "zh": "已添加查找指引"
+  },
+  {
+    "key": "forms.status.needs_review",
+    "en": "Needs review",
+    "zh": "待复核"
+  },
+  {
+    "key": "forms.privateUntilShared",
+    "en": "Private until you choose to share",
+    "zh": "由你选择共享前，仅自己可见"
+  },
+  {
+    "key": "forms.sharedAsChosen",
+    "en": "Shared only as you choose",
+    "zh": "仅按你选择的范围共享"
+  },
+  {
+    "key": "forms.manageSharing",
+    "en": "Manage who can see this",
+    "zh": "管理可查看此事项的人"
+  },
+  {
+    "key": "forms.saveBeforeSharing",
+    "en": "Save your changes to manage sharing.",
+    "zh": "请先保存修改，再管理共享。"
+  },
+  {
+    "key": "forms.notes",
+    "en": "Notes",
+    "zh": "备注"
+  },
+  {
+    "key": "forms.notesPlaceholder",
+    "en": "Anything else someone should know",
+    "zh": "其他需要说明的信息"
+  },
+  {
+    "key": "forms.secretsWarning",
+    "en": "Keep passwords, private keys and recovery phrases out.",
+    "zh": "请勿填写密码、私钥或助记词。"
+  },
+  {
+    "key": "forms.draftPersistenceFailed",
+    "en": "This browser cannot keep a draft after refresh. Keep this page open until you save.",
+    "zh": "此浏览器无法在刷新后保留草稿。保存前请保持此页面打开。"
+  },
+  {
+    "key": "forms.draftKept",
+    "en": "Draft kept",
+    "zh": "草稿已保留"
+  },
+  {
+    "key": "forms.reviewLatest",
+    "en": "Review latest saved version",
+    "zh": "查看最新保存版本"
+  },
+  {
+    "key": "forms.saving",
+    "en": "Saving…",
+    "zh": "正在保存…"
+  },
+  {
+    "key": "forms.retrySave",
+    "en": "Try saving again",
+    "zh": "重新保存"
+  },
+  {
+    "key": "forms.saveMatter",
+    "en": "Save matter",
+    "zh": "保存事项"
+  },
+  {
+    "key": "forms.archiveMatter",
+    "en": "Archive matter",
+    "zh": "归档事项"
+  },
+  {
+    "key": "forms.validation.name",
+    "en": "Add a name.",
+    "zh": "请填写名称。"
+  },
+  {
+    "key": "forms.validation.category",
+    "en": "Choose a category.",
+    "zh": "请选择类别。"
+  },
+  {
+    "key": "forms.validation.provider",
+    "en": "Add the {field}.",
+    "zh": "请填写{field}。"
+  },
+  {
+    "key": "forms.validation.location",
+    "en": "Add where to find it.",
+    "zh": "请填写可供查找的位置。"
+  },
+  {
+    "key": "forms.validation.custody",
+    "en": "Choose an exchange or an on-chain wallet.",
+    "zh": "请选择交易所或链上钱包。"
+  },
+  {
+    "key": "forms.validation.requiredDetail",
+    "en": "Add the {field}.",
+    "zh": "请填写{field}。"
+  },
+  {
+    "key": "forms.validation.tooLong",
+    "en": "{field} must be {max} characters or fewer.",
+    "zh": "{field}不能超过 {max} 个字符。"
+  },
+  {
+    "key": "forms.validation.wallet",
+    "en": "Use a public wallet address without spaces.",
+    "zh": "请填写不含空格的公开钱包地址。"
+  },
+  {
+    "key": "forms.validation.date",
+    "en": "Use a valid renewal date: YYYY-MM-DD.",
+    "zh": "请填写有效的续订日期，格式为 YYYY-MM-DD。"
+  },
+  {
+    "key": "forms.validation.currency",
+    "en": "Use a three-letter currency code.",
+    "zh": "请使用三字母币种代码。"
+  },
+  {
+    "key": "forms.validation.thisField",
+    "en": "This field",
+    "zh": "此字段"
+  },
+  {
+    "key": "forms.firstUse.start",
+    "en": "Get started",
+    "zh": "开始使用"
+  },
+  {
+    "key": "forms.firstUse.addFirst",
+    "en": "Add your first matter",
+    "zh": "添加第一个事项"
+  },
+  {
+    "key": "forms.firstUse.resume",
+    "en": "Resume the guide",
+    "zh": "继续引导"
+  },
+  {
+    "key": "forms.firstUse.optionalGuide",
+    "en": "Optional guide",
+    "zh": "可选引导"
+  },
+  {
+    "key": "forms.firstUse.notNow",
+    "en": "Not now",
+    "zh": "暂时不用"
+  },
+  {
+    "key": "forms.firstUse.step",
+    "en": "Step {step} of 2",
+    "zh": "第 {step} 步，共 2 步"
+  },
+  {
+    "key": "forms.firstUse.reason",
+    "en": "Primary reason",
+    "zh": "主要原因"
+  },
+  {
+    "key": "forms.firstUse.choose",
+    "en": "Choose only if useful",
+    "zh": "按需选择"
+  },
+  {
+    "key": "forms.firstUse.reason.life_change",
+    "en": "A life change",
+    "zh": "生活发生变化"
+  },
+  {
+    "key": "forms.firstUse.reason.family_responsibility",
+    "en": "Responsibility for family or others",
+    "zh": "对家人或他人的责任"
+  },
+  {
+    "key": "forms.firstUse.reason.cross_border",
+    "en": "Life or accounts across countries",
+    "zh": "跨国生活或持有跨国账号"
+  },
+  {
+    "key": "forms.firstUse.reason.complex_digital_life",
+    "en": "A complex digital life",
+    "zh": "数字生活较复杂"
+  },
+  {
+    "key": "forms.firstUse.reason.recent_estate_experience",
+    "en": "Recent experience handling an estate",
+    "zh": "近期处理过遗产事务"
+  },
+  {
+    "key": "forms.firstUse.reason.general_preparedness",
+    "en": "General preparedness",
+    "zh": "提前做好准备"
+  },
+  {
+    "key": "forms.firstUse.reason.other",
+    "en": "Another reason",
+    "zh": "其他原因"
+  },
+  {
+    "key": "forms.continue",
+    "en": "Continue",
+    "zh": "继续"
+  },
+  {
+    "key": "forms.firstUse.skip",
+    "en": "Skip this question",
+    "zh": "跳过此问题"
+  },
+  {
+    "key": "forms.firstUse.category.account",
+    "en": "Account",
+    "zh": "账号"
+  },
+  {
+    "key": "forms.firstUse.category.document",
+    "en": "Document",
+    "zh": "文件"
+  },
+  {
+    "key": "forms.firstUse.category.device",
+    "en": "Device",
+    "zh": "设备"
+  },
+  {
+    "key": "forms.firstUse.category.financial_asset",
+    "en": "Asset",
+    "zh": "资产"
+  },
+  {
+    "key": "forms.firstUse.category.debt",
+    "en": "Debt",
+    "zh": "债务"
+  },
+  {
+    "key": "forms.firstUse.category.subscription",
+    "en": "Subscription",
+    "zh": "订阅"
+  },
+  {
+    "key": "forms.firstUse.category.crypto_asset",
+    "en": "Crypto",
+    "zh": "加密资产"
+  },
+  {
+    "key": "forms.firstUse.addMatter",
+    "en": "Add a matter",
+    "zh": "添加事项"
+  },
+  {
+    "key": "forms.firstUse.about",
+    "en": "About this guide",
+    "zh": "关于此引导"
+  },
+  {
+    "key": "forms.firstUse.boundary",
+    "en": "The choices tailor suggestions. The guide itself is not preparedness, evidence or legal authority.",
+    "zh": "这些选择用于调整建议。完成引导本身不代表已做好准备，也不构成证据或法律授权。"
+  },
+  {
+    "key": "forms.firstUse.saveExit",
+    "en": "Save and exit",
+    "zh": "保存并退出"
+  },
+  {
+    "key": "forms.contact.name",
+    "en": "Name · Required",
+    "zh": "名称 · 必填"
+  },
+  {
+    "key": "forms.contact.relationship",
+    "en": "Relationship · Optional",
+    "zh": "关系 · 选填"
+  },
+  {
+    "key": "forms.contact.recordOnly",
+    "en": "Record only",
+    "zh": "仅为记录"
+  },
+  {
+    "key": "forms.contact.boundary",
+    "en": "Editing this record sends no message and grants no legal authority.",
+    "zh": "编辑此记录不会发送消息，也不会授予法律权限。"
+  },
+  {
+    "key": "forms.contact.next",
+    "en": "Next: choose access, then get a link or QR.",
+    "zh": "下一步：选择共享范围，再获取链接或二维码。"
+  },
+  {
+    "key": "forms.contact.save",
+    "en": "Save contact",
+    "zh": "保存联系人"
+  },
+  {
+    "key": "forms.contact.continue",
+    "en": "Continue to invitation",
+    "zh": "继续创建邀请"
+  },
+  {
+    "key": "forms.contact.error.readback",
+    "en": "The saved contact could not be read back.",
+    "zh": "无法读取已保存的联系人，请重试。"
+  },
+  {
+    "key": "forms.contact.error.save",
+    "en": "Contact not saved. Your draft is still here.",
+    "zh": "联系人未保存，草稿仍保留在此处。"
+  },
+  {
+    "key": "forms.invitation.home",
+    "en": "Rillora home",
+    "zh": "Rillora 首页"
+  },
+  {
+    "key": "forms.invitation.backShared",
+    "en": "Back to shared items",
+    "zh": "返回与我共享"
+  },
+  {
+    "key": "forms.invitation.backHome",
+    "en": "Back to Rillora",
+    "zh": "返回 Rillora"
+  },
+  {
+    "key": "forms.invitation.localQA",
+    "en": "Local QA · test data",
+    "zh": "本地验收 · 测试数据"
+  },
+  {
+    "key": "forms.invitation.opening",
+    "en": "Opening invitation…",
+    "zh": "正在打开邀请…"
+  },
+  {
+    "key": "forms.invitation.invited",
+    "en": "{name} invited you",
+    "zh": "{name} 邀请了你"
+  },
+  {
+    "key": "forms.invitation.received",
+    "en": "Accept a received invitation",
+    "zh": "接受收到的邀请"
+  },
+  {
+    "key": "forms.invitation.for",
+    "en": "For {email}",
+    "zh": "接收账号：{email}"
+  },
+  {
+    "key": "forms.invitation.expired",
+    "en": "This invitation expired. Ask for a new link.",
+    "zh": "此邀请已过期，请索取新链接。"
+  },
+  {
+    "key": "forms.invitation.revoked",
+    "en": "This invitation was revoked. Ask for a new link.",
+    "zh": "此邀请已撤销，请索取新链接。"
+  },
+  {
+    "key": "forms.invitation.scope",
+    "en": "Only the items they choose. Read only.",
+    "zh": "仅可查看对方选择共享的事项，只读。"
+  },
+  {
+    "key": "forms.invitation.checking",
+    "en": "Checking…",
+    "zh": "正在检查…"
+  },
+  {
+    "key": "forms.invitation.openShared",
+    "en": "Open shared items",
+    "zh": "打开与我共享"
+  },
+  {
+    "key": "forms.invitation.verified",
+    "en": "I've verified my email",
+    "zh": "我已验证邮箱"
+  },
+  {
+    "key": "forms.invitation.accept",
+    "en": "Accept invitation",
+    "zh": "接受邀请"
+  },
+  {
+    "key": "forms.invitation.switchAccount",
+    "en": "Use another account",
+    "zh": "使用其他账号"
+  },
+  {
+    "key": "forms.invitation.create",
+    "en": "Create account to accept",
+    "zh": "创建账号以接受邀请"
+  },
+  {
+    "key": "forms.invitation.signIn",
+    "en": "Already have an account? Sign in",
+    "zh": "已有账号？登录"
+  },
+  {
+    "key": "forms.invitation.consentReference",
+    "en": "Chinese reference only. The English consent and linked legal documents remain authoritative.",
+    "zh": "中文参考：我同意《条款》，知悉《隐私政策》，并同意使用电子记录。正式同意内容及法律文本仍以英文为准。"
+  },
+  {
+    "key": "forms.invitation.retryAccount",
+    "en": "Retry account connection",
+    "zh": "重新连接账号"
+  },
+  {
+    "key": "forms.invitation.openApp",
+    "en": "Open in Rillora",
+    "zh": "在 Rillora 中打开"
+  },
+  {
+    "key": "forms.invitation.paste",
+    "en": "Paste a link someone sent you.",
+    "zh": "粘贴他人发给你的邀请链接。"
+  },
+  {
+    "key": "forms.invitation.link",
+    "en": "Invitation link · Required",
+    "zh": "邀请链接 · 必填"
+  },
+  {
+    "key": "forms.invitation.continue",
+    "en": "Continue with this link",
+    "zh": "使用此链接继续"
+  },
+  {
+    "key": "forms.invitation.error.open",
+    "en": "The invitation could not be opened.",
+    "zh": "无法打开邀请，请重试。"
+  },
+  {
+    "key": "forms.invitation.error.account",
+    "en": "Use the invited account to open these shared items.",
+    "zh": "请使用受邀账号打开这些共享事项。"
+  },
+  {
+    "key": "forms.invitation.error.completeLink",
+    "en": "Paste the complete invitation link.",
+    "zh": "请粘贴完整的邀请链接。"
+  },
+  {
+    "key": "forms.reauth.allowPopup",
+    "en": "Allow the sign-in window, then try again. Your editing window stays open.",
+    "zh": "请允许打开登录窗口后重试，编辑窗口会保持打开。"
+  },
+  {
+    "key": "forms.reauth.completeElsewhere",
+    "en": "Complete sign in in the other window, then return here.",
+    "zh": "请在另一个窗口完成登录，然后返回此处。"
+  },
+  {
+    "key": "forms.reauth.completeMessage",
+    "en": "Sign-in complete. Return to your editing window and try the action again.",
+    "zh": "登录已完成。请返回编辑窗口，重新执行刚才的操作。"
+  },
+  {
+    "key": "forms.reauth.wrongAccount",
+    "en": "Sign in was not completed with the same account. Your changes are still here.",
+    "zh": "未使用同一账号完成登录。你的修改仍保留在此处。"
+  },
+  {
+    "key": "forms.reauth.expired",
+    "en": "Sign in was not completed in time. Your changes are still here.",
+    "zh": "未在有效时间内完成登录。你的修改仍保留在此处。"
+  },
+  {
+    "key": "forms.reauth.error",
+    "en": "Sign in could not be verified. Use the same account and try again.",
+    "zh": "无法验证登录，请使用同一账号重试。"
+  },
+  {
+    "key": "forms.reauth.complete",
+    "en": "Sign-in complete",
+    "zh": "登录已完成"
+  },
+  {
+    "key": "forms.reauth.signIn",
+    "en": "Sign in again",
+    "zh": "重新登录"
+  },
+  {
+    "key": "forms.reauth.explanation",
+    "en": "Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically.",
+    "zh": "继续前需要确认仍是你本人。修改会保留在此处，系统不会自动提交任何内容。"
+  },
+  {
+    "key": "forms.reauth.return",
+    "en": "Return to editing",
+    "zh": "返回编辑"
+  },
+  {
+    "key": "forms.keepEditing",
+    "en": "Keep editing",
+    "zh": "继续编辑"
+  },
+  {
+    "key": "forms.discardChanges",
+    "en": "Discard changes",
+    "zh": "放弃修改"
+  },
+  {
+    "key": "forms.safety.keep",
+    "en": "Keep",
+    "zh": "可以记录"
+  },
+  {
+    "key": "forms.safety.avoid",
+    "en": "Leave out",
+    "zh": "请勿记录"
+  },
+  {
+    "key": "forms.safety.label",
+    "en": "Safe information",
+    "zh": "安全信息"
+  },
+  {
+    "key": "forms.safety.provider",
+    "en": "Provider name",
+    "zh": "服务提供方名称"
+  },
+  {
+    "key": "forms.safety.locator",
+    "en": "Masked hint or location",
+    "zh": "部分隐藏的提示或存放位置"
+  },
+  {
+    "key": "forms.safety.nextStep",
+    "en": "Intended next step",
+    "zh": "期望的后续处理"
+  },
+  {
+    "key": "forms.safety.passwords",
+    "en": "Passwords or complete recovery codes",
+    "zh": "密码或完整恢复码"
+  },
+  {
+    "key": "forms.safety.keys",
+    "en": "Seed phrases or private keys",
+    "zh": "助记词或私钥"
+  },
+  {
+    "key": "forms.safety.moneySecrets",
+    "en": "Secrets that can move money",
+    "zh": "可直接转移资金的秘密信息"
+  },
+  {
+    "key": "forms.safety.safeguards",
+    "en": "Disclosure safeguards",
+    "zh": "信息披露保障"
+  },
+  {
+    "key": "forms.safety.availability",
+    "en": "Live claims and welfare checks are not available. Current sharing is chosen by you.",
+    "zh": "目前不提供真实事件申请或安危确认。当前共享由你主动选择。"
+  },
+  {
+    "key": "forms.safety.events",
+    "en": "Death, incapacity and being unreachable are separate events.",
+    "zh": "死亡、失能和失联是彼此独立的事件。"
+  },
+  {
+    "key": "forms.safety.evidence",
+    "en": "Event evidence",
+    "zh": "事件证据"
+  },
+  {
+    "key": "forms.safety.identity",
+    "en": "Claimant identity",
+    "zh": "申请人身份"
+  },
+  {
+    "key": "forms.safety.authority",
+    "en": "Legal authority",
+    "zh": "合法权限"
+  },
+  {
+    "key": "forms.safety.scope",
+    "en": "Information scope",
+    "zh": "信息范围"
+  },
+  {
+    "key": "forms.safety.silence",
+    "en": "Silence never triggers automatic disclosure.",
+    "zh": "没有回应绝不会触发自动披露。"
+  },
+  {
+    "key": "forms.privacy",
+    "en": "Privacy Policy",
+    "zh": "隐私政策"
+  },
+  {
+    "key": "forms.terms",
+    "en": "Terms",
+    "zh": "条款"
+  },
+  {
+    "key": "forms.guides.prepare",
+    "en": "Prepare",
+    "zh": "提前准备"
+  },
+  {
+    "key": "forms.guides.afterDeath",
+    "en": "After a death",
+    "zh": "身后申请"
+  },
+  {
+    "key": "forms.guides.documents",
+    "en": "Documents",
+    "zh": "所需文件"
+  },
+  {
+    "key": "forms.guides.section",
+    "en": "Guide section",
+    "zh": "指南章节"
+  },
+  {
+    "key": "forms.guides.documentsInformation",
+    "en": "Documents & information",
+    "zh": "文件与信息"
+  },
+  {
+    "key": "forms.guides.about",
+    "en": "About this route",
+    "zh": "关于此办理途径"
+  },
+  {
+    "key": "forms.guides.reviewed",
+    "en": "Sources reviewed {date}. Requirements can change.",
+    "zh": "来源复核于 {date}。具体要求可能变化。"
+  },
+  {
+    "key": "forms.guides.selfReported",
+    "en": "My self-reported review",
+    "zh": "我的自行复核记录"
+  },
+  {
+    "key": "forms.guides.of",
+    "en": "of {count}",
+    "zh": "／共 {count} 步"
+  },
+  {
+    "key": "forms.guides.previous",
+    "en": "Previous",
+    "zh": "上一步"
+  },
+  {
+    "key": "forms.guides.next",
+    "en": "Next",
+    "zh": "下一步"
+  },
+  {
+    "key": "forms.guides.officialLinks",
+    "en": "{name} official links",
+    "zh": "{name} 官方链接"
+  },
+  {
+    "key": "forms.guides.originalLinks",
+    "en": "Original source links",
+    "zh": "原始来源链接"
+  },
+  {
+    "key": "forms.guides.english",
+    "en": "Provider guidance below is in English. Requirements and decisions remain with each provider.",
+    "zh": "下方平台指南内容为英文，具体要求与处理决定由各平台负责。"
+  },
+  {
+    "key": "forms.guides.search",
+    "en": "Search platforms",
+    "zh": "搜索平台"
+  },
+  {
+    "key": "forms.guides.empty",
+    "en": "No matching platform. Try another name.",
+    "zh": "没有匹配的平台，请尝试其他名称。"
+  },
+  {
+    "key": "forms.guides.credits",
+    "en": "Design credits",
+    "zh": "设计鸣谢"
+  },
+  {
+    "key": "forms.guides.group.cloud",
+    "en": "Cloud & email",
+    "zh": "云服务与邮箱"
+  },
+  {
+    "key": "forms.guides.group.social",
+    "en": "Social accounts",
+    "zh": "社交账号"
+  },
+  {
+    "key": "forms.guides.group.money",
+    "en": "Money & crypto",
+    "zh": "资金与加密资产"
+  },
+  {
+    "key": "forms.guides.group.work",
+    "en": "Work & passwords",
+    "zh": "工作与密码管理"
+  },
+  {
+    "key": "forms.guides.group.software",
+    "en": "Software & subscriptions",
+    "zh": "软件与订阅"
+  },
+  {
+    "key": "forms.guides.title",
+    "en": "Account inheritance",
+    "zh": "账号身后处理指南"
+  },
+  {
+    "key": "forms.guides.guide",
+    "en": "{name} guide",
+    "zh": "{name} 指南"
+  },
+  {
+    "key": "forms.guides.all",
+    "en": "All platforms",
+    "zh": "所有平台"
+  },
+  {
+    "key": "forms.guides.context",
+    "en": "Account inheritance guidance",
+    "zh": "账号身后处理指南"
+  },
+  {
+    "key": "forms.guides.guidance",
+    "en": "{name} guidance",
+    "zh": "{name} 办理指南"
+  },
+  {
+    "key": "forms.guides.phases",
+    "en": "Prepare now · After a death",
+    "zh": "提前准备 · 身后申请"
+  },
+  {
+    "key": "workspace.nav.overview",
+    "en": "Overview",
+    "zh": "总览"
+  },
+  {
+    "key": "workspace.nav.plan",
+    "en": "My plan",
+    "zh": "我的计划"
+  },
+  {
+    "key": "workspace.nav.matters",
+    "en": "Matters",
+    "zh": "事项"
+  },
+  {
+    "key": "workspace.nav.contacts",
+    "en": "Trusted contacts",
+    "zh": "可信联系人"
+  },
+  {
+    "key": "workspace.nav.shared",
+    "en": "Shared with me",
+    "zh": "与我共享"
+  },
+  {
+    "key": "workspace.nav.maintenance",
+    "en": "Shared reviews",
+    "zh": "共同复核"
+  },
+  {
+    "key": "workspace.nav.guides",
+    "en": "Account inheritance",
+    "zh": "账号继承指引"
+  },
+  {
+    "key": "workspace.nav.access",
+    "en": "Plan & access",
+    "zh": "套餐与权限"
+  },
+  {
+    "key": "workspace.nav.activity",
+    "en": "Activity",
+    "zh": "动态"
+  },
+  {
+    "key": "workspace.nav.settings",
+    "en": "Settings",
+    "zh": "设置"
+  },
+  {
+    "key": "workspace.nav.more",
+    "en": "More",
+    "zh": "更多"
+  },
+  {
+    "key": "workspace.navDetail.access",
+    "en": "Current access and future Family capabilities",
+    "zh": "当前权限及未来 Family 功能"
+  },
+  {
+    "key": "workspace.navDetail.plan",
+    "en": "Progress, roles and Start Here",
+    "zh": "进度、角色与入门指南"
+  },
+  {
+    "key": "workspace.navDetail.contacts",
+    "en": "People, roles and invitation evidence",
+    "zh": "联系人、角色和邀请记录"
+  },
+  {
+    "key": "workspace.navDetail.shared",
+    "en": "Read-only items from people you know",
+    "zh": "他人与您共享的只读事项"
+  },
+  {
+    "key": "workspace.navDetail.maintenance",
+    "en": "Check directions and review suggested updates",
+    "zh": "检查查找指引并复核修改建议"
+  },
+  {
+    "key": "workspace.navDetail.guides",
+    "en": "Preparation & after-death guidance",
+    "zh": "生前准备与身后申请指引"
+  },
+  {
+    "key": "workspace.navDetail.activity",
+    "en": "Your private plan history",
+    "zh": "您的私人计划记录"
+  },
+  {
+    "key": "workspace.navDetail.settings",
+    "en": "Preferences, setup and account sessions",
+    "zh": "偏好、设置与账号会话"
+  },
+  {
+    "key": "workspace.matterStatus.ready",
+    "en": "Directions added",
+    "zh": "已添加查找指引"
+  },
+  {
+    "key": "workspace.matterStatus.needs_review",
+    "en": "Needs review",
+    "zh": "待复核"
+  },
+  {
+    "key": "workspace.matterStatus.archived",
+    "en": "Archived",
+    "zh": "已归档"
+  },
+  {
+    "key": "workspace.matterStatus.draft",
+    "en": "Draft",
+    "zh": "草稿"
+  },
+  {
+    "key": "workspace.contactEvidence.none",
+    "en": "No contact record",
+    "zh": "暂无联系人记录"
+  },
+  {
+    "key": "workspace.contactEvidence.revoked",
+    "en": "Role revoked",
+    "zh": "角色已撤销"
+  },
+  {
+    "key": "workspace.contactEvidence.simulated",
+    "en": "Simulated acceptance",
+    "zh": "模拟接受"
+  },
+  {
+    "key": "workspace.contactEvidence.accepted",
+    "en": "Invitation accepted",
+    "zh": "邀请已接受"
+  },
+  {
+    "key": "workspace.contactEvidence.pending",
+    "en": "Invitation pending",
+    "zh": "邀请待接受"
+  },
+  {
+    "key": "workspace.contactEvidence.recordOnly",
+    "en": "Record only — no invitation sent",
+    "zh": "仅有记录，尚未发送邀请"
+  },
+  {
+    "key": "workspace.capability.matter_map_core",
+    "en": "Matter map",
+    "zh": "事务地图"
+  },
+  {
+    "key": "workspace.capability.official_setup_guides",
+    "en": "Official provider guides",
+    "zh": "平台官方指引"
+  },
+  {
+    "key": "workspace.capability.trusted_person_basic",
+    "en": "Sharing with a trusted person",
+    "zh": "与一位可信联系人共享"
+  },
+  {
+    "key": "workspace.capability.rehearsal_basic",
+    "en": "Basic rehearsal",
+    "zh": "基础演练"
+  },
+  {
+    "key": "workspace.capability.data_export",
+    "en": "Export and read saved copies",
+    "zh": "导出与读取已保存副本"
+  },
+  {
+    "key": "workspace.capability.account_deletion",
+    "en": "Account deletion",
+    "zh": "删除账号"
+  },
+  {
+    "key": "workspace.capability.household_coplanner",
+    "en": "Household co-planner",
+    "zh": "家庭共同规划者"
+  },
+  {
+    "key": "workspace.capability.family_maintenance",
+    "en": "Shared reviews and approved corrections",
+    "zh": "共同复核与已批准的更正"
+  },
+  {
+    "key": "workspace.capability.trusted_people_multiple",
+    "en": "Multiple trusted people",
+    "zh": "多位可信联系人"
+  },
+  {
+    "key": "workspace.capability.role_packages_advanced",
+    "en": "Advanced role packages",
+    "zh": "高级角色资料包"
+  },
+  {
+    "key": "workspace.capability.adaptive_reviews",
+    "en": "Adaptive review reminders",
+    "zh": "自适应复核提醒"
+  },
+  {
+    "key": "workspace.capability.version_history",
+    "en": "Plan history",
+    "zh": "计划历史"
+  },
+  {
+    "key": "workspace.capability.encrypted_attachments",
+    "en": "Encrypted attachments",
+    "zh": "加密附件"
+  },
+  {
+    "key": "workspace.plan.free",
+    "en": "Rillora Free",
+    "zh": "Rillora Free"
+  },
+  {
+    "key": "workspace.plan.family",
+    "en": "Rillora Family",
+    "zh": "Rillora Family"
+  },
+  {
+    "key": "workspace.plan.testAccess",
+    "en": "{plan} · Test access",
+    "zh": "{plan} · 测试权限"
+  },
+  {
+    "key": "workspace.plan.unavailable",
+    "en": "Unavailable",
+    "zh": "暂不可用"
+  },
+  {
+    "key": "workspace.price.annual",
+    "en": "{price}/year",
+    "zh": "{price}/年"
+  },
+  {
+    "key": "workspace.price.monthly",
+    "en": "{price}/month",
+    "zh": "{price}/月"
+  },
+  {
+    "key": "workspace.matter.open",
+    "en": "Open {name}, {status}",
+    "zh": "打开{name}，{status}"
+  },
+  {
+    "key": "workspace.drawer.close",
+    "en": "Close panel",
+    "zh": "关闭面板"
+  },
+  {
+    "key": "workspace.progress.label",
+    "en": "Your progress",
+    "zh": "您的进度"
+  },
+  {
+    "key": "workspace.access.unavailable",
+    "en": "Temporarily unavailable",
+    "zh": "暂时无法使用"
+  },
+  {
+    "key": "workspace.access.coreAvailable",
+    "en": "Core planning remains available.",
+    "zh": "核心规划功能仍可使用。"
+  },
+  {
+    "key": "workspace.access.current",
+    "en": "Current access",
+    "zh": "当前权限"
+  },
+  {
+    "key": "workspace.access.freeIncluded",
+    "en": "Included with Free",
+    "zh": "Free 包含的功能"
+  },
+  {
+    "key": "workspace.access.roadmap",
+    "en": "Later roadmap · not included yet",
+    "zh": "后续规划 · 暂未包含"
+  },
+  {
+    "key": "workspace.access.newClosed",
+    "en": "New subscriptions are not available.",
+    "zh": "暂不开放新订阅。"
+  },
+  {
+    "key": "workspace.access.afterFamily",
+    "en": "Access when Family ends",
+    "zh": "Family 结束后的权限"
+  },
+  {
+    "key": "workspace.access.afterFamilyDetails",
+    "en": "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.",
+    "zh": "您仍可保留自己的记录和导出文件。Free 包含一位可接收实时更新的接收人。其他接收人仅保留获准的付费期间副本，不再接收后续更新。"
+  },
+  {
+    "key": "workspace.access.disclosureBoundary",
+    "en": "You can always restrict or revoke sharing. Billing does not trigger disclosure.",
+    "zh": "您随时可以限制或撤销共享。计费状态不会触发信息披露。"
+  },
+  {
+    "key": "workspace.drawer.loadLatest",
+    "en": "Load latest · replaces draft",
+    "zh": "载入最新版本 · 将替换草稿"
+  },
+  {
+    "key": "workspace.activity.private",
+    "en": "Private audit",
+    "zh": "私人操作记录"
+  },
+  {
+    "key": "workspace.matters.search",
+    "en": "Search matters",
+    "zh": "搜索事项"
+  },
+  {
+    "key": "workspace.matters.add",
+    "en": "Add a matter",
+    "zh": "添加事项"
+  },
+  {
+    "key": "workspace.matters.clear",
+    "en": "Clear filters",
+    "zh": "清除筛选"
+  },
+  {
+    "key": "workspace.plan.reviewStart",
+    "en": "Review Start Here guide",
+    "zh": "查看入门指南"
+  },
+  {
+    "key": "workspace.reviews.loading",
+    "en": "Loading reviews…",
+    "zh": "正在载入复核…"
+  },
+  {
+    "key": "workspace.activity.viewPeople",
+    "en": "View people",
+    "zh": "查看联系人"
+  },
+  {
+    "key": "workspace.activity.openReview",
+    "en": "Open review",
+    "zh": "打开复核"
+  },
+  {
+    "key": "workspace.activity.empty",
+    "en": "No recorded plan changes yet.",
+    "zh": "暂无计划修改记录。"
+  },
+  {
+    "key": "workspace.settings.reviewAccess",
+    "en": "Review plan & access",
+    "zh": "查看套餐与权限"
+  },
+  {
+    "key": "workspace.settings.signOutAll",
+    "en": "Sign out all Rillora devices",
+    "zh": "退出所有设备上的 Rillora"
+  },
+  {
+    "key": "workspace.settings.sessionScope",
+    "en": "Revokes Rillora sessions only.",
+    "zh": "仅撤销 Rillora 会话。"
+  },
+  {
+    "key": "workspace.gate.checking",
+    "en": "Checking your connection…",
+    "zh": "正在检查连接…"
+  },
+  {
+    "key": "workspace.gate.browse",
+    "en": "Browse Rillora",
+    "zh": "浏览 Rillora"
+  },
+  {
+    "key": "workspace.safety.motto",
+    "en": "Directions, not passwords.",
+    "zh": "记录查找指引，不保存密码。"
+  },
+  {
+    "key": "workspace.safety.title",
+    "en": "Safety & privacy",
+    "zh": "安全与隐私"
+  },
+  {
+    "key": "workspace.settings.signOut",
+    "en": "Sign out",
+    "zh": "退出登录"
+  },
+  {
+    "key": "workspace.settings.title",
+    "en": "Settings",
+    "zh": "设置"
+  },
+  {
+    "key": "workspace.workspace.testData",
+    "en": "Local QA · test data",
+    "zh": "本地验证 · 测试数据"
+  },
+  {
+    "key": "workspace.draft.continue",
+    "en": "Continue your unsaved matter",
+    "zh": "继续编辑未保存的事项"
+  },
+  {
+    "key": "workspace.draft.resume",
+    "en": "Resume draft",
+    "zh": "继续编辑草稿"
+  },
+  {
+    "key": "workspace.draft.discard",
+    "en": "Discard draft",
+    "zh": "丢弃草稿"
+  },
+  {
+    "key": "workspace.refresh.lastLoaded",
+    "en": "Showing your last loaded map.",
+    "zh": "当前显示上次载入的事务地图。"
+  },
+  {
+    "key": "workspace.refresh.retry",
+    "en": "Retry",
+    "zh": "重试"
+  },
+  {
+    "key": "workspace.refresh.busy",
+    "en": "Refreshing…",
+    "zh": "正在刷新…"
+  },
+  {
+    "key": "workspace.settings.selfReported",
+    "en": "Self-reported",
+    "zh": "自行记录"
+  },
+  {
+    "key": "workspace.settings.whatRecorded",
+    "en": "What this records",
+    "zh": "此处记录的内容"
+  },
+  {
+    "key": "workspace.settings.providerBoundary",
+    "en": "Provider settings only change on each provider’s official website.",
+    "zh": "平台设置只能在该平台的官方网站上修改。"
+  },
+  {
+    "key": "workspace.matters.filter",
+    "en": "Filter matters",
+    "zh": "筛选事项"
+  },
+  {
+    "key": "workspace.nav.moreDestinations",
+    "en": "More destinations",
+    "zh": "更多页面"
+  },
+  {
+    "key": "workspace.nav.primary",
+    "en": "Primary navigation",
+    "zh": "主导航"
+  },
+  {
+    "key": "workspace.draft.label",
+    "en": "Unsaved matter draft",
+    "zh": "未保存的事项草稿"
+  },
+  {
+    "key": "workspace.nav.mobilePrimary",
+    "en": "Mobile primary navigation",
+    "zh": "移动端主导航"
+  },
+  {
+    "key": "workspace.guide.optional",
+    "en": "Optional guide",
+    "zh": "可选引导"
+  },
+  {
+    "key": "workspace.guide.saveExit",
+    "en": "Save and exit guide",
+    "zh": "保存并退出引导"
+  },
+  {
+    "key": "workspace.settings.official",
+    "en": "Official settings",
+    "zh": "官方设置"
+  },
+  {
+    "key": "workspace.settings.checklist",
+    "en": "Provider checklist",
+    "zh": "平台设置清单"
+  },
+  {
+    "key": "workspace.start.title",
+    "en": "Start Here guide",
+    "zh": "入门指南"
+  },
+  {
+    "key": "workspace.start.minimum",
+    "en": "Minimum disclosure",
+    "zh": "最小范围披露"
+  },
+  {
+    "key": "workspace.rehearsal.title",
+    "en": "Role disclosure rehearsal",
+    "zh": "角色披露演练"
+  },
+  {
+    "key": "workspace.rehearsal.private",
+    "en": "Planner-only policy preview",
+    "zh": "仅规划者可见的策略预览"
+  },
+  {
+    "key": "workspace.role.title",
+    "en": "Role and disclosure scope",
+    "zh": "角色与披露范围"
+  },
+  {
+    "key": "workspace.role.policy",
+    "en": "Planner-authored policy",
+    "zh": "规划者制定的策略"
+  },
+  {
+    "key": "workspace.access.familyIncluded",
+    "en": "Included with Family",
+    "zh": "Family 包含的功能"
+  },
+  {
+    "key": "workspace.access.familyFuture",
+    "en": "Rillora Family · Not available yet",
+    "zh": "Rillora Family · 暂未开放"
+  },
+  {
+    "key": "workspace.plan.continue",
+    "en": "Continue next step",
+    "zh": "继续下一步"
+  },
+  {
+    "key": "workspace.plan.firstMatter",
+    "en": "Add your first matter",
+    "zh": "添加第一项事项"
+  },
+  {
+    "key": "workspace.settings.signingOut",
+    "en": "Signing out…",
+    "zh": "正在退出…"
+  },
+  {
+    "key": "workspace.gate.loading",
+    "en": "Loading your map",
+    "zh": "正在载入事务地图"
+  },
+  {
+    "key": "workspace.gate.accountChanged",
+    "en": "Account changed",
+    "zh": "账号已更换"
+  },
+  {
+    "key": "workspace.gate.unavailable",
+    "en": "Your map is temporarily unavailable",
+    "zh": "暂时无法载入事务地图"
+  },
+  {
+    "key": "workspace.gate.changedDetails",
+    "en": "A different account is signed in. Your previous draft has not been submitted. Reload to open the current account.",
+    "zh": "当前已登录另一个账号。原来的草稿未提交，请重新载入以打开当前账号。"
+  },
+  {
+    "key": "workspace.gate.connectionDetails",
+    "en": "We could not load your map. Try again when your connection is ready.",
+    "zh": "无法载入事务地图。连接恢复后请重试。"
+  },
+  {
+    "key": "workspace.gate.reload",
+    "en": "Reload map",
+    "zh": "重新载入事务地图"
+  },
+  {
+    "key": "workspace.gate.retry",
+    "en": "Try again",
+    "zh": "重试"
+  },
+  {
+    "key": "workspace.matter.new",
+    "en": "New matter",
+    "zh": "新事项"
+  },
+  {
+    "key": "workspace.guide.setup",
+    "en": "Optional setup",
+    "zh": "可选设置"
+  },
+  {
+    "key": "workspace.guide.firstMatter",
+    "en": "Your first matter",
+    "zh": "您的第一项事项"
+  },
+  {
+    "key": "workspace.matter.edit",
+    "en": "Edit matter",
+    "zh": "编辑事项"
+  },
+  {
+    "key": "workspace.settings.saving",
+    "en": "Saving…",
+    "zh": "正在保存…"
+  },
+  {
+    "key": "workspace.settings.saveReview",
+    "en": "Save review",
+    "zh": "保存复核"
+  },
+  {
+    "key": "workspace.contact.edit",
+    "en": "Edit contact",
+    "zh": "编辑联系人"
+  },
+  {
+    "key": "workspace.contact.invite",
+    "en": "Invite someone",
+    "zh": "邀请他人"
+  },
+  {
+    "key": "workspace.matters.title",
+    "en": "Your matters",
+    "zh": "您的事项"
+  },
+  {
+    "key": "workspace.guides.title",
+    "en": "Official guides",
+    "zh": "官方指引"
+  },
+  {
+    "key": "workspace.activity.title",
+    "en": "Plan activity",
+    "zh": "计划动态"
+  },
+  {
+    "key": "workspace.progress.count",
+    "en": "{count} of {total} essentials",
+    "zh": "{total} 项基础事项中已完成 {count} 项"
+  },
+  {
+    "key": "workspace.progress.completed",
+    "en": "{count} of {total} essentials completed",
+    "zh": "{total} 项基础事项中已完成 {count} 项"
+  },
+  {
+    "key": "workspace.filter.all",
+    "en": "All",
+    "zh": "全部"
+  },
+  {
+    "key": "workspace.filter.review",
+    "en": "To review",
+    "zh": "待复核"
+  },
+  {
+    "key": "workspace.matters.empty",
+    "en": "No matters yet. Add an account, document or other important item.",
+    "zh": "暂无事项。添加账号、文件或其他重要事项。"
+  },
+  {
+    "key": "workspace.matters.noQueryMatch",
+    "en": "No matters match “{query}”.",
+    "zh": "没有与“{query}”匹配的事项。"
+  },
+  {
+    "key": "workspace.matters.noFilterMatch",
+    "en": "No matters match this filter.",
+    "zh": "没有符合此筛选条件的事项。"
+  },
+  {
+    "key": "workspace.contact.shareWith",
+    "en": "Share with {name}",
+    "zh": "与{name}共享"
+  },
+  {
+    "key": "workspace.draft.resumeFirst",
+    "en": "Resume or discard your unsaved matter first.",
+    "zh": "请先继续编辑或丢弃未保存的事项。"
+  },
+  {
+    "key": "workspace.draft.originalUnavailable",
+    "en": "Your draft is kept. The original matter could not be checked.",
+    "zh": "草稿已保留，暂时无法检查原事项。"
+  },
+  {
+    "key": "workspace.matter.noLongerActive",
+    "en": "This matter is no longer in your active map.",
+    "zh": "此事项已不在当前事务地图中。"
+  },
+  {
+    "key": "workspace.contact.saved",
+    "en": "Contact saved",
+    "zh": "联系人已保存"
+  },
+  {
+    "key": "workspace.matter.saved",
+    "en": "Matter saved",
+    "zh": "事项已保存"
+  },
+  {
+    "key": "workspace.matter.changesSaved",
+    "en": "Matter changes saved",
+    "zh": "事项修改已保存"
+  },
+  {
+    "key": "workspace.matter.archived",
+    "en": "Matter archived",
+    "zh": "事项已归档"
+  },
+  {
+    "key": "workspace.error.planChanged",
+    "en": "Your plan changed elsewhere. Refreshing the current version.",
+    "zh": "计划已在其他位置修改，正在刷新当前版本。"
+  },
+  {
+    "key": "workspace.settings.reviewSaved",
+    "en": "Official settings review saved",
+    "zh": "官方设置复核已保存"
+  },
+  {
+    "key": "workspace.settings.noChanges",
+    "en": "No checklist changes to save",
+    "zh": "没有需要保存的清单修改"
+  },
+  {
+    "key": "workspace.draft.originalMissing",
+    "en": "Original matter is not in this map",
+    "zh": "原事项已不在此地图中"
+  },
+  {
+    "key": "workspace.draft.createQuestion",
+    "en": "Keep these changes as a new private matter?",
+    "zh": "将这些修改保留为新的私人事项吗？"
+  },
+  {
+    "key": "workspace.draft.create",
+    "en": "Create from draft",
+    "zh": "从草稿创建"
+  },
+  {
+    "key": "workspace.draft.keep",
+    "en": "Keep draft",
+    "zh": "保留草稿"
+  },
+  {
+    "key": "workspace.recovery.keepKey",
+    "en": "Keep your recovery key",
+    "zh": "请保管恢复密钥"
+  },
+  {
+    "key": "workspace.recovery.leaveWithout",
+    "en": "Leave without key",
+    "zh": "不保留密钥并离开"
+  },
+  {
+    "key": "workspace.recovery.returnGuide",
+    "en": "Return to guide",
+    "zh": "返回指南"
+  },
+  {
+    "key": "workspace.draft.discardQuestion",
+    "en": "Discard unsaved changes?",
+    "zh": "丢弃未保存的修改？"
+  },
+  {
+    "key": "workspace.matter.archiveQuestion",
+    "en": "Archive this matter?",
+    "zh": "归档此事项？"
+  },
+  {
+    "key": "workspace.matter.archive",
+    "en": "Archive matter",
+    "zh": "归档事项"
+  },
+  {
+    "key": "workspace.draft.keepEditing",
+    "en": "Keep editing",
+    "zh": "继续编辑"
+  },
+  {
+    "key": "workspace.draft.replaceQuestion",
+    "en": "Replace these unsaved changes?",
+    "zh": "替换这些未保存的修改？"
+  },
+  {
+    "key": "workspace.draft.loadMessage",
+    "en": "Load the latest saved version of this matter.",
+    "zh": "载入此事项最新保存的版本。"
+  },
+  {
+    "key": "workspace.draft.loadLatest",
+    "en": "Load latest",
+    "zh": "载入最新版本"
+  },
+  {
+    "key": "workspace.session.signOutQuestion",
+    "en": "Sign out all devices?",
+    "zh": "退出所有设备？"
+  },
+  {
+    "key": "workspace.session.signOutDetails",
+    "en": "Rillora sessions will end. Your Google or Apple session stays separate.",
+    "zh": "所有 Rillora 会话将结束，Google 或 Apple 的登录状态不受影响。"
+  },
+  {
+    "key": "workspace.session.signOutAll",
+    "en": "Sign out all",
+    "zh": "全部退出"
+  },
+  {
+    "key": "workspace.session.keep",
+    "en": "Keep sessions",
+    "zh": "保留会话"
+  },
+  {
+    "key": "workspace.matter.archiveMessage",
+    "en": "It will leave your active map and shared views. You can restore it privately from Settings → Archived matters.",
+    "zh": "此事项将从当前地图和共享视图中移除。您可以在“设置 → 已归档事项”中将其恢复为私人事项。"
+  },
+  {
+    "key": "workspace.matter.archiveUnsavedMessage",
+    "en": "Unsaved edits will be discarded. It will leave your active map and shared views. You can restore it privately from Settings → Archived matters.",
+    "zh": "未保存的修改将被丢弃。此事项将从当前地图和共享视图中移除。您可以在“设置 → 已归档事项”中将其恢复为私人事项。"
+  },
+  {
+    "key": "workspace.error.firstSaved",
+    "en": "The first save completed. Your latest edits are kept here; review them and save again.",
+    "zh": "首次保存已完成。最新的编辑仍保留在此，请检查后再次保存。"
+  },
+  {
+    "key": "workspace.error.recordChanged",
+    "en": "This record changed elsewhere. Your draft is kept.",
+    "zh": "此记录已在其他位置修改，您的草稿已保留。"
+  },
+  {
+    "key": "workspace.error.save",
+    "en": "The change could not be saved.",
+    "zh": "无法保存修改，请重试。"
+  },
+  {
+    "key": "workspace.error.refresh",
+    "en": "Could not refresh this record.",
+    "zh": "无法刷新此记录，请重试。"
+  },
+  {
+    "key": "workspace.error.signOut",
+    "en": "Sign out could not be completed.",
+    "zh": "无法退出登录，请重试。"
+  },
+  {
+    "key": "workspace.error.revokeSessions",
+    "en": "Active sessions could not be revoked.",
+    "zh": "无法撤销当前会话，请重试。"
+  },
+  {
+    "key": "workspace.audit.sharing.invitation_created",
+    "en": "Invitation link created",
+    "zh": "邀请链接已创建"
+  },
+  {
+    "key": "workspace.audit.sharing.invitation_regenerated",
+    "en": "Invitation link replaced",
+    "zh": "邀请链接已替换"
+  },
+  {
+    "key": "workspace.audit.sharing.invitation_accepted",
+    "en": "Invitation accepted",
+    "zh": "邀请已接受"
+  },
+  {
+    "key": "workspace.audit.sharing.scope_updated",
+    "en": "Shared details changed",
+    "zh": "共享范围已修改"
+  },
+  {
+    "key": "workspace.audit.sharing.connection_revoked",
+    "en": "Sharing stopped",
+    "zh": "共享已停止"
+  },
+  {
+    "key": "workspace.audit.family_review.created",
+    "en": "Shared review requested",
+    "zh": "已请求共同复核"
+  },
+  {
+    "key": "workspace.audit.family_review.responded",
+    "en": "A shared review was answered",
+    "zh": "共同复核已回复"
+  },
+  {
+    "key": "workspace.audit.family_review.confirmed",
+    "en": "Directions checked",
+    "zh": "查找指引已核对"
+  },
+  {
+    "key": "workspace.audit.family_review.needs_update",
+    "en": "An update was requested",
+    "zh": "已请求更新"
+  },
+  {
+    "key": "workspace.audit.family_review.suggested",
+    "en": "A correction was suggested",
+    "zh": "已提出更正建议"
+  },
+  {
+    "key": "workspace.audit.family_review.approve",
+    "en": "Suggested correction approved",
+    "zh": "更正建议已批准"
+  },
+  {
+    "key": "workspace.audit.family_review.reject",
+    "en": "Suggested correction declined",
+    "zh": "更正建议已拒绝"
+  },
+  {
+    "key": "workspace.audit.family_review.cancel",
+    "en": "Shared review canceled",
+    "zh": "共同复核已取消"
+  },
+  {
+    "key": "workspace.audit.family_review.reissue",
+    "en": "Fresh review requested",
+    "zh": "已请求重新复核"
+  },
+  {
+    "key": "workspace.audit.matter.created",
+    "en": "Matter added",
+    "zh": "事项已添加"
+  },
+  {
+    "key": "workspace.audit.matter.updated",
+    "en": "Matter updated",
+    "zh": "事项已更新"
+  },
+  {
+    "key": "workspace.audit.matter.archived",
+    "en": "Matter archived",
+    "zh": "事项已归档"
+  },
+  {
+    "key": "workspace.audit.trusted_contact.created",
+    "en": "Trusted contact added",
+    "zh": "可信联系人已添加"
+  },
+  {
+    "key": "workspace.audit.trusted_contact.updated",
+    "en": "Trusted contact updated",
+    "zh": "可信联系人已更新"
+  },
+  {
+    "key": "workspace.audit.official_setup.self_reported",
+    "en": "Official setting reviewed",
+    "zh": "官方设置已复核"
+  },
+  {
+    "key": "workspace.audit.simulation.completed",
+    "en": "Simulation completed",
+    "zh": "模拟已完成"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.created",
+    "en": "Disclosure rehearsal created",
+    "zh": "披露演练已创建"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.advance",
+    "en": "Disclosure rehearsal advanced",
+    "zh": "披露演练已推进"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.simulate_cooling_off_elapsed",
+    "en": "Disclosure hold elapsed in rehearsal",
+    "zh": "演练中的披露等待期已结束"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.appeal",
+    "en": "Disclosure rehearsal placed on appeal hold",
+    "zh": "披露演练因申诉暂停"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.restart_review",
+    "en": "Disclosure rehearsal review restarted",
+    "zh": "披露演练复核已重新开始"
+  },
+  {
+    "key": "workspace.audit.disclosure_rehearsal.cancel",
+    "en": "Disclosure rehearsal canceled",
+    "zh": "披露演练已取消"
+  },
+  {
+    "key": "workspace.audit.role_assignment.created",
+    "en": "Role record added",
+    "zh": "角色记录已添加"
+  },
+  {
+    "key": "workspace.audit.role_assignment.updated",
+    "en": "Role scope updated",
+    "zh": "角色范围已更新"
+  },
+  {
+    "key": "workspace.audit.role_assignment.revoked",
+    "en": "Role record revoked",
+    "zh": "角色记录已撤销"
+  },
+  {
+    "key": "workspace.audit.export.previewed",
+    "en": "Start Here previewed",
+    "zh": "入门指南已预览"
+  },
+  {
+    "key": "workspace.audit.export.generated",
+    "en": "Printable Start Here guide generated",
+    "zh": "可打印的入门指南已生成"
+  },
+  {
+    "key": "workspace.audit.export.encryption_prepared",
+    "en": "Encrypted Start Here package prepared",
+    "zh": "加密入门资料包已准备"
+  },
+  {
+    "key": "workspace.audit.export.encrypted",
+    "en": "Encrypted Start Here package created",
+    "zh": "加密入门资料包已创建"
+  },
+  {
+    "key": "workspace.audit.plan.updated",
+    "en": "Plan updated",
+    "zh": "计划已更新"
+  },
+  {
+    "key": "workspace.audit.recorded",
+    "en": "Account activity recorded",
+    "zh": "账号动态已记录"
+  },
+  {
+    "key": "workspace.invitation.step",
+    "en": "Step {step} of {total}",
+    "zh": "第 {step} 步，共 {total} 步"
+  },
+  {
+    "key": "workspace.invitation.person",
+    "en": "Person",
+    "zh": "联系人"
+  },
+  {
+    "key": "workspace.invitation.access",
+    "en": "Access",
+    "zh": "权限"
+  },
+  {
+    "key": "workspace.invitation.link",
+    "en": "Link",
+    "zh": "链接"
+  },
+  {
+    "key": "workspace.invitation.linkOrQR",
+    "en": "Share by link or QR",
+    "zh": "通过链接或二维码共享"
+  },
+  {
+    "key": "workspace.overview.matterCount",
+    "en": {
+      "one": "{total} matter",
+      "other": "{total} matters"
+    },
+    "zh": "{total} 项事项"
+  },
+  {
+    "key": "workspace.overview.map",
+    "en": "Your map",
+    "zh": "您的事务地图"
+  },
+  {
+    "key": "workspace.overview.connectionFailed",
+    "en": "Connection status could not refresh.",
+    "zh": "无法刷新共享关系状态。"
+  },
+  {
+    "key": "workspace.overview.viewAll",
+    "en": "View all",
+    "zh": "查看全部"
+  },
+  {
+    "key": "workspace.overview.openMatters",
+    "en": "Open your matters",
+    "zh": "打开您的事项"
+  },
+  {
+    "key": "workspace.overview.resumeGuide",
+    "en": "Resume quick start guide",
+    "zh": "继续快速入门引导"
+  },
+  {
+    "key": "workspace.overview.quickGuide",
+    "en": "Quick start guide",
+    "zh": "快速入门引导"
+  },
+  {
+    "key": "workspace.billing.state.active",
+    "en": "Family is active",
+    "zh": "Family 已启用"
+  },
+  {
+    "key": "workspace.billing.state.cancel_at_period_end",
+    "en": "Renewal canceled",
+    "zh": "已取消续订"
+  },
+  {
+    "key": "workspace.billing.state.grace",
+    "en": "Payment needs attention",
+    "zh": "付款需要处理"
+  },
+  {
+    "key": "workspace.billing.state.past_due",
+    "en": "Payment needs attention",
+    "zh": "付款需要处理"
+  },
+  {
+    "key": "workspace.billing.state.expired_read_only",
+    "en": "Family has ended",
+    "zh": "Family 已结束"
+  },
+  {
+    "key": "workspace.billing.state.refunded",
+    "en": "Payment refunded",
+    "zh": "款项已退还"
+  },
+  {
+    "key": "workspace.billing.state.revoked",
+    "en": "Family access ended",
+    "zh": "Family 权限已结束"
+  },
+  {
+    "key": "workspace.billing.state.previewing",
+    "en": "Subscription preview",
+    "zh": "订阅预览"
+  },
+  {
+    "key": "workspace.billing.subscription",
+    "en": "Family subscription",
+    "zh": "Family 订阅"
+  },
+  {
+    "key": "workspace.billing.family",
+    "en": "Rillora Family",
+    "zh": "Rillora Family"
+  },
+  {
+    "key": "workspace.billing.paidEnds",
+    "en": "Paid access ends {date}",
+    "zh": "付费权限将于 {date} 结束"
+  },
+  {
+    "key": "workspace.billing.periodEnds",
+    "en": "Current period ends {date}",
+    "zh": "当前周期将于 {date} 结束"
+  },
+  {
+    "key": "workspace.billing.periodEnded",
+    "en": "Last period ended {date}",
+    "zh": "上一周期已于 {date} 结束"
+  },
+  {
+    "key": "workspace.billing.confirmationPending",
+    "en": "Payment confirmation may take a moment. Refresh access to check the latest result.",
+    "zh": "付款确认可能需要一些时间。请刷新权限以查看最新结果。"
+  },
+  {
+    "key": "workspace.billing.continueCheckout",
+    "en": "Continue checkout",
+    "zh": "继续结账"
+  },
+  {
+    "key": "workspace.billing.reviewAnnual",
+    "en": "Review annual subscription",
+    "zh": "查看年度订阅"
+  },
+  {
+    "key": "workspace.billing.renewal",
+    "en": "Renews yearly until canceled. Cancel in Manage subscription before the next renewal. Any applicable tax is shown at checkout.",
+    "zh": "订阅将每年续订，直至取消。请在下次续订前通过“管理订阅”取消。适用税费会在结账时显示。"
+  },
+  {
+    "key": "workspace.billing.secureCheckout",
+    "en": "Continue to secure checkout",
+    "zh": "继续安全结账"
+  },
+  {
+    "key": "workspace.billing.back",
+    "en": "Back",
+    "zh": "返回"
+  },
+  {
+    "key": "workspace.billing.newClosed",
+    "en": "New subscriptions are not available yet.",
+    "zh": "暂未开放新订阅。"
+  },
+  {
+    "key": "workspace.billing.manage",
+    "en": "Manage subscription",
+    "zh": "管理订阅"
+  },
+  {
+    "key": "workspace.billing.closeCheckout",
+    "en": "Close unfinished checkout",
+    "zh": "关闭未完成的结账"
+  },
+  {
+    "key": "workspace.billing.checkoutClosed",
+    "en": "Unfinished checkout closed.",
+    "zh": "未完成的结账已关闭。"
+  },
+  {
+    "key": "workspace.billing.checking",
+    "en": "Checking…",
+    "zh": "正在检查…"
+  },
+  {
+    "key": "workspace.billing.refresh",
+    "en": "Refresh access",
+    "zh": "刷新权限"
+  },
+  {
+    "key": "workspace.billing.errorStatus",
+    "en": "Your billing status could not be checked. Please refresh access.",
+    "zh": "无法检查计费状态，请刷新权限。"
+  },
+  {
+    "key": "workspace.billing.errorOperation",
+    "en": "The subscription action could not be completed. Refresh access and try again.",
+    "zh": "无法完成订阅操作。请刷新权限后重试。"
+  },
+  {
+    "key": "workspace.testBilling.acknowledgeAnnual",
+    "en": "I understand this test subscription renews yearly until canceled. No real payment will be taken.",
+    "zh": "我理解此测试订阅会每年续订，直至取消；不会产生真实扣款。"
+  },
+  {
+    "key": "workspace.testBilling.acknowledgeMonthly",
+    "en": "I understand this test subscription renews monthly until canceled. No real payment will be taken.",
+    "zh": "我理解此测试订阅会每月续订，直至取消；不会产生真实扣款。"
+  },
+  {
+    "key": "workspace.testBilling.error",
+    "en": "Test billing could not be checked or updated. Refresh access and try again.",
+    "zh": "无法检查或更新测试计费。请刷新权限后重试。"
+  },
+  {
+    "key": "workspace.testBilling.title",
+    "en": "Test billing · No real charge",
+    "zh": "测试计费 · 不会真实扣款"
+  },
+  {
+    "key": "workspace.testBilling.subscription",
+    "en": "Test subscription",
+    "zh": "测试订阅"
+  },
+  {
+    "key": "workspace.testBilling.manage",
+    "en": "Manage test subscription",
+    "zh": "管理测试订阅"
+  },
+  {
+    "key": "workspace.testBilling.serverBoundary",
+    "en": "Access changes only after the server confirms the test payment.",
+    "zh": "仅在服务器确认测试付款后，权限才会改变。"
+  },
+  {
+    "key": "workspace.testBilling.working",
+    "en": "Working…",
+    "zh": "正在处理…"
+  },
+  {
+    "key": "workspace.testBilling.continue",
+    "en": "Continue test checkout",
+    "zh": "继续测试结账"
+  },
+  {
+    "key": "workspace.testBilling.open",
+    "en": "Open test checkout",
+    "zh": "打开测试结账"
+  },
+  {
+    "key": "workspace.testBilling.checkoutClosed",
+    "en": "Unfinished checkout closed. You can start a new annual checkout.",
+    "zh": "未完成的结账已关闭，您可以开始新的年度结账。"
+  },
+  {
+    "key": "sharing.common.retry",
+    "en": "Retry",
+    "zh": "重试"
+  },
+  {
+    "key": "sharing.common.tryAgain",
+    "en": "Try again",
+    "zh": "重试"
+  },
+  {
+    "key": "sharing.common.cancel",
+    "en": "Cancel",
+    "zh": "取消"
+  },
+  {
+    "key": "sharing.common.edit",
+    "en": "Edit",
+    "zh": "编辑"
+  },
+  {
+    "key": "sharing.common.copied",
+    "en": "Copied",
+    "zh": "已复制"
+  },
+  {
+    "key": "sharing.common.saving",
+    "en": "Saving…",
+    "zh": "正在保存…"
+  },
+  {
+    "key": "sharing.common.readOnly",
+    "en": "Read only",
+    "zh": "只读"
+  },
+  {
+    "key": "sharing.common.provider",
+    "en": "Provider",
+    "zh": "服务机构"
+  },
+  {
+    "key": "sharing.common.location",
+    "en": "Where to find it",
+    "zh": "在哪里查找"
+  },
+  {
+    "key": "sharing.common.wishes",
+    "en": "Wishes",
+    "zh": "意愿"
+  },
+  {
+    "key": "sharing.common.type",
+    "en": "Type",
+    "zh": "类型"
+  },
+  {
+    "key": "sharing.common.access",
+    "en": "Access",
+    "zh": "访问权限"
+  },
+  {
+    "key": "sharing.common.nameOnly",
+    "en": "Name only",
+    "zh": "仅名称"
+  },
+  {
+    "key": "sharing.common.keepEditing",
+    "en": "Keep editing",
+    "zh": "继续编辑"
+  },
+  {
+    "key": "sharing.common.notAdded",
+    "en": "Not added",
+    "zh": "尚未添加"
+  },
+  {
+    "key": "sharing.common.loading",
+    "en": "Loading…",
+    "zh": "正在加载…"
+  },
+  {
+    "key": "sharing.people.yours",
+    "en": "Your people",
+    "zh": "你的联系人"
+  },
+  {
+    "key": "sharing.people.refresh",
+    "en": "Refresh connections",
+    "zh": "刷新连接状态"
+  },
+  {
+    "key": "sharing.people.checking",
+    "en": "Checking connection…",
+    "zh": "正在检查连接…"
+  },
+  {
+    "key": "sharing.people.unavailable",
+    "en": "Connection unavailable",
+    "zh": "连接状态暂不可用"
+  },
+  {
+    "key": "sharing.people.notShared",
+    "en": "Not shared · ",
+    "zh": "未共享 · "
+  },
+  {
+    "key": "sharing.people.incoming",
+    "en": "Shared with me",
+    "zh": "与我共享"
+  },
+  {
+    "key": "sharing.people.loadError",
+    "en": "Connections could not be loaded.",
+    "zh": "无法加载连接状态"
+  },
+  {
+    "key": "sharing.contact.loadError",
+    "en": "Sharing could not be loaded.",
+    "zh": "无法加载共享设置"
+  },
+  {
+    "key": "sharing.contact.resumeError",
+    "en": "Sharing could not be resumed.",
+    "zh": "无法恢复共享"
+  },
+  {
+    "key": "sharing.contact.saveError",
+    "en": "Sharing was not saved. Your selection is still here.",
+    "zh": "未能保存共享设置，你的选择仍保留在此"
+  },
+  {
+    "key": "sharing.contact.linkError",
+    "en": "The link could not be created.",
+    "zh": "无法创建邀请链接"
+  },
+  {
+    "key": "sharing.contact.revokeError",
+    "en": "Access could not be revoked.",
+    "zh": "无法撤销访问权限"
+  },
+  {
+    "key": "sharing.contact.pauseError",
+    "en": "Updates could not be paused.",
+    "zh": "无法暂停更新"
+  },
+  {
+    "key": "sharing.contact.loading",
+    "en": "Loading sharing…",
+    "zh": "正在加载共享设置…"
+  },
+  {
+    "key": "sharing.contact.reload",
+    "en": "Reload current settings",
+    "zh": "重新加载当前设置"
+  },
+  {
+    "key": "sharing.contact.settings",
+    "en": "Sharing settings",
+    "zh": "共享设置"
+  },
+  {
+    "key": "sharing.contact.ready",
+    "en": "Ready to share",
+    "zh": "可以共享了"
+  },
+  {
+    "key": "sharing.contact.linkHint",
+    "en": "Send this link or let them scan the QR.",
+    "zh": "发送此链接，或请对方扫描二维码"
+  },
+  {
+    "key": "sharing.contact.copyLink",
+    "en": "Copy link",
+    "zh": "复制链接"
+  },
+  {
+    "key": "sharing.contact.copyError",
+    "en": "Copy was unavailable. Use Share or select the link below.",
+    "zh": "无法复制，请使用“共享”或选择下方链接"
+  },
+  {
+    "key": "sharing.contact.shareError",
+    "en": "Sharing could not be opened.",
+    "zh": "无法打开共享功能"
+  },
+  {
+    "key": "sharing.contact.invitationTitle",
+    "en": "Rillora invitation",
+    "zh": "Rillora 邀请"
+  },
+  {
+    "key": "sharing.contact.share",
+    "en": "Share",
+    "zh": "共享"
+  },
+  {
+    "key": "sharing.contact.invitationLink",
+    "en": "Invitation link",
+    "zh": "邀请链接"
+  },
+  {
+    "key": "sharing.contact.requiredEmail",
+    "en": "Recipient's sign-in email · Required",
+    "zh": "接收人的登录邮箱 · 必填"
+  },
+  {
+    "key": "sharing.contact.emailNeeded",
+    "en": "Use the email this person signs in with to create their invitation.",
+    "zh": "请使用此人登录时的邮箱来创建邀请。"
+  },
+  {
+    "key": "sharing.contact.invalidEmail",
+    "en": "Enter a valid sign-in email, such as person@example.com.",
+    "zh": "请输入有效的登录邮箱，例如 person@example.com。"
+  },
+  {
+    "key": "sharing.contact.chooseMatters",
+    "en": "Choose what to share",
+    "zh": "选择共享内容"
+  },
+  {
+    "key": "sharing.contact.private",
+    "en": "Private",
+    "zh": "私密"
+  },
+  {
+    "key": "sharing.contact.chooseLater",
+    "en": "You can invite now and choose matters later.",
+    "zh": "你可以先发送邀请，稍后再选择事项"
+  },
+  {
+    "key": "sharing.contact.replacePerson",
+    "en": "Replace included person",
+    "zh": "更换包含名额的联系人"
+  },
+  {
+    "key": "sharing.contact.createLink",
+    "en": "Create link & QR",
+    "zh": "创建链接和二维码"
+  },
+  {
+    "key": "sharing.contact.saveSharing",
+    "en": "Save sharing",
+    "zh": "保存共享设置"
+  },
+  {
+    "key": "sharing.contact.stopped",
+    "en": "Sharing stopped",
+    "zh": "已停止共享"
+  },
+  {
+    "key": "sharing.contact.saved",
+    "en": "Sharing saved",
+    "zh": "已保存共享设置"
+  },
+  {
+    "key": "sharing.contact.showInvitation",
+    "en": "Show invitation",
+    "zh": "查看邀请"
+  },
+  {
+    "key": "sharing.contact.newLink",
+    "en": "Create new link",
+    "zh": "创建新链接"
+  },
+  {
+    "key": "sharing.contact.changeEmail",
+    "en": "Change invited email",
+    "zh": "更改受邀邮箱"
+  },
+  {
+    "key": "sharing.contact.newEmail",
+    "en": "New sign-in email",
+    "zh": "新的登录邮箱"
+  },
+  {
+    "key": "sharing.contact.stop",
+    "en": "Stop sharing",
+    "zh": "停止共享"
+  },
+  {
+    "key": "sharing.contact.includedPlace",
+    "en": "Your included place",
+    "zh": "你的包含名额"
+  },
+  {
+    "key": "sharing.contact.usePlace",
+    "en": "Use included place",
+    "zh": "使用包含名额"
+  },
+  {
+    "key": "sharing.contact.resume",
+    "en": "Resume current updates",
+    "zh": "恢复当前更新"
+  },
+  {
+    "key": "sharing.contact.pause",
+    "en": "Pause current updates",
+    "zh": "暂停当前更新"
+  },
+  {
+    "key": "sharing.contact.visibleDetails",
+    "en": "Visible details",
+    "zh": "可见的详细信息"
+  },
+  {
+    "key": "sharing.contact.retryPreview",
+    "en": "Retry preview",
+    "zh": "重试预览"
+  },
+  {
+    "key": "sharing.contact.savedPreview",
+    "en": "Updates paused · Currently visible saved copies",
+    "zh": "更新已暂停 · 当前可见的已保存副本"
+  },
+  {
+    "key": "sharing.contact.noSavedCopy",
+    "en": "No saved copy is available for this selection. Resume updates to share new content.",
+    "zh": "此选择没有可用的已保存副本。恢复更新以共享新内容"
+  },
+  {
+    "key": "sharing.contact.noneSelected",
+    "en": "No matters selected.",
+    "zh": "尚未选择事项"
+  },
+  {
+    "key": "sharing.contact.previewBoundary",
+    "en": "Read only. Unselected matters remain private.",
+    "zh": "仅供阅读。未选择的事项仍为私密"
+  },
+  {
+    "key": "sharing.contact.loadingPreview",
+    "en": "Loading visible details…",
+    "zh": "正在加载可见的详细信息…"
+  },
+  {
+    "key": "sharing.contact.previewError",
+    "en": "The preview could not be loaded.",
+    "zh": "无法加载预览"
+  },
+  {
+    "key": "sharing.confirm.usePlaceTitle",
+    "en": "Use your included place for this person?",
+    "zh": "为此人使用包含名额？"
+  },
+  {
+    "key": "sharing.confirm.usePlaceBody",
+    "en": "This person receives current updates. Your previous choice will keep only an eligible saved copy unless covered by Family.",
+    "zh": "此人将收到当前更新。你之前选择的联系人只能保留符合条件的已保存副本，除非其包含在 Family 方案中"
+  },
+  {
+    "key": "sharing.confirm.keepChoice",
+    "en": "Keep current choice",
+    "zh": "保留当前选择"
+  },
+  {
+    "key": "sharing.confirm.replaceAndInvite",
+    "en": "Replace and create invitation",
+    "zh": "更换并创建邀请"
+  },
+  {
+    "key": "sharing.confirm.replaceLinkTitle",
+    "en": "Replace the invitation link?",
+    "zh": "更换邀请链接？"
+  },
+  {
+    "key": "sharing.confirm.replaceLinkBody",
+    "en": "The previous link will stop working.",
+    "zh": "原来的链接将失效"
+  },
+  {
+    "key": "sharing.confirm.keepLink",
+    "en": "Keep current link",
+    "zh": "保留当前链接"
+  },
+  {
+    "key": "sharing.confirm.stopTitle",
+    "en": "Stop sharing with this person?",
+    "zh": "停止与此人共享？"
+  },
+  {
+    "key": "sharing.confirm.stopBody",
+    "en": "They lose future access. Copies they already kept cannot be erased.",
+    "zh": "对方将失去后续访问权限。对方已保留的副本无法删除"
+  },
+  {
+    "key": "sharing.confirm.keepSharing",
+    "en": "Keep sharing",
+    "zh": "继续共享"
+  },
+  {
+    "key": "sharing.confirm.pauseTitle",
+    "en": "Pause current updates?",
+    "zh": "暂停当前更新？"
+  },
+  {
+    "key": "sharing.confirm.pauseBody",
+    "en": "This frees a sharing place. Only an eligible paid-period saved copy remains available.",
+    "zh": "这会释放一个共享名额，仅保留符合条件的付费期间已保存副本供访问"
+  },
+  {
+    "key": "sharing.confirm.pause",
+    "en": "Pause updates",
+    "zh": "暂停更新"
+  },
+  {
+    "key": "sharing.confirm.keepUpdating",
+    "en": "Keep updating",
+    "zh": "继续更新"
+  },
+  {
+    "key": "sharing.confirm.replaceDraftTitle",
+    "en": "Replace this draft?",
+    "zh": "替换此草稿？"
+  },
+  {
+    "key": "sharing.confirm.replaceDraftBody",
+    "en": "Your unsaved sharing choices will be replaced.",
+    "zh": "你尚未保存的共享选择将被替换"
+  },
+  {
+    "key": "sharing.confirm.loadLatest",
+    "en": "Load latest",
+    "zh": "加载最新设置"
+  },
+  {
+    "key": "sharing.qr.alt",
+    "en": "Scan to open this invitation",
+    "zh": "扫描以打开此邀请"
+  },
+  {
+    "key": "sharing.qr.fallback",
+    "en": "Use the invitation link below",
+    "zh": "请使用下方邀请链接"
+  },
+  {
+    "key": "sharing.qr.preparing",
+    "en": "Preparing QR code…",
+    "zh": "正在生成二维码…"
+  },
+  {
+    "key": "sharing.incoming.loadError",
+    "en": "Shared information could not be loaded.",
+    "zh": "无法加载共享信息"
+  },
+  {
+    "key": "sharing.incoming.signIn",
+    "en": "Sign in to continue",
+    "zh": "登录以继续"
+  },
+  {
+    "key": "sharing.incoming.loading",
+    "en": "Loading shared items…",
+    "zh": "正在加载共享事项…"
+  },
+  {
+    "key": "sharing.incoming.all",
+    "en": "All shared items",
+    "zh": "全部共享事项"
+  },
+  {
+    "key": "sharing.incoming.accessChanged",
+    "en": "Access changed. This item is no longer shared with you.",
+    "zh": "访问权限已更改，此事项已不再与你共享"
+  },
+  {
+    "key": "sharing.incoming.accept",
+    "en": "Accept a received invitation",
+    "zh": "接受收到的邀请"
+  },
+  {
+    "key": "sharing.incoming.refresh",
+    "en": "Refresh shared items",
+    "zh": "刷新共享事项"
+  },
+  {
+    "key": "sharing.incoming.empty",
+    "en": "No shared items.",
+    "zh": "暂无共享事项"
+  },
+  {
+    "key": "sharing.incoming.savedCopies",
+    "en": "Updates paused · Saved copies",
+    "zh": "更新已暂停 · 已保存的副本"
+  },
+  {
+    "key": "sharing.incoming.paused",
+    "en": "Updates paused. The sender can resume sharing.",
+    "zh": "更新已暂停，共享人可以恢复共享"
+  },
+  {
+    "key": "sharing.incoming.noMatters",
+    "en": "No matters shared with you yet.",
+    "zh": "暂时没有与你共享的事项"
+  },
+  {
+    "key": "sharing.incoming.copyAddress",
+    "en": "Copy address",
+    "zh": "复制地址"
+  },
+  {
+    "key": "sharing.incoming.copyFallback",
+    "en": "Select the address to copy it.",
+    "zh": "请选择地址并复制"
+  },
+  {
+    "key": "sharing.incoming.nameBoundary",
+    "en": "Only the name and category are shared with you.",
+    "zh": "只与你共享名称和分类"
+  },
+  {
+    "key": "sharing.copy.peopleError",
+    "en": "Connected people could not be loaded. Close this panel and try again.",
+    "zh": "无法加载已连接的联系人，请关闭此面板后重试"
+  },
+  {
+    "key": "sharing.copy.exitWarning",
+    "en": "Your recovery key is only here until you save it. Leave without keeping the key?",
+    "zh": "保存前，恢复密钥仅存在于此。要在未保留密钥的情况下离开吗？"
+  },
+  {
+    "key": "sharing.copy.replaceKeyTitle",
+    "en": "Replace this recovery key?",
+    "zh": "替换此恢复密钥？"
+  },
+  {
+    "key": "sharing.copy.replaceKeyBody",
+    "en": "Keep the current key before refreshing. Rillora cannot recover it.",
+    "zh": "请在刷新前保留当前密钥，Rillora 无法找回它"
+  },
+  {
+    "key": "sharing.copy.replacePreview",
+    "en": "Replace preview",
+    "zh": "替换预览"
+  },
+  {
+    "key": "sharing.copy.keepGuide",
+    "en": "Keep current guide",
+    "zh": "保留当前指引"
+  },
+  {
+    "key": "sharing.copy.previewError",
+    "en": "The Start Here preview could not be created.",
+    "zh": "无法创建“从这里开始”预览"
+  },
+  {
+    "key": "sharing.copy.encryptError",
+    "en": "The encrypted package could not be created.",
+    "zh": "无法创建加密包"
+  },
+  {
+    "key": "sharing.copy.printError",
+    "en": "The printable guide could not be created.",
+    "zh": "无法创建可打印指引"
+  },
+  {
+    "key": "sharing.copy.encryptedNotice",
+    "en": "Encrypted copy ready. Keep the recovery key separately.",
+    "zh": "加密副本已就绪，请将恢复密钥分开保管"
+  },
+  {
+    "key": "sharing.copy.printNotice",
+    "en": "Printable guide prepared. Download started.",
+    "zh": "可打印指引已就绪，下载已开始"
+  },
+  {
+    "key": "sharing.copy.refreshReview",
+    "en": "Refresh and review",
+    "zh": "刷新并检查"
+  },
+  {
+    "key": "sharing.copy.audienceQuestion",
+    "en": "Who is this copy for?",
+    "zh": "这份副本是给谁的？"
+  },
+  {
+    "key": "sharing.copy.audience",
+    "en": "Copy audience",
+    "zh": "副本接收人"
+  },
+  {
+    "key": "sharing.copy.forMe",
+    "en": "For me",
+    "zh": "给我自己"
+  },
+  {
+    "key": "sharing.copy.forPerson",
+    "en": "For a person",
+    "zh": "给其他人"
+  },
+  {
+    "key": "sharing.copy.ownerHint",
+    "en": "A personal directions overview. Choose a person before making a copy to share.",
+    "zh": "个人查找指引概览。制作共享副本前，请先选择接收人"
+  },
+  {
+    "key": "sharing.copy.connectedRequired",
+    "en": "Connected person · Required",
+    "zh": "已连接的联系人 · 必填"
+  },
+  {
+    "key": "sharing.copy.connectedPerson",
+    "en": "Connected person",
+    "zh": "已连接的联系人"
+  },
+  {
+    "key": "sharing.copy.choosePerson",
+    "en": "Choose a person",
+    "zh": "选择联系人"
+  },
+  {
+    "key": "sharing.copy.noPeople",
+    "en": "No connected people yet. Send an invitation first.",
+    "zh": "尚无已连接的联系人，请先发送邀请"
+  },
+  {
+    "key": "sharing.copy.recipientBoundary",
+    "en": "Only their currently shared matters and permitted directions.",
+    "zh": "仅包含当前与对方共享的事项和获准查看的查找指引"
+  },
+  {
+    "key": "sharing.copy.preparingPreview",
+    "en": "Preparing preview…",
+    "zh": "正在准备预览…"
+  },
+  {
+    "key": "sharing.copy.reviewCopy",
+    "en": "Review this copy",
+    "zh": "检查此副本"
+  },
+  {
+    "key": "sharing.copy.previewOnly",
+    "en": "Preview only",
+    "zh": "仅预览"
+  },
+  {
+    "key": "sharing.copy.previewBoundary",
+    "en": "Only you see this preview. No file is created or shared.",
+    "zh": "只有你能查看此预览，不会创建或共享文件"
+  },
+  {
+    "key": "sharing.copy.review",
+    "en": "Review",
+    "zh": "检查"
+  },
+  {
+    "key": "sharing.copy.format",
+    "en": "Format",
+    "zh": "格式"
+  },
+  {
+    "key": "sharing.copy.save",
+    "en": "Save",
+    "zh": "保存"
+  },
+  {
+    "key": "sharing.copy.stage",
+    "en": "Guide stage",
+    "zh": "指引步骤"
+  },
+  {
+    "key": "sharing.copy.personalDirections",
+    "en": "Personal directions · for me",
+    "zh": "个人查找指引 · 给我自己"
+  },
+  {
+    "key": "sharing.copy.chooseFormat",
+    "en": "Choose a format",
+    "zh": "选择格式"
+  },
+  {
+    "key": "sharing.copy.keepKeyTitle",
+    "en": "Keep your recovery key",
+    "zh": "保留你的恢复密钥"
+  },
+  {
+    "key": "sharing.copy.changeAudienceBody",
+    "en": "Changing the audience removes this unsaved recovery key.",
+    "zh": "更改接收人会移除此尚未保存的恢复密钥"
+  },
+  {
+    "key": "sharing.copy.changeAudience",
+    "en": "Change audience",
+    "zh": "更改接收人"
+  },
+  {
+    "key": "sharing.copy.keepCopy",
+    "en": "Keep current copy",
+    "zh": "保留当前副本"
+  },
+  {
+    "key": "sharing.copy.changeWho",
+    "en": "Change who this is for",
+    "zh": "更改副本接收人"
+  },
+  {
+    "key": "sharing.copy.previewDetails",
+    "en": "Preview details",
+    "zh": "预览详情"
+  },
+  {
+    "key": "sharing.copy.refreshPreview",
+    "en": "Refresh preview",
+    "zh": "刷新预览"
+  },
+  {
+    "key": "sharing.copy.formatLabel",
+    "en": "Copy format",
+    "zh": "副本格式"
+  },
+  {
+    "key": "sharing.copy.printable",
+    "en": "Printable",
+    "zh": "可打印"
+  },
+  {
+    "key": "sharing.copy.encrypted",
+    "en": "Encrypted",
+    "zh": "加密"
+  },
+  {
+    "key": "sharing.copy.continue",
+    "en": "Continue",
+    "zh": "继续"
+  },
+  {
+    "key": "sharing.copy.printableGuide",
+    "en": "Printable guide",
+    "zh": "可打印指引"
+  },
+  {
+    "key": "sharing.copy.plaintextAck",
+    "en": "I reviewed the guide and understand this file is plaintext.",
+    "zh": "我已检查指引，并理解此文件为明文"
+  },
+  {
+    "key": "sharing.copy.irrevocableAck",
+    "en": "Saved, shared or printed copies cannot be revoked.",
+    "zh": "已保存、共享或打印的副本无法撤销"
+  },
+  {
+    "key": "sharing.copy.guideReady",
+    "en": "Guide ready",
+    "zh": "指引已就绪"
+  },
+  {
+    "key": "sharing.copy.downloadGuide",
+    "en": "Download guide",
+    "zh": "下载指引"
+  },
+  {
+    "key": "sharing.copy.preparingGuide",
+    "en": "Preparing guide…",
+    "zh": "正在准备指引…"
+  },
+  {
+    "key": "sharing.copy.downloadPrintable",
+    "en": "Download printable guide",
+    "zh": "下载可打印指引"
+  },
+  {
+    "key": "sharing.copy.included",
+    "en": "Included information",
+    "zh": "包含的信息"
+  },
+  {
+    "key": "sharing.copy.plaintextBoundary",
+    "en": "The plaintext guide excludes dedicated account hints, financial values and currencies.",
+    "zh": "明文指引不包含专用账号提示、财务金额和货币"
+  },
+  {
+    "key": "sharing.copy.encryptedPackage",
+    "en": "Encrypted package",
+    "zh": "加密包"
+  },
+  {
+    "key": "sharing.copy.recoveryAck",
+    "en": "Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy.",
+    "zh": "Rillora 无法补发恢复密钥。任何持有密钥的人都可以解密此副本"
+  },
+  {
+    "key": "sharing.copy.externalCopyAck",
+    "en": "Copies outside Rillora cannot be remotely revoked.",
+    "zh": "Rillora 之外的副本无法远程撤销"
+  },
+  {
+    "key": "sharing.copy.encrypting",
+    "en": "Encrypting…",
+    "zh": "正在加密…"
+  },
+  {
+    "key": "sharing.copy.createEncrypted",
+    "en": "Create encrypted package",
+    "zh": "创建加密包"
+  },
+  {
+    "key": "sharing.copy.encryptedReady",
+    "en": "Encrypted copy ready",
+    "zh": "加密副本已就绪"
+  },
+  {
+    "key": "sharing.copy.keyOnly",
+    "en": "Only your recovery key can open this copy.",
+    "zh": "只有你的恢复密钥可以打开此副本"
+  },
+  {
+    "key": "sharing.copy.downloadKey",
+    "en": "Download recovery key",
+    "zh": "下载恢复密钥"
+  },
+  {
+    "key": "sharing.copy.downloadPackage",
+    "en": "Download package",
+    "zh": "下载加密包"
+  },
+  {
+    "key": "sharing.copy.keySavedAck",
+    "en": "I kept the recovery key separately.",
+    "zh": "我已将恢复密钥分开保管"
+  },
+  {
+    "key": "sharing.copy.aboutEncryption",
+    "en": "About encryption",
+    "zh": "关于加密"
+  },
+  {
+    "key": "sharing.copy.keyBoundary",
+    "en": "The recovery file is a decryption secret. Keep it separate from the package.",
+    "zh": "恢复文件是解密密钥，请与加密包分开保管"
+  },
+  {
+    "key": "sharing.copy.encryptionBoundary",
+    "en": "Encryption happens in this browser. The API receives ciphertext and wrapped keys, not your recovery private key. Recipient delivery is not active.",
+    "zh": "加密在此浏览器中完成。API 接收密文和封装后的密钥，不会收到你的恢复私钥。接收人投递功能尚未启用"
+  },
+  {
+    "key": "sharing.account.loadError",
+    "en": "Your data tools could not be loaded. Try again.",
+    "zh": "无法加载数据工具，请重试"
+  },
+  {
+    "key": "sharing.account.actionError",
+    "en": "This action could not be completed.",
+    "zh": "无法完成此操作"
+  },
+  {
+    "key": "sharing.account.backupTitle",
+    "en": "Keep a complete private copy?",
+    "zh": "保留完整的私密副本？"
+  },
+  {
+    "key": "sharing.account.backupBody",
+    "en": "This file includes private matters, Notes and recorded people. Anyone with the file can read it.",
+    "zh": "此文件包含私密事项、备注和联系人记录。任何持有此文件的人都可以阅读"
+  },
+  {
+    "key": "sharing.account.downloadMap",
+    "en": "Download my map",
+    "zh": "下载我的资料图谱"
+  },
+  {
+    "key": "sharing.account.backupReady",
+    "en": "Backup prepared. Keep the file private.",
+    "zh": "备份已就绪，请妥善保密此文件"
+  },
+  {
+    "key": "sharing.account.importTitle",
+    "en": "Import this map?",
+    "zh": "导入此资料图谱？"
+  },
+  {
+    "key": "sharing.account.importRecords",
+    "en": "Import private records",
+    "zh": "导入私密记录"
+  },
+  {
+    "key": "sharing.account.deleteTitle",
+    "en": "Delete this Rillora account?",
+    "zh": "删除此 Rillora 账号？"
+  },
+  {
+    "key": "sharing.account.deleteBody",
+    "en": "This removes your private map, people, saved packages and Rillora access. It cannot be undone.",
+    "zh": "这会移除你的私密资料图谱、联系人、已保存的加密包和 Rillora 访问权限。此操作无法撤销"
+  },
+  {
+    "key": "sharing.account.delete",
+    "en": "Delete account",
+    "zh": "删除账号"
+  },
+  {
+    "key": "sharing.account.keep",
+    "en": "Keep my account",
+    "zh": "保留我的账号"
+  },
+  {
+    "key": "sharing.account.downloadComplete",
+    "en": "Download my complete map",
+    "zh": "下载我的完整资料图谱"
+  },
+  {
+    "key": "sharing.account.openCopy",
+    "en": "Open a saved copy",
+    "zh": "打开已保存的副本"
+  },
+  {
+    "key": "sharing.account.noArchived",
+    "en": "No archived matters.",
+    "zh": "暂无已归档事项"
+  },
+  {
+    "key": "sharing.account.restored",
+    "en": "Restored as a private draft. Sharing stays off.",
+    "zh": "已恢复为私密草稿，共享仍保持关闭"
+  },
+  {
+    "key": "sharing.account.restore",
+    "en": "Restore privately",
+    "zh": "恢复为私密内容"
+  },
+  {
+    "key": "sharing.account.deleteMine",
+    "en": "Delete my account",
+    "zh": "删除我的账号"
+  },
+  {
+    "key": "sharing.account.deleteHeading",
+    "en": "Delete your Rillora account",
+    "zh": "删除你的 Rillora 账号"
+  },
+  {
+    "key": "sharing.account.deleteHint",
+    "en": "Keep a map backup first if you need it. Required consent and payment records may be retained.",
+    "zh": "如有需要，请先保留资料图谱备份。必要的同意记录和付款记录可能会保留"
+  },
+  {
+    "key": "sharing.account.copiesAck",
+    "en": "I understand copies already saved or shared cannot be removed.",
+    "zh": "我理解已保存或共享的副本无法移除"
+  },
+  {
+    "key": "sharing.account.billingAck",
+    "en": "I understand deleting the account does not cancel provider billing.",
+    "zh": "我理解删除账号不会取消服务提供方的计费"
+  },
+  {
+    "key": "sharing.account.appleSubscriptions",
+    "en": "Manage Apple subscriptions",
+    "zh": "管理 Apple 订阅"
+  },
+  {
+    "key": "sharing.account.typeDelete",
+    "en": "Type DELETE to confirm",
+    "zh": "输入 DELETE 以确认"
+  },
+  {
+    "key": "sharing.account.saveReference",
+    "en": "Save deletion reference",
+    "zh": "保存删除凭据"
+  },
+  {
+    "key": "sharing.account.deleting",
+    "en": "Requesting deletion…",
+    "zh": "正在请求删除…"
+  },
+  {
+    "key": "sharing.delete.home",
+    "en": "Rillora home",
+    "zh": "Rillora 首页"
+  },
+  {
+    "key": "sharing.delete.completed",
+    "en": "Account deleted",
+    "zh": "账号已删除"
+  },
+  {
+    "key": "sharing.delete.status",
+    "en": "Deletion status",
+    "zh": "删除状态"
+  },
+  {
+    "key": "sharing.delete.pendingBody",
+    "en": "Your request is saved and Rillora access has ended. Cleanup is in progress and retries automatically.",
+    "zh": "你的请求已保存，Rillora 访问权限已终止。清理正在进行，失败时会自动重试"
+  },
+  {
+    "key": "sharing.delete.completedBody",
+    "en": "Your active Rillora account and private map have been removed. Required records and routine backup retention follow the Privacy Policy.",
+    "zh": "你的有效 Rillora 账号和私密资料图谱已移除。必要记录及常规备份的保留遵循隐私政策"
+  },
+  {
+    "key": "sharing.delete.statusError",
+    "en": "The status could not be checked. Try again.",
+    "zh": "无法检查删除状态，请重试"
+  },
+  {
+    "key": "sharing.delete.checking",
+    "en": "Checking…",
+    "zh": "正在检查…"
+  },
+  {
+    "key": "sharing.delete.checkStatus",
+    "en": "Check status",
+    "zh": "检查状态"
+  },
+  {
+    "key": "sharing.delete.otherReference",
+    "en": "Open another reference",
+    "zh": "打开其他删除凭据"
+  },
+  {
+    "key": "sharing.delete.chooseReference",
+    "en": "Choose saved reference",
+    "zh": "选择已保存的删除凭据"
+  },
+  {
+    "key": "sharing.delete.referenceFile",
+    "en": "Deletion reference file",
+    "zh": "删除凭据文件"
+  },
+  {
+    "key": "sharing.delete.referenceError",
+    "en": "Choose your saved reference file.",
+    "zh": "请选择已保存的删除凭据文件"
+  },
+  {
+    "key": "sharing.delete.back",
+    "en": "Back to Rillora",
+    "zh": "返回 Rillora"
+  },
+  {
+    "key": "sharing.reader.open",
+    "en": "Open saved copy",
+    "zh": "打开已保存的副本"
+  },
+  {
+    "key": "sharing.reader.chooseFile",
+    "en": "Choose saved file",
+    "zh": "选择已保存的文件"
+  },
+  {
+    "key": "sharing.reader.file",
+    "en": "Saved copy file",
+    "zh": "已保存的副本文件"
+  },
+  {
+    "key": "sharing.reader.localHint",
+    "en": "Files and recovery keys open on this device.",
+    "zh": "文件和恢复密钥在此设备上打开"
+  },
+  {
+    "key": "sharing.reader.opening",
+    "en": "Opening…",
+    "zh": "正在打开…"
+  },
+  {
+    "key": "sharing.reader.chooseKey",
+    "en": "Choose matching recovery file",
+    "zh": "选择匹配的恢复文件"
+  },
+  {
+    "key": "sharing.reader.keyFile",
+    "en": "Recovery file",
+    "zh": "恢复文件"
+  },
+  {
+    "key": "sharing.reader.unlockError",
+    "en": "This recovery file could not open the package. Check that the two files belong together.",
+    "zh": "此恢复文件无法打开加密包，请检查这两个文件是否匹配"
+  },
+  {
+    "key": "sharing.reader.import",
+    "en": "Import into an empty map",
+    "zh": "导入空白资料图谱"
+  },
+  {
+    "key": "sharing.reader.close",
+    "en": "Close this copy",
+    "zh": "关闭此副本"
+  },
+  {
+    "key": "sharing.reader.archived",
+    "en": " · Archived",
+    "zh": " · 已归档"
+  },
+  {
+    "key": "sharing.review.loadError",
+    "en": "Reviews could not be loaded.",
+    "zh": "无法加载检查记录"
+  },
+  {
+    "key": "sharing.review.networkLoadError",
+    "en": "Reviews could not be loaded. Check your connection and try again.",
+    "zh": "无法加载检查记录，请检查网络连接后重试"
+  },
+  {
+    "key": "sharing.review.loading",
+    "en": "Loading reviews…",
+    "zh": "正在加载检查记录…"
+  },
+  {
+    "key": "sharing.review.shareTitle",
+    "en": "Rillora review",
+    "zh": "Rillora 检查"
+  },
+  {
+    "key": "sharing.review.shareBody",
+    "en": "Please check the directions I shared with you.",
+    "zh": "请检查我与你共享的查找指引"
+  },
+  {
+    "key": "sharing.review.shareError",
+    "en": "The review link could not be shared. Try again.",
+    "zh": "无法共享检查链接，请重试"
+  },
+  {
+    "key": "sharing.review.inbox",
+    "en": "Review inbox",
+    "zh": "检查收件箱"
+  },
+  {
+    "key": "sharing.review.myPlan",
+    "en": "My plan",
+    "zh": "我的规划"
+  },
+  {
+    "key": "sharing.review.refresh",
+    "en": "Refresh reviews",
+    "zh": "刷新检查记录"
+  },
+  {
+    "key": "sharing.review.shared",
+    "en": "Shared review",
+    "zh": "共同检查"
+  },
+  {
+    "key": "sharing.review.familyPreview",
+    "en": "Family preview",
+    "zh": "Family 预览"
+  },
+  {
+    "key": "sharing.review.sharedPlural",
+    "en": "Shared reviews",
+    "zh": "共同检查"
+  },
+  {
+    "key": "sharing.review.together",
+    "en": "Check together",
+    "zh": "一起检查"
+  },
+  {
+    "key": "sharing.review.keepCurrent",
+    "en": "Keep directions current",
+    "zh": "保持查找指引更新"
+  },
+  {
+    "key": "sharing.review.due",
+    "en": "Your next review is due",
+    "zh": "下一次检查已到期"
+  },
+  {
+    "key": "sharing.review.copied",
+    "en": "Copied review link",
+    "zh": "已复制检查链接"
+  },
+  {
+    "key": "sharing.review.shareRequest",
+    "en": "Share review request",
+    "zh": "共享检查请求"
+  },
+  {
+    "key": "sharing.review.finish",
+    "en": "Finish review",
+    "zh": "完成检查"
+  },
+  {
+    "key": "sharing.review.cancelThis",
+    "en": "Cancel this review",
+    "zh": "取消此次检查"
+  },
+  {
+    "key": "sharing.review.start",
+    "en": "Start a shared review",
+    "zh": "开始共同检查"
+  },
+  {
+    "key": "sharing.review.unavailable",
+    "en": "New shared reviews are not available for this plan right now.",
+    "zh": "此方案目前无法发起新的共同检查"
+  },
+  {
+    "key": "sharing.review.connect",
+    "en": "Connect someone and share directions",
+    "zh": "连接联系人并共享查找指引"
+  },
+  {
+    "key": "sharing.review.settingsEntry",
+    "en": "Review schedule & collaborator",
+    "zh": "检查计划与协作者"
+  },
+  {
+    "key": "sharing.review.notScheduled",
+    "en": "Not scheduled",
+    "zh": "尚未安排"
+  },
+  {
+    "key": "sharing.review.remindersPaused",
+    "en": "Reminders paused",
+    "zh": "提醒已暂停"
+  },
+  {
+    "key": "sharing.review.history",
+    "en": "Changes you approved",
+    "zh": "你已批准的修改"
+  },
+  {
+    "key": "sharing.review.past",
+    "en": "Past reviews",
+    "zh": "过往检查"
+  },
+  {
+    "key": "sharing.review.completed",
+    "en": "Completed",
+    "zh": "已完成"
+  },
+  {
+    "key": "sharing.review.cancelled",
+    "en": "Cancelled",
+    "zh": "已取消"
+  },
+  {
+    "key": "sharing.review.inboxCaption",
+    "en": "People who asked you to check their directions",
+    "zh": "请你检查查找指引的联系人"
+  },
+  {
+    "key": "sharing.review.nothingWaiting",
+    "en": "Nothing waiting on you",
+    "zh": "暂无需要你处理的事项"
+  },
+  {
+    "key": "sharing.review.empty",
+    "en": "Shared review requests will appear here.",
+    "zh": "共同检查请求会显示在这里"
+  },
+  {
+    "key": "sharing.review.previous",
+    "en": "Previous checks",
+    "zh": "以往检查"
+  },
+  {
+    "key": "sharing.review.changesTo",
+    "en": "changes to",
+    "zh": "更改为"
+  },
+  {
+    "key": "sharing.review.saveNetworkError",
+    "en": "Could not confirm your changes. Check your connection and try again. Your draft is still here.",
+    "zh": "无法确认修改结果。请检查网络连接后重试，你的草稿仍保留在此"
+  },
+  {
+    "key": "sharing.review.saveError",
+    "en": "Your changes were not saved. The draft is still here.",
+    "zh": "未能保存修改，草稿仍保留在此"
+  },
+  {
+    "key": "sharing.review.chooseChecks",
+    "en": "Choose what to check",
+    "zh": "选择检查内容"
+  },
+  {
+    "key": "sharing.review.settings",
+    "en": "Review settings",
+    "zh": "检查设置"
+  },
+  {
+    "key": "sharing.review.finishTitle",
+    "en": "Finish this review?",
+    "zh": "完成此次检查？"
+  },
+  {
+    "key": "sharing.review.cancelTitle",
+    "en": "Cancel this review?",
+    "zh": "取消此次检查？"
+  },
+  {
+    "key": "sharing.review.closePanel",
+    "en": "Close review panel",
+    "zh": "关闭检查面板"
+  },
+  {
+    "key": "sharing.review.keepDraft",
+    "en": "Keep this draft?",
+    "zh": "保留此草稿？"
+  },
+  {
+    "key": "sharing.review.discard",
+    "en": "Discard draft",
+    "zh": "放弃草稿"
+  },
+  {
+    "key": "sharing.review.by",
+    "en": "Review by",
+    "zh": "检查截止日期"
+  },
+  {
+    "key": "sharing.review.locationMissing",
+    "en": " · Location missing",
+    "zh": " · 缺少位置信息"
+  },
+  {
+    "key": "sharing.review.connectFirst",
+    "en": "Connect a person and share Directions or Details first.",
+    "zh": "请先连接联系人，并共享“查找指引”或“已保存的详细信息”"
+  },
+  {
+    "key": "sharing.review.creating",
+    "en": "Creating…",
+    "zh": "正在创建…"
+  },
+  {
+    "key": "sharing.review.requestHint",
+    "en": "Appears in their Rillora review inbox.",
+    "zh": "将显示在对方的 Rillora 检查收件箱中"
+  },
+  {
+    "key": "sharing.review.cadence",
+    "en": "Review cadence",
+    "zh": "检查频率"
+  },
+  {
+    "key": "sharing.review.off",
+    "en": "Off",
+    "zh": "关闭"
+  },
+  {
+    "key": "sharing.review.month",
+    "en": "Every month",
+    "zh": "每月"
+  },
+  {
+    "key": "sharing.review.threeMonths",
+    "en": "Every 3 months",
+    "zh": "每 3 个月"
+  },
+  {
+    "key": "sharing.review.sixMonths",
+    "en": "Every 6 months",
+    "zh": "每 6 个月"
+  },
+  {
+    "key": "sharing.review.year",
+    "en": "Every year",
+    "zh": "每年"
+  },
+  {
+    "key": "sharing.review.collaborator",
+    "en": "Who can suggest corrections?",
+    "zh": "谁可以建议更正？"
+  },
+  {
+    "key": "sharing.review.noCollaborator",
+    "en": "No one · checks only",
+    "zh": "无人 · 仅检查"
+  },
+  {
+    "key": "sharing.review.approvalHint",
+    "en": "You approve changes before your map updates.",
+    "zh": "修改经你批准后才会更新到资料图谱"
+  },
+  {
+    "key": "sharing.review.saveSettings",
+    "en": "Save settings",
+    "zh": "保存设置"
+  },
+  {
+    "key": "sharing.review.pause",
+    "en": "Pause reviews and suggestions",
+    "zh": "暂停检查和建议"
+  },
+  {
+    "key": "sharing.review.finishBody",
+    "en": "These checks and your decisions stay in review history.",
+    "zh": "这些检查和你的决定将保留在检查历史中"
+  },
+  {
+    "key": "sharing.review.cancelBody",
+    "en": "Existing directions and sharing stay unchanged.",
+    "zh": "现有查找指引和共享设置保持不变"
+  },
+  {
+    "key": "sharing.review.cancel",
+    "en": "Cancel review",
+    "zh": "取消检查"
+  },
+  {
+    "key": "sharing.review.suggestion",
+    "en": "Suggested correction",
+    "zh": "更正建议"
+  },
+  {
+    "key": "sharing.review.stale",
+    "en": "The matter changed. A fresh check is needed.",
+    "zh": "事项已更改，需要重新检查"
+  },
+  {
+    "key": "sharing.review.scopeChanged",
+    "en": "Sharing changed. This check is no longer current.",
+    "zh": "共享设置已更改，此次检查已不再适用"
+  },
+  {
+    "key": "sharing.review.apply",
+    "en": "Apply update",
+    "zh": "应用更新"
+  },
+  {
+    "key": "sharing.review.keepDirections",
+    "en": "Keep current directions",
+    "zh": "保留当前查找指引"
+  },
+  {
+    "key": "sharing.review.recheck",
+    "en": "Request a fresh check",
+    "zh": "请求重新检查"
+  },
+  {
+    "key": "sharing.review.canFind",
+    "en": "I can find it",
+    "zh": "我可以找到"
+  },
+  {
+    "key": "sharing.review.suggest",
+    "en": "Suggest a correction",
+    "zh": "建议更正"
+  },
+  {
+    "key": "sharing.review.choices",
+    "en": "Review choices",
+    "zh": "检查选项"
+  },
+  {
+    "key": "sharing.review.submit",
+    "en": "Send for approval",
+    "zh": "提交审批"
+  },
+  {
+    "key": "sharing.people.back",
+    "en": "Back to {name}",
+    "zh": "返回{name}"
+  },
+  {
+    "key": "sharing.people.access",
+    "en": "Access to {name}",
+    "zh": "{name}的访问权限"
+  },
+  {
+    "key": "sharing.people.edit",
+    "en": "Edit {name}",
+    "zh": "编辑{name}"
+  },
+  {
+    "key": "sharing.confirm.replacePersonTitle",
+    "en": "Replace {name}'s current updates?",
+    "zh": "替换{name}的当前更新？"
+  },
+  {
+    "key": "sharing.confirm.replacePersonBody",
+    "en": "Your included place will move to {recipient}. {name} will keep only an eligible saved copy.",
+    "zh": "你的包含名额将转给{recipient}。{name}只能保留符合条件的已保存副本"
+  },
+  {
+    "key": "sharing.contact.waitingExpires",
+    "en": "Waiting for them to accept · Expires {date}",
+    "zh": "等待对方接受 · {date}到期"
+  },
+  {
+    "key": "sharing.contact.capacity",
+    "en": {
+      "one": "{used} of {count} sharing place used",
+      "other": "{used} of {count} sharing places used"
+    },
+    "zh": "已使用 {used} / {count} 个共享名额"
+  },
+  {
+    "key": "sharing.contact.detailFor",
+    "en": "Detail shared for {name}",
+    "zh": "与对方共享的{name}详细程度"
+  },
+  {
+    "key": "sharing.incoming.openItem",
+    "en": "Open {title}, shared by {name}",
+    "zh": "打开{name}共享的{title}"
+  },
+  {
+    "key": "sharing.incoming.itemMeta",
+    "en": "{name} · {category} · Read only",
+    "zh": "{name} · {category} · 只读"
+  },
+  {
+    "key": "sharing.copy.forName",
+    "en": "For {name}",
+    "zh": "给{name}"
+  },
+  {
+    "key": "sharing.copy.matterCount",
+    "en": {
+      "one": "{count} matter in this copy",
+      "other": "{count} matters in this copy"
+    },
+    "zh": "此副本包含 {count} 个事项"
+  },
+  {
+    "key": "sharing.copy.peopleCount",
+    "en": "Contact names included · {count}",
+    "zh": "包含的联系人姓名 · {count}"
+  },
+  {
+    "key": "sharing.copy.expiry",
+    "en": "Expires {date}. Refresh after changing your map.",
+    "zh": "{date}到期。更改资料图谱后，请刷新预览"
+  },
+  {
+    "key": "sharing.copy.soon",
+    "en": "soon",
+    "zh": "即将"
+  },
+  {
+    "key": "sharing.copy.artifactLanguage",
+    "en": "The downloaded guide is generated in English. Your saved content is kept as written.",
+    "zh": "下载的指引使用英文生成，你保存的内容保留原文"
+  },
+  {
+    "key": "sharing.account.importBody",
+    "en": "Import {count} matters into {name}? Existing records are never replaced. Sharing and invitations stay off.",
+    "zh": "将 {count} 个事项导入{name}？现有记录不会被替换，共享和邀请仍保持关闭"
+  },
+  {
+    "key": "sharing.account.yourAccount",
+    "en": "your account",
+    "zh": "你的账号"
+  },
+  {
+    "key": "sharing.account.imported",
+    "en": "{count} matters imported. Choose sharing separately.",
+    "zh": "已导入 {count} 个事项，请单独选择共享设置"
+  },
+  {
+    "key": "sharing.account.archivedCount",
+    "en": "Archived matters · {count}",
+    "zh": "已归档事项 · {count}"
+  },
+  {
+    "key": "sharing.account.deleteError",
+    "en": "The deletion request could not be accepted. Check the requirements and try again.",
+    "zh": "无法接受删除请求，请检查要求后重试"
+  },
+  {
+    "key": "sharing.reader.openError",
+    "en": "This file could not be opened. Choose a supported Rillora backup, encrypted package, or text guide no larger than 2 MB.",
+    "zh": "无法打开此文件。请选择不超过 2 MB 的受支持 Rillora 备份、加密包或文本指引"
+  },
+  {
+    "key": "sharing.reader.count",
+    "en": {
+      "one": "Saved copy · Read only · {count} matter",
+      "other": "Saved copy · Read only · {count} matters"
+    },
+    "zh": "已保存的副本 · 只读 · {count} 个事项"
+  },
+  {
+    "key": "sharing.reader.peopleCount",
+    "en": "People · {count}",
+    "zh": "联系人 · {count}"
+  },
+  {
+    "key": "sharing.review.progress",
+    "en": "{resolved} of {count} checks resolved",
+    "zh": "已完成 {resolved} / {count} 项检查"
+  },
+  {
+    "key": "sharing.review.dueDate",
+    "en": "Due {date}",
+    "zh": "截止日期：{date}"
+  },
+  {
+    "key": "sharing.review.nextDate",
+    "en": "Next review · {date}",
+    "zh": "下次检查 · {date}"
+  },
+  {
+    "key": "sharing.review.everyDays",
+    "en": "Every {count} days",
+    "zh": "每 {count} 天"
+  },
+  {
+    "key": "sharing.review.inApp",
+    "en": "{cadence} · In app",
+    "zh": "{cadence} · 应用内"
+  },
+  {
+    "key": "sharing.review.suggestedBy",
+    "en": "{date} · Suggested by {name}",
+    "zh": "{date} · 由{name}建议"
+  },
+  {
+    "key": "sharing.review.requestCount",
+    "en": {
+      "one": "Request {count} check",
+      "other": "Request {count} checks"
+    },
+    "zh": "请求 {count} 项检查"
+  },
+  {
+    "key": "sharing.level.name",
+    "en": "Name",
+    "zh": "名称"
+  },
+  {
+    "key": "sharing.level.directions",
+    "en": "Directions",
+    "zh": "查找指引"
+  },
+  {
+    "key": "sharing.level.details",
+    "en": "Details",
+    "zh": "已保存的详细信息"
+  },
+  {
+    "key": "sharing.level.nameDescription",
+    "en": "Title · Category",
+    "zh": "标题 · 分类"
+  },
+  {
+    "key": "sharing.level.directionsDescription",
+    "en": "Provider · Location · Preferred outcome. Notes and account reference are not included.",
+    "zh": "服务机构 · 位置 · 期望结果。不包含备注和账户提示。"
+  },
+  {
+    "key": "sharing.level.detailsDescription",
+    "en": "All saved details, including Notes and account reference",
+    "zh": "已保存的全部详细信息，包括备注和账户提示"
+  },
+  {
+    "key": "sharing.status.pending",
+    "en": "Invitation pending",
+    "zh": "邀请待接受"
+  },
+  {
+    "key": "sharing.status.expired",
+    "en": "Link expired",
+    "zh": "链接已过期"
+  },
+  {
+    "key": "sharing.status.accepted",
+    "en": "Connected",
+    "zh": "已连接"
+  },
+  {
+    "key": "sharing.status.revoked",
+    "en": "Disconnected",
+    "zh": "已断开连接"
+  },
+  {
+    "key": "sharing.status.paused",
+    "en": "Updates paused",
+    "zh": "更新已暂停"
+  },
+  {
+    "key": "sharing.status.notInvited",
+    "en": "Not invited",
+    "zh": "尚未邀请"
+  },
+  {
+    "key": "sharing.saved.duringPaid",
+    "en": "during the paid period",
+    "zh": "付费期间"
+  },
+  {
+    "key": "sharing.saved.label",
+    "en": "Updates paused · Saved {date}",
+    "zh": "更新已暂停 · 保存于{date}"
+  },
+  {
+    "key": "sharing.review.state.waiting",
+    "en": "Waiting",
+    "zh": "等待中"
+  },
+  {
+    "key": "sharing.review.state.confirmed",
+    "en": "Checked",
+    "zh": "已检查"
+  },
+  {
+    "key": "sharing.review.state.needs_update",
+    "en": "Needs attention",
+    "zh": "需要处理"
+  },
+  {
+    "key": "sharing.review.state.suggested",
+    "en": "Update suggested",
+    "zh": "有更新建议"
+  },
+  {
+    "key": "sharing.review.state.applied",
+    "en": "Updated",
+    "zh": "已更新"
+  },
+  {
+    "key": "sharing.review.state.dismissed",
+    "en": "Kept current",
+    "zh": "已保留当前内容"
+  },
+  {
+    "key": "sharing.review.state.sharingChanged",
+    "en": "Sharing changed",
+    "zh": "共享已更改"
+  },
+  {
+    "key": "sharing.review.state.checkAgain",
+    "en": "Check again",
+    "zh": "重新检查"
+  },
+  {
+    "key": "sharing.review.state.unavailable",
+    "en": "Unavailable",
+    "zh": "不可用"
+  },
+  {
+    "key": "sharing.review.reason.cannot_find",
+    "en": "Can't find it",
+    "zh": "无法找到"
+  },
+  {
+    "key": "sharing.review.reason.outdated",
+    "en": "Out of date",
+    "zh": "内容已过时"
+  },
+  {
+    "key": "sharing.review.reason.unclear",
+    "en": "Directions unclear",
+    "zh": "查找指引不清楚"
+  },
+  {
+    "key": "sharing.field.institutionName",
+    "en": "Provider",
+    "zh": "服务机构"
+  },
+  {
+    "key": "sharing.field.locationHint",
+    "en": "Where to find it",
+    "zh": "在哪里查找"
+  },
+  {
+    "key": "sharing.field.desiredOutcome",
+    "en": "Wishes",
+    "zh": "意愿"
+  },
+  {
+    "key": "sharing.field.accountHint",
+    "en": "Masked hint",
+    "zh": "脱敏提示"
+  },
+  {
+    "key": "sharing.field.valueBand",
+    "en": "Value range",
+    "zh": "金额范围"
+  },
+  {
+    "key": "sharing.field.currencyCode",
+    "en": "Currency",
+    "zh": "货币"
+  },
+  {
+    "key": "sharing.field.importance",
+    "en": "Importance",
+    "zh": "重要程度"
+  },
+  {
+    "key": "sharing.field.assetType",
+    "en": "Asset type",
+    "zh": "资产类型"
+  },
+  {
+    "key": "sharing.field.debtType",
+    "en": "Debt type",
+    "zh": "债务类型"
+  },
+  {
+    "key": "sharing.field.documentType",
+    "en": "Document type",
+    "zh": "文件类型"
+  },
+  {
+    "key": "sharing.field.deviceModel",
+    "en": "Model",
+    "zh": "型号"
+  },
+  {
+    "key": "sharing.field.billingCycle",
+    "en": "Billing cycle",
+    "zh": "计费周期"
+  },
+  {
+    "key": "sharing.field.renewalDate",
+    "en": "Next renewal",
+    "zh": "下次续费"
+  },
+  {
+    "key": "sharing.field.cryptoCustody",
+    "en": "Held in",
+    "zh": "保管方式"
+  },
+  {
+    "key": "sharing.field.network",
+    "en": "Blockchain network",
+    "zh": "区块链网络"
+  },
+  {
+    "key": "sharing.field.walletAddress",
+    "en": "Public wallet address",
+    "zh": "公开钱包地址"
+  },
+  {
+    "key": "sharing.field.walletLabel",
+    "en": "Wallet app or device",
+    "zh": "钱包应用或设备"
+  },
+  {
+    "key": "sharing.field.assetSymbol",
+    "en": "Asset or token",
+    "zh": "资产或代币"
+  },
+  {
+    "key": "sharing.field.notes",
+    "en": "Notes",
+    "zh": "备注"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.notify",
+    "en": "Notify someone",
+    "zh": "通知他人"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.transfer_request",
+    "en": "Request transfer",
+    "zh": "请求转移"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.close",
+    "en": "Request closure",
+    "zh": "请求关闭"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.delete_request",
+    "en": "Request deletion",
+    "zh": "请求删除"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.memorialize",
+    "en": "Request memorialization",
+    "zh": "请求设为纪念账号"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.delay_disclosure",
+    "en": "Delay disclosure",
+    "zh": "延后披露"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.never_disclose",
+    "en": "Never disclose",
+    "zh": "永不披露"
+  },
+  {
+    "key": "sharing.value.desiredOutcome.undecided",
+    "en": "Not decided",
+    "zh": "尚未决定"
+  },
+  {
+    "key": "sharing.value.cryptoCustody.exchange",
+    "en": "An exchange",
+    "zh": "交易所"
+  },
+  {
+    "key": "sharing.value.cryptoCustody.self_custody",
+    "en": "An on-chain wallet",
+    "zh": "链上钱包"
+  },
+  {
+    "key": "sharing.value.billingCycle.monthly",
+    "en": "Monthly",
+    "zh": "每月"
+  },
+  {
+    "key": "sharing.value.billingCycle.annual",
+    "en": "Annual",
+    "zh": "每年"
+  },
+  {
+    "key": "sharing.value.billingCycle.other",
+    "en": "Other",
+    "zh": "其他"
+  },
+  {
+    "key": "sharing.value.valueBand.none",
+    "en": "No monetary value",
+    "zh": "无货币价值"
+  },
+  {
+    "key": "sharing.value.valueBand.under_1k",
+    "en": "Under 1,000",
+    "zh": "低于 1,000"
+  },
+  {
+    "key": "sharing.value.valueBand.1k_10k",
+    "en": "1,000–10,000",
+    "zh": "1,000–10,000"
+  },
+  {
+    "key": "sharing.value.valueBand.10k_100k",
+    "en": "10,000–100,000",
+    "zh": "10,000–100,000"
+  },
+  {
+    "key": "sharing.value.valueBand.100k_plus",
+    "en": "100,000+",
+    "zh": "100,000 及以上"
+  },
+  {
+    "key": "sharing.value.importance.standard",
+    "en": "Standard",
+    "zh": "一般"
+  },
+  {
+    "key": "sharing.value.importance.important",
+    "en": "Important",
+    "zh": "重要"
+  },
+  {
+    "key": "sharing.value.importance.critical",
+    "en": "Critical",
+    "zh": "关键"
+  },
+  {
+    "key": "sharing.role.trustedContact",
+    "en": "Trusted contact",
+    "zh": "可信联系人"
+  },
+  {
+    "key": "sharing.role.executor",
+    "en": "Executor record",
+    "zh": "执行人记录"
+  },
+  {
+    "key": "sharing.role.recipient",
+    "en": "Matter recipient",
+    "zh": "事项接收人"
+  },
+  {
+    "key": "sharing.role.recordOnly",
+    "en": "Record only",
+    "zh": "仅记录"
+  },
+  {
+    "key": "sharing.role.simulated",
+    "en": "Simulated acceptance",
+    "zh": "模拟接受"
+  },
+  {
+    "key": "sharing.role.invitationPending",
+    "en": "Invitation pending",
+    "zh": "邀请待接受"
+  },
+  {
+    "key": "sharing.role.invitationAccepted",
+    "en": "Invitation accepted",
+    "zh": "邀请已接受"
+  },
+  {
+    "key": "sharing.role.loadError",
+    "en": "Role policy could not be loaded.",
+    "zh": "无法加载角色规则"
+  },
+  {
+    "key": "sharing.role.createError",
+    "en": "The role record could not be created.",
+    "zh": "无法创建角色记录"
+  },
+  {
+    "key": "sharing.role.updateError",
+    "en": "The role record could not be updated.",
+    "zh": "无法更新角色记录"
+  },
+  {
+    "key": "sharing.role.revokeError",
+    "en": "The role record could not be revoked.",
+    "zh": "无法撤销角色记录"
+  },
+  {
+    "key": "sharing.role.revokeTitle",
+    "en": "Revoke this role?",
+    "zh": "撤销此角色？"
+  },
+  {
+    "key": "sharing.role.revokeRecordBody",
+    "en": "Only this Rillora record changes. External accounts and legal status stay separate.",
+    "zh": "仅更改此 Rillora 记录，不涉及外部账号和法律身份"
+  },
+  {
+    "key": "sharing.role.revokeEvidenceBody",
+    "en": "This removes the Rillora role and invitation evidence. External authority and accounts stay separate.",
+    "zh": "这会移除 Rillora 角色和邀请凭据，不涉及外部授权和账号"
+  },
+  {
+    "key": "sharing.role.revokeRole",
+    "en": "Revoke role",
+    "zh": "撤销角色"
+  },
+  {
+    "key": "sharing.role.keep",
+    "en": "Keep role",
+    "zh": "保留角色"
+  },
+  {
+    "key": "sharing.role.person",
+    "en": "Person",
+    "zh": "联系人"
+  },
+  {
+    "key": "sharing.role.wholePlan",
+    "en": "Whole plan",
+    "zh": "整个规划"
+  },
+  {
+    "key": "sharing.role.scope",
+    "en": "Scope",
+    "zh": "范围"
+  },
+  {
+    "key": "sharing.role.matter",
+    "en": "Matter",
+    "zh": "事项"
+  },
+  {
+    "key": "sharing.role.discardTitle",
+    "en": "Discard role changes?",
+    "zh": "放弃角色修改？"
+  },
+  {
+    "key": "sharing.role.add",
+    "en": "Add role",
+    "zh": "添加角色"
+  },
+  {
+    "key": "sharing.role.addPrerequisite",
+    "en": "Add an active person record and matter before assigning a role.",
+    "zh": "分配角色前，请先添加有效联系人记录和事项"
+  },
+  {
+    "key": "sharing.role.role",
+    "en": "Role",
+    "zh": "角色"
+  },
+  {
+    "key": "sharing.role.selectedMatter",
+    "en": "Selected matter",
+    "zh": "选定事项"
+  },
+  {
+    "key": "sharing.role.selectAbove",
+    "en": "Select a matter above",
+    "zh": "请在上方选择事项"
+  },
+  {
+    "key": "sharing.role.addRecord",
+    "en": "Add role record",
+    "zh": "添加角色记录"
+  },
+  {
+    "key": "sharing.role.existing",
+    "en": "Existing roles",
+    "zh": "现有角色"
+  },
+  {
+    "key": "sharing.role.loading",
+    "en": "Loading role policy…",
+    "zh": "正在加载角色规则…"
+  },
+  {
+    "key": "sharing.role.empty",
+    "en": "No active role applies to this matter yet.",
+    "zh": "此事项尚无适用的有效角色"
+  },
+  {
+    "key": "sharing.role.boundary",
+    "en": "No invitation or account access is created. Event, identity, authority and field checks remain separate.",
+    "zh": "不会创建邀请或授予账号访问权限。事件、身份、授权和字段检查仍各自独立"
+  },
+  {
+    "key": "sharing.role.evidenceReadOnly",
+    "en": "Invitation evidence is read-only.",
+    "zh": "邀请凭据为只读"
+  },
+  {
+    "key": "sharing.role.oneMatter",
+    "en": "One matter",
+    "zh": "单个事项"
+  },
+  {
+    "key": "sharing.role.save",
+    "en": "Save role",
+    "zh": "保存角色"
+  },
+  {
+    "key": "sharing.role.revoke",
+    "en": "Revoke",
+    "zh": "撤销"
+  },
+  {
+    "key": "sharing.role.savedStale",
+    "en": "Role saved · earlier rehearsals are stale",
+    "zh": "角色已保存 · 以往演练已过时"
+  },
+  {
+    "key": "sharing.role.saved",
+    "en": "Role saved",
+    "zh": "角色已保存"
+  },
+  {
+    "key": "sharing.rehearsal.death",
+    "en": "Death",
+    "zh": "死亡"
+  },
+  {
+    "key": "sharing.rehearsal.incapacity",
+    "en": "Incapacity",
+    "zh": "失能"
+  },
+  {
+    "key": "sharing.rehearsal.missing",
+    "en": "Unreachable",
+    "zh": "失联"
+  },
+  {
+    "key": "sharing.rehearsal.deathDetail",
+    "en": "Authority and death-document review",
+    "zh": "授权与死亡证明审查"
+  },
+  {
+    "key": "sharing.rehearsal.incapacityDetail",
+    "en": "Capacity and acting-authority review",
+    "zh": "行为能力与代理权限审查"
+  },
+  {
+    "key": "sharing.rehearsal.missingDetail",
+    "en": "Limited support and contact-attempt review",
+    "zh": "有限协助与联系尝试审查"
+  },
+  {
+    "key": "sharing.rehearsal.advance",
+    "en": "Advance simulated review",
+    "zh": "推进模拟审查"
+  },
+  {
+    "key": "sharing.rehearsal.elapsed",
+    "en": "Simulate hold elapsed",
+    "zh": "模拟等待期结束"
+  },
+  {
+    "key": "sharing.rehearsal.appeal",
+    "en": "Place on appeal hold",
+    "zh": "进入申诉暂停状态"
+  },
+  {
+    "key": "sharing.rehearsal.restart",
+    "en": "Restart simulated review",
+    "zh": "重新开始模拟审查"
+  },
+  {
+    "key": "sharing.rehearsal.cancel",
+    "en": "Cancel this rehearsal",
+    "zh": "取消此次演练"
+  },
+  {
+    "key": "sharing.rehearsal.loadError",
+    "en": "Earlier disclosure rehearsals could not be loaded.",
+    "zh": "无法加载以往披露演练"
+  },
+  {
+    "key": "sharing.rehearsal.createError",
+    "en": "The disclosure rehearsal could not be created.",
+    "zh": "无法创建披露演练"
+  },
+  {
+    "key": "sharing.rehearsal.updateError",
+    "en": "The rehearsal state could not be updated.",
+    "zh": "无法更新演练状态"
+  },
+  {
+    "key": "sharing.rehearsal.created",
+    "en": "Rehearsal created",
+    "zh": "演练已创建"
+  },
+  {
+    "key": "sharing.rehearsal.updated",
+    "en": "Simulated step updated",
+    "zh": "模拟步骤已更新"
+  },
+  {
+    "key": "sharing.rehearsal.loading",
+    "en": "Loading the latest policy rehearsal…",
+    "zh": "正在加载最新规则演练…"
+  },
+  {
+    "key": "sharing.rehearsal.lifeEvent",
+    "en": "Life event",
+    "zh": "人生事件"
+  },
+  {
+    "key": "sharing.rehearsal.creating",
+    "en": "Creating rehearsal…",
+    "zh": "正在创建演练…"
+  },
+  {
+    "key": "sharing.rehearsal.previewAccess",
+    "en": "Preview role access",
+    "zh": "预览角色访问权限"
+  },
+  {
+    "key": "sharing.rehearsal.simulationOnly",
+    "en": "Simulation only",
+    "zh": "仅模拟"
+  },
+  {
+    "key": "sharing.rehearsal.boundary",
+    "en": "This preview verifies no evidence, contacts nobody and releases nothing. Cooling periods do not elapse automatically.",
+    "zh": "此预览不会验证凭据、联系任何人或释放任何信息。冷静期不会自动结束"
+  },
+  {
+    "key": "sharing.rehearsal.stale",
+    "en": "This snapshot is stale.",
+    "zh": "此快照已过时"
+  },
+  {
+    "key": "sharing.rehearsal.freshHint",
+    "en": "Start a fresh rehearsal to continue.",
+    "zh": "请开始新的演练以继续"
+  },
+  {
+    "key": "sharing.rehearsal.creatingFresh",
+    "en": "Creating fresh rehearsal…",
+    "zh": "正在创建新演练…"
+  },
+  {
+    "key": "sharing.rehearsal.createFresh",
+    "en": "Create fresh policy rehearsal",
+    "zh": "创建新的规则演练"
+  },
+  {
+    "key": "sharing.rehearsal.updating",
+    "en": "Updating…",
+    "zh": "正在更新…"
+  },
+  {
+    "key": "sharing.rehearsal.separate",
+    "en": "Start a separate event rehearsal",
+    "zh": "开始另一事件的独立演练"
+  },
+  {
+    "key": "sharing.rehearsal.path",
+    "en": "Policy path",
+    "zh": "规则流程"
+  },
+  {
+    "key": "sharing.rehearsal.views",
+    "en": "Projected role views",
+    "zh": "预计的角色视图"
+  },
+  {
+    "key": "sharing.rehearsal.allowedFields",
+    "en": "Allowed fields",
+    "zh": "允许的字段"
+  },
+  {
+    "key": "sharing.rehearsal.eventSimulation",
+    "en": "{event} · simulation only",
+    "zh": "{event} · 仅模拟"
+  },
+  {
+    "key": "sharing.rehearsal.sourceLanguage",
+    "en": "Server-authored diagnostic status and policy explanations are shown in English.",
+    "zh": "服务器生成的诊断状态和规则说明保留英文"
+  },
+  {
+    "key": "sharing.rehearsal.currentState",
+    "en": "Current state:",
+    "zh": "当前状态："
+  },
+  {
+    "key": "sharing.rehearsal.holdEnd",
+    "en": "Illustrative hold ends {date}. It will not elapse automatically in this rehearsal.",
+    "zh": "示例等待期结束时间为{date}。本次演练不会自动结束等待期"
+  },
+  {
+    "key": "sharing.rehearsal.recordedEvidence",
+    "en": "recorded invitation evidence",
+    "zh": "已记录的邀请凭据"
+  },
+  {
+    "key": "sharing.rehearsal.titleField",
+    "en": "Title",
+    "zh": "标题"
+  },
+  {
+    "key": "sharing.rehearsal.countOnly",
+    "en": "Matter count only: {count}",
+    "zh": "仅显示事项数量：{count}"
+  },
+  {
+    "key": "sharing.diagnostics.title",
+    "en": "Synthetic recipient rehearsal",
+    "zh": "模拟接收人演练"
+  },
+  {
+    "key": "sharing.diagnostics.body",
+    "en": "Locally exercise acceptance, a memory-only device key, recipient-only package access and decryption. This sends no invitation, verifies no identity, detects no death and releases nothing.",
+    "zh": "在本地演练接受邀请、仅存于内存的设备密钥、仅接收人可用的加密包访问和解密。不会发送邀请、验证身份、判断死亡或释放信息"
+  },
+  {
+    "key": "sharing.diagnostics.contact",
+    "en": "Test contact record",
+    "zh": "测试联系人记录"
+  },
+  {
+    "key": "sharing.diagnostics.addContact",
+    "en": "Add a synthetic trusted-contact record first",
+    "zh": "请先添加模拟可信联系人记录"
+  },
+  {
+    "key": "sharing.diagnostics.running",
+    "en": "Running isolated rehearsal…",
+    "zh": "正在运行独立演练…"
+  },
+  {
+    "key": "sharing.diagnostics.run",
+    "en": "Run recipient decryption rehearsal",
+    "zh": "运行接收人解密演练"
+  },
+  {
+    "key": "sharing.diagnostics.passed",
+    "en": "Recipient-side decryption passed for {count} matter directions. Delivery: no. Release: no.",
+    "zh": "{count} 个事项的查找指引通过接收端解密。未投递，未释放"
+  },
+  {
+    "key": "sharing.diagnostics.revocationBody",
+    "en": "Revocation prevents this simulated active device from fetching the package again. It cannot erase plaintext or copies already obtained outside Rillora.",
+    "zh": "撤销后，此模拟有效设备将无法再次获取加密包。已在 Rillora 之外取得的明文或副本无法删除"
+  },
+  {
+    "key": "sharing.diagnostics.revoked",
+    "en": "Synthetic device key revoked",
+    "zh": "模拟设备密钥已撤销"
+  },
+  {
+    "key": "sharing.diagnostics.revoking",
+    "en": "Revoking…",
+    "zh": "正在撤销…"
+  },
+  {
+    "key": "sharing.diagnostics.revoke",
+    "en": "Revoke synthetic device key",
+    "zh": "撤销模拟设备密钥"
+  },
+  {
+    "key": "sharing.diagnostics.passedNotice",
+    "en": "Synthetic recipient acceptance and local decryption rehearsal passed. No delivery or release occurred.",
+    "zh": "模拟接收人接受和本地解密演练已通过，未进行投递或释放"
+  },
+  {
+    "key": "sharing.diagnostics.runError",
+    "en": "The synthetic recipient rehearsal could not be completed.",
+    "zh": "无法完成模拟接收人演练"
+  },
+  {
+    "key": "sharing.diagnostics.revokeError",
+    "en": "The synthetic recipient key could not be revoked.",
+    "zh": "无法撤销模拟接收人密钥"
+  }
+]

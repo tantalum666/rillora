@@ -1,0 +1,11 @@
+Usage: qwen mcp <command>
+
+Manage MCP servers
+
+Commands:
+  qwen mcp add <name> <commandOrUrl> [args...]  Add a server
+  qwen mcp remove <name>  Remove a server
+  qwen mcp list  List all configured MCP servers
+  qwen mcp reconnect [server-name]  Reconnect to MCP servers
+  qwen mcp approve [name]  Approve a pending MCP server
+  qwen mcp reject [name]  Reject a pending MCP server

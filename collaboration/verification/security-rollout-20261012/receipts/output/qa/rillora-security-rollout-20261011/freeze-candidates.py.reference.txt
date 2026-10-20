@@ -1,0 +1,47 @@
+"""Validate and freeze the stop/resume templates. No cloud writes."""
+from pathlib import Path
+import copy,datetime,hashlib,json,shutil
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+protected={'AWS::RDS::DBInstance','AWS::RDS::DBParameterGroup','AWS::RDS::DBSubnetGroup','AWS::EC2::VPC','AWS::EC2::Subnet','AWS::SecretsManager::Secret','AWS::KMS::Key','AWS::DynamoDB::Table','AWS::CertificateManager::Certificate'}
+reports=[]
+def replace_template(assembly,name,value):
+ path=assembly/(name+'.template.json');body=(json.dumps(value,indent=2)+'\n').encode();path.write_bytes(body);digest=hashlib.sha256(body).hexdigest()
+ ap=assembly/(name+'.assets.json');assets=json.loads(ap.read_text());matches=[(k,v) for k,v in assets['files'].items() if v['source']['path']==path.name];assert len(matches)==1
+ old,entry=matches[0];del assets['files'][old]
+ for dest in entry['destinations'].values():dest['objectKey']=digest+'.json'
+ assets['files'][digest]=entry;ap.write_text(json.dumps(assets,indent=2)+'\n')
+ mp=assembly/'manifest.json';manifest=json.loads(mp.read_text());props=manifest['artifacts'][name]['properties']
+ props['stackTemplateAssetObjectUrl']=props['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+digest+'.json';mp.write_text(json.dumps(manifest,indent=2)+'\n')
+ return digest
+for env,name in [('staging','RilloraStaging'),('production','RilloraProduction')]:
+ assembly=Q/(env+'-stopped-assembly');old=json.loads((P/(name+'-before-template.json')).read_text());new=json.loads((assembly/(name+'.template.json')).read_text())
+ assert old['Parameters']==new['Parameters'],'Parameter declarations changed'
+ assert not set(old['Resources'])-set(new['Resources']),'Existing resources removed'
+ for key,value in old['Resources'].items():
+  if value['Type'] in protected:assert new['Resources'][key]==value,'Protected resource changed: '+key
+ oldApi=next(v['Properties']['ContainerDefinitions'][0] for v in old['Resources'].values() if v['Type']=='AWS::ECS::TaskDefinition' and v['Properties']['ContainerDefinitions'][0]['Name']=='Api')
+ newApi=next(v['Properties']['ContainerDefinitions'][0] for v in new['Resources'].values() if v['Type']=='AWS::ECS::TaskDefinition' and v['Properties']['ContainerDefinitions'][0]['Name']=='Api')
+ before={x['Name']:x['Value'] for x in oldApi['Environment']};after={x['Name']:x['Value'] for x in newApi['Environment']}
+ for key,value in before.items():
+  if key.startswith('ALLOW_') or key in ['PRODUCTION_RUNTIME_MODE','PRODUCTION_REVIEW_IDENTITY_SHA256','PRODUCTION_REVIEW_EXPIRES_AT','CONTENT_KMS_KEY_ARN','CONTENT_KEY_NAMESPACE','CONTENT_PROTECTION_MODE']:
+   assert after[key]==value,'Runtime/sales boundary changed: '+key
+ assert before['ALLOW_DEV_AUTH']=='false' and after['ALLOW_DEV_AUTH']=='false'
+ for value in new['Resources'].values():
+  if value['Type']=='AWS::ECS::Service':assert value['Properties']['DesiredCount']==0
+ for k,v in old['Resources'].items():
+  if v['Type']=='AWS::ECS::Service':
+   delta={x for x in set(v['Properties'])|set(new['Resources'][k]['Properties']) if v['Properties'].get(x)!=new['Resources'][k]['Properties'].get(x)}
+   assert delta<={'DesiredCount'},(k,delta)
+ resume=copy.deepcopy(new)
+ for resource in resume['Resources'].values():
+  if resource['Type']=='AWS::ECS::Service':resource['Properties']['DesiredCount']=1
+ if env=='staging':
+  resume['Outputs']['ServiceDesiredCount']['Value']='1'
+  # Retain the old browser/router until the matching API has migrated.
+  for k,v in old['Resources'].items():
+   if v['Type'] in ['Custom::CDKBucketDeployment','AWS::CloudFront::Function']:new['Resources'][k]=copy.deepcopy(v)
+ running=Q/(env+'-running-assembly');assert not running.exists(),'Running candidate already frozen'
+ shutil.copytree(assembly,running)
+ stoppedHash=replace_template(assembly,name,new);runningHash=replace_template(running,name,resume)
+ reports.append({'environment':env,'oldResources':len(old['Resources']),'newResources':len(new['Resources']),'protectedResourcesUnchanged':True,'salesFlagsUnchanged':True,'reviewParametersUnchanged':True,'stoppedWriters':sum(v['Type']=='AWS::ECS::Service' for v in new['Resources'].values()),'stoppedTemplateSha256':stoppedHash,'runningTemplateSha256':runningHash,'frontendHeldUntilResume':env=='staging','deployed':False})
+(Q/'reviewed-cutover-templates.json').write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'environments':reports},indent=2)+'\n');print(json.dumps(reports))

@@ -29,13 +29,13 @@ enum StartHereEncryptionError: LocalizedError, Equatable {
     var errorDescription: String? {
         switch self {
         case .invalidPreparation:
-            "The encryption preparation did not preserve the Start Here safety boundary."
+            String(localized: "The encryption preparation did not preserve the Start Here safety boundary.")
         case .invalidCryptoMaterial:
-            "The encryption material was malformed or used an unsupported algorithm."
+            String(localized: "The encryption material was malformed or used an unsupported algorithm.")
         case .recoveryVerificationFailed:
-            "The encrypted package failed its local offline-recovery test."
+            String(localized: "The encrypted package failed its local offline-recovery test.")
         case .invalidRecoveredPayload:
-            "The recovered package did not preserve the reviewed Start Here boundary."
+            String(localized: "The recovered package did not preserve the reviewed Start Here boundary.")
         }
     }
 }
@@ -290,6 +290,9 @@ struct CryptoKitStartHereEncryptionService: StartHereEncrypting {
             using: contentKey,
             authenticating: associatedData
         )
+        guard let raw = try JSONSerialization.jsonObject(with: plaintext) as? [String: Any],
+              let committedPackage = raw["package"] else { throw StartHereEncryptionError.invalidRecoveredPayload }
+        try StartHereCommitment.verify(package: committedPackage, expected: artifact.sourceCommitment)
         let payload = try decoder().decode(EncryptedStartHerePayload.self, from: plaintext)
         guard payload.schemaVersion == Self.payloadSchemaVersion,
               payload.packagePublicId == artifact.packagePublicId,

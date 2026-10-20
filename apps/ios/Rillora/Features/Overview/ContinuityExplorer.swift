@@ -6,16 +6,16 @@ enum ContinuityFocus: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var shortTitle: String {
         switch self {
-        case .what: "What"
-        case .next: "Next step"
-        case .who: "Who"
+        case .what: String(localized: "What")
+        case .next: String(localized: "Next step")
+        case .who: String(localized: "Who")
         }
     }
     var title: String {
         switch self {
-        case .what: "What exists"
-        case .next: "What happens"
-        case .who: "Who can help"
+        case .what: String(localized: "What exists")
+        case .next: String(localized: "What happens")
+        case .who: String(localized: "Who can help")
         }
     }
     var symbol: String {
@@ -27,9 +27,9 @@ enum ContinuityFocus: String, CaseIterable, Identifiable {
     }
     var explanation: String {
         switch self {
-        case .what: "Keep important accounts, documents and directions together."
-        case .next: "Your wishes: keep, transfer or close."
-        case .who: "Invite by link. They use their own account and see only what you share."
+        case .what: String(localized: "Keep important accounts, documents and directions together.")
+        case .next: String(localized: "Your wishes: keep, transfer or close.")
+        case .who: String(localized: "Invite by link. They use their own account and see only what you share.")
         }
     }
     var tilt: Double {
@@ -114,7 +114,7 @@ struct ContinuityExplorer: View {
                             .shadow(color: .black.opacity(0.14), radius: 8, y: 4)
                     }
                     .buttonStyle(RilloraQuietButtonStyle())
-                    .accessibilityLabel("Explore \(focus.title.lowercased())")
+                    .accessibilityLabel(L10n.format("Explore %1$@", focus.title.lowercased()))
                     .accessibilityHidden(true)
                     .accessibilityAddTraits(active ? .isSelected : [])
                     .scaleEffect(active && !reduceMotion ? 1.07 : 1)
@@ -176,10 +176,10 @@ enum PublicMatterGroup: String, CaseIterable, Identifiable {
     var id: String { rawValue }
     var title: String {
         switch self {
-        case .accounts: "Accounts"
-        case .documents: "Documents"
-        case .devices: "Devices"
-        case .other: "Other matters"
+        case .accounts: String(localized: "Accounts")
+        case .documents: String(localized: "Documents")
+        case .devices: String(localized: "Devices")
+        case .other: String(localized: "Other matters")
         }
     }
     var symbol: String {
@@ -192,10 +192,10 @@ enum PublicMatterGroup: String, CaseIterable, Identifiable {
     }
     var explanation: String {
         switch self {
-        case .accounts: "Service · Safe hint · Next step"
-        case .documents: "Document · Location · Who needs it"
-        case .devices: "Device · Location · Official access route"
-        case .other: "Assets · Debts · Subscriptions"
+        case .accounts: String(localized: "Service · Safe hint · Next step")
+        case .documents: String(localized: "Document · Location · Who needs it")
+        case .devices: String(localized: "Device · Location · Official access route")
+        case .other: String(localized: "Assets · Debts · Subscriptions")
         }
     }
     var category: MatterCategory {
@@ -208,10 +208,10 @@ enum PublicMatterGroup: String, CaseIterable, Identifiable {
     }
     var addLabel: String {
         switch self {
-        case .accounts: "Add an account"
-        case .documents: "Add a document"
-        case .devices: "Add a device"
-        case .other: "Add a matter"
+        case .accounts: String(localized: "Add an account")
+        case .documents: String(localized: "Add a document")
+        case .devices: String(localized: "Add a device")
+        case .other: String(localized: "Add a matter")
         }
     }
 }

@@ -83,6 +83,15 @@ final class OverviewStore {
         requiresSignInAgain = false
     }
 
+    /// An authenticated auxiliary read can discover a revoked or mismatched session.
+    /// Clear the private snapshot and invalidate in-flight reads without creating
+    /// a new session, deleting data, or performing a logout request.
+    func invalidateAuthentication() {
+        reset()
+        requiresSignInAgain = true
+        state = .signedOut
+    }
+
     private func restoreAfterRefreshFailure(message: String) {
         if case .loaded = state {
             refreshError = message

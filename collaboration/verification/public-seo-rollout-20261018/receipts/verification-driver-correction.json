@@ -1,0 +1,7 @@
+{
+  "initialFailure": "KeyError Stacks before HTTP checks",
+  "cause": "Current scoped plan stores the selected stack directly, while the earlier verifier expected the enclosing CLI response",
+  "fix": "Read the actual selected-stack object; preserve exact output and template comparisons",
+  "productionArtifactChanged": false,
+  "deploymentRepeated": false
+}

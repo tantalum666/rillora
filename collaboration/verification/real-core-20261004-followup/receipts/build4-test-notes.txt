@@ -1,0 +1,9 @@
+Restricted pre-release verification for approved test identities.
+
+Verify sign-in, private matter editing, Name / Directions / Details sharing, and stopping access from the planner while the recipient has a Web detail open.
+
+Verify Start Here printable and encrypted copies, separate recovery-key saving, local recovery, and complete-map backup/import. This build fixes the export flow when recent authentication is required: the selected copy stays in place, sign-in uses the shared prompt, and the user explicitly retries. An expired preview must be refreshed and reviewed.
+
+Verify sign-out and account deletion only with deliberately disposable test accounts and synthetic records. Existing downloaded copies cannot be remotely revoked.
+
+Ordinary customer access and live billing remain closed. Real Apple Sandbox purchase/restore and physical-device acceptance are separate pending checks; this upload does not establish them.

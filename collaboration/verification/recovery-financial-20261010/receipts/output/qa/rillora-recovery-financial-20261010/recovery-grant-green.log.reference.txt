@@ -1,0 +1,5 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000 test/rillora-production-stack.test.ts --reporter=json --outputFile=../../output/qa/rillora-recovery-financial-20261010/recovery-grant-green.json
+
+JSON report written to /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-recovery-financial-20261010/recovery-grant-green.json

@@ -3,6 +3,42 @@ import XCTest
 
 @MainActor
 final class TrustedContactEditorStoreTests: XCTestCase {
+    func testOverlappingSavesCannotCreateTheContactTwice() async {
+        let entered = expectation(description: "First create reached the transport")
+        let service = StubTrustedContactService(suspendFirstMutation: entered)
+        let store = TrustedContactEditorStore(contact: nil, service: service)
+        store.draft.displayName = "Avery Stone"
+        let first = Task { await store.save() }
+        await fulfillment(of: [entered], timeout: 2)
+        let second = await store.save()
+        await service.releaseMutation()
+        let saved = await first.value
+        let requests = await service.recordedCreates()
+        XCTAssertNotNil(saved)
+        XCTAssertNil(second)
+        XCTAssertEqual(requests.count, 1, "One user draft must produce only one create request")
+    }
+
+    func testReloadAndRevokeCannotReplaceAnInFlightSave() async {
+        let entered = expectation(description: "Contact update is in flight")
+        let latest = TrustedContact.editorFixture(relationshipLabel: "Sibling", version: 2)
+        let service = StubTrustedContactService(update: .success(latest), suspendFirstMutation: entered)
+        let store = TrustedContactEditorStore(contact: .editorFixture, service: service)
+        store.draft.relationshipLabel = "Sibling"
+        let save = Task { await store.save() }
+        await fulfillment(of: [entered], timeout: 2)
+        await store.loadLatest()
+        let revoked = await store.revoke()
+        let during = store.state
+        await service.releaseMutation()
+        _ = await save.value
+        let updates = await service.recordedUpdates()
+        XCTAssertEqual(during, .saving)
+        XCTAssertNil(revoked)
+        XCTAssertEqual(updates.count, 1)
+        XCTAssertEqual(store.source, latest)
+    }
+
     func testNewContactUsesRecordOnlyCreateContract() async throws {
         let created = TrustedContact.editorFixture(
             relationshipLabel: nil,
@@ -126,15 +162,19 @@ private actor StubTrustedContactService: TrustedContactEditing {
     private let updateResult: Result<TrustedContact, RilloraAPIError>
     private var creates: [TrustedContactCreateRequest] = []
     private var updates: [(publicID: String, request: TrustedContactUpdateRequest)] = []
+    private var suspendFirstMutation: XCTestExpectation?
+    private var pendingMutation: CheckedContinuation<Void, Never>?
 
     init(
         fetch: Result<[TrustedContact], RilloraAPIError> = .success([.editorFixture]),
         create: Result<TrustedContact, RilloraAPIError> = .success(.editorFixture),
-        update: Result<TrustedContact, RilloraAPIError> = .success(.editorFixture)
+        update: Result<TrustedContact, RilloraAPIError> = .success(.editorFixture),
+        suspendFirstMutation: XCTestExpectation? = nil
     ) {
         fetchResult = fetch
         createResult = create
         updateResult = update
+        self.suspendFirstMutation = suspendFirstMutation
     }
 
     func fetchTrustedContacts() async throws -> [TrustedContact] {
@@ -145,6 +185,7 @@ private actor StubTrustedContactService: TrustedContactEditing {
         request: TrustedContactCreateRequest
     ) async throws -> TrustedContact {
         creates.append(request)
+        await pauseMutationIfNeeded()
         return try createResult.get()
     }
 
@@ -153,7 +194,22 @@ private actor StubTrustedContactService: TrustedContactEditing {
         request: TrustedContactUpdateRequest
     ) async throws -> TrustedContact {
         updates.append((publicID, request))
+        await pauseMutationIfNeeded()
         return try updateResult.get()
+    }
+
+    private func pauseMutationIfNeeded() async {
+        guard let entered = suspendFirstMutation else { return }
+        suspendFirstMutation = nil
+        await withCheckedContinuation { continuation in
+            pendingMutation = continuation
+            entered.fulfill()
+        }
+    }
+
+    func releaseMutation() {
+        pendingMutation?.resume()
+        pendingMutation = nil
     }
 
     func recordedCreates() -> [TrustedContactCreateRequest] {

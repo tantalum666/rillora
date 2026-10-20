@@ -18,8 +18,12 @@ const schema = z.object({
     amountMinor: z.number().int().positive().max(1_000_000), currency: z.literal('usd'), interval: z.enum(['year', 'month']),
     planVersion: z.number().int().positive() }).strict()).max(30),
   checkoutSuccessUrl: returnURL, checkoutCancelUrl: returnURL, portalReturnUrl: returnURL, portalConfigurationId: providerID('bpc_'),
-  tax: z.object({ mode: z.enum(['automatic', 'reviewed_no_collection']), assessmentReference: z.string().trim().min(8).max(200),
-    productTaxCode: providerID('txcd_'), activeRegistrationIds: z.array(providerID('taxreg_')).max(100) }).strict(),
+  tax: z.discriminatedUnion('mode', [
+    // Disabled is an explicit operating choice, not a tax exemption or assessment.
+    z.object({ mode: z.enum(['not_configured', 'disabled']), productTaxCode: providerID('txcd_') }).strict(),
+    z.object({ mode: z.enum(['automatic', 'reviewed_no_collection']), assessmentReference: z.string().trim().min(8).max(200),
+      productTaxCode: providerID('txcd_'), activeRegistrationIds: z.array(providerID('taxreg_')).max(100) }).strict(),
+  ]),
 }).strict();
 
 export function parseStripeProductionSecret(text: string): StripeProductionConfig {

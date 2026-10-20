@@ -1,0 +1,23 @@
+{
+  "scope": "Synthetic rendered UI, not production OAuth",
+  "browser": "Codex IAB through CUA",
+  "url": "http://127.0.0.1:4187/",
+  "viewport": [
+    1280,
+    720
+  ],
+  "checks": {
+    "meaningfulContent": true,
+    "noFrameworkOverlay": true,
+    "consoleErrors": 0,
+    "uncheckedConsentDefault": true,
+    "noSelectionDisablesConsent": true,
+    "explicitSelectionAndConsentEnablesSubmit": true,
+    "scopeChangeClearsConsent": true,
+    "languageSwitchPreservesSelection": true,
+    "singleSelectedLanguage": true,
+    "clientFirstEntry": true,
+    "downloadVisible": true
+  },
+  "actualCloudProtocolPending": true
+}

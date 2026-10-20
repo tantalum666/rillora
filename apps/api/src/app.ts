@@ -1,8 +1,10 @@
 import express, { type Express, type RequestHandler } from "express";
+import type { McpIntegration } from './mcp/integration.js';
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
 import { appleReviewContext, appleProductionContext } from './apple-execution-context.js';
 import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
+import { appleReviewAccessRequired } from './apple-review-access.js';
 import { authenticate, requireWorkspaceIdentity } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
@@ -12,8 +14,10 @@ import { checkRecoveryJournal } from './recovery-journal.js';
 import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
 import { createApiRouter } from "./routes.js";
-import { createAccountDataRouter } from "./account-data-routes.js";
-import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionProcessor } from "./account-deletion.js";
+import { createAccountDataRouter, mapBackupMaxBytes } from "./account-data-routes.js";
+import { createAccountIdentityRouter } from "./account-identity.js";
+import { createAccountDeletionRouter, createPublicAccountDeletionRouter, deletionProcessor, type AccountIdentityDeleting, type AccountDeletionHandling } from "./account-deletion.js";
+import {checkEmailMatchReadiness} from './email-match-readiness.js';
 import { createDisclosureRehearsalRouter } from "./disclosure-rehearsal-routes.js";
 import { createCommerceRouter } from "./commerce-routes.js";
 import { createFamilyMaintenanceRouter } from "./family-maintenance-routes.js";
@@ -54,12 +58,13 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  mcp?: McpIntegration;
   appleReviewIntake?: AppleProductionIntake;
   appleProductionIntake?: AppleProductionIntake;
   transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
   accountIdentityDeleter?: AccountIdentityDeleting;
-  accountDeletionProcessor?: AccountDeletionProcessor;
+  accountDeletionProcessor?: AccountDeletionHandling;
   stripeProvider?: StripeCommerceProvider;
   stripeExecutor?: StripeCommerceExecutor;
   stripeProductionConfig?: StripeProductionConfig;
@@ -90,6 +95,8 @@ export function createApp(
       await pool.query("select 1");
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
+      await dependencies.mcp?.checkReady();
+      if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });
     } catch {
       response.status(503).json({ status: "not_ready" });
@@ -106,6 +113,8 @@ export function createApp(
     app.use(errorHandler);
     return app;
   }
+
+  dependencies.mcp?.mountPublic(app);
 
   if (config.stripeProductionSecretArn && (!dependencies.stripeProductionConfig || config.stripeTest)) throw new Error('Production billing requires isolated loaded credentials');
   if (Boolean(config.appleProduction) !== Boolean(dependencies.appleProductionIntake)
@@ -126,6 +135,9 @@ export function createApp(
       )
     : null);
   if (stripeExecutor && stripeExecutor.providerEnvironment !== (config.stripeProductionSecretArn ? 'production' : 'test')) throw new Error('Stripe executor environment mismatch');
+  const stripeCheckoutEnabled = stripeExecutor?.providerEnvironment === 'production'
+    && config.stripeProductionCheckoutEnabled === true
+    && dependencies.stripeProductionConfig?.tax.mode !== 'not_configured';
   const appleVerifier = config.appleSandbox
     ? dependencies.appleSignedDataVerifier
       ?? createRilloraAppleSandboxVerifier({
@@ -173,15 +185,24 @@ export function createApp(
       preventCaching,express.json({limit:'256kb',strict:true,type:'application/json'}),
       createAppleProductionNotificationHandler(appleReviewIntake));
   }
-  // A bounded map import needs more room than ordinary mutations. Authenticate
-  // before reading its larger body; the usual parser skips the already-read body.
-  app.use(["/v1/account/map/import", "/api/v1/account/map/import"],
-    preventCaching, authenticate(pool, config), express.json({ limit:"2mb",strict:true,type:"application/json" }));
+  // File endpoints keep separate, authenticated transport bounds. Base64 adds
+  // one third to ciphertext size; the import envelope also sits outside the
+  // backup's own 2 MiB limit, which the handler enforces independently.
+  const jsonTypes = ["application/json", "application/*+json"];
+  const fileAuthentication = [preventCaching, authenticate(pool, config), requireWorkspaceIdentity];
+  app.post(["/v1/account/map/import", "/api/v1/account/map/import"],
+    ...fileAuthentication, express.json({ limit: mapBackupMaxBytes + 1024, strict: true, type: jsonTypes }));
+  const encryptedPaths = ["/v1/exports/start-here/encrypted/:publicId/finalize", "/api/v1/exports/start-here/encrypted/:publicId/finalize"];
+  if (config.allowSyntheticRecipientRehearsal) encryptedPaths.push(
+    "/v1/recipient-rehearsals/:publicId/packages/:packagePublicId/finalize",
+    "/api/v1/recipient-rehearsals/:publicId/packages/:packagePublicId/finalize",
+  );
+  app.post(encryptedPaths, ...fileAuthentication, express.json({ limit: "128kb", strict: true, type: jsonTypes }));
   app.use(
     express.json({
       limit: "64kb",
       strict: true,
-      type: ["application/json", "application/*+json"],
+      type: jsonTypes,
     }),
   );
 
@@ -217,7 +238,7 @@ export function createApp(
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
   if (stripeExecutor?.providerEnvironment === 'production') {
-    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor));
+    plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }, config));
   } else if (stripeExecutor) {
     plannerApi.use(
       "/commerce/test",
@@ -230,10 +251,13 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext)));
-  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool)));
+  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',appleReviewAccessRequired(pool,config),
+    createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
+  if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool),config));
   plannerApi.use("/commerce", createCommerceRouter(pool,
-    new Set([...(stripeExecutor?.providerEnvironment === 'production' ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+  plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
+  if (dependencies.mcp) plannerApi.use('/account/ai-connections', dependencies.mcp.connections);
   plannerApi.use("/account", createAccountDataRouter(pool, config));
   plannerApi.use("/account", createAccountDeletionRouter(pool, accountDeletion, config));
   plannerApi.use(createApiRouter(pool, config));

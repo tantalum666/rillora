@@ -1,0 +1,33 @@
+"""Exact three TEST orders/subscriptions; read-only final reconciliation evidence."""
+from pathlib import Path
+import datetime,json,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-payment-recheck-20261009'
+PRIVATE=ROOT/'.local-secrets/payment-recheck-20261009'
+def aws(args):
+    return json.loads(subprocess.check_output(['aws',*args,'--profile','rillora-staging-operator','--region','eu-central-1','--output','json']))
+receipt=QA/'final-payment-task.json'
+assert not receipt.exists(), 'Reuse existing task rather than repeat'
+checks=[json.loads((PRIVATE/n).read_text()) for n in ['stripe-failure-checkout.json','stripe-pending-checkout.json']]
+checks.append(json.loads((PRIVATE/'stripe-third-payment.json').read_text())['checkout'])
+assert all(c['livemode'] is False and c['amount_total']==8899 and c['payment_status']=='paid' for c in checks)
+orders=[c['metadata']['rillora_order_reference'] for c in checks]
+subs=[c['subscription']['id'] if isinstance(c['subscription'],dict) else c['subscription'] for c in checks]
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw Error('tls_required');const c=new pg.Client(databaseConnectionOptions(cfg));await c.connect();
+try{await c.query('begin read only');await c.query("set local statement_timeout='15s'");
+const p=(await c.query('select id,status from app.planners where public_id=$1::uuid',[process.env.RILLORA_QA_PLANNER])).rows;if(p.length!==1||p[0].status!=='active')throw Error('exact_owner_required');const id=p[0].id;
+const refs=JSON.parse(process.env.RILLORA_QA_SUBS);
+const inbox=(await c.query(`select provider_event_reference,event_type,signature_verified,processing_status,last_error_code,attempt_count,provider_occurred_at,processed_at from app.commerce_provider_event_inbox where provider_code='stripe' and provider_environment='test' and provider_subscription_reference=any($1::text[]) order by provider_occurred_at`,[refs])).rows;
+const orders=(await c.query(`select o.public_id,o.status,o.amount_minor,o.currency_code,(select count(*)::int from app.commerce_payment_attempts a where a.order_id=o.id and a.planner_id=o.planner_id) as attempts from app.commerce_orders o where o.planner_id=$1 and o.public_id=any($2::uuid[]) and o.provider_code='stripe' and o.provider_environment='test'`,[id,JSON.parse(process.env.RILLORA_QA_ORDERS)])).rows;
+const subscriptions=(await c.query(`select provider_subscription_reference,state,renewal_is_possible,ended_at,version from app.commerce_subscriptions where planner_id=$1 and renewal_provider='stripe' and provider_environment='test' and provider_subscription_reference=any($2::text[])`,[id,refs])).rows;
+const history=(await c.query(`select e.provider_event_reference,e.event_type,r.directive,r.target_state,r.reason_code,r.created_at,r.provider_observed_at from app.commerce_reconciliation_runs r join app.commerce_provider_events e on e.id=r.provider_event_id and e.planner_id=r.planner_id join app.commerce_subscriptions s on s.id=r.subscription_id and s.planner_id=r.planner_id where r.planner_id=$1 and s.provider_environment='test' and s.provider_subscription_reference=any($2::text[]) order by r.created_at`,[id,refs])).rows;
+const activeMatterCount=(await c.query('select count(*)::int as n from app.matter_items where planner_id=$1 and archived_at is null',[id])).rows[0].n;
+await c.query('commit');console.log(JSON.stringify({readOnly:true,tlsVerified:true,inbox,orders,subscriptions,history,activeMatterCount}));}finally{await c.end();}"""
+body=json.loads((PRIVATE/'current-inbox-diagnostic-request.json').read_text());body['clientToken']=uuid.uuid4().hex
+body['overrides']={'containerOverrides':[{'name':'Migration','command':['node','--input-type=module','-e',script],'environment':[
+{'name':'RILLORA_QA_PLANNER','value':json.loads((ROOT/'.local-secrets/stripe-webhook-20261009/owner-preview-target.json').read_text())['plannerPublicId']},
+{'name':'RILLORA_QA_ORDERS','value':json.dumps(orders)},{'name':'RILLORA_QA_SUBS','value':json.dumps(subs)}]}]}
+path=PRIVATE/'final-payment-request.json';path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];saved=json.loads((QA/'current-inbox-diagnostic-task.json').read_text());saved.update(at=datetime.datetime.now(datetime.timezone.utc).isoformat(),taskArn=arn,logStream='migration/Migration/'+arn.rsplit('/',1)[-1]);receipt.write_text(json.dumps(saved,indent=2)+'\n');print('Started scoped read-only payment reconciliation')

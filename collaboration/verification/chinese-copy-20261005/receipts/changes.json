@@ -1,0 +1,3974 @@
+[
+  {
+    "platform": "web",
+    "key": "common.language.temporary",
+    "en": "Language changed for this page. Browser storage is unavailable.",
+    "before": "已为当前页面切换语言，浏览器存储不可用。",
+    "after": "已切换语言，但浏览器无法保存这次选择。"
+  },
+  {
+    "platform": "web",
+    "key": "common.language.description",
+    "en": "English and Simplified Chinese are available for the website and Web interface. The first visit follows your browser language. An explicit choice saves only the language code under rillora.locale.v1 in this browser.",
+    "before": "网站和 Web 界面提供英语与简体中文。首次访问时跟随浏览器语言；手动选择后，仅将语言代码保存在当前浏览器的 rillora.locale.v1 中。",
+    "after": "网站和网页版应用提供英语与简体中文。首次访问时会跟随浏览器语言；手动选择后，语言偏好仅保存在当前浏览器。"
+  },
+  {
+    "platform": "web",
+    "key": "common.language.privacy",
+    "en": "This preference contains no account or private-map information and is not used for advertising or analytics. Each site stores its own choice; links to the Rillora web app carry only the language code. Clear browser storage to follow your browser language again. If storage is unavailable, switching still works for this page.",
+    "before": "该偏好不包含账号或私密事务地图信息，也不用于广告或分析。各网站分别保存选择；前往 Rillora Web 应用的链接仅携带语言代码。清除浏览器存储后会重新跟随浏览器语言。存储不可用时，仍可为当前页面切换语言。",
+    "after": "语言偏好不包含账号或事项资料，也不用于广告或分析。各网站分别保存选择；前往 Rillora 网页版的链接只携带语言代码。清除浏览器存储后，将重新跟随浏览器语言。无法保存偏好时，仍可在当前页面切换语言。"
+  },
+  {
+    "platform": "web",
+    "key": "common.language.boundary",
+    "en": "Language does not change your service market, currency, price or sharing permissions. Official legal documents, hosted sign-in and provider guidance may remain in English. Your saved content is not translated.",
+    "before": "语言不会改变服务地区、币种、价格或共享权限。正式法律文件、托管登录和平台指南可能仍为英文。已保存的内容不会被翻译。",
+    "after": "切换语言不会改变服务地区、币种、价格或共享权限。登录页面、正式法律文件和平台指南可能仍为英文。你填写和保存的内容会保留原文。"
+  },
+  {
+    "platform": "web",
+    "key": "common.appearance.temporary",
+    "en": "Changed for this page. Browser storage is unavailable.",
+    "before": "已为当前页面更改外观，浏览器存储不可用。",
+    "after": "已切换外观，但浏览器无法保存这次选择。"
+  },
+  {
+    "platform": "web",
+    "key": "common.appearance.storage",
+    "en": "On the Rillora website and web app, choosing Light or Dark saves only that choice in this browser under rillora.website.appearance.v1. It is used only to display your chosen appearance, contains no account or private-map information, and is not used for advertising or analytics.",
+    "before": "在 Rillora 网站和 Web 应用中，选择浅色或深色时，仅将该选择保存在当前浏览器的 rillora.website.appearance.v1 中。它只用于显示所选外观，不包含账号或私密事务地图信息，也不用于广告或分析。",
+    "after": "在 Rillora 网站和网页版应用中，选择浅色或深色后，外观偏好仅保存在当前浏览器。它不包含账号或事项资料，也不用于广告或分析。"
+  },
+  {
+    "platform": "web",
+    "key": "common.appearance.links",
+    "en": "The choice remains until you select System or clear browser storage. Links from the website carry only this display choice to the web app. Each site keeps its own local preference; nothing is linked to your account. System removes the saved choice and follows your device. If browser storage is unavailable, the control still works for the current page.",
+    "before": "该选择会保留，直到您选择跟随系统或清除浏览器存储。网站链接只将该显示偏好带到 Web 应用；各网站分别在本地保存偏好，不会关联账号。选择跟随系统会移除已保存的选择，并跟随设备外观。存储不可用时，仍可为当前页面更改外观。",
+    "after": "该选择会保留，直到你选择跟随系统或清除浏览器存储。网站链接只将该显示偏好带到 Web 应用；各网站分别在本地保存偏好，不会关联账号。选择跟随系统会移除已保存的选择，并跟随设备外观。存储不可用时，仍可为当前页面更改外观。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.reauthentication",
+    "en": "Sign in again to confirm it is still you, then retry the action. Your changes stay here.",
+    "before": "请重新登录以确认身份，然后重试操作。您的更改会保留在此处。",
+    "after": "请重新登录以确认身份，然后重试操作。你的更改会保留在此处。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.invalidSession",
+    "en": "The account could not be verified. Sign in again.",
+    "before": "未能验证账号，请重新登录。",
+    "after": "暂时无法确认登录状态，请重新登录。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.incompleteMap",
+    "en": "The map could not be loaded completely. Please try again.",
+    "before": "未能完整加载事务地图，请重试。",
+    "after": "未能完整加载事项地图，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.conflict",
+    "en": "This record changed elsewhere. Review the latest saved version before continuing.",
+    "before": "此记录已在其他位置更改。请先查看最新保存的版本。",
+    "after": "这条记录已在别处修改。请先查看最新保存的版本，再继续操作。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.savedDraftChanged",
+    "en": "This request was already saved with different content. Review the saved matter before continuing.",
+    "before": "此请求已保存过，但内容不同。请先查看已保存的事项。",
+    "after": "这次请求已保存，但保存的内容与当前草稿不同。请先查看已保存的事项。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.billingConfirmation",
+    "en": "Confirm that deleting your account does not cancel provider billing before continuing.",
+    "before": "请先确认：删除账号不会取消平台方的订阅扣费。",
+    "after": "请先确认：删除 Rillora 账号不会自动取消 Apple 或付款平台上的订阅。"
+  },
+  {
+    "platform": "web",
+    "key": "common.error.invalidResponse",
+    "en": "The response could not be verified. Please try again.",
+    "before": "未能验证响应，请重试。",
+    "after": "暂时无法确认操作结果，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "public.auth.openMap",
+    "en": "Open your private map",
+    "before": "打开我的私密事务地图",
+    "after": "打开我的事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "public.footer.tagline",
+    "en": "Digital legacy and estate continuity. Directions, not passwords.",
+    "before": "数字遗产与事务连续性。保存查找指引，不保存密码。",
+    "after": "整理重要事项，留下查找指引。请勿保存密码。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.heroTitle",
+    "en": "Leave less\nfor them to\nfigure out.",
+    "before": "重要的事，\n替在乎的人\n交代清楚。",
+    "after": "把重要的事，\n提前交代\n清楚。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.heroDescription",
+    "en": "A private map of your important things,\nshared with the people you choose.",
+    "before": "将重要事项整理成私密事务地图，只与您选择的人共享。",
+    "after": "把重要账号、文件和设备整理在一起，记录查找位置，并由你决定与谁共享。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.productDescription",
+    "en": "See what belongs in your map, and how to give each item a next step.",
+    "before": "了解事务地图可以记录什么，以及如何为每一项留下下一步指引。",
+    "after": "了解事项地图可以记录什么，以及如何为每一项留下下一步指引。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.securityEyebrow",
+    "en": "Privacy starts with your choices.",
+    "before": "隐私保护，从您的选择开始。",
+    "after": "每一份共享，都由你选择。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.securityTitle",
+    "en": "Stay in control.",
+    "before": "由您掌握。",
+    "after": "共享范围，由你决定。"
+  },
+  {
+    "platform": "web",
+    "key": "public.home.closingDescription",
+    "en": "Start with one matter and someone you trust.",
+    "before": "从一项重要事务和一位信任的人开始。",
+    "after": "先记录一个重要事项，再邀请一位你信任的人。"
+  },
+  {
+    "platform": "web",
+    "key": "public.sharing.title",
+    "en": "Let the right people\nsee the right details.",
+    "before": "让合适的人，\n看到您选定的信息。",
+    "after": "让信任的人，\n看到你选定的信息。"
+  },
+  {
+    "platform": "web",
+    "key": "public.sharing.count",
+    "en": {
+      "one": "{count} matter shared. Everything else stays private.",
+      "other": "{count} matters shared. Everything else stays private."
+    },
+    "before": {
+      "one": "已共享 {count} 项事项，其他内容仍为私密。",
+      "other": "已共享 {count} 项事项，其他内容仍为私密。"
+    },
+    "after": {
+      "one": "已共享 {count} 个事项，其余内容仍保持私密。",
+      "other": "已共享 {count} 个事项，其余内容仍保持私密。"
+    }
+  },
+  {
+    "platform": "web",
+    "key": "public.matter.title",
+    "en": "What goes in your map.",
+    "before": "事务地图可以记录什么。",
+    "after": "事项地图可以记录什么。"
+  },
+  {
+    "platform": "web",
+    "key": "public.matter.yourMap",
+    "en": "Your map",
+    "before": "您的事务地图",
+    "after": "我的事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "public.matter.next",
+    "en": "From what matters, to who it matters to",
+    "before": "从重要事项，到您在乎的人",
+    "after": "从重要事项，到你在乎的人"
+  },
+  {
+    "platform": "web",
+    "key": "public.example.account.location",
+    "en": "Account provider and a safe reference",
+    "before": "账号服务商与非敏感的识别信息",
+    "after": "服务方名称与尾号等识别线索"
+  },
+  {
+    "platform": "web",
+    "key": "public.example.account.note",
+    "en": "Keep the paperwork together so someone knows where to begin.",
+    "before": "将相关文件放在一起，让帮助您的人知道从哪里开始。",
+    "after": "将相关文件放在一起，让帮助你的人知道从哪里开始。"
+  },
+  {
+    "platform": "web",
+    "key": "public.example.document.locationLabel",
+    "en": "Document location",
+    "before": "文件位置",
+    "after": "文件存放位置"
+  },
+  {
+    "platform": "web",
+    "key": "public.example.digital.note",
+    "en": "Record the provider and a safe reference, never a seed phrase or private key.",
+    "before": "记录服务商与非敏感的识别信息，切勿记录助记词或私钥。",
+    "after": "记录交易平台和尾号等识别线索，切勿填写助记词或私钥。"
+  },
+  {
+    "platform": "web",
+    "key": "public.product.chooseTitle",
+    "en": "You choose and invite.",
+    "before": "由您选择并发出邀请。",
+    "after": "由你选择并发出邀请。"
+  },
+  {
+    "platform": "web",
+    "key": "public.product.acceptDescription",
+    "en": "They can use the web or iOS app. Their own account gives them access to the information you chose.",
+    "before": "对方可使用网页版或 iOS 应用，通过自己的账号查看您选定的信息。",
+    "after": "对方可使用网页版或 iOS 应用，通过自己的账号查看你选定的信息。"
+  },
+  {
+    "platform": "web",
+    "key": "public.security.title",
+    "en": "Your information.\nYour choices.",
+    "before": "您的信息，\n由您做主。",
+    "after": "你的信息，\n由你做主。"
+  },
+  {
+    "platform": "web",
+    "key": "public.security.intro",
+    "en": "Understand what you share and how your information is protected.",
+    "before": "了解您共享的内容，以及信息受到怎样的保护。",
+    "after": "了解你共享的内容，以及信息受到怎样的保护。"
+  },
+  {
+    "platform": "web",
+    "key": "public.support.specific",
+    "en": "Specific support requests",
+    "before": "专项支持请求",
+    "after": "其他支持渠道"
+  },
+  {
+    "platform": "web",
+    "key": "public.support.privacy",
+    "en": "Privacy request",
+    "before": "隐私请求",
+    "after": "提出隐私相关请求"
+  },
+  {
+    "platform": "web",
+    "key": "public.faq.keep.answer",
+    "en": "Account names, document locations, safe references and clear next steps. Keep passwords, seed phrases, private keys and complete recovery codes out of your map.",
+    "before": "账号名称、文件位置、非敏感的识别信息，以及清晰的后续步骤。不要在事务地图中保存密码、助记词、私钥或完整恢复码。",
+    "after": "可以记录账号名称、文件存放位置、尾号等识别线索，以及希望如何处理。请勿保存密码、助记词、私钥或完整恢复码。"
+  },
+  {
+    "platform": "web",
+    "key": "public.faq.app.answer",
+    "en": "No. They can open your invitation on the web, sign in or create their own account, and accept. They see only the matters and details you choose to share.",
+    "before": "不需要。对方可以在网页中打开邀请，登录或注册自己的账号，再接受邀请。他们只能看到您选择共享的事项和详细信息。",
+    "after": "不需要。对方可以在网页中打开邀请，登录或注册自己的账号，再接受邀请。他们只能看到你选择共享的事项和详细信息。"
+  },
+  {
+    "platform": "web",
+    "key": "public.faq.visibility.answer",
+    "en": "Each person you invite has their own view. You can change or revoke their live access. Copies they already saved are outside that control.",
+    "before": "每位受邀者看到的内容都可以单独设置。您可以更改或撤销其在线访问权限，但无法收回对方已经保存的副本。",
+    "after": "每位受邀者看到的内容都可以单独设置。你可以更改或撤销其在线访问权限，但无法收回对方已经保存的副本。"
+  },
+  {
+    "platform": "web",
+    "key": "public.faq.transfer.answer",
+    "en": "No. Rillora organises information and directions. After signing in, account inheritance guidance helps you find official processes. Each provider and the applicable legal process decide access, closure or transfer.",
+    "before": "不会。Rillora 用于整理信息与查找指引。登录后，账号身后处理指南可帮助您找到官方流程。账号访问、关闭或转移由各服务商与适用法律程序决定。",
+    "after": "不会。Rillora 用于整理信息与查找指引。登录后，账号身后处理指南可帮助你找到官方流程。账号访问、关闭或转移由各服务商与适用法律程序决定。"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.death.detail",
+    "en": "Find the information and directions already shared with you. Legal authority and each provider’s requirements still apply.",
+    "before": "查找已经与您共享的信息和指引。仍须具备合法权限，并符合各服务商的要求。",
+    "after": "查找已经与你共享的信息和指引。仍须具备合法权限，并符合各服务商的要求。"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.incapacity.detail",
+    "en": "Leave directions for the people helping you. Being a trusted contact does not make someone a legal representative.",
+    "before": "为帮助您的人留下指引。成为可信联系人，并不意味着拥有法律代表资格。",
+    "after": "为帮助你的人留下指引。成为可信联系人，并不意味着拥有法律代表资格。"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.unreachable.detail",
+    "en": "Being out of touch never triggers an automatic release. Your existing sharing choices remain in control.",
+    "before": "失去联系绝不会触发自动披露。信息仍依照您已有的共享设置提供。",
+    "after": "失去联系绝不会触发自动披露。信息仍依照你已有的共享设置提供。"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.sharingChoice",
+    "en": "Sharing remains your choice",
+    "before": "共享内容始终由您决定",
+    "after": "共享内容始终由你决定"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.youChoose",
+    "en": "You choose what\nto share",
+    "before": "由您选择\n共享什么",
+    "after": "由你选择\n共享什么"
+  },
+  {
+    "platform": "web",
+    "key": "public.life.theySee",
+    "en": "They see only\nwhat you’ve chosen",
+    "before": "对方只能看到\n您选定的内容",
+    "after": "对方只能看到\n你选定的内容"
+  },
+  {
+    "platform": "web",
+    "key": "public.control.sharing.answer",
+    "en": "Share selected matters and details with each person. Your other items stay private. A trusted contact does not automatically receive your whole map.",
+    "before": "为每个人选择可共享的事项和详细信息，其他事项仍为私密。可信联系人不会自动获得您的完整事务地图。",
+    "after": "为每个人选择可共享的事项和详细信息，其他事项仍为私密。可信联系人不会自动获得你的完整事项地图。"
+  },
+  {
+    "platform": "web",
+    "key": "public.control.revoke.answer",
+    "en": "You can adjust a person’s live access or remove it. Information they have already copied or downloaded cannot be taken back.",
+    "before": "您可以调整或取消某人的在线访问权限，但无法收回其已经复制或下载的信息。",
+    "after": "你可以调整或取消某人的在线访问权限，但无法收回其已经复制或下载的信息。"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.title",
+    "en": "A plan that fits your circle.",
+    "before": "适合您与亲友的套餐。",
+    "after": "适合你与亲友的套餐。"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.intro",
+    "en": "Start with one person. Make more room when you need it.",
+    "before": "从一个人开始，需要时再增加名额。",
+    "after": "免费版可与 1 人持续共享；需要时，可考虑家庭版的更多名额。"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.caption",
+    "en": "Free and Family planned Web features",
+    "before": "Free 与 Family 计划提供的网页版功能",
+    "after": "免费版与家庭版计划提供的网页版功能"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.free",
+    "en": "Free",
+    "before": "Free",
+    "after": "免费版"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.family",
+    "en": "Family",
+    "before": "Family",
+    "after": "家庭版"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.map",
+    "en": "Private map",
+    "before": "私密事务地图",
+    "after": "私密事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.liveSharing",
+    "en": "Live sharing",
+    "before": "在线实时共享",
+    "after": "可查看最新内容的人数"
+  },
+  {
+    "platform": "web",
+    "key": "public.price.note",
+    "en": "Both plans include core privacy and export controls. Receiving an invitation does not require a paid plan.",
+    "before": "两种套餐均包含核心隐私与导出功能。接受邀请无需付费套餐。",
+    "after": "两种套餐均包含核心隐私与导出功能。接收他人邀请和查看共享内容，无需付费。"
+  },
+  {
+    "platform": "web",
+    "key": "public.legal.termsDetail",
+    "en": "How you use Rillora",
+    "before": "您如何使用 Rillora",
+    "after": "你如何使用 Rillora"
+  },
+  {
+    "platform": "web",
+    "key": "public.cookie.description",
+    "en": "For sign-in, security, draft recovery and your chosen display preferences. No ads or behavioural analytics.",
+    "before": "用于登录、安全、草稿恢复和您选择的显示偏好。不用于广告或行为分析。",
+    "after": "用于登录、安全、草稿恢复和你选择的显示偏好。不用于广告或行为分析。"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.guideTitle",
+    "en": "Sign in to view account guidance",
+    "before": "登录以查看账号身后处理指南",
+    "after": "登录后查看账号身后处理指南"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.mapTitle",
+    "en": "Your private map",
+    "before": "您的私密事务地图",
+    "after": "我的事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.checking",
+    "en": "Checking whether you already have an active session…",
+    "before": "正在检查您是否已登录…",
+    "after": "正在检查你是否已登录…"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.notOpen",
+    "en": "Accounts are not open yet. You can still explore Rillora.",
+    "before": "账号尚未开放，您仍可浏览并了解 Rillora。",
+    "after": "账号尚未开放，你仍可浏览并了解 Rillora。"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.retry",
+    "en": "Try account service again",
+    "before": "重试账号服务",
+    "after": "重新尝试登录"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.signingUp",
+    "en": "Opening secure signup…",
+    "before": "正在打开安全注册…",
+    "after": "正在打开注册页面…"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.signingIn",
+    "en": "Opening secure sign in…",
+    "before": "正在打开安全登录…",
+    "after": "正在打开登录页面…"
+  },
+  {
+    "platform": "web",
+    "key": "public.account.consentTranslation",
+    "en": "Chinese reference: I agree to the Terms, acknowledge the Privacy Policy, and consent to electronic records. The official legal documents are in English.",
+    "before": "中文参考：我同意服务条款、确认隐私政策，并同意使用电子记录。正式法律文件为英文。",
+    "after": "中文参考：我同意《服务条款》，知悉《隐私政策》，并同意使用电子记录。正式法律文件为英文。"
+  },
+  {
+    "platform": "web",
+    "key": "public.appHome.explore",
+    "en": "Explore matters",
+    "before": "探索事项",
+    "after": "了解可记录的事项"
+  },
+  {
+    "platform": "web",
+    "key": "public.appHome.addFirst",
+    "en": "Add my first matter",
+    "before": "添加我的第一项事项",
+    "after": "添加第一个事项"
+  },
+  {
+    "platform": "web",
+    "key": "public.explorer.next.title",
+    "en": "What happens",
+    "before": "如何处理",
+    "after": "希望如何处理"
+  },
+  {
+    "platform": "web",
+    "key": "public.explorer.next.description",
+    "en": "Your wishes: keep, transfer or close.",
+    "before": "记录您的意愿：保留、转移或关闭。",
+    "after": "记录处理意愿，例如保留、申请转移或申请关闭。"
+  },
+  {
+    "platform": "web",
+    "key": "public.explorer.who.description",
+    "en": "Invite by link. They use their own account and see only what you share.",
+    "before": "通过链接邀请对方。对方使用自己的账号，只能查看您共享的内容。",
+    "after": "通过链接邀请对方。对方使用自己的账号，只能查看你共享的内容。"
+  },
+  {
+    "platform": "web",
+    "key": "public.explorer.label",
+    "en": "Explore how your map works",
+    "before": "了解事务地图如何运作",
+    "after": "了解事项地图如何运作"
+  },
+  {
+    "platform": "web",
+    "key": "public.explorer.organise",
+    "en": "What would you like to organise?",
+    "before": "您想整理什么？",
+    "after": "你想整理什么？"
+  },
+  {
+    "platform": "web",
+    "key": "forms.details",
+    "en": "Details",
+    "before": "已保存的详细信息",
+    "after": "详细资料"
+  },
+  {
+    "platform": "web",
+    "key": "forms.field.renewalDate.label",
+    "en": "Next renewal",
+    "before": "下次续订日期",
+    "after": "下次续费日期"
+  },
+  {
+    "platform": "web",
+    "key": "forms.provider.default",
+    "en": "Provider",
+    "before": "服务提供方",
+    "after": "服务方"
+  },
+  {
+    "platform": "web",
+    "key": "forms.location.account",
+    "en": "Recovery information location",
+    "before": "恢复资料存放位置",
+    "after": "账号恢复资料存放位置"
+  },
+  {
+    "platform": "web",
+    "key": "forms.custody",
+    "en": "Held in",
+    "before": "持有方式",
+    "after": "保管方式"
+  },
+  {
+    "platform": "web",
+    "key": "forms.billingCycle",
+    "en": "Billing cycle",
+    "before": "账期",
+    "after": "计费周期"
+  },
+  {
+    "platform": "web",
+    "key": "forms.serialHint",
+    "en": "Masked serial hint",
+    "before": "部分隐藏的序列号提示",
+    "after": "序列号提示（如尾号）"
+  },
+  {
+    "platform": "web",
+    "key": "forms.accountHint",
+    "en": "Username or masked reference",
+    "before": "用户名或部分隐藏的标识",
+    "after": "用户名或识别提示（如尾号）"
+  },
+  {
+    "platform": "web",
+    "key": "forms.valueBand",
+    "en": "Value range",
+    "before": "价值范围",
+    "after": "金额范围"
+  },
+  {
+    "platform": "web",
+    "key": "forms.outcome",
+    "en": "Preferred outcome",
+    "before": "期望处理方式",
+    "after": "处理意愿"
+  },
+  {
+    "platform": "web",
+    "key": "forms.outcome.notify",
+    "en": "Notify someone",
+    "before": "通知某人",
+    "after": "通知他人"
+  },
+  {
+    "platform": "web",
+    "key": "forms.privateUntilShared",
+    "en": "Private until you choose to share",
+    "before": "由你选择共享前，仅自己可见",
+    "after": "在你主动共享前，仅自己可见"
+  },
+  {
+    "platform": "web",
+    "key": "forms.firstUse.category.account",
+    "en": "Account",
+    "before": "账号",
+    "after": "在线账号"
+  },
+  {
+    "platform": "web",
+    "key": "forms.firstUse.category.financial_asset",
+    "en": "Asset",
+    "before": "资产",
+    "after": "金融资产"
+  },
+  {
+    "platform": "web",
+    "key": "forms.contact.name",
+    "en": "Name · Required",
+    "before": "名称 · 必填",
+    "after": "姓名 · 必填"
+  },
+  {
+    "platform": "web",
+    "key": "forms.invitation.openShared",
+    "en": "Open shared items",
+    "before": "打开与我共享",
+    "after": "查看共享事项"
+  },
+  {
+    "platform": "web",
+    "key": "forms.reauth.explanation",
+    "en": "Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically.",
+    "before": "继续前需要确认仍是你本人。修改会保留在此处，系统不会自动提交任何内容。",
+    "after": "请重新确认身份后继续。未保存的修改会保留，系统不会自动提交。"
+  },
+  {
+    "platform": "web",
+    "key": "forms.safety.provider",
+    "en": "Provider name",
+    "before": "服务提供方名称",
+    "after": "服务方名称"
+  },
+  {
+    "platform": "web",
+    "key": "forms.safety.locator",
+    "en": "Masked hint or location",
+    "before": "部分隐藏的提示或存放位置",
+    "after": "尾号等识别线索或存放位置"
+  },
+  {
+    "platform": "web",
+    "key": "forms.safety.events",
+    "en": "Death, incapacity and being unreachable are separate events.",
+    "before": "死亡、失能和失联是彼此独立的事件。",
+    "after": "身故、失能和失联需要分别处理。"
+  },
+  {
+    "platform": "web",
+    "key": "forms.terms",
+    "en": "Terms",
+    "before": "条款",
+    "after": "服务条款"
+  },
+  {
+    "platform": "web",
+    "key": "forms.guides.reviewed",
+    "en": "Sources reviewed {date}. Requirements can change.",
+    "before": "来源复核于 {date}。具体要求可能变化。",
+    "after": "最近核对来源：{date}。平台要求可能变化，请以官方说明为准。"
+  },
+  {
+    "platform": "web",
+    "key": "forms.guides.selfReported",
+    "en": "My self-reported review",
+    "before": "我的自行复核记录",
+    "after": "记录我的检查结果"
+  },
+  {
+    "platform": "web",
+    "key": "forms.guides.credits",
+    "en": "Design credits",
+    "before": "设计鸣谢",
+    "after": "设计致谢"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.nav.guides",
+    "en": "Account inheritance",
+    "before": "账号继承指引",
+    "after": "账号身后处理指南"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.access",
+    "en": "Current access and future Family capabilities",
+    "before": "当前权限及未来 Family 功能",
+    "after": "当前权限及未来家庭版功能"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.plan",
+    "en": "Progress, roles and Start Here",
+    "before": "进度、角色与入门指南",
+    "after": "查看进度、角色记录与导出指引"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.shared",
+    "en": "Read-only items from people you know",
+    "before": "他人与您共享的只读事项",
+    "after": "他人与你共享的只读事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.guides",
+    "en": "Preparation & after-death guidance",
+    "before": "生前准备与身后申请指引",
+    "after": "提前准备与身后处理指南"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.activity",
+    "en": "Your private plan history",
+    "before": "您的私人计划记录",
+    "after": "你的私人计划记录"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.navDetail.settings",
+    "en": "Preferences, setup and account sessions",
+    "before": "偏好、设置与账号会话",
+    "after": "外观、设置与登录状态"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.capability.matter_map_core",
+    "en": "Matter map",
+    "before": "事务地图",
+    "after": "事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.capability.official_setup_guides",
+    "en": "Official provider guides",
+    "before": "平台官方指引",
+    "after": "平台官方指南"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.plan.free",
+    "en": "Rillora Free",
+    "before": "Rillora Free",
+    "after": "Rillora 免费版"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.plan.family",
+    "en": "Rillora Family",
+    "before": "Rillora Family",
+    "after": "Rillora 家庭版"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.progress.label",
+    "en": "Your progress",
+    "before": "您的进度",
+    "after": "你的进度"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.freeIncluded",
+    "en": "Included with Free",
+    "before": "Free 包含的功能",
+    "after": "免费版包含的功能"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.afterFamily",
+    "en": "Access when Family ends",
+    "before": "Family 结束后的权限",
+    "after": "家庭版到期后"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.afterFamilyDetails",
+    "en": "You keep your own records and exports. Free includes one live recipient. Extra recipients retain only their permitted paid-period copy, without later updates.",
+    "before": "您仍可保留自己的记录和导出文件。Free 包含一位可接收实时更新的接收人。其他接收人仅保留获准的付费期间副本，不再接收后续更新。",
+    "after": "你仍可保留自己的记录和导出文件。免费版包含一位可接收实时更新的接收人。其他接收人仅保留获准的付费期间副本，不再接收后续更新。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.disclosureBoundary",
+    "en": "You can always restrict or revoke sharing. Billing does not trigger disclosure.",
+    "before": "您随时可以限制或撤销共享。计费状态不会触发信息披露。",
+    "after": "你随时可以限制或撤销共享。计费状态不会触发信息披露。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.activity.private",
+    "en": "Private audit",
+    "before": "私人操作记录",
+    "after": "仅自己可见"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.plan.reviewStart",
+    "en": "Review Start Here guide",
+    "before": "查看入门指南",
+    "after": "预览与导出指引"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.reviews.loading",
+    "en": "Loading reviews…",
+    "before": "正在载入复核…",
+    "after": "正在加载复核记录…"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.settings.sessionScope",
+    "en": "Revokes Rillora sessions only.",
+    "before": "仅撤销 Rillora 会话。",
+    "after": "仅退出 Rillora，不会退出 Google 或 Apple 账号。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.refresh.lastLoaded",
+    "en": "Showing your last loaded map.",
+    "before": "当前显示上次载入的事务地图。",
+    "after": "当前显示上次载入的事项地图。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.start.title",
+    "en": "Start Here guide",
+    "before": "入门指南",
+    "after": "导出指引副本"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.start.minimum",
+    "en": "Minimum disclosure",
+    "before": "最小范围披露",
+    "after": "按所选范围导出"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.familyIncluded",
+    "en": "Included with Family",
+    "before": "Family 包含的功能",
+    "after": "家庭版包含的功能"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.access.familyFuture",
+    "en": "Rillora Family · Not available yet",
+    "before": "Rillora Family · 暂未开放",
+    "after": "Rillora 家庭版 · 暂未开放"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.plan.continue",
+    "en": "Continue next step",
+    "before": "继续下一步",
+    "after": "继续整理事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.plan.firstMatter",
+    "en": "Add your first matter",
+    "before": "添加第一项事项",
+    "after": "添加第一个事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.gate.loading",
+    "en": "Loading your map",
+    "before": "正在载入事务地图",
+    "after": "正在载入事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.gate.unavailable",
+    "en": "Your map is temporarily unavailable",
+    "before": "暂时无法载入事务地图",
+    "after": "暂时无法载入事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.gate.connectionDetails",
+    "en": "We could not load your map. Try again when your connection is ready.",
+    "before": "无法载入事务地图。连接恢复后请重试。",
+    "after": "无法载入事项地图。连接恢复后请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.gate.reload",
+    "en": "Reload map",
+    "before": "重新载入事务地图",
+    "after": "重新载入事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.matter.new",
+    "en": "New matter",
+    "before": "新事项",
+    "after": "新建事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.guide.firstMatter",
+    "en": "Your first matter",
+    "before": "您的第一项事项",
+    "after": "第一个事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.matters.title",
+    "en": "Your matters",
+    "before": "您的事项",
+    "after": "我的事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.guides.title",
+    "en": "Official guides",
+    "before": "官方指引",
+    "after": "账号身后处理指南"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.progress.count",
+    "en": "{count} of {total} essentials",
+    "before": "{total} 项基础事项中已完成 {count} 项",
+    "after": "已添加指引 {count} 项，目标 {total} 项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.progress.completed",
+    "en": "{count} of {total} essentials completed",
+    "before": "{total} 项基础事项中已完成 {count} 项",
+    "after": "已添加指引 {count} 项，目标 {total} 项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.matter.noLongerActive",
+    "en": "This matter is no longer in your active map.",
+    "before": "此事项已不在当前事务地图中。",
+    "after": "此事项已不在当前事项地图中。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.settings.reviewSaved",
+    "en": "Official settings review saved",
+    "before": "官方设置复核已保存",
+    "after": "检查结果已保存（由你自行记录）"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.draft.createQuestion",
+    "en": "Keep these changes as a new private matter?",
+    "before": "将这些修改保留为新的私人事项吗？",
+    "after": "将这些修改保留为新的私密事项吗？"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.session.signOutQuestion",
+    "en": "Sign out all devices?",
+    "before": "退出所有设备？",
+    "after": "退出所有设备上的 Rillora？"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.session.signOutAll",
+    "en": "Sign out all",
+    "before": "全部退出",
+    "after": "退出全部登录"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.session.keep",
+    "en": "Keep sessions",
+    "before": "保留会话",
+    "after": "保持登录"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.matter.archiveMessage",
+    "en": "It will leave your active map and shared views. You can restore it privately from Settings → Archived matters.",
+    "before": "此事项将从当前地图和共享视图中移除。您可以在“设置 → 已归档事项”中将其恢复为私人事项。",
+    "after": "此事项将从当前地图和共享视图中移除。你可以在“设置 → 已归档事项”中将其恢复为私密事项。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.matter.archiveUnsavedMessage",
+    "en": "Unsaved edits will be discarded. It will leave your active map and shared views. You can restore it privately from Settings → Archived matters.",
+    "before": "未保存的修改将被丢弃。此事项将从当前地图和共享视图中移除。您可以在“设置 → 已归档事项”中将其恢复为私人事项。",
+    "after": "未保存的修改将被丢弃。此事项将从当前地图和共享视图中移除。你可以在“设置 → 已归档事项”中将其恢复为私密事项。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.error.recordChanged",
+    "en": "This record changed elsewhere. Your draft is kept.",
+    "before": "此记录已在其他位置修改，您的草稿已保留。",
+    "after": "此记录已在其他位置修改，你的草稿已保留。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.audit.export.previewed",
+    "en": "Start Here previewed",
+    "before": "入门指南已预览",
+    "after": "指引副本已预览"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.audit.export.generated",
+    "en": "Printable Start Here guide generated",
+    "before": "可打印的入门指南已生成",
+    "after": "明文指引副本已生成"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.audit.export.encryption_prepared",
+    "en": "Encrypted Start Here package prepared",
+    "before": "加密入门资料包已准备",
+    "after": "已准备生成加密指引副本"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.audit.export.encrypted",
+    "en": "Encrypted Start Here package created",
+    "before": "加密入门资料包已创建",
+    "after": "加密指引副本已生成"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.overview.matterCount",
+    "en": {
+      "one": "{total} matter",
+      "other": "{total} matters"
+    },
+    "before": "{total} 项事项",
+    "after": "{total} 个事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.overview.map",
+    "en": "Your map",
+    "before": "您的事务地图",
+    "after": "我的事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.overview.openMatters",
+    "en": "Open your matters",
+    "before": "打开您的事项",
+    "after": "查看事项"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.overview.resumeGuide",
+    "en": "Resume quick start guide",
+    "before": "继续快速入门引导",
+    "after": "继续快速入门"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.overview.quickGuide",
+    "en": "Quick start guide",
+    "before": "快速入门引导",
+    "after": "快速入门"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.state.active",
+    "en": "Family is active",
+    "before": "Family 已启用",
+    "after": "家庭版已启用"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.state.expired_read_only",
+    "en": "Family has ended",
+    "before": "Family 已结束",
+    "after": "家庭版已结束"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.state.revoked",
+    "en": "Family access ended",
+    "before": "Family 权限已结束",
+    "after": "家庭版权限已结束"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.subscription",
+    "en": "Family subscription",
+    "before": "Family 订阅",
+    "after": "家庭版订阅"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.family",
+    "en": "Rillora Family",
+    "before": "Rillora Family",
+    "after": "Rillora 家庭版"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.secureCheckout",
+    "en": "Continue to secure checkout",
+    "before": "继续安全结账",
+    "after": "前往付款页面"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.closeCheckout",
+    "en": "Close unfinished checkout",
+    "before": "关闭未完成的结账",
+    "after": "取消未完成的付款"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.checkoutClosed",
+    "en": "Unfinished checkout closed.",
+    "before": "未完成的结账已关闭。",
+    "after": "未完成的付款已取消。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.refresh",
+    "en": "Refresh access",
+    "before": "刷新权限",
+    "after": "刷新订阅状态"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.billing.errorStatus",
+    "en": "Your billing status could not be checked. Please refresh access.",
+    "before": "无法检查计费状态，请刷新权限。",
+    "after": "暂时无法获取订阅状态，请刷新后重试。"
+  },
+  {
+    "platform": "web",
+    "key": "workspace.testBilling.checkoutClosed",
+    "en": "Unfinished checkout closed. You can start a new annual checkout.",
+    "before": "未完成的结账已关闭，您可以开始新的年度结账。",
+    "after": "未完成的结账已关闭，你可以开始新的年度结账。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.common.provider",
+    "en": "Provider",
+    "before": "服务机构",
+    "after": "服务方"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.common.location",
+    "en": "Where to find it",
+    "before": "在哪里查找",
+    "after": "查找位置"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.common.wishes",
+    "en": "Wishes",
+    "before": "意愿",
+    "after": "处理意愿"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.people.refresh",
+    "en": "Refresh connections",
+    "before": "刷新连接状态",
+    "after": "刷新共享状态"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.people.checking",
+    "en": "Checking connection…",
+    "before": "正在检查连接…",
+    "after": "正在检查共享状态…"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.people.unavailable",
+    "en": "Connection unavailable",
+    "before": "连接状态暂不可用",
+    "after": "暂时无法确认共享状态"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.people.loadError",
+    "en": "Connections could not be loaded.",
+    "before": "无法加载连接状态",
+    "after": "暂时无法读取共享状态，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.loadError",
+    "en": "Sharing could not be loaded.",
+    "before": "无法加载共享设置",
+    "after": "无法加载共享设置。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.resumeError",
+    "en": "Sharing could not be resumed.",
+    "before": "无法恢复共享",
+    "after": "无法恢复共享。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.saveError",
+    "en": "Sharing was not saved. Your selection is still here.",
+    "before": "未能保存共享设置，你的选择仍保留在此",
+    "after": "未能保存共享设置，你的选择仍保留在此。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.linkError",
+    "en": "The link could not be created.",
+    "before": "无法创建邀请链接",
+    "after": "无法创建邀请链接。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.revokeError",
+    "en": "Access could not be revoked.",
+    "before": "无法撤销访问权限",
+    "after": "无法撤销访问权限。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.pauseError",
+    "en": "Updates could not be paused.",
+    "before": "无法暂停更新",
+    "after": "无法暂停更新。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.ready",
+    "en": "Ready to share",
+    "before": "可以共享了",
+    "after": "邀请已准备好"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.linkHint",
+    "en": "Send this link or let them scan the QR.",
+    "before": "发送此链接，或请对方扫描二维码",
+    "after": "把链接发给对方，或请对方扫描二维码。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.copyError",
+    "en": "Copy was unavailable. Use Share or select the link below.",
+    "before": "无法复制，请使用“共享”或选择下方链接",
+    "after": "无法复制，请使用“共享”或选择下方链接。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.shareError",
+    "en": "Sharing could not be opened.",
+    "before": "无法打开共享功能",
+    "after": "无法打开共享功能。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.share",
+    "en": "Share",
+    "before": "共享",
+    "after": "分享邀请"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.emailNeeded",
+    "en": "Use the email this person signs in with to create their invitation.",
+    "before": "请使用此人登录时的邮箱来创建邀请。",
+    "after": "填写对方登录 Rillora 时使用的邮箱。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.chooseLater",
+    "en": "You can invite now and choose matters later.",
+    "before": "你可以先发送邀请，稍后再选择事项",
+    "after": "可以先创建邀请，稍后再选择要共享的事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.replacePerson",
+    "en": "Replace included person",
+    "before": "更换包含名额的联系人",
+    "after": "更换免费共享接收人"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.includedPlace",
+    "en": "Your included place",
+    "before": "你的包含名额",
+    "after": "当前免费共享接收人"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.usePlace",
+    "en": "Use included place",
+    "before": "使用包含名额",
+    "after": "使用免费共享名额"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.visibleDetails",
+    "en": "Visible details",
+    "before": "可见的详细信息",
+    "after": "对方可见的内容"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.noSavedCopy",
+    "en": "No saved copy is available for this selection. Resume updates to share new content.",
+    "before": "此选择没有可用的已保存副本。恢复更新以共享新内容",
+    "after": "此选择没有可用的已保存副本。恢复更新以共享新内容。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.noneSelected",
+    "en": "No matters selected.",
+    "before": "尚未选择事项",
+    "after": "尚未选择事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.previewBoundary",
+    "en": "Read only. Unselected matters remain private.",
+    "before": "仅供阅读。未选择的事项仍为私密",
+    "after": "仅可查看。未选择共享的事项仍保持私密。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.loadingPreview",
+    "en": "Loading visible details…",
+    "before": "正在加载可见的详细信息…",
+    "after": "正在加载对方可见的内容…"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.previewError",
+    "en": "The preview could not be loaded.",
+    "before": "无法加载预览",
+    "after": "无法加载预览。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.usePlaceTitle",
+    "en": "Use your included place for this person?",
+    "before": "为此人使用包含名额？",
+    "after": "将免费共享名额分配给此人？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.usePlaceBody",
+    "en": "This person receives current updates. Your previous choice will keep only an eligible saved copy unless covered by Family.",
+    "before": "此人将收到当前更新。你之前选择的联系人只能保留符合条件的已保存副本，除非其包含在 Family 方案中",
+    "after": "此人将可查看最新内容。此前选择的联系人只有在符合条件时，才能继续查看已保存的副本；家庭版覆盖的共享名额不受此限制。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.replaceLinkBody",
+    "en": "The previous link will stop working.",
+    "before": "原来的链接将失效",
+    "after": "原来的邀请链接将失效。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.stopBody",
+    "en": "They lose future access. Copies they already kept cannot be erased.",
+    "before": "对方将失去后续访问权限。对方已保留的副本无法删除",
+    "after": "对方将无法继续通过 Rillora 访问这些内容。已经保存或下载的副本无法远程收回。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.pauseBody",
+    "en": "This frees a sharing place. Only an eligible paid-period saved copy remains available.",
+    "before": "这会释放一个共享名额，仅保留符合条件的付费期间已保存副本供访问",
+    "after": "这会腾出一个共享名额。对方只有在符合条件时，才能继续查看付费期间获准保存的副本。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.replaceDraftBody",
+    "en": "Your unsaved sharing choices will be replaced.",
+    "before": "你尚未保存的共享选择将被替换",
+    "after": "你尚未保存的共享选择将被替换。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.loadError",
+    "en": "Shared information could not be loaded.",
+    "before": "无法加载共享信息",
+    "after": "无法加载共享信息。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.accessChanged",
+    "en": "Access changed. This item is no longer shared with you.",
+    "before": "访问权限已更改，此事项已不再与你共享",
+    "after": "访问权限已更改，此事项已不再与你共享。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.empty",
+    "en": "No shared items.",
+    "before": "暂无共享事项",
+    "after": "暂无共享事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.paused",
+    "en": "Updates paused. The sender can resume sharing.",
+    "before": "更新已暂停，共享人可以恢复共享",
+    "after": "更新已暂停，共享人可以恢复共享。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.noMatters",
+    "en": "No matters shared with you yet.",
+    "before": "暂时没有与你共享的事项",
+    "after": "暂时没有与你共享的事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.copyFallback",
+    "en": "Select the address to copy it.",
+    "before": "请选择地址并复制",
+    "after": "请选择地址并复制。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.incoming.nameBoundary",
+    "en": "Only the name and category are shared with you.",
+    "before": "只与你共享名称和分类",
+    "after": "对方只与你共享了名称和类别。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.peopleError",
+    "en": "Connected people could not be loaded. Close this panel and try again.",
+    "before": "无法加载已连接的联系人，请关闭此面板后重试",
+    "after": "无法加载已连接的联系人，请关闭此面板后重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.replaceKeyBody",
+    "en": "Keep the current key before refreshing. Rillora cannot recover it.",
+    "before": "请在刷新前保留当前密钥，Rillora 无法找回它",
+    "after": "请在刷新前保留当前密钥，Rillora 无法找回它。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.previewError",
+    "en": "The Start Here preview could not be created.",
+    "before": "无法创建“从这里开始”预览",
+    "after": "暂时无法生成指引预览，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.encryptError",
+    "en": "The encrypted package could not be created.",
+    "before": "无法创建加密包",
+    "after": "无法创建加密包。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.printError",
+    "en": "The printable guide could not be created.",
+    "before": "无法创建可打印指引",
+    "after": "无法创建可打印指引。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.encryptedNotice",
+    "en": "Encrypted copy ready. Keep the recovery key separately.",
+    "before": "加密副本已就绪，请将恢复密钥分开保管",
+    "after": "加密副本已就绪，请将恢复密钥分开保管。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.printNotice",
+    "en": "Printable guide prepared. Download started.",
+    "before": "可打印指引已就绪，下载已开始",
+    "after": "可打印指引已就绪，下载已开始。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.ownerHint",
+    "en": "A personal directions overview. Choose a person before making a copy to share.",
+    "before": "个人查找指引概览。制作共享副本前，请先选择接收人",
+    "after": "这份副本供你自己保管。如果要给他人，请先选择接收人，以限定内容范围。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.connectedRequired",
+    "en": "Connected person · Required",
+    "before": "已连接的联系人 · 必填",
+    "after": "已接受邀请的联系人 · 必填"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.connectedPerson",
+    "en": "Connected person",
+    "before": "已连接的联系人",
+    "after": "已接受邀请的联系人"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.noPeople",
+    "en": "No connected people yet. Send an invitation first.",
+    "before": "尚无已连接的联系人，请先发送邀请",
+    "after": "还没有人接受邀请。请先发出邀请，等待对方接受。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.recipientBoundary",
+    "en": "Only their currently shared matters and permitted directions.",
+    "before": "仅包含当前与对方共享的事项和获准查看的查找指引",
+    "after": "仅包含当前与对方共享的事项和获准查看的查找指引。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.reviewCopy",
+    "en": "Review this copy",
+    "before": "检查此副本",
+    "after": "核对副本内容"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.previewBoundary",
+    "en": "Only you see this preview. No file is created or shared.",
+    "before": "只有你能查看此预览，不会创建或共享文件",
+    "after": "只有你能查看预览。此时尚未生成文件，也未与任何人共享。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.review",
+    "en": "Review",
+    "before": "检查",
+    "after": "核对内容"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.changeAudienceBody",
+    "en": "Changing the audience removes this unsaved recovery key.",
+    "before": "更改接收人会移除此尚未保存的恢复密钥",
+    "after": "更改接收人会移除此尚未保存的恢复密钥。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.printable",
+    "en": "Printable",
+    "before": "可打印",
+    "after": "明文（可打印）"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.printableGuide",
+    "en": "Printable guide",
+    "before": "可打印指引",
+    "after": "明文指引副本"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.plaintextAck",
+    "en": "I reviewed the guide and understand this file is plaintext.",
+    "before": "我已检查指引，并理解此文件为明文",
+    "after": "我已核对内容，并理解此文件未经加密。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.irrevocableAck",
+    "en": "Saved, shared or printed copies cannot be revoked.",
+    "before": "已保存、共享或打印的副本无法撤销",
+    "after": "已经保存、分享或打印的副本无法远程收回。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.downloadGuide",
+    "en": "Download guide",
+    "before": "下载指引",
+    "after": "下载指引副本"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.downloadPrintable",
+    "en": "Download printable guide",
+    "before": "下载可打印指引",
+    "after": "下载明文指引副本"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.plaintextBoundary",
+    "en": "The plaintext guide excludes dedicated account hints, financial values and currencies.",
+    "before": "明文指引不包含专用账号提示、财务金额和货币",
+    "after": "明文指引不包含识别提示、金额范围和币种。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.recoveryAck",
+    "en": "Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy.",
+    "before": "Rillora 无法补发恢复密钥。任何持有密钥的人都可以解密此副本",
+    "after": "Rillora 无法找回或补发恢复密钥。持有密钥的人可以解开这份加密副本。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.externalCopyAck",
+    "en": "Copies outside Rillora cannot be remotely revoked.",
+    "before": "Rillora 之外的副本无法远程撤销",
+    "after": "已保存在 Rillora 之外的副本无法远程收回。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.keyOnly",
+    "en": "Only your recovery key can open this copy.",
+    "before": "只有你的恢复密钥可以打开此副本",
+    "after": "打开这份加密副本需要对应的恢复密钥。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.keySavedAck",
+    "en": "I kept the recovery key separately.",
+    "before": "我已将恢复密钥分开保管",
+    "after": "我已将恢复密钥分开保管。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.keyBoundary",
+    "en": "The recovery file is a decryption secret. Keep it separate from the package.",
+    "before": "恢复文件是解密密钥，请与加密包分开保管",
+    "after": "恢复文件中含有解密密钥。请与加密包分开保管。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.encryptionBoundary",
+    "en": "Encryption happens in this browser. The API receives ciphertext and wrapped keys, not your recovery private key. Recipient delivery is not active.",
+    "before": "加密在此浏览器中完成。API 接收密文和封装后的密钥，不会收到你的恢复私钥。接收人投递功能尚未启用",
+    "after": "加密在此浏览器中完成。API 接收密文和封装后的密钥，不会收到你的恢复私钥。接收人投递功能尚未启用。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.loadError",
+    "en": "Your data tools could not be loaded. Try again.",
+    "before": "无法加载数据工具，请重试",
+    "after": "无法加载数据工具，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.actionError",
+    "en": "This action could not be completed.",
+    "before": "无法完成此操作",
+    "after": "无法完成此操作。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.backupTitle",
+    "en": "Keep a complete private copy?",
+    "before": "保留完整的私密副本？",
+    "after": "下载完整备份？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.backupBody",
+    "en": "This file includes private matters, Notes and recorded people. Anyone with the file can read it.",
+    "before": "此文件包含私密事项、备注和联系人记录。任何持有此文件的人都可以阅读",
+    "after": "文件包含私密事项、备注和联系人记录。拿到文件的人都能直接读取这些内容。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.downloadMap",
+    "en": "Download my map",
+    "before": "下载我的资料图谱",
+    "after": "下载完整备份"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.backupReady",
+    "en": "Backup prepared. Keep the file private.",
+    "before": "备份已就绪，请妥善保密此文件",
+    "after": "备份已就绪，请妥善保密此文件。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.importTitle",
+    "en": "Import this map?",
+    "before": "导入此资料图谱？",
+    "after": "导入此事项地图？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.deleteBody",
+    "en": "This removes your private map, people, saved packages and Rillora access. It cannot be undone.",
+    "before": "这会移除你的私密资料图谱、联系人、已保存的加密包和 Rillora 访问权限。此操作无法撤销",
+    "after": "这会移除你的私密事项地图、联系人、已保存的加密包和 Rillora 访问权限。此操作无法撤销。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.downloadComplete",
+    "en": "Download my complete map",
+    "before": "下载我的完整资料图谱",
+    "after": "下载完整备份"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.noArchived",
+    "en": "No archived matters.",
+    "before": "暂无已归档事项",
+    "after": "暂无已归档事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.restored",
+    "en": "Restored as a private draft. Sharing stays off.",
+    "before": "已恢复为私密草稿，共享仍保持关闭",
+    "after": "已恢复为私密草稿，不会恢复共享。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.restore",
+    "en": "Restore privately",
+    "before": "恢复为私密内容",
+    "after": "恢复为私密草稿"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.deleteHint",
+    "en": "Keep a map backup first if you need it. Required consent and payment records may be retained.",
+    "before": "如有需要，请先保留资料图谱备份。必要的同意记录和付款记录可能会保留",
+    "after": "如有需要，请先保留事项地图备份。必要的同意记录和付款记录可能会保留。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.copiesAck",
+    "en": "I understand copies already saved or shared cannot be removed.",
+    "before": "我理解已保存或共享的副本无法移除",
+    "after": "我理解，已经保存或分享出去的副本无法远程收回。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.billingAck",
+    "en": "I understand deleting the account does not cancel provider billing.",
+    "before": "我理解删除账号不会取消服务提供方的计费",
+    "after": "我理解，删除 Rillora 账号不会自动取消 Apple 或付款平台上的订阅。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.saveReference",
+    "en": "Save deletion reference",
+    "before": "保存删除凭据",
+    "after": "保存删除查询凭据"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.delete.pendingBody",
+    "en": "Your request is saved and Rillora access has ended. Cleanup is in progress and retries automatically.",
+    "before": "你的请求已保存，Rillora 访问权限已终止。清理正在进行，失败时会自动重试",
+    "after": "你的请求已保存，Rillora 访问权限已终止。清理正在进行，失败时会自动重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.delete.completedBody",
+    "en": "Your active Rillora account and private map have been removed. Required records and routine backup retention follow the Privacy Policy.",
+    "before": "你的有效 Rillora 账号和私密资料图谱已移除。必要记录及常规备份的保留遵循隐私政策",
+    "after": "你的有效 Rillora 账号和私密事项地图已移除。必要记录及常规备份的保留遵循隐私政策。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.delete.statusError",
+    "en": "The status could not be checked. Try again.",
+    "before": "无法检查删除状态，请重试",
+    "after": "无法检查删除状态，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.delete.checkStatus",
+    "en": "Check status",
+    "before": "检查状态",
+    "after": "查看进度"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.delete.referenceError",
+    "en": "Choose your saved reference file.",
+    "before": "请选择已保存的删除凭据文件",
+    "after": "请选择已保存的删除凭据文件。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.reader.localHint",
+    "en": "Files and recovery keys open on this device.",
+    "before": "文件和恢复密钥在此设备上打开",
+    "after": "文件和恢复密钥在此设备上打开。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.reader.unlockError",
+    "en": "This recovery file could not open the package. Check that the two files belong together.",
+    "before": "此恢复文件无法打开加密包，请检查这两个文件是否匹配",
+    "after": "此恢复文件无法打开加密包，请检查这两个文件是否匹配。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.reader.import",
+    "en": "Import into an empty map",
+    "before": "导入空白资料图谱",
+    "after": "导入空白事项地图"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.loadError",
+    "en": "Reviews could not be loaded.",
+    "before": "无法加载检查记录",
+    "after": "无法加载复核记录。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.networkLoadError",
+    "en": "Reviews could not be loaded. Check your connection and try again.",
+    "before": "无法加载检查记录，请检查网络连接后重试",
+    "after": "无法加载复核记录，请检查网络连接后重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.loading",
+    "en": "Loading reviews…",
+    "before": "正在加载检查记录…",
+    "after": "正在加载复核记录…"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.shareTitle",
+    "en": "Rillora review",
+    "before": "Rillora 检查",
+    "after": "Rillora 复核请求"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.shareBody",
+    "en": "Please check the directions I shared with you.",
+    "before": "请检查我与你共享的查找指引",
+    "after": "请帮我核对与你共享的查找指引。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.shareError",
+    "en": "The review link could not be shared. Try again.",
+    "before": "无法共享检查链接，请重试",
+    "after": "无法共享复核链接，请重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.inbox",
+    "en": "Review inbox",
+    "before": "检查收件箱",
+    "after": "复核收件箱"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.myPlan",
+    "en": "My plan",
+    "before": "我的规划",
+    "after": "我的计划"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.refresh",
+    "en": "Refresh reviews",
+    "before": "刷新检查记录",
+    "after": "刷新复核记录"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.shared",
+    "en": "Shared review",
+    "before": "共同检查",
+    "after": "共同复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.familyPreview",
+    "en": "Family preview",
+    "before": "Family 预览",
+    "after": "家庭版预览"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.sharedPlural",
+    "en": "Shared reviews",
+    "before": "共同检查",
+    "after": "共同复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.together",
+    "en": "Check together",
+    "before": "一起检查",
+    "after": "一起核对"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.keepCurrent",
+    "en": "Keep directions current",
+    "before": "保持查找指引更新",
+    "after": "及时更新查找指引"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.due",
+    "en": "Your next review is due",
+    "before": "下一次检查已到期",
+    "after": "该进行下一次复核了"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.copied",
+    "en": "Copied review link",
+    "before": "已复制检查链接",
+    "after": "已复制复核链接"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.shareRequest",
+    "en": "Share review request",
+    "before": "共享检查请求",
+    "after": "分享复核请求"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.finish",
+    "en": "Finish review",
+    "before": "完成检查",
+    "after": "完成复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.cancelThis",
+    "en": "Cancel this review",
+    "before": "取消此次检查",
+    "after": "取消本次复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.start",
+    "en": "Start a shared review",
+    "before": "开始共同检查",
+    "after": "发起共同复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.unavailable",
+    "en": "New shared reviews are not available for this plan right now.",
+    "before": "此方案目前无法发起新的共同检查",
+    "after": "当前套餐暂时无法发起新的共同复核。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.connect",
+    "en": "Connect someone and share directions",
+    "before": "连接联系人并共享查找指引",
+    "after": "邀请他人，并选择共享内容"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.settingsEntry",
+    "en": "Review schedule & collaborator",
+    "before": "检查计划与协作者",
+    "after": "复核安排与协作者"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.history",
+    "en": "Changes you approved",
+    "before": "你已批准的修改",
+    "after": "你已确认的修改"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.past",
+    "en": "Past reviews",
+    "before": "过往检查",
+    "after": "历史复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.inboxCaption",
+    "en": "People who asked you to check their directions",
+    "before": "请你检查查找指引的联系人",
+    "after": "需要你帮忙核对的查找指引"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.empty",
+    "en": "Shared review requests will appear here.",
+    "before": "共同检查请求会显示在这里",
+    "after": "收到的共同复核请求会显示在这里。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.previous",
+    "en": "Previous checks",
+    "before": "以往检查",
+    "after": "历史复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.saveNetworkError",
+    "en": "Could not confirm your changes. Check your connection and try again. Your draft is still here.",
+    "before": "无法确认修改结果。请检查网络连接后重试，你的草稿仍保留在此",
+    "after": "无法确认修改结果。请检查网络连接后重试，你的草稿仍保留在此。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.saveError",
+    "en": "Your changes were not saved. The draft is still here.",
+    "before": "未能保存修改，草稿仍保留在此",
+    "after": "未能保存修改，草稿仍保留在此。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.chooseChecks",
+    "en": "Choose what to check",
+    "before": "选择检查内容",
+    "after": "选择复核事项"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.settings",
+    "en": "Review settings",
+    "before": "检查设置",
+    "after": "复核设置"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.finishTitle",
+    "en": "Finish this review?",
+    "before": "完成此次检查？",
+    "after": "完成本次复核？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.cancelTitle",
+    "en": "Cancel this review?",
+    "before": "取消此次检查？",
+    "after": "取消本次复核？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.closePanel",
+    "en": "Close review panel",
+    "before": "关闭检查面板",
+    "after": "关闭复核面板"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.by",
+    "en": "Review by",
+    "before": "检查截止日期",
+    "after": "复核截止日期"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.connectFirst",
+    "en": "Connect a person and share Directions or Details first.",
+    "before": "请先连接联系人，并共享“查找指引”或“已保存的详细信息”",
+    "after": "请先邀请一位联系人，等待对方接受，并共享“查找指引”或“详细资料”。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.requestHint",
+    "en": "Appears in their Rillora review inbox.",
+    "before": "将显示在对方的 Rillora 检查收件箱中",
+    "after": "请求会显示在对方的 Rillora 复核收件箱中。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.cadence",
+    "en": "Review cadence",
+    "before": "检查频率",
+    "after": "复核频率"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.collaborator",
+    "en": "Who can suggest corrections?",
+    "before": "谁可以建议更正？",
+    "after": "谁可以提出修改建议？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.noCollaborator",
+    "en": "No one · checks only",
+    "before": "无人 · 仅检查",
+    "after": "暂不指定 · 仅核对信息"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.approvalHint",
+    "en": "You approve changes before your map updates.",
+    "before": "修改经你批准后才会更新到资料图谱",
+    "after": "修改建议经你确认后，才会更新到事项地图。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.pause",
+    "en": "Pause reviews and suggestions",
+    "before": "暂停检查和建议",
+    "after": "暂停复核和修改建议"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.finishBody",
+    "en": "These checks and your decisions stay in review history.",
+    "before": "这些检查和你的决定将保留在检查历史中",
+    "after": "复核结果和你的决定会保留在复核记录中。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.cancelBody",
+    "en": "Existing directions and sharing stay unchanged.",
+    "before": "现有查找指引和共享设置保持不变",
+    "after": "现有查找指引和共享设置保持不变。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.cancel",
+    "en": "Cancel review",
+    "before": "取消检查",
+    "after": "取消复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.suggestion",
+    "en": "Suggested correction",
+    "before": "更正建议",
+    "after": "修改建议"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.stale",
+    "en": "The matter changed. A fresh check is needed.",
+    "before": "事项已更改，需要重新检查",
+    "after": "事项内容已改变，需要重新复核。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.scopeChanged",
+    "en": "Sharing changed. This check is no longer current.",
+    "before": "共享设置已更改，此次检查已不再适用",
+    "after": "共享范围已改变，需要重新复核。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.apply",
+    "en": "Apply update",
+    "before": "应用更新",
+    "after": "确认并更新"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.recheck",
+    "en": "Request a fresh check",
+    "before": "请求重新检查",
+    "after": "请求重新复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.suggest",
+    "en": "Suggest a correction",
+    "before": "建议更正",
+    "after": "提出修改建议"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.choices",
+    "en": "Review choices",
+    "before": "检查选项",
+    "after": "复核选项"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.submit",
+    "en": "Send for approval",
+    "before": "提交审批",
+    "after": "提交给本人确认"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.replacePersonTitle",
+    "en": "Replace {name}'s current updates?",
+    "before": "替换{name}的当前更新？",
+    "after": "更换 {name} 的免费共享名额？"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.confirm.replacePersonBody",
+    "en": "Your included place will move to {recipient}. {name} will keep only an eligible saved copy.",
+    "before": "你的包含名额将转给{recipient}。{name}只能保留符合条件的已保存副本",
+    "after": "免费共享名额将转给 {recipient}。{name} 只有在符合条件时，才能继续查看已保存的副本，不再接收后续更新。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.contact.detailFor",
+    "en": "Detail shared for {name}",
+    "before": "与对方共享的{name}详细程度",
+    "after": "{name} 的共享范围"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.expiry",
+    "en": "Expires {date}. Refresh after changing your map.",
+    "before": "{date}到期。更改资料图谱后，请刷新预览",
+    "after": "{date}到期。更改事项地图后，请刷新预览。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.copy.artifactLanguage",
+    "en": "The downloaded guide is generated in English. Your saved content is kept as written.",
+    "before": "下载的指引使用英文生成，你保存的内容保留原文",
+    "after": "生成的指引标题和说明为英文；你填写的内容会保留原文。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.importBody",
+    "en": "Import {count} matters into {name}? Existing records are never replaced. Sharing and invitations stay off.",
+    "before": "将 {count} 个事项导入{name}？现有记录不会被替换，共享和邀请仍保持关闭",
+    "after": "将 {count} 个事项导入{name}？现有记录不会被替换，共享和邀请仍保持关闭。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.imported",
+    "en": "{count} matters imported. Choose sharing separately.",
+    "before": "已导入 {count} 个事项，请单独选择共享设置",
+    "after": "已导入 {count} 个事项，请单独选择共享设置。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.account.deleteError",
+    "en": "The deletion request could not be accepted. Check the requirements and try again.",
+    "before": "无法接受删除请求，请检查要求后重试",
+    "after": "无法接受删除请求，请检查要求后重试。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.reader.openError",
+    "en": "This file could not be opened. Choose a supported Rillora backup, encrypted package, or text guide no larger than 2 MB.",
+    "before": "无法打开此文件。请选择不超过 2 MB 的受支持 Rillora 备份、加密包或文本指引",
+    "after": "无法打开此文件。请选择不超过 2 MB 的受支持 Rillora 备份、加密包或文本指引。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.progress",
+    "en": "{resolved} of {count} checks resolved",
+    "before": "已完成 {resolved} / {count} 项检查",
+    "after": "已完成 {resolved} / {count} 项复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.nextDate",
+    "en": "Next review · {date}",
+    "before": "下次检查 · {date}",
+    "after": "下次复核 · {date}"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.requestCount",
+    "en": {
+      "one": "Request {count} check",
+      "other": "Request {count} checks"
+    },
+    "before": "请求 {count} 项检查",
+    "after": {
+      "one": "请求复核 {count} 个事项",
+      "other": "请求复核 {count} 个事项"
+    }
+  },
+  {
+    "platform": "web",
+    "key": "sharing.level.details",
+    "en": "Details",
+    "before": "已保存的详细信息",
+    "after": "详细资料"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.level.nameDescription",
+    "en": "Title · Category",
+    "before": "标题 · 分类",
+    "after": "名称 · 类别"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.level.directionsDescription",
+    "en": "Provider · Location · Preferred outcome. Notes and account reference are not included.",
+    "before": "服务机构 · 位置 · 期望结果。不包含备注和账户提示。",
+    "after": "服务方、查找位置和处理意愿。不包含备注或识别提示。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.level.detailsDescription",
+    "en": "All saved details, including Notes and account reference",
+    "before": "已保存的全部详细信息，包括备注和账户提示",
+    "after": "已保存的全部详细资料，包括备注和识别提示。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.status.accepted",
+    "en": "Connected",
+    "before": "已连接",
+    "after": "已建立共享"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.status.revoked",
+    "en": "Disconnected",
+    "before": "已断开连接",
+    "after": "已停止共享"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.state.confirmed",
+    "en": "Checked",
+    "before": "已检查",
+    "after": "已核对"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.review.state.checkAgain",
+    "en": "Check again",
+    "before": "重新检查",
+    "after": "重新复核"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.institutionName",
+    "en": "Provider",
+    "before": "服务机构",
+    "after": "服务方"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.locationHint",
+    "en": "Where to find it",
+    "before": "在哪里查找",
+    "after": "查找位置"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.desiredOutcome",
+    "en": "Wishes",
+    "before": "意愿",
+    "after": "处理意愿"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.accountHint",
+    "en": "Masked hint",
+    "before": "脱敏提示",
+    "after": "识别提示"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.currencyCode",
+    "en": "Currency",
+    "before": "货币",
+    "after": "币种"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.field.renewalDate",
+    "en": "Next renewal",
+    "before": "下次续费",
+    "after": "下次续费日期"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.desiredOutcome.transfer_request",
+    "en": "Request transfer",
+    "before": "请求转移",
+    "after": "申请转移"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.desiredOutcome.close",
+    "en": "Request closure",
+    "before": "请求关闭",
+    "after": "申请关闭"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.desiredOutcome.delete_request",
+    "en": "Request deletion",
+    "before": "请求删除",
+    "after": "申请删除"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.desiredOutcome.memorialize",
+    "en": "Request memorialization",
+    "before": "请求设为纪念账号",
+    "after": "申请设为纪念账号"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.desiredOutcome.delay_disclosure",
+    "en": "Delay disclosure",
+    "before": "延后披露",
+    "after": "延迟披露"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.value.importance.critical",
+    "en": "Critical",
+    "before": "关键",
+    "after": "非常重要"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.loadError",
+    "en": "Role policy could not be loaded.",
+    "before": "无法加载角色规则",
+    "after": "无法加载角色规则。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.createError",
+    "en": "The role record could not be created.",
+    "before": "无法创建角色记录",
+    "after": "无法创建角色记录。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.updateError",
+    "en": "The role record could not be updated.",
+    "before": "无法更新角色记录",
+    "after": "无法更新角色记录。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.revokeError",
+    "en": "The role record could not be revoked.",
+    "before": "无法撤销角色记录",
+    "after": "无法撤销角色记录。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.revokeRecordBody",
+    "en": "Only this Rillora record changes. External accounts and legal status stay separate.",
+    "before": "仅更改此 Rillora 记录，不涉及外部账号和法律身份",
+    "after": "仅更改此 Rillora 记录，不涉及外部账号和法律身份。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.revokeEvidenceBody",
+    "en": "This removes the Rillora role and invitation evidence. External authority and accounts stay separate.",
+    "before": "这会移除 Rillora 角色和邀请凭据，不涉及外部授权和账号",
+    "after": "这会移除 Rillora 角色和邀请凭据，不涉及外部授权和账号。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.addPrerequisite",
+    "en": "Add an active person record and matter before assigning a role.",
+    "before": "分配角色前，请先添加有效联系人记录和事项",
+    "after": "分配角色前，请先添加有效联系人记录和事项。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.empty",
+    "en": "No active role applies to this matter yet.",
+    "before": "此事项尚无适用的有效角色",
+    "after": "此事项尚无适用的有效角色。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.boundary",
+    "en": "No invitation or account access is created. Event, identity, authority and field checks remain separate.",
+    "before": "不会创建邀请或授予账号访问权限。事件、身份、授权和字段检查仍各自独立",
+    "after": "不会创建邀请或授予账号访问权限。事件、身份、授权和字段检查仍各自独立。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.role.evidenceReadOnly",
+    "en": "Invitation evidence is read-only.",
+    "before": "邀请凭据为只读",
+    "after": "邀请凭据为只读。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.death",
+    "en": "Death",
+    "before": "死亡",
+    "after": "身故"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.loadError",
+    "en": "Earlier disclosure rehearsals could not be loaded.",
+    "before": "无法加载以往披露演练",
+    "after": "无法加载以往披露演练。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.createError",
+    "en": "The disclosure rehearsal could not be created.",
+    "before": "无法创建披露演练",
+    "after": "无法创建披露演练。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.updateError",
+    "en": "The rehearsal state could not be updated.",
+    "before": "无法更新演练状态",
+    "after": "无法更新演练状态。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.boundary",
+    "en": "This preview verifies no evidence, contacts nobody and releases nothing. Cooling periods do not elapse automatically.",
+    "before": "此预览不会验证凭据、联系任何人或释放任何信息。冷静期不会自动结束",
+    "after": "此预览不会核验证据、联系任何人或实际披露资料。演练中的等待期不会自动结束。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.stale",
+    "en": "This snapshot is stale.",
+    "before": "此快照已过时",
+    "after": "此快照已过时。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.freshHint",
+    "en": "Start a fresh rehearsal to continue.",
+    "before": "请开始新的演练以继续",
+    "after": "请开始新的演练以继续。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.views",
+    "en": "Projected role views",
+    "before": "预计的角色视图",
+    "after": "各角色在演练中可见的内容"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.sourceLanguage",
+    "en": "Server-authored diagnostic status and policy explanations are shown in English.",
+    "before": "服务器生成的诊断状态和规则说明保留英文",
+    "after": "服务器生成的诊断状态和规则说明保留英文。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.rehearsal.holdEnd",
+    "en": "Illustrative hold ends {date}. It will not elapse automatically in this rehearsal.",
+    "before": "示例等待期结束时间为{date}。本次演练不会自动结束等待期",
+    "after": "示例等待期结束时间为{date}。本次演练不会自动结束等待期。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.body",
+    "en": "Locally exercise acceptance, a memory-only device key, recipient-only package access and decryption. This sends no invitation, verifies no identity, detects no death and releases nothing.",
+    "before": "在本地演练接受邀请、仅存于内存的设备密钥、仅接收人可用的加密包访问和解密。不会发送邀请、验证身份、判断死亡或释放信息",
+    "after": "在本地演练接受邀请、仅存于内存的设备密钥、仅接收人可用的加密包访问和解密。不会发送邀请、验证身份、判断死亡或释放信息。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.passed",
+    "en": "Recipient-side decryption passed for {count} matter directions. Delivery: no. Release: no.",
+    "before": "{count} 个事项的查找指引通过接收端解密。未投递，未释放",
+    "after": "{count} 个事项的查找指引通过接收端解密。未投递，未释放。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.revocationBody",
+    "en": "Revocation prevents this simulated active device from fetching the package again. It cannot erase plaintext or copies already obtained outside Rillora.",
+    "before": "撤销后，此模拟有效设备将无法再次获取加密包。已在 Rillora 之外取得的明文或副本无法删除",
+    "after": "撤销后，此模拟有效设备将无法再次获取加密包。已在 Rillora 之外取得的明文或副本无法删除。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.passedNotice",
+    "en": "Synthetic recipient acceptance and local decryption rehearsal passed. No delivery or release occurred.",
+    "before": "模拟接收人接受和本地解密演练已通过，未进行投递或释放",
+    "after": "模拟接收人接受和本地解密演练已通过，未进行投递或释放。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.runError",
+    "en": "The synthetic recipient rehearsal could not be completed.",
+    "before": "无法完成模拟接收人演练",
+    "after": "无法完成模拟接收人演练。"
+  },
+  {
+    "platform": "web",
+    "key": "sharing.diagnostics.revokeError",
+    "en": "The synthetic recipient key could not be revoked.",
+    "before": "无法撤销模拟接收人密钥",
+    "after": "无法撤销模拟接收人密钥。"
+  },
+  {
+    "platform": "ios",
+    "key": "%1$lld essentials left",
+    "before": "还有 %1$lld 项重要事务",
+    "after": "距离目标还差 %1$lld 项"
+  },
+  {
+    "platform": "ios",
+    "key": "%1$lld matters in this copy",
+    "before": "此副本包含 %1$lld 项事项",
+    "after": "此副本包含 %1$lld 个事项"
+  },
+  {
+    "platform": "ios",
+    "key": "%1$lld of %2$lld essentials mapped",
+    "before": "已整理 %1$lld 项，共 %2$lld 项重要事务",
+    "after": "已添加指引 %1$lld 项，目标 %2$lld 项"
+  },
+  {
+    "platform": "ios",
+    "key": "5 live recipients · Shared reviews",
+    "before": "5 位实时更新接收人 · 共同复核",
+    "after": "最多与 5 人持续共享 · 共同复核"
+  },
+  {
+    "platform": "ios",
+    "key": "A personal directions overview. Choose a person before making a copy to share.",
+    "before": "个人查找指引概览。制作共享副本前，请先选择接收人",
+    "after": "这份副本供你自己保管。如果要给他人，请先选择接收人，以限定内容范围。"
+  },
+  {
+    "platform": "ios",
+    "key": "A private map of your important things, shared with the people you choose.",
+    "before": "把重要事务整理成私人地图，与自己选择的人共享。",
+    "after": "把重要账号、文件和设备整理在一起，记录查找位置，并由你决定与谁共享。"
+  },
+  {
+    "platform": "ios",
+    "key": "A signed-in Rillora account is required to bind the local transaction.",
+    "before": "需要登录 Rillora 账户才能绑定本地交易。",
+    "after": "需要登录 Rillora 账号才能绑定本地交易。"
+  },
+  {
+    "platform": "ios",
+    "key": "Access changed. This item is no longer shared with you.",
+    "before": "访问权限已更改，此事项已不再与你共享",
+    "after": "访问权限已更改，此事项已不再与你共享。"
+  },
+  {
+    "platform": "ios",
+    "key": "Access when Family ends",
+    "before": "家庭版结束后的访问权限",
+    "after": "家庭版到期后"
+  },
+  {
+    "platform": "ios",
+    "key": "Access your private map",
+    "before": "访问你的私人事务地图",
+    "after": "打开我的事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Account action couldn’t be completed",
+    "before": "无法完成账户操作",
+    "after": "未能完成账号操作"
+  },
+  {
+    "platform": "ios",
+    "key": "Account deleted",
+    "before": "账户已删除",
+    "after": "账号已删除"
+  },
+  {
+    "platform": "ios",
+    "key": "Account deletion",
+    "before": "删除账户",
+    "after": "删除账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Account inheritance",
+    "before": "账号继承指引",
+    "after": "账号身后处理指南"
+  },
+  {
+    "platform": "ios",
+    "key": "Account inheritance guidance",
+    "before": "账户继承指引",
+    "after": "账号身后处理指南"
+  },
+  {
+    "platform": "ios",
+    "key": "Accounts",
+    "before": "账户",
+    "after": "账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Accounts are not open yet. You can still explore Rillora and its guides.",
+    "before": "账户功能尚未开放。你仍可了解 Rillora 及其指南。",
+    "after": "账号功能暂未开放。你仍可浏览 Rillora 的公开介绍。"
+  },
+  {
+    "platform": "ios",
+    "key": "Add an account",
+    "before": "添加账户",
+    "after": "添加账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Add one useful matter",
+    "before": "添加一个有用的事项",
+    "after": "先记录一个重要事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Agreement location",
+    "before": "协议位置",
+    "after": "协议存放位置"
+  },
+  {
+    "platform": "ios",
+    "key": "All saved details",
+    "before": "已保存的全部详细信息",
+    "after": "已保存的全部详细资料，包括备注和识别提示。"
+  },
+  {
+    "platform": "ios",
+    "key": "Appears in their Rillora review inbox.",
+    "before": "将显示在对方的 Rillora 检查收件箱中",
+    "after": "请求会显示在对方的 Rillora 复核收件箱中。"
+  },
+  {
+    "platform": "ios",
+    "key": "Applies across your map.",
+    "before": "适用于整个事务地图。",
+    "after": "适用于整个事项地图。"
+  },
+  {
+    "platform": "ios",
+    "key": "Apply update",
+    "before": "应用更新",
+    "after": "确认并更新"
+  },
+  {
+    "platform": "ios",
+    "key": "Cancel review",
+    "before": "取消检查",
+    "after": "取消复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Cancel this review",
+    "before": "取消此次检查",
+    "after": "取消本次复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Changes you approved",
+    "before": "你已批准的修改",
+    "after": "你已确认的修改"
+  },
+  {
+    "platform": "ios",
+    "key": "Check again",
+    "before": "重新检查",
+    "after": "重新复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Check deletion status",
+    "before": "检查删除状态",
+    "after": "查看删除进度"
+  },
+  {
+    "platform": "ios",
+    "key": "Check status",
+    "before": "检查状态",
+    "after": "查看进度"
+  },
+  {
+    "platform": "ios",
+    "key": "Check together",
+    "before": "一起检查",
+    "after": "一起核对"
+  },
+  {
+    "platform": "ios",
+    "key": "Checked",
+    "before": "已检查",
+    "after": "已核对"
+  },
+  {
+    "platform": "ios",
+    "key": "Choose a Rillora map backup, encrypted package or text guide.",
+    "before": "请选择 Rillora 事务地图备份、加密包或文本指引。",
+    "after": "请选择 Rillora 事项地图备份、加密包或文本指引。"
+  },
+  {
+    "platform": "ios",
+    "key": "Choose a person. Choose their view.",
+    "before": "选择一个人，再选择对方能看到的内容。",
+    "after": "选择一个人，再决定对方能看到什么。"
+  },
+  {
+    "platform": "ios",
+    "key": "Choose what to check",
+    "before": "选择检查内容",
+    "after": "选择复核事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Confirm it is still you before continuing. Your changes stay here and nothing is submitted automatically.",
+    "before": "继续之前，请再次确认你的身份。你的更改会保留，不会自动提交任何内容。",
+    "after": "请重新确认身份后继续。未保存的修改会保留，系统不会自动提交。"
+  },
+  {
+    "platform": "ios",
+    "key": "Connect someone and share Directions or Details first.",
+    "before": "请先与他人建立连接，并共享查找指引或已保存的详细信息。",
+    "after": "请先与他人建立连接，并共享查找指引或详细资料。"
+  },
+  {
+    "platform": "ios",
+    "key": "Connected",
+    "before": "已连接",
+    "after": "已建立共享"
+  },
+  {
+    "platform": "ios",
+    "key": "Connected person · Required",
+    "before": "已连接的联系人 · 必填",
+    "after": "已接受邀请的联系人 · 必填"
+  },
+  {
+    "platform": "ios",
+    "key": "Copies saved outside Rillora cannot be remotely revoked.",
+    "before": "保存在 Rillora 之外的副本无法远程撤销。",
+    "after": "已保存在 Rillora 之外的副本无法远程收回。"
+  },
+  {
+    "platform": "ios",
+    "key": "Create a guide you can keep",
+    "before": "创建可保存的指引",
+    "after": "制作一份可单独保存的指引"
+  },
+  {
+    "platform": "ios",
+    "key": "Crypto account",
+    "before": "加密资产账户",
+    "after": "加密资产账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Death",
+    "before": "死亡",
+    "after": "身故"
+  },
+  {
+    "platform": "ios",
+    "key": "Death reported",
+    "before": "收到死亡报告",
+    "after": "已收到身故报告"
+  },
+  {
+    "platform": "ios",
+    "key": "Decrypted %1$lld matter directions. Delivery: no. Release: no.",
+    "before": "已解密 %1$lld 项事项的查找指引。未发送，未披露。",
+    "after": "已解密 %1$lld 个事项的查找指引。未发送，未披露。"
+  },
+  {
+    "platform": "ios",
+    "key": "Delete account",
+    "before": "删除账户",
+    "after": "删除账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Delete my account",
+    "before": "删除我的账户",
+    "after": "删除我的账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Delete this Rillora account?",
+    "before": "删除此 Rillora 账户？",
+    "after": "删除此 Rillora 账号？"
+  },
+  {
+    "platform": "ios",
+    "key": "Deletion reference",
+    "before": "删除凭据",
+    "after": "删除查询凭据"
+  },
+  {
+    "platform": "ios",
+    "key": "Details",
+    "before": "已保存的详细信息",
+    "after": "详细资料"
+  },
+  {
+    "platform": "ios",
+    "key": "Disconnected",
+    "before": "已断开连接",
+    "after": "已停止共享"
+  },
+  {
+    "platform": "ios",
+    "key": "Document location",
+    "before": "文件位置",
+    "after": "文件存放位置"
+  },
+  {
+    "platform": "ios",
+    "key": "Download my complete map",
+    "before": "下载我的完整事务地图",
+    "after": "下载完整备份"
+  },
+  {
+    "platform": "ios",
+    "key": "Encrypted Start Here is unavailable.",
+    "before": "加密版“从这里开始”指南不可用。",
+    "after": "加密指引副本暂时不可用。"
+  },
+  {
+    "platform": "ios",
+    "key": "Essentials mapped",
+    "before": "重要事务已整理",
+    "after": "指引整理进度"
+  },
+  {
+    "platform": "ios",
+    "key": "Existing directions and sharing stay unchanged.",
+    "before": "现有查找指引和共享设置保持不变",
+    "after": "现有查找指引和共享设置保持不变。"
+  },
+  {
+    "platform": "ios",
+    "key": "Expires %1$@. Refresh after changing your map.",
+    "before": "%1$@到期。更改事务地图后请刷新。",
+    "after": "%1$@到期。更改事项地图后请刷新。"
+  },
+  {
+    "platform": "ios",
+    "key": "Family preview",
+    "before": "Family 预览",
+    "after": "家庭版预览"
+  },
+  {
+    "platform": "ios",
+    "key": "Finish review",
+    "before": "完成检查",
+    "after": "完成复核"
+  },
+  {
+    "platform": "ios",
+    "key": "For me %1$lld",
+    "before": "待我检查 %1$lld",
+    "after": "待我复核 %1$lld"
+  },
+  {
+    "platform": "ios",
+    "key": "Held in · Required",
+    "before": "持有方式 · 必填",
+    "after": "保管方式 · 必填"
+  },
+  {
+    "platform": "ios",
+    "key": "I kept the recovery key separately.",
+    "before": "我已将恢复密钥分开保管",
+    "after": "我已将恢复密钥分开保管。"
+  },
+  {
+    "platform": "ios",
+    "key": "I reviewed the guide and understand this file is plaintext.",
+    "before": "我已检查指引，并理解此文件为明文",
+    "after": "我已核对内容，并理解此文件未经加密。"
+  },
+  {
+    "platform": "ios",
+    "key": "I understand account deletion does not cancel provider billing.",
+    "before": "我理解，删除账户不会取消付款平台的计费。",
+    "after": "我理解，删除 Rillora 账号不会自动取消 Apple 或付款平台上的订阅。"
+  },
+  {
+    "platform": "ios",
+    "key": "I understand copies already saved or shared cannot be removed.",
+    "before": "我理解，已保存或共享的副本无法移除。",
+    "after": "我理解，已经保存或分享出去的副本无法远程收回。"
+  },
+  {
+    "platform": "ios",
+    "key": "Import into an empty map",
+    "before": "导入空白事务地图",
+    "after": "导入空白事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Import map",
+    "before": "导入事务地图",
+    "after": "导入事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Import requires an empty map. It does not replace existing records, restore invitations or grant access to anyone.",
+    "before": "只能导入空白事务地图。导入不会替换已有记录、恢复邀请，也不会授予任何人访问权限。",
+    "after": "只能导入空白事项地图，不会覆盖已有记录。导入后不会恢复邀请或共享权限。"
+  },
+  {
+    "platform": "ios",
+    "key": "Institution",
+    "before": "机构",
+    "after": "金融机构"
+  },
+  {
+    "platform": "ios",
+    "key": "Invitation evidence is read-only.",
+    "before": "邀请凭据为只读",
+    "after": "邀请凭据为只读。"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep a complete private copy?",
+    "before": "保留一份完整的私人副本？",
+    "after": "下载完整备份？"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep directions current",
+    "before": "保持查找指引更新",
+    "after": "及时更新查找指引"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep important accounts, documents and directions together.",
+    "before": "把重要账户、文件和查找指引集中整理。",
+    "after": "把重要账号、文件和查找指引集中整理。"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep my account",
+    "before": "保留我的账户",
+    "after": "保留我的账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep passwords, private keys and recovery phrases out.",
+    "before": "不要填写密码、私钥或恢复助记词。",
+    "after": "请勿填写密码、私钥或助记词。"
+  },
+  {
+    "platform": "ios",
+    "key": "Keep the recovery file separate from the encrypted package. It is a decryption secret.",
+    "before": "请将恢复文件与加密包分开保管。恢复文件是解密秘密。",
+    "after": "恢复文件中含有解密密钥。请与加密包分开保管。"
+  },
+  {
+    "platform": "ios",
+    "key": "Leave less\nfor them to\nfigure out.",
+    "before": "少留一些疑问，\n让他们\n更从容。",
+    "after": "把重要的事，\n提前交代\n清楚。"
+  },
+  {
+    "platform": "ios",
+    "key": "Leave out",
+    "before": "不要记录",
+    "after": "请勿记录"
+  },
+  {
+    "platform": "ios",
+    "key": "Let the right people\nsee the right details.",
+    "before": "让合适的人\n看到合适的信息。",
+    "after": "让信任的人，\n看到你选定的信息。"
+  },
+  {
+    "platform": "ios",
+    "key": "Life or accounts across countries",
+    "before": "跨国生活或持有多国账户",
+    "after": "跨国生活或使用多国平台账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Loading reviews…",
+    "before": "正在载入复核…",
+    "after": "正在加载复核记录…"
+  },
+  {
+    "platform": "ios",
+    "key": "Loading visible details…",
+    "before": "正在加载可见的详细信息…",
+    "after": "正在加载对方可见的内容…"
+  },
+  {
+    "platform": "ios",
+    "key": "Loading your map",
+    "before": "正在加载你的事务地图",
+    "after": "正在加载你的事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Map progress",
+    "before": "事务地图进度",
+    "after": "事项地图进度"
+  },
+  {
+    "platform": "ios",
+    "key": "Masked hint",
+    "before": "脱敏提示",
+    "after": "识别提示"
+  },
+  {
+    "platform": "ios",
+    "key": "Masked hint or location",
+    "before": "已遮蔽的提示或位置",
+    "after": "尾号等识别提示或存放位置"
+  },
+  {
+    "platform": "ios",
+    "key": "Masked reference",
+    "before": "已遮蔽的参考信息",
+    "after": "识别提示（如尾号）"
+  },
+  {
+    "platform": "ios",
+    "key": "Masked serial hint",
+    "before": "遮蔽部分内容的序列号提示",
+    "after": "序列号提示（如尾号）"
+  },
+  {
+    "platform": "ios",
+    "key": "Matter map",
+    "before": "事务地图",
+    "after": "事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Needs review",
+    "before": "需要复核",
+    "after": "待复核"
+  },
+  {
+    "platform": "ios",
+    "key": "New shared reviews are not available for this plan right now.",
+    "before": "此方案目前无法发起新的共同检查",
+    "after": "当前套餐暂时无法发起新的共同复核。"
+  },
+  {
+    "platform": "ios",
+    "key": "Next renewal",
+    "before": "下次续费",
+    "after": "下次续费日期"
+  },
+  {
+    "platform": "ios",
+    "key": "Next review · %1$@",
+    "before": "下次检查 · %1$@",
+    "after": "下次复核 · %1$@"
+  },
+  {
+    "platform": "ios",
+    "key": "No Rillora purchases were found for this Apple account.",
+    "before": "未找到此 Apple 账户的 Rillora 购买记录。",
+    "after": "未找到此 Apple 账号的 Rillora 购买记录。"
+  },
+  {
+    "platform": "ios",
+    "key": "No appointment",
+    "before": "未授予任命",
+    "after": "未产生法律任命"
+  },
+  {
+    "platform": "ios",
+    "key": "No authority",
+    "before": "未授予权限",
+    "after": "未授予法律权限"
+  },
+  {
+    "platform": "ios",
+    "key": "No connected people yet. Send an invitation first.",
+    "before": "尚无已连接的联系人，请先发送邀请",
+    "after": "还没有人接受邀请。请先发出邀请，等待对方接受。"
+  },
+  {
+    "platform": "ios",
+    "key": "No matters selected.",
+    "before": "尚未选择事项",
+    "after": "尚未选择事项。"
+  },
+  {
+    "platform": "ios",
+    "key": "No matters shared with you yet.",
+    "before": "暂时没有与你共享的事项",
+    "after": "暂时没有与你共享的事项。"
+  },
+  {
+    "platform": "ios",
+    "key": "No one · checks only",
+    "before": "无人 · 仅检查",
+    "after": "暂不指定 · 仅核对信息"
+  },
+  {
+    "platform": "ios",
+    "key": "No saved copy is available for this selection. Resume updates to share new content.",
+    "before": "此选择没有可用的已保存副本。恢复更新以共享新内容",
+    "after": "此选择没有可用的已保存副本。恢复更新以共享新内容。"
+  },
+  {
+    "platform": "ios",
+    "key": "Official provider guides",
+    "before": "平台官方指引",
+    "after": "平台官方指南"
+  },
+  {
+    "platform": "ios",
+    "key": "Online account",
+    "before": "网络账户",
+    "after": "在线账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Only the name and category are shared with you.",
+    "before": "只与你共享名称和分类",
+    "after": "对方只与你共享了名称和类别。"
+  },
+  {
+    "platform": "ios",
+    "key": "Only the name and category are shared.",
+    "before": "仅共享名称和分类。",
+    "after": "仅共享名称和类别。"
+  },
+  {
+    "platform": "ios",
+    "key": "Only their currently shared matters and permitted directions.",
+    "before": "仅包含当前与对方共享的事项和获准查看的查找指引",
+    "after": "仅包含当前与对方共享的事项和获准查看的查找指引。"
+  },
+  {
+    "platform": "ios",
+    "key": "Only you see this preview. No file is created or shared.",
+    "before": "只有你能查看此预览，不会创建或共享文件",
+    "after": "只有你能查看预览。此时尚未生成文件，也未与任何人共享。"
+  },
+  {
+    "platform": "ios",
+    "key": "Only your recovery key can open this copy.",
+    "before": "只有你的恢复密钥可以打开此副本",
+    "after": "打开这份加密副本需要对应的恢复密钥。"
+  },
+  {
+    "platform": "ios",
+    "key": "Open shared items",
+    "before": "打开与我共享",
+    "after": "查看共享事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Open your matters",
+    "before": "打开你的事项",
+    "after": "查看事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Past reviews",
+    "before": "过往检查",
+    "after": "历史复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Pause reviews and suggestions",
+    "before": "暂停检查和建议",
+    "after": "暂停复核和修改建议"
+  },
+  {
+    "platform": "ios",
+    "key": "Plan & access",
+    "before": "套餐与访问权限",
+    "after": "套餐与权限"
+  },
+  {
+    "platform": "ios",
+    "key": "Please check the directions I shared with you.",
+    "before": "请检查我与你共享的查找指引",
+    "after": "请帮我核对与你共享的查找指引。"
+  },
+  {
+    "platform": "ios",
+    "key": "Preferred outcome",
+    "before": "期望的处理方式",
+    "after": "处理意愿"
+  },
+  {
+    "platform": "ios",
+    "key": "Preparation & after-death guidance",
+    "before": "生前准备与身后处理指引",
+    "after": "提前准备与身后处理指南"
+  },
+  {
+    "platform": "ios",
+    "key": "Prepare",
+    "before": "生前准备",
+    "after": "提前准备"
+  },
+  {
+    "platform": "ios",
+    "key": "Prepare now · After a death",
+    "before": "生前准备 · 身后申请",
+    "after": "提前准备 · 身后申请"
+  },
+  {
+    "platform": "ios",
+    "key": "Preview and export your directions",
+    "before": "预览并导出你的查找指引",
+    "after": "预览并导出查找指引"
+  },
+  {
+    "platform": "ios",
+    "key": "Previous checks",
+    "before": "以往检查",
+    "after": "历史复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Printable",
+    "before": "可打印",
+    "after": "明文（可打印）"
+  },
+  {
+    "platform": "ios",
+    "key": "Printable guide",
+    "before": "可打印指引",
+    "after": "明文指引副本"
+  },
+  {
+    "platform": "ios",
+    "key": "Private Rillora map backup",
+    "before": "Rillora 私人事务地图备份",
+    "after": "Rillora 完整备份"
+  },
+  {
+    "platform": "ios",
+    "key": "Provider",
+    "before": "服务机构",
+    "after": "服务方"
+  },
+  {
+    "platform": "ios",
+    "key": "Provider name",
+    "before": "平台或机构名称",
+    "after": "服务方名称"
+  },
+  {
+    "platform": "ios",
+    "key": "Provider · Location · Wishes",
+    "before": "服务机构 · 位置 · 意愿",
+    "after": "服务方、查找位置和处理意愿。不包含备注或识别提示。"
+  },
+  {
+    "platform": "ios",
+    "key": "Quick start guide",
+    "before": "快速入门指南",
+    "after": "快速入门"
+  },
+  {
+    "platform": "ios",
+    "key": "Read only. Unselected matters remain private.",
+    "before": "仅供阅读。未选择的事项仍为私密",
+    "after": "仅可查看。未选择共享的事项仍保持私密。"
+  },
+  {
+    "platform": "ios",
+    "key": "Ready to share",
+    "before": "可以共享了",
+    "after": "邀请已准备好"
+  },
+  {
+    "platform": "ios",
+    "key": "Recovery information location",
+    "before": "恢复信息位置",
+    "after": "账号恢复资料存放位置"
+  },
+  {
+    "platform": "ios",
+    "key": "Refresh reviews",
+    "before": "刷新检查记录",
+    "after": "刷新复核记录"
+  },
+  {
+    "platform": "ios",
+    "key": "Reload reviews",
+    "before": "重新加载检查",
+    "after": "重新加载复核记录"
+  },
+  {
+    "platform": "ios",
+    "key": "Replace included person",
+    "before": "更换包含名额的联系人",
+    "after": "更换免费共享接收人"
+  },
+  {
+    "platform": "ios",
+    "key": "Request %1$lld checks",
+    "before": "请求 %1$lld 项检查",
+    "after": "请求复核 %1$lld 个事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Request a fresh check",
+    "before": "请求重新检查",
+    "after": "请求重新复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Request memorialization",
+    "before": "申请纪念化",
+    "after": "申请设为纪念账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Restore privately",
+    "before": "恢复为私密事项",
+    "after": "恢复为私密草稿"
+  },
+  {
+    "platform": "ios",
+    "key": "Restored as a private draft. Sharing stays off.",
+    "before": "已恢复为私人草稿。共享仍处于关闭状态。",
+    "after": "已恢复为私密草稿，不会恢复共享。"
+  },
+  {
+    "platform": "ios",
+    "key": "Resume quick start guide",
+    "before": "继续快速入门指南",
+    "after": "继续快速入门"
+  },
+  {
+    "platform": "ios",
+    "key": "Review",
+    "before": "检查",
+    "after": "核对内容"
+  },
+  {
+    "platform": "ios",
+    "key": "Review by",
+    "before": "检查截止日期",
+    "after": "复核截止日期"
+  },
+  {
+    "platform": "ios",
+    "key": "Review cadence",
+    "before": "检查频率",
+    "after": "复核频率"
+  },
+  {
+    "platform": "ios",
+    "key": "Review inbox",
+    "before": "检查收件箱",
+    "after": "复核收件箱"
+  },
+  {
+    "platform": "ios",
+    "key": "Review schedule & collaborator",
+    "before": "检查计划与协作者",
+    "after": "复核安排与协作者"
+  },
+  {
+    "platform": "ios",
+    "key": "Review settings",
+    "before": "检查设置",
+    "after": "复核设置"
+  },
+  {
+    "platform": "ios",
+    "key": "Review this copy",
+    "before": "检查此副本",
+    "after": "核对副本内容"
+  },
+  {
+    "platform": "ios",
+    "key": "Reviewed: %1$lld of %2$lld · Due %3$@",
+    "before": "已检查 %1$lld / %2$lld · 截止日期 %3$@",
+    "after": "已复核 %1$lld / %2$lld 项 · 截止 %3$@"
+  },
+  {
+    "platform": "ios",
+    "key": "Rillora Start Here guide",
+    "before": "Rillora“从这里开始”指引",
+    "after": "Rillora 指引副本"
+  },
+  {
+    "platform": "ios",
+    "key": "Rillora cannot replace the recovery key. Anyone holding it can decrypt this copy.",
+    "before": "Rillora 无法补发恢复密钥。任何持有密钥的人都可以解密此副本",
+    "after": "Rillora 无法找回或补发恢复密钥。持有密钥的人可以解开这份加密副本。"
+  },
+  {
+    "platform": "ios",
+    "key": "Rillora encrypted Start Here package",
+    "before": "Rillora“从这里开始”加密包",
+    "after": "Rillora 加密指引副本"
+  },
+  {
+    "platform": "ios",
+    "key": "Rillora review",
+    "before": "Rillora 检查",
+    "after": "Rillora 复核请求"
+  },
+  {
+    "platform": "ios",
+    "key": "Rillora sessions only",
+    "before": "仅影响 Rillora 会话",
+    "after": "仅退出 Rillora"
+  },
+  {
+    "platform": "ios",
+    "key": "Save deletion reference",
+    "before": "保存删除凭据",
+    "after": "保存删除查询凭据"
+  },
+  {
+    "platform": "ios",
+    "key": "Save private backup",
+    "before": "保存私人备份",
+    "after": "保存完整备份"
+  },
+  {
+    "platform": "ios",
+    "key": "Saved, shared or printed copies cannot be revoked.",
+    "before": "已保存、共享或打印的副本无法撤销",
+    "after": "已经保存、分享或打印的副本无法远程收回。"
+  },
+  {
+    "platform": "ios",
+    "key": "Saved. Reload to see the latest review.",
+    "before": "已保存。请重新加载以查看最新检查。",
+    "after": "已保存。请重新加载以查看最新复核结果。"
+  },
+  {
+    "platform": "ios",
+    "key": "Send for approval",
+    "before": "提交审批",
+    "after": "提交给本人确认"
+  },
+  {
+    "platform": "ios",
+    "key": "Share invitation",
+    "before": "共享邀请",
+    "after": "分享邀请"
+  },
+  {
+    "platform": "ios",
+    "key": "Share link",
+    "before": "共享链接",
+    "after": "分享链接"
+  },
+  {
+    "platform": "ios",
+    "key": "Share review request",
+    "before": "共享检查请求",
+    "after": "分享复核请求"
+  },
+  {
+    "platform": "ios",
+    "key": "Shared review requests will appear here.",
+    "before": "共同检查请求会显示在这里",
+    "after": "收到的共同复核请求会显示在这里。"
+  },
+  {
+    "platform": "ios",
+    "key": "Shared reviews are unavailable. Try again when connected.",
+    "before": "共同检查暂不可用，请联网后重试。",
+    "after": "共同复核暂不可用，请联网后重试。"
+  },
+  {
+    "platform": "ios",
+    "key": "Sharing changed. This check is no longer current.",
+    "before": "共享设置已更改，此次检查已不再适用",
+    "after": "共享范围已改变，需要重新复核。"
+  },
+  {
+    "platform": "ios",
+    "key": "Showing your last loaded map",
+    "before": "正在显示上次加载的事务地图",
+    "after": "正在显示上次加载的事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Sign in again to continue this sensitive action.",
+    "before": "请重新登录，以继续此敏感操作。",
+    "after": "请重新登录，确认是你本人在操作。"
+  },
+  {
+    "platform": "ios",
+    "key": "Sign out all devices",
+    "before": "退出所有设备",
+    "after": "退出所有设备上的 Rillora"
+  },
+  {
+    "platform": "ios",
+    "key": "Social accounts",
+    "before": "社交账户",
+    "after": "社交账号"
+  },
+  {
+    "platform": "ios",
+    "key": "Sources reviewed %1$@. Requirements can change.",
+    "before": "来源复核日期：%1$@。要求可能发生变化。",
+    "after": "最近核对来源：%1$@。平台要求可能变化，请以官方说明为准。"
+  },
+  {
+    "platform": "ios",
+    "key": "Start Here action not completed",
+    "before": "“从这里开始”操作未完成",
+    "after": "指引副本操作未完成"
+  },
+  {
+    "platform": "ios",
+    "key": "Start Here guide",
+    "before": "从这里开始指南",
+    "after": "导出指引副本"
+  },
+  {
+    "platform": "ios",
+    "key": "Start a shared review",
+    "before": "开始共同检查",
+    "after": "发起共同复核"
+  },
+  {
+    "platform": "ios",
+    "key": "Start with an account, document, debt or device.",
+    "before": "从一个账户、文件、负债或设备开始。",
+    "after": "从一个账号、一份文件、一笔债务或一台设备开始。"
+  },
+  {
+    "platform": "ios",
+    "key": "Start your map",
+    "before": "开始建立事务地图",
+    "after": "开始整理事项"
+  },
+  {
+    "platform": "ios",
+    "key": "Suggest a correction",
+    "before": "建议更正",
+    "after": "提出修改建议"
+  },
+  {
+    "platform": "ios",
+    "key": "Suggested correction",
+    "before": "更正建议",
+    "after": "修改建议"
+  },
+  {
+    "platform": "ios",
+    "key": "Terms",
+    "before": "条款",
+    "after": "服务条款"
+  },
+  {
+    "platform": "ios",
+    "key": "The Rillora record will leave the active map. No external account or asset is changed.",
+    "before": "此 Rillora 记录将移出当前事务地图。外部账户或资产不会发生变化。",
+    "after": "此 Rillora 记录将移出当前事项地图。外部账户或资产不会发生变化。"
+  },
+  {
+    "platform": "ios",
+    "key": "The Sandbox transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.",
+    "before": "沙盒交易与 Rillora 账户、商品目录、环境或商店地区不匹配。交易未结束。",
+    "after": "沙盒交易与 Rillora 账号、商品目录、环境或商店地区不匹配。交易未结束。"
+  },
+  {
+    "platform": "ios",
+    "key": "The account hint must be 160 characters or fewer.",
+    "before": "账户提示不能超过 160 个字符。",
+    "after": "识别提示不能超过 160 个字符。"
+  },
+  {
+    "platform": "ios",
+    "key": "The continuity service could not complete the request.",
+    "before": "服务未能完成此请求。",
+    "after": "暂时无法完成此操作，请重试。"
+  },
+  {
+    "platform": "ios",
+    "key": "The continuity service returned an invalid response.",
+    "before": "服务返回了无效响应。",
+    "after": "暂时无法获取有效结果，请重试。"
+  },
+  {
+    "platform": "ios",
+    "key": "The continuity service returned data this version cannot read.",
+    "before": "服务返回的数据无法由此版本读取。",
+    "after": "当前版本无法读取这些资料。"
+  },
+  {
+    "platform": "ios",
+    "key": "The encryption preparation did not preserve the Start Here safety boundary.",
+    "before": "加密准备未遵守“从这里开始”的安全边界。",
+    "after": "加密准备结果不符合已确认的内容范围，已停止生成副本。"
+  },
+  {
+    "platform": "ios",
+    "key": "The guide excludes dedicated account hints, financial values and currencies. It is not an encrypted digital package.",
+    "before": "此指引不含专用账号提示、财务金额和币种信息。它不是加密数字包。",
+    "after": "此指引不包含识别提示、金额范围和币种。文件未经加密。"
+  },
+  {
+    "platform": "ios",
+    "key": "The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.",
+    "before": "本地交易与 Rillora 账户、商品目录、环境或商店地区不匹配。交易未结束。",
+    "after": "本地交易与 Rillora 账号、商品目录、环境或商店地区不匹配。交易未结束。"
+  },
+  {
+    "platform": "ios",
+    "key": "The matter changed. A fresh check is needed.",
+    "before": "事项已更改，需要重新检查",
+    "after": "事项内容已改变，需要重新复核。"
+  },
+  {
+    "platform": "ios",
+    "key": "The previous link will stop working.",
+    "before": "原来的链接将失效",
+    "after": "原来的邀请链接将失效。"
+  },
+  {
+    "platform": "ios",
+    "key": "The recovered package did not preserve the reviewed Start Here boundary.",
+    "before": "恢复的加密包未遵守已确认的“从这里开始”范围。",
+    "after": "加密包内容与已确认的范围不符，无法打开。"
+  },
+  {
+    "platform": "ios",
+    "key": "The review response exceeded its scope.",
+    "before": "检查响应超出了获准范围。",
+    "after": "复核结果超出获准范围，无法显示。"
+  },
+  {
+    "platform": "ios",
+    "key": "The secure session store is unavailable.",
+    "before": "安全会话存储暂不可用。",
+    "after": "暂时无法安全保存登录状态，请重试。"
+  },
+  {
+    "platform": "ios",
+    "key": "These checks and your decisions stay in review history.",
+    "before": "这些检查和你的决定将保留在检查历史中",
+    "after": "复核结果和你的决定会保留在复核记录中。"
+  },
+  {
+    "platform": "ios",
+    "key": "This app version cannot connect to the account service.",
+    "before": "此应用版本无法连接到账户服务。",
+    "after": "当前版本无法连接登录服务。"
+  },
+  {
+    "platform": "ios",
+    "key": "This cannot be undone. Keep a private map backup first if you need one.",
+    "before": "此操作无法撤销。如有需要，请先保存私人事务地图备份。",
+    "after": "此操作无法撤销。如有需要，请先保存私密事项地图备份。"
+  },
+  {
+    "platform": "ios",
+    "key": "This file includes private matters, Notes and recorded people. Anyone with the file can read it.",
+    "before": "此文件包含私人事项、备注和已记录的联系人。任何持有该文件的人都可以读取这些内容。",
+    "after": "文件包含私密事项、备注和联系人记录。拿到文件的人都能直接读取这些内容。"
+  },
+  {
+    "platform": "ios",
+    "key": "This frees a sharing place. Only an eligible paid-period saved copy remains available.",
+    "before": "这会释放一个共享名额，仅保留符合条件的付费期间已保存副本供访问",
+    "after": "这会腾出一个共享名额。对方只有在符合条件时，才能继续查看付费期间获准保存的副本。"
+  },
+  {
+    "platform": "ios",
+    "key": "This person receives current updates. Your previous choice keeps only an eligible saved copy unless covered by Family.",
+    "before": "此人将接收当前更新。此前选择的联系人仅保留符合条件的已保存副本，除非其名额由 Family 涵盖。",
+    "after": "此人将可查看最新内容。此前选择的联系人只有在符合条件时，才能继续查看已保存的副本；家庭版覆盖的共享名额不受此限制。"
+  },
+  {
+    "platform": "ios",
+    "key": "Title · Category",
+    "before": "标题 · 分类",
+    "after": "名称 · 类别"
+  },
+  {
+    "platform": "ios",
+    "key": "Unknown status",
+    "before": "未知状态",
+    "after": "状态暂不明确"
+  },
+  {
+    "platform": "ios",
+    "key": "Updates paused. The sender can resume sharing.",
+    "before": "更新已暂停，共享人可以恢复共享",
+    "after": "更新已暂停，共享人可以恢复共享。"
+  },
+  {
+    "platform": "ios",
+    "key": "Use included place",
+    "before": "使用包含名额",
+    "after": "使用免费共享名额"
+  },
+  {
+    "platform": "ios",
+    "key": "Use the Rillora account originally used for this purchase.",
+    "before": "请使用最初进行此购买的 Rillora 账户。",
+    "after": "请使用最初进行此购买的 Rillora 账号。"
+  },
+  {
+    "platform": "ios",
+    "key": "Use your included place for this person?",
+    "before": "为此人使用包含名额？",
+    "after": "将免费共享名额分配给此人？"
+  },
+  {
+    "platform": "ios",
+    "key": "Username or masked reference",
+    "before": "用户名或遮蔽部分内容的参考信息",
+    "after": "用户名或识别提示（如尾号）"
+  },
+  {
+    "platform": "ios",
+    "key": "Visible details",
+    "before": "可见的详细信息",
+    "after": "对方可见的内容"
+  },
+  {
+    "platform": "ios",
+    "key": "Waiting for them to accept",
+    "before": "等待对方接受",
+    "after": "等待对方接受邀请"
+  },
+  {
+    "platform": "ios",
+    "key": "What exists",
+    "before": "有哪些事务",
+    "after": "有哪些重要事项"
+  },
+  {
+    "platform": "ios",
+    "key": "What would you like to organise?",
+    "before": "你想整理哪些事务？",
+    "after": "你想整理什么？"
+  },
+  {
+    "platform": "ios",
+    "key": "Where to find it",
+    "before": "在哪里查找",
+    "after": "查找位置"
+  },
+  {
+    "platform": "ios",
+    "key": "Where to find the records",
+    "before": "记录查找位置",
+    "after": "记录存放位置"
+  },
+  {
+    "platform": "ios",
+    "key": "Who",
+    "before": "找谁",
+    "after": "由谁协助"
+  },
+  {
+    "platform": "ios",
+    "key": "Who can help",
+    "before": "谁能帮忙",
+    "after": "谁能提供帮助"
+  },
+  {
+    "platform": "ios",
+    "key": "Who can suggest corrections?",
+    "before": "谁可以建议更正？",
+    "after": "谁可以提出修改建议？"
+  },
+  {
+    "platform": "ios",
+    "key": "Wishes",
+    "before": "意愿",
+    "after": "处理意愿"
+  },
+  {
+    "platform": "ios",
+    "key": "You approve changes before your map updates.",
+    "before": "修改经你批准后才会更新到事务地图。",
+    "after": "修改建议经你确认后，才会更新到事项地图。"
+  },
+  {
+    "platform": "ios",
+    "key": "You have many online accounts, devices, subscriptions or digital assets.",
+    "before": "你拥有许多网络账户、设备、订阅或数字资产。",
+    "after": "你拥有许多在线账号、设备、订阅或数字资产。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your account and private map have been removed from active systems. Saved copies and required retained records remain.",
+    "before": "你的账户和私人事务地图已从活动系统中移除。已保存的副本和必须保留的记录仍会保留。",
+    "after": "你的 Rillora 账号和私密事项地图已从当前服务中移除。必要记录、备份和已保存的外部副本仍按各自规则保留。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your account changed. Sign in again to reload your map.",
+    "before": "账户已更改。请重新登录以重新载入事务地图。",
+    "after": "登录账号已更换。请重新登录，以加载当前账号的事项地图。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your included place",
+    "before": "你的包含名额",
+    "after": "当前免费共享接收人"
+  },
+  {
+    "platform": "ios",
+    "key": "Your included place moves from %1$@ to %2$@. Only an eligible saved copy remains for the previous person.",
+    "before": "你的包含名额将从%1$@转给%2$@。此前的联系人仅保留符合条件的已保存副本。",
+    "after": "免费共享名额将从 %1$@ 转给 %2$@。此前的联系人只有在符合条件时，才能继续查看已保存的副本。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your life, accounts or responsibilities span more than one country.",
+    "before": "你的生活、账户或责任涉及多个国家。",
+    "after": "你的生活、账号或家庭责任涉及多个国家。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your map",
+    "before": "你的事务地图",
+    "after": "我的事项地图"
+  },
+  {
+    "platform": "ios",
+    "key": "Your map could not be loaded completely. Please retry.",
+    "before": "未能完整载入事务地图，请重试。",
+    "after": "未能完整载入事项地图，请重试。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your private map, people, saved packages and Rillora access will be removed.",
+    "before": "你的私人事务地图、联系人、已保存的资料包和 Rillora 访问权限都将被移除。",
+    "after": "你的私密事项地图、联系人和已保存的加密包将被删除，也将无法再使用此 Rillora 账号。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your session expired. Sign in again.",
+    "before": "登录已过期，请重新登录。",
+    "after": "登录状态已过期，请重新登录。"
+  },
+  {
+    "platform": "ios",
+    "key": "Your wishes: keep, transfer or close.",
+    "before": "记录你的意愿：保留、转移或关闭。",
+    "after": "记录处理意愿，例如保留、申请转移或申请关闭。"
+  },
+  {
+    "platform": "ios",
+    "key": "Contact name",
+    "before": null,
+    "after": "姓名",
+    "reason": "Separate person name from generic matter name; original English display is retained"
+  }
+]

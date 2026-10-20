@@ -1,0 +1,37 @@
+{
+  "checkedAt": "2026-10-05T01:20:35Z",
+  "repository": "tantalum666/rillora",
+  "branch": "codex/chinese-ios-20261005",
+  "sourceCommit": "c68b9d678814128a9e6ee9da346cf56439ef0d86",
+  "sourceTree": "2991c087f72ec4bdccbc106e518b808ad57dea57",
+  "baseCommit": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+  "changedFileBlobsVerified": 92,
+  "unexpectedModifiedOrRemovedBaselineFiles": 0,
+  "codeURL": "https://github.com/tantalum666/rillora/commit/c68b9d678814128a9e6ee9da346cf56439ef0d86",
+  "ci": {
+    "runID": 37250896930,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/37250896930",
+    "commit": "c68b9d678814128a9e6ee9da346cf56439ef0d86",
+    "conclusion": "success",
+    "jobs": [
+      {
+        "name": "api",
+        "conclusion": "success"
+      },
+      {
+        "name": "source",
+        "conclusion": "success"
+      },
+      {
+        "name": "web-and-infrastructure",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "nativeCompilation": false,
+  "nativeSimulatorAcceptance": false,
+  "merged": false,
+  "deployed": false,
+  "storeUpload": false,
+  "boundary": "Remote source and Linux source/API/Web/infrastructure CI proof only. Xcode and native runtime validation remain pending. This receipt is a later documentation-only commit."
+}

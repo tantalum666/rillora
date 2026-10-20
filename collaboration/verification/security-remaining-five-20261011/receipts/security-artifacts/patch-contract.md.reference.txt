@@ -1,0 +1,15 @@
+# Remaining five groups — patch contract
+
+Baseline: b6f5b8c971196db3f513a7dbb5f6dc36efae8b6a. Owner explicitly requests code/tests then Git publication; online unchanged.
+
+31: Actual runtime LOGIN can change tenant GUC, assume auth/commerce and invoke administrator-owned definers. Add transaction/login/role/planner-bound cryptographic authority, enforce RLS for existing column-level grants, harden definer owners, and test real nonsuperuser credentials. Application signing authority remains trusted, distinct from stolen SQL credentials.
+
+32: Actual SQL can mark publication without external write; API IAM can author arbitrary Dynamo records. Require database-authenticated captured-event envelopes, independent verified publisher and event/transaction-bound acknowledgments; API loses direct PutItem and unsigned confirmation. Preserve precommit failure/rollback, revision ordering and coverage.
+
+33: HTTP holds tenant-wide Auth0 deletion credentials and can claim/finish durable jobs. Move these to an independently credentialed worker; HTTP only requests/status, no direct subject RPC. Preserve durable lease, pending response, retry/idempotency and financial retention; independently validate signed identity proof before provider deletion.
+
+34: Replace raw global email SHA with keyed owner-scoped derivation of the legacy digest. Erase persisted session digests. Backfill existing connection values without reconstructing email; pending invitation and within-owner duplicate behavior remain. No legacy fallback in the enabled runtime.
+
+35: Provider tools retain plaintext secret JSON/P8 copies. Use user-presence-protected system storage and nonsecret references, never secret argv or plaintext temporary upload bodies. Provide explicit migration/readback/cleanup tooling but do not touch real stored secrets in this code-only task. Host takeover and historical backups remain separately evidenced.
+
+One fresh read-only boundary investigation completed; one fresh candidate review follows implementation/focused validation. No new scan. All existing1–99migration bytes retained.

@@ -1,0 +1,23 @@
+{
+  "observedAt": "2026-10-06T20:21:28.770749+00:00",
+  "run": 75,
+  "runId": 37525238866,
+  "url": "https://github.com/tantalum666/rillora/actions/runs/37525238866",
+  "commit": "7d4189371b4c440a5c3dbbec832f03c5d12e69b5",
+  "conclusion": "success",
+  "jobs": {
+    "source": "success",
+    "api": "success",
+    "web-and-infrastructure": "success"
+  },
+  "apiVitest": {
+    "files": 49,
+    "passed": 413
+  },
+  "infraVitest": {
+    "files": 7,
+    "passed": 54
+  },
+  "evidence": "Visible logged-in GitHub run summary; token Actions API403 did not cause credential changes",
+  "trigger": "automatic push; no manual rerun"
+}

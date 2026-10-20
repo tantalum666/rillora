@@ -1,0 +1,24 @@
+{
+  "continuedWorkflow": true,
+  "retainedFullRead": "output/qa/rillora-dot-integration-20261008/reading.json",
+  "latestRequest": "Owner disputes live Web navigation and asks whether www.rillora.xyz was actually updated. Continue deployment and actual acceptance under retained authority.",
+  "focusedReads": [
+    "AGENTS.md",
+    "docs/product.md current locked section",
+    "docs/handoff.md",
+    "docs/decision-log.md latest decisions",
+    "docs/web-plan-layout-20261008.md",
+    "docs/dot-rollout-20261007.md"
+  ],
+  "at": "2026-10-08T16:48:44.681292+00:00",
+  "continuationAt": "2026-10-08T20:33:50.939947+00:00",
+  "addedFocusedReads": [
+    "docs/release-12-stripe-20261005.md full",
+    "docs/device-config-20261006.md relevant Stripe/Live boundary",
+    "docs/source-control.md",
+    "collaboration/README.md",
+    "apps/api/certificates/rds/README.md full",
+    "Stripe best-practices and docs skills; security/billing/payments references full"
+  ],
+  "compactionRecovery": "AGENTS;product current locked sections/Authority Map;handoff;latest decisions;focused Web/Stripe files. Earlier full-read record retained."
+}

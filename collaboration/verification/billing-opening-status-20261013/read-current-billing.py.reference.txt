@@ -1,0 +1,42 @@
+"""Read current Rillora flags and selected provider facts; never persist credentials."""
+from pathlib import Path
+import sys,json,datetime,subprocess,re
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+reader=Aws('rillora-operator')
+rs=reader.call('cloudformation','list-stack-resources',{'StackName':'RilloraProduction'})['StackResourceSummaries']
+cluster=next(r['PhysicalResourceId'] for r in rs if r['LogicalResourceId']=='ClusterEB0386A7')
+service_id=next(r['PhysicalResourceId'] for r in rs if r['LogicalResourceId']=='RuntimeService1702E585')
+service=reader.call('ecs','describe-services',{'cluster':cluster,'services':[service_id]})['services'][0]
+task=reader.call('ecs','describe-task-definition',{'taskDefinition':service['taskDefinition']})['taskDefinition']
+api=next(c for c in task['containerDefinitions'] if c['name']=='Api');env={x['name']:x['value'] for x in api['environment']}
+keys=['PRODUCTION_RUNTIME_MODE','ALLOW_STRIPE_PRODUCTION_INTEGRATION','ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS','ALLOW_APPLE_PRODUCTION_INTEGRATION','ALLOW_APPLE_REVIEW_INTEGRATION','PRODUCTION_REVIEW_EXPIRES_AT','ALLOW_STRIPE_TEST_INTEGRATION','ALLOW_APPLE_SANDBOX_INTEGRATION']
+r={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'readOnly':True,'service':'RilloraProduction','status':service['status'],'desired':service['desiredCount'],'running':service['runningCount'],'taskRevision':task['revision'],'configuration':{key:env.get(key) for key in keys}}
+(q/'runtime-readback.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r),flush=True)
+arn=env.get('STRIPE_PRODUCTION_SECRET_ARN','');assert re.fullmatch(r'arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-[A-Za-z0-9]{6}',arn)
+try: secret=reader.call('secretsmanager','get-secret-value',{'SecretId':arn,'VersionStage':'AWSCURRENT'})['SecretString']
+except Exception:
+ print(json.dumps({'providerRead':'unavailable','secretSavedOrPrinted':False}));sys.exit(2)
+code="""
+import fs from 'node:fs';
+import {parseStripeProductionSecret} from './dist/stripe-production-secret.js';
+import {createStripeSdkPort} from './dist/stripe-sdk.js';
+const c=parseStripeProductionSecret(fs.readFileSync(0,'utf8'));
+const sdk=createStripeSdkPort(c.apiKey,'production');
+const results=await Promise.allSettled([sdk.retrieveAccountStatus(),sdk.retrieveProduct(c.familyProductId),sdk.retrievePrice(c.annualPriceId),sdk.retrieveTaxReadiness()]);
+const names=['account','product','price','tax'];const report={checkedAt:new Date().toISOString(),readOnly:true,credentialSource:'existing runtime secret used only in memory',applicationTaxMode:c.tax.mode};
+for(let i=0;i<results.length;i++){
+ const r=results[i];if(r.status!=='fulfilled'){report[names[i]]={readSucceeded:false,errorType:r.reason?.type??r.reason?.name??'Error',httpStatus:r.reason?.statusCode??null};continue;}
+ const v=r.value;
+ if(i===0)report.account={readSucceeded:true,expectedRilloraAccount:v.id===c.expectedAccountId,chargesEnabled:v.chargesEnabled,payoutsEnabled:v.payoutsEnabled};
+ if(i===1)report.product={readSucceeded:true,livemode:v.livemode,active:v.active,expectedProduct:v.id===c.familyProductId,configuredTaxCodeMatches:(typeof v.tax_code==='string'?v.tax_code:v.tax_code?.id)===c.tax.productTaxCode};
+ if(i===2)report.price={readSucceeded:true,livemode:v.livemode,active:v.active,amountMinor:v.unit_amount,currency:v.currency,interval:v.recurring?.interval,taxBehavior:v.tax_behavior,expectedPrice:v.id===c.annualPriceId};
+ if(i===3)report.tax={readSucceeded:true,settingsStatus:v.status,activeRegistrationCount:v.activeRegistrationIds.length};
+}
+console.log(JSON.stringify(report));
+"""
+result=subprocess.run(['node','--input-type=module','-e',code],input=secret,text=True,cwd=w/'apps/api',capture_output=True)
+del secret
+if result.returncode:
+ print(json.dumps({'providerRead':'failed','secretSavedOrPrinted':False}));sys.exit(3)
+report=json.loads(result.stdout);(q/'provider-readback.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

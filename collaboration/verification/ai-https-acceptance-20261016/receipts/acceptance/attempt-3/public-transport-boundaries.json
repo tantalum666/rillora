@@ -1,0 +1,116 @@
+{
+  "checkedAt": "2026-10-16T14:56:47.204314+00:00",
+  "origin": "https://regulations-regulations-destinations-interactive.trycloudflare.com",
+  "transport": "Actual public HTTPS with normal certificate validation",
+  "checks": [
+    {
+      "path": "/",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "setsCookie": false,
+      "contentType": "text/html; charset=utf-8",
+      "passed": true,
+      "cspPresent": true,
+      "referrerPolicy": "no-referrer"
+    },
+    {
+      "path": "/health/ready",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true
+    },
+    {
+      "path": "/api/auth/session-status",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true
+    },
+    {
+      "path": "/api/mcp/resource-metadata",
+      "status": 200,
+      "expected": [
+        200
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true,
+      "resourceMatched": true,
+      "issuerMatched": true
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true
+    },
+    {
+      "path": "/api/v1/account/ai-connections",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "setsCookie": false,
+      "contentType": "application/json; charset=utf-8",
+      "passed": true
+    },
+    {
+      "path": "/api/mcp",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "setsCookie": false,
+      "contentType": "application/json",
+      "passed": true,
+      "challengeUsesExactHttpsMetadata": true
+    },
+    {
+      "path": "/api/mcp",
+      "status": 401,
+      "expected": [
+        401
+      ],
+      "setsCookie": false,
+      "contentType": "application/json",
+      "passed": true,
+      "challengeUsesExactHttpsMetadata": true
+    },
+    {
+      "path": "/.local-secrets/registration.json",
+      "status": 404,
+      "expected": [
+        403,
+        404
+      ],
+      "setsCookie": false,
+      "contentType": null,
+      "passed": true
+    }
+  ],
+  "passed": true,
+  "credentialsSent": false
+}

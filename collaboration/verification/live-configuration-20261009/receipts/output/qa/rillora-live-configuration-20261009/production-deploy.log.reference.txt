@@ -1,0 +1,371 @@
+
+✨  Synthesis time: 1.56s
+
+RilloraProduction: start: Building RilloraProduction Template
+RilloraProduction: success: Built RilloraProduction Template
+RilloraProduction: start: Building MigrationTask/Maintenance/AssetImage
+RilloraProduction: start: Publishing RilloraProduction Template (current_account-eu-central-1-3ac796d3)
+#0 building with "colima" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 1.44kB 0.0s done
+#1 DONE 0.1s
+
+#2 resolve image config for docker-image://docker.io/docker/dockerfile:1.7
+RilloraProduction: success: Published RilloraProduction Template (current_account-eu-central-1-3ac796d3)
+#2 DONE 2.6s
+
+#3 docker-image://docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e
+#3 resolve docker.io/docker/dockerfile:1.7@sha256:a57df69d0ea827fb7266491f2813635de6f17269be881f696fbfdf2d83dda33e 0.0s done
+#3 CACHED
+
+#4 [internal] load metadata for docker.io/library/node:22.22.3-bookworm-slim
+#4 DONE 1.6s
+
+#5 [internal] load .dockerignore
+#5 transferring context: 84B done
+#5 DONE 0.0s
+
+#6 [runtime 1/9] FROM docker.io/library/node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752
+#6 resolve docker.io/library/node:22.22.3-bookworm-slim@sha256:e21fc383b50d5347dc7a9f1cae45b8f4e2f0d39f7ade28e4eef7d2934522b752 0.0s done
+#6 DONE 0.0s
+
+#7 [internal] load build context
+#7 transferring context: 1.47MB 0.1s done
+#7 DONE 0.1s
+
+#8 [build 2/9] WORKDIR /app
+#8 CACHED
+
+#9 [build 3/9] COPY package.json package-lock.json ./
+#9 CACHED
+
+#10 [build 4/9] RUN npm ci
+#10 CACHED
+
+#11 [build 5/9] COPY tsconfig.json tsconfig.build.json ./
+#11 CACHED
+
+#12 [build 6/9] COPY src ./src
+#12 DONE 0.1s
+
+#13 [build 7/9] COPY migrations ./migrations
+#13 DONE 0.1s
+
+#14 [build 8/9] COPY certificates ./certificates
+#14 DONE 0.0s
+
+#15 [build 9/9] RUN npm run build && npm prune --omit=dev
+#15 1.092 
+#15 1.092 > continuity-api@0.1.0 build
+#15 1.092 > tsc -p tsconfig.build.json
+#15 1.092 
+#15 5.096 
+#15 5.096 up to date, audited 179 packages in 2s
+#15 5.096 
+#15 5.096 39 packages are looking for funding
+#15 5.096   run `npm fund` for details
+#15 5.098 
+#15 5.098 found 0 vulnerabilities
+#15 DONE 5.2s
+
+#16 [runtime 2/9] COPY certificates/rds/global-bundle.pem /app/certs/rds-global-bundle.pem
+#16 CACHED
+
+#17 [runtime 3/9] RUN apt-get update     && apt-get install --yes --no-install-recommends ca-certificates     && echo "e5bb2084ccf45087bda1c9bffdea0eb15ee67f0b91646106e466714f9de3c7e3  /app/certs/rds-global-bundle.pem" | sha256sum --check --strict     && rm -rf /var/lib/apt/lists/*
+#17 CACHED
+
+#18 [runtime 4/9] WORKDIR /app
+#18 CACHED
+
+#19 [runtime 5/9] COPY --chown=node:node --from=build /app/package.json ./package.json
+#19 CACHED
+
+#20 [runtime 6/9] COPY --chown=node:node --from=build /app/node_modules ./node_modules
+#20 CACHED
+
+#21 [runtime 7/9] COPY --chown=node:node --from=build /app/dist ./dist
+#21 DONE 0.1s
+
+#22 [runtime 8/9] COPY --chown=node:node --from=build /app/migrations ./migrations
+#22 DONE 0.0s
+
+#23 [runtime 9/9] COPY --chown=node:node --from=build /app/certificates ./certificates
+#23 DONE 0.0s
+
+#24 exporting to image
+#24 exporting layers 0.1s done
+#24 exporting manifest sha256:8ace6714bb3c56e323924287a486ea815c3c5cc00a8f76982d0e8c0539ffe157 done
+#24 exporting config sha256:ea1e35aff1ef80441563b572cd7410859fe7d114787d3c603a93b66f76bb6b9b done
+#24 naming to docker.io/library/cdkasset-675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f:latest done
+#24 unpacking to docker.io/library/cdkasset-675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f:latest 0.1s done
+#24 DONE 0.1s
+RilloraProduction: success: Built MigrationTask/Maintenance/AssetImage
+RilloraProduction: start: Publishing MigrationTask/Maintenance/AssetImage (current_account-eu-central-1-22640ac6)
+The push refers to repository [133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1]
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+aff88cd70f0e: Waiting
+620d41e441a2: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Waiting
+5ae42c9ff880: Waiting
+e31df1f1404e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Waiting
+620d41e441a2: Layer already exists
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+f65b12bde977: Layer already exists
+5ae42c9ff880: Layer already exists
+e31df1f1404e: Layer already exists
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+7a269be6e4b9: Layer already exists
+aff88cd70f0e: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+aff88cd70f0e: Waiting
+4f4fb700ef54: Waiting
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+dae90ab7dcf0: Waiting
+04d5f64bfb5f: Waiting
+402614bd39aa: Waiting
+aff88cd70f0e: Waiting
+4f4fb700ef54: Layer already exists
+92355586286e: Waiting
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+92355586286e: Layer already exists
+8ec93e069695: Waiting
+781c41bf8231: Waiting
+dae90ab7dcf0: Layer already exists
+04d5f64bfb5f: Waiting
+402614bd39aa: Layer already exists
+aff88cd70f0e: Layer already exists
+04d5f64bfb5f: Waiting
+781c41bf8231: Waiting
+781c41bf8231: Waiting
+04d5f64bfb5f: Waiting
+781c41bf8231: Waiting
+8ec93e069695: Pushed
+781c41bf8231: Pushed
+04d5f64bfb5f: Pushed
+675aa7b6a94f316df23a7d37df737ad68bd7ebb75f00596950c3230005f7d83f: digest: sha256:8ace6714bb3c56e323924287a486ea815c3c5cc00a8f76982d0e8c0539ffe157 size: 2859
+RilloraProduction: success: Published MigrationTask/Maintenance/AssetImage (current_account-eu-central-1-22640ac6)
+RilloraProduction: creating CloudFormation changeset...
+RilloraProduction: deploying... [1/1]
+RilloraProduction | 0/8 | 2:56:46 PM | UPDATE_IN_PROGRESS      | AWS::CloudFormation::Stack                  | RilloraProduction User Initiated
+RilloraProduction | 0/8 | 2:56:50 PM | UPDATE_IN_PROGRESS      | AWS::IAM::Policy                            | Runtime/ApiTask/TaskRole/DefaultPolicy (RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6) 
+RilloraProduction | 0/8 | 2:56:52 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraProduction | 0/8 | 2:56:52 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraProduction | 0/8 | 2:56:52 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) Requested update requires the creation of a new physical resource; hence creating one.
+RilloraProduction | 0/8 | 2:56:53 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) Resource creation Initiated
+RilloraProduction | 1/8 | 2:56:53 PM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | RecoveryTask (RecoveryTaskD940248B) 
+RilloraProduction | 1/8 | 2:56:53 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) Resource creation Initiated
+RilloraProduction | 1/8 | 2:56:53 PM | UPDATE_IN_PROGRESS      | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) Resource creation Initiated
+RilloraProduction | 2/8 | 2:56:53 PM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | MigrationTask (MigrationTask69EAEF9D) 
+RilloraProduction | 3/8 | 2:56:54 PM | UPDATE_COMPLETE         | AWS::ECS::TaskDefinition                    | Runtime/ApiTask (RuntimeApiTaskCF645D67) 
+RilloraProduction | 4/8 | 2:57:06 PM | UPDATE_COMPLETE         | AWS::IAM::Policy                            | Runtime/ApiTask/TaskRole/DefaultPolicy (RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6) 
+RilloraProduction | 4/8 | 2:57:11 PM | UPDATE_IN_PROGRESS      | AWS::ECS::Service                           | Runtime/Service/Service (RuntimeService1702E585) 
+Error occurred while monitoring stack: Error: getaddrinfo ENOTFOUND cloudformation.eu-central-1.amazonaws.com
+    at GetAddrInfoReqWrap.onlookupall [as oncomplete] (node:dns:122:26) {
+  errno: -3008,
+  code: 'ENOTFOUND',
+  syscall: 'getaddrinfo',
+  hostname: 'cloudformation.eu-central-1.amazonaws.com',
+  '$metadata': [Object]
+}
+4/8 Currently in progress: RilloraProduction, RuntimeService1702E585
+❌  RilloraProduction failed: Error: getaddrinfo ENOTFOUND cloudformation.eu-central-1.amazonaws.com

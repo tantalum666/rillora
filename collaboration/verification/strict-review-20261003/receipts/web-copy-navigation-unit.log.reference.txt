@@ -1,0 +1,70 @@
+TAP version 13
+# Subtest: complete backup preserves private Notes and cannot claim restored sharing
+ok 1 - complete backup preserves private Notes and cannot claim restored sharing
+  ---
+  duration_ms: 0.770834
+  type: 'test'
+  ...
+# Subtest: reader rejects partial, malformed and oversized files
+ok 2 - reader rejects partial, malformed and oversized files
+  ---
+  duration_ms: 0.368917
+  type: 'test'
+  ...
+# Subtest: directions require exact safety boundaries
+ok 3 - directions require exact safety boundaries
+  ---
+  duration_ms: 0.080292
+  type: 'test'
+  ...
+# Subtest: deletion references are random portable status-only receipts
+ok 4 - deletion references are random portable status-only receipts
+  ---
+  duration_ms: 5.414083
+  type: 'test'
+  ...
+# Subtest: a maximum-size backup downloads into the same file boundary its reader accepts
+ok 5 - a maximum-size backup downloads into the same file boundary its reader accepts
+  ---
+  duration_ms: 26.1435
+  type: 'test'
+  ...
+# Subtest: restores existing root destinations, filters and selected matter
+ok 6 - restores existing root destinations, filters and selected matter
+  ---
+  duration_ms: 2.329333
+  type: 'test'
+  ...
+# Subtest: unknown tasks and invalid identifiers cannot become arbitrary navigation
+ok 7 - unknown tasks and invalid identifiers cannot become arbitrary navigation
+  ---
+  duration_ms: 0.072791
+  type: 'test'
+  ...
+# Subtest: draft fields and invitation credentials stay out of history
+ok 8 - draft fields and invitation credentials stay out of history
+  ---
+  duration_ms: 0.136292
+  type: 'test'
+  ...
+# Subtest: account and authentication-return destinations remain intact
+ok 9 - account and authentication-return destinations remain intact
+  ---
+  duration_ms: 0.063459
+  type: 'test'
+  ...
+# Subtest: legacy guide and account continuations hydrate only the authenticated guide task
+ok 10 - legacy guide and account continuations hydrate only the authenticated guide task
+  ---
+  duration_ms: 0.199584
+  type: 'test'
+  ...
+1..10
+# tests 10
+# suites 0
+# pass 10
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 139.945584

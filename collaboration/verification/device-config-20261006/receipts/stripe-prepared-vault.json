@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-06T13:35:05.294910+00:00",
+  "arn": "arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora/production/stripe-billing-TEpYNp",
+  "versionId": "6e016851-fe35-4a7c-b104-e75540a7d7be",
+  "stages": [
+    "PREPARED",
+    "AWSCURRENT"
+  ],
+  "protectedReadbackMatches": true,
+  "awsAutomaticallyAttachedCurrentToFirstVersion": true,
+  "relabelRequestSucceeded": false,
+  "preparationOnlyPayload": true,
+  "runtimeBillingEnabled": false,
+  "runtimeArnConfigured": false,
+  "runtimeReadPermissionGranted": false,
+  "publicResourcePolicyAdded": false,
+  "credentialsPrintedOrCommitted": false,
+  "customerSalesEnabled": false,
+  "preparedPayloadRejectedByProductionParser": true,
+  "authenticationAndPriceReadback": "stripe-runtime-key-readback.json"
+}

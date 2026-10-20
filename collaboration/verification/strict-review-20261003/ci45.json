@@ -1,0 +1,13 @@
+{
+  "runId": 37055195086,
+  "url": "https://github.com/tantalum666/rillora/actions/runs/37055195086",
+  "commit": "8f1adccbccddadfbdfeb1fbcfec813d2a399c137",
+  "conclusion": "failure",
+  "jobs": {
+    "api": "success",
+    "web-and-infrastructure": "success",
+    "source": "failure"
+  },
+  "failure": "Auth0 shell fixture exited before intercepted CLI call; Linux prerequisites now explicit, stderr surfaced and positive404tested.",
+  "boundary": "The failed run is retained; its two passing jobs do not turn it into a successful run."
+}

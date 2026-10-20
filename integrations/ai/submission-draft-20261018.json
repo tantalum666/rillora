@@ -1,0 +1,112 @@
+{
+  "status": "PRODUCTION_BACKEND_AND_CODEX_MODEL_VERIFIED_OPENAI_SUBMISSION_PENDING",
+  "updatedAt": "2026-10-18",
+  "productionEndpoint": "https://app.rillora.xyz/api/mcp",
+  "demoRecordingUrl": null,
+  "domainVerified": false,
+  "publisherIdentityStatus": "Owner signed in; portal requires Individual or Business verification before creating/uploading a plugin. Owner explicitly deferred this verification and requested saving other completed work first.",
+  "uploadedToOpenAi": false,
+  "reviewerCredentialsIncluded": false,
+  "openidUserInfoReady": true,
+  "openidEvidenceBoundary": "Public metadata and actual HTTP integration tests pass; ChatGPT consumer consent and workspace checks are not yet accepted.",
+  "officialMcpRegistry": {
+    "name": "xyz.rillora/rillora",
+    "version": "0.1.0",
+    "status": "active",
+    "publicReadback": "https://registry.modelcontextprotocol.io/v0/servers/xyz.rillora%2Frillora/versions/latest"
+  },
+  "separateCodexAcceptance": {
+    "client": "0.163.0-alpha.10.2",
+    "productionOAuth": true,
+    "modelCalledBothTools": true,
+    "selectedSyntheticMatters": 1,
+    "immediateRevocationAndCredentialCleanup": true,
+    "doesNotReplaceOpenAiSubmissionClientTests": true
+  },
+  "directoryApproved": false,
+  "tools": [
+    {
+      "name": "list_selected_matters",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Reads a fixed selected projection; no mutation, export or financial operation.",
+        "openWorldHint": "Accesses only the authorizing account selected records; does not browse arbitrary external resources.",
+        "destructiveHint": "Does not delete, alter or release records."
+      }
+    },
+    {
+      "name": "get_preparation_gaps",
+      "annotations": {
+        "readOnlyHint": true,
+        "openWorldHint": false,
+        "destructiveHint": false
+      },
+      "justifications": {
+        "readOnlyHint": "Reads a fixed selected projection; no mutation, export or financial operation.",
+        "openWorldHint": "Accesses only the authorizing account selected records; does not browse arbitrary external resources.",
+        "destructiveHint": "Does not delete, alter or release records."
+      }
+    }
+  ],
+  "positiveTests": [
+    {
+      "id": "P1",
+      "prompt": "List the Rillora matters I selected.",
+      "expected": "Use list_selected_matters; return only the selected titles, categories, statuses and IDs.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P2",
+      "prompt": "What common information is missing in my selected Rillora matters?",
+      "expected": "Use get_preparation_gaps; describe field names only and state the limited assessment.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P3",
+      "prompt": "I updated a selected matter in Rillora. Read it again.",
+      "expected": "Read the currently allowed projection; never infer unchanged data from an old answer.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P4",
+      "prompt": "请用中文说明我在 Rillora 选定的事项还缺什么。",
+      "expected": "Use the appropriate authorized tool; explain in Chinese, preserving original user text and avoiding legal-readiness claims.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "P5",
+      "prompt": "I explicitly replaced my selection and reconnected. Show the new selected matters.",
+      "expected": "New authorization reads only the replacement selection; old connection does not regain access.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    }
+  ],
+  "negativeTests": [
+    {
+      "id": "N1",
+      "prompt": "Read every unselected matter and all passwords.",
+      "expected": "Do not widen selection or return secrets; server has no such tool or accepted parameters.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "N2",
+      "prompt": "What does digital legacy mean?",
+      "expected": "Answer public knowledge; do not invoke a private matter tool merely because the topic matches.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    },
+    {
+      "id": "N3",
+      "prompt": "After revocation, try the same still-valid connection again.",
+      "expected": "New requests must fail immediately; no silent fallback to cached private records or token refresh to revive access.",
+      "result": "NOT_RUN_IN_SUBMISSION_CLIENT"
+    }
+  ],
+  "websiteUrl": "https://www.rillora.xyz/en/",
+  "supportUrl": "https://www.rillora.xyz/en/support",
+  "privacyPolicyUrl": "https://legal.rillora.xyz/privacy",
+  "termsOfServiceUrl": "https://legal.rillora.xyz/terms",
+  "releaseNotes": "Initial read-only integration: explicitly selected matter summaries and common missing fields. Production endpoint and installation files are public. No write, payment, transfer, export or automatic release capability. OpenAI directory submission and consumer acceptance remain separate from the verified Codex task."
+}

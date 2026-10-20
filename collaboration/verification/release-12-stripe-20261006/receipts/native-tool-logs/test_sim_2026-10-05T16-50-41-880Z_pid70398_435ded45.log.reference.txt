@@ -1,0 +1,153 @@
+Command line invocation:
+    /Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild -testProductsPath /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T15-46-59-561Z_pid70398_101e4f6a.xctestproducts -destination "platform=iOS Simulator,id=48C97144-2EEA-470F-A007-4FA411CB1B13" -collect-test-diagnostics never "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedLargeTextDraftAndPrintableExport" "-only-testing:RilloraLayoutMatrixTests/RilloraLocalizationUITests/testLocalizedAuthenticatedRootsAndLandscape" -parallel-testing-enabled NO -resultBundlePath /Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/ipad-zh.xcresult test-without-building
+
+2026-10-06 00:50:43.247 xcodebuild[12374:26699619] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/ipad-zh.xcresult
+
+2026-10-06 00:50:43.256 xcodebuild[12374:26699619] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:50:44.632 xcodebuild[12374:26699619] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:50:45.339 xcodebuild[12374:26699619] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:50:45.485 xcodebuild[12374:26699619] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 00:51:22.953208+0800 RilloraLayoutMatrixTests-Runner[12675:26703507] [Default] Running tests...
+2026-10-06 00:51:22.992528+0800 RilloraLayoutMatrixTests-Runner[12675:26703507] [UIKit App Config] Update the Info.plist: Launch screens will soon be required.
+objc[12675]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10bcc8310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10b15c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+Test Suite 'Selected tests' started at 2026-10-06 00:51:27.395.
+Test Suite 'RilloraLayoutMatrixTests.xctest' started at 2026-10-06 00:51:27.396.
+Test Suite 'RilloraLocalizationUITests' started at 2026-10-06 00:51:27.396.
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedAuthenticatedRootsAndLandscape]' started.
+    t =     0.00s Start Test at 2026-10-06 00:51:27.397
+    t =     0.34s Set Up
+    t =     0.34s Setting device orientation to Portrait
+    t =     0.35s     Device orientation changed to Portrait
+    t =     0.38s     Wait for com.apple.DocumentManager.DockFolderViewService to idle
+    t =     0.45s     Wait for com.apple.springboard to idle
+    t =     0.55s Open com.rillora.ios
+    t =     0.55s     Launch com.rillora.ios
+2026-10-06 00:51:28.706 xcodebuild[12374:26699619] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 00:51:28.706 xcodebuild[12374:26699619] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     4.75s         Setting up automation session
+    t =     6.41s         Wait for com.rillora.ios to idle
+    t =     8.52s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     9.62s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     9.62s         Checking existence of `"overview.scroll" Any`
+    t =     9.77s Setting device orientation to Landscape Left
+    t =     9.77s     Device orientation changed to Landscape Left
+    t =     9.91s     Interface orientation changed to Landscape Right
+    t =     9.97s     Wait for com.rillora.ios to idle
+    t =    11.49s     Wait for com.apple.springboard to idle
+    t =    12.58s Checking `Expect predicate `BLOCKPREDICATE(0x10a63db90)` for object Target Application 'com.rillora.ios'`
+    t =    12.58s     Find the Target Application 'com.rillora.ios'
+    t =    12.63s     Find the Target Application 'com.rillora.ios'
+    t =    12.65s Waiting 10.0s for "总览" Button to exist
+    t =    13.69s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    13.69s         Checking existence of `"总览" Button`
+    t =    13.79s         Capturing element debug description
+    t =    14.67s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    14.67s         Checking existence of `"总览" Button`
+    t =    14.70s         Capturing element debug description
+    t =    15.67s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    15.67s         Checking existence of `"总览" Button`
+    t =    15.70s         Capturing element debug description
+    t =    16.67s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    16.68s         Checking existence of `"总览" Button`
+    t =    16.70s         Capturing element debug description
+    t =    17.68s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    17.68s         Checking existence of `"总览" Button`
+    t =    17.71s         Capturing element debug description
+    t =    18.68s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    18.68s         Checking existence of `"总览" Button`
+    t =    18.72s         Capturing element debug description
+    t =    19.69s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    19.69s         Checking existence of `"总览" Button`
+    t =    19.73s         Capturing element debug description
+    t =    20.73s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    20.73s         Checking existence of `"总览" Button`
+    t =    20.79s         Capturing element debug description
+    t =    21.68s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    21.68s         Checking existence of `"总览" Button`
+    t =    21.74s         Capturing element debug description
+    t =    22.66s     Checking `Expect predicate `existsNoRetry == 1` for object "总览" Button`
+    t =    22.66s         Checking existence of `"总览" Button`
+    t =    22.72s         Capturing element debug description
+    t =    22.72s     Checking existence of `"总览" Button`
+    t =    22.78s Collecting debug information to assist test failure triage
+    t =    22.78s     Requesting snapshot of accessibility hierarchy for app with pid 12745
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:76: error: -[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedAuthenticatedRootsAndLandscape] : XCTAssertTrue failed
+    t =    24.15s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedAuthenticatedRootsAndLandscape]' failed (24.527 seconds).
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' started.
+    t =     0.00s Start Test at 2026-10-06 00:51:51.925
+    t =     0.07s Set Up
+    t =     0.10s Setting device orientation to Portrait
+    t =     0.14s     Device orientation changed to Portrait
+    t =     0.40s     Interface orientation changed to Portrait
+    t =     1.64s     Wait for com.rillora.ios to idle
+    t =     2.46s     Wait for com.apple.springboard to idle
+    t =     2.46s Open com.rillora.ios
+    t =     2.46s     Launch com.rillora.ios
+    t =     2.46s         Terminate com.rillora.ios:12745
+2026-10-06 00:51:55.486 xcodebuild[12374:26699619] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 00:51:55.486 xcodebuild[12374:26699619] [MT] IDELaunchParametersSnapshot: no debugger version
+    t =     4.00s         Setting up automation session
+    t =     5.25s         Wait for com.rillora.ios to idle
+    t =     7.07s Waiting 20.0s for "overview.scroll" Any to exist
+    t =     8.17s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+    t =     8.17s         Checking existence of `"overview.scroll" Any`
+    t =     8.37s Tap "事项" Button
+    t =     8.37s     Wait for com.rillora.ios to idle
+    t =     8.76s     Find the "事项" Button
+    t =     9.87s         Find the "事项" Button (retry 1)
+    t =    10.92s         Find the "事项" Button (retry 2)
+    t =    10.95s Requesting snapshot of accessibility hierarchy for app with pid 12842
+/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift:87: error: -[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport] : Failed to tap "事项" Button: No matches found for Descendants matching type TabBar from input {(
+    Application, pid: 12842, label: 'Rillora'
+)}
+Possibly caused by runtime issues:
+Automation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 75;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeTraits" = 146297323520;
+}
+Automation type mismatch: computed Button from legacy attributes vs Cell from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 75;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemCell";
+    "XC_kAXXCAttributeTraits" = 146297323528;
+}
+Automation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeTraits" = 8858370056;
+}
+Automation type mismatch: computed Button from legacy attributes vs Other from modern attribute. Input attributes and values: {
+    "XC_kAXXCAttributeAutomationType" = 0;
+    "XC_kAXXCAttributeElementBaseType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeElementType" = "_UIFloatingTabBarItemView";
+    "XC_kAXXCAttributeTraits" = 8858370048;
+}
+See test report attachments for more detail.
+    t =    11.02s Tear Down
+Test Case '-[RilloraLayoutMatrixTests.RilloraLocalizationUITests testLocalizedLargeTextDraftAndPrintableExport]' failed (11.347 seconds).
+Test Suite 'RilloraLocalizationUITests' failed at 2026-10-06 00:52:03.271.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 35.874 (35.875) seconds
+Test Suite 'RilloraLayoutMatrixTests.xctest' failed at 2026-10-06 00:52:03.271.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 35.874 (35.876) seconds
+Test Suite 'Selected tests' failed at 2026-10-06 00:52:03.272.
+	 Executed 2 tests, with 2 failures (0 unexpected) in 35.874 (35.877) seconds
+2026-10-06 00:52:03.747 xcodebuild[12374:26699619] [MT] IDETestOperationsObserverDebug: 79.110 elapsed -- Testing started completed.
+2026-10-06 00:52:03.747 xcodebuild[12374:26699619] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 00:52:03.747 xcodebuild[12374:26699619] [MT] IDETestOperationsObserverDebug: 79.110 sec, +79.110 sec -- end
+
+Test session results, code coverage, and logs:
+	/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-release-12-stripe-20261005/ipad-zh.xcresult
+
+Failing tests:
+	RilloraLocalizationUITests.testLocalizedAuthenticatedRootsAndLandscape()
+	RilloraLocalizationUITests.testLocalizedLargeTextDraftAndPrintableExport()
+
+** TEST EXECUTE FAILED **
+
+Testing started

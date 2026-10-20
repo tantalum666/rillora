@@ -1,4 +1,7 @@
+import { appendPlannerAudit as appendAudit } from "./planner-audit.js";
+import { loadReadiness } from "./readiness.js";
 import { recentAuthenticationRequired } from "./recent-authentication.js";
+import { admitPlannerSnapshot } from './snapshot-work-budget.js';
 import { getPlan, mapPlan, mapMatter, mapMatterInput, mapContact, selectTrustedContacts, type PlanRow, type MatterRow, type ContactRow } from "./planner-records.js";
 import { fetchInitialOverview } from "./overview.js";
 import { createHash, ECDH, timingSafeEqual, randomUUID } from "node:crypto";
@@ -8,6 +11,7 @@ import { Router as createRouter } from "express";
 import type { PoolClient } from "pg";
 import { z } from "zod";
 import { requireCsrf, sessionCookieName } from "./auth.js";
+import { securityCookieName, usesSecureCookies } from './security-cookies.js';
 import { csrfCookieName } from "./auth-routes.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
@@ -180,14 +184,14 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
           );
         });
       }
-      response.clearCookie(sessionCookieName, {
+      response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
-      response.clearCookie(csrfCookieName, {
-        secure: config.nodeEnv === "production",
+      response.clearCookie(securityCookieName(config, csrfCookieName), {
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
@@ -217,14 +221,14 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
         return result.rowCount ?? 0;
       });
 
-      response.clearCookie(sessionCookieName, {
+      response.clearCookie(securityCookieName(config, sessionCookieName), {
         httpOnly: true,
-        secure: config.nodeEnv === "production",
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
-      response.clearCookie(csrfCookieName, {
-        secure: config.nodeEnv === "production",
+      response.clearCookie(securityCookieName(config, csrfCookieName), {
+        secure: usesSecureCookies(config),
         sameSite: "lax",
         path: "/",
       });
@@ -763,49 +767,8 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
   router.get(
     "/readiness",
     asyncHandler(async (request, response) => {
-      const readiness = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
-        const result = await client.query<{
-          total_matters: number;
-          ready_matters: number;
-          assigned_outcomes: number;
-          confirmed_contacts: number;
-          completed_official_checks: number;
-          completed_simulations: number;
-        }>(
-          `select
-             count(*) filter (where m.archived_at is null)::int as total_matters,
-             count(*) filter (where m.archived_at is null and m.status = 'ready')::int as ready_matters,
-             count(*) filter (
-               where m.archived_at is null and m.desired_outcome <> 'undecided'
-             )::int as assigned_outcomes,
-             (select count(*)::int from app.people p
-              where p.planner_id = app.current_planner_id() and p.status = 'confirmed') as confirmed_contacts,
-             (select count(*)::int from app.official_setup_checks o
-              where o.planner_id = app.current_planner_id() and o.completed) as completed_official_checks,
-             (select count(*)::int from app.claim_simulations s
-              where s.planner_id = app.current_planner_id()) as completed_simulations
-           from app.matter_items m
-           where m.planner_id = app.current_planner_id()`,
-        );
-        return result.rows[0]!;
-      });
-      const activated =
-        readiness.total_matters >= 5 &&
-        readiness.assigned_outcomes >= 5 &&
-        readiness.confirmed_contacts >= 1 &&
-        readiness.completed_simulations >= 1;
-      response.json({
-        readiness: {
-          totalMatters: readiness.total_matters,
-          readyMatters: readiness.ready_matters,
-          assignedOutcomes: readiness.assigned_outcomes,
-          confirmedContacts: readiness.confirmed_contacts,
-          completedOfficialChecks: readiness.completed_official_checks,
-          completedSimulations: readiness.completed_simulations,
-          verifiedEmergencyPlan: activated,
-          confirmationEvidenceMayBeSimulated: true,
-        },
-      });
+      const readiness = await withPlannerDatabase(pool, request.auth.plannerId, loadReadiness);
+      response.json({ readiness });
     }),
   );
 
@@ -878,6 +841,12 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
     asyncHandler(async (request, response) => {
       const input = z.object({ recipientConnectionPublicId: publicIdSchema.nullable().optional() }).strict().parse(request.body ?? {});
       const preview = await withPlannerDatabase(pool, request.auth.plannerId, async (client) => {
+        await admitPlannerSnapshot(client);
+        const pending = (await client.query<{ count: number }>(`select count(*)::int as count from (
+          select 1 from app.export_packages where planner_id=app.current_planner_id()
+            and format='start_here_json' and status='previewed' and expires_at>statement_timestamp() limit 100
+        ) active_previews`)).rows[0]!.count;
+        if (pending >= 100) throw new ApiError(429, 'snapshot_busy', 'There are too many current export previews. Try again shortly.');
         const packageSnapshot = await collectStartHerePackage(client, input.recipientConnectionPublicId ?? null);
         const snapshotCommitment = startHereSnapshotCommitment(packageSnapshot);
         const record = await client.query<{
@@ -1021,7 +990,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
 
   router.post(
     "/exports/start-here/encrypted/:publicId/finalize",
-    requireCsrf,
+    recentAuthenticationRequired(config), requireCsrf,
     asyncHandler(async (request, response) => {
       const packagePublicId = publicIdSchema.parse(request.params.publicId);
       const input = finalizeEncryptedStartHereSchema.parse(request.body);
@@ -1310,7 +1279,7 @@ export function createApiRouter(pool: DatabasePool, config: AppConfig): Router {
           );
         }
         const generatedAt = new Date();
-        const text = renderPrintableStartHere(packageSnapshot, generatedAt);
+        const text = renderPrintableStartHere(packageSnapshot, generatedAt, input.locale);
         const record = await client.query<{ public_id: string }>(
           `insert into app.export_packages (planner_id, plan_id, format, status)
            values (app.current_planner_id(), (
@@ -1494,6 +1463,7 @@ function decodeP256PublicKey(value: string, field: string): Buffer {
 }
 
 export async function collectStartHerePackage(client: PoolClient, connectionPublicId: string | null = null): Promise<StartHerePackageSnapshot> {
+  await admitPlannerSnapshot(client);
   const planner = await client.query<{
     display_name: string;
     locale: string;
@@ -1507,26 +1477,43 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
 
   const plan = await getPlan(client);
   let audience: NonNullable<StartHerePackageSnapshot["audience"]> = { kind: "owner", connectionPublicId: null, name: null, version: null };
+  let recipientMode: string | null = null;
   if (connectionPublicId) {
-    const selected = await client.query<{ display_name: string; version: number }>(
-      `select p.display_name, c.version from app.sharing_connections c
+    const selected = await client.query<{ display_name: string; version: number; access: { mode: string } }>(
+      `select p.display_name, c.version, app.sharing_connection_access(c.public_id) as access from app.sharing_connections c
        join app.people p on p.id = c.person_id and p.planner_id = c.planner_id
        where c.planner_id = app.current_planner_id() and c.public_id = $1
          and c.status = 'accepted' and p.status not in ('revoked', 'archived') and p.archived_at is null
        for share of c, p`, [connectionPublicId]);
     if (!selected.rows[0]) throw new ApiError(409, "export_audience_changed", "This person is no longer connected. Choose a recipient and review again.");
     audience = { kind: "recipient", connectionPublicId, name: selected.rows[0].display_name, version: selected.rows[0].version };
+    recipientMode = selected.rows[0].access.mode;
   }
-  const matters = await client.query<{
+  type GuideMatter = {
     public_id: string;
     category: string;
     title: string;
     institution_name: string | null;
     location_hint: string | null;
-    desired_outcome: string;
-    status: string;
+    desired_outcome: string | null;
+    status: string | null;
     detail_level: string | null;
-  }>(
+  };
+  let matters: { rows: GuideMatter[] } = { rows: [] };
+  if (connectionPublicId && recipientMode === "saved") {
+    matters = await client.query<GuideMatter>(
+      `select item->>'matterPublicId' as public_id, item#>>'{fields,category}' as category,
+        item#>>'{fields,title}' as title, item#>>'{fields,institutionName}' as institution_name,
+        item#>>'{fields,locationHint}' as location_hint, item#>>'{fields,desiredOutcome}' as desired_outcome,
+        null::text as status, item->>'detailLevel' as detail_level
+       from jsonb_array_elements(app.owner_saved_sharing_preview($1,
+        (select coalesce(jsonb_agg(jsonb_build_object('matterPublicId',m.public_id,'detailLevel',g.detail_level)),'[]'::jsonb)
+         from app.sharing_connections c join app.sharing_grants g on g.connection_id=c.id
+         join app.matter_items m on m.id=g.matter_item_id
+         where c.public_id=$1 and c.planner_id=app.current_planner_id()))) item`, [connectionPublicId],
+    );
+  } else if (!connectionPublicId || recipientMode === "live") {
+    matters = await client.query<GuideMatter>(
     `select m.public_id, m.category, m.title, m.institution_name, m.location_hint,
             m.desired_outcome, m.status, g.detail_level
      from app.matter_items m
@@ -1535,8 +1522,9 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
      where m.planner_id = app.current_planner_id() and m.archived_at is null
        and m.desired_outcome <> 'never_disclose'
        and ($1::uuid is null or g.id is not null)
-     order by m.id`, [connectionPublicId],
+     order by m.id limit 501`, [connectionPublicId],
   );
+  }
   const contacts = connectionPublicId ? { rows: [] } : await client.query<{
     display_name: string;
     relationship_label: string | null;
@@ -1549,9 +1537,12 @@ export async function collectStartHerePackage(client: PoolClient, connectionPubl
        and exists (select 1 from app.role_assignments ra
          where ra.person_id=p.id and ra.planner_id=p.planner_id
            and ra.role='trusted_contact' and ra.status <> 'revoked')
-     order by p.id`,
+     order by p.id limit 201`,
   );
 
+  if (matters.rows.length > 500 || contacts.rows.length > 200) {
+    throw new ApiError(413, 'operation_size_limit', 'This collection is too large for one request. No records were omitted.');
+  }
   return {
     schemaVersion: "start-here-v1",
     audience,
@@ -1583,45 +1574,49 @@ export function startHereSnapshotCommitment(snapshot: StartHerePackageSnapshot):
 function renderPrintableStartHere(
   snapshot: StartHerePackageSnapshot,
   generatedAt: Date,
+  locale: "en" | "zh-CN" = "en",
 ): string {
+  const text = (english: string, chinese: string) => locale === "zh-CN" ? chinese : english;
+  const label = (value: string) => printableLabel(value, locale);
+  const separator = text(": ", "：");
   const lines = [
-    "RILLORA — START HERE",
-    snapshot.audience?.kind === "recipient" ? `Directions for ${printableLine(snapshot.audience.name ?? "your recipient")}` : "Personal directions guide — not scoped for sharing",
+    text("RILLORA — START HERE", "RILLORA — 查找指引"),
+    snapshot.audience?.kind === "recipient" ? text(`Directions for ${printableLine(snapshot.audience.name ?? "your recipient")}`, `给${printableLine(snapshot.audience.name ?? "接收人")}的查找指引`) : text("Personal directions guide — not scoped for sharing", "个人查找指引 — 未限定共享接收人"),
     "",
-    `Planner: ${printableLine(snapshot.planner.display_name)}`,
-    `Generated: ${generatedAt.toISOString()}`,
-    ...(snapshot.audience?.kind === "recipient" ? [] : [`Plan status: ${printableLabel(snapshot.plan.status)}`]),
+    `${text("Planner", "规划者")}${separator}${printableLine(snapshot.planner.display_name)}`,
+    `${text("Generated", "生成时间")}${separator}${generatedAt.toISOString()}`,
+    ...(snapshot.audience?.kind === "recipient" ? [] : [`${text("Plan status", "计划状态")}${separator}${label(snapshot.plan.status)}`]),
     "",
-    "IMPORTANT BOUNDARY",
-    "This is a plaintext directions map. It is not an encrypted package, a password vault,",
-    "proof of death, legal authority, ownership transfer, or evidence that any provider accepted a request.",
-    "Anyone who receives a saved or printed copy can read it, and Rillora cannot revoke that copy.",
-    "Dedicated account hints, financial values, currencies, passwords and recovery secrets are excluded.",
+    text("IMPORTANT BOUNDARY", "请注意"),
+    text("This is a plaintext directions map. It is not an encrypted package, a password vault,", "这是明文查找指引，不是加密文件或密码保险箱，"),
+    text("proof of death, legal authority, ownership transfer, or evidence that any provider accepted a request.", "也不是身故证明、法律授权、所有权转移文件，或任何平台已接受请求的证据。"),
+    text("Anyone who receives a saved or printed copy can read it, and Rillora cannot revoke that copy.", "获得保存或打印副本的人可以阅读其中内容，Rillora 无法撤回该副本。"),
+    text("Dedicated account hints, financial values, currencies, passwords and recovery secrets are excluded.", "此指引不包含专门的账号提示、金融价值、币种、密码或恢复秘密。"),
     "",
-    "MATTER DIRECTIONS",
+    text("MATTER DIRECTIONS", "事项指引"),
   ];
 
   if (snapshot.matters.length === 0) {
-    lines.push("No active matters are recorded.");
+    lines.push(text("No active matters are recorded.", "尚未记录有效事项。"));
   } else {
     snapshot.matters.forEach((matter, index) => {
       lines.push("", `${index + 1}. ${printableLine(matter.title)}`);
-      lines.push(`   Category: ${printableLabel(matter.category)}`);
+      lines.push(`   ${text("Category", "类别")}${separator}${label(matter.category)}`);
       if (matter.institutionName) {
-        lines.push(`   Institution or provider: ${printableLine(matter.institutionName)}`);
+        lines.push(`   ${text("Institution or provider", "机构或服务商")}${separator}${printableLine(matter.institutionName)}`);
       }
       if (matter.locationHint) {
-        lines.push(`   Where to look: ${printableLine(matter.locationHint)}`);
+        lines.push(`   ${text("Where to look", "查找位置")}${separator}${printableLine(matter.locationHint)}`);
       }
-      if (matter.desiredOutcome) lines.push(`   Direction: ${printableLabel(matter.desiredOutcome)}`);
-      if (matter.status) lines.push(`   Rillora status: ${printableLabel(matter.status)}`);
-      if (!matter.desiredOutcome) lines.push("   Name only — no directions included in this copy.");
+      if (matter.desiredOutcome) lines.push(`   ${text("Direction", "处理意愿")}${separator}${label(matter.desiredOutcome)}`);
+      if (matter.status) lines.push(`   ${text("Rillora status", "Rillora 中的状态")}${separator}${label(matter.status)}`);
+      if (!matter.desiredOutcome) lines.push(text("   Name only — no directions included in this copy.", "   仅名称 — 此副本不包含查找指引。"));
     });
   }
 
-  if (snapshot.audience?.kind !== "recipient") lines.push("", "TRUSTED-CONTACT RECORDS");
+  if (snapshot.audience?.kind !== "recipient") lines.push("", text("TRUSTED-CONTACT RECORDS", "可信联系人记录"));
   if (snapshot.trustedContacts.length === 0 && snapshot.audience?.kind !== "recipient") {
-    lines.push("No active trusted-contact records are included.");
+    lines.push(text("No active trusted-contact records are included.", "此副本未包含有效的可信联系人记录。"));
   } else {
     snapshot.trustedContacts.forEach((contact, index) => {
       const relationship = contact.relationshipLabel
@@ -1633,9 +1628,9 @@ function renderPrintableStartHere(
 
   lines.push(
     "",
-    "NEXT STEP",
-    "Use each provider's current official process. Verify identity, authority and requested action independently.",
-    "Do not write passwords, PINs, recovery codes, seed phrases or private keys on this guide.",
+    text("NEXT STEP", "下一步"),
+    text("Use each provider's current official process. Verify identity, authority and requested action independently.", "请遵循各平台当前的官方流程，分别核验身份、合法授权和具体请求。"),
+    text("Do not write passwords, PINs, recovery codes, seed phrases or private keys on this guide.", "请勿在此指引上填写密码、个人识别码、恢复码、助记词或私钥。"),
     "",
   );
   return lines.join("\n");
@@ -1650,26 +1645,18 @@ function printableLine(value: string): string {
   return sanitized || "Not provided";
 }
 
-function printableLabel(value: string): string {
+function printableLabel(value: string, locale: "en" | "zh-CN" = "en"): string {
+  const chinese: Record<string, string> = {
+    financial_asset: "金融资产", debt: "债务", account: "在线账号", device: "设备", document: "文件", subscription: "订阅", crypto_asset: "加密资产",
+    notify: "通知相关人员", transfer_request: "申请转移", close: "关闭账号", delete_request: "申请删除", memorialize: "设置纪念状态",
+    delay_disclosure: "延后披露", never_disclose: "永不披露", undecided: "尚未决定", draft: "草稿", active: "有效", ready: "已就绪",
+    review_due: "待复核", needs_attention: "待完善", not_included: "未包含", archived: "已归档",
+  };
+  if (locale === "zh-CN" && Object.hasOwn(chinese, value)) return chinese[value]!;
   return printableLine(value.replaceAll("_", " "));
 }
 
 
-
-async function appendAudit(
-  client: PoolClient,
-  action: string,
-  resourceType: string,
-  resourcePublicId: string | null,
-  metadata: Record<string, unknown>,
-): Promise<void> {
-  await client.query(
-    `insert into app.audit_events (
-       planner_id, actor_type, action, resource_type, resource_public_id, metadata
-     ) values (app.current_planner_id(), 'planner', $1, $2, $3, $4::jsonb)`,
-    [action, resourceType, resourcePublicId, JSON.stringify(metadata)],
-  );
-}
 
 async function selectTrustedContact(
   client: PoolClient,

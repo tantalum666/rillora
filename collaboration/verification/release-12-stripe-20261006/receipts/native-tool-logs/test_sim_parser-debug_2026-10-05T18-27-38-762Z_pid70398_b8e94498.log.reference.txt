@@ -1,0 +1,276 @@
+Unrecognized xcodebuild output lines (274):
+
+2026-10-06 02:26:10.836 xcodebuild[29453:26858907] Writing test products to /Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T18-26-09-153Z_pid70398_9336b9e8.xctestproducts
+note: Building targets in dependency order
+note: Target dependency graph (43 targets)
+Target 'RilloraLayoutMatrixTests' in project 'Rillora'
+➜ Explicit dependency on target 'Rillora' in project 'Rillora'
+Target 'Rillora' in project 'Rillora'
+➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'Pow' in project 'Pow'
+➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+Target 'Shimmer' in project 'SwiftUI-Shimmer'
+➜ Explicit dependency on target 'Shimmer' in project 'SwiftUI-Shimmer'
+Target 'Pow' in project 'Pow'
+➜ Explicit dependency on target 'Pow' in project 'Pow'
+➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+Target 'Pow' in project 'Pow'
+➜ Explicit dependency on target 'Pow_Pow' in project 'Pow'
+Target 'GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+Target 'GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'GoogleSignIn_GoogleSignIn' in project 'GoogleSignIn'
+➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+Target 'GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+Target 'GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMAppAuth_GTMAppAuth' in project 'GTMAppAuth'
+➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+➜ Explicit dependency on target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+Target 'GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+➜ Explicit dependency on target 'GTMSessionFetcher_GTMSessionFetcherCore' in project 'GTMSessionFetcher'
+Target 'AppCheckCore' in project 'AppCheck'
+➜ Explicit dependency on target 'AppCheckCore' in project 'AppCheck'
+➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+Target 'AppCheckCore' in project 'AppCheck'
+➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+➜ Explicit dependency on target 'GULEnvironment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GULUserDefaults' in project 'GoogleUtilities'
+Target 'GULUserDefaults' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+Target 'GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-UserDefaults' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+Target 'GoogleUtilities-Logger' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Logger' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+Target 'GULEnvironment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+Target 'GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'GoogleUtilities_GoogleUtilities-Environment' in project 'GoogleUtilities'
+➜ Explicit dependency on target 'third-party-IsAppEncrypted' in project 'GoogleUtilities'
+Target 'FBLPromises' in project 'Promises'
+➜ Explicit dependency on target 'FBLPromises' in project 'Promises'
+➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+Target 'FBLPromises' in project 'Promises'
+➜ Explicit dependency on target 'Promises_FBLPromises' in project 'Promises'
+Target 'AppAuthCore' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+Target 'AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+Target 'AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuth_AppAuth' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuthCore' in project 'AppAuth'
+Target 'AppAuthCore' in project 'AppAuth'
+➜ Explicit dependency on target 'AppAuth_AppAuthCore' in project 'AppAuth'
+Target 'Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+Target 'Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'Auth0_Auth0' in project 'Auth0'
+➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+Target 'JWTDecode' in project 'JWTDecode'
+➜ Explicit dependency on target 'JWTDecode' in project 'JWTDecode'
+Target 'SimpleKeychain' in project 'SimpleKeychain'
+➜ Explicit dependency on target 'SimpleKeychain' in project 'SimpleKeychain'
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang-stat-cache /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -o /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache
+CompileAssetCatalogVariant thinned /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle /tmp/rillora-review-release-20260930/SourcePackages/checkouts/Pow/Sources/Pow/Assets.xcassets (in target 'Pow_Pow' from project 'Pow')
+/Applications/Xcode.app/Contents/Developer/usr/bin/actool /tmp/rillora-review-release-20260930/SourcePackages/checkouts/Pow/Sources/Pow/Assets.xcassets --compile /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_dependencies_thinned --output-partial-info-plist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_generated_info.plist_thinned --compress-pngs --enable-on-demand-resources NO --filter-for-thinning-device-configuration iPhone18,2 --filter-for-device-os-version 26.5 --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 15.0 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_generated_info.plist_thinned
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_output/thinned/Assets.car
+SwiftDriver RilloraLayoutMatrixTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-SwiftDriver -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraLayoutMatrixTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+SwiftEmitModule normal arm64 Emitting\ module\ for\ RilloraLayoutMatrixTests (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+EmitSwiftModule normal arm64 (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+SwiftDriverJobDiscovery normal arm64 Emitting module for RilloraLayoutMatrixTests (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+SwiftDriver\ Compilation\ Requirements RilloraLayoutMatrixTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-Swift-Compilation-Requirements -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraLayoutMatrixTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftsourceinfo (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftsourceinfo /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/Project/arm64-apple-ios-simulator.swiftsourceinfo
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.swiftmodule
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.abi.json /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.abi.json (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.abi.json /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.abi.json
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.swiftdoc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftdoc (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks -rename /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftdoc /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests.swiftmodule/arm64-apple-ios-simulator.swiftdoc
+SwiftDriverJobDiscovery normal arm64 Compiling RilloraLocalizationUITests.swift (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+SwiftDriver\ Compilation RilloraLayoutMatrixTests normal arm64 com.apple.xcode.tools.swift.compiler (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+builtin-Swift-Compilation -- /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/swiftc -module-name RilloraLayoutMatrixTests -Onone @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.SwiftFileList -DDEBUG -module-alias Testing\=_Testing_Unavailable -plugin-path /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/host/plugins/testing -enable-experimental-feature DebugDescriptionMacro -sdk /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -target arm64-apple-ios17.0-simulator -g -module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -Xfrontend -serialize-debugging-options -enable-testing -Xcc -D_LIBCPP_HARDENING_MODE\=_LIBCPP_HARDENING_MODE_DEBUG -swift-version 6 -I /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -Isystem /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -F /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -emit-localized-strings -emit-localized-strings-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64 -c -j12 -enable-batch-mode -incremental -Xcc -ivfsstatcache -Xcc /tmp/rillora-review-release-20260930/SDKStatCaches.noindex/iphonesimulator26.5-23F81a-6cfe768891a92b912361537c460fe42b.sdkstatcache -output-file-map /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-OutputFileMap.json -use-frontend-parseable-output -save-temps -no-color-diagnostics -explicit-module-build -module-cache-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/SwiftExplicitPrecompiledModules -clang-scanner-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -sdk-module-cache-path /tmp/rillora-review-release-20260930/ModuleCache.noindex -serialize-diagnostics -emit-dependencies -emit-module -emit-module-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule -validate-clang-modules-once -clang-build-session-file /tmp/rillora-review-release-20260930/ModuleCache.noindex/Session.modulevalidation -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/swift-overrides.hmap -emit-const-values -Xfrontend -const-gather-protocols-file -Xfrontend /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_const_extract_protocols.json -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-generated-files.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-own-target-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-all-non-framework-target-headers.hmap -Xcc -ivfsoverlay -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora-2e4d4d6abf42f2b7fe8911a304de3ecb-VFS-iphonesimulator/all-product-headers.yaml -Xcc -iquote -Xcc /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests-project-headers.hmap -Xcc -I/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/include -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources-normal/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources/arm64 -Xcc -I/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/DerivedSources -Xcc -DDEBUG\=1 -emit-objc-header -emit-objc-header-path /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-Swift.h -working-directory /Users/tantalum/Documents/电子遗嘱app/apps/ios -experimental-emit-module-separately -disable-cmo
+LinkAssetCatalog /tmp/rillora-review-release-20260930/SourcePackages/checkouts/Pow/Sources/Pow/Assets.xcassets (in target 'Pow_Pow' from project 'Pow')
+builtin-linkAssetCatalog --thinned /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_output/thinned --thinned-dependencies /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_generated_info.plist_thinned --unthinned /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_output/unthinned --unthinned-dependencies /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_generated_info.plist_unthinned --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle --plist-output /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Pow.build/Debug-iphonesimulator/Pow_Pow.build/assetcatalog_generated_info.plist
+note: Emplaced /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle/Assets.car (in target 'Pow_Pow' from project 'Pow')
+CompileAssetCatalogVariant thinned /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Assets.xcassets (in target 'Rillora' from project 'Rillora')
+/Applications/Xcode.app/Contents/Developer/usr/bin/actool /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Assets.xcassets --compile /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/thinned --output-format human-readable-text --notices --warnings --export-dependency-info /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_dependencies_thinned --output-partial-info-plist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist_thinned --app-icon AppIcon --compress-pngs --enable-on-demand-resources YES --filter-for-thinning-device-configuration iPhone18,2 --filter-for-device-os-version 26.5 --development-region en --target-device iphone --target-device ipad --minimum-deployment-target 17.0 --platform iphonesimulator
+/* com.apple.actool.compilation-results */
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist_thinned
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/thinned/[REDACTED_EMAIL]
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/thinned/AppIcon76x76@2x~ipad.png
+/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/thinned/Assets.car
+Copy /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle (in target 'Rillora' from project 'Rillora')
+builtin-copy -exclude .DS_Store -exclude CVS -exclude .svn -exclude .git -exclude .hg -resolve-src-symlinks /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Pow_Pow.bundle /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app
+LinkAssetCatalog /Users/tantalum/Documents/电子遗嘱app/apps/ios/Rillora/Resources/Assets.xcassets (in target 'Rillora' from project 'Rillora')
+builtin-linkAssetCatalog --thinned /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/thinned --thinned-dependencies /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_dependencies_thinned --thinned-info-plist-content /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist_thinned --unthinned /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_output/unthinned --unthinned-dependencies /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_dependencies_unthinned --unthinned-info-plist-content /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist_unthinned --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app --plist-output /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/Rillora.build/assetcatalog_generated_info.plist
+note: Emplaced /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/Assets.car (in target 'Rillora' from project 'Rillora')
+note: Emplaced /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/AppIcon76x76@2x~ipad.png (in target 'Rillora' from project 'Rillora')
+note: Emplaced /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/Rillora.app/[REDACTED_EMAIL] (in target 'Rillora' from project 'Rillora')
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang -Xlinker -reproducible -target arm64-apple-ios17.0-simulator -bundle -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk -O0 -L/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -L/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -L/Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/usr/lib -F/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/EagerLinkingTBDs/Debug-iphonesimulator -F/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/Library/Frameworks -iframework /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk/Developer/Library/Frameworks -filelist /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.LinkFileList -Xlinker -rpath -Xlinker /usr/lib/swift -Xlinker -rpath -Xlinker @loader_path/Frameworks -Xlinker -rpath -Xlinker @executable_path/Frameworks -Xlinker -dead_strip -Xlinker -object_path_lto -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_lto.o -rdynamic -Xlinker -no_deduplicate -Xlinker -objc_abi_version -Xlinker 2 -Xlinker -dependency_info -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_dependency_info.dat -fobjc-link-runtime -L/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/lib/swift/iphonesimulator -L/usr/lib/swift -Xlinker -add_ast_path -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.swiftmodule @/tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests-linker-args.resp -Xlinker -needed_framework -Xlinker XCTest -framework XCTest -Xlinker -needed-lXCTestSwiftSupport -lXCTestSwiftSupport -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __entitlements -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests.xctest-Simulated.xcent -Xlinker -sectcreate -Xlinker __TEXT -Xlinker __ents_der -Xlinker /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests.xctest-Simulated.xcent.der -Xlinker -no_adhoc_codesign -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/RilloraLayoutMatrixTests
+GenerateDSYMFile /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest.dSYM /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/RilloraLayoutMatrixTests (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/dsymutil /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/RilloraLayoutMatrixTests -o /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest.dSYM
+ExtractAppIntentsMetadata (in target 'RilloraLayoutMatrixTests' from project 'Rillora')
+/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/appintentsmetadataprocessor --toolchain-dir /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain --module-name RilloraLayoutMatrixTests --sdk-root /Applications/Xcode.app/Contents/Developer/Platforms/iPhoneSimulator.platform/Developer/SDKs/iPhoneSimulator26.5.sdk --xcode-version 17F113 --platform-family iOS --deployment-target 17.0 --bundle-identifier com.rillora.ios.layout-matrix-tests --output /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest --target-triple arm64-apple-ios17.0-simulator --binary-file /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest/RilloraLayoutMatrixTests --dependency-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests_dependency_info.dat --stringsdata-file /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/ExtractedAppShortcutsMetadata.stringsdata --source-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.SwiftFileList --metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests.DependencyMetadataFileList --static-metadata-file-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/RilloraLayoutMatrixTests.DependencyStaticMetadataFileList --swift-const-vals-list /tmp/rillora-review-release-20260930/Build/Intermediates.noindex/Rillora.build/Debug-iphonesimulator/RilloraLayoutMatrixTests.build/Objects-normal/arm64/RilloraLayoutMatrixTests.SwiftConstValuesFileList --compile-time-extraction --deployment-aware-processing --validate-assistant-intents --no-app-shortcuts-localization
+2026-10-06 02:26:30.268 appintentsmetadataprocessor[29704:26861178] Starting appintentsmetadataprocessor export
+2026-10-06 02:26:30.273 appintentsmetadataprocessor[29704:26861178] warning: Metadata extraction skipped. No AppIntents.framework dependency found.
+Signing Identity:     "Sign to Run Locally"
+/usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app/PlugIns/RilloraLayoutMatrixTests.xctest
+Signing Identity:     "Sign to Run Locally"
+/usr/bin/codesign --force --sign - --timestamp\=none --generate-entitlement-der /tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app
+/tmp/rillora-review-release-20260930/Build/Products/Debug-iphonesimulator/RilloraLayoutMatrixTests-Runner.app: replacing existing signature
+** TEST BUILD SUCCEEDED **
+2026-10-06 02:26:32.440 xcodebuild[29709:26861221] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+Writing result bundle at path:
+2026-10-06 02:26:32.452 xcodebuild[29709:26861221] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 02:26:33.890 xcodebuild[29709:26861221] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 02:26:34.308 xcodebuild[29709:26861221] [MT] IDERunDestination: Supported platforms for the buildables in the current scheme is empty.
+2026-10-06 02:26:44.812340+0800 RilloraLayoutMatrixTests-Runner[29748:26861968] [Default] Running tests...
+2026-10-06 02:26:44.995923+0800 RilloraLayoutMatrixTests-Runner[29748:26862195] [General] Failed to send CA Event for app launch measurements for ca_event_type: 0 event_name: com.apple.app_launch_measurement.FirstFramePresentationMetric
+2026-10-06 02:26:45.037166+0800 RilloraLayoutMatrixTests-Runner[29748:26862195] [General] Failed to send CA Event for app launch measurements for ca_event_type: 1 event_name: com.apple.app_launch_measurement.ExtendedLaunchMetrics
+t =      nans Interface orientation changed to Portrait
+t =     0.01s Start Test at 2026-10-06 02:26:45.271
+objc[29748]: Class UIAccessibilityLoaderWebShared is implemented in both /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebCore.axbundle/WebCore (0x10aa6c310) and /Library/Developer/CoreSimulator/Volumes/iOS_23F77/Library/Developer/CoreSimulator/Profiles/Runtimes/iOS 26.5.simruntime/Contents/Resources/RuntimeRoot/System/Library/AccessibilityBundles/WebKit.axbundle/WebKit (0x10a36c398). This may cause spurious casting failures and mysterious crashes. One of the duplicates must be removed or renamed.
+t =     0.41s Set Up
+t =     0.42s Setting device orientation to Portrait
+t =     0.46s     Device orientation changed to Portrait
+t =     0.49s     Wait for com.apple.Preferences to idle
+t =     0.61s Open com.rillora.ios
+t =     0.61s     Launch com.rillora.ios
+t =     0.61s         Terminate com.rillora.ios:27627
+2026-10-06 02:26:47.554 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 02:26:47.554 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: no debugger version
+t =     3.54s         Setting up automation session
+t =     4.78s         Wait for com.rillora.ios to idle
+t =     6.82s Waiting 20.0s for "overview.scroll" Any to exist
+t =     7.86s     Checking `Expect predicate `existsNoRetry == 1` for object "overview.scroll" Any`
+t =     7.86s         Checking existence of `"overview.scroll" Any`
+t =     8.01s Checking existence of `"事项" Button`
+t =     8.06s Checking existence of `"事项" Button`
+t =     8.10s Checking existence of `"事项" Button`
+t =     8.13s Tap "事项" Button
+t =     8.13s     Wait for com.rillora.ios to idle
+t =     8.26s     Find the "事项" Button
+t =     8.30s     Check for interrupting elements affecting "事项" Button
+t =     8.36s     Synthesize event
+t =     8.78s     Wait for com.rillora.ios to idle
+t =    10.73s Waiting 10.0s for Button (First Match) to exist
+t =    11.78s     Checking `Expect predicate `existsNoRetry == 1` for object Button (First Match)`
+t =    11.78s         Checking existence of `Button (First Match)`
+t =    11.88s Find the Button (First Match)
+t =    11.95s Checking existence of `"个人中心" Button`
+t =    12.02s Tap "个人中心" Button
+t =    12.02s     Wait for com.rillora.ios to idle
+t =    12.02s     Find the "个人中心" Button
+t =    12.07s     Check for interrupting elements affecting "个人中心" Button
+t =    12.11s     Synthesize event
+t =    12.41s     Wait for com.rillora.ios to idle
+t =    14.35s Tap "language.control" Any
+t =    14.35s     Wait for com.rillora.ios to idle
+t =    14.36s     Find the "language.control" Any
+t =    14.46s     Check for interrupting elements affecting "language.control" Other
+t =    14.58s     Synthesize event
+t =    14.95s     Wait for com.rillora.ios to idle
+t =    16.14s Tap "language.open-settings" Button
+t =    16.14s     Wait for com.rillora.ios to idle
+t =    16.14s     Find the "language.open-settings" Button
+t =    16.21s     Check for interrupting elements affecting "language.open-settings" Button
+t =    16.24s     Synthesize event
+t =    16.55s     Wait for com.rillora.ios to idle
+t =    16.55s Wait for com.apple.Preferences to become Running Foreground
+t =    16.55s Checking existence of `"PREFERRED_LANGUAGE" Button`
+t =    16.76s Checking existence of `"English" StaticText`
+t =    16.80s Checking existence of `"PREFERRED_LANGUAGE" Button`
+t =    16.85s Waiting 5.0s for "English" StaticText to exist
+t =    17.88s     Checking `Expect predicate `existsNoRetry == 1` for object "English" StaticText`
+t =    17.88s         Checking existence of `"English" StaticText`
+t =    17.90s Tap "English" StaticText
+t =    17.90s     Wait for com.apple.Preferences to idle
+t =    17.90s     Find the "English" StaticText
+t =    17.91s     Check for interrupting elements affecting "English" StaticText
+t =    17.93s     Synthesize event
+t =    18.23s     Wait for com.apple.Preferences to idle
+t =    18.76s Added attachment named 'zh-Hans-system-app-language-english-selected'
+t =    18.76s Terminate com.rillora.ios:0
+t =    18.76s Open com.rillora.ios
+t =    18.76s     Launch com.rillora.ios
+2026-10-06 02:27:04.048 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 02:27:04.048 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: no debugger version
+t =    19.20s         Setting up automation session
+t =    20.21s         Wait for com.rillora.ios to idle
+t =    21.79s Checking existence of `"Overview" Button`
+t =    21.89s Waiting 15.0s for "Overview" Button to exist
+t =    22.92s     Checking `Expect predicate `existsNoRetry == 1` for object "Overview" Button`
+t =    22.93s         Checking existence of `"Overview" Button`
+t =    22.96s Checking existence of `"Matters" Button`
+t =    22.99s Tap "Matters" Button
+t =    22.99s     Wait for com.rillora.ios to idle
+t =    22.99s     Find the "Matters" Button
+t =    23.02s     Check for interrupting elements affecting "list.bullet.rectangle" Button
+t =    23.05s     Synthesize event
+t =    23.35s     Wait for com.rillora.ios to idle
+t =    25.00s Waiting 10.0s for "matter.open.9f6d059d-6bbf-4cf8-9975-815da5f60902" Button to exist
+t =    26.03s     Checking `Expect predicate `existsNoRetry == 1` for object "matter.open.9f6d059d-6bbf-4cf8-9975-815da5f60902" Button`
+t =    26.03s         Checking existence of `"matter.open.9f6d059d-6bbf-4cf8-9975-815da5f60902" Button`
+t =    26.23s Added attachment named 'zh-Hans-system-language-english-data-retained'
+t =    26.23s Terminate com.rillora.ios:29820
+t =    27.29s Open com.rillora.ios
+t =    27.29s     Launch com.rillora.ios
+2026-10-06 02:27:12.554 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: The operation couldn’t be completed. (DebuggerLLDB.DebuggerVersionStore.StoreError error 0.)
+2026-10-06 02:27:12.554 xcodebuild[29709:26861221] [MT] IDELaunchParametersSnapshot: no debugger version
+t =    27.50s         Setting up automation session
+t =    28.44s         Wait for com.rillora.ios to idle
+t =    30.35s Checking existence of `"Profile" Button`
+t =    30.46s Waiting 15.0s for "Profile" Button to exist
+t =    31.49s     Checking `Expect predicate `existsNoRetry == 1` for object "Profile" Button`
+t =    31.50s         Checking existence of `"Profile" Button`
+t =    31.68s Added attachment named 'zh-Hans-system-language-english-second-launch'
+t =    31.68s Terminate com.rillora.ios:29838
+t =    32.75s Tear Down
+t =    32.90s Checking for crash reports corresponding to unexpected termination of com.rillora.ios
+2026-10-06 02:27:38.510 xcodebuild[29709:26861221] [MT] IDETestOperationsObserverDebug: 64.588 elapsed -- Testing started completed.
+2026-10-06 02:27:38.510 xcodebuild[29709:26861221] [MT] IDETestOperationsObserverDebug: 0.000 sec, +0.000 sec -- start
+2026-10-06 02:27:38.510 xcodebuild[29709:26861221] [MT] IDETestOperationsObserverDebug: 64.588 sec, +64.588 sec -- end
+Test session results, code coverage, and logs:
+** TEST EXECUTE SUCCEEDED **

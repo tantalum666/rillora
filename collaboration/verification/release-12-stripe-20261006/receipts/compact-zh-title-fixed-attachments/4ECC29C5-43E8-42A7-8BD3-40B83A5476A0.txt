@@ -1,0 +1,38 @@
+Text of this SwiftUI.AccessibilityNode may be clipped at larger Dynamic Type sizes.
+Attributes: StaticText, 0x11523d900, {{32.0, 515.5}, {311.0, 116.5}}, label: '包含的信息'
+Element subtree:
+ →StaticText, 0x11523d900, {{32.0, 515.5}, {311.0, 116.5}}, label: '包含的信息'
+Path to element:
+ →Application, 0x114fa3ac0, pid: 91387, label: 'Rillora'
+  ↳Window (Main), 0x114fa3c00, {{0.0, 0.0}, {375.0, 667.0}}
+   ↳Other, 0x114fa3d40, {{0.0, 0.0}, {375.0, 667.0}}
+    ↳Other, 0x114fa3e80, {{0.0, 0.0}, {375.0, 667.0}}
+     ↳Other, 0x114d012c0, {{0.0, 0.0}, {375.0, 667.0}}
+      ↳Other, 0x114d008c0, {{0.0, 0.0}, {375.0, 667.0}}
+       ↳Other, 0x114d00a00, {{0.0, 0.0}, {375.0, 667.0}}
+        ↳Other, 0x114d01400, {{0.0, 0.0}, {375.0, 667.0}}
+         ↳Other, 0x114d03ac0, {{0.0, 0.0}, {375.0, 667.0}}
+          ↳Other, 0x114d03c00, {{0.0, 0.0}, {375.0, 667.0}}
+           ↳Other, 0x114d03d40, {{0.0, 0.0}, {375.0, 667.0}}
+            ↳Other, 0x114d03e80, {{0.0, 0.0}, {375.0, 667.0}}
+             ↳Other, 0x114d00b40, {{0.0, 0.0}, {375.0, 667.0}}
+              ↳Other, 0x114d01540, {{0.0, 0.0}, {375.0, 667.0}}
+               ↳Other, 0x114d03980, {{0.0, 0.0}, {375.0, 667.0}}
+                ↳Other, 0x114d00f00, {{0.0, 0.0}, {375.0, 667.0}}
+                 ↳Other, 0x114d00000, {{0.0, 0.0}, {375.0, 667.0}}
+                  ↳CollectionView, 0x114d00140, {{0.0, 0.0}, {375.0, 667.0}}, identifier: 'start-here.view'
+                   ↳Cell, 0x11523cdc0, {{16.0, 500.5}, {343.0, 146.5}}
+                    ↳Other, 0x11523d2c0, {{16.0, 500.5}, {343.0, 146.5}}
+                     ↳Other, 0x11523d400, {{16.0, 500.5}, {343.0, 146.5}}
+                      ↳Other, 0x11523d540, {{16.0, 500.5}, {343.0, 146.5}}
+                       ↳Button, 0x11523d680, {{16.0, 500.5}, {343.0, 146.5}}, label: '包含的信息', value: 已收起
+                        ↳StaticText, 0x11523d900, {{32.0, 515.5}, {311.0, 116.5}}, label: '包含的信息'
+Query chain:
+ →Find: Target Application 'com.rillora.ios'
+  Output: {
+    Application, 0x1154cfc00, pid: 91387, label: 'Rillora'
+  }
+  ↪︎Find: Descendant with identity binding to AX element pid: 91387, elementOrHash.elementID: 5019796800.718
+    Output: {
+      StaticText, 0x1154cea80, {{32.0, 515.5}, {311.0, 116.5}}, label: '包含的信息'
+    }

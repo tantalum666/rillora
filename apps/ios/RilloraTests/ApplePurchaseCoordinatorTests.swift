@@ -3,24 +3,124 @@ import XCTest
 
 @MainActor
 final class ApplePurchaseCoordinatorTests: XCTestCase {
-    func testNoPurchaseWithoutCurrentPriceAndExpressConsent() async {
+    func testPurchaseUsesServerIntentTokenAndRestoreRecoversThatOwnedTokenWithoutANewOrder() async {
+        let f = await fixture(environment: .sandbox), token = UUID()
+        XCTAssertNotEqual(token, f.owner)
+        await f.service.usePurchaseToken(token)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let supplied = await f.client.suppliedAccountToken
+        XCTAssertEqual(supplied, token)
+        let initial = await f.service.submissions
+        XCTAssertEqual(initial, 1)
+        await f.coordinator.restore()
+        let restored = await f.service.submissions
+        let prepared = await f.service.preparations
+        XCTAssertEqual(restored, 2)
+        XCTAssertEqual(prepared, 1)
+    }
+    func testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        let syncs = await f.client.syncs
+        let refreshes = await f.client.appRefreshes
+        let submissions = await f.service.submissions
+        let finishes = await f.client.finishes
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(refreshes, 0)
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(finishes, [100])
+        XCTAssertEqual(f.coordinator.message, String(localized: "Your Apple purchase status is up to date."))
+    }
+
+    func testMissingHistoryUsesExplicitSyncThenServerVerification() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistoryAfterSync(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        let finishes = await f.client.finishes
+        XCTAssertEqual(syncs, 1)
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(finishes, [100])
+    }
+
+    func testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase() async {
         let f = await fixture()
-        await f.coordinator.purchase(acceptedTerms: false)
+        await f.service.rejectNewQuotes()
+        await f.coordinator.refreshQuote()
+        XCTAssertNotNil(f.coordinator.catalogProduct)
+        XCTAssertNil(f.coordinator.quote)
+        XCTAssertNil(f.coordinator.product)
+        XCTAssertFalse(f.coordinator.isLoadingQuote)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let preparations = await f.service.preparations
+        XCTAssertEqual(preparations, 0)
+    }
+
+    func testOlderCatalogResponseCannotReplaceNewerDisplayedQuote() async {
+        let f = await fixture()
+        await f.client.pauseNextCatalog()
+        let older = Task { await f.coordinator.refreshQuote() }
+        for _ in 0..<1000 {
+            if await f.client.catalogWaiting { break }
+            await Task.yield()
+        }
+        let waiting = await f.client.catalogWaiting
+        XCTAssertTrue(waiting)
+        await f.client.setAmount(119_990)
+        await f.service.setAmount(119_990)
+        await f.coordinator.refreshQuote()
+        await f.client.resumeCatalog()
+        await older.value
+        XCTAssertEqual(f.coordinator.catalogProduct?.priceMilliunits, 119_990)
+        XCTAssertEqual(f.coordinator.quote?.quote.priceMilliunits, 119_990)
+        XCTAssertFalse(f.coordinator.isLoadingQuote)
+    }
+
+    func testPartialHistoryIsNotReportedAsCompletelyRestored() async {
+        let f = await fixture(environment: .sandbox)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.client.failHistory()
+        await f.coordinator.restore()
+        let submissions = await f.service.submissions
+        XCTAssertEqual(submissions, 1)
+        XCTAssertEqual(f.coordinator.message, String(localized: "Apple purchase history could not be fully checked. Try again shortly."))
+    }
+
+    func testOpeningPageAndMissingDisplayedQuoteCannotPurchase() async {
+        let f = await fixture()
+        await f.coordinator.purchase(accepting: nil)
         let preparations = await f.service.preparations
         let purchases = await f.client.purchases
         XCTAssertEqual(preparations, 0); XCTAssertEqual(purchases, 0)
         XCTAssertNotNil(f.coordinator.quote)
     }
 
-    func testChangedPriceRequiresAnotherDeliberateConsent() async {
+    func testChangedPriceRequiresAnotherPurchaseButtonTap() async {
         let f = await fixture()
         await f.service.setAmount(119_990)
         await f.client.setAmount(119_990)
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let purchases = await f.client.purchases
         XCTAssertEqual(purchases, 0)
         XCTAssertEqual(f.coordinator.quote?.quote.priceMilliunits, 119_990)
         XCTAssertTrue(f.coordinator.message?.contains("price changed") == true)
+    }
+
+    func testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts() async {
+        let f = await fixture()
+        let displayedQuote = f.coordinator.quote
+        await f.service.setAmount(119_990)
+        await f.client.setAmount(119_990)
+        await f.coordinator.refreshQuote()
+        await f.coordinator.purchase(accepting: displayedQuote)
+        let rejectedPreparations = await f.service.preparations
+        XCTAssertEqual(rejectedPreparations, 0)
+        XCTAssertTrue(f.coordinator.message?.contains("price changed") == true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let purchases = await f.client.purchases
+        XCTAssertEqual(purchases, 1)
     }
 
     func testStoreKitPriceMismatchCannotShowOrStartAnOffer() async {
@@ -28,9 +128,69 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         await f.client.setAmount(68_000)
         await f.coordinator.refreshQuote()
         XCTAssertNil(f.coordinator.quote)
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let purchases = await f.client.purchases
         XCTAssertEqual(purchases, 0)
+    }
+
+    func testStoreKitReceivesTheExactDisplayedMoneyAndCurrency() async {
+        let f = await fixture(environment: .sandbox)
+        let displayed = f.coordinator.product
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let expectedProduct = await f.client.expectedProduct
+        XCTAssertEqual(expectedProduct, displayed)
+        XCTAssertEqual(expectedProduct?.priceMilliunits, 99_990)
+        XCTAssertEqual(expectedProduct?.currencyCode, "USD")
+        XCTAssertEqual(expectedProduct?.displayPriceWithCurrency, "USD $99.99")
+    }
+
+    func testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake() async {
+        let f = await fixture(environment: .sandbox)
+        await f.service.pauseNextPreparation()
+        let purchase = Task { await f.coordinator.purchase(accepting: f.coordinator.quote) }
+        for _ in 0..<1000 {
+            if await f.service.waiting { break }
+            await Task.yield()
+        }
+        let waiting = await f.service.waiting
+        XCTAssertTrue(waiting)
+        await f.client.setAmount(119_990)
+        await f.client.setOutcome(.quoteChanged)
+        await f.service.resumePreparation()
+        await purchase.value
+        let expectedProduct = await f.client.expectedProduct
+        let actions = await f.service.actions
+        let submissions = await f.service.submissions
+        let finishes = await f.client.finishes
+        XCTAssertEqual(expectedProduct?.priceMilliunits, 99_990)
+        XCTAssertEqual(actions, ["start", "cancel"])
+        XCTAssertEqual(submissions, 0)
+        XCTAssertTrue(finishes.isEmpty)
+        XCTAssertNil(f.coordinator.pending)
+        XCTAssertNil(f.coordinator.quote)
+        XCTAssertTrue(f.coordinator.message?.contains("price changed") == true)
+        XCTAssertFalse(f.coordinator.busy)
+    }
+
+    func testChangedQuoteReturnsTheNewPriceForFreshConsent() async {
+        let f = await fixture()
+        await f.service.pauseNextPreparation()
+        let purchase = Task { await f.coordinator.purchase(accepting: f.coordinator.quote) }
+        for _ in 0..<1000 {
+            if await f.service.waiting { break }
+            await Task.yield()
+        }
+        await f.service.setAmount(119_990)
+        await f.client.setAmount(119_990)
+        await f.client.setOutcome(.quoteChanged)
+        await f.service.resumePreparation()
+        await purchase.value
+        XCTAssertEqual(f.coordinator.quote?.quote.priceMilliunits, 119_990)
+        XCTAssertEqual(f.coordinator.product?.displayPriceWithCurrency, "USD $119.99")
+        XCTAssertNil(f.coordinator.pending)
+        XCTAssertTrue(f.coordinator.message?.contains("price changed") == true)
+        let submissions = await f.service.submissions
+        XCTAssertEqual(submissions, 0)
     }
 
     func testHistoryOutageIsNotPresentedAsHavingNoPurchases() async {
@@ -44,7 +204,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     func testOnlyCommittedServerStateCanFinishThenRestoreRetries() async {
         let f = await fixture()
         await f.service.setFinished(false)
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let first = await f.client.finishes
         XCTAssertEqual(first, [])
         XCTAssertTrue(f.coordinator.message?.contains("being checked") == true)
@@ -59,7 +219,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     func testInconsistentFinishResponseIsRejectedEvenByInjectedService() async {
         let f = await fixture()
         await f.service.setInconsistent()
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let finished = await f.client.finishes
         XCTAssertTrue(finished.isEmpty)
     }
@@ -89,15 +249,15 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     func testPendingAndCanceledOutcomesArePreservedWithoutFinishing() async {
         let f = await fixture()
         await f.client.setOutcome(.pending)
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let firstActions = await f.service.actions
         XCTAssertEqual(firstActions, ["start", "pending"])
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let stillPending = await f.service.actions
         XCTAssertEqual(stillPending, ["start", "pending"])
         let canceled = await fixture()
         await canceled.client.setOutcome(.userCancelled)
-        await canceled.coordinator.purchase(acceptedTerms: true)
+        await canceled.coordinator.purchase(accepting: canceled.coordinator.quote)
         let actions = await canceled.service.actions
         let finishes = await canceled.client.finishes
         XCTAssertEqual(actions, ["start", "cancel"])
@@ -107,7 +267,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     func testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet() async {
         let f = await fixture()
         await f.service.pauseNextPreparation()
-        let purchase = Task { await f.coordinator.purchase(acceptedTerms: true) }
+        let purchase = Task { await f.coordinator.purchase(accepting: f.coordinator.quote) }
         for _ in 0..<100 {
             if await f.service.waiting { break }
             await Task.yield()
@@ -126,7 +286,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     func testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession() async {
         let f = await fixture()
         await f.service.pauseNextReceipt()
-        let purchase = Task { await f.coordinator.purchase(acceptedTerms: true) }
+        let purchase = Task { await f.coordinator.purchase(accepting: f.coordinator.quote) }
         for _ in 0..<1000 {
             if await f.service.receiptWaiting { break }
             await Task.yield()
@@ -147,7 +307,7 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         XCTAssertEqual(f.coordinator.environment, .sandbox)
         XCTAssertNotNil(f.coordinator.quote)
         await f.service.useWrongReceiptEnvironment()
-        await f.coordinator.purchase(acceptedTerms: true)
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
         let premature = await f.client.finishes
         XCTAssertTrue(premature.isEmpty)
         await f.service.useCorrectReceiptEnvironment()
@@ -166,17 +326,97 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
         XCTAssertEqual(submissions, 0)
         let unknown = await fixture(environment: nil)
         XCTAssertNil(unknown.coordinator.quote)
-        await unknown.coordinator.purchase(acceptedTerms: true)
+        await unknown.coordinator.purchase(accepting: unknown.coordinator.quote)
         await unknown.coordinator.restore()
         let purchases = await unknown.client.purchases
         XCTAssertEqual(purchases, 0)
         XCTAssertTrue(unknown.coordinator.message?.contains("temporarily unavailable") == true)
     }
 
-    private func fixture(environment: ApplePurchaseEnvironment? = .production) async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
+    func testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.coordinator.restore(synchronize: false)
+        let automaticRefreshes = await f.client.appRefreshes
+        XCTAssertEqual(automaticRefreshes, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+
+        await f.coordinator.restore()
+        let refreshes = await f.client.appRefreshes
+        let syncs = await f.client.syncs
+        let purchases = await f.client.purchases
+        XCTAssertEqual(refreshes, 1)
+        XCTAssertEqual(syncs, 1)
+        XCTAssertEqual(purchases, 0)
+        XCTAssertEqual(f.coordinator.environment, .sandbox)
+        XCTAssertNotNil(f.coordinator.quote)
+        XCTAssertFalse(f.coordinator.busy)
+    }
+
+    func testCanceledAppAuthenticationStaysQuietAndCanBeRetried() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.client.cancelNextAppRefresh()
+        await f.coordinator.restore()
+        let firstSyncs = await f.client.syncs
+        XCTAssertEqual(firstSyncs, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.message)
+        XCTAssertFalse(f.coordinator.busy)
+        await f.coordinator.restore()
+        XCTAssertEqual(f.coordinator.environment, .sandbox)
+        XCTAssertNotNil(f.coordinator.quote)
+    }
+
+    func testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake() async {
+        let f = await fixture(environment: nil)
+        await f.client.setHistory(evidence(owner: f.owner, environment: "Sandbox"))
+        await f.coordinator.restore()
+        await f.coordinator.purchase(accepting: f.coordinator.quote)
+        let refreshes = await f.client.appRefreshes
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        let preparations = await f.service.preparations
+        XCTAssertEqual(refreshes, 1)
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(submissions, 0)
+        XCTAssertEqual(preparations, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+    }
+
+    func testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts() async {
+        let f = await fixture(environment: nil, refreshedEnvironment: .sandbox)
+        await f.client.pauseNextAppRefresh()
+        let restore = Task { await f.coordinator.restore() }
+        for _ in 0..<1000 {
+            if await f.client.appRefreshWaiting { break }
+            await Task.yield()
+        }
+        let waiting = await f.client.appRefreshWaiting
+        XCTAssertTrue(waiting)
+        XCTAssertTrue(f.coordinator.busy)
+        await f.coordinator.restore()
+        let refreshes = await f.client.appRefreshes
+        XCTAssertEqual(refreshes, 1)
+        f.coordinator.reset()
+        await f.coordinator.start(owner: UUID())
+        await f.client.resumeAppRefresh()
+        await restore.value
+        let syncs = await f.client.syncs
+        let submissions = await f.service.submissions
+        XCTAssertEqual(syncs, 0)
+        XCTAssertEqual(submissions, 0)
+        XCTAssertNil(f.coordinator.environment)
+        XCTAssertNil(f.coordinator.quote)
+        XCTAssertNil(f.coordinator.message)
+        XCTAssertFalse(f.coordinator.busy)
+    }
+
+    private func fixture(environment: ApplePurchaseEnvironment? = .production, refreshedEnvironment: ApplePurchaseEnvironment? = nil) async -> (coordinator: ApplePurchaseCoordinator, service: ApplePurchaseServiceSpy, client: ApplePurchaseClientSpy, owner: UUID) {
         let owner = UUID()
-        let service = ApplePurchaseServiceSpy(owner: owner, environment: environment ?? .production)
+        let service = ApplePurchaseServiceSpy(owner: owner, environment: environment ?? refreshedEnvironment ?? .production)
         let client = ApplePurchaseClientSpy(owner: owner, environment: environment)
+        await client.setRefreshedEnvironment(refreshedEnvironment)
         let coordinator = ApplePurchaseCoordinator(service: service, client: client,
             storefront: ApplePurchaseStorefrontFixture(), serviceMarket: "GLOBAL_US")
         await coordinator.start(owner: owner)
@@ -186,12 +426,16 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
 
 private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
     let owner: UUID
+    var purchaseToken: UUID?
+    func usePurchaseToken(_ value: UUID) { purchaseToken = value }
     var amount = 99_990
     let environment: ApplePurchaseEnvironment
     var submittedEnvironments: [ApplePurchaseEnvironment] = []
     var wrongReceiptEnvironment = false
     func useWrongReceiptEnvironment() { wrongReceiptEnvironment = true }
     func useCorrectReceiptEnvironment() { wrongReceiptEnvironment = false }
+    var rejectQuotes = false
+    func rejectNewQuotes() { rejectQuotes = true }
     var preparations = 0, submissions = 0
     var actions: [String] = []
     var finished = true, inconsistent = false, pause = false
@@ -212,11 +456,12 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         continuation?.resume(returning: intent()); continuation = nil
     }
     func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
-        AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
+        if rejectQuotes { throw RilloraAPIError.invalidResponse }
+        return AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
             priceCode: "family_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: "USD",
             amountMinor: amount / 10, minorUnitExponent: 2, priceMilliunits: amount, billingPeriod: "annual"),
-            purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20260926-1",
+            purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20261009-1",
                 termsVersion: LegalAcceptanceProof.current.termsVersion, subscriptionTermsVersion: "subscriptions-2026-08-27-1",
                 refundPolicyVersion: "refunds-2026-08-27-1", legalBundleSha256: LegalAcceptanceProof.current.bundleSha256),
             requiresFreshEvaluation: true, environment: environment, validationOnly: environment == .sandbox)
@@ -229,7 +474,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         return intent()
     }
     private func intent() -> ApplePurchaseIntent {
-        ApplePurchaseIntent(contractVersion: "commerce-apple-purchase-v1", orderReference: currentPurchase?.orderReference ?? UUID(), appAccountToken: owner, state: "prepared", grantsAccess: false, environment: environment, validationOnly: environment == .sandbox)
+        ApplePurchaseIntent(contractVersion: "commerce-apple-purchase-v1", orderReference: currentPurchase?.orderReference ?? UUID(), appAccountToken: purchaseToken ?? owner, state: "prepared", grantsAccess: false, environment: environment, validationOnly: environment == .sandbox)
     }
     func changeApplePurchase(_ reference: UUID, action: String, environment: ApplePurchaseEnvironment) async throws -> ApplePurchaseState {
         actions.append(action)
@@ -239,7 +484,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         }
         return ApplePurchaseState(state: state)
     }
-    func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: currentPurchase) }
+    func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: currentPurchase, appAccountTokens: purchaseToken.map { [$0] }) }
     func submitAppleTransaction(_ evidence: StoreKitTransactionEvidence, environment: ApplePurchaseEnvironment) async throws -> AppleTransactionResponse {
         submissions += 1; submittedEnvironments.append(environment)
         if pauseReceipt { return await withCheckedContinuation { receiptContinuation = $0 } }
@@ -255,24 +500,54 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
 }
 
 private actor ApplePurchaseClientSpy: StoreKitPurchasing {
+    var suppliedAccountToken: UUID?
     var appEnvironment: ApplePurchaseEnvironment?
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { appEnvironment }
+    var refreshedEnvironment: ApplePurchaseEnvironment?
+    var appRefreshes = 0, syncs = 0
+    var cancelAppRefresh = false, pauseAppRefresh = false
+    var appRefreshContinuation: CheckedContinuation<Void, Never>?
+    var appRefreshWaiting: Bool { appRefreshContinuation != nil }
+    func setRefreshedEnvironment(_ value: ApplePurchaseEnvironment?) { refreshedEnvironment = value }
+    func cancelNextAppRefresh() { cancelAppRefresh = true }
+    func pauseNextAppRefresh() { pauseAppRefresh = true }
+    func resumeAppRefresh() { appRefreshContinuation?.resume(); appRefreshContinuation = nil }
+    func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment? {
+        appRefreshes += 1
+        if pauseAppRefresh { await withCheckedContinuation { appRefreshContinuation = $0 } }
+        if cancelAppRefresh { cancelAppRefresh = false; throw CancellationError() }
+        appEnvironment = refreshedEnvironment
+        return appEnvironment
+    }
     let owner: UUID
     var amount = 99_990
     var purchases = 0
+    var expectedProduct: StoreKitProductSnapshot?
     var finishes: [UInt64] = []
     var history: StoreKitTransactionEvidence?
     var nextOutcome: StoreKitPurchaseOutcome?
     var historyFailed = false
+    var historyAfterSync: StoreKitTransactionEvidence?
+    var pauseCatalog = false
+    var catalogContinuation: CheckedContinuation<Void, Never>?
+    var catalogWaiting: Bool { catalogContinuation != nil }
+    func pauseNextCatalog() { pauseCatalog = true }
+    func resumeCatalog() { catalogContinuation?.resume(); catalogContinuation = nil }
+    func setHistoryAfterSync(_ value: StoreKitTransactionEvidence) { historyAfterSync = value }
     init(owner: UUID, environment: ApplePurchaseEnvironment?) { self.owner = owner; self.appEnvironment = environment }
     func setAmount(_ value: Int) { amount = value }
     func setHistory(_ value: StoreKitTransactionEvidence) { history = value }
     func setOutcome(_ value: StoreKitPurchaseOutcome) { nextOutcome = value }
     func failHistory() { historyFailed = true }
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
-        [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Fixture Family", description: "Synthetic",
+        let products: [StoreKitProductSnapshot] = [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Fixture Family", description: "Synthetic",
             displayPrice: "$\(amount / 1000).99", subscriptionGroupID: RilloraStoreKitCatalog.appStoreFamilySubscriptionGroupID,
             priceMilliunits: amount, currencyCode: "USD", oneYearSubscription: true)]
+        if pauseCatalog {
+            pauseCatalog = false
+            await withCheckedContinuation { catalogContinuation = $0 }
+        }
+        return products
     }
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
         StoreKitEntitlementSnapshot(transactions: history.map { [$0] } ?? [], containsUnverifiedTransaction: false)
@@ -280,15 +555,17 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     func subscriptionStatuses(identifiers: Set<String>) async -> StoreKitSubscriptionStatusSnapshot {
         .init(statuses: [], containsUnverifiedStatus: false, loadFailed: historyFailed)
     }
-    func purchase(productID: String, appAccountToken: UUID, expectedStorefrontCountryCode: String?) async throws -> StoreKitPurchaseOutcome {
+    func purchase(productID: String, appAccountToken: UUID, expectedStorefrontCountryCode: String?, expectedProduct: StoreKitProductSnapshot?) async throws -> StoreKitPurchaseOutcome {
+        suppliedAccountToken = appAccountToken
         purchases += 1
+        self.expectedProduct = expectedProduct
         if let nextOutcome { return nextOutcome }
-        let value = evidence(owner: owner, environment: appEnvironment?.rawValue ?? "Unknown"); history = value; return .verified(value)
+        let value = evidence(owner: appAccountToken, environment: appEnvironment?.rawValue ?? "Unknown"); history = value; return .verified(value)
     }
     nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> { AsyncStream { $0.finish() } }
     nonisolated func subscriptionStatusUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitSubscriptionStatusSnapshot> { AsyncStream { $0.finish() } }
     func finish(transactionID: UInt64) async { finishes.append(transactionID) }
-    func sync() async throws {}
+    func sync() async throws { syncs += 1; if let historyAfterSync { history = historyAfterSync } }
 }
 private struct ApplePurchaseStorefrontFixture: CommerceStorefrontProviding {
     func currentCountryCode() async -> String? { "USA" }

@@ -1,0 +1,31 @@
+"""Build only; reuse the existing legal facts without copying or printing their values."""
+from pathlib import Path
+import json,os,re,shlex,subprocess,datetime
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+cfg=Path('/Users/tantalum/Documents/电子遗嘱app/.local-secrets/legal/release.env')
+info=cfg.stat();assert info.st_uid==os.getuid() and info.st_mode&0o777==0o600
+values={}
+for raw in cfg.read_text().splitlines():
+ line=raw.strip()
+ if not line or line.startswith('#'):continue
+ if line.startswith('export '):line=line[7:]
+ key,value=line.split('=',1);assert re.fullmatch(r'VITE_LEGAL_[A-Z_]+',key)
+ assert '$(' not in value and '`' not in value and '${' not in value
+ parts=shlex.split(value);assert len(parts)==1;values[key]=parts[0]
+assert len(values)==6
+env={**os.environ,**values,'VITE_API_BASE_URL':'/api/v1','RILLORA_CLOSED_CLIENT_CANDIDATE':'1'}
+results=[]
+for label,directory,command in [
+ ('api-build','apps/api',['npm','run','build']),
+ ('preview-build','apps/web',['npm','run','build:release']),
+ ('production-web-build','apps/web',['npm','run','build:production-review']),
+ ('public-web-build','apps/web',['npm','run','build:public']),
+ ('infra-typecheck','infra/aws',['npm','run','typecheck']),
+ ('infra-regression','infra/aws',['npm','test'])]:
+ with (Q/(label+'.log')).open('w') as log:r=subprocess.run(command,cwd=ROOT/directory,env=env,stdout=log,stderr=subprocess.STDOUT)
+ results.append({'step':label,'exitCode':r.returncode})
+ if r.returncode:break
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'results':results,'published':False,'legalConfigurationValuesPrinted':False}
+(Q/'candidate-builds.json').write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report))
+raise SystemExit(any(x['exitCode'] for x in results))

@@ -1,0 +1,25 @@
+"""Synthesize stopped-service candidates from current configuration; never deploy."""
+from pathlib import Path
+import json,os,subprocess,datetime
+ROOT=Path(__file__).resolve().parents[3];Q=ROOT/'output/qa/rillora-security-rollout-20261011';P=ROOT/'.local-secrets/security-rollout-20261011'
+primary=Path('/Users/tantalum/Documents/电子遗嘱app/infra/aws/cdk.context.json')
+if primary.exists():
+ value=json.loads(primary.read_text());allowed={k:v for k,v in value.items() if k.startswith('availability-zones:account=133857166372:region=eu-central-1')}
+ if allowed:(ROOT/'infra/aws/cdk.context.json').write_text(json.dumps(allowed,indent=2)+'\n')
+tasks=list(P.glob('RilloraProduction-*-before-task.json'));assert len(tasks)==1
+env={x['name']:x['value'] for c in json.loads(tasks[0].read_text())['containerDefinitions'] for x in c.get('environment',[])}
+contexts={
+ 'staging':{'serviceDesiredCount':'0','stripeTestIntegrationEnabled':'true','familyMaintenancePreviewEnabled':'true','appleStoreKitSandboxEnabled':'false','accountDeletionEnabled':'true','emailVerificationEnabled':'true','contentProtectionMode':'encrypted','contentMigrationEnabled':'false'},
+ 'production':{'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'0','productionReviewPrepared':'true','productionReviewEnabled':'true','productionRetentionEnabled':'true','productionIdentityServicesEnabled':'true','productionStripeNotificationsSecretArn':env['STRIPE_PRODUCTION_SECRET_ARN']}
+}
+results=[]
+for name,values in contexts.items():
+ out=Q/(name+'-stopped-assembly');out.mkdir(exist_ok=True)
+ cmd=['npx','cdk','synth','RilloraStaging' if name=='staging' else 'RilloraProduction','--exclusively','--profile','rillora-cdk-session','--output',str(out),'--no-lookups']
+ if name=='production':cmd+=['--app','env -u CDK_DEFAULT_ACCOUNT npx tsx bin/rillora.ts']
+ for k,v in values.items():cmd+=['-c',k+'='+v]
+ with (Q/(name+'-synth.log')).open('w') as log:r=subprocess.run(cmd,cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ results.append({'environment':name,'exitCode':r.returncode,'assembly':str(out.relative_to(ROOT))})
+ if r.returncode:break
+(Q/'candidate-synthesis.json').write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'results':results,'deployed':False},indent=2)+'\n')
+print(json.dumps(results));raise SystemExit(any(x['exitCode'] for x in results))

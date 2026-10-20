@@ -92,37 +92,37 @@ struct ProfilePreparationGrid: View {
             Button {
                 destination = .officialChecks
             } label: {
-                ProfileToolTile(title: "Official checks", detail: "Review each provider’s process", systemImage: "checklist.checked")
+                ProfileToolTile(title: String(localized: "Official checks"), detail: String(localized: "Review each provider’s process"), systemImage: "checklist.checked")
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityLabel("Official provider checks")
+            .accessibilityLabel(String(localized: "Official provider checks"))
             .accessibilityIdentifier("official-setup.open")
 
             Button {
                 destination = .simulation
             } label: {
-                ProfileToolTile(title: "Simulation", detail: "Check your plan in a life event", systemImage: "play.rectangle.fill")
+                ProfileToolTile(title: String(localized: "Simulation"), detail: String(localized: "Check your plan in a life event"), systemImage: "play.rectangle.fill")
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityLabel("Simulation rehearsal")
+            .accessibilityLabel(String(localized: "Simulation rehearsal"))
             .accessibilityIdentifier("simulation.open")
 
             Button {
                 destination = .disclosure
             } label: {
-                ProfileToolTile(title: "Role disclosure", detail: "Preview what each role could see", systemImage: "person.2.fill")
+                ProfileToolTile(title: String(localized: "Role disclosure"), detail: String(localized: "Preview what each role could see"), systemImage: "person.2.fill")
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityLabel("Role disclosure rehearsal")
+            .accessibilityLabel(String(localized: "Role disclosure rehearsal"))
             .accessibilityIdentifier("disclosure-rehearsal.open")
 
             Button {
                 destination = .startHere
             } label: {
-                ProfileToolTile(title: "Start Here guide", detail: "Preview and export your directions", systemImage: "doc.text.fill")
+                ProfileToolTile(title: String(localized: "Start Here guide"), detail: String(localized: "Preview and export your directions"), systemImage: "doc.text.fill")
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityLabel("Start Here guide")
+            .accessibilityLabel(String(localized: "Start Here guide"))
             .accessibilityIdentifier("start-here.open")
         }
         .navigationDestination(item: $destination) { destination in
@@ -153,7 +153,7 @@ struct ProfileSupportGrid: View {
             Button {
                 destination = .safety
             } label: {
-                ProfileToolTile(title: "Safety & privacy", detail: "Storage and disclosure controls", systemImage: "lock.shield.fill")
+                ProfileToolTile(title: String(localized: "Safety & privacy"), detail: String(localized: "Storage and disclosure controls"), systemImage: "lock.shield.fill")
             }
             .buttonStyle(RilloraQuietButtonStyle())
             .accessibilityIdentifier("profile.safety")
@@ -161,10 +161,10 @@ struct ProfileSupportGrid: View {
             Button {
                 destination = .about
             } label: {
-                ProfileToolTile(title: "About Rillora", detail: "Version and app information", systemImage: "info.circle.fill")
+                ProfileToolTile(title: String(localized: "About Rillora"), detail: String(localized: "Version and app information"), systemImage: "info.circle.fill")
             }
             .buttonStyle(RilloraQuietButtonStyle())
-            .accessibilityLabel("About Rillora")
+            .accessibilityLabel(String(localized: "About Rillora"))
             .accessibilityIdentifier("profile.about")
         }
         .navigationDestination(item: $destination) { destination in

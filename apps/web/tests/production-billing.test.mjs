@@ -1,14 +1,14 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import contract from '../../../config/purchase-consent.json' with { type: 'json' };
-import { purchaseQuote, purchaseProof, productionBillingDestination, productionBillingStatus, webAnnualPriceLabel } from '../src/productionBilling.js';
+import { currentWebAnnualOffer, purchaseQuote, purchaseProof, productionBillingDestination, productionBillingStatus, webAnnualPriceLabel } from '../src/productionBilling.js';
 import { createApiClient } from '../src/api.js';
 import { authenticationReturnPath } from '../src/publicIntent.js';
 import { readWorkspaceRoute, workspaceURL } from '../src/workspaceNavigation.js';
 import { resolvePublicView } from '../src/publicRoutes.js';
 
 const quote = { contractVersion: 'commerce-stripe-production-v1', purchaseConsent: contract, requiresFreshEvaluation: true, applicableTaxShownAtCheckout: true };
-test('purchase consent is current, annual, separate and never inferred from an unchecked box', () => {
+test('purchase consent is current, annual, separate and requires explicit acceptance', () => {
   const current = purchaseQuote(quote);
   assert.throws(() => purchaseProof(current, false));
   assert.throws(() => purchaseProof(current, undefined));
@@ -19,6 +19,14 @@ test('purchase consent is current, annual, separate and never inferred from an u
   assert.equal(purchaseProof(current,true).amountMinor,8899);
   assert.equal(webAnnualPriceLabel,"US$88.99/year");
   assert.equal('label' in purchaseProof(current,true),false);
+});
+test('visible annual price requires the exact current catalog offer', () => {
+  const offer = { priceCode: contract.priceCode, amountMinor: 8899, currencyCode: 'USD', minorUnitExponent: 2, billingInterval: 'annual' };
+  assert.equal(currentWebAnnualOffer([offer]), offer);
+  assert.equal(currentWebAnnualOffer([]), null);
+  for (const change of [{ priceCode: 'old' }, { amountMinor: 6800 }, { currencyCode: 'HKD' }, { minorUnitExponent: 0 }, { billingInterval: 'monthly' }]) {
+    assert.equal(currentWebAnnualOffer([{ ...offer, ...change }]), null);
+  }
 });
 test('billing redirects require production response, provider host and server entitlement boundary', () => {
   const response = {contractVersion:'commerce-stripe-production-v1',checkout:{testOnly:false,url:'https://checkout.stripe.com/c/pay/fixture'},boundaries:{callbackGrantsAccess:false,providerSnapshotRequired:true}};

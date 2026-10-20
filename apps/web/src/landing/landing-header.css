@@ -1,0 +1,98 @@
+/* The public header's single layout contract. Equal side tracks center the
+   desktop links on the viewport, regardless of unequal brand/action widths.
+   Compact language first; tablet links get their own row, mobile a disclosure. */
+.lp-page { --lp-header-height: 108px; }
+.lp-header {
+  height: var(--lp-header-height);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) max-content minmax(0, 1fr);
+  align-items: center;
+  gap: 24px;
+  position: relative;
+  z-index: 2;
+  border-bottom: 1px solid var(--lp-rule);
+}
+.lp-brand { display: inline-flex; flex: none; }
+.lp-brand picture { display: block; }
+.lp-brand img { width: 185px; height: auto; display: block; }
+.lp-header > .lp-brand {
+  grid-column: 1; grid-row: 1; justify-self: start;
+  min-height: 44px; align-items: center;
+}
+.lp-nav {
+  grid-column: 2; grid-row: 1; justify-self: center;
+  display: flex; gap: 24px; margin: 0; font-size: 15px;
+  white-space: nowrap;
+}
+.lp-nav a { padding: 15px 0; }
+.lp-nav a:hover { text-decoration: underline; text-underline-offset: 5px; }
+.lp-nav a[aria-current="page"] { border-bottom: 2px solid var(--lp-action); }
+.lp-menu-toggle {
+  display: none; background: none; color: var(--lp-ink);
+  min-width: 44px; min-height: 44px; padding: 10px; border-radius: 50%;
+}
+.lp-header-actions {
+  grid-column: 3; grid-row: 1;
+  display: flex; align-items: center; justify-content: flex-end;
+  gap: 12px; min-width: 0;
+}
+.lp-header-actions > * { flex-shrink: 0; }
+.lp-header-actions .lp-appearance { margin: 0; }
+.lp-sign-in {
+  display: inline-flex; align-items: center; justify-content: center;
+  gap: 12px; min-height: 52px; padding: 12px 22px;
+  border-radius: 40px; background: var(--lp-action);
+  color: var(--lp-action-ink) !important;
+  font: 500 15px/1.2 Inter, Arial, sans-serif;
+  text-decoration: none; white-space: nowrap;
+}
+.lp-preview-label {
+  font-size: 10px; letter-spacing: 0.04em;
+  padding-right: 11px; border-right: 1px solid var(--lp-border);
+}
+.lp-sign-in svg { transition: transform 0.25s ease; flex: none; }
+.lp-sign-in:hover svg { transform: translateX(4px); }
+.lp-header .language-control { font-size: 14px; }
+.lp-hero { margin-top: calc(-1 * var(--lp-header-height)); padding-top: var(--lp-header-height); }
+@media (max-width: 1280px) {
+  .lp-header { gap: 16px; }
+  .lp-header .lp-brand img { width: 150px; }
+  .lp-nav { gap: 18px; font-size: 14px; }
+  .lp-header-actions { gap: 8px; }
+  .lp-sign-in { font-size: 14px; padding-inline: 14px; gap: 8px; }
+  .lp-preview-label { padding-right: 8px; }
+  .lp-sign-in > svg { display: none; }
+}
+@media (min-width: 768px) and (max-width: 1023px) {
+  .lp-page { --lp-header-height: 132px; }
+  .lp-header { grid-template-columns: 1fr auto; grid-template-rows: 76px 55px; row-gap: 0; }
+  .lp-header-actions { grid-column: 2; }
+  .lp-nav { grid-column: 1 / -1; grid-row: 2; gap: 32px; font-size: 15px; }
+}
+@media (max-width: 767px) {
+  .lp-page { --lp-header-height: 88px; }
+  .lp-header { grid-template-columns: minmax(0, 1fr) auto auto; gap: 12px; }
+  .lp-menu-toggle { display: inline-grid; place-items: center; grid-column: 2; grid-row: 1; }
+  .lp-nav { display: none; }
+  .lp-nav.is-open {
+    display: flex; position: absolute; z-index: 10;
+    grid-column: 1 / -1; grid-row: auto;
+    top: calc(100% - 1px); left: 0; right: 0;
+    flex-direction: column; gap: 0;
+    background: var(--lp-paper); border: 1px solid var(--lp-rule);
+    border-radius: 0 0 12px 12px; padding: 12px 20px;
+    box-shadow: 0 14px 22px #00000014;
+    max-height: calc(100dvh - var(--lp-header-height) - 24px);
+    overflow-y: auto; justify-self: stretch;
+  }
+  .lp-nav a { font-size: 16px; padding: 16px 0; }
+}
+@media (max-width: 600px) {
+  .lp-page { --lp-header-height: 124px; }
+  .lp-header { grid-template-columns: minmax(0, 1fr) auto; grid-template-rows: 44px 52px; padding-block: 12px; gap: 4px 12px; }
+  .lp-header .lp-brand img { width: 126px; }
+  .lp-menu-toggle { grid-column: 2; grid-row: 1; }
+  .lp-header-actions { grid-column: 1 / -1; grid-row: 2; justify-content: space-between; gap: 8px; }
+  .lp-sign-in { min-height: 46px; font-size: 13px; padding-inline: 12px; gap: 8px; }
+  .lp-brand img { width: 126px; }
+}

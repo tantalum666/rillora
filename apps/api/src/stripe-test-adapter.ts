@@ -1,18 +1,18 @@
 import { stripeSubscriptionState, stripeHasScheduledCancellation, stripeSignalType,
   stripeSubscriptionReference, stripeTransactionReference, stripeRefundReference,
   stripeCommerceAccountReference, stripeCustomerReference, stripeMetadataValue,
-  stripeObjectReference, stringWithPrefix, assertCommerceReference, assertIdempotencyKey,
+  stripeObjectReference, assertCommerceReference, assertIdempotencyKey,
   stripeIntegrationIdentifier, assertStripeObjectId, assertStripeHostedUrl, epochSecondsToIso,
 } from "./stripe-provider-shared.js";
 export { stripeSubscriptionState } from "./stripe-provider-shared.js";
 import { createHash } from "node:crypto";
 import Stripe from "stripe";
 import { ApiError } from "./errors.js";
+import { resolveStripeFinancialSignal } from "./stripe-financial-resolution.js";
+import type { BillingDisplayLocale } from './stripe-sdk.js';
 import type { StripeTestConfig } from "./config.js";
 import type {
   AuthoritativeSubscriptionSnapshot,
-  CommerceProviderSignalType,
-  CommerceSubscriptionState,
   NormalizedProviderSignal,
 } from "./commerce-provider-contract.js";
 
@@ -92,92 +92,11 @@ export class StripeTestAdapter {
     });
   }
 
-  async resolveFinancialSignal(
-    signal: Pick<
-      NormalizedProviderSignal,
-      "signalType" | "providerTransactionReference" | "providerRefundReference"
-    >,
+  resolveFinancialSignal(
+    signal: Pick<NormalizedProviderSignal,
+      "signalType" | "providerTransactionReference" | "providerRefundReference">,
   ): Promise<StripeFinancialSignalResolution> {
-    if (signal.signalType !== "refund_changed" && signal.signalType !== "dispute_changed") {
-      throw new Error("Stripe financial signal resolution requires a refund or dispute signal");
-    }
-
-    let refund: Stripe.Refund | null = null;
-    let dispute: Stripe.Dispute | null = null;
-    if (signal.signalType === "refund_changed" && signal.providerRefundReference) {
-      assertStripeObjectId(signal.providerRefundReference, "re_");
-      refund = await this.stripe.retrieveRefund(signal.providerRefundReference);
-    }
-
-    if (signal.signalType === "dispute_changed") {
-      const disputeReference = stringWithPrefix(signal.providerTransactionReference, "du_");
-      if (!disputeReference) throw new Error("Stripe dispute resolution requires a Dispute reference");
-      dispute = await this.stripe.retrieveDispute(disputeReference);
-      if (dispute.livemode) throw new Error("Stripe dispute resolution refuses live-mode objects");
-    }
-
-    let chargeReference = stripeObjectReference(refund?.charge)
-      ?? stripeObjectReference(dispute?.charge)
-      ?? stringWithPrefix(signal.providerTransactionReference, "ch_");
-    if (!chargeReference) {
-      throw new Error("Stripe refund resolution requires a Charge reference");
-    }
-    assertStripeObjectId(chargeReference, "ch_");
-    const charge = await this.stripe.retrieveCharge(chargeReference);
-    if (charge.livemode) throw new Error("Stripe refund resolution refuses a live-mode Charge");
-
-    const paymentIntentReference = stripeObjectReference(refund?.payment_intent)
-      ?? stripeObjectReference(dispute?.payment_intent)
-      ?? stripeObjectReference(charge.payment_intent);
-    if (!paymentIntentReference?.startsWith("pi_")) {
-      throw new Error("Stripe refund resolution requires a PaymentIntent reference");
-    }
-    const invoicePayments = await this.stripe.listInvoicePaymentsByPaymentIntent(
-      paymentIntentReference,
-    );
-    const invoicePayment = invoicePayments.data[0];
-    if (invoicePayments.data.length !== 1 || !invoicePayment || invoicePayment.livemode) {
-      throw new Error("Stripe refund resolution requires one test Invoice Payment");
-    }
-    const invoiceReference = stripeObjectReference(invoicePayment.invoice);
-    if (!invoiceReference?.startsWith("in_")) {
-      throw new Error("Stripe refund resolution requires an Invoice reference");
-    }
-    const invoice = await this.stripe.retrieveInvoice(invoiceReference);
-    if (invoice.livemode) throw new Error("Stripe refund resolution refuses a live-mode Invoice");
-
-    const subscriptionReference = stripeObjectReference(
-      invoice.parent?.subscription_details?.subscription,
-    );
-    const customerReference = stripeObjectReference(invoice.customer)
-      ?? stripeObjectReference(charge.customer);
-    if (!subscriptionReference?.startsWith("sub_") || !customerReference?.startsWith("cus_")) {
-      throw new Error("Stripe refund resolution requires Subscription and Customer references");
-    }
-    if (
-      stripeObjectReference(charge.customer)
-      && stripeObjectReference(charge.customer) !== customerReference
-    ) {
-      throw new Error("Stripe refund Charge and Invoice Customer references do not match");
-    }
-
-    const refundSucceeded = refund === null || refund.status === "succeeded";
-    const fullRefund = signal.signalType === "refund_changed"
-      && refundSucceeded
-      && (charge.refunded || charge.amount_refunded >= charge.amount);
-    const disputeRevokes = dispute !== null && ![
-      "won",
-      "prevented",
-      "warning_closed",
-    ].includes(dispute.status);
-    return Object.freeze({
-      providerSubscriptionReference: subscriptionReference,
-      providerCustomerReference: customerReference,
-      providerTransactionReference: chargeReference,
-      providerRefundReference: signal.providerRefundReference,
-      providerInvoiceReference: invoiceReference,
-      authoritativeStateOverride: fullRefund ? "refunded" : disputeRevokes ? "revoked" : null,
-    });
+    return resolveStripeFinancialSignal(this.stripe, signal, "test");
   }
 
   async assertCheckoutReady(billingPeriod: StripeBillingPeriod): Promise<void> {
@@ -195,6 +114,7 @@ export class StripeTestAdapter {
     existingStripeCustomerReference?: string;
     orderReference?: string;
     paymentAttemptReference?: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripeCheckoutResult> {
     assertCommerceReference(input.commerceAccountReference);
     assertIdempotencyKey(input.idempotencyKey);
@@ -233,6 +153,7 @@ export class StripeTestAdapter {
       payment_method_collection: "always",
       metadata,
       subscription_data: { metadata },
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
       ...(input.existingStripeCustomerReference
         ? { customer: input.existingStripeCustomerReference }
         : {}),
@@ -257,11 +178,13 @@ export class StripeTestAdapter {
 
   async createCustomerPortal(input: {
     stripeCustomerReference: string;
+    locale?: BillingDisplayLocale;
   }): Promise<StripePortalResult> {
     assertStripeObjectId(input.stripeCustomerReference, "cus_");
     const session = await this.stripe.createPortalSession({
       customer: input.stripeCustomerReference,
       return_url: this.config.portalReturnUrl,
+      ...(input.locale ? { locale: input.locale === 'zh-CN' ? 'zh' as const : 'en' as const } : {}),
     });
     if (session.livemode) {
       throw new Error("The Stripe test adapter received a live-mode Portal Session");

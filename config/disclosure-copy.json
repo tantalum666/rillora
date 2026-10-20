@@ -1,0 +1,145 @@
+{
+  "schemaVersion": 1,
+  "states": {
+    "death_claim_opened": {
+      "en": "Death claim opened",
+      "zh-CN": "身故流程演练已开始"
+    },
+    "death_identity_review": {
+      "en": "Identity review",
+      "zh-CN": "身份核验"
+    },
+    "death_document_review": {
+      "en": "Death and authority document review",
+      "zh-CN": "身故与授权资料核验"
+    },
+    "death_multi_party_confirmation": {
+      "en": "Multi-party confirmation",
+      "zh-CN": "多方确认"
+    },
+    "death_cooling_off": {
+      "en": "Illustrative 14-day cooling-off",
+      "zh-CN": "示例：14天冷静期"
+    },
+    "death_preview_ready": {
+      "en": "Staged disclosure preview ready",
+      "zh-CN": "分阶段资料预览已就绪"
+    },
+    "incapacity_claim_opened": {
+      "en": "Incapacity claim opened",
+      "zh-CN": "失能支持演练已开始"
+    },
+    "incapacity_identity_review": {
+      "en": "Identity review",
+      "zh-CN": "身份核验"
+    },
+    "incapacity_authority_review": {
+      "en": "Authority and capacity evidence review",
+      "zh-CN": "授权与行为能力资料核验"
+    },
+    "incapacity_multi_party_confirmation": {
+      "en": "Multi-party confirmation",
+      "zh-CN": "多方确认"
+    },
+    "incapacity_cooling_off": {
+      "en": "Illustrative 7-day cooling-off",
+      "zh-CN": "示例：7天冷静期"
+    },
+    "incapacity_preview_ready": {
+      "en": "Limited support preview ready",
+      "zh-CN": "有限支持预览已就绪"
+    },
+    "missing_report_opened": {
+      "en": "Missing report opened",
+      "zh-CN": "失联支持演练已开始"
+    },
+    "missing_identity_review": {
+      "en": "Reporter identity review",
+      "zh-CN": "报告人身份核验"
+    },
+    "missing_contact_attempts_review": {
+      "en": "Contact-attempt review",
+      "zh-CN": "联系尝试核验"
+    },
+    "missing_multi_party_confirmation": {
+      "en": "Multi-party confirmation",
+      "zh-CN": "多方确认"
+    },
+    "missing_support_cooling_off": {
+      "en": "Illustrative 72-hour support hold",
+      "zh-CN": "示例：72小时支持等待期"
+    },
+    "missing_limited_preview_ready": {
+      "en": "Limited support preview ready",
+      "zh-CN": "有限支持预览已就绪"
+    },
+    "appealed": {
+      "en": "Appeal hold",
+      "zh-CN": "申诉处理中"
+    },
+    "canceled": {
+      "en": "Canceled by planner",
+      "zh-CN": "规划者已取消"
+    },
+    "unknown": {
+      "en": "Status unavailable",
+      "zh-CN": "暂时无法显示状态"
+    }
+  },
+  "stages": {
+    "guidance": {
+      "en": "Guidance",
+      "zh-CN": "规划指引"
+    },
+    "locator": {
+      "en": "Locator",
+      "zh-CN": "资料位置"
+    },
+    "none": {
+      "en": "No disclosure",
+      "zh-CN": "不披露资料"
+    },
+    "unknown": {
+      "en": "Preview unavailable",
+      "zh-CN": "预览暂不可用"
+    }
+  },
+  "reasons": {
+    "no_assignment": {
+      "en": "No active Rillora role assignment exists for this policy preview.",
+      "zh-CN": "当前未记录适用于此预览的有效角色。"
+    },
+    "death_guidance": {
+      "en": "Projected guidance only; no account access or legal authority.",
+      "zh-CN": "仅演示规划指引，不授予账号访问权或法律授权。"
+    },
+    "death_executor": {
+      "en": "Projected locator view remains subject to real authority review.",
+      "zh-CN": "此处仅演示资料位置；实际披露仍须核验合法授权。"
+    },
+    "death_recipient": {
+      "en": "Only matter-specific recipient assignments are projected.",
+      "zh-CN": "只预览明确指定给该接收人的事项。"
+    },
+    "incapacity_contact": {
+      "en": "Limited support guidance only; incapacity authority is not inferred.",
+      "zh-CN": "仅提供有限的支持指引，不据此推定失能时的代理权限。"
+    },
+    "missing_contact": {
+      "en": "Missing-person policy exposes only planner/time-zone and matter-count context.",
+      "zh-CN": "失联支持预览只显示规划者、时区和事项数量。"
+    },
+    "incapacity_authority": {
+      "en": "An executor or recipient role does not establish incapacity authority.",
+      "zh-CN": "执行人或接收人角色本身不构成失能时的合法授权。"
+    },
+    "missing_private": {
+      "en": "Missing-person support does not enter executor or recipient disclosure.",
+      "zh-CN": "失联支持不会进入面向执行人或接收人的资料披露流程。"
+    },
+    "unknown": {
+      "en": "No additional explanation is available.",
+      "zh-CN": "暂无补充说明。"
+    }
+  }
+}

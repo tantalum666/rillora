@@ -1,0 +1,74 @@
+from pathlib import Path
+import json,subprocess,sys,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/final-readiness-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+assert json.loads((q/'apple-production-secret-installed.json').read_text())['currentVersionMatched']
+assert json.loads((q/'apple-catalog-prepared.json').read_text())['passed']
+aws=Aws('rillora-cdk-deploy');stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+raw=aws.call('cloudformation','get-template',{'StackName':'RilloraProduction'})['TemplateBody'];before=json.loads(raw) if isinstance(raw,str) else raw
+assert before==json.loads((q/'apple-prepared-assembly/RilloraProduction.template.json').read_text())
+for name,value in [('apple-enabled-before-stack.json',stack),('apple-enabled-before-template.json',before)]:
+ path=p/name
+ if path.exists():assert json.loads(path.read_text())==value
+ else:path.write_text(json.dumps(value));path.chmod(0o600)
+source=subprocess.check_output(['git','rev-parse','HEAD'],cwd=w,text=True).strip()
+assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=w).returncode==0
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+contexts={'productionFoundationOnly':'true','productionRuntimeEnabled':'true','productionRuntimeDesiredCount':'1',
+ 'productionReviewPrepared':'true','productionReviewEnabled':'false','productionLiveEnabled':'true','productionStripeCheckoutEnabled':'true',
+ 'productionRetentionEnabled':'true','productionIdentityServicesEnabled':'true','productionStripeNotificationsSecretArn':out['RuntimeStripeNotificationsSecretArn8A76E8A3'],
+ 'productionApplePrepared':'true','productionAppleEnabled':'true','productionAppleReviewEnabled':'true'}
+assembly=q/'apple-enabled-assembly'
+command=['npx','cdk','synth','RilloraProduction','--exclusively','--no-lookups','--profile','rillora-cdk-session','--output',str(assembly)]
+for key,value in contexts.items():command+=['-c',key+'='+value]
+if not (assembly/'RilloraProduction.template.json').exists():
+ with (q/'apple-enabled-synth.log').open('w') as log:r=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ assert r.returncode==0
+candidate=json.loads((assembly/'RilloraProduction.template.json').read_text())
+assert set(before['Resources'])==set(candidate['Resources'])
+changes=[]
+for name,new in candidate['Resources'].items():
+ old=before['Resources'][name]
+ if old==new:continue
+ assert old['Type']==new['Type'] and old['Type'] in ['AWS::ECS::TaskDefinition','AWS::Lambda::Function','AWS::IAM::Policy','AWS::EC2::SecurityGroup','AWS::CDK::Metadata']
+ if old['Type']=='AWS::ECS::TaskDefinition':
+  expected=json.loads(json.dumps(old))
+  for i,c in enumerate(new['Properties']['ContainerDefinitions']):
+   original=old['Properties']['ContainerDefinitions'][i];expected['Properties']['ContainerDefinitions'][i]['Image']=c['Image']
+   a={x['Name']:x['Value'] for x in original['Environment']};b={x['Name']:x['Value'] for x in c['Environment']}
+   delta={k for k in set(a)|set(b) if a.get(k)!=b.get(k)}
+   if name=='RuntimeApiTaskCF645D67':
+    assert delta=={'ALLOW_APPLE_PRODUCTION_INTEGRATION','APPLE_PRODUCTION_SECRET_ARN','ALLOW_APPLE_REVIEW_INTEGRATION','APPLE_REVIEW_SECRET_ARN','APPLE_ROOT_CERTIFICATE_DIRECTORY','APPLE_REVIEW_IDENTITY_SHA256','APPLE_REVIEW_EXPIRES_AT'}
+    assert b['ALLOW_APPLE_PRODUCTION_INTEGRATION']==b['ALLOW_APPLE_REVIEW_INTEGRATION']=='true'
+    assert b['PRODUCTION_RUNTIME_MODE']=='live' and 'PRODUCTION_REVIEW_IDENTITY_SHA256' not in b
+   elif name=='RecoveryTaskD940248B':assert delta=={'APPLE_PRODUCTION_SECRET_ARN'}
+   else:assert not delta
+   expected['Properties']['ContainerDefinitions'][i]['Environment']=c['Environment']
+  assert expected==new,'Unexpected task change: '+name
+ elif old['Type']=='AWS::EC2::SecurityGroup':
+  assert name.startswith('RuntimeApiNetwork');expected=json.loads(json.dumps(old))
+  a=old['Properties']['SecurityGroupEgress'];b=new['Properties']['SecurityGroupEgress'];assert all(r in b for r in a)
+  extra=[r for r in b if r not in a];assert len(extra)==1 and extra[0]['CidrIp']=='17.0.0.0/8' and extra[0]['FromPort']==extra[0]['ToPort']==80 and extra[0]['IpProtocol']=='tcp'
+  expected['Properties']['SecurityGroupEgress']=b;assert expected==new
+ elif old['Type']=='AWS::IAM::Policy':
+  assert name in ['RuntimeApiTaskTaskRoleDefaultPolicy59BF15A6','RecoveryTaskTaskRoleDefaultPolicy6EC2C93F']
+  a=old['Properties']['PolicyDocument']['Statement'];b=new['Properties']['PolicyDocument']['Statement'];assert all(r in b for r in a)
+  extra=[r for r in b if r not in a]
+  for statement in extra:
+   assert statement['Action']==['secretsmanager:GetSecretValue','secretsmanager:DescribeSecret']
+   assert any(s in json.dumps(statement['Resource']) for s in ['RuntimeAppleProductionSecret494B0EFB','RuntimeAppleReviewSecret'])
+ elif old['Type']=='AWS::CDK::Metadata':
+  assert name=='CDKMetadata';expected=json.loads(json.dumps(old));expected['Properties']['Analytics']=new['Properties']['Analytics'];assert expected==new
+ else:
+  assert name=='MaintenanceBrokerFunctionC542279B'
+  a=json.dumps(old['Properties']['Environment'],sort_keys=True);b=json.dumps(new['Properties']['Environment'],sort_keys=True)
+  assert 'appleReviewScope' not in a and 'appleReviewScope' in b
+  expected=json.loads(json.dumps(old));expected['Properties']['Code']=new['Properties']['Code'];expected['Properties']['Environment']=new['Properties']['Environment'];expected['Metadata']=new['Metadata']
+  assert expected==new
+ changes.append({'logicalId':name,'type':new['Type']})
+params=set(candidate['Parameters'])-set(before['Parameters']);assert len(params)==2
+assert any(candidate['Parameters'][name].get('NoEcho') for name in params)
+result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':source,'changes':changes,'reviewScopeExpiresAt':'2026-10-27T12:00:00Z',
+ 'sameThreeOriginalIdentities':True,'sameDataResources':True,'billingAndNonAppleEnvironmentUnchanged':True,'passed':True,'deployed':False}
+(q/'apple-enabled-diff.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

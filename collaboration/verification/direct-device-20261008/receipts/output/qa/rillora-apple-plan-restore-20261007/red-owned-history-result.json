@@ -1,0 +1,69 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🧪 Test\n\nDiscovered 1 test(s):\n   RilloraTests/ApplePurchaseCoordinatorTests/testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication\n\nTest Failures (2):\n\n  ✗ ApplePurchaseCoordinatorTests / testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication: XCTAssertEqual failed: (\"1\") is not equal to (\"0\")\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:14\n\n  ✗ ApplePurchaseCoordinatorTests / testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication: XCTAssertTrue failed\n    /Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:18\n\n❌ 1 test failed, 0 passed, 0 skipped (⏱️ 42.1s)\n  └ Files:\n     ├── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/\n     │   ├── logs/test_sim_2026-10-07T01-57-35-696Z_pid25052_0c83c626.log — Build Logs\n     │   └── test-products/test_sim_2026-10-07T01-57-35-697Z_pid25052_1c1b6965.xctestproducts — Test Products\n     └── output/qa/rillora-apple-plan-restore-20261007/red-owned-history.xcresult — Result Bundle\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.test-result",
+    "schemaVersion": "3",
+    "didError": true,
+    "error": "Tests failed",
+    "data": {
+      "summary": {
+        "status": "FAILED",
+        "durationMs": 42141,
+        "counts": {
+          "passed": 0,
+          "failed": 1,
+          "skipped": 0
+        },
+        "target": "simulator"
+      },
+      "artifacts": {
+        "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-07T01-57-35-696Z_pid25052_0c83c626.log",
+        "xcresultPath": "output/qa/rillora-apple-plan-restore-20261007/red-owned-history.xcresult",
+        "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-07T01-57-35-697Z_pid25052_1c1b6965.xctestproducts"
+      },
+      "tests": {
+        "selected": [
+          "RilloraTests/ApplePurchaseCoordinatorTests/testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication"
+        ],
+        "discovered": {
+          "total": 1,
+          "items": [
+            "RilloraTests/ApplePurchaseCoordinatorTests/testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication"
+          ]
+        }
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": [],
+        "testFailures": [
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+            "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:14"
+          },
+          {
+            "suite": "ApplePurchaseCoordinatorTests",
+            "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+            "message": "XCTAssertTrue failed",
+            "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:18"
+          }
+        ]
+      },
+      "testCases": [
+        {
+          "suite": "ApplePurchaseCoordinatorTests",
+          "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+          "status": "failed",
+          "durationMs": 547
+        }
+      ]
+    }
+  },
+  "isError": true
+}

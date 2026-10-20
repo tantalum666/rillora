@@ -1,10 +1,244 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: RELEASE PREPARATION ACTIVE; PUBLIC INFORMATION LIVE; CUSTOMER ACCOUNTS AND SALES CLOSED
-Last updated: 2026-10-02 (Asia/Shanghai)
+Status: WEB LIVE; APPLE WAITING FOR REVIEW; REMAINING PHYSICAL TESTS CANCELLED BY OWNER
+Last updated: 2026-10-15 (Asia/Hong_Kong)
 
-## October2 current release delta
+
+Apple最终回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight，尚未获批或公开上架。
+
+## October15当前发布状态
+
+[本轮复核](app-review-preflight-20261014.md)：40c76496f／CI153及两份静态部署通过，117文件匹配；旧身份令牌窗口关闭、正式Action与Web新购已开启，USD88.99和关闭自动计税不变。专用审核账号Web／原生登录与合成资料跨端读写完成，Apple双语权益与审核说明已保存。Owner明确停止余下真机检查，未验证项不冒称通过。Apple普通新购继续等待独立发布后验证；Auth0外壳为Owner暂缓。
+
+## October13集中收尾增补
+
+Owner确认原生Terms/Privacy入口能打开，并要求删除顶部重复设置说明。仅法律站壳层已修正并发布：78f262a3a／CI148，Cloudflare e2d5857d成功，50HTTPS／18资源及线上中英文移动／桌面回读通过，正文及同意版本不变。见[本轮结果](legal-page-layout-20261013.md)。返回原账号与VoiceOver不由这条回复自动通过。
+
+[本轮收尾](final-readiness-20261013.md)已推进Apple独立运行／审核账号、正式监控与商店14候选；eb2b3c4d2／CI145三任务通过、兼容部署模板匹配，未再迁移数据库或分发TestFlight。两条Apple正式新购路由独立关闭，保护后续Web开售；原价格、Web／市场开关、数据与历史付款保持。Sandbox官方TEST成功；[Apple官方发布前限制](provider-diagnostics-20261013.md)与当前401相符，Production验证应在发布后、开售前完成，不再作为提审前置条件。
+
+[商店材料](app-store-preflight-20261013.md)保存了14／手动发布、联系人及Owner明确授权的专用审核凭据、中文图文、Owner确认发布的13类隐私标签、18+分级、免费下载安装与USA/HKG草稿范围。旧月付原已0地区，无重复改动。英文仍是主语言，当前事项／首页素材及英文6图／中文4图均已保存回读。App14、年付与群组三项在预检操作序列中于香港21:18过早进入等待审核，已主动撤回并重载确认为“已移除”；版本“被开发者拒绝”不是Apple驳回。当前没有活动审核、批准或正式发布。
+
+真实手机14已完成本次同意和原Google登录；当前测试家庭版／HKD888与同账号正式Web的Apple测试订阅对应，原1事项保留，无新购买或恢复。未订阅真机、VoiceOver和原生法律往返仍开放。镜像后续退出，再由Owner解锁恢复；原App启动／画面正常，但工具输入未产生页面变化，Owner已确认两条法律入口能打开，返回原账号未明确确认。Auth0旧桌面3句英文仍是原有Free402限制，不能冒称新问题或擅自付费。Apple原工单102995248851现已收到关闭请求，未显示Closed；Auth0公开问题仍待管理员批准，标准外壳恢复尚未完成。Web身份窗口仍最早香港October14 04:21；以下旧日状态保留各自日期。
+
+## October13正式Web订阅当前状态
+
+计税策略已按Owner要求从阻塞项移除，显式tax.mode=disabled／automatic_tax=false实际部署，原RilloraLive账户和USD88.99年价有效；API25健康，目录和正式权益已准备。新购随后被主动关闭，因为旧Preview身份服务尚未退役的安全门不能被略过。4旧客户端现已停发，2旧服务取令牌请求实测403；当前Management token寿命86400秒加300秒容差，最早香港October14 04:21后完成最后开放。原三人审核Action暂时恢复，不要求再次批准、税务策略或人工真钱测试。详见[实际交付与顺序纠正](web-billing-activation-20261013.md)。
+
+正式App和官网入口已交付并核对117个文件；官网与App最终受限文案也已交付：f87ac62c9／CI141、117实际资源和真实官网中英文回读通过。最终前端f87ac62c9／CI141通过，取代31214400d的临时文案；此前8d28dc298／CI139的交付证明保留；实际生产账号的开售后页面尚未读回。原真实数据、价格、手机14和全部旧金融证明保持。下面各日期的closed状态只代表当时检查点，当前具体关闭原因是身份令牌窗口。
+
+## October13套餐页纠正
+
+Owner再次指出页面没有按要求精简。现已完成家庭版权益／年价／单订阅主操作，移除免费状态、折叠块和独立二次勾选；20项针对性Node及23个隔离浏览器场景通过，759c00112／CI133成功。Preview和正式Web各仅更换一个静态包，172线上文件匹配；Owner恢复真实账号后，中英文新版UI也已读回通过，最后恢复中文；原1事项仍在。详见[当前合同](plan-purchase-page-20261013.md)；API／价格／开售开关／真实数据／手机14保持。
+
+## October12原生／跨端验收续接
+
+Owner本轮暂后手机本人验证，独立Web检查已完成。两处实际问题已修并发布：关闭订阅提示重复、法律页返回后误停访客首页。d9825b616／CI131、新浏览器5项由4红转全绿及12项相关检查通过；正式／Preview共172文件匹配，真实账号法律页返回及中英文显示通过。原事项／价格／销售开关保持，手机14和API没有重新构建／部署。
+
+当前Web没有生效Sandbox资格，不能把Free与旧手机Family结果直接比较或勾过实际Apple退款／到期。第2项剩余真机VoiceOver、原生法律入口、未订阅分支和当前有效订阅跨端对照仍待手机可操作；已过项目沿用。详见[本轮合同](native-cross-platform-acceptance-20261012.md)。
+
+## October12安全部署后的当前状态
+
+[整批安全修复](security-rollout-20261012.md)已完成两库103迁移、五个云端栈、203个Web文件核验及原机1.0(14)直装。Owner确认登录和原事项，HTTPS回调已切换，9份指定本机凭据已加密读回。API23／Preview44及隔离worker运行正常；API23仅续原3审核身份到香港October14 20:01，普通客户／收费仍关闭，价格与既有财务记录保留。没有新TestFlight或支付／退款／删除验收。
+
+本机部署工具两处兼容问题另修于042f4e100，CI127三任务通过；archive33已在d33e0b31f独立远端解密核验；发布测试样本稳定性修正5adf61570／CI129三任务通过，当前剩余发布步骤见handoff。GitHub当前私有仓库页面明确不强制保护规则，不能把CI通过写成服务器强制检查已启用。此前付款与Apple证据继续保留原日期；下方October10技术版本是历史检查点。
+
+## Current remaining launch inventory — updated October13
+
+上方October13集中收尾及下表是当前状态。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
+
+October10的[付款与完整双语交付](payment-recheck-20261009.md)更新了下列实际证据，不重开旧工作。Web/原生Free1与Family5、WebUSD88.99年付和Apple美国USD119.99保持。
+
+当前API21/Preview43健康，两库schema94；官网/应用/Preview203公开文件及法律14实际中英文页面核验完成。手机13已原位安装并由Owner确认已订阅、HKD888、无混排；没有新TestFlight。新云端Stripe TEST进一步验证全额pending不撤权益、成功撤销、异步失败恢复、部分退款、重复回调，三订单各一尝试、34验签事件已应用且无错误，三条测试订阅结束，原事项保留。原Live通知/目录/受限密钥及既有Apple签名购买/恢复反馈保留；没有真钱测试。
+
+Auth0两种同意表单已上线，旧桌面外壳3句英文仍因HTTP402未改；官方工单权限不足，社区问题草稿待明确外发授权。这是当前完整双语剩余项。
+
+October10再次状态复核：只读Stripe Live Tax settings仍pending，missing_fields仅head_office；不等于商户未开户，也不推导必须预先取得所有税区登记。当前原生13实物包的本地发布形状/配置检查无新阻塞，但不是App Store分发产物或审核通过证明。Auth0旧外壳作为免费优先的并行收尾，不作为其他发布准备的唯一前置依赖；该项现已完成；下一步准备第2项余下原生/Apple验收。已完成结果沿用原时间，不重做交易、部署、安装或本人认证。详见[本次核对](../collaboration/verification/release-status-20261010/verification.json)。
+
+## October10 Stripe Tax可选服务纠正
+
+Owner要求暂后税务功能。正式账户当前可收款/提现，Stripe Checkout的automatic_tax为optional。此前“Tax Settings pending”不能解释成Stripe禁止该账户收款；自动计税启用从必做项中移出。Rillora自身正式购买配置仍需完成，实际税务义务不由是否使用Stripe Tax决定，未知事实不写成免税结论。本次只有文档/登记更新及只读证据，未开放客户或收费。
+
+<a id="october1-remaining-work-inventory"></a>
+
+| # | 真正剩余的工作 | 完成判据与边界 |
+| --- | --- | --- |
+| 1 | **已完成：Web正式订阅开放** | October15已完成旧身份拒绝复核、正式Action、原Web销售路线和117静态资源交付；USD88.99年付与关闭自动计税保持，无人工Live自付。 |
+| 2 | 原生最终汇总版及Apple剩余验收 | 手机14当前Google登录／同意／原事项通过；HKD888测试家庭版与正式Web同账号权益对应，无再次购买／恢复。Owner已确认法律往返，并取消余下真机验证；未订阅真机／VoiceOver不记作通过。实际退款／到期证据保持原范围；Production401按发布前限制处理，发布后核验，新购仍独立关闭。 |
+| 3 | **本轮已完成：当前产物、权限与恢复后计费对账** | 4处恢复缺口修复，23项聚焦回归及CI121通过；3笔真实Stripe TEST支撑的本地恢复、真实生产快照/Apple Sandbox云端对账、权限拒绝、原服务恢复和临时资源清理均有独立证据。当前代码/镜像回滚底线已记录。后续第4/5项的新产物和客户开放变更各自再验收，不重复本轮。 |
+| 4 | App Store最终候选、送审与审核 | 原生14复用归档商店导出／上传／处理通过，10张双语设计图、13类隐私、18+、联系人／专用凭据、USA/HKG及年付材料保存。三项过早提交已撤回，材料保留；专用审核账号双端登录及跨端读写已通过；Owner取消余下真机检查。App14／年订阅／群组三项现已等待审核，通过后手动发布。没有新TestFlight，不重编译相同源码。 |
+| 5 | **已完成：正式客户与身份切换** | 与第1项同一完成事实：已过原有效期及容差，4旧客户端／2服务拒绝重新确认；正式同意Action生效。既有账号／地图和旧客户端禁用保持。 |
+
+独立删除验收仍按Owner“保留，暂不删除”执行，不能勾为通过，也不能擅自启动删除。
+这项缺口在最终发布判断中须明确保留/解决，不通过更改登记状态隐藏。外部两个TestFlight邀请仍暂缓。
+SES不再是Resend路线的前置，SBP只有既有申请回执、无15%生效证明；既定Apple价格不因此重新待定，
+也不把等待优惠批准新增为发布硬门。没有全新功能或大范围UI重做列入此清单。
+
+证据入口：[实际Web发布](web-rollout-20261009.md)、[云端TEST](stripe-cloud-acceptance-20261009.md)、
+[Live配置](live-configuration-20261009.md)、[当前手机与退款/双语结果](payment-recheck-20261009.md)、
+[后续Dot增量](dot-integration-20261008.md)。[机器登记](../config/release-gates.json)同步事实与来源，
+不把多个聚合门都标成verified来生成完成百分比。唯一执行顺序继续以[handoff](handoff.md)为准。
+
+October9退款问题后的纠正：上一条把“受控真钱付款/退款”列为上线前必做验收不当，按
+[Stripe官方测试规则](https://docs.stripe.com/testing)撤回。真正的客户付款可以按实际退款需求原路退回，
+不会自动退款，原交易处理费不退；参见[退款说明](https://docs.stripe.com/refunds)。不把真钱观察冒充已经完成，也不因此要求人为交易。
+
+## HISTORICAL checkpoints — all following observations retain their original dates
+
+以下完整保留过去工作及当时未完成项；上方October10清单与当前handoff取代其中被后续结果解决的待办。
+
+## October8 current native delivery
+
+Owner pauses incremental TestFlight distribution and chooses direct phone installation.
+Current sourcec0cec8680/retained Release11was development-signed and installed wirelessly
+over the same Rillora app; version1.0(11)and foreground launch are read back. No new
+TestFlight upload/distribution or cloud deployment was performed today. Previous provider
+checkpoints below retain their dates; physical UI/restore acceptance is separate.
+[Current direct workflow](direct-device-iteration-20261008.md).
+
+## October7 Dot rollout — current delivery
+
+Merged source58fadf357(application tree5a547339a) is deployed: API16/schema0093,
+production Web86/WWW31/Preview86live files match. Runtime has one healthy task;
+only image and the existing review expiry changed. The same three identities and
+existing Owner planner Sandbox enrollment now expire2026-10-08T20:00:00Z.
+No ordinary customer or live billing activation follows. Native1.0(9) passed14signed
+artifact checks and uploaded once; actual Apple detail login expired, so processing/
+distribution/draft selection await its recovery. Build8 remains the last verified
+distributed/draft version. Existing272native/174Web/17API/66guards/CI73/20browser checks
+are retained, not rerun. [Exact deployment](dot-rollout-20261007.md).
+
+## October7 真机与配置 — 保留的独立结果
+
+Owner已安装构建6并完成首笔Apple Sandbox购买。真实签名收据为HKG/HKD888.00，订阅active，
+初始通知与客户端回传applied；先前AUD199.99报价订单已取消关闭，未改写收据。购后恢复、跨端
+权益及VoiceOver仍分别验收。外部两个邮箱邀请和独立删除账号按Owner指示暂缓。
+
+Owner要求简化购买页。构建8直接展示家庭版实际权益、明确币种的完整年费和一个购买按钮，
+移除额外勾选及展示里的测试控件；购买前刷新核对报价。39聚焦回归/11静态检查/中英文渲染/
+13分发包检查通过，1个既有StoreKitTest平台跳过。源码08afb3821/CI63成功。8已上传处理、
+分给原内部组1人，App Store草稿已保存并重新读回8/手动发布；7未分发，未提交审核。
+
+Apple美国US119.99/年、WebUS88.99保留；年付草稿为原8地区加AUS限期Sandbox测试，
+USA/HKG/AUS报价与验签配置已载入同一API14/schema0093，普通市场/销售仍关闭。
+Stripe实际处理器收款/提现启用；8899商品/年价inactive、门户配置、回调disabled、受限RAK
+已创建并保护保存/核验。AWS准备secret不可作为运行配置加载，API无ARN/权限/收费开关。
+经营/税务事实、完整Live接入和真实交易、最终商店申报/审核与客户开放仍未完成。
+[当前合同](device-config-20261006.md)与[唯一交接](handoff.md)保留精确下一步。
+
+## October6 selected packages1/2 and Stripe Web — retained earlier checkpoint
+
+The narrow remaining Dot fixes and bilingual Web/WWW are now deployed with API14,
+unchanged schema0093 and the original three expiring reviewer identities. Local source,
+actual cloud hash/health checks and bilingual rendered checks pass. Native compact/large/
+iPad English/Chinese landscape, AX5, sharing/export and actual system-language persistence
+checks pass. Native1.0(5) uploaded successfully; Apple reports Ready to Submit; exact notes persist after reload, groups/testers0.
+[Current exact results](release-12-stripe-20261005.md).
+
+Current88.99StripeWeb hosted TEST purchase/cancel/decline/return, Portal cancellation/
+resume, full refund, permission downgrade and signed-event duplicate handling pass using
+shipping cookie/CSRF middleware. The isolated identity and consent are synthetic; live
+merchant facts, human live consent/charge and cloud live billing remain separate gates.
+Spoken VoiceOver and physical purchase/restore remain unverified; the later same-day device work is recorded above.
+
+## HISTORICAL — October5 after Dot integration and Chinese copy
+
+The current integrated source747c98874hasCI56success and final receipts throughaf34fd1be.
+Dot's four branches and the latest account-choice/export fixes are preserved together.
+Chinese wording has been reviewed across both clients. Actual local Web/native builds,
+focused language/UI tests and browser repair checks pass; the broader bilingual matrix
+and affected flows still require acceptance. These changes are **not deployed or uploaded**.
+[Integration evidence](qa/dot-followup-20261005/README.md),[Chinese copy](chinese-copy-guidelines-20261005.md).
+
+This October5status reconciliation uses current source and dated project/provider receipts.
+It does not reopen Apple/AWS/Stripe portals,repeat authentication,deployments or transactions,
+or imply a new SBP approval/current provider rate. Previously confirmed mail/login/recovery,
+sharing/revocation,backup import and store imagery remain completed evidence. Resend means
+SES approval is no longer a sending prerequisite. No AI/MCP implementation is added to launch.
+
+## October5 core closeout and retained-account decision — retained result
+
+Actual isolated-account login, native-backup import into an empty Web map and
+naturally aged Web authentication/retry are verified. Import restores no sharing;
+new identifiers/draft states and private fields were checked. A Web account-choice
+issue discovered during this test was repaired with the existing API option,
+verified by29focused checks/CI54and deployed with86matching live files.
+
+At the final irreversible account-deletion dialog, Owner chose保留，暂不删除.
+The dialog was cancelled, the account/data remain, and no deletion request/provider
+purge was submitted. Actual deletion is Owner-deferred and not claimed passed.
+The test session ended and Auth0/runtime13were restored to the original3review
+identities/expiry with1healthy task; application image/roles/network/secrets remain.
+Native4, store images and previous provider checks are retained without re-upload.
+[Current acceptance](real-core-acceptance-20261004.md).
+
+## HISTORICAL — October4 core acceptance before the October5 closeout
+
+[Actual native/Web acceptance](real-core-acceptance-20261004.md) now verifies
+Name/Details restriction/expansion, native recent-auth cancellation/retry, saved
+plaintext/full-map/encrypted cross-client reading, open-detail revocation clearing,
+and current-device logout. Native restart stays signed out. The isolated disposable
+Web account is awaiting current terms confirmation before import, successful Web
+fresh-auth retry and final confirmed/provider-backed deletion.
+
+The actual export journey exposed one additional native competing-alert defect.
+Focused red/green and the real fixed flow pass; CI48passes. Signed1.0(4)contains
+the fix, passed9artifact checks, uploaded/processed to Ready to Submit and saved
+its test notes. Groups0; no physical install, invitations or review submission.
+Approved encryption metadata is retained; no repeated build3upload/declaration.
+
+Temporary fourth-identity access uses API12with the same application image/schema93,
+roles/network/secrets and original expiry; restore the original3identities after the
+current disposable test. Neither Owner account nor real source data was deleted.
+
+## October3 selected packages1/2 — retained completed rollout
+
+Owner selected deployment and the new native candidate. [The actual rollout](review-rollout-20261003.md)
+is now complete for API11/schema0093 and restricted Web/WWW, with data/role/TLS checks,
+new successful retention heartbeats and116matching live files. The previous strict-review
+undeployed statements below are the pre-rollout checkpoint.
+
+Signed1.0(3) is uploaded/processed with normal distribution eligibility, test notes saved
+and0testers/groups. Its specific OS-only encryption declaration was confirmed by Owner, saved and read
+back asReady to Submit; Missing Compliance is cleared. No purchase, device install, review or
+public customer/live-billing opening is implied. Packages3–6remain at their existing gates.
+
+## HISTORICAL — October3 post-review inventory before rollout
+
+The whole-project review and28repairs are complete in source, locally verified and
+covered by CI47; source and evidence are pushed through4d061c49. The new fixes and
+migrations0092/0093are **not deployed**. The deployment row below now refers to this
+new batch; the earlier13Dot fixes/API10/schema0091 rollout stays complete and must
+not be repeated as if it had never happened. [Review](code-review-20261002.md).
+
+The next executable package is coordinated restricted API/Web/WWW rollout, additive
+migrations and post-deployment validation, plus a new native candidate incorporating
+reviewed changes. Keep ordinary customers and live billing closed. Then finish the
+remaining real core journeys and Apple lifecycle, final declarations/market/price,
+merchant readiness where applicable, submission/review and controlled customer cutover.
+
+This status reconciliation reads current source/receipts; it does not refresh private
+provider portals. Apple Internal/Missing Compliance build1.0(2), six saved screenshots,
+QQ recovery/login and API10 are the last retained October2 observations. The recorded
+review allowlist expires2026-10-07at01:08:57Asia/Shanghai; recheck operative reviewer
+access before acceptance/submission without automatically extending authority.
+
+Owner participation is limited to actual personal authentication/consent when needed,
+resuming explicitly deferred physical-device testing, truthful operator/merchant facts
+and final personal declarations/decisions. The existing authorization remains in force.
+SES reply is no longer required for Resend. The isolated CDK advisory and optional
+scanner startup failure remain their recorded bounded risks, not new paid certification
+or feature work. No additional UI redesign or screenshot production is required.
+
+Apple still requires an encryption determination for apps using encryption, and a
+submission needs required metadata and an eligible chosen build. TestFlight purchases
+run in sandbox; an upload is separate from a purchase/restore result.
+[Encryption](https://developer.apple.com/help/app-store-connect/manage-app-information/overview-of-export-compliance/),
+[submission](https://developer.apple.com/help/app-store-connect/manage-submissions-to-app-review/submit-an-app/),
+[TestFlight testing](https://developer.apple.com/help/app-store-connect/test-a-beta-version/testing-subscriptions-and-in-app-purchases-in-testflight/).
+
+## October2 release delta — retained evidence
+
 
 Owner now asks to finish all work that does not require their participation. The
 [latest independent preparation](independent-release-closeout-20261002.md) records
@@ -26,33 +260,38 @@ artifact and reads actual Apple results; it repeats no unchanged product suite,
 cloud deployment, Apple TEST notification or SES application. SES is no longer a
 required approval for the Owner-selected sender.
 
-<a id="october1-remaining-work-inventory"></a>
 
-## October2 remaining-work inventory
 
-The12register gates share dependencies and are grouped below. Two are verified;
-ten remain open/in-progress/deferred. Counts are not a completion percentage.
+## HISTORICAL — October6 remaining-work inventory
 
-| Work package | Current evidence and remaining work | Dependency / participation |
-| --- | --- | --- |
-| Deploy prepared repairs | Complete: repaired API/Web/router/WWW and review/Apple verification follow-ups are deployed | Preserve rollout evidence; no repeat merely because credentials later expire |
-| Real account and core journeys | Real A/B login, native read, QQ arrival, reset/new login and Directions filtering complete; final scope/revoke/export/delete/recent-auth acceptance remains | Current planner genuine consent/authentication; account deletion uses a disposable identity |
-| Apple purchase lifecycle | Review environment/enrollment, notifications/official TEST, dev build and internal TestFlight upload complete; actual purchase/restore/renewal/refund/expiry remain | Export-compliance determination and Owner resuming deferred physical Apple test interaction |
-| Merchant, markets and live billing | Existing integration retained; real operator/merchant/tax facts, live provider lifecycle, effective SBP fee and final Apple price remain | Owner-deferred facts and final decisions, then provider/Agent execution; Web88.99 stays locked |
-| Physical-device acceptance | Prepared development/distribution builds; actual device authentication/accessibility/return/purchase remains | Owner explicitly deferred; do not install or ask again just because the phone is paired |
-| Final distribution and submission | Internal1.0(2) uploaded/processed; six designed screenshots and beta basics saved; privacy/age/encryption/reviewer worksheets prepared | Truthful final declarations/contact/market/price, operative reviewer access and acceptance; then a new external-distribution build, review and manual release |
-| Controlled customer cutover | Isolated production/recovery/security foundations complete; exact Preview retirement, old-token expiry, negative checks and customer opening remain | Upstream acceptance first; measured86400second token lifetime plus clock tolerance; preserve Owner/real data |
+The12register gates are grouped into seven current work packages below. Two register gates
+are verified; the remaining states are deliberately unchanged. This is not a completion
+percentage. Packages1/2 now have the completed results below; existing personal deferrals remain.
 
-Build2 is internal-only and Apple reports Missing Compliance. Its local artifact
-checks have no blockers; this does not close transaction, declarations or submission
-gates. No TestFlight invitations were sent. Four6.9inch iPhone and two13inch iPad
-designs are saved in the unsubmitted English draft; no redesign is needed. SBP still
-has a submission receipt, without new approval/effective-rate proof.
+| # | 工作包 | 还需要完成 | 依赖 |
+| --- | --- | --- | --- |
+| 1 | **已完成：Web正式订阅开放** | October15已完成旧身份拒绝复核、正式Action、原Web销售路线和117静态资源交付；USD88.99年付与关闭自动计税保持，无人工Live自付。 |
+| 2 | 最新版本的受限部署与发行候选 | API14、Web86/WWW31文件已部署并核验；1.0(5)已上传，Apple已处理为准备提交，说明回读一致，测试群组/独立测试员0；源码与全部新增合格产物已推送，CI58/59通过，新归档已从GitHub下载解密核验。 | 已完成；后续只按新变化/最终提交需要继续。 |
+| 3 | 支付生命周期与真机 | 当前88.99StripeWeb TEST闭环已通过。Apple实际安装/登录/购买/恢复及生命周期仍未完成；Web live收款单列第5项。 | Owner已恢复真机并亲自在手机操作；TEST不是实际收费或完整会计账本。 |
+| 4 | 账号删除真实验收 | 实际不可撤销删除与身份/数据清理尚未执行。Owner明确保留原独立测试账号；不以导入/恢复成功代替删除成功。 | Owner暂缓；未经新的明确指令不重启删除。 |
+| 5 | **已完成：正式客户与身份切换** | 与第1项同一完成事实：已过原有效期及容差，4旧客户端／2服务拒绝重新确认；正式同意Action生效。既有账号／地图和旧客户端禁用保持。 |
+| 6 | 最终商店申报、审核与发布 | 基于最终候选核对隐私/年龄/联系信息/市场/价格及可用审核访问；提交App Review并处理反馈，审核后手动发布。新构建5、六张设计图和已确认加密声明保留，不重复上传/确认旧项。 | Agent准备；必要本人声明与Apple审核独立。 |
+| 7 | 公开客户切换 | 上游验收完成后退役Preview/旧凭据，按已测24小时旧令牌有效期加时钟容差执行切换和负面检查，再开放普通客户与已验收收费渠道。 | 前述发布条件完成后Agent受控执行。 |
 
-Use [handoff](handoff.md) for the single next step and the
-[gate register](../config/release-gates.json) for exact evidence boundaries. Actual
-TestFlight install, App Review submission, approval and public availability remain
-distinct. Existing UI, full03, prices, real data and FanPass are preserved.
+The earlier API13/Web5714ec158 and store1.0(4) remain dated artifacts; currentAPI14,
+localized Web/WWW and the uploaded1.0(5) are separately verified above. The six designed English
+store images and approved OS-only encryption metadata are retained. Actual device use,
+purchase/restore,submission,approval and public availability remain separate outcomes.
+
+The original three-identity review access was recorded to expire at2026-10-06T17:08:57Z
+(October7 01:08:57Hong Kong). Verify that reviewer access is operative before further
+acceptance/submission; no extension or permission change occurs in this status review.
+The already-measured24hour old-token lifetime is a cutover planning input,not a new
+24hour expiry imposed on normal customers or an overall launch time estimate.
+
+Use[handoff](handoff.md)for one next step and[the register](../config/release-gates.json)
+for exact evidence. No reliable public-launch date is asserted while owner-deferred
+facts/device work and provider/submission outcomes remain unresolved.
 
 ## HISTORICAL — September30 independent engineering before review repairs
 

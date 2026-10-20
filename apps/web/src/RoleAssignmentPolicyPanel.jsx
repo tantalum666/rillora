@@ -1,19 +1,20 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
+import { sharingMessage } from "./sharing.js";
+import { useI18n } from "./i18n/I18nProvider.jsx";
+import { useCallback, useEffect, useLayoutEffect, useMemo, useState } from "react";
 import { ArrowRight, Check, FileText, Info, Shield, ShieldCheck, Trash, UserCircle, WarningCircle } from "@phosphor-icons/react";
-import { ApiClientError } from "./api.js";
 import { useConfirmation } from "./ConfirmationDialog.jsx";
 
 const roleLabels = {
-  trusted_contact: "Trusted contact",
-  executor: "Executor record",
-  recipient: "Matter recipient",
+  trusted_contact: "sharing.role.trustedContact",
+  executor: "sharing.role.executor",
+  recipient: "sharing.role.recipient",
 };
 
 const evidenceLabels = {
-  record_only: "Record only",
-  simulation: "Simulated acceptance",
-  invitation_pending: "Invitation pending",
-  invitation_accepted: "Invitation accepted",
+  record_only: "sharing.role.recordOnly",
+  simulation: "sharing.role.simulated",
+  invitation_pending: "sharing.role.invitationPending",
+  invitation_accepted: "sharing.role.invitationAccepted",
 };
 
 export function RoleAssignmentPolicyPanel({
@@ -25,6 +26,7 @@ export function RoleAssignmentPolicyPanel({
   onDirtyChange,
   onBusyChange,
 }) {
+  const { t, errorMessage } = useI18n();
   const [assignments, setAssignments] = useState([]);
   const [selectedMatterId, setSelectedMatterId] = useState(initialMatterId ?? matters[0]?.id ?? "");
   const [personPublicId, setPersonPublicId] = useState(contacts[0]?.publicId ?? "");
@@ -39,8 +41,8 @@ export function RoleAssignmentPolicyPanel({
     if (current.has(id) === dirty) return current;
     const next = new Set(current); if (dirty) next.add(id); else next.delete(id); return next;
   }), []);
-  useEffect(() => onDirtyChange?.(dirtyRows.size > 0), [dirtyRows, onDirtyChange]);
-  useEffect(() => onBusyChange?.(busy !== ""), [busy, onBusyChange]);
+  useLayoutEffect(() => onDirtyChange?.(dirtyRows.size > 0), [dirtyRows, onDirtyChange]);
+  useLayoutEffect(() => onBusyChange?.(busy !== ""), [busy, onBusyChange]);
 
   const loadAssignments = useCallback(async () => {
     setLoading(true);
@@ -49,7 +51,7 @@ export function RoleAssignmentPolicyPanel({
       const response = await apiClient.getRoleAssignments();
       setAssignments(response.roleAssignments);
     } catch (caught) {
-      setError(messageFor(caught, "Role policy could not be loaded."));
+      setError(messageFor(caught, "sharing.role.loadError"));
     } finally {
       setLoading(false);
     }
@@ -75,7 +77,7 @@ export function RoleAssignmentPolicyPanel({
       await loadAssignments();
       await onChanged?.(changeMessage(response.invalidatedDisclosureRehearsalCount));
     } catch (caught) {
-      setError(messageFor(caught, "The role record could not be created."));
+      setError(messageFor(caught, "sharing.role.createError"));
     } finally {
       setBusy("");
     }
@@ -94,16 +96,16 @@ export function RoleAssignmentPolicyPanel({
       await loadAssignments();
       await onChanged?.(changeMessage(response.invalidatedDisclosureRehearsalCount));
     } catch (caught) {
-      setError(messageFor(caught, "The role record could not be updated."));
+      setError(messageFor(caught, "sharing.role.updateError"));
     } finally {
       setBusy("");
     }
   }
 
   async function revokeAssignment(assignment) {
-    const confirmed = await confirm({ title: "Revoke this role?", message: assignment.evidence === "record_only"
-      ? "Only this Rillora record changes. External accounts and legal status stay separate."
-      : "This removes the Rillora role and invitation evidence. External authority and accounts stay separate.", confirmLabel: "Revoke role", cancelLabel: "Keep role" });
+    const confirmed = await confirm({ titleKey: "sharing.role.revokeTitle", messageKey: assignment.evidence === "record_only"
+      ? "sharing.role.revokeRecordBody"
+      : "sharing.role.revokeEvidenceBody", confirmLabelKey: "sharing.role.revokeRole", cancelLabelKey: "sharing.role.keep" });
     if (!confirmed) return;
     setBusy(assignment.publicId);
     setError("");
@@ -113,7 +115,7 @@ export function RoleAssignmentPolicyPanel({
       await loadAssignments();
       await onChanged?.(changeMessage(response.invalidatedDisclosureRehearsalCount));
     } catch (caught) {
-      setError(messageFor(caught, "The role record could not be revoked."));
+      setError(messageFor(caught, "sharing.role.revokeError"));
     } finally {
       setBusy("");
     }
@@ -127,30 +129,30 @@ export function RoleAssignmentPolicyPanel({
   return (
     <div className="role-policy-editor">
       {confirmation}
-      <div className="relationship-preview" aria-hidden="true"><span><UserCircle size={36} />{contacts.find((person) => person.publicId === personPublicId)?.displayName ?? "Person"}</span><ArrowRight size={18} /><span key={role}><Shield size={36} />{roleLabels[role]}</span><ArrowRight size={18} /><span key={`${scope}:${selectedMatterId}`}><FileText size={36} />{scope === "plan_wide" ? "Whole plan" : matters.find((matter) => matter.id === selectedMatterId)?.label ?? "Scope"}</span></div>
-      <label className="field-label">Matter<select value={selectedMatterId} disabled={busy !== ""} onChange={async (event) => {
+      <div className="relationship-preview" aria-hidden="true"><span><UserCircle size={36} />{contacts.find((person) => person.publicId === personPublicId)?.displayName ?? t("sharing.role.person")}</span><ArrowRight size={18} /><span key={role}><Shield size={36} />{t(roleLabels[role])}</span><ArrowRight size={18} /><span key={`${scope}:${selectedMatterId}`}><FileText size={36} />{scope === "plan_wide" ? t("sharing.role.wholePlan") : matters.find((matter) => matter.id === selectedMatterId)?.label ?? t("sharing.role.scope")}</span></div>
+      <label className="field-label">{t("sharing.role.matter")}<select value={selectedMatterId} disabled={busy !== ""} onChange={async (event) => {
         const nextMatter = event.target.value;
-        if (dirtyRows.size > 0 && !await confirm({ title: "Discard role changes?" })) return;
+        if (dirtyRows.size > 0 && !await confirm({ titleKey: "sharing.role.discardTitle" })) return;
         setDirtyRows(new Set()); setSelectedMatterId(nextMatter);
       }}>{matters.map((matter) => <option key={matter.id} value={matter.id}>{matter.label}</option>)}</select></label>
       <section className="role-policy-section" aria-labelledby="role-policy-add-title">
-        <h3 id="role-policy-add-title" className="sr-only">Add role</h3>
+        <h3 id="role-policy-add-title" className="sr-only">{t("sharing.role.add")}</h3>
         {contacts.length === 0 || matters.length === 0 ? (
-          <p className="rehearsal-caption">Add an active person record and matter before assigning a role.</p>
+          <p className="rehearsal-caption">{t("sharing.role.addPrerequisite")}</p>
         ) : (
           <div className="role-policy-form">
-            <label className="field-label">Person<select value={personPublicId} disabled={busy !== ""} onChange={(event) => setPersonPublicId(event.target.value)}>{contacts.map((contact) => <option key={contact.publicId} value={contact.publicId}>{contact.displayName}</option>)}</select></label>
-            <label className="field-label">Role<select value={role} disabled={busy !== ""} onChange={(event) => changeRole(event.target.value)}>{Object.entries(roleLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-            <label className="field-label">Scope<select value={scope} disabled={busy !== "" || role === "recipient"} onChange={(event) => setScope(event.target.value)}><option value="plan_wide">Whole plan</option><option value="matter_specific">Selected matter</option></select></label>
-            {scope === "matter_specific" && <p className="role-policy-target"><Info size={16} /> {matters.find((matter) => matter.id === selectedMatterId)?.label ?? "Select a matter above"}</p>}
-            <button className="primary-button" disabled={busy !== "" || !personPublicId || (scope === "matter_specific" && !selectedMatterId)} onClick={() => void createAssignment()}>{busy === "create" ? "Saving…" : "Add role record"} {busy !== "create" && <Check size={18} />}</button>
+            <label className="field-label">{t("sharing.role.person")}<select value={personPublicId} disabled={busy !== ""} onChange={(event) => setPersonPublicId(event.target.value)}>{contacts.map((contact) => <option key={contact.publicId} value={contact.publicId}>{contact.displayName}</option>)}</select></label>
+            <label className="field-label">{t("sharing.role.role")}<select value={role} disabled={busy !== ""} onChange={(event) => changeRole(event.target.value)}>{Object.entries(roleLabels).map(([value, label]) => <option key={value} value={value}>{t(label)}</option>)}</select></label>
+            <label className="field-label">{t("sharing.role.scope")}<select value={scope} disabled={busy !== "" || role === "recipient"} onChange={(event) => setScope(event.target.value)}><option value="plan_wide">{t("sharing.role.wholePlan")}</option><option value="matter_specific">{t("sharing.role.selectedMatter")}</option></select></label>
+            {scope === "matter_specific" && <p className="role-policy-target"><Info size={16} /> {matters.find((matter) => matter.id === selectedMatterId)?.label ?? t("sharing.role.selectAbove")}</p>}
+            <button className="primary-button" disabled={busy !== "" || !personPublicId || (scope === "matter_specific" && !selectedMatterId)} onClick={() => void createAssignment()}>{busy === "create" ? t("sharing.common.saving") : t("sharing.role.addRecord")} {busy !== "create" && <Check size={18} />}</button>
           </div>
         )}
       </section>
 
       <section className="role-policy-section" aria-labelledby="role-policy-active-title">
-        <h3 id="role-policy-active-title">Existing roles</h3>
-        {loading ? <p className="rehearsal-caption">Loading role policy…</p> : visibleAssignments.length ? (
+        <h3 id="role-policy-active-title">{t("sharing.role.existing")}</h3>
+        {loading ? <p className="rehearsal-caption">{t("sharing.role.loading")}</p> : visibleAssignments.length ? (
           <div className="role-assignment-list">
             {visibleAssignments.map((assignment) => (
               <AssignmentRow
@@ -164,16 +166,17 @@ export function RoleAssignmentPolicyPanel({
               />
             ))}
           </div>
-        ) : <p className="rehearsal-caption">No active role applies to this matter yet.</p>}
+        ) : <p className="rehearsal-caption">{t("sharing.role.empty")}</p>}
       </section>
 
-      <details className="task-details"><summary><Info size={18} aria-hidden="true" /> Record only</summary><p>No invitation or account access is created. Event, identity, authority and field checks remain separate.</p></details>
-      {error && <p className="start-here-error" role="alert"><WarningCircle size={18} /> {error}</p>}
+      <details className="task-details"><summary><Info size={18} aria-hidden="true" /> {t("sharing.role.recordOnly")}</summary><p>{t("sharing.role.boundary")}</p></details>
+      {error && <p className="start-here-error" role="alert"><WarningCircle size={18} /> {sharingMessage(error, t, errorMessage)}</p>}
     </div>
   );
 }
 
 function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke, onDirtyChange }) {
+  const { t } = useI18n();
   const [draft, setDraft] = useState({
     role: assignment.role,
     scope: assignment.scope,
@@ -183,7 +186,7 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke, onDirt
     || draft.scope !== assignment.scope
     || (draft.scope === "matter_specific" && draft.matterPublicId !== assignment.matter?.publicId);
 
-  useEffect(() => onDirtyChange(assignment.publicId, assignment.editable && changed), [assignment.publicId, assignment.editable, changed, onDirtyChange]);
+  useLayoutEffect(() => onDirtyChange(assignment.publicId, assignment.editable && changed), [assignment.publicId, assignment.editable, changed, onDirtyChange]);
 
   function setRole(value) {
     setDraft((current) => ({
@@ -196,40 +199,40 @@ function AssignmentRow({ assignment, matters, disabled, onSave, onRevoke, onDirt
   if (!assignment.editable) {
     return (
       <details className="role-assignment-row is-locked">
-        <summary><strong>{assignment.person.displayName}</strong><span>{evidenceLabels[assignment.evidence]}</span></summary>
-        <p>{roleLabels[assignment.role]} · {scopeLabel(assignment)}</p>
-        <p className="rehearsal-caption">Invitation evidence is read-only.</p>
-        <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> Revoke role</button>
+        <summary><strong>{assignment.person.displayName}</strong><span>{t(evidenceLabels[assignment.evidence])}</span></summary>
+        <p>{t(roleLabels[assignment.role])} · {scopeLabel(assignment, t)}</p>
+        <p className="rehearsal-caption">{t("sharing.role.evidenceReadOnly")}</p>
+        <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> {t("sharing.role.revokeRole")}</button>
       </details>
     );
   }
 
   return (
     <details className="role-assignment-row">
-      <summary><strong>{assignment.person.displayName}</strong><span>{roleLabels[assignment.role]} · {scopeLabel(assignment)}</span></summary>
+      <summary><strong>{assignment.person.displayName}</strong><span>{t(roleLabels[assignment.role])} · {scopeLabel(assignment, t)}</span></summary>
       <div className="role-assignment-fields">
-        <label>Role<select value={draft.role} disabled={disabled} onChange={(event) => setRole(event.target.value)}>{Object.entries(roleLabels).map(([value, label]) => <option key={value} value={value}>{label}</option>)}</select></label>
-        <label>Scope<select value={draft.scope} disabled={disabled || draft.role === "recipient"} onChange={(event) => setDraft((current) => ({ ...current, scope: event.target.value }))}><option value="plan_wide">Whole plan</option><option value="matter_specific">One matter</option></select></label>
-        {draft.scope === "matter_specific" && <label>Matter<select value={draft.matterPublicId} disabled={disabled} onChange={(event) => setDraft((current) => ({ ...current, matterPublicId: event.target.value }))}>{matters.map((matter) => <option key={matter.id} value={matter.id}>{matter.label}</option>)}</select></label>}
+        <label>{t("sharing.role.role")}<select value={draft.role} disabled={disabled} onChange={(event) => setRole(event.target.value)}>{Object.entries(roleLabels).map(([value, label]) => <option key={value} value={value}>{t(label)}</option>)}</select></label>
+        <label>{t("sharing.role.scope")}<select value={draft.scope} disabled={disabled || draft.role === "recipient"} onChange={(event) => setDraft((current) => ({ ...current, scope: event.target.value }))}><option value="plan_wide">{t("sharing.role.wholePlan")}</option><option value="matter_specific">{t("sharing.role.oneMatter")}</option></select></label>
+        {draft.scope === "matter_specific" && <label>{t("sharing.role.matter")}<select value={draft.matterPublicId} disabled={disabled} onChange={(event) => setDraft((current) => ({ ...current, matterPublicId: event.target.value }))}>{matters.map((matter) => <option key={matter.id} value={matter.id}>{matter.label}</option>)}</select></label>}
       </div>
       <div className="role-assignment-actions">
-        <button className="secondary-button" disabled={disabled || !changed || (draft.scope === "matter_specific" && !draft.matterPublicId)} onClick={() => void onSave(assignment, draft)}>Save role</button>
-        <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> Revoke</button>
+        <button className="secondary-button" disabled={disabled || !changed || (draft.scope === "matter_specific" && !draft.matterPublicId)} onClick={() => void onSave(assignment, draft)}>{t("sharing.role.save")}</button>
+        <button className="text-button danger-text" disabled={disabled} onClick={() => void onRevoke(assignment)}><Trash size={17} /> {t("sharing.role.revoke")}</button>
       </div>
     </details>
   );
 }
 
-function scopeLabel(assignment) {
-  return assignment.scope === "plan_wide" ? "whole plan" : assignment.matter?.title ?? "one matter";
+function scopeLabel(assignment, t) {
+  return assignment.scope === "plan_wide" ? t("sharing.role.wholePlan") : assignment.matter?.title ?? t("sharing.role.oneMatter");
 }
 
 function changeMessage(invalidatedCount) {
   return invalidatedCount > 0
-    ? "Role saved · earlier rehearsals are stale"
-    : "Role saved";
+    ? { key: "sharing.role.savedStale" }
+    : { key: "sharing.role.saved" };
 }
 
-function messageFor(error, fallback) {
-  return error instanceof ApiClientError ? error.message : fallback;
+function messageFor(error, key) {
+  return { cause: error, key };
 }

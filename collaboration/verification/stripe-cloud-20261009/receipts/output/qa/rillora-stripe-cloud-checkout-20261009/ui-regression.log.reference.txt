@@ -1,0 +1,142 @@
+TAP version 13
+# Subtest: commercial state is derived from the server catalog while billing remains closed
+ok 1 - commercial state is derived from the server catalog while billing remains closed
+  ---
+  duration_ms: 41.095875
+  type: 'test'
+  ...
+# Subtest: unsafe or malformed commercial responses fail closed
+ok 2 - unsafe or malformed commercial responses fail closed
+  ---
+  duration_ms: 0.319375
+  type: 'test'
+  ...
+# Subtest: purchase routing rejects a client-success or contradictory route
+ok 3 - purchase routing rejects a client-success or contradictory route
+  ---
+  duration_ms: 0.11925
+  type: 'test'
+  ...
+# Subtest: commercial details stay out of public discovery until explicit paid-capability intent
+ok 4 - commercial details stay out of public discovery until explicit paid-capability intent
+  ---
+  duration_ms: 0.095917
+  type: 'test'
+  ...
+# Subtest: test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+ok 5 - test billing enrollment is explicit and hosted destinations reject lookalikes and credentials
+  ---
+  duration_ms: 0.346833
+  type: 'test'
+  ...
+# Subtest: Family benefits remain visible when their catalog enforcement becomes included
+ok 6 - Family benefits remain visible when their catalog enforcement becomes included
+  ---
+  duration_ms: 0.113709
+  type: 'test'
+  ...
+# Subtest: all application and public messages have complete, parameter-compatible bilingual catalogs
+ok 7 - all application and public messages have complete, parameter-compatible bilingual catalogs
+  ---
+  duration_ms: 5.878917
+  type: 'test'
+  ...
+# Subtest: literal translation references and stored local-message keys resolve in both languages
+ok 8 - literal translation references and stored local-message keys resolve in both languages
+  ---
+  duration_ms: 26.01925
+  type: 'test'
+  ...
+# Subtest: catalog lookup preserves arbitrary user text literally as interpolation data
+ok 9 - catalog lookup preserves arbitrary user text literally as interpolation data
+  ---
+  duration_ms: 12.009084
+  type: 'test'
+  ...
+# Subtest: actual Family component shows factual product features without promising planned access
+ok 10 - actual Family component shows factual product features without promising planned access
+  ---
+  duration_ms: 463.082834
+  type: 'test'
+  ...
+# Subtest: purchase consent is current, annual, separate and never inferred from an unchecked box
+ok 11 - purchase consent is current, annual, separate and never inferred from an unchecked box
+  ---
+  duration_ms: 0.870708
+  type: 'test'
+  ...
+# Subtest: billing redirects require production response, provider host and server entitlement boundary
+ok 12 - billing redirects require production response, provider host and server entitlement boundary
+  ---
+  duration_ms: 0.231083
+  type: 'test'
+  ...
+# Subtest: provider returns enter account access and discard untrusted session/payment parameters
+ok 13 - provider returns enter account access and discard untrusted session/payment parameters
+  ---
+  duration_ms: 1.002417
+  type: 'test'
+  ...
+# Subtest: production checkout uses authenticated CSRF POST, independent proof and the same retry key
+ok 14 - production checkout uses authenticated CSRF POST, independent proof and the same retry key
+  ---
+  duration_ms: 31.843958
+  type: 'test'
+  ...
+# Subtest: workspace catalogs have complete keys, matching parameters and localized counts
+ok 15 - workspace catalogs have complete keys, matching parameters and localized counts
+  ---
+  duration_ms: 3.456292
+  type: 'test'
+  ...
+# Subtest: desktop and mobile route identities have render-time labels without translated URLs
+ok 16 - desktop and mobile route identities have render-time labels without translated URLs
+  ---
+  duration_ms: 1.003459
+  type: 'test'
+  ...
+# Subtest: localized matter and contact labels preserve evidence, statuses and legacy defaults
+ok 17 - localized matter and contact labels preserve evidence, statuses and legacy defaults
+  ---
+  duration_ms: 0.157
+  type: 'test'
+  ...
+# Subtest: commercial rendering adapters localize known metadata without changing access or unknown values
+ok 18 - commercial rendering adapters localize known metadata without changing access or unknown values
+  ---
+  duration_ms: 0.106917
+  type: 'test'
+  ...
+# Subtest: annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+ok 19 - annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+  ---
+  duration_ms: 8.447417
+  type: 'test'
+  ...
+# Subtest: display localization never rewrites user names, record drafts or route filters
+ok 20 - display localization never rewrites user names, record drafts or route filters
+  ---
+  duration_ms: 0.591917
+  type: 'test'
+  ...
+# Subtest: all static workspace message references resolve in both locales
+ok 21 - all static workspace message references resolve in both locales
+  ---
+  duration_ms: 4.939625
+  type: 'test'
+  ...
+# Subtest: production purchase acceptance retains its versioned English text and unchecked state
+ok 22 - production purchase acceptance retains its versioned English text and unchecked state
+  ---
+  duration_ms: 0.363084
+  type: 'test'
+  ...
+1..22
+# tests 22
+# suites 0
+# pass 22
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 579.860125

@@ -1,0 +1,55 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 66401,
+      "counts": {
+        "passed": 2,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-05T06-31-18-734Z_pid21617_c4e954a2.log",
+      "xcresultPath": "output/qa/rillora-dot-followup-20261005/native-localization-ui.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-05T06-31-18-735Z_pid21617_673d09d5.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testEnglishNativeShellAndLanguageReturn",
+        "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testSimplifiedChineseNativeShellAndLanguageReturn"
+      ],
+      "discovered": {
+        "total": 2,
+        "items": [
+          "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testEnglishNativeShellAndLanguageReturn",
+          "RilloraLayoutMatrixTests/RilloraLocalizationUITests/testSimplifiedChineseNativeShellAndLanguageReturn"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testEnglishNativeShellAndLanguageReturn",
+        "status": "passed",
+        "durationMs": 16607
+      },
+      {
+        "suite": "RilloraLocalizationUITests",
+        "test": "testSimplifiedChineseNativeShellAndLanguageReturn",
+        "status": "passed",
+        "durationMs": 16727
+      }
+    ]
+  }
+}

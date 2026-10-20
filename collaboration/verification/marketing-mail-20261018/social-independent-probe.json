@@ -1,0 +1,16 @@
+{
+  "at": "2026-10-18T16:28:25.680198+00:00",
+  "testId": "RLM-20261019-SOCIAL-OUTBOUND",
+  "purpose": "One independent new outbound capability probe after the original reply received Google4.3.0 and stayed in automatic retry",
+  "from": "social@rillora.xyz",
+  "recipient": "Same existing Owner Gmail",
+  "subject": "RLM-20261019-SOCIAL-OUTBOUND - Rillora alias verification",
+  "body": "Rillora social alias outbound verification. Test ID: RLM-20261019-SOCIAL-OUTBOUND. This is an authorized configuration test; no action is required.",
+  "sameOriginalMessageResent": false,
+  "originalQueueCancelled": false,
+  "additionalProbeLimit": 1,
+  "newProbeSubmitted": true,
+  "externalReceiptPending": false,
+  "externalReceiptVerified": true,
+  "verifiedBy": "social-external-verified.json"
+}

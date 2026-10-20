@@ -1,0 +1,18 @@
+// A bounded consumer acceptance test, not a delegated engineering task.
+import {readFile,writeFile} from 'node:fs/promises';import {resolve} from 'node:path';import {spawn} from 'node:child_process';
+const qa=resolve('output/qa/rillora-customer-mcp-20261018'),privateDir=resolve('.local-secrets/mcp-customer-20261018');
+const args=JSON.parse(await readFile(resolve(privateDir,'codex-test-overrides.json'),'utf8'));
+const cwd=(await readFile(resolve(privateDir,'codex-test-workdir.txt'),'utf8')).trim();
+const prompt='Use only the connected Rillora read-only tools to review the synthetic matter I selected and check its missing common information. Do not use any other tools, access files, modify anything, or infer missing facts. Reply in Chinese in at most three sentences. If the connection is unavailable, say so instead of inventing results.';
+const child=spawn('codex',['exec','--ephemeral','--skip-git-repo-check','--sandbox','read-only','--json',...args,'-c','approval_policy="never"','-'],{cwd,stdio:['pipe','pipe','pipe']});
+let stdout='',stderr='';child.stdout.on('data',d=>stdout+=d);child.stderr.on('data',d=>stderr+=d);child.stdin.end(prompt);
+const timeout=setTimeout(()=>child.kill('SIGTERM'),180000);
+const code=await new Promise(r=>child.once('close',r));clearTimeout(timeout);
+await writeFile(resolve(privateDir,'codex-model-output.jsonl'),stdout,{mode:0o600});
+await writeFile(resolve(privateDir,'codex-model-stderr.log'),stderr,{mode:0o600});
+const events=stdout.split('\n').flatMap(line=>{try{return[JSON.parse(line)]}catch{return[]}});
+const calls=events.filter(e=>e.type==='item.completed'&&e.item?.type==='mcp_tool_call').map(e=>({server:e.item.server,tool:e.item.tool,status:e.item.status,isError:e.item.result?.isError??null}));
+const final=events.filter(e=>e.type==='item.completed'&&e.item?.type==='agent_message').map(e=>e.item.text).join('\n');
+const passed=code===0&&calls.some(c=>c.tool==='list_selected_matters')&&calls.some(c=>c.tool==='get_preparation_gaps')&&calls.every(c=>c.server==='rillora_customer_20261018'&&c.status==='completed'&&c.isError!==true)&&final.length>0;
+await writeFile(resolve(qa,'codex-consumer-model.json'),JSON.stringify({passed,exitCode:code,ephemeralSession:true,otherMcpServersAndPluginsDisabled:true,scope:'Only selected synthetic matter; actual Codex client and its configured OpenAI model',calls,finalReply:final},null,2)+'\n');
+console.log(JSON.stringify({passed,exitCode:code,calls,hasFinalReply:!!final}));if(!passed)process.exitCode=1;

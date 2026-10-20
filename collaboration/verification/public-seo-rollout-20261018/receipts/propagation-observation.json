@@ -1,0 +1,7 @@
+{
+  "initialNewRouteAttempt": "HTTP 404 shortly after publishing the function",
+  "subsequentProbe": "HTTP 200; Function Status DEPLOYED",
+  "validatedAllEightNewRoutesBeforeReplacingOldHtml": true,
+  "functionRepublishedToResolvePropagation": false,
+  "sameReadOnlyProbeRetriedAfterActualPropagation": true
+}

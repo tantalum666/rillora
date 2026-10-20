@@ -1,0 +1,80 @@
+# October9直装、付款专项复核与完整双语
+
+Status: DELIVERED / ACTUAL TEST REFUND BOUNDARIES VERIFIED / FINAL EVIDENCE CLOSEOUT
+Last updated: 2026-10-10 (Asia/Hong_Kong)
+
+Owner要求先把修复版本直装原手机，再细查Web/iOS付款、退款等流程；随后要求中文/英文界面各自完整，移除中英并排、中文参考和英文优先提示。这取代旧的保留英文同意文案/仅给中文参考的展示决定；价格、真实数据、FanPass及暂停零碎TestFlight保持。
+
+当前交付：手机development1.0(13)已原位安装和独立读回，Owner确认已订阅、港币888、无夹杂英文；Web/Preview/官网203个公开文件与法律18资源、14实际双语页面验证完成。两套数据库为schema94，最终API21/Preview43均1/1健康，运行f7592a3的同一不可变镜像。源码和构建/部署/本人反馈分别保存，未分发TestFlight。
+
+本轮实际Stripe TEST已覆盖取消结账、拒付、成功年付、中文Portal取消和英文恢复、部分退款、全额pending保持权益、succeeded撤销权益、随后failed恢复权益、重复回调去重及精确订阅清理。三个新订单均USD88.99且各仅一条付款尝试，原1事项保留。旧Apple Sandbox购买/Owner恢复反馈沿用；这次确认的是签名订阅/HKD888、自动同步与手机13显示，没有制造新Apple购买/退款/Restore点击证据。
+
+当前剩余：Auth0桌面旧外壳3句英文仍受模板API402限制，官方支持入口也不允许创建工单。已有配对的中文/英文登录widget与同意表单正常；免费社区询问草稿已准备、尚未外发。正式市场/税务/客户开售、汇总商店候选及App Review继续按发布合同处理，不能从这轮测试推导已上线或零风险。
+
+本轮边界：Stripe只用TEST、Apple只用既有Sandbox。没有真实卡Live测试，不开放普通客户/正式收费，不更改价格、真实事项、历史收据或FanPass。原三审核身份/原Sandbox资格有限期至2026-10-11T14:00Z；不要求重复已完成登录、安装、部署或购买。
+
+QA：output/qa/rillora-payment-recheck-20261009；原生包：output/release/rillora-payment-recheck-20261009。认证、真实provider原文和设备标识只保护存于.local-secrets/payment-recheck-20261009。沿用原完整Markdown阅读，本轮read ledger只补变化与任务文件。
+
+## HISTORICAL — 付款修复源码检查点
+
+异步退款失败已取得真实数据库红/绿回归：原15例中1例准确失败，修复后相关55例通过。共享Stripe解析器读取完整当期发票、付款、退款及争议状态，只有充分证据才能撤销旧退款override；保留其他已完成全额退款和未解决争议。TEST与Live复用解析器，不再复制退款逻辑。
+
+同一问题也在隔离备份恢复对账中复现（5例中1失败），补齐明确退款逆转证据后相关31例通过。没有恢复后的完整provider证据时仍不放开权益。Web重购入口另改为按服务器是否仍可能续订判断，不让历史退款记录永久挡住新购；服务器重复订阅校验保留，前端增加同步操作锁。
+
+原生英文目标下44通过/1既有StoreKitTest平台跳过。此前中文模拟器中的英文片段断言失败已保留，属于测试语言前提，不能写成17个付款逻辑故障；双语界面仍需本轮实际检查。Owner报告新手机包无需点击恢复已显示订阅；这不单独证明本轮Restore通过或新购发生，正在读回原订阅。
+
+上述修复615bf1322已推送且GitHub CI108成功；Preview/production两次冻结模板更新均UPDATE_COMPLETE并与实际模板一致。运行任务健康、最新前端字节和新的真实TEST检查分别记录，不能由CloudFormation状态代替。
+
+## HISTORICAL — October10语言交付前的准备
+
+七份法律文件、60节的中英文渲染已核对相同结构；删除英文优先/中文参考展示，保持原真实经营资料、价格、历史收据。准备terms-2026-10-09-1、registration-clickwrap-2026-10-09-1及同一新bundle摘要；尚未发布前不能称为当前已接受条款。原Privacy实质政策版本保持。完整法律构建已通过八项检查，包含根路径语言保留。
+
+Web和原生将所选语言传给Auth0、法律链接、打印指引；共享预演词汇来自同一固定目录，不翻译私人输入。Stripe结账/门户传入en或zh，新94迁移将首次请求语言固定在付款尝试中，防止模糊重试因切换语言改变幂等载荷。历史NULL保持原请求。94尚未部署，必须先维护任务更新/执行并核验迁移，再发布API及客户端。
+
+API全套441项中439通过，新增TEST适配器的两项夹具缺少响应导致失败；补齐合成响应后该16项文件全部通过。此前433全套通过为更早源码检查点。Web189通过，法律7通过；已验证14法律页面/60节和两种同意句的SSR。不把源码渲染测试称为上线浏览器或真机结果。
+
+Auth0原会话可用；租户目前只启用en。中文同意表单、两条Action的按语言路由及错误文案已准备，保留三身份/期限/绑定。旧Universal Login外壳模板API实际402，控制台主题可编辑但未找到免费模板替换入口；这是套餐能力限制，不能伪装成登录过期，也不擅自升级或切换Classic。
+
+Owner手机12自动显示已订阅：实际服务器读取原storekit/sandbox订阅、HKD888/HKG及Oct9新的CLIENT_SIGNED_TRANSACTION；无本轮新订单。已有订阅自动同步属于预期结果，本次未要求再次购买，也未取得新的Restore点击或退款结果。
+
+## HISTORICAL — October10实际交付与早期付款进度
+
+最终法律正文摘要为c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb；eaf68c0a7的CI111三个任务成功，441API及55infra通过。先更新维护镜像、逐库执行94及校验全部94摘要，再发布API20/Preview42；两者1/1健康，角色/网络/秘密/审核范围保持。正式/Preview/官网86/86/31文件独立逐字节匹配。Cloudflare法律部署e99e137f-d469-4452-b796-4844ee38fb8d实际成功；50HTTP检查、18资源字节、14中英文页面渲染与60节对应通过。
+
+原生development13原位安装、独立版本读回和前台启动通过，签名/原设备/生产连接/Keychain/资源共14检查通过。原生英文53及最终中文12通过。Owner当场反馈“套餐是已经订阅，价格是港币888，没有夹杂英文了”，与签名Apple Sandbox记录一致；不新增Apple付款/Restore证据，不分发TestFlight。
+
+Auth0通过原已登录Dashboard导入配对的English/简体中文同意表单，CLI只做可用读回/已有Action权限；原表单未变作为回退。两条Action新证明和en/zh-CN、中文重复注册提示已读回，未扩权限/身份或代造同意。旧模板API402导致桌面外壳3句英文仍未改；这与CLI缺少update:forms是两个不同问题。实际中文widget正常，旧外壳截图已保存。
+
+Owner当场确认新版条款，Agent按具体授权勾选并复用原Google登录，真实Preview仍为原1事项。新中文Stripe结账实际发现固定英文产品说明；TEST/Live目录仅把显示名改为Rillora、移除固定英文描述，默认价格、税务代码、账单名称及关闭销售保持。应用中家庭版名称与功能照所选语言显示；历史发票原文不重写。
+
+本轮实际已完成：取消未付款结账、官方0002拒付中文提示、官方5126测试卡成功USD88.99年付、云端Family、中文Portal到期取消且保留本期权益、英文Portal恢复续订。平台用cancel_at表示计划取消，不能只读cancel_at_period_end字段；应用正确显示对应状态。已对该唯一新TEST付款发起全额退款，初始succeeded、UI Free/已退款且提示续订不会自动取消。后续failed与权益恢复正在观察，未重复退款、未清理这条仍用于验收的订阅。普通客户/Live付款保持关闭。
+
+部分操作工具与夹具的失败另留记录：首轮新增用例缺响应、原生金标旧参数、扫描白名单行号迁移、生产维护容器名称校验、浏览器点击超时及法律构建未加载受保护配置。均与产品缺陷分开，不把后续成功倒写成首次通过。
+
+October10后续实际结果：官方5126退款从succeeded变为failed，原因expired_or_canceled_card；对应已付Charge的amount_refunded归零、refunded=false。实际Preview点击刷新后从Free恢复Family，原2027年10月10日已付截止保留。此次只提交一次TEST退款；不是第二次购买或真钱退款。回调/数据库独立记录、后续部分/待处理退款和测试订阅清理继续。
+
+## HISTORICAL — 待处理退款的新发现与修复准备
+
+第一条5126测试订阅在上述恢复验证后已按精确ID取消，不生成最终账单或按比例项目，应用回落Free且允许新购。第二条独立TEST订单使用官方7726卡，英文结账成功USD88.99；只对该付款提交一次USD10部分退款。Provider实际返回pending，同时Charge.amount_refunded已经增加至1000，并发出charge.refunded事件。这证明不能把Charge累计金额直接当作成功退款金额。
+
+补充的18项回归在旧代码上12过/6失败，覆盖两种环境下全额pending、成功部分加pending余款、退款列表不完整。新共享退款证据读取器仅累加succeeded，普通回调与备份恢复共用同一库存校验；恢复的严格保守边界继续保留。修复后70项相关API/恢复测试和类型检查通过，尚待此次服务器镜像部署。第二张测试单的剩余USD78.99退款尚未提交，留待新镜像上实际验证全额pending保持权益、全部成功后再回落Free。新修复不需迁移、前端重新发布或手机重装。
+
+## October10最终退款边界与交付结果
+
+官方5126用例：同一全额退款由succeeded转failed（expired_or_canceled_card），Charge累计退款归零；应用先Free后恢复Family及原已付周期。只退款一次，随后按精确TEST订阅取消。官方7726第二单：USD10部分退款pending仍保留Family，成功后也未误判全额；余USD78.99从pending转succeeded后才成为全额退款。由于并发租约，第二单charge.refunded初次503，不能单靠其pending截图声称新分支通过。
+
+因此第三单在API43上独立验证：全额USD88.99 pending时Charge累计已8899，charge.refunded经重送于19:19:14Z实际作出grant/active；provider于19:20:20Z转succeeded，19:20:22Z回调才作出revoke/refunded。实际页面对应Family再Free。19:22:03Z再次重放旧charge事件，HTTP200明确返回duplicate，只有一条原始对账决定，未复活权益。
+
+三个精确TEST订阅均已取消、不生成最终账单/按比例项目；数据库三订单为paid_reconciled、各一付款尝试、原事项1条、续订可能性均false。503 subscription_observation_busy是并发安全租约的可重试结果，TEST依靠Stripe重投；生产另有定时重试器。本轮手动重送与自动重投的结果分别记录，不把暂时失败隐藏，也不降低串行校验或验签要求。
+
+新共享退款证据读取器仅累计succeeded，普通事件和备份恢复复用完整性校验。六个新红例已修，70项相关测试/类型检查通过，CI112成功；f7592a3已推送，API21/43独立健康/镜像核验完成。既有441API/55infra、189Web、法律8与50HTTP/14浏览器页面、原生英文53/中文12属于各自确切源码检查点，不重复运行或跨版本冒领。
+
+Auth0社区草稿仅询问恢复标准外壳的受支持免费路径，不含租户/个人/凭据；当前未发出，无套餐购买或认证架构降级。产品所需后续与正式开售门继续独立。
+
+## October10 Owner询问免费方案及Stripe失败邮件
+
+Owner再次强调Auth0尽量使用免费方案。此前模板402只限制旧自定义登录外壳的修改，不表示已升级套餐或登录服务必须收费；没有新付费或公开发帖授权。继续寻找受支持的免费恢复标准外壳路径，既有双语widget/同意表单及正常认证保持。
+
+本次直接读取Gmail：香港October10 01:51的“您的 Stripe 账户测试模式的退款未成功”编号与官方5126异步失败用例完全一致。当前Stripe再次只读确认TEST模式、USD88.99、failed/expired_or_canceled_card、测试卡5126及refund.failed未送达数0；没有真实资金移动，不按邮件通用正文在Stripe外补款。香港October9 01:06的另一封是旧staging TEST webhook13次HTTP500告警，对应此前8b1f91798修复；当前端点仍enabled/14事件。
+
+这次只读查证，不重做付款、部署、登录或测试，也不关闭故障提醒。原邮件/金融对象不放入公开证据；[脱敏核对回执](../collaboration/verification/payment-notice-20261010/verification.json)记录精确证据范围。Agent此前没有提前说明失败用例可能触发管理邮件，后续应在类似测试前说明，而不是关闭有用告警。

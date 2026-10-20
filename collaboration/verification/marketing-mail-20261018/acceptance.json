@@ -1,0 +1,41 @@
+{
+  "completedAt": "2026-10-18T16:30:53.324322+00:00",
+  "aliasConfigurationComplete": true,
+  "bothAliasesSendReceiveVerified": true,
+  "originalMailbox": "support@rillora.xyz",
+  "aliases": [
+    "social@rillora.xyz",
+    "hello@rillora.xyz"
+  ],
+  "oldPrivacySecurityAliasesPreserved": true,
+  "plan": "Mail Lite",
+  "users": 1,
+  "licenses": 1,
+  "additionalMailboxPurchases": 0,
+  "gmailToZohoInboxMessages": 2,
+  "zohoToGmailInboxMessages": 2,
+  "outboundProbesSubmitted": 3,
+  "totalTestMessagesSubmitted": 5,
+  "googleAuthenticationPasses": {
+    "hello": [
+      "SPF",
+      "DKIM",
+      "DMARC"
+    ],
+    "social": [
+      "SPF",
+      "DKIM",
+      "DMARC"
+    ]
+  },
+  "initialSocialReply": {
+    "state": "Automatic retry after Google SMTP4.3.0",
+    "independentlyDelivered": false,
+    "noManualDuplicateOrCancellation": true,
+    "separateNewOutboundProbePassed": true
+  },
+  "senderListCacheRefreshRequiredOnce": true,
+  "dnsResendForwardingOrProductChanges": false,
+  "platformAccountsRegistered": false,
+  "boundary": "Both address capabilities are proven by actual controlled Gmail send/receive. The first social reply is separately queued and is not described as delivered; future deliverability or all providers are not guaranteed."
+}

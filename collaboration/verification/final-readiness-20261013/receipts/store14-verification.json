@@ -1,0 +1,28 @@
+{
+  "at": "2026-10-13T06:29:38.376636+00:00",
+  "version": "1.0(14)",
+  "recompiled": false,
+  "checks": {
+    "strictCodeSignature": true,
+    "sameBundleAndVersion": true,
+    "sameCompiledBinaryUuid": true,
+    "notDebuggable": true,
+    "storeProfileWithoutDeviceList": true,
+    "profileUnexpired": true,
+    "sameAppIdentity": true,
+    "sameKeychainGroups": true,
+    "sameAssociatedDomains": true,
+    "noEmbeddedStoreKitFixture": true,
+    "usesOnlyExemptEncryption": true,
+    "nativePublicationShapeValid": true
+  },
+  "nativePreflightFindings": [],
+  "deviceFamilies": [
+    1,
+    2
+  ],
+  "sha256": "fa7cad9f4693310e3e5646d4ee30f9f43a00ea206b4f959bb5a0700d081532fe",
+  "uploaded": false,
+  "testFlightDistributed": false,
+  "passed": true
+}

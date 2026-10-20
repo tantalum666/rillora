@@ -1,0 +1,69 @@
+{
+  "id": 2,
+  "result": {
+    "plugin": {
+      "marketplaceName": "rillora-customer-validation-only",
+      "marketplacePath": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-customer-mcp-20261018/customer-plugin-probe/.agents/plugins/marketplace.json",
+      "summary": {
+        "id": "rillora-codex@rillora-customer-validation-only",
+        "remotePluginId": null,
+        "version": null,
+        "localVersion": "0.1.0",
+        "name": "rillora-codex",
+        "shareContext": null,
+        "source": {
+          "type": "local",
+          "path": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-customer-mcp-20261018/customer-plugin-probe/plugins/rillora-codex"
+        },
+        "installed": false,
+        "installedAt": null,
+        "enabled": false,
+        "installPolicy": "AVAILABLE",
+        "installPolicySource": null,
+        "mustShowInstallationInterstitial": null,
+        "authPolicy": "ON_INSTALL",
+        "availability": "AVAILABLE",
+        "disabledReason": null,
+        "eligiblePlanTypes": null,
+        "interface": {
+          "displayName": "Rillora",
+          "shortDescription": "Review selected matters",
+          "longDescription": "Read titles, categories and recorded statuses for the matters you explicitly authorize in Rillora. Check missing common fields. No notes, payments, transfers or automatic release. With your permission, a verified email supports account and workspace checks.",
+          "developerName": "Rillora",
+          "category": "Productivity",
+          "capabilities": [
+            "Read"
+          ],
+          "websiteUrl": "https://www.rillora.xyz",
+          "privacyPolicyUrl": "https://legal.rillora.xyz/privacy",
+          "termsOfServiceUrl": "https://legal.rillora.xyz/terms",
+          "defaultPrompt": [
+            "Review the matters I selected in Rillora.",
+            "Check missing common information in my selected Rillora matters."
+          ],
+          "brandColor": null,
+          "composerIcon": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-customer-mcp-20261018/customer-plugin-probe/plugins/rillora-codex/assets/icon.png",
+          "composerIconUrl": null,
+          "logo": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/qa/rillora-customer-mcp-20261018/customer-plugin-probe/plugins/rillora-codex/assets/icon.png",
+          "logoDark": null,
+          "logoUrl": null,
+          "logoUrlDark": null,
+          "screenshots": [],
+          "screenshotUrls": []
+        },
+        "keywords": []
+      },
+      "shareUrl": null,
+      "description": "Read explicitly selected Rillora matters and check missing common information.",
+      "skills": [],
+      "onboardingSkill": null,
+      "hooks": [],
+      "apps": [],
+      "appTemplates": [],
+      "mcpServers": [
+        "rillora"
+      ],
+      "scheduledTasks": null
+    }
+  }
+}

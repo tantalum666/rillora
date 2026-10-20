@@ -1,0 +1,13 @@
+# One fresh read-only candidate review
+
+Date: 2026-10-11 (Asia/Hong_Kong)
+Candidate SHA256: a96760fa4d9f33c48fede4ae8adfdf23ede78bffd942e81f81a94d6fb689fbb7
+Baseline: b6f5b8c971196db3f513a7dbb5f6dc36efae8b6a
+Reviewer: remaining_candidate_reviewer; independent, no edits/delegation/cloud calls or real credential reads.
+
+## Confirmed findings
+
+1. P2: run_recovery_task.py still generated the pre-backfill command while core.mjs permitted only the new exact migration command. Reviewer supplied actual caller command to real broker with synthetic adapter: fixed reviewed command refusal, zero cloud writes. Parent independently confirmed both caller and whitelist. Fix: production-migration.json is read by caller, broker and CDK. Added actual Python main-generated request through real Node executeMaintenance, plus explicit old uncertain request refusal to preserve idempotency.
+2. P2: recovery freeze examined API only, but new deletion worker independently changes identity and DB state. Reviewer reproduced acceptance with API 0/0/0 and worker 1/1/0 using synthetic adapter. Parent independently traced worker service, IAM/config and both freeze checks. Fix: export all runtime writer services into broker settings and a CloudFormation output; exact DescribeServices permissions include both. Caller and broker require every returned named service desired/running/pending counts zero. Negative/positive controls cover worker-only activity, missing inventory and both services stopped.
+
+No other concrete surviving bypass was established by the reviewer. This is a scoped source candidate review, not a new exhaustive audit or deployed result. No second review cycle is started. Final verification follows on the revised patch.

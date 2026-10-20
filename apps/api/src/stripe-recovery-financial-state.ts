@@ -1,5 +1,6 @@
 import type {StripeSdkPort} from './stripe-sdk.js';
 import {stripeObjectReference,assertStripeObjectId} from './stripe-provider-shared.js';
+import {readStripeRefundEvidence} from './stripe-refund-evidence.js';
 
 /** Read-only current-invoice evidence. An active subscription alone cannot undo
  * a refund/dispute that happened after a database snapshot. No fabricated webhook. */
@@ -30,11 +31,8 @@ export async function readStripeRecoveryFinancialState(sdk:StripeSdkPort,invoice
   ||!Number.isSafeInteger(charge.amount)||charge.amount<=0||!Number.isSafeInteger(charge.amount_refunded)
   ||charge.amount_refunded<0||charge.amount_refunded>charge.amount)throw Error('Recovery charge scope mismatch');
  if(charge.amount!==payment.amount_paid||charge.currency!==payment.currency)throw Error('Recovery invoice and charge amounts differ');
- const refunds=await sdk.listRefundsByCharge(charge.id);
- if(refunds.has_more||refunds.data.length>100||refunds.data.some(r=>stripeObjectReference(r.charge)!==charge.id||r.currency!==charge.currency
-  ||!Number.isSafeInteger(r.amount)||r.amount<=0||r.amount>charge.amount||!['succeeded','pending','failed','canceled','requires_action'].includes(r.status??'')))
-  throw Error('Recovery refund inventory is incomplete');
- const refunded=refunds.data.filter(r=>r.status==='succeeded').reduce((total,r)=>total+r.amount,0);
+ const evidence=await readStripeRefundEvidence(sdk,charge);
+ const refunded=evidence.completedAmount;
  if(refunded>charge.amount||(charge.refunded||charge.amount_refunded===charge.amount)&&refunded<charge.amount)throw Error('Full refund lacks completed refund evidence');
  const disputes=await sdk.listDisputesByCharge(charge.id);
  if(disputes.has_more||disputes.data.length>100||disputes.data.some(d=>d.livemode!==live||stripeObjectReference(d.charge)!==charge.id))throw Error('Recovery dispute inventory is incomplete');
@@ -42,5 +40,6 @@ export async function readStripeRecoveryFinancialState(sdk:StripeSdkPort,invoice
  const blocked=disputes.data.some(d=>!['won','prevented','warning_closed'].includes(d.status));
  const fullyRefunded=refunded===charge.amount;
  return {override:fullyRefunded?'refunded' as const:blocked?'revoked' as const:null,
+  resolvedRefund:evidence.resolvedRefund,
   resolvedDispute:disputes.data.length>0&&!blocked,chargeReference:charge.id};
 }

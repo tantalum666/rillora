@@ -1,0 +1,101 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 40914,
+      "counts": {
+        "passed": 8,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-08T02-51-35-154Z_pid69719_a4aacdad.log",
+      "xcresultPath": "output/qa/rillora-dot-integration-20261008/guide-unit.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-08T02-51-35-155Z_pid69719_32dc8e1e.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testMissingChineseOverlayFallsBackToEnglish",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testRegionalGuidesAndAliasesRemainDistinct",
+        "RilloraTests/OfficialProviderGuideCatalogTests/testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches"
+      ],
+      "discovered": {
+        "total": 8,
+        "items": [
+          "RilloraTests/OfficialProviderGuideCatalogTests/testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+          "RilloraTests/OfficialProviderGuideCatalogTests/testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+          "RilloraTests/OfficialProviderGuideCatalogTests/testCatalogContainsUniqueActionableCommonProviderGuides",
+          "RilloraTests/OfficialProviderGuideCatalogTests/testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+          "RilloraTests/OfficialProviderGuideCatalogTests/testEveryGuideUsesHTTPSOnAnOfficialHost",
+          "RilloraTests/OfficialProviderGuideCatalogTests/testMissingChineseOverlayFallsBackToEnglish"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testAppleAndGoogleProvideSetupAndAfterDeathRoutes",
+        "status": "passed",
+        "durationMs": 10
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testBinanceIsNotPresentedAsAProactiveLegacyContactFeature",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testCatalogContainsUniqueActionableCommonProviderGuides",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testChineseGuidesPreserveEvidenceAndCompleteEveryReadingMode",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testEveryGuideUsesHTTPSOnAnOfficialHost",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testMissingChineseOverlayFallsBackToEnglish",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testRegionalGuidesAndAliasesRemainDistinct",
+        "status": "passed",
+        "durationMs": 1
+      },
+      {
+        "suite": "OfficialProviderGuideCatalogTests",
+        "test": "testSuggestionsUseOnlyVisibleAccountContextWithoutFalseRegionalMatches",
+        "status": "passed",
+        "durationMs": 53
+      }
+    ]
+  }
+}

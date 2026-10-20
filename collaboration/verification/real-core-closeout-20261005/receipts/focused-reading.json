@@ -1,0 +1,65 @@
+{
+  "completedAt": "2026-10-05T05:31:56.500771+00:00",
+  "continuationNotNewWorkflow": true,
+  "retainedFullReading": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "focusedReads": [
+    {
+      "path": "AGENTS.md",
+      "range": "complete"
+    },
+    {
+      "path": "docs/product.md",
+      "range": "1-110; latest locked routing retained from full baseline"
+    },
+    {
+      "path": "docs/handoff.md",
+      "range": "complete"
+    },
+    {
+      "path": "docs/decision-log.md",
+      "range": "latest52lines plus own appended decisions"
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "range": "latest68lines plus own append"
+    },
+    {
+      "path": "docs/real-core-acceptance-20261004.md",
+      "range": "complete"
+    },
+    {
+      "path": "docs/authentication-experience.md",
+      "range": "1-150, relevant current sections; unchanged remainder retained"
+    },
+    {
+      "path": "apps/web/AGENTS.md",
+      "range": "complete; initially truncated text reread"
+    },
+    {
+      "path": "apps/web/src/PublicExperience.jsx",
+      "range": "complete; truncated98-125supplemented before edit"
+    },
+    {
+      "path": "apps/web/tests/public-experience.test.mjs",
+      "range": "complete"
+    },
+    {
+      "path": "infra/aws/lib/rillora-production-web-stack.ts",
+      "range": "complete"
+    },
+    {
+      "path": "infra/aws/bin/rillora.ts",
+      "range": "complete"
+    },
+    {
+      "path": "apps/web/src/ReauthenticationPrompt.jsx",
+      "range": "complete"
+    },
+    {
+      "path": "apps/web/src/accountDeletionClient.js",
+      "range": "complete"
+    }
+  ],
+  "newMarkdown": "Own composed history/current reports; no external authority introduced",
+  "noRepeatedFullScanOrNativeBuild": true
+}

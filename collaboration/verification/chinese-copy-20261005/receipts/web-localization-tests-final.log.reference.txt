@@ -1,0 +1,286 @@
+TAP version 13
+# Subtest: actual form and guide components render both languages without changing source content
+ok 1 - actual form and guide components render both languages without changing source content
+  ---
+  duration_ms: 399.6495
+  type: 'test'
+  ...
+# Subtest: forms catalogs cover the same stable keys and interpolation parameters
+ok 2 - forms catalogs cover the same stable keys and interpolation parameters
+  ---
+  duration_ms: 3.884541
+  type: 'test'
+  ...
+# Subtest: form labels localize while machine field names and requirements are unchanged
+ok 3 - form labels localize while machine field names and requirements are unchanged
+  ---
+  duration_ms: 0.621459
+  type: 'test'
+  ...
+# Subtest: validation produces language-independent issues and keeps English defaults
+ok 4 - validation produces language-independent issues and keeps English defaults
+  ---
+  duration_ms: 0.758
+  type: 'test'
+  ...
+# Subtest: locale switches cannot mutate saved values, eligibility, or hidden-field filtering
+ok 5 - locale switches cannot mutate saved values, eligibility, or hidden-field filtering
+  ---
+  duration_ms: 0.482
+  type: 'test'
+  ...
+# Subtest: first-use helper keeps paused/resumed semantics across locales
+ok 6 - first-use helper keeps paused/resumed semantics across locales
+  ---
+  duration_ms: 0.0915
+  type: 'test'
+  ...
+# Subtest: invitation consent retains exact English proof and explicit acceptance gates
+ok 7 - invitation consent retains exact English proof and explicit acceptance gates
+  ---
+  duration_ms: 5.2245
+  type: 'test'
+  ...
+# Subtest: provider bodies remain explicitly English while navigation translates
+ok 8 - provider bodies remain explicitly English while navigation translates
+  ---
+  duration_ms: 0.671958
+  type: 'test'
+  ...
+# Subtest: all application and public messages have complete, parameter-compatible bilingual catalogs
+ok 9 - all application and public messages have complete, parameter-compatible bilingual catalogs
+  ---
+  duration_ms: 8.489583
+  type: 'test'
+  ...
+# Subtest: literal translation references and stored local-message keys resolve in both languages
+ok 10 - literal translation references and stored local-message keys resolve in both languages
+  ---
+  duration_ms: 23.304041
+  type: 'test'
+  ...
+# Subtest: catalog lookup preserves arbitrary user text literally as interpolation data
+ok 11 - catalog lookup preserves arbitrary user text literally as interpolation data
+  ---
+  duration_ms: 12.309542
+  type: 'test'
+  ...
+# Subtest: supported browser languages resolve in preference order with English fallback
+ok 12 - supported browser languages resolve in preference order with English fallback
+  ---
+  duration_ms: 1.135208
+  type: 'test'
+  ...
+# Subtest: translation uses named interpolation, plural rules and safe English fallback
+ok 13 - translation uses named interpolation, plural rules and safe English fallback
+  ---
+  duration_ms: 12.521375
+  type: 'test'
+  ...
+# Subtest: catalog checks catch omissions, untranslated parameter drift and duplicate keys
+ok 14 - catalog checks catch omissions, untranslated parameter drift and duplicate keys
+  ---
+  duration_ms: 1.521958
+  type: 'test'
+  ...
+# Subtest: formatters retain actual currency and minor-unit amount
+ok 15 - formatters retain actual currency and minor-unit amount
+  ---
+  duration_ms: 4.05475
+  type: 'test'
+  ...
+# Subtest: manual choice persists without changing any account or appearance preference
+ok 16 - manual choice persists without changing any account or appearance preference
+  ---
+  duration_ms: 0.338
+  type: 'test'
+  ...
+# Subtest: blocked storage still allows switching and exposes accurate persistence state
+ok 17 - blocked storage still allows switching and exposes accurate persistence state
+  ---
+  duration_ms: 0.157333
+  type: 'test'
+  ...
+# Subtest: invalid stored values fall back to browser language without affecting other storage
+ok 18 - invalid stored values fall back to browser language without affecting other storage
+  ---
+  duration_ms: 0.117625
+  type: 'test'
+  ...
+# Subtest: locale link handoff is origin-bounded and preserves invitation/query state
+ok 19 - locale link handoff is origin-bounded and preserves invitation/query state
+  ---
+  duration_ms: 0.45625
+  type: 'test'
+  ...
+# Subtest: received locale handoff consumes only lang and preserves history identity
+ok 20 - received locale handoff consumes only lang and preserves history identity
+  ---
+  duration_ms: 0.3215
+  type: 'test'
+  ...
+# Subtest: cross-tab changes and reset update subscribers and remove their listener on disposal
+ok 21 - cross-tab changes and reset update subscribers and remove their listener on disposal
+  ---
+  duration_ms: 0.455
+  type: 'test'
+  ...
+# Subtest: errors localize known codes without interpreting arbitrary server content
+ok 22 - errors localize known codes without interpreting arbitrary server content
+  ---
+  duration_ms: 0.140667
+  type: 'test'
+  ...
+# Subtest: automatic browser language is not persisted or carried as an explicit choice
+ok 23 - automatic browser language is not persisted or carried as an explicit choice
+  ---
+  duration_ms: 0.057333
+  type: 'test'
+  ...
+# Subtest: every public semantic message has complete English and Chinese forms and matching interpolation
+ok 24 - every public semantic message has complete English and Chinese forms and matching interpolation
+  ---
+  duration_ms: 2.975916
+  type: 'test'
+  ...
+# Subtest: all public UI and example-data message references resolve in both languages
+ok 25 - all public UI and example-data message references resolve in both languages
+  ---
+  duration_ms: 8.752584
+  type: 'test'
+  ...
+# Subtest: demonstration content is translated before rendering without widening recipient visibility
+ok 26 - demonstration content is translated before rendering without widening recipient visibility
+  ---
+  duration_ms: 0.428375
+  type: 'test'
+  ...
+# Subtest: shared-count grammar and name interpolation form complete locale-specific sentences
+ok 27 - shared-count grammar and name interpolation form complete locale-specific sentences
+  ---
+  duration_ms: 0.236625
+  type: 'test'
+  ...
+# Subtest: display locale never converts or changes the locked Web annual price and plan limits
+ok 28 - display locale never converts or changes the locked Web annual price and plan limits
+  ---
+  duration_ms: 1.251667
+  type: 'test'
+  ...
+# Subtest: legal references identify English originals while consent and licence bodies stay original
+ok 29 - legal references identify English originals while consent and licence bodies stay original
+  ---
+  duration_ms: 0.780916
+  type: 'test'
+  ...
+# Subtest: both public headers keep language selection before the far-right appearance control
+ok 30 - both public headers keep language selection before the far-right appearance control
+  ---
+  duration_ms: 0.741583
+  type: 'test'
+  ...
+# Subtest: Chinese sample download stays synthetic and separate from real export contracts
+ok 31 - Chinese sample download stays synthetic and separate from real export contracts
+  ---
+  duration_ms: 0.547958
+  type: 'test'
+  ...
+# Subtest: sharing catalogs have matching keys and interpolation variables
+ok 32 - sharing catalogs have matching keys and interpolation variables
+  ---
+  duration_ms: 6.586583
+  type: 'test'
+  ...
+# Subtest: sharing names and status follow the render locale without changing grant values
+ok 33 - sharing names and status follow the render locale without changing grant values
+  ---
+  duration_ms: 0.225167
+  type: 'test'
+  ...
+# Subtest: shared and saved fields translate only known labels and enum values
+ok 34 - shared and saved fields translate only known labels and enum values
+  ---
+  duration_ms: 0.201833
+  type: 'test'
+  ...
+# Subtest: saved-copy labels format dates in the chosen locale with a truthful paid-period fallback
+ok 35 - saved-copy labels format dates in the chosen locale with a truthful paid-period fallback
+  ---
+  duration_ms: 3.240541
+  type: 'test'
+  ...
+# Subtest: persistent notices and errors resolve again when the user changes language
+ok 36 - persistent notices and errors resolve again when the user changes language
+  ---
+  duration_ms: 0.284875
+  type: 'test'
+  ...
+# Subtest: review labels preserve scope-change and stale checks in either locale
+ok 37 - review labels preserve scope-change and stale checks in either locale
+  ---
+  duration_ms: 0.094042
+  type: 'test'
+  ...
+# Subtest: translation retains deletion confirmation, local key protection and export language boundaries
+ok 38 - translation retains deletion confirmation, local key protection and export language boundaries
+  ---
+  duration_ms: 0.299375
+  type: 'test'
+  ...
+# Subtest: workspace catalogs have complete keys, matching parameters and localized counts
+ok 39 - workspace catalogs have complete keys, matching parameters and localized counts
+  ---
+  duration_ms: 2.818667
+  type: 'test'
+  ...
+# Subtest: desktop and mobile route identities have render-time labels without translated URLs
+ok 40 - desktop and mobile route identities have render-time labels without translated URLs
+  ---
+  duration_ms: 1.001417
+  type: 'test'
+  ...
+# Subtest: localized matter and contact labels preserve evidence, statuses and legacy defaults
+ok 41 - localized matter and contact labels preserve evidence, statuses and legacy defaults
+  ---
+  duration_ms: 0.164042
+  type: 'test'
+  ...
+# Subtest: commercial rendering adapters localize known metadata without changing access or unknown values
+ok 42 - commercial rendering adapters localize known metadata without changing access or unknown values
+  ---
+  duration_ms: 0.10775
+  type: 'test'
+  ...
+# Subtest: annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+ok 43 - annual USD 88.99 and historic currency amounts survive locale formatting unchanged
+  ---
+  duration_ms: 3.963375
+  type: 'test'
+  ...
+# Subtest: display localization never rewrites user names, record drafts or route filters
+ok 44 - display localization never rewrites user names, record drafts or route filters
+  ---
+  duration_ms: 0.489959
+  type: 'test'
+  ...
+# Subtest: all static workspace message references resolve in both locales
+ok 45 - all static workspace message references resolve in both locales
+  ---
+  duration_ms: 5.182375
+  type: 'test'
+  ...
+# Subtest: production purchase acceptance retains its versioned English text and unchecked state
+ok 46 - production purchase acceptance retains its versioned English text and unchecked state
+  ---
+  duration_ms: 0.691459
+  type: 'test'
+  ...
+1..46
+# tests 46
+# suites 0
+# pass 46
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 505.30775

@@ -1,0 +1,26 @@
+
+> rillora-ai-candidate@0.1.0 test
+> node --test *.test.mjs
+
+TAP version 13
+# Subtest: candidate cannot be enabled without its synthetic identity and isolated bindings
+ok 1 - candidate cannot be enabled without its synthetic identity and isolated bindings
+  ---
+  duration_ms: 19.611583
+  type: 'test'
+  ...
+# Subtest: browser cookie is encrypted, host-only, short-lived and tied to the synthetic identity
+ok 2 - browser cookie is encrypted, host-only, short-lived and tied to the synthetic identity
+  ---
+  duration_ms: 7.547708
+  type: 'test'
+  ...
+1..2
+# tests 2
+# suites 0
+# pass 2
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 135.936333

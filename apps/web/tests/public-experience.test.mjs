@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { createHash } from "node:crypto";
 import { readFile } from "node:fs/promises";
 import test from "node:test";
+import { en, zhCN } from "../src/i18n/messages/public.js";
 
 const publicExperienceSource = await readFile(
   new URL("../src/PublicExperience.jsx", import.meta.url),
@@ -33,31 +34,38 @@ test("public discovery explains the real product before plan creation", () => {
   assert.doesNotMatch(publicExperienceSource, /Free to start/i);
   assert.doesNotMatch(publicExperienceSource, /Start a private plan/i);
   assert.doesNotMatch(publicExperienceSource, /free plan|free account|no card/i);
-  assert.match(publicExperienceSource, />Account</);
+  assert.match(publicExperienceSource, /t\("public\.nav\.account"\)/);
+  assert.equal(en["public.nav.account"], "Account");
+  assert.equal(zhCN["public.nav.account"], "账号");
   assert.doesNotMatch(publicExperienceSource, /useState\(0\)/);
   assert.match(publicExperienceSource, /<ContinuityExplorer/);
   assert.match(publicExperienceSource, /architectural-event-grid/);
-  assert.match(explorerSource, /What exists/);
-  assert.match(explorerSource, /What happens/);
-  assert.match(explorerSource, /Who can help/);
+  assert.match(explorerSource, /public\.explorer\.what\.title/);
+  assert.equal(en["public.explorer.what.title"], "What exists");
+  assert.match(explorerSource, /public\.explorer\.next\.title/);
+  assert.equal(en["public.explorer.next.title"], "What happens");
+  assert.match(explorerSource, /public\.explorer\.who\.title/);
+  assert.equal(en["public.explorer.who.title"], "Who can help");
   assert.doesNotMatch(publicExperienceSource, /example|synthetic/i);
 
   const productExplorer = publicExperienceSource.indexOf("<ContinuityExplorer");
   const eventFacts = publicExperienceSource.indexOf("architectural-event-grid");
-  const createAction = publicExperienceSource.indexOf("Add my first matter");
+  const createAction = publicExperienceSource.indexOf("public.appHome.addFirst");
   assert.ok(productExplorer >= 0 && eventFacts > productExplorer);
   assert.ok(createAction > eventFacts);
-  assert.equal(publicExperienceSource.match(/Add my first matter/g)?.length, 1);
+  assert.equal(publicExperienceSource.match(/public\.appHome\.addFirst/g)?.length, 1);
   assert.match(publicExperienceSource, /accountPathForMatter/);
 
 });
 
 test("public legal routes and registration clickwrap remain visible without false claims", () => {
-  assert.match(publicExperienceSource, />Privacy</);
-  assert.match(publicExperienceSource, />Terms</);
+  assert.match(publicExperienceSource, /t\("public\.nav\.privacy"\)/);
+  assert.equal(en["public.nav.privacy"], "Privacy");
+  assert.match(publicExperienceSource, /t\("public\.nav\.terms"\)/);
+  assert.equal(en["public.nav.terms"], "Terms");
   assert.match(legalDocumentSource, /Privacy Policy/);
   assert.match(legalDocumentSource, /Terms of Service/);
-  assert.match(legalDocumentSource, /<dd>Effective<\/dd>/);
+  assert.match(legalDocumentSource, /chinese \? "已生效" : "Effective"/);
   assert.doesNotMatch(legalDocumentSource, /closed.testing|not yet a production|publication candidate|release.blocked|preview-\d/i);
   assert.match(legalDocumentSource, /does not sell personal information/i);
   assert.match(legalDocumentSource, /does not provide a live claim/i);
@@ -72,16 +80,21 @@ test("public legal routes and registration clickwrap remain visible without fals
   assert.match(publicExperienceSource, /type="checkbox"/);
   assert.match(publicExperienceSource, /checked=\{hasAccepted\}/);
   assert.doesNotMatch(publicExperienceSource, />Continue securely</);
-  assert.match(publicExperienceSource, /"Create account"/);
-  assert.match(publicExperienceSource, /"Sign in"/);
+  assert.match(publicExperienceSource, /t\("public\.auth\.signup"\)/);
+  assert.equal(en["public.auth.signup"], "Create account");
+  assert.match(publicExperienceSource, /t\("public\.auth\.signin"\)/);
+  assert.equal(en["public.auth.signin"], "Sign in");
   assert.doesNotMatch(publicExperienceSource, /Before you continue|Continue securely|Agree and create account|Agree and sign in/);
   assert.match(publicExperienceSource, /acceptedElectronicRecords: true/);
   assert.match(publicExperienceSource, /api\.startAuthentication/);
-  assert.match(publicExperienceSource, /Necessary cookies only/);
-  assert.match(publicExperienceSource, /No ads or behavioural analytics/);
+  assert.match(publicExperienceSource, /t\("public\.cookie\.title"\)/);
+  assert.equal(en["public.cookie.title"], "Necessary cookies only");
+  assert.match(en["public.cookie.description"], /No ads or behavioural analytics/);
   assert.match(publicExperienceSource, /rillora\.cookie-notice/);
-  assert.match(publicExperienceSource, /Review Cookie Notice/);
-  assert.match(publicExperienceSource, />Got it</);
+  assert.match(publicExperienceSource, /t\("public\.cookie\.review"\)/);
+  assert.equal(en["public.cookie.review"], "Review Cookie Notice");
+  assert.match(publicExperienceSource, /t\("public\.cookie\.dismiss"\)/);
+  assert.equal(en["public.cookie.dismiss"], "Got it");
   assert.doesNotMatch(publicExperienceSource, /Accept all cookies|Reject all cookies/i);
   assert.doesNotMatch(publicExperienceSource, /href=\{signupHref\}|href=\{loginHref\}/);
   assert.match(appSource, /startsOnPublicReadOnlyRoute/);

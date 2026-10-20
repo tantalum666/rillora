@@ -1,0 +1,48 @@
+{
+  "capturedFrom": "2026-10-15T01:56:06.037179+00:00",
+  "capturedThrough": "2026-10-15T01:56:06.739229+00:00",
+  "workFiles": 316,
+  "uniqueRawObjects": 276,
+  "workBytes": 73879779,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-039.tar.zst.age",
+      "sha256": "962667e1f230ca986d80558dcc0895fa107e71c0d9d9c1df02b2309edd303b2d",
+      "bytes": 23202691,
+      "plainBytes": 73544035,
+      "uniqueObjects": 276
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/app-review-20261015/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials_and_other_private_data_excluded; exact_reviewed_publication_builds_are_sealed_exceptions"
+    },
+    {
+      "path": "old_archives_001_to_038",
+      "reason": "immutable_previous_evidence_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "output/qa/rillora-app-review-20261014/publication",
+      "reason": "reproducible_capture_and_download_cache"
+    },
+    {
+      "path": "output/qa/rillora-app-review-20261014/reviewer-derived-data",
+      "reason": "compiler_dependency_cache_excluded; exact_final_Rillora_app_selected_separately"
+    }
+  ],
+  "selection": "New Apple preflight/Web cutover QA, failures and readbacks; exact Release simulator Rillora.app plus two reviewed frontend candidates and their exact uploaded zip objects. Private credentials/authentication UI/provider bodies and reproducible caches excluded.",
+  "protectedBuildExceptions": [
+    ".local-secrets/app-review-20261014/production-live",
+    ".local-secrets/app-review-20261014/public-live",
+    ".local-secrets/app-review-20261014/RilloraProductionWeb-cutover.zip",
+    ".local-secrets/app-review-20261014/RilloraPublicWeb-cutover.zip"
+  ],
+  "compiledArtifactExceptions": [
+    "output/qa/rillora-app-review-20261014/reviewer-derived-data/Build/Products/Release-iphonesimulator/Rillora.app"
+  ],
+  "boundary": "Dedicated reviewer Web/native login and synthetic roundtrip; Web activation and117HTTPSmatches at40c76496f/CI153. Existing signed build14/physical results retain their dates. Owner confirms legal return and cancels further physical testing. No new real payment/deletion/TestFlight, no API/DB redeploy. Only archive39isnew; late receipts stay ordinary Git."
+}

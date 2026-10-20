@@ -1,0 +1,12 @@
+.ai-connections { margin-top: 24px; }
+.ai-connections p { line-height: 1.65; }
+.ai-connections a { color: var(--accent); text-underline-offset: 3px; }
+.ai-connections button:disabled { cursor: not-allowed; box-shadow: none; }
+.ai-connections .primary-button:disabled { background: var(--surface-muted); color: var(--muted); border: 1px solid var(--border); }
+.ai-connections select { display: block; width: 100%; margin-top: 8px; }
+.ai-connections fieldset { border: 1px solid var(--border); border-radius: 12px; padding: 16px; margin-block: 20px; }
+.ai-connections .ai-matter-selection label, .ai-connections .ai-check { display: flex; align-items: flex-start; gap: 12px; margin-block: 14px; }
+.ai-connections input[type="checkbox"] { width: 18px; height: 18px; margin-top: 3px; flex: none; accent-color: var(--accent); }
+.ai-connections .ai-current-grant { border-block: 1px solid var(--border); padding-block: 12px; }
+.ai-connections details { margin-top: 20px; }
+.ai-connections code { display: block; overflow-wrap: anywhere; white-space: normal; margin-block: 12px; }

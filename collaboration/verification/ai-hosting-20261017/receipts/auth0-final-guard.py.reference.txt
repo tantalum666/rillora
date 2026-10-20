@@ -1,0 +1,15 @@
+from pathlib import Path
+import json,importlib.util,datetime
+root=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=root/'.local-secrets/ai-hosting-20261017'
+spec=importlib.util.spec_from_file_location('helper',root/'tools/auth0/prepare-production-clients.py');h=importlib.util.module_from_spec(spec);spec.loader.exec_module(h)
+before=json.loads((p/'auth0-before.json').read_text());resources=json.loads((p/'auth0-candidate-resources.json').read_text())
+fields='client_id,name,app_type,client_metadata,grant_types,callbacks,is_first_party,global,token_endpoint_auth_method'
+now=h.api('get','clients?fields='+fields+'&include_fields=true&per_page=100')
+old={c['client_id']:c for c in now if c['client_id']!=resources['clientId']}
+assert old=={c['client_id']:c for c in before['clients']}
+assert {c['id']:h.connection_clients(c['id']) for c in before['connections']}==before['bindings']
+assert h.api('get','tenants/settings')==before['settings']
+assert h.connection_clients(resources['connectionId'])==[resources['clientId']]
+r={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'oldClientsUnchanged':True,'oldBindingsUnchanged':True,
+ 'tenantSettingsUnchanged':True,'candidateOnlyConnection':True,'ordinaryClientCount':sum(not c.get('global') for c in now),'passed':True}
+q.joinpath('auth0-final-readback.json').write_text(json.dumps(r,indent=2)+'\n');print(json.dumps(r))

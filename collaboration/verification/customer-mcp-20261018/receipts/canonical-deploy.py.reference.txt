@@ -1,0 +1,33 @@
+import json,subprocess,sys,datetime
+from pathlib import Path
+QA=Path(__file__).resolve().parent
+name='rillora-customer-mcp-20261018-canonical-api-v2';api='RuntimeApiTaskCF645D67'
+def read(p):return json.loads(p.read_text())
+def aws(args):
+ r=subprocess.run(['aws',*args,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True);assert r.returncode==0;return json.loads(r.stdout) if r.stdout.strip() else {}
+def body(r):return json.loads(r['TemplateBody']) if isinstance(r['TemplateBody'],str) else r['TemplateBody']
+old=read(QA/'production-cdk-hostfix/RilloraProduction.template.json');new=read(QA/'production-cdk-canonical-api/RilloraProduction.template.json')
+assert all(old[k]==new[k] for k in old if k!='Resources')
+assert [k for k in old['Resources'] if old['Resources'][k]!=new['Resources'][k]]==[api]
+a=old['Resources'][api]['Properties']['ContainerDefinitions'][0];b=new['Resources'][api]['Properties']['ContainerDefinitions'][0]
+assert all(a[k]==b[k] for k in a if k!='Image')
+if sys.argv[1]=='execute':
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProduction']))==old
+ cs=aws(['cloudformation','describe-change-set','--stack-name','RilloraProduction','--change-set-name',name]);assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProduction','--change-set-name',name]))==new
+ rows=[x['ResourceChange'] for x in cs['Changes']]
+ allowed={api,'RuntimeService1702E585','MaintenanceBrokerFunctionC542279B','OperatorDefaultPolicyA84BD3A6'}
+ assert {r['LogicalResourceId'] for r in rows}<=allowed
+ for r in rows:
+  assert r['Action']=='Modify' and r['Replacement']==('True' if r['LogicalResourceId']==api else 'False')
+  if r['LogicalResourceId']!=api:
+   assert all(d['ChangeSource'] in ['ResourceAttribute','ResourceReference'] for d in r['Details'])
+ (QA/'canonical-source-ci.json').write_text(json.dumps({'passed':True,'commit':'c6beccfdeab7c0274941fe24d986ab0c9b69bb3c','run':39110812913,'number':185,'conclusion':'success'},indent=2)+'\n')
+ (QA/'canonical-change-review.json').write_text(json.dumps({'passed':True,'changes':rows,'onlyApiImageChanged':True},indent=2)+'\n')
+ aws(['cloudformation','execute-change-set','--stack-name','RilloraProduction','--change-set-name',name]);print('Canonical OAuth API image update accepted')
+else:
+ s=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];print(s['StackStatus'])
+ if s['StackStatus']!='UPDATE_COMPLETE':sys.exit(2)
+ assert body(aws(['cloudformation','get-template','--stack-name','RilloraProduction']))==new
+ (QA/'canonical-deployment-verified.json').write_text(json.dumps({'passed':True,'exactTemplate':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'onlyApiImageChanged':True},indent=2)+'\n')
+ print('Canonical API deployment complete; live protocol acceptance remains')

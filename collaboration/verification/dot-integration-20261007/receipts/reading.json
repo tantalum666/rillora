@@ -1,0 +1,62 @@
+{
+  "at": "2026-10-06T17:49:24.795160+00:00",
+  "continuation": true,
+  "retainedFullRead": "output/qa/rillora-strict-review-20261002/full-read-completion.json",
+  "retainedLatestRecovery": "output/qa/rillora-device-config-20261006/reading.json",
+  "currentTask": "Owner authorizes reviewing and merging Dot branches, fixing concrete defects before merge",
+  "currentAuthorityReads": [
+    "AGENTS complete",
+    "product latest locks and Authority Map",
+    "handoff complete",
+    "decision latest and complete incoming delta",
+    "journey complete incoming delta",
+    "collaboration/README complete through retained and recovery reads",
+    "source-control active publication/merge rules",
+    "apps/web/AGENTS complete"
+  ],
+  "incomingMarkdown": [
+    "DESIGN.md",
+    "docs/account-identity-display-20261006.md",
+    "docs/decision-log.md",
+    "docs/handoff-history-20261007-before-ios-ux-refinement.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/native-localization-20261005.md",
+    "docs/native-ux-refinement-20261006.md",
+    "docs/platform-contract.md",
+    "docs/product.md",
+    "docs/provider-death-account-guides.md",
+    "docs/qa/ios-ux-refinement-20261006/README.md",
+    "docs/qa/ios-ux-refinement-20261006/official-links.md",
+    "docs/qa/web-ux-refinement-20261006/README.md",
+    "docs/web-ux-refinement-20261006.md"
+  ],
+  "fullNewBodies": [
+    "docs/account-identity-display-20261006.md",
+    "docs/native-ux-refinement-20261006.md",
+    "docs/web-ux-refinement-20261006.md",
+    "docs/qa/ios-ux-refinement-20261006/README.md",
+    "docs/qa/ios-ux-refinement-20261006/official-links.md",
+    "docs/qa/web-ux-refinement-20261006/README.md",
+    "docs/handoff-history-20261007-before-ios-ux-refinement.md"
+  ],
+  "retainedBodyPlusCompleteChangedSections": [
+    "DESIGN.md",
+    "docs/product.md",
+    "docs/platform-contract.md",
+    "docs/native-localization-20261005.md",
+    "docs/provider-death-account-guides.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "excluded": [
+    "generated output/collaboration evidence catalog archives",
+    "dependencies and caches"
+  ],
+  "branches": {
+    "account": "8cc5e10042d5c9f3688b1093306b2e4377a92c82",
+    "ios": "3c6e05b1c",
+    "web": "75d4d7d9f",
+    "operator": "e95007878729352c852b9bf411138e07c0361a1e"
+  }
+}

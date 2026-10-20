@@ -1,0 +1,51 @@
+"""Retire exact Preview service access; retain the original production review gate while old JWTs expire."""
+from pathlib import Path
+import datetime,json,subprocess,urllib.request,urllib.error
+ROOT=Path(__file__).resolve().parents[3];Q=Path(__file__).resolve().parent;P=ROOT/'.local-secrets/web-billing-activation-20261013'
+def api(method,path,body=None):
+    command=['auth0','api',method,path,'--tenant','rillora-dev.eu.auth0.com','--no-input']
+    if method=='delete':command.append('--force')
+    r=subprocess.run(command,input=json.dumps(body)if body is not None else None,capture_output=True,text=True,timeout=45)
+    assert r.returncode==0,'Provider request failed; raw body withheld'
+    return json.loads(r.stdout)if r.stdout.strip()else {}
+def save(name,data):
+    f=P/name;f.write_text(json.dumps(data,indent=2)+'\n');f.chmod(0o600)
+assert not (Q/'preview-identity-retired.json').exists(),'Read completion before retrying'
+old=json.loads((P/'auth0-review-action-before.json').read_text());candidate=json.loads((P/'auth0-live-action-candidate.json').read_text())
+action=api('get','actions/actions/'+old['id']);assert action['deployed_version']['code']in [candidate['code'],old['deployed_version']['code']]
+bindings=api('get','actions/triggers/post-login/bindings?per_page=100')['bindings']
+payload={'name':old['name'],'runtime':'node22','supported_triggers':[{'id':'post-login','version':'v3'}],'code':old['deployed_version']['code']}
+if action['deployed_version']['code']!=payload['code']:
+    api('patch','actions/actions/'+old['id'],payload);api('post','actions/actions/'+old['id']+'/deploy')
+assert api('get','actions/actions/'+old['id'])['deployed_version']['code']==payload['code']
+api('patch','actions/triggers/post-login/bindings',{'bindings':[{'ref':{'type':'binding_id','value':b['id']},'display_name':old['name']if b['action']['id']==old['id']else b['display_name']}for b in bindings]})
+(Q/'identity-entry-held.json').write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'originalReviewActionRestored':True,'sameThreeIdentitiesAndOriginalExpiry':True,'ordinaryCustomersOpen':False,'nativeTermsPreserved':True,'reason':'Old Preview Management API grants remained active; tokens cannot be revoked retroactively.'},indent=2)+'\n')
+clients={'[PUBLIC_IDENTIFIER_OMITTED]':'Rillora Web','[PUBLIC_IDENTIFIER_OMITTED]':'Rillora iOS','[PUBLIC_IDENTIFIER_OMITTED]':'Rillora Account Deletion Service','[PUBLIC_IDENTIFIER_OMITTED]':'Rillora current-session email verification'}
+grants=api('get','client-grants?per_page=100');targets=[g for g in grants if g['client_id']in clients]
+assert {g['id']for g in targets}=={'cgr_fCDdDekOd81gLSSH','cgr_sJ56DIBsuHuGb97g'}
+assert all(g['audience']=='https://rillora-dev.eu.auth0.com/api/v2/'and g['scope']in [['delete:users'],['read:users']]for g in targets)
+if not (P/'retired-grants-before.json').exists():save('retired-grants-before.json',targets)
+for cid,name in clients.items():
+    data=api('get',f'clients/{cid}?fields=client_id,name,grant_types&include_fields=true');assert data['name']==name
+    if not (P/('retired-client-'+cid+'.json')).exists():save('retired-client-'+cid+'.json',data)
+    if data['grant_types']:api('patch','clients/'+cid,{'grant_types':[]})
+    assert api('get',f'clients/{cid}?fields=client_id,grant_types&include_fields=true')['grant_types']==[]
+remaining=api('get','client-grants?per_page=100')
+assert remaining==grants
+# Keep historical connection metadata; all four clients have no permitted grant
+# type. Inert historical grant rows remain; no new permission is requested for
+# deleting metadata. Do not modify production
+# connection membership through the removed enabled_clients API field.
+revoked=datetime.datetime.now(datetime.timezone.utc)
+negative=[]
+for g in targets:
+    cid=g['client_id'];secret=api('get',f'clients/{cid}?fields=client_id,client_secret&include_fields=true')['client_secret']
+    req=urllib.request.Request('https://rillora-dev.eu.auth0.com/oauth/token',data=json.dumps({'client_id':cid,'client_secret':secret,'audience':g['audience'],'grant_type':'client_credentials'}).encode(),headers={'Content-Type':'application/json'})
+    try:
+        with urllib.request.urlopen(req,timeout=35)as r:status=r.status;body=json.loads(r.read())
+    except urllib.error.HTTPError as r:status=r.code;body=json.loads(r.read())
+    del secret
+    assert status in [400,401,403] and 'access_token'not in body
+    negative.append({'clientId':cid,'status':status,'error':body.get('error'),'tokenIssued':False})
+report={'at':revoked.isoformat(),'ordinaryCustomerEntryHeld':True,'retiredClientCount':4,'retiredServiceIssuers':2,'[PUBLIC_IDENTIFIER_OMITTED]':True,'historicalConnectionMetadataRetainedInert':True,'productionClientGrantsUnchanged':True,'productionClientConnectionBindingsPreserved':True,'negativeTokenRequests':negative,'credentialsSavedOrPrinted':False,'accountsOrMapsDeleted':False,'maxHistoricalTokenLifetimeSeconds':86400,'clockToleranceSeconds':300,'earliestCustomerActivationAt':(revoked+datetime.timedelta(seconds=86700)).isoformat(),'negativeSearchResultsAreNotProofOfTokenExpiry':True,'next':'After this absolute deadline, verify retired access remains denied and restore the already prepared production-only consent Action and Web sales route. No repeated backend build, TestFlight or payment.'}
+(Q/'preview-identity-retired.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

@@ -1,0 +1,36 @@
+{
+  "checkedAt": "2026-10-16T13:39:07.913893+00:00",
+  "appName": "Default App",
+  "appType": null,
+  "callbacks": 0,
+  "logoutUrls": 0,
+  "webOrigins": 0,
+  "grantTypes": [
+    "authorization_code",
+    "implicit",
+    "refresh_token",
+    "client_credentials"
+  ],
+  "clientGrantCount": 0,
+  "connections": [
+    {
+      "name": "apple",
+      "strategy": "apple",
+      "enabled": false
+    },
+    {
+      "name": "google-oauth2",
+      "strategy": "google-oauth2",
+      "enabled": false
+    },
+    {
+      "name": "Username-Password-Authentication",
+      "strategy": "auth0",
+      "enabled": true
+    }
+  ],
+  "recentRetainedLogMatches": 0,
+  "totalRetainedLogMatches": 0,
+  "activeSourceReferenceFiles": [],
+  "scope": "Read-only feasibility check; log retention does not prove historical non-use; no credential read, reuse, deletion or mutation"
+}

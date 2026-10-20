@@ -2,7 +2,10 @@ import { createServer } from 'node:http';
 import { createHash } from 'node:crypto';
 import { generateKeyPair, exportJWK, SignJWT } from 'jose';
 import { afterAll, beforeAll, expect, it } from 'vitest';
-import { createNativeOidcIdentityVerifier } from '../src/identity.js';
+import { createNativeOidcIdentityVerifier, hostedLegalAcceptanceClaim } from '../src/identity.js';
+import { currentLegalContract } from '../src/legal-contract.js';
+
+const legalProof = { ...currentLegalContract, acceptedTerms:true, acknowledgedPrivacy:true, acceptedElectronicRecords:true } as const;
 
 const server=createServer();
 let issuer:string;
@@ -19,12 +22,19 @@ beforeAll(async()=>{
 });
 afterAll(async()=>{await new Promise<void>((resolve,reject)=>server.close(error=>error?reject(error):resolve()));});
 async function token(audience:string,extra:Record<string,unknown>={}) {
-  return new SignJWT(extra).setProtectedHeader({alg:'RS256',kid:'ephemeral-test-key'}).setIssuer(`${issuer}/`)
+  return new SignJWT({[hostedLegalAcceptanceClaim]:legalProof,...extra}).setProtectedHeader({alg:'RS256',kid:'ephemeral-test-key'}).setIssuer(`${issuer}/`)
     .setSubject('auth0|fixture').setAudience(audience).setIssuedAt().setExpirationTime('5m').sign(key.privateKey);
 }
 it('a newly issued access token without auth_time is not recent authentication',async()=>{
   const access=await token('urn:fixture',{azp:'native-fixture',scope:'session:create'});
   expect((await verifier.verifyAccessToken(access)).authenticatedAt).toBeNull();
+});
+it('requires current signed hosted consent rather than client-authored acceptance',async()=>{
+  const claims={azp:'native-fixture',scope:'session:create'};
+  for(const proof of [undefined,{...legalProof,acceptedTerms:false},{...legalProof,bundleSha256:'0'.repeat(64)}, {...legalProof,extra:true}]) {
+    await expect(verifier.verifyAccessToken(await token('urn:fixture',{...claims,[hostedLegalAcceptanceClaim]:proof}))).rejects.toThrow();
+  }
+  expect((await verifier.verifyAccessToken(await token('urn:fixture',claims))).legalAcceptance).toEqual(legalProof);
 });
 it('accepts only a signed matching ID-token time, audience and access-token hash',async()=>{
   const access=await token('urn:fixture',{azp:'native-fixture',scope:'session:create'});

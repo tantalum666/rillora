@@ -1,0 +1,100 @@
+"""Preserve only the new acceptance evidence and final Web builds in archive39."""
+from pathlib import Path
+import datetime,hashlib,json,os,re,shlex,subprocess,sys,tempfile,uuid,zipfile
+ROOT=Path(__file__).resolve().parents[3];PRIMARY=Path('/Users/tantalum/Documents/电子遗嘱app')
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion,readable_text
+from verify_archives import verify
+QA=ROOT/'output/qa/rillora-app-review-20261014'
+DEST=ROOT/'collaboration/verification/app-review-20261015'
+ARCHIVE=ROOT/'collaboration/archives/raw-work-039.tar.zst.age'
+assert not ARCHIVE.exists(),'Never reseal an existing archive'
+assert json.loads((QA/'ci153.json').read_text())['conclusion']=='success'
+assert json.loads((QA/'live-web-artifacts-20261015.json').read_text())['passed']
+assert json.loads((QA/'reviewer-cross-platform-acceptance.json').read_text())['[PUBLIC_IDENTIFIER_OMITTED]']
+submission=json.loads((QA/'apple-submission-20261015.json').read_text())
+assert submission['status']=='WAITING_FOR_REVIEW' and len(submission['items'])==3
+APP=QA/'reviewer-derived-data/Build/Products/Release-iphonesimulator/Rillora.app'
+PRIVATE=ROOT/'.local-secrets/app-review-20261014'
+BUILD_ROOTS=[PRIVATE/'production-live',PRIVATE/'public-live']
+ZIP_FILES=[PRIVATE/'RilloraProductionWeb-cutover.zip',PRIVATE/'RilloraPublicWeb-cutover.zip']
+roots=[QA,APP,*BUILD_ROOTS]
+DEST.mkdir(parents=True,exist_ok=True);cache=QA/'publication/frozen';cache.mkdir(parents=True,exist_ok=True,mode=0o700)
+files=[];excluded=[{'path':'.local-secrets','reason':'credentials_and_other_private_data_excluded; exact_reviewed_publication_builds_are_sealed_exceptions'},
+                  {'path':'old_archives_001_to_038','reason':'immutable_previous_evidence_not_recaptured_or_downloaded'}]
+for source in roots:
+    for base,dirs,names in os.walk(source):
+        parent=Path(base)
+        for name in list(dirs):
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+            if name=='publication':reason='reproducible_capture_and_download_cache'
+            if name=='reviewer-derived-data':reason='compiler_dependency_cache_excluded; exact_final_Rillora_app_selected_separately'
+            if source==APP or source in BUILD_ROOTS:reason=directory_exclusion(path.relative_to(source).as_posix())
+            if name.startswith('asset.'):reason='expanded_cdk_asset_duplicate_of_source_or_built_web'
+            if path.is_symlink():reason='machine_specific_symbolic_link'
+            if reason:dirs.remove(name);excluded.append({'path':rel,'reason':reason})
+        for name in names:
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+            if path.is_symlink():reason='machine_specific_symbolic_link'
+            if reason:excluded.append({'path':rel,'reason':reason})
+            else:files.append((rel,path))
+for path in ZIP_FILES:
+    assert path.is_file() and path.stat().st_mode&0o077==0
+    stack=path.name.removesuffix('-cutover.zip')
+    state=json.loads((PRIVATE/(stack+'-cutover-state.json')).read_text())
+    assert hashlib.sha256(path.read_bytes()).hexdigest()==state['zipSha256']
+    source=PRIVATE/('public-live' if stack=='RilloraPublicWeb' else 'production-live')
+    with zipfile.ZipFile(path) as bundle:
+        assert set(bundle.namelist())=={f.relative_to(source).as_posix()for f in source.rglob('*')if f.is_file()}
+        assert all(bundle.read(name)==(source/name).read_bytes()for name in bundle.namelist())
+    files.append((path.relative_to(ROOT).as_posix(),path))
+assert len(files)==len({name for name,_ in files})
+values=snapshot.sensitive_values();snapshot.ROOT=PRIMARY
+try:values|=snapshot.sensitive_values()
+finally:snapshot.ROOT=ROOT
+snapshot.IDENTITY=PRIMARY/'.local-secrets/collaboration-git/identity.txt'
+assert snapshot.IDENTITY.stat().st_mode&0o077==0
+legal=set()
+for line in (PRIMARY/'.local-secrets/legal/release.env').read_text().splitlines():
+    line=line.strip().removeprefix('export ').strip()
+    if line.startswith(('VITE_LEGAL_OPERATOR_NAME=','VITE_LEGAL_SERVICE_ADDRESS=')):legal.update(shlex.split(line.partition('=')[2])[:1])
+needles={value.encode() for value in values-legal if len(value)>=16}
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for name,path in sorted(files):
+    frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+    assert not any(value in data for value in needles),'Private capability match; do not publish: '+name
+    blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(name)
+    row={'sourcePath':name,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()}
+    # Exact CDK assemblies, traces, logs and built assets stay sealed. Small
+    # top-level sanitized receipts/runners are directly readable for reviewers.
+    if path.parent==QA and readable_text(name) and path.suffix in ['.json','.md','.py','.mjs'] and 'inventory' not in path.name:
+        text=data.decode('utf-8');text,changed=snapshot.redact(text,values)
+        text=re.sub(r'\b[A-Za-z0-9]{32}\b',lambda m:m.group(0) if re.fullmatch('[a-f0-9]{32}',m.group(0)) else '[PUBLIC_IDENTIFIER_OMITTED]',text)
+        suffix='.reference.txt' if path.suffix in ['.md','.py','.mjs'] else ''
+        target=DEST/'receipts'/(path.name+suffix);target.parent.mkdir(exist_ok=True);target.write_text(text)
+        row.update({'readablePath':target.relative_to(ROOT).as_posix(),'privacyRedactions':bool(changed) or text.encode()!=data})
+    elif path.parent==QA and path.name in ['annual-descriptions-saved.png','apple-review-notes-saved.png','reviewer-roundtrip-web.png','live-public-pricing-zh.png','live-public-pricing-en.png','apple-submission-result.png','apple-submission-receipt.png']:
+        target=DEST/'screenshots'/path.name;target.parent.mkdir(exist_ok=True);target.write_bytes(data)
+        row['previewPath']=target.relative_to(ROOT).as_posix()
+    records.append(row)
+recipient=subprocess.check_output(['age-keygen','-y',str(snapshot.IDENTITY)],text=True).strip()
+archive=snapshot.seal_chunk(39,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+ 'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(row['bytes'] for row in records),
+ 'archives':[archive],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,
+ 'selection':'New Apple preflight/Web cutover QA, failures and readbacks; exact Release simulator Rillora.app plus two reviewed frontend candidates and their exact uploaded zip objects. Private credentials/authentication UI/provider bodies and reproducible caches excluded.',
+ 'protectedBuildExceptions':[x.relative_to(ROOT).as_posix() for x in [*BUILD_ROOTS,*ZIP_FILES]],
+ 'compiledArtifactExceptions':[APP.relative_to(ROOT).as_posix()],
+ 'boundary':'Dedicated reviewer Web/native login and synthetic roundtrip; Web activation and117HTTPSmatches at40c76496f/CI153. Existing signed build14/physical results retain their dates. Owner confirms legal return and cancels further physical testing. No new real payment/deletion/TestFlight, no API/DB redeploy. Only archive39isnew; late receipts stay ordinary Git.'}
+
+
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-billing-verify-') as temporary:
+    stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'],*summary['catalogFiles']]:
+        target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+    result=verify(stage,snapshot.IDENTITY)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'archiveBytes':archive['bytes'],'locallyVerified':result['passed']}))

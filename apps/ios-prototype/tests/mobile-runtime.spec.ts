@@ -64,6 +64,27 @@ test("tap activates a card but a completed drag does not", async ({ page }) => {
   await expect(page.getByTestId("tap-count")).toHaveText("1");
 });
 
+test("a cancelled touch drag does not consume the next deliberate card tap", async ({ page }) => {
+  const carousel = page.locator(".fixture-carousel");
+  const card = page.locator(".carousel-card").nth(1);
+  const box = await card.boundingBox();
+  if (!box) throw new Error("Card has no bounding box");
+  const errors: string[] = [];
+  page.on("pageerror", error => errors.push(error.message));
+  const input = await page.context().newCDPSession(page);
+  const x = box.x + box.width / 2, y = box.y + box.height / 2;
+  try {
+    await input.send("Input.dispatchTouchEvent", { type: "touchStart", touchPoints: [{ x, y, id: 1 }] });
+    await input.send("Input.dispatchTouchEvent", { type: "touchMove", touchPoints: [{ x: x - 70, y, id: 1 }] });
+    await expect(carousel).toHaveAttribute("data-dragging", "true");
+    await input.send("Input.dispatchTouchEvent", { type: "touchCancel", touchPoints: [] });
+    await expect(carousel).toHaveAttribute("data-dragging", "false");
+    await card.click();
+    await expect(page.getByTestId("tap-count")).toHaveText("1");
+    expect(errors).toEqual([]);
+  } finally { await input.detach(); }
+});
+
 test("Carousel preserves momentum and edge rubber-banding", async ({ page }) => {
   const carousel = page.locator(".fixture-carousel");
   const card = page.locator(".carousel-card").nth(1);

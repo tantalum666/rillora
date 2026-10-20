@@ -1,0 +1,53 @@
+{
+  "date": "2026-10-11",
+  "status": "source-and-local-tests-complete-git-pending",
+  "baseline": "b6f5b8c971196db3f513a7dbb5f6dc36efae8b6a",
+  "groups": [
+    31,
+    32,
+    33,
+    34,
+    35
+  ],
+  "api": {
+    "passed": 519,
+    "files": 58,
+    "skipped": 0,
+    "typecheck": true,
+    "build": true
+  },
+  "infrastructure": {
+    "passed": 58,
+    "typecheck": true
+  },
+  "releaseTools": 73,
+  "maintenanceBroker": 7,
+  "credentialTools": 7,
+  "auth0Tools": 7,
+  "journalBroker": 4,
+  "collaboration": 9,
+  "native": {
+    "compiled": true,
+    "syntheticHardwareRoundtrip": true,
+    "unattendedDenied": true,
+    "tamperDenied": true,
+    "wrongAccountDenied": true,
+    "realCredentialAccess": false,
+    "signedInstall": false
+  },
+  "review": {
+    "cycles": 1,
+    "confirmedRegressions": 2,
+    "corrected": 2
+  },
+  "sourceScan": {
+    "matched": 32,
+    "unreviewed": 0,
+    "movedExactSpans": 3
+  },
+  "originalMigrationsUnchanged": 99,
+  "onlineChanged": false,
+  "providerChanges": false,
+  "realCredentialMigration": false,
+  "gitPending": true
+}

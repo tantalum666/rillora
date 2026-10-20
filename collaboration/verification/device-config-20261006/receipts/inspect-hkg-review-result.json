@@ -1,0 +1,7 @@
+{
+  "task": "arn:aws:ecs:eu-central-1:133857166372:task/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/b8a5cd4a0e2446b395d5a94403d33c09",
+  "exitCode": 0,
+  "messages": [
+    "{\"readOnly\":true,\"storefronts\":[{\"policy_code\":\"global_us_ios_usa_v1\",\"version\":1,\"client_surface\":\"ios\",\"apple_storefront_country_code\":\"USA\",\"planned_route\":\"stripe_web_external\",\"external_offer_allowed\":true,\"status\":\"configured_disabled\"},{\"policy_code\":\"mainland_cn_ios_chn_v1\",\"version\":1,\"client_surface\":\"ios\",\"apple_storefront_country_code\":\"CHN\",\"planned_route\":\"apple_storekit\",\"external_offer_allowed\":false,\"status\":\"configured_disabled\"}],\"routes\":[{\"policy_code\":\"global_us_ios_review_20260930\",\"status\":\"test_only\",\"enabled\":true,\"service_market_code\":\"GLOBAL_US\",\"apple_storefront_country_code\":\"USA\"},{\"policy_code\":\"global_us_ios_stripe_v1\",\"status\":\"configured_disabled\",\"enabled\":false,\"service_market_code\":\"GLOBAL_US\",\"apple_storefront_country_code\":\"USA\"},{\"policy_code\":\"mainland_cn_ios_storekit_v1\",\"status\":\"configured_disabled\",\"enabled\":false,\"service_market_code\":\"MAINLAND_CN\",\"apple_storefront_country_code\":\"CHN\"}],\"sku\":[{\"external_product_reference\":\"com.rillora.family.annual\",\"storefront_country_code\":null,\"status\":\"test_only\",\"price_id\":\"2\"},{\"external_product_reference\":\"com.rillora.family.monthly\",\"storefront_country_code\":null,\"status\":\"test_only\",\"price_id\":\"1\"}],\"hkgQuoteCount\":0}"
+  ]
+}

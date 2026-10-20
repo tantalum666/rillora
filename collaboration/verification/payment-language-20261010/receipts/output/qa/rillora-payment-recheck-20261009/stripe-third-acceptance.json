@@ -1,0 +1,38 @@
+{
+  "at": "2026-10-09T19:35:02.028296+00:00",
+  "testOnly": true,
+  "realMoneyMoved": false,
+  "checkout": {
+    "locale": "zh",
+    "amountMinor": 8899,
+    "currency": "USD",
+    "result": "paid"
+  },
+  "fullRefund": {
+    "initial": "pending",
+    "amountMinor": 8899,
+    "chargeAmountRefundedWhilePending": 8899,
+    "pendingChargeEventAppliedAt": "2026-10-09T19:19:14.393Z",
+    "pendingDecision": "grant active",
+    "providerSucceededAt": "2026-10-09T19:20:20Z",
+    "successAppliedAt": "2026-10-09T19:20:22.411Z",
+    "successDecision": "revoke refunded"
+  },
+  "duplicate": {
+    "dashboardManualRetryAt": "2026-10-09T19:22:03Z",
+    "httpStatus": 200,
+    "response": {
+      "received": true,
+      "status": "duplicate",
+      "testOnly": true
+    },
+    "secondReconciliationNotCreated": true
+  },
+  "cleanup": {
+    "providerStatus": "canceled",
+    "invoice_now": false,
+    "prorate": false,
+    "renewalIsPossible": false
+  },
+  "exactObjects": "protected local provider records; not included in public receipt"
+}

@@ -1,0 +1,7 @@
+{"at": "2026-10-08T17:43:54.637730+00:00", "phase": "prepare", "stack": "RilloraStaging", "changedTask": "MigrationTaskDefinitionE89B136E", "onlyChangedPath": "/Resources/MigrationTaskDefinitionE89B136E/Properties/ContainerDefinitions/0/Image", "imageAssetHash": "826bbf2793df101867a9751103dc64594a18b30380980f61e360fa4fa0c4c485", "previousImageAssetHash": "0032fca08797551749bc99a92b0d711da0e2a94f36d435e43a4b5e920c687751", "resourceCount": 81, "networkIamSecretsIdentityBillingAndClientAssetsUnchanged": true, "existingBackupLatestRestorableTime": "2026-10-08T17:34:11+00:00"}
+Traceback (most recent call last):
+  File "/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-web-rollout-20261009/deploy_staging_runtime.py", line 76, in <module>
+    subprocess.run(['npx','cdk','deploy','RilloraStaging','--app',str(assembly),'--profile','rillora-cdk-session',
+  File "/Library/Developer/CommandLineTools/Library/Frameworks/Python3.framework/Versions/3.9/lib/python3.9/subprocess.py", line 528, in run
+    raise CalledProcessError(retcode, process.args,
+subprocess.CalledProcessError: Command '['npx', 'cdk', 'deploy', 'RilloraStaging', '--app', '/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-web-rollout-20261009/cdk-staging-runtime-prepare', '--profile', 'rillora-cdk-session', '--require-approval', 'never', '--previous-parameters', 'true', '--outputs-file', '/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-web-rollout-20261009/staging-runtime-prepare-outputs.json']' returned non-zero exit status 1.

@@ -1,0 +1,74 @@
+"""Track fixed maintenance operations after verifying all source writers are stopped."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3];P=ROOT/'.local-secrets/security-rollout-20261011';Q=ROOT/'output/qa/rillora-security-rollout-20261011'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser(description=__doc__);parser.add_argument('operation',choices=['start','check','accept']);parser.add_argument('environment',choices=['staging','production']);parser.add_argument('label',choices=['audit-before','migrate','audit-after','authority']);args=parser.parse_args()
+name='RilloraStaging' if args.environment=='staging' else 'RilloraProduction'
+profile='rillora-'+args.environment+'-operator';operator=Aws(profile);reader=Aws('rillora-cdk-deploy')
+prefix=args.environment+'-'+args.label;path=P/(prefix+'-task.json')
+def save(path,value):path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+if args.operation=='start':
+ assert not path.exists(),'Operation already recorded; inspect it instead of repeating'
+ stack=operator.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+ current=reader.call('cloudformation','get-template',{'StackName':name})['TemplateBody'];current=json.loads(current) if isinstance(current,str) else current
+ expected=json.loads((Q/(args.environment+'-stopped-assembly')/(name+'.template.json')).read_text());assert current==expected
+ o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+ resources=reader.call('cloudformation','describe-stack-resources',{'StackName':name})['StackResources']
+ names=[x['PhysicalResourceId'] for x in resources if x['ResourceType']=='AWS::ECS::Service']
+ services=operator.call('ecs','describe-services',{'cluster':o['ClusterName'],'services':names})
+ assert not services.get('failures') and len(services['services'])==2
+ assert all(s['desiredCount']==s['runningCount']==s['pendingCount']==0 for s in services['services']),'Source writers are not stopped'
+ if args.label=='migrate':
+  before=json.loads((P/(args.environment+'-audit-before-result.json')).read_text())
+  assert len(before['migrations'])==94 and before['pendingIdentityDeletions']==0
+  assert json.loads((Q/(args.environment+'-backup-verified.json')).read_text())['available']
+ if args.label in ['audit-after','authority']:assert json.loads((Q/(args.environment+'-migrate-task-result.json')).read_text())['exitCode']==0
+ task=operator.call('ecs','describe-task-definition',{'taskDefinition':o['MigrationTaskDefinitionArn']})['taskDefinition'];c=task['containerDefinitions'][0]
+ scriptName='probe_security_authority.mjs' if args.label=='authority' else 'probe_security_rollout.mjs'
+ script=(ROOT/'tools/release'/scriptName).read_text()
+ token=uuid.uuid4().hex
+ if args.environment=='staging':
+  payload={'operation':'migrate' if args.label=='migrate' else 'audit','clientToken':token}
+  if args.label!='migrate':payload['script']=script
+ else:
+  state=json.loads((P/'production-cutover-state.json').read_text())
+  command=json.loads((ROOT/'tools/maintenance-broker/production-migration.json').read_text()) if args.label=='migrate' else ['node','--input-type=module','-e',script]
+  request={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':token,
+   'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds'].split(','),'securityGroups':[o['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+   'overrides':{'containerOverrides':[{'name':'Maintenance','command':command,'environment':[{'name':'RECOVERY_RUN','value':state['run']}]}]}}
+  assert len(json.dumps(request['overrides']).encode())<=8192
+  payload={'operation':'task','run':state['run'],'runToken':state['runToken'],'request':request}
+ log=c['logConfiguration']['options'];record={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'payload':payload,'cluster':o['ClusterName'],'container':c['name'],'logGroup':log['awslogs-group'],'logPrefix':log['awslogs-stream-prefix']}
+ save(path,record);response=operator.invoke_broker(o['MaintenanceBrokerFunctionName'],payload)
+ assert not response.get('failures') and len(response.get('tasks',[]))==1
+ record['arn']=response['tasks'][0]['taskArn'];save(path,record);print(json.dumps({'environment':args.environment,'phase':args.label,'started':True,'taskArn':record['arn']}))
+elif args.operation=='check':
+ state=json.loads(path.read_text());assert state.get('arn'),'Uncertain invocation: investigate its saved exact request'
+ response=operator.call('ecs','describe-tasks',{'cluster':state['cluster'],'tasks':[state['arn']]});assert not response.get('failures') and len(response['tasks'])==1
+ task=response['tasks'][0];c=task['containers'][0];result={'environment':args.environment,'phase':args.label,'status':task['lastStatus'],'exitCode':c.get('exitCode')}
+ if task['lastStatus']=='STOPPED':
+  stream=state['logPrefix']+'/'+state['container']+'/'+state['arn'].rsplit('/',1)[1]
+  log=operator.call('logs','get-log-events',{'logGroupName':state['logGroup'],'logStreamName':stream,'startFromHead':True});save(P/(prefix+'-log.json'),log)
+  values=[]
+  for row in log['events']:
+   try:values.append(json.loads(row['message']))
+   except (ValueError,TypeError):pass
+  if c.get('exitCode')==0 and args.label!='migrate':
+   reports=[x for x in values if isinstance(x,dict) and x.get('readOnly') is True];assert len(reports)==1
+   report=reports[0];save(P/(args.environment+'-'+args.label+'-result.json'),report)
+   result.update({'passed':True,'hardenedSchema':report['hardenedSchema'],'checks':report.get('checks',{})})
+   if 'migrations' in report:result.update({'migrations':len(report['migrations']),'pendingIdentityDeletions':report['pendingIdentityDeletions'],'fingerprintedTables':len(report['fingerprints'])})
+  elif c.get('exitCode')!=0:result['diagnostics']=[x for x in values if isinstance(x,dict) and x.get('auditFailed')]
+  (Q/(prefix+'-task-result.json')).write_text(json.dumps(result,indent=2)+'\n')
+ print(json.dumps(result))
+else:
+ before=json.loads((P/(args.environment+'-audit-before-result.json')).read_text());after=json.loads((P/(args.environment+'-audit-after-result.json')).read_text());authority=json.loads((P/(args.environment+'-authority-result.json')).read_text())
+ assert len(before['migrations'])==94 and len(after['migrations'])==103 and after['hardenedSchema'] and authority['hardenedSchema']
+ for row in after['migrations']:assert hashlib.sha256((ROOT/'apps/api/migrations'/row['name']).read_bytes()).hexdigest()==row['checksum']
+ assert before['fingerprints']==after['fingerprints'],'Unexpected original data change; keep source stopped'
+ assert after['pendingIdentityDeletions']==0 and after['contentProtectionEnforced'] and after['everyApplicationTableForcedRls']
+ assert authority['checks'] and all(authority['checks'].values()) and all(after['checks'].values())
+ result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'environment':args.environment,'passed':True,'migrations':103,'allChecksumsMatch':True,'originalBusinessDataFingerprintsMatch':True,'comparedTables':len(after['fingerprints']),'expectedRepresentationChangesOnly':True,'authorityChecks':authority['checks'],'billingSwitchesChanged':False,'realAccountDeleted':False}
+ (Q/(args.environment+'-migration-acceptance.json')).write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

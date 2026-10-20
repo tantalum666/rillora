@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-12T12:11:26.540268+00:00",
+  "passed": true,
+  "results": [
+    {
+      "url": "https://app.rillora.xyz/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store",
+      "body": {
+        "status": "ready"
+      }
+    },
+    {
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store",
+      "body": {
+        "error": {
+          "code": "authentication_required",
+          "message": "Authentication is required."
+        }
+      }
+    }
+  ]
+}

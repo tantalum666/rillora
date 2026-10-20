@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-04T13:03:23.621807+00:00",
+  "purpose": "Read-only feasibility check for a separate disposable deletion identity; no account or access configuration changed",
+  "checks": [
+    {
+      "provider": "auth0",
+      "accessVerified": false,
+      "actualExpiryReported": true,
+      "returncode": 1
+    },
+    {
+      "provider": "aws",
+      "accessVerified": false,
+      "actualExpiryReported": true,
+      "returncode": 255
+    }
+  ]
+}

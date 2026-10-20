@@ -1,0 +1,27 @@
+"""Publish the exact narrowed template, avoiding a copied CDK assembly's cached template asset."""
+import hashlib,json,os,subprocess
+from pathlib import Path
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).resolve().parent;PRIVATE=ROOT/'.local-secrets/mcp-customer-20261018'
+def aws(args,profile='rillora-cdk-deploy',env=None):
+ c=['aws',*args,'--region','eu-central-1','--output','json']
+ if profile:c+=['--profile',profile]
+ r=subprocess.run(c,capture_output=True,text=True,env=env)
+ if r.returncode:(PRIVATE/'canonical-prepare-error.txt').write_text(r.stderr);raise RuntimeError('AWS request failed; private diagnostic saved')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+p=QA/'production-cdk-canonical-api/RilloraProduction.template.json';data=p.read_bytes();key=hashlib.sha256(data).hexdigest()+'.json'
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'])['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+creds=aws(['sts','assume-role','--role-arn','arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1','--role-session-name','rillora-canonical-api-template','--duration-seconds','900'],'rillora-operator')['Credentials']
+env=os.environ.copy();env.pop('AWS_PROFILE',None);env.pop('AWS_DEFAULT_PROFILE',None);env.update(AWS_ACCESS_KEY_ID=creds['AccessKeyId'],AWS_SECRET_ACCESS_KEY=creds['SecretAccessKey'],AWS_SESSION_TOKEN=creds['SessionToken'])
+bucket='cdk-hnb659fds-assets-133857166372-eu-central-1'
+aws(['s3api','put-object','--bucket',bucket,'--key',key,'--body',str(p)],None,env);env.clear();creds.clear()
+parameters=[{'ParameterKey':x['ParameterKey'],'UsePreviousValue':True} for x in stack['Parameters']]
+name='rillora-customer-mcp-20261018-canonical-api-v2'
+args=['cloudformation','create-change-set','--stack-name','RilloraProduction','--change-set-name',name,'--change-set-type','UPDATE',
+ '--template-url','https://'+bucket+'.s3.eu-central-1.amazonaws.com/'+key,'--capabilities','CAPABILITY_NAMED_IAM',
+ '--parameters',json.dumps(parameters),'--tags',json.dumps(stack.get('Tags',[]))]
+if stack.get('RoleARN'):args+=['--role-arn',stack['RoleARN']]
+ref=aws(args);(QA/'canonical-api-v2-reference.json').write_text(json.dumps(ref,indent=2)+'\n')
+prior='rillora-customer-mcp-20261018-canonical-api';v=aws(['cloudformation','describe-change-set','--stack-name','RilloraProduction','--change-set-name',prior]);assert v['ExecutionStatus']=='AVAILABLE'
+aws(['cloudformation','delete-change-set','--stack-name','RilloraProduction','--change-set-name',prior])
+(QA/'canonical-template-cache-correction.json').write_text(json.dumps({'copiedAssemblyCacheDetectedBeforeExecution':True,'unexpectedResources':['MigrationTask69EAEF9D','RecoveryTaskD940248B','RuntimeIdentityWorkerTask676ED9B0'],'oldUnexecutedCandidateRemoved':True,'exactTemplateSha256':key[:-5],'replacementChangeSet':name,'noRepeatedMigrationOrRuntimeMutation':True},indent=2)+'\n')
+print('Exact API-only template uploaded under its content hash; corrected change set prepared')

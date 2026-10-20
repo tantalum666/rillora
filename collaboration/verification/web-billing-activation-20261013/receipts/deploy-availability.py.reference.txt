@@ -1,0 +1,72 @@
+"""Apply exactly one static Web asset change per existing stack; retain every parameter."""
+from pathlib import Path
+import argparse,datetime,hashlib,json,subprocess,sys,uuid
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-web-billing-activation-20261013'
+PRIVATE=ROOT/'.local-secrets/web-billing-activation-20261013'
+SOURCE='f87ac62c90a016174a2a7994ee1006d50c879296'
+sys.path.insert(0,str(ROOT/'tools/release'))
+from recovery_drill import Aws
+parser=argparse.ArgumentParser();parser.add_argument('operation',choices=['prepare','execute','status']);parser.add_argument('stack',choices=['RilloraPublicWeb','RilloraProductionWeb']);args=parser.parse_args()
+reader=Aws('rillora-cdk-deploy');name=args.stack
+assembly=QA/(name+'-availability-assembly');path=assembly/(name+'.template.json')
+before=json.loads((PRIVATE/(name+'-availability-before-template.json')).read_text());wanted=json.loads(path.read_text())
+review=json.loads((QA/'availability-candidate-diff.json').read_text());assert review['passed']
+entry=next(r for r in review['stacks'] if r['stack']==name)
+logical=entry['changes'][0]['logicalId'];assert len(entry['changes'])==1
+old=before['Resources'][logical];new=wanted['Resources'][logical]
+assert old['Type']==new['Type']=='Custom::CDKBucketDeployment'
+reference=json.loads(json.dumps(before));reference['Resources'][logical]['Properties']['SourceObjectKeys']=new['Properties']['SourceObjectKeys']
+assert reference==wanted,'Any non-Web drift must stop deployment'
+if args.operation!='status':
+    assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=ROOT,text=True).strip()==SOURCE
+    assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github',':(exclude)config/release-gates.json'],cwd=ROOT).returncode==0
+def save(path,value):
+    path.write_text(json.dumps(value,indent=2)+'\n');path.chmod(0o600)
+def actual_template():
+    data=reader.call('cloudformation','get-template',{'StackName':name})['TemplateBody']
+    return json.loads(data) if isinstance(data,str) else data
+def checked_change():
+    state=json.loads((PRIVATE/(name+'-availability-changeset.json')).read_text())
+    assert state['templateSha256']==hashlib.sha256(path.read_bytes()).hexdigest() and state['source']==SOURCE
+    change=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':state['id']})
+    assert change['Status']=='CREATE_COMPLETE' and len(change['Changes'])==1
+    resource=change['Changes'][0]['ResourceChange']
+    assert resource['Action']=='Modify' and resource['LogicalResourceId']==logical and resource['ResourceType']=='Custom::CDKBucketDeployment'
+    assert resource.get('Replacement') in ['False','Conditional']
+    assert resource.get('Details') and all(d['Target'].get('Name')=='SourceObjectKeys' for d in resource['Details'])
+    return state,change
+stack=reader.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation=='prepare':
+    assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==before
+    state_path=PRIVATE/(name+'-availability-changeset.json');assert not state_path.exists()
+    change_name='rillora-availability-'+SOURCE[:9]+'-'+name.lower()
+    command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session',
+      '--require-approval','never','--previous-parameters','true','--method','prepare-change-set','--change-set-name',change_name,
+      '--outputs-file',str(PRIVATE/(name+'-availability-outputs.json'))]
+    for parameter in stack.get('Parameters',[]):
+        if parameter['ParameterKey']!='BootstrapVersion' and parameter.get('ParameterValue')!='****':
+            command+=['--parameters',parameter['ParameterKey']+'='+parameter['ParameterValue']]
+    with (QA/(name+'-availability-prepare.log')).open('w') as log:
+        result=subprocess.run(command,cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+    assert result.returncode==0,'Preparation must be inspected before any retry'
+    details=reader.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':change_name})
+    save(state_path,{'id':details['ChangeSetId'],'templateSha256':hashlib.sha256(path.read_bytes()).hexdigest(),'source':SOURCE})
+    _,change=checked_change();assert change['ExecutionStatus']=='AVAILABLE';save(PRIVATE/(name+'-availability-changeset-details.json'),change)
+    print(json.dumps({'stack':name,'prepared':True,'onlyStaticAssetChanged':True,'executed':False}))
+elif args.operation=='execute':
+    ci=json.loads((QA/'ci141-readback.json').read_text());assert ci['source']==SOURCE and ci['conclusion']=='success' and len(ci['jobs'])==3 and all(j['conclusion']=='success' for j in ci['jobs'])
+    assert stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==before
+    state,change=checked_change();assert change['ExecutionStatus']=='AVAILABLE'
+    marker=PRIVATE/(name+'-availability-execute-request.json');assert not marker.exists(),'Inspect status after an attempted execution'
+    request={'StackName':name,'ChangeSetName':state['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex}
+    save(marker,request);reader.call('cloudformation','execute-change-set',request)
+    print(json.dumps({'stack':name,'executionRequested':True,'finished':False}))
+else:
+    report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stack':name,'status':stack['StackStatus'],
+      'templateMatched':stack['StackStatus']=='UPDATE_COMPLETE' and actual_template()==wanted,'source':SOURCE}
+    if report['templateMatched']:
+        old_parameters=json.loads((PRIVATE/(name+'-availability-before-stack.json')).read_text()).get('Parameters',[])
+        assert {x['ParameterKey']:x.get('ParameterValue') for x in old_parameters}=={x['ParameterKey']:x.get('ParameterValue') for x in stack.get('Parameters',[])}
+        report['allParametersUnchanged']=True;save(QA/(name+'-availability-deployed.json'),report)
+    print(json.dumps(report))

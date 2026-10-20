@@ -1,0 +1,3259 @@
+{
+  "Description": "Synthetic-only Rillora staging API and PostgreSQL in AWS Frankfurt",
+  "Parameters": {
+    "OidcIssuer": {
+      "Type": "String",
+      "AllowedPattern": "^https://.+[^/]$",
+      "Description": "Exact Auth0 EU issuer without a trailing slash"
+    },
+    "Auth0DeletionClientId": {
+      "Type": "String",
+      "Default": "",
+      "Description": "Dedicated M2M client with only delete:users"
+    },
+    "Auth0DeletionDomain": {
+      "Type": "String",
+      "Default": "rillora-dev.eu.auth0.com",
+      "AllowedPattern": "^[a-zA-Z0-9.-]+$"
+    },
+    "Auth0EmailVerificationClientId": {
+      "Type": "String",
+      "Default": "",
+      "Description": "Dedicated M2M client with only read:users for current-session email proof"
+    },
+    "Auth0EmailVerificationDomain": {
+      "Type": "String",
+      "Default": "rillora-dev.eu.auth0.com",
+      "AllowedPattern": "^[a-zA-Z0-9.-]+$"
+    },
+    "NativeOidcClientId": {
+      "Type": "String",
+      "Description": "Auth0 native application client ID",
+      "MinLength": 1,
+      "NoEcho": true
+    },
+    "WebOidcClientId": {
+      "Type": "String",
+      "Description": "Auth0 regular Web application client ID",
+      "MinLength": 1
+    },
+    "WebOidcRedirectUri": {
+      "Type": "String",
+      "AllowedPattern": "^https://.+/auth/callback$",
+      "Description": "Exact HTTPS callback handled by the staging API"
+    },
+    "OidcApiAudience": {
+      "Type": "String",
+      "Description": "Exact Auth0 API audience",
+      "MinLength": 1,
+      "NoEcho": true
+    },
+    "WebCorsOrigin": {
+      "Type": "String",
+      "AllowedPattern": "^https://.+[^/]$",
+      "Description": "Single staging Web origin; no wildcard is accepted"
+    },
+    "WebCertificateArn": {
+      "Type": "String",
+      "AllowedPattern": "^arn:(aws|aws-us-gov|aws-cn):acm:us-east-1:[0-9]{12}:certificate/[0-9a-f-]+$",
+      "Description": "Issued us-east-1 ACM certificate for app.staging.rillora.xyz"
+    },
+    "BootstrapVersion": {
+      "Type": "AWS::SSM::Parameter::Value<String>",
+      "Default": "/cdk-bootstrap/hnb659fds/version",
+      "Description": "Version of the CDK Bootstrap resources in this environment, automatically retrieved from SSM Parameter Store. [cdk:skip]"
+    }
+  },
+  "Resources": {
+    "Vpc8378EB38": {
+      "Type": "AWS::EC2::VPC",
+      "Properties": {
+        "CidrBlock": "10.42.0.0/16",
+        "EnableDnsHostnames": true,
+        "EnableDnsSupport": true,
+        "InstanceTenancy": "default",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/Resource"
+      }
+    },
+    "VpcedgeSubnet1Subnet578D518D": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": "eu-central-1a",
+        "CidrBlock": "10.42.0.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "edge"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/edgeSubnet1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet1/Subnet"
+      }
+    },
+    "VpcedgeSubnet1RouteTable967A3DC6": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/edgeSubnet1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet1/RouteTable"
+      }
+    },
+    "VpcedgeSubnet1RouteTableAssociationB37B6BBE": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VpcedgeSubnet1RouteTable967A3DC6"
+        },
+        "SubnetId": {
+          "Ref": "VpcedgeSubnet1Subnet578D518D"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet1/RouteTableAssociation"
+      }
+    },
+    "VpcedgeSubnet1DefaultRouteFF24B875": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "VpcIGWD7BA715C"
+        },
+        "RouteTableId": {
+          "Ref": "VpcedgeSubnet1RouteTable967A3DC6"
+        }
+      },
+      "DependsOn": [
+        "VpcVPCGWBF912B6E"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet1/DefaultRoute"
+      }
+    },
+    "VpcedgeSubnet2Subnet67EE456C": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": "eu-central-1b",
+        "CidrBlock": "10.42.1.0/24",
+        "MapPublicIpOnLaunch": true,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "edge"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Public"
+          },
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/edgeSubnet2"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet2/Subnet"
+      }
+    },
+    "VpcedgeSubnet2RouteTable04EC36AC": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/edgeSubnet2"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet2/RouteTable"
+      }
+    },
+    "VpcedgeSubnet2RouteTableAssociation47DE4A32": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VpcedgeSubnet2RouteTable04EC36AC"
+        },
+        "SubnetId": {
+          "Ref": "VpcedgeSubnet2Subnet67EE456C"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet2/RouteTableAssociation"
+      }
+    },
+    "VpcedgeSubnet2DefaultRouteDF8DB82B": {
+      "Type": "AWS::EC2::Route",
+      "Properties": {
+        "DestinationCidrBlock": "0.0.0.0/0",
+        "GatewayId": {
+          "Ref": "VpcIGWD7BA715C"
+        },
+        "RouteTableId": {
+          "Ref": "VpcedgeSubnet2RouteTable04EC36AC"
+        }
+      },
+      "DependsOn": [
+        "VpcVPCGWBF912B6E"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/edgeSubnet2/DefaultRoute"
+      }
+    },
+    "VpcdataSubnet1SubnetE2B009FB": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": "eu-central-1a",
+        "CidrBlock": "10.42.2.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "data"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          },
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/dataSubnet1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet1/Subnet"
+      }
+    },
+    "VpcdataSubnet1RouteTableAF5F53E0": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/dataSubnet1"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet1/RouteTable"
+      }
+    },
+    "VpcdataSubnet1RouteTableAssociation9E9FDBBB": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VpcdataSubnet1RouteTableAF5F53E0"
+        },
+        "SubnetId": {
+          "Ref": "VpcdataSubnet1SubnetE2B009FB"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet1/RouteTableAssociation"
+      }
+    },
+    "VpcdataSubnet2SubnetAD08DFFF": {
+      "Type": "AWS::EC2::Subnet",
+      "Properties": {
+        "AvailabilityZone": "eu-central-1b",
+        "CidrBlock": "10.42.3.0/24",
+        "MapPublicIpOnLaunch": false,
+        "Tags": [
+          {
+            "Key": "aws-cdk:subnet-name",
+            "Value": "data"
+          },
+          {
+            "Key": "aws-cdk:subnet-type",
+            "Value": "Isolated"
+          },
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/dataSubnet2"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet2/Subnet"
+      }
+    },
+    "VpcdataSubnet2RouteTable94FA483A": {
+      "Type": "AWS::EC2::RouteTable",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/dataSubnet2"
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet2/RouteTable"
+      }
+    },
+    "VpcdataSubnet2RouteTableAssociation6C8F2058": {
+      "Type": "AWS::EC2::SubnetRouteTableAssociation",
+      "Properties": {
+        "RouteTableId": {
+          "Ref": "VpcdataSubnet2RouteTable94FA483A"
+        },
+        "SubnetId": {
+          "Ref": "VpcdataSubnet2SubnetAD08DFFF"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/dataSubnet2/RouteTableAssociation"
+      }
+    },
+    "VpcIGWD7BA715C": {
+      "Type": "AWS::EC2::InternetGateway",
+      "Properties": {
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/IGW"
+      }
+    },
+    "VpcVPCGWBF912B6E": {
+      "Type": "AWS::EC2::VPCGatewayAttachment",
+      "Properties": {
+        "InternetGatewayId": {
+          "Ref": "VpcIGWD7BA715C"
+        },
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/VPCGW"
+      }
+    },
+    "VpcRejectedTrafficFlowLogIAMRole01CDCB13": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "vpc-flow-logs.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/RejectedTrafficFlowLog"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/RejectedTrafficFlowLog/IAMRole/Resource"
+      }
+    },
+    "VpcRejectedTrafficFlowLogIAMRoleDefaultPolicy1667E75B": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents",
+                "logs:DescribeLogStreams"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "VpcRejectedTrafficE32A6480",
+                  "Arn"
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "VpcRejectedTrafficFlowLogIAMRoleDefaultPolicy1667E75B",
+        "Roles": [
+          {
+            "Ref": "VpcRejectedTrafficFlowLogIAMRole01CDCB13"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/RejectedTrafficFlowLog/IAMRole/DefaultPolicy/Resource"
+      }
+    },
+    "VpcRejectedTrafficFlowLogEB2F935E": {
+      "Type": "AWS::EC2::FlowLog",
+      "Properties": {
+        "DeliverLogsPermissionArn": {
+          "Fn::GetAtt": [
+            "VpcRejectedTrafficFlowLogIAMRole01CDCB13",
+            "Arn"
+          ]
+        },
+        "LogDestinationType": "cloud-watch-logs",
+        "LogGroupName": {
+          "Ref": "VpcRejectedTrafficE32A6480"
+        },
+        "ResourceId": {
+          "Ref": "Vpc8378EB38"
+        },
+        "ResourceType": "VPC",
+        "Tags": [
+          {
+            "Key": "Name",
+            "Value": "RilloraStaging/Vpc/RejectedTrafficFlowLog"
+          }
+        ],
+        "TrafficType": "REJECT"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Vpc/RejectedTrafficFlowLog/FlowLog"
+      }
+    },
+    "VpcRejectedTrafficE32A6480": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 30
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/VpcRejectedTraffic/Resource"
+      }
+    },
+    "ApiTaskSecurityGroup1B197C18": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Rillora staging API tasks; ingress only from the API Gateway VPC link",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "0.0.0.0/0",
+            "Description": "Reach Auth0 and AWS HTTPS endpoints without a NAT Gateway",
+            "FromPort": 443,
+            "IpProtocol": "tcp",
+            "ToPort": 443
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskSecurityGroup/Resource"
+      }
+    },
+    "ApiTaskSecurityGroupfromRilloraStagingVpcLinkSecurityGroup8CCDCE30808057008E8D": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "Description": "Only API Gateway VPC Link may reach the API container",
+        "FromPort": 8080,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "ApiTaskSecurityGroup1B197C18",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "VpcLinkSecurityGroupB3941EDC",
+            "GroupId"
+          ]
+        },
+        "ToPort": 8080
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskSecurityGroup/from RilloraStagingVpcLinkSecurityGroup8CCDCE30:8080"
+      }
+    },
+    "ApiTaskSecurityGrouptoRilloraStagingDatabaseSecurityGroup61BF01DD543213A7183E": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "Description": "API and migration tasks may connect only to the staging database",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "DatabaseSecurityGroup7319C0F6",
+            "GroupId"
+          ]
+        },
+        "FromPort": 5432,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "ApiTaskSecurityGroup1B197C18",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 5432
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskSecurityGroup/to RilloraStagingDatabaseSecurityGroup61BF01DD:5432"
+      }
+    },
+    "VpcLinkSecurityGroupB3941EDC": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "API Gateway VPC Link to the Rillora API tasks",
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/VpcLinkSecurityGroup/Resource"
+      }
+    },
+    "VpcLinkSecurityGrouptoRilloraStagingApiTaskSecurityGroupEF0BFE158080FFA9BF80": {
+      "Type": "AWS::EC2::SecurityGroupEgress",
+      "Properties": {
+        "Description": "Forward HTTPS-edge traffic to the API container",
+        "DestinationSecurityGroupId": {
+          "Fn::GetAtt": [
+            "ApiTaskSecurityGroup1B197C18",
+            "GroupId"
+          ]
+        },
+        "FromPort": 8080,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "VpcLinkSecurityGroupB3941EDC",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "ToPort": 8080
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/VpcLinkSecurityGroup/to RilloraStagingApiTaskSecurityGroupEF0BFE15:8080"
+      }
+    },
+    "DatabaseSecurityGroup7319C0F6": {
+      "Type": "AWS::EC2::SecurityGroup",
+      "Properties": {
+        "GroupDescription": "Rillora staging PostgreSQL; API and migration tasks only",
+        "SecurityGroupEgress": [
+          {
+            "CidrIp": "255.255.255.255/32",
+            "Description": "Disallow all traffic",
+            "FromPort": 252,
+            "IpProtocol": "icmp",
+            "ToPort": 86
+          }
+        ],
+        "VpcId": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/DatabaseSecurityGroup/Resource"
+      }
+    },
+    "DatabaseSecurityGroupfromRilloraStagingApiTaskSecurityGroupEF0BFE155432A1560DAF": {
+      "Type": "AWS::EC2::SecurityGroupIngress",
+      "Properties": {
+        "Description": "API and migration tasks may connect to PostgreSQL",
+        "FromPort": 5432,
+        "GroupId": {
+          "Fn::GetAtt": [
+            "DatabaseSecurityGroup7319C0F6",
+            "GroupId"
+          ]
+        },
+        "IpProtocol": "tcp",
+        "SourceSecurityGroupId": {
+          "Fn::GetAtt": [
+            "ApiTaskSecurityGroup1B197C18",
+            "GroupId"
+          ]
+        },
+        "ToPort": 5432
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/DatabaseSecurityGroup/from RilloraStagingApiTaskSecurityGroupEF0BFE15:5432"
+      }
+    },
+    "DatabaseSubnetGroup7D60F180": {
+      "Type": "AWS::RDS::DBSubnetGroup",
+      "Properties": {
+        "DBSubnetGroupDescription": "Subnet group for Database database",
+        "SubnetIds": [
+          {
+            "Ref": "VpcdataSubnet1SubnetE2B009FB"
+          },
+          {
+            "Ref": "VpcdataSubnet2SubnetAD08DFFF"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Database/SubnetGroup/Default"
+      }
+    },
+    "RilloraStagingDatabaseSecretBD8DADAB145d7587a81d8eb10deb319f17c60255": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Generated by the CDK for stack: ",
+              {
+                "Ref": "AWS::StackName"
+              }
+            ]
+          ]
+        },
+        "GenerateSecretString": {
+          "ExcludeCharacters": " @/\\\"'`",
+          "GenerateStringKey": "password",
+          "PasswordLength": 30,
+          "SecretStringTemplate": "{\"username\":\"continuity_admin\"}"
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Database/Secret/Resource"
+      }
+    },
+    "DatabaseSecretAttachmentE5D1B020": {
+      "Type": "AWS::SecretsManager::SecretTargetAttachment",
+      "Properties": {
+        "SecretId": {
+          "Ref": "RilloraStagingDatabaseSecretBD8DADAB145d7587a81d8eb10deb319f17c60255"
+        },
+        "TargetId": {
+          "Ref": "DatabaseB269D8BB"
+        },
+        "TargetType": "AWS::RDS::DBInstance"
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Database/Secret/Attachment/Resource"
+      }
+    },
+    "DatabaseB269D8BB": {
+      "Type": "AWS::RDS::DBInstance",
+      "Properties": {
+        "AllocatedStorage": "20",
+        "AutoMinorVersionUpgrade": true,
+        "BackupRetentionPeriod": 1,
+        "CopyTagsToSnapshot": true,
+        "DBInstanceClass": "db.t4g.micro",
+        "DBName": "rillora",
+        "DBSubnetGroupName": {
+          "Ref": "DatabaseSubnetGroup7D60F180"
+        },
+        "DeletionProtection": true,
+        "EnableCloudwatchLogsExports": [
+          "postgresql"
+        ],
+        "Engine": "postgres",
+        "EngineLifecycleSupport": "open-source-rds-extended-support-disabled",
+        "EngineVersion": "16.13",
+        "MasterUserPassword": {
+          "Fn::Join": [
+            "",
+            [
+              "{{resolve:secretsmanager:",
+              {
+                "Ref": "RilloraStagingDatabaseSecretBD8DADAB145d7587a81d8eb10deb319f17c60255"
+              },
+              ":SecretString:password::}}"
+            ]
+          ]
+        },
+        "MasterUsername": "continuity_admin",
+        "MultiAZ": false,
+        "PreferredBackupWindow": "02:00-03:00",
+        "PreferredMaintenanceWindow": "sun:03:00-sun:04:00",
+        "PubliclyAccessible": false,
+        "StorageEncrypted": true,
+        "StorageType": "gp3",
+        "VPCSecurityGroups": [
+          {
+            "Fn::GetAtt": [
+              "DatabaseSecurityGroup7319C0F6",
+              "GroupId"
+            ]
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Snapshot",
+      "DeletionPolicy": "Snapshot",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Database/Resource"
+      }
+    },
+    "DatabaseLogRetentionpostgresqlFBE8A947": {
+      "Type": "Custom::LogRetention",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A",
+            "Arn"
+          ]
+        },
+        "LogGroupName": {
+          "Fn::Join": [
+            "",
+            [
+              "/aws/rds/instance/",
+              {
+                "Ref": "DatabaseB269D8BB"
+              },
+              "/postgresql"
+            ]
+          ]
+        },
+        "RetentionInDays": 30
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Database/LogRetentionpostgresql/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "logs:PutRetentionPolicy",
+                "logs:DeleteRetentionPolicy"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "Roles": [
+          {
+            "Ref": "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aFD4BFC8A": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Handler": "index.handler",
+        "Runtime": "nodejs24.x",
+        "Timeout": 900,
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "S3Key": "[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]"
+        },
+        "Role": {
+          "Fn::GetAtt": [
+            "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB",
+            "Arn"
+          ]
+        }
+      },
+      "DependsOn": [
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRoleDefaultPolicyADDA7DEB",
+        "LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8aServiceRole9741ECFB"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/LogRetentionaae0aa3c5b4d4f87b02d85b201efdd8a/Resource",
+        "aws:asset:path": "asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "RuntimeDatabaseSecretE7205402": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Generated Rillora staging database runtime credential",
+        "GenerateSecretString": {
+          "ExcludeCharacters": " @/\\\"'`",
+          "GenerateStringKey": "password",
+          "PasswordLength": 48,
+          "SecretStringTemplate": "{\"username\":\"continuity_runtime_staging\"}"
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/RuntimeDatabaseSecret/Resource"
+      }
+    },
+    "WebOidcClientSecret8C81BEC4": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Rillora staging Auth0 regular Web application client secret",
+        "GenerateSecretString": {
+          "ExcludePunctuation": true,
+          "PasswordLength": 64
+        }
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebOidcClientSecret/Resource"
+      }
+    },
+    "AccountDeletionClientSecretE308ADC4": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Rillora dedicated Auth0 identity-deletion service secret",
+        "GenerateSecretString": {}
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/AccountDeletionClientSecret/Resource"
+      }
+    },
+    "EmailVerificationClientSecret68A64726": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Rillora dedicated read-only Auth0 email-verification service secret",
+        "GenerateSecretString": {}
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/EmailVerificationClientSecret/Resource"
+      }
+    },
+    "StripeTestSecret04351D5D": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Rillora Phase 1C Stripe test restricted API key",
+        "GenerateSecretString": {}
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/StripeTestSecret/Resource"
+      }
+    },
+    "StripeTestWebhookSecret27AD2583": {
+      "Type": "AWS::SecretsManager::Secret",
+      "Properties": {
+        "Description": "Rillora Phase 1C Stripe test webhook signing secret",
+        "GenerateSecretString": {}
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/StripeTestWebhookSecret/Resource"
+      }
+    },
+    "StagingOperatorRoleB540A698": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Condition": {
+                "Bool": {
+                  "aws:MultiFactorAuthPresent": "true"
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::",
+                      {
+                        "Ref": "AWS::AccountId"
+                      },
+                      ":user/rillora/rillora-operator"
+                    ]
+                  ]
+                }
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "Description": "MFA-gated least-privilege role for Rillora staging migration and verification.",
+        "MaxSessionDuration": 3600,
+        "Path": "/rillora/",
+        "RoleName": "rillora-staging-operator"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/StagingOperatorRole/Resource"
+      }
+    },
+    "StagingOperatorRoleDefaultPolicyCF77C65B": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "kms:DescribeKey",
+                "kms:GetKeyRotationStatus"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PrivateContentKey82076AB6",
+                  "Arn"
+                ]
+              },
+              "Sid": "InspectOnlyStagingContentKey"
+            },
+            {
+              "Action": "ecs:RunTask",
+              "Condition": {
+                "ArnEquals": {
+                  "ecs:cluster": {
+                    "Fn::GetAtt": [
+                      "ClusterEB0386A7",
+                      "Arn"
+                    ]
+                  }
+                }
+              },
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "MigrationTaskDefinitionE89B136E"
+              },
+              "Sid": "RunOnlyTheStagingMigrationTask"
+            },
+            {
+              "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:PutSecretValue"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Ref": "StripeTestSecret04351D5D"
+                },
+                {
+                  "Ref": "StripeTestWebhookSecret27AD2583"
+                }
+              ],
+              "Sid": "ReplaceOnlyTheStagingStripeTestSecrets"
+            },
+            {
+              "Action": "iam:PassRole",
+              "Condition": {
+                "StringEquals": {
+                  "iam:PassedToService": "ecs-tasks.amazonaws.com"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "MigrationTaskDefinitionTaskRole01342380",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::GetAtt": [
+                    "MigrationTaskDefinitionExecutionRoleB0331BA1",
+                    "Arn"
+                  ]
+                }
+              ],
+              "Sid": "PassOnlyTheMigrationTaskRoles"
+            },
+            {
+              "Action": [
+                "ecs:DescribeTasks",
+                "ecs:StopTask"
+              ],
+              "Condition": {
+                "ArnEquals": {
+                  "ecs:cluster": {
+                    "Fn::GetAtt": [
+                      "ClusterEB0386A7",
+                      "Arn"
+                    ]
+                  }
+                }
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "ObserveAndStopStagingTasks"
+            },
+            {
+              "Action": "rds:CreateDBSnapshot",
+              "Condition": {
+                "StringEquals": {
+                  "aws:RequestedRegion": "eu-central-1"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":rds:eu-central-1:133857166372:db:",
+                      {
+                        "Ref": "DatabaseB269D8BB"
+                      }
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":rds:eu-central-1:133857166372:snapshot:rillora-content-encryption-*"
+                    ]
+                  ]
+                }
+              ],
+              "Sid": "SnapshotOnlyStagingContentMigration"
+            },
+            {
+              "Action": "rds:DescribeDBSnapshots",
+              "Condition": {
+                "StringEquals": {
+                  "aws:RequestedRegion": "eu-central-1"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "InspectStagingMigrationSnapshots"
+            },
+            {
+              "Action": [
+                "ecs:DescribeClusters",
+                "ecs:DescribeServices"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "ClusterEB0386A7",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Ref": "ApiServiceC9037CF0"
+                }
+              ],
+              "Sid": "InspectStagingService"
+            },
+            {
+              "Action": [
+                "ecs:DescribeTaskDefinition",
+                "cloudwatch:GetMetricStatistics"
+              ],
+              "Condition": {
+                "StringEquals": {
+                  "aws:RequestedRegion": "eu-central-1"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "ReadOnlyRegionalCapacityDiagnostics"
+            },
+            {
+              "Action": [
+                "logs:DescribeLogStreams",
+                "logs:GetLogEvents",
+                "logs:FilterLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "MigrationLogGroupFD140541",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "MigrationLogGroupFD140541",
+                          "Arn"
+                        ]
+                      },
+                      ":*"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::GetAtt": [
+                    "ApiLogGroup1DEDFC07",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "ApiLogGroup1DEDFC07",
+                          "Arn"
+                        ]
+                      },
+                      ":*"
+                    ]
+                  ]
+                }
+              ],
+              "Sid": "ReadStagingTaskLogs"
+            },
+            {
+              "Action": [
+                "secretsmanager:DescribeSecret",
+                "secretsmanager:PutSecretValue"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Ref": "WebOidcClientSecret8C81BEC4"
+                },
+                {
+                  "Ref": "AccountDeletionClientSecretE308ADC4"
+                },
+                {
+                  "Ref": "EmailVerificationClientSecret68A64726"
+                }
+              ],
+              "Sid": "ReplaceOnlyTheStagingWebOidcSecret"
+            },
+            {
+              "Action": "rds:DescribeDBInstances",
+              "Effect": "Allow",
+              "Resource": "*",
+              "Sid": "InspectTheStagingDatabase"
+            },
+            {
+              "Action": [
+                "logs:DescribeLogStreams",
+                "logs:GetLogEvents",
+                "logs:FilterLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "HttpApiAccessLogs4B419BF6",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "HttpApiAccessLogs4B419BF6",
+                          "Arn"
+                        ]
+                      },
+                      ":*"
+                    ]
+                  ]
+                }
+              ],
+              "Sid": "ReadOnlyStagingGatewayDiagnostics"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "StagingOperatorRoleDefaultPolicyCF77C65B",
+        "Roles": [
+          {
+            "Ref": "StagingOperatorRoleB540A698"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/StagingOperatorRole/DefaultPolicy/Resource"
+      }
+    },
+    "ClusterEB0386A7": {
+      "Type": "AWS::ECS::Cluster",
+      "Properties": {
+        "ClusterSettings": [
+          {
+            "Name": "containerInsights",
+            "Value": "enabled"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Cluster/Resource"
+      }
+    },
+    "Namespace9B63B8C8": {
+      "Type": "AWS::ServiceDiscovery::PrivateDnsNamespace",
+      "Properties": {
+        "Name": "staging.rillora.internal",
+        "Vpc": {
+          "Ref": "Vpc8378EB38"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Namespace/Resource"
+      }
+    },
+    "NamespaceApiDiscovery5C8FC91A": {
+      "Type": "AWS::ServiceDiscovery::Service",
+      "Properties": {
+        "DnsConfig": {
+          "DnsRecords": [
+            {
+              "TTL": 10,
+              "Type": "SRV"
+            }
+          ],
+          "NamespaceId": {
+            "Fn::GetAtt": [
+              "Namespace9B63B8C8",
+              "Id"
+            ]
+          },
+          "RoutingPolicy": "MULTIVALUE"
+        },
+        "Name": "api",
+        "NamespaceId": {
+          "Fn::GetAtt": [
+            "Namespace9B63B8C8",
+            "Id"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Namespace/ApiDiscovery/Resource"
+      }
+    },
+    "ApiLogGroup1DEDFC07": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 30
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiLogGroup/Resource"
+      }
+    },
+    "ApiTaskDefinitionTaskRole7EE87BD7": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskDefinition/TaskRole/Resource"
+      }
+    },
+    "ApiTaskDefinitionTaskRoleDefaultPolicyA678CF9F": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "kms:GenerateDataKey",
+                "kms:Decrypt"
+              ],
+              "Condition": {
+                "StringEquals": {
+                  "kms:EncryptionContext:rillora_application": "content-v1",
+                  "kms:EncryptionContext:rillora_environment": "rillora-staging"
+                },
+                "Null": {
+                  "kms:EncryptionContext:owner_id": "false",
+                  "kms:EncryptionContext:key_id": "false"
+                }
+              },
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "PrivateContentKey82076AB6",
+                  "Arn"
+                ]
+              },
+              "Sid": "UseOnlyStagingContentKeys"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ApiTaskDefinitionTaskRoleDefaultPolicyA678CF9F",
+        "Roles": [
+          {
+            "Ref": "ApiTaskDefinitionTaskRole7EE87BD7"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskDefinition/TaskRole/DefaultPolicy/Resource"
+      }
+    },
+    "ApiTaskDefinition51EA709E": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Environment": [
+              {
+                "Name": "NODE_ENV",
+                "Value": "production"
+              },
+              {
+                "Name": "HOST",
+                "Value": "0.0.0.0"
+              },
+              {
+                "Name": "PORT",
+                "Value": "8080"
+              },
+              {
+                "Name": "DATABASE_HOST",
+                "Value": {
+                  "Fn::GetAtt": [
+                    "DatabaseB269D8BB",
+                    "Endpoint.Address"
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_PORT",
+                "Value": {
+                  "Fn::GetAtt": [
+                    "DatabaseB269D8BB",
+                    "Endpoint.Port"
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_NAME",
+                "Value": "rillora"
+              },
+              {
+                "Name": "DATABASE_SSL_MODE",
+                "Value": "verify-full"
+              },
+              {
+                "Name": "DATABASE_SSL_CA_PATH",
+                "Value": "/app/certs/rds-global-bundle.pem"
+              },
+              {
+                "Name": "DATABASE_CONNECTION_TIMEOUT_MS",
+                "Value": "45000"
+              },
+              {
+                "Name": "DATA_REGION",
+                "Value": "eu-central-1"
+              },
+              {
+                "Name": "CONTENT_PROTECTION_MODE",
+                "Value": "encrypted"
+              },
+              {
+                "Name": "CONTENT_KMS_KEY_ARN",
+                "Value": {
+                  "Fn::GetAtt": [
+                    "PrivateContentKey82076AB6",
+                    "Arn"
+                  ]
+                }
+              },
+              {
+                "Name": "CONTENT_KEY_NAMESPACE",
+                "Value": "rillora-staging"
+              },
+              {
+                "Name": "CORS_ORIGINS",
+                "Value": {
+                  "Ref": "WebCorsOrigin"
+                }
+              },
+              {
+                "Name": "ALLOW_DEV_AUTH",
+                "Value": "false"
+              },
+              {
+                "Name": "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL",
+                "Value": "false"
+              },
+              {
+                "Name": "DATABASE_POOL_MAX",
+                "Value": "5"
+              },
+              {
+                "Name": "TRUST_PROXY_HOPS",
+                "Value": "1"
+              },
+              {
+                "Name": "OIDC_ISSUER_URL",
+                "Value": {
+                  "Ref": "OidcIssuer"
+                }
+              },
+              {
+                "Name": "OIDC_CLIENT_ID",
+                "Value": {
+                  "Ref": "WebOidcClientId"
+                }
+              },
+              {
+                "Name": "AUTH0_EMAIL_VERIFICATION_DOMAIN",
+                "Value": {
+                  "Ref": "Auth0EmailVerificationDomain"
+                }
+              },
+              {
+                "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_ID",
+                "Value": {
+                  "Ref": "Auth0EmailVerificationClientId"
+                }
+              },
+              {
+                "Name": "AUTH0_DELETION_DOMAIN",
+                "Value": {
+                  "Ref": "Auth0DeletionDomain"
+                }
+              },
+              {
+                "Name": "AUTH0_DELETION_CLIENT_ID",
+                "Value": {
+                  "Ref": "Auth0DeletionClientId"
+                }
+              },
+              {
+                "Name": "OIDC_REDIRECT_URI",
+                "Value": {
+                  "Ref": "WebOidcRedirectUri"
+                }
+              },
+              {
+                "Name": "WEB_APP_ORIGIN",
+                "Value": {
+                  "Ref": "WebCorsOrigin"
+                }
+              },
+              {
+                "Name": "NATIVE_OIDC_CLIENT_ID",
+                "Value": {
+                  "Ref": "NativeOidcClientId"
+                }
+              },
+              {
+                "Name": "OIDC_API_AUDIENCE",
+                "Value": {
+                  "Ref": "OidcApiAudience"
+                }
+              },
+              {
+                "Name": "ALLOW_STRIPE_TEST_INTEGRATION",
+                "Value": "true"
+              },
+              {
+                "Name": "ALLOW_FAMILY_MAINTENANCE_PREVIEW",
+                "Value": "true"
+              },
+              {
+                "Name": "ALLOW_APPLE_SANDBOX_INTEGRATION",
+                "Value": "false"
+              },
+              {
+                "Name": "STRIPE_TEST_STAGING_MODE",
+                "Value": "true"
+              },
+              {
+                "Name": "STRIPE_EXPECTED_ACCOUNT_ID",
+                "Value": "acct_1U6B2RCxTlowhyiG"
+              },
+              {
+                "Name": "STRIPE_FAMILY_PRODUCT_ID",
+                "Value": "prod_V6O8lAFbTCDmKd"
+              },
+              {
+                "Name": "STRIPE_FAMILY_PLAN_VERSION",
+                "Value": "2"
+              },
+              {
+                "Name": "STRIPE_FAMILY_PRICE_VERSION",
+                "Value": "4"
+              },
+              {
+                "Name": "STRIPE_FAMILY_MONTHLY_PRICE_ID",
+                "Value": "price_1UHMlhCxTlowhyiGvBEPdb4x"
+              },
+              {
+                "Name": "STRIPE_FAMILY_ANNUAL_PRICE_ID",
+                "Value": "price_1UJe38CxTlowhyiGdx5ypIKJ"
+              },
+              {
+                "Name": "STRIPE_CHECKOUT_SUCCESS_URL",
+                "Value": "https://app.staging.rillora.xyz/?view=access&billing=return"
+              },
+              {
+                "Name": "STRIPE_CHECKOUT_CANCEL_URL",
+                "Value": "https://app.staging.rillora.xyz/?view=access&billing=cancelled"
+              },
+              {
+                "Name": "STRIPE_PORTAL_RETURN_URL",
+                "Value": "https://app.staging.rillora.xyz/?view=access&billing=return"
+              }
+            ],
+            "Essential": true,
+            "HealthCheck": {
+              "Command": [
+                "CMD-SHELL",
+                "node -e \"fetch('http://127.0.0.1:8080/health/live').then(r=>{if(!r.ok)process.exit(1)}).catch(()=>process.exit(1))\""
+              ],
+              "Interval": 30,
+              "Retries": 3,
+              "StartPeriod": 30,
+              "Timeout": 5
+            },
+            "Image": {
+              "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744"
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "ApiLogGroup1DEDFC07"
+                },
+                "awslogs-stream-prefix": "api",
+                "awslogs-region": "eu-central-1"
+              }
+            },
+            "Name": "Api",
+            "PortMappings": [
+              {
+                "AppProtocol": "http",
+                "ContainerPort": 8080,
+                "Name": "http",
+                "Protocol": "tcp"
+              }
+            ],
+            "Secrets": [
+              {
+                "Name": "DATABASE_USER",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "RuntimeDatabaseSecretE7205402"
+                      },
+                      ":username::"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_PASSWORD",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "RuntimeDatabaseSecretE7205402"
+                      },
+                      ":password::"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "OIDC_CLIENT_SECRET",
+                "ValueFrom": {
+                  "Ref": "WebOidcClientSecret8C81BEC4"
+                }
+              },
+              {
+                "Name": "AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET",
+                "ValueFrom": {
+                  "Ref": "EmailVerificationClientSecret68A64726"
+                }
+              },
+              {
+                "Name": "AUTH0_DELETION_CLIENT_SECRET",
+                "ValueFrom": {
+                  "Ref": "AccountDeletionClientSecretE308ADC4"
+                }
+              },
+              {
+                "Name": "STRIPE_TEST_API_KEY",
+                "ValueFrom": {
+                  "Ref": "StripeTestSecret04351D5D"
+                }
+              },
+              {
+                "Name": "STRIPE_TEST_WEBHOOK_SECRET",
+                "ValueFrom": {
+                  "Ref": "StripeTestWebhookSecret27AD2583"
+                }
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "ApiTaskDefinitionExecutionRoleA3303016",
+            "Arn"
+          ]
+        },
+        "Family": "RilloraStagingApiTaskDefinitionF6347BA4",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "RuntimePlatform": {
+          "CpuArchitecture": "ARM64",
+          "OperatingSystemFamily": "LINUX"
+        },
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "ApiTaskDefinitionTaskRole7EE87BD7",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskDefinition/Resource"
+      }
+    },
+    "ApiTaskDefinitionExecutionRoleA3303016": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskDefinition/ExecutionRole/Resource"
+      }
+    },
+    "ApiTaskDefinitionExecutionRoleDefaultPolicy5B03B3DE": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "ApiLogGroup1DEDFC07",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "RuntimeDatabaseSecretE7205402"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "WebOidcClientSecret8C81BEC4"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "EmailVerificationClientSecret68A64726"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "AccountDeletionClientSecretE308ADC4"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "StripeTestSecret04351D5D"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "StripeTestWebhookSecret27AD2583"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "ApiTaskDefinitionExecutionRoleDefaultPolicy5B03B3DE",
+        "Roles": [
+          {
+            "Ref": "ApiTaskDefinitionExecutionRoleA3303016"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiTaskDefinition/ExecutionRole/DefaultPolicy/Resource"
+      }
+    },
+    "PrivateContentKey82076AB6": {
+      "Type": "AWS::KMS::Key",
+      "Properties": {
+        "Description": "Rillora staging private-content wrapping key",
+        "EnableKeyRotation": true,
+        "KeyPolicy": {
+          "Statement": [
+            {
+              "Action": "kms:*",
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":iam::133857166372:root"
+                    ]
+                  ]
+                }
+              },
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PendingWindowInDays": 30
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/PrivateContentKey/Resource"
+      }
+    },
+    "ApiServiceC9037CF0": {
+      "Type": "AWS::ECS::Service",
+      "Properties": {
+        "CapacityProviderStrategy": [
+          {
+            "CapacityProvider": "FARGATE",
+            "Weight": 1
+          }
+        ],
+        "Cluster": {
+          "Ref": "ClusterEB0386A7"
+        },
+        "DeploymentConfiguration": {
+          "Alarms": {
+            "AlarmNames": [],
+            "Enable": false,
+            "Rollback": false
+          },
+          "DeploymentCircuitBreaker": {
+            "Enable": true,
+            "Rollback": true
+          },
+          "MaximumPercent": 200,
+          "MinimumHealthyPercent": 100
+        },
+        "DeploymentController": {
+          "Type": "ECS"
+        },
+        "DesiredCount": 1,
+        "EnableECSManagedTags": true,
+        "ForceNewDeployment": {
+          "EnableForceNewDeployment": true,
+          "ForceNewDeploymentNonce": "api-on-demand-20260917"
+        },
+        "NetworkConfiguration": {
+          "AwsvpcConfiguration": {
+            "AssignPublicIp": "ENABLED",
+            "SecurityGroups": [
+              {
+                "Fn::GetAtt": [
+                  "ApiTaskSecurityGroup1B197C18",
+                  "GroupId"
+                ]
+              }
+            ],
+            "Subnets": [
+              {
+                "Ref": "VpcedgeSubnet1Subnet578D518D"
+              },
+              {
+                "Ref": "VpcedgeSubnet2Subnet67EE456C"
+              }
+            ]
+          }
+        },
+        "PropagateTags": "SERVICE",
+        "ServiceRegistries": [
+          {
+            "ContainerName": "Api",
+            "ContainerPort": 8080,
+            "RegistryArn": {
+              "Fn::GetAtt": [
+                "NamespaceApiDiscovery5C8FC91A",
+                "Arn"
+              ]
+            }
+          }
+        ],
+        "TaskDefinition": {
+          "Ref": "ApiTaskDefinition51EA709E"
+        }
+      },
+      "DependsOn": [
+        "ApiTaskDefinitionTaskRoleDefaultPolicyA678CF9F",
+        "ApiTaskDefinitionTaskRole7EE87BD7",
+        "DatabaseLogRetentionpostgresqlFBE8A947",
+        "DatabaseB269D8BB",
+        "DatabaseSecretAttachmentE5D1B020",
+        "RilloraStagingDatabaseSecretBD8DADAB145d7587a81d8eb10deb319f17c60255",
+        "DatabaseSubnetGroup7D60F180",
+        "VpcLink42ED6FF0"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/ApiService/Service"
+      }
+    },
+    "MigrationLogGroupFD140541": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 30
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/MigrationLogGroup/Resource"
+      }
+    },
+    "MigrationTaskDefinitionTaskRole01342380": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/MigrationTaskDefinition/TaskRole/Resource"
+      }
+    },
+    "MigrationTaskDefinitionE89B136E": {
+      "Type": "AWS::ECS::TaskDefinition",
+      "Properties": {
+        "ContainerDefinitions": [
+          {
+            "Command": [
+              "/bin/sh",
+              "-c",
+              "node dist/migrate.js && node dist/bootstrap-runtime.js"
+            ],
+            "Environment": [
+              {
+                "Name": "NODE_ENV",
+                "Value": "production"
+              },
+              {
+                "Name": "HOST",
+                "Value": "0.0.0.0"
+              },
+              {
+                "Name": "PORT",
+                "Value": "8080"
+              },
+              {
+                "Name": "DATABASE_HOST",
+                "Value": {
+                  "Fn::GetAtt": [
+                    "DatabaseB269D8BB",
+                    "Endpoint.Address"
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_PORT",
+                "Value": {
+                  "Fn::GetAtt": [
+                    "DatabaseB269D8BB",
+                    "Endpoint.Port"
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_NAME",
+                "Value": "rillora"
+              },
+              {
+                "Name": "DATABASE_SSL_MODE",
+                "Value": "verify-full"
+              },
+              {
+                "Name": "DATABASE_SSL_CA_PATH",
+                "Value": "/app/certs/rds-global-bundle.pem"
+              },
+              {
+                "Name": "DATABASE_CONNECTION_TIMEOUT_MS",
+                "Value": "45000"
+              },
+              {
+                "Name": "DATA_REGION",
+                "Value": "eu-central-1"
+              }
+            ],
+            "Essential": true,
+            "Image": {
+              "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:0c4291f6786e9e3516dac536c8e8405789a4f37f79cb2cdd7f97cf40b5f3a744"
+            },
+            "LogConfiguration": {
+              "LogDriver": "awslogs",
+              "Options": {
+                "awslogs-group": {
+                  "Ref": "MigrationLogGroupFD140541"
+                },
+                "awslogs-stream-prefix": "migration",
+                "awslogs-region": "eu-central-1"
+              }
+            },
+            "Name": "Migration",
+            "Secrets": [
+              {
+                "Name": "DATABASE_USER",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "DatabaseSecretAttachmentE5D1B020"
+                      },
+                      ":username::"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "DATABASE_PASSWORD",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "DatabaseSecretAttachmentE5D1B020"
+                      },
+                      ":password::"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "RUNTIME_DATABASE_USER",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "RuntimeDatabaseSecretE7205402"
+                      },
+                      ":username::"
+                    ]
+                  ]
+                }
+              },
+              {
+                "Name": "RUNTIME_DATABASE_PASSWORD",
+                "ValueFrom": {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Ref": "RuntimeDatabaseSecretE7205402"
+                      },
+                      ":password::"
+                    ]
+                  ]
+                }
+              }
+            ]
+          }
+        ],
+        "Cpu": "256",
+        "ExecutionRoleArn": {
+          "Fn::GetAtt": [
+            "MigrationTaskDefinitionExecutionRoleB0331BA1",
+            "Arn"
+          ]
+        },
+        "Family": "RilloraStagingMigrationTaskDefinitionD83F7D18",
+        "Memory": "512",
+        "NetworkMode": "awsvpc",
+        "RequiresCompatibilities": [
+          "FARGATE"
+        ],
+        "RuntimePlatform": {
+          "CpuArchitecture": "ARM64",
+          "OperatingSystemFamily": "LINUX"
+        },
+        "TaskRoleArn": {
+          "Fn::GetAtt": [
+            "MigrationTaskDefinitionTaskRole01342380",
+            "Arn"
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/MigrationTaskDefinition/Resource"
+      }
+    },
+    "MigrationTaskDefinitionExecutionRoleB0331BA1": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "ecs-tasks.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/MigrationTaskDefinition/ExecutionRole/Resource"
+      }
+    },
+    "MigrationTaskDefinitionExecutionRoleDefaultPolicyCEE787AE": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "ecr:BatchCheckLayerAvailability",
+                "ecr:GetDownloadUrlForLayer",
+                "ecr:BatchGetImage"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    "arn:",
+                    {
+                      "Ref": "AWS::Partition"
+                    },
+                    ":ecr:eu-central-1:133857166372:repository/cdk-hnb659fds-container-assets-133857166372-eu-central-1"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "ecr:GetAuthorizationToken",
+              "Effect": "Allow",
+              "Resource": "*"
+            },
+            {
+              "Action": [
+                "logs:CreateLogStream",
+                "logs:PutLogEvents"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Fn::GetAtt": [
+                  "MigrationLogGroupFD140541",
+                  "Arn"
+                ]
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "DatabaseSecretAttachmentE5D1B020"
+              }
+            },
+            {
+              "Action": [
+                "secretsmanager:GetSecretValue",
+                "secretsmanager:DescribeSecret"
+              ],
+              "Effect": "Allow",
+              "Resource": {
+                "Ref": "RuntimeDatabaseSecretE7205402"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "MigrationTaskDefinitionExecutionRoleDefaultPolicyCEE787AE",
+        "Roles": [
+          {
+            "Ref": "MigrationTaskDefinitionExecutionRoleB0331BA1"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/MigrationTaskDefinition/ExecutionRole/DefaultPolicy/Resource"
+      }
+    },
+    "VpcLink42ED6FF0": {
+      "Type": "AWS::ApiGatewayV2::VpcLink",
+      "Properties": {
+        "Name": "RilloraStagingVpcLink07F622AD",
+        "SecurityGroupIds": [
+          {
+            "Fn::GetAtt": [
+              "VpcLinkSecurityGroupB3941EDC",
+              "GroupId"
+            ]
+          }
+        ],
+        "SubnetIds": [
+          {
+            "Ref": "VpcedgeSubnet1Subnet578D518D"
+          },
+          {
+            "Ref": "VpcedgeSubnet2Subnet67EE456C"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/VpcLink/Resource"
+      }
+    },
+    "HttpApiAccessLogs4B419BF6": {
+      "Type": "AWS::Logs::LogGroup",
+      "Properties": {
+        "RetentionInDays": 30
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/HttpApiAccessLogs/Resource"
+      }
+    },
+    "HttpApiF5A9A8A7": {
+      "Type": "AWS::ApiGatewayV2::Api",
+      "Properties": {
+        "CorsConfiguration": {
+          "AllowCredentials": true,
+          "AllowHeaders": [
+            "authorization",
+            "content-type",
+            "x-csrf-token",
+            "x-rillora-client"
+          ],
+          "AllowMethods": [
+            "*"
+          ],
+          "AllowOrigins": [
+            {
+              "Ref": "WebCorsOrigin"
+            }
+          ],
+          "MaxAge": 3600
+        },
+        "Description": "Synthetic-only Rillora staging API",
+        "Name": "rillora-staging",
+        "ProtocolType": "HTTP"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/HttpApi/Resource"
+      }
+    },
+    "HttpApiDefaultRouteServiceDiscoveryIntegration826226B9": {
+      "Type": "AWS::ApiGatewayV2::Integration",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApiF5A9A8A7"
+        },
+        "ConnectionId": {
+          "Ref": "VpcLink42ED6FF0"
+        },
+        "ConnectionType": "VPC_LINK",
+        "IntegrationMethod": "ANY",
+        "IntegrationType": "HTTP_PROXY",
+        "IntegrationUri": {
+          "Fn::GetAtt": [
+            "NamespaceApiDiscovery5C8FC91A",
+            "Arn"
+          ]
+        },
+        "PayloadFormatVersion": "1.0"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/HttpApi/DefaultRoute/ServiceDiscoveryIntegration/Resource"
+      }
+    },
+    "HttpApiDefaultRoute146696CE": {
+      "Type": "AWS::ApiGatewayV2::Route",
+      "Properties": {
+        "ApiId": {
+          "Ref": "HttpApiF5A9A8A7"
+        },
+        "AuthorizationType": "NONE",
+        "RouteKey": "$default",
+        "Target": {
+          "Fn::Join": [
+            "",
+            [
+              "integrations/",
+              {
+                "Ref": "HttpApiDefaultRouteServiceDiscoveryIntegration826226B9"
+              }
+            ]
+          ]
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/HttpApi/DefaultRoute/Resource"
+      }
+    },
+    "HttpApiDefaultStage3EEB07D6": {
+      "Type": "AWS::ApiGatewayV2::Stage",
+      "Properties": {
+        "AccessLogSettings": {
+          "DestinationArn": {
+            "Fn::GetAtt": [
+              "HttpApiAccessLogs4B419BF6",
+              "Arn"
+            ]
+          },
+          "Format": "{\"requestId\":\"$context.requestId\",\"httpMethod\":\"$context.httpMethod\",\"path\":\"$context.path\",\"status\":\"$context.status\",\"responseLength\":\"$context.responseLength\",\"integrationError\":\"$context.integrationErrorMessage\"}"
+        },
+        "ApiId": {
+          "Ref": "HttpApiF5A9A8A7"
+        },
+        "AutoDeploy": true,
+        "DefaultRouteSettings": {
+          "ThrottlingBurstLimit": 50,
+          "ThrottlingRateLimit": 25
+        },
+        "StageName": "$default"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/HttpApi/DefaultStage/Resource"
+      }
+    },
+    "WebBucket12880F5B": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        },
+        "PublicAccessBlockConfiguration": {
+          "BlockPublicAcls": true,
+          "BlockPublicPolicy": true,
+          "IgnorePublicAcls": true,
+          "RestrictPublicBuckets": true
+        },
+        "Tags": [
+          {
+            "Key": "aws-cdk:auto-delete-objects",
+            "Value": "true"
+          },
+          {
+            "Key": "aws-cdk:cr-owned:9b0d1fb0",
+            "Value": "true"
+          }
+        ]
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebBucket/Resource"
+      }
+    },
+    "WebBucketPolicy95D08FAA": {
+      "Type": "AWS::S3::BucketPolicy",
+      "Properties": {
+        "Bucket": {
+          "Ref": "WebBucket12880F5B"
+        },
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": "s3:*",
+              "Condition": {
+                "Bool": {
+                  "aws:SecureTransport": "false"
+                }
+              },
+              "Effect": "Deny",
+              "Principal": {
+                "AWS": "*"
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebBucket12880F5B",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebBucket12880F5B",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:PutBucketPolicy",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*"
+              ],
+              "Effect": "Allow",
+              "Principal": {
+                "AWS": {
+                  "Fn::GetAtt": [
+                    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+                    "Arn"
+                  ]
+                }
+              },
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebBucket12880F5B",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebBucket12880F5B",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": "s3:GetObject",
+              "Condition": {
+                "StringEquals": {
+                  "AWS:SourceArn": {
+                    "Fn::Join": [
+                      "",
+                      [
+                        "arn:",
+                        {
+                          "Ref": "AWS::Partition"
+                        },
+                        ":cloudfront::",
+                        {
+                          "Ref": "AWS::AccountId"
+                        },
+                        ":distribution/",
+                        {
+                          "Ref": "WebDistribution59C46482"
+                        }
+                      ]
+                    ]
+                  }
+                }
+              },
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "cloudfront.amazonaws.com"
+              },
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "WebBucket12880F5B",
+                        "Arn"
+                      ]
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebBucket/Policy/Resource"
+      }
+    },
+    "WebBucketAutoDeleteObjectsCustomResource9C1A079F": {
+      "Type": "Custom::S3AutoDeleteObjects",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F",
+            "Arn"
+          ]
+        },
+        "BucketName": {
+          "Ref": "WebBucket12880F5B"
+        }
+      },
+      "DependsOn": [
+        "WebBucketPolicy95D08FAA"
+      ],
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebBucket/AutoDeleteObjectsCustomResource/Default"
+      }
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Version": "2012-10-17",
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ]
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Sub": "arn:${AWS::Partition}:iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Custom::S3AutoDeleteObjectsCustomResourceProvider/Role"
+      }
+    },
+    "CustomS3AutoDeleteObjectsCustomResourceProviderHandler9D90184F": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "S3Key": "[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]"
+        },
+        "Timeout": 900,
+        "MemorySize": 128,
+        "Handler": "index.handler",
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092",
+            "Arn"
+          ]
+        },
+        "Runtime": "nodejs24.x",
+        "Description": {
+          "Fn::Join": [
+            "",
+            [
+              "Lambda function for auto-deleting objects in ",
+              {
+                "Ref": "WebBucket12880F5B"
+              },
+              " S3 bucket."
+            ]
+          ]
+        }
+      },
+      "DependsOn": [
+        "CustomS3AutoDeleteObjectsCustomResourceProviderRole3B1BD092"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Custom::S3AutoDeleteObjectsCustomResourceProvider/Handler",
+        "aws:asset:path": "asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+        "aws:asset:property": "Code"
+      }
+    },
+    "WebResponseHeadersPolicyA822EA32": {
+      "Type": "AWS::CloudFront::ResponseHeadersPolicy",
+      "Properties": {
+        "ResponseHeadersPolicyConfig": {
+          "Name": "RilloraStagingWebResponseHeadersPolicy8EF1C42B",
+          "SecurityHeadersConfig": {
+            "ContentSecurityPolicy": {
+              "ContentSecurityPolicy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+              "Override": true
+            },
+            "ContentTypeOptions": {
+              "Override": true
+            },
+            "FrameOptions": {
+              "FrameOption": "DENY",
+              "Override": true
+            },
+            "ReferrerPolicy": {
+              "Override": true,
+              "ReferrerPolicy": "strict-origin-when-cross-origin"
+            },
+            "StrictTransportSecurity": {
+              "AccessControlMaxAgeSec": 31536000,
+              "IncludeSubdomains": true,
+              "Override": true,
+              "Preload": false
+            }
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebResponseHeadersPolicy/Resource"
+      }
+    },
+    "SpaRewrite1C145184": {
+      "Type": "AWS::CloudFront::Function",
+      "Properties": {
+        "AutoPublish": true,
+        "FunctionCode": "function handler(event) {\n  var request = event.request;\n  var uri = request.uri;\n  if (uri.endsWith('/')) {\n    request.uri = uri + 'index.html';\n  } else if (!uri.split('/').pop().includes('.')) {\n    request.uri = '/index.html';\n  }\n  return request;\n}",
+        "FunctionConfig": {
+          "Comment": "eu-central-1RilloraStagingSpaRewriteEAA2D698",
+          "Runtime": "cloudfront-js-2.0"
+        },
+        "Name": "eu-central-1RilloraStagingSpaRewriteEAA2D698"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/SpaRewrite/Resource"
+      }
+    },
+    "WebDistributionOrigin1S3OriginAccessControl83AD2F73": {
+      "Type": "AWS::CloudFront::OriginAccessControl",
+      "Properties": {
+        "OriginAccessControlConfig": {
+          "Name": "RilloraStagingWebDistributioOrigin1S3OriginAccessControlE92D4EAC",
+          "OriginAccessControlOriginType": "s3",
+          "SigningBehavior": "always",
+          "SigningProtocol": "sigv4"
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebDistribution/Origin1/S3OriginAccessControl/Resource"
+      }
+    },
+    "WebDistribution59C46482": {
+      "Type": "AWS::CloudFront::Distribution",
+      "Properties": {
+        "DistributionConfig": {
+          "Aliases": [
+            "app.staging.rillora.xyz"
+          ],
+          "CacheBehaviors": [
+            {
+              "AllowedMethods": [
+                "GET",
+                "HEAD",
+                "OPTIONS",
+                "PUT",
+                "PATCH",
+                "POST",
+                "DELETE"
+              ],
+              "CachePolicyId": "4135ea2d-6df8-44a3-9df3-4b5a84be39ad",
+              "CachedMethods": [
+                "GET",
+                "HEAD",
+                "OPTIONS"
+              ],
+              "Compress": true,
+              "OriginRequestPolicyId": "b689b0a8-53d0-40ab-baf2-68738e2966ac",
+              "PathPattern": "/api/*",
+              "ResponseHeadersPolicyId": {
+                "Ref": "WebResponseHeadersPolicyA822EA32"
+              },
+              "TargetOriginId": "RilloraStagingWebDistributionOrigin299EBBBED",
+              "ViewerProtocolPolicy": "redirect-to-https"
+            }
+          ],
+          "DefaultCacheBehavior": {
+            "AllowedMethods": [
+              "GET",
+              "HEAD",
+              "OPTIONS"
+            ],
+            "CachePolicyId": "658327ea-f89d-4fab-a63d-7e88639e58f6",
+            "CachedMethods": [
+              "GET",
+              "HEAD",
+              "OPTIONS"
+            ],
+            "Compress": true,
+            "FunctionAssociations": [
+              {
+                "EventType": "viewer-request",
+                "FunctionARN": {
+                  "Fn::GetAtt": [
+                    "SpaRewrite1C145184",
+                    "FunctionARN"
+                  ]
+                }
+              }
+            ],
+            "ResponseHeadersPolicyId": {
+              "Ref": "WebResponseHeadersPolicyA822EA32"
+            },
+            "TargetOriginId": "RilloraStagingWebDistributionOrigin18AA47CE0",
+            "ViewerProtocolPolicy": "redirect-to-https"
+          },
+          "DefaultRootObject": "index.html",
+          "Enabled": true,
+          "HttpVersion": "http2",
+          "IPV6Enabled": true,
+          "Origins": [
+            {
+              "DomainName": {
+                "Fn::GetAtt": [
+                  "WebBucket12880F5B",
+                  "RegionalDomainName"
+                ]
+              },
+              "Id": "RilloraStagingWebDistributionOrigin18AA47CE0",
+              "OriginAccessControlId": {
+                "Fn::GetAtt": [
+                  "WebDistributionOrigin1S3OriginAccessControl83AD2F73",
+                  "Id"
+                ]
+              },
+              "S3OriginConfig": {
+                "OriginAccessIdentity": ""
+              }
+            },
+            {
+              "CustomOriginConfig": {
+                "OriginProtocolPolicy": "https-only",
+                "OriginReadTimeout": 30,
+                "OriginSSLProtocols": [
+                  "TLSv1.2"
+                ]
+              },
+              "DomainName": {
+                "Fn::Select": [
+                  0,
+                  {
+                    "Fn::Split": [
+                      "/",
+                      {
+                        "Fn::Select": [
+                          1,
+                          {
+                            "Fn::Split": [
+                              "//",
+                              {
+                                "Fn::GetAtt": [
+                                  "HttpApiF5A9A8A7",
+                                  "ApiEndpoint"
+                                ]
+                              }
+                            ]
+                          }
+                        ]
+                      }
+                    ]
+                  }
+                ]
+              },
+              "Id": "RilloraStagingWebDistributionOrigin299EBBBED"
+            }
+          ],
+          "PriceClass": "PriceClass_100",
+          "ViewerCertificate": {
+            "AcmCertificateArn": {
+              "Ref": "WebCertificateArn"
+            },
+            "MinimumProtocolVersion": "TLSv1.2_2021",
+            "SslSupportMethod": "sni-only"
+          }
+        }
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebDistribution/Resource"
+      }
+    },
+    "WebDeploymentAwsCliLayer79C1EFEA": {
+      "Type": "AWS::Lambda::LayerVersion",
+      "Properties": {
+        "Content": {
+          "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "S3Key": "[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]"
+        },
+        "Description": "/opt/awscli/aws"
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebDeployment/AwsCliLayer/Resource",
+        "aws:asset:path": "asset.98f62bef9320f8c0a0a7be21d7c746f069131f196f51ffe3008a6bb730b368ec.zip",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Content"
+      }
+    },
+    "WebDeploymentCustomResource08EEC474": {
+      "Type": "Custom::CDKBucketDeployment",
+      "Properties": {
+        "ServiceToken": {
+          "Fn::GetAtt": [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536",
+            "Arn"
+          ]
+        },
+        "SourceBucketNames": [
+          "cdk-hnb659fds-assets-133857166372-eu-central-1"
+        ],
+        "SourceObjectKeys": [
+          "ed56441357f2ee55a0d2decc68f6e149a71582293f070e8a01164b7ccfa7b3b9.zip"
+        ],
+        "DestinationBucketName": {
+          "Ref": "WebBucket12880F5B"
+        },
+        "WaitForDistributionInvalidation": true,
+        "Prune": true,
+        "DistributionId": {
+          "Ref": "WebDistribution59C46482"
+        },
+        "DistributionPaths": [
+          "/*"
+        ],
+        "OutputObjectKeys": true
+      },
+      "UpdateReplacePolicy": "Delete",
+      "DeletionPolicy": "Delete",
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/WebDeployment/CustomResource/Default"
+      }
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265": {
+      "Type": "AWS::IAM::Role",
+      "Properties": {
+        "AssumeRolePolicyDocument": {
+          "Statement": [
+            {
+              "Action": "sts:AssumeRole",
+              "Effect": "Allow",
+              "Principal": {
+                "Service": "lambda.amazonaws.com"
+              }
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "ManagedPolicyArns": [
+          {
+            "Fn::Join": [
+              "",
+              [
+                "arn:",
+                {
+                  "Ref": "AWS::Partition"
+                },
+                ":iam::aws:policy/service-role/AWSLambdaBasicExecutionRole"
+              ]
+            ]
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/Resource"
+      }
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF": {
+      "Type": "AWS::IAM::Policy",
+      "Properties": {
+        "PolicyDocument": {
+          "Statement": [
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::cdk-hnb659fds-assets-133857166372-eu-central-1"
+                    ]
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      "arn:",
+                      {
+                        "Ref": "AWS::Partition"
+                      },
+                      ":s3:::cdk-hnb659fds-assets-133857166372-eu-central-1/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "s3:GetObject*",
+                "s3:GetBucket*",
+                "s3:List*",
+                "s3:DeleteObject*",
+                "s3:PutObject",
+                "s3:PutObjectLegalHold",
+                "s3:PutObjectRetention",
+                "s3:PutObjectTagging",
+                "s3:PutObjectVersionTagging",
+                "s3:Abort*"
+              ],
+              "Effect": "Allow",
+              "Resource": [
+                {
+                  "Fn::GetAtt": [
+                    "WebBucket12880F5B",
+                    "Arn"
+                  ]
+                },
+                {
+                  "Fn::Join": [
+                    "",
+                    [
+                      {
+                        "Fn::GetAtt": [
+                          "WebBucket12880F5B",
+                          "Arn"
+                        ]
+                      },
+                      "/*"
+                    ]
+                  ]
+                }
+              ]
+            },
+            {
+              "Action": [
+                "cloudfront:GetInvalidation",
+                "cloudfront:CreateInvalidation"
+              ],
+              "Effect": "Allow",
+              "Resource": "*"
+            }
+          ],
+          "Version": "2012-10-17"
+        },
+        "PolicyName": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "Roles": [
+          {
+            "Ref": "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+          }
+        ]
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/ServiceRole/DefaultPolicy/Resource"
+      }
+    },
+    "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C81C01536": {
+      "Type": "AWS::Lambda::Function",
+      "Properties": {
+        "Code": {
+          "S3Bucket": "cdk-hnb659fds-assets-133857166372-eu-central-1",
+          "S3Key": "[PUBLIC_CONTENT_HASH_IN_ENCRYPTED_ORIGINAL]"
+        },
+        "Environment": {
+          "Variables": {
+            "AWS_CA_BUNDLE": "/etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem"
+          }
+        },
+        "Handler": "index.handler",
+        "Layers": [
+          {
+            "Ref": "WebDeploymentAwsCliLayer79C1EFEA"
+          }
+        ],
+        "Role": {
+          "Fn::GetAtt": [
+            "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265",
+            "Arn"
+          ]
+        },
+        "Runtime": "python3.13",
+        "Timeout": 900
+      },
+      "DependsOn": [
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRoleDefaultPolicy88902FDF",
+        "CustomCDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756CServiceRole89A01265"
+      ],
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/Custom::CDKBucketDeployment8693BB64968944B69AAFB0CC9EB8756C/Resource",
+        "aws:asset:path": "asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+        "aws:asset:is-bundled": false,
+        "aws:asset:property": "Code"
+      }
+    },
+    "CDKMetadata": {
+      "Type": "AWS::CDK::Metadata",
+      "Properties": {
+        "Analytics": "v2:deflate64:H4sIAAAAAAAA/5VUW2vbMBT+Lcuzqo0U+rC3JF7bsLKGpPRljCDLp95pbMnokiwY//cdSY6dtdlgYNCnT+d+8ZRPb274pw/iYK9ksbuqMOftxgm5Y4sXtRJG1ODAsDVY7Y0ERoLbFuSUt8+NDDLPqwVb+bxCufG5Ahe4Ea21d/Ak8gpGfuRm1mqJwqFWgzBbGdwLB6ONpaIICN8RexDH3ml/mzkK9mcNyrHbSh8edBneT3AD0ht0xzujfRMj+CexVKUBa9/xXyLdMRQ1b9c6JRPPlabEY0gJdazSpeUtOR9cDJjAmqqpQr4dMwXJZcKJXFhYKuuEovqmtAfdbH5OnKQpOJNqk81Pmh2zkbW1UKIEw9uURRBMx5MwJbizgg0C714STSavt62wlqzyWThYAU2lj0GGz73cgcsGIkjzNrFzCpIlGLwk9L2d1PgL1eTz5HzcwkSRZnyyvdWZdzqDior1mL+CdHbS/ejtjRU/v/+H7aRAM+4ghB1MdwwkNWNReRuGnWyf4C1VRoRptbsMXlDhaVbfMlo5gQrMGdfrbsDsUab5TzC0KoICrdR7MEfe9lOfKfuNVs42Imlcoi8ZpH5t+0ZlmrI0y5qGIPWM3vgaGm3RaXOMrdnVlO5XiGWko2OiwTIt1D6t9gOq+As4wXvnmlmDgQpHuKZ1DShsaGmGPX5zHeWo6GWKO4COyUr74sVQ7WitKDutLNyDKMDYsc2XH269kicHA87QOoO5j5fN9aPBEtVMSlre0CCjqyD+F/pcmdZY1Hkh4hI9iCOYZ3IdraIqaS716PRSJF3XR55+mrEPIWdSZguaLF0Pb39eV0bvkdKMXUoxbKvgf0ujLCvks4NdVBhDirl413haPaUL4K/243465fRdf3i1iFfG07+mBr5O52/7GdhI7QUAAA=="
+      },
+      "Metadata": {
+        "aws:cdk:path": "RilloraStaging/CDKMetadata/Default"
+      }
+    }
+  },
+  "Outputs": {
+    "ApiEndpoint": {
+      "Value": {
+        "Fn::GetAtt": [
+          "HttpApiF5A9A8A7",
+          "ApiEndpoint"
+        ]
+      }
+    },
+    "PrivateContentKeyArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "PrivateContentKey82076AB6",
+          "Arn"
+        ]
+      }
+    },
+    "ContentProtectionMode": {
+      "Value": "encrypted"
+    },
+    "ContentMigrationEnabled": {
+      "Value": "false"
+    },
+    "WebDistributionDomainName": {
+      "Value": {
+        "Fn::GetAtt": [
+          "WebDistribution59C46482",
+          "DomainName"
+        ]
+      }
+    },
+    "WebUrl": {
+      "Value": "https://app.staging.rillora.xyz"
+    },
+    "ClusterName": {
+      "Value": {
+        "Ref": "ClusterEB0386A7"
+      }
+    },
+    "MigrationTaskDefinitionArn": {
+      "Value": {
+        "Ref": "MigrationTaskDefinitionE89B136E"
+      }
+    },
+    "TaskSecurityGroupId": {
+      "Value": {
+        "Fn::GetAtt": [
+          "ApiTaskSecurityGroup1B197C18",
+          "GroupId"
+        ]
+      }
+    },
+    "PublicSubnetIds": {
+      "Value": {
+        "Fn::Join": [
+          "",
+          [
+            {
+              "Ref": "VpcedgeSubnet1Subnet578D518D"
+            },
+            ",",
+            {
+              "Ref": "VpcedgeSubnet2Subnet67EE456C"
+            }
+          ]
+        ]
+      }
+    },
+    "ServiceDesiredCount": {
+      "Value": "1"
+    },
+    "WebOidcClientSecretArn": {
+      "Value": {
+        "Ref": "WebOidcClientSecret8C81BEC4"
+      }
+    },
+    "AccountDeletionClientSecretArn": {
+      "Value": {
+        "Ref": "AccountDeletionClientSecretE308ADC4"
+      }
+    },
+    "EmailVerificationClientSecretArn": {
+      "Value": {
+        "Ref": "EmailVerificationClientSecret68A64726"
+      }
+    },
+    "StripeTestApiKeySecretArn": {
+      "Value": {
+        "Ref": "StripeTestSecret04351D5D"
+      }
+    },
+    "StripeTestWebhookSecretArn": {
+      "Value": {
+        "Ref": "StripeTestWebhookSecret27AD2583"
+      }
+    },
+    "StagingOperatorRoleArn": {
+      "Value": {
+        "Fn::GetAtt": [
+          "StagingOperatorRoleB540A698",
+          "Arn"
+        ]
+      }
+    }
+  },
+  "Rules": {
+    "CheckBootstrapVersion": {
+      "Assertions": [
+        {
+          "Assert": {
+            "Fn::Not": [
+              {
+                "Fn::Contains": [
+                  [
+                    "1",
+                    "2",
+                    "3",
+                    "4",
+                    "5"
+                  ],
+                  {
+                    "Ref": "BootstrapVersion"
+                  }
+                ]
+              }
+            ]
+          },
+          "AssertDescription": "CDK bootstrap stack version 6 required. Please run 'cdk bootstrap' with a recent version of the CDK CLI."
+        }
+      ]
+    }
+  }
+}

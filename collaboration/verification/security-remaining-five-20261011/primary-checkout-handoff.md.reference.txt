@@ -1,0 +1,17 @@
+# Rillora 当前交接
+
+Status: REMAINING FIVE SOURCE DELIVERED / CI125 PASSED / ARCHIVE32 VERIFIED / ONLINE UNCHANGED
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+Owner要求继续修复剩余五组，先完成代码／测试，完成后一起推GitHub，线上保持原状。
+当前工程仅在已附加工作树的`codex/security-findings-20261011`，起点b6f5b8c97。
+主检出工程仍为647317834，不能拿这里的旧源码部署，也不要重新开始相同修复。
+
+剩余五组已经完成代码／测试并统一推送到74a9c66ac，API519项／infra58项及[CI125](https://github.com/tantalum666/rillora/actions/runs/38146452345)通过；新archive32的232原件／249路径已从GitHub独立新下载解密核验。
+唯一下一步：保持线上冻结；只有Owner后续明确恢复部署任务时，才按[活动工作树交接](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/handoff.md)
+和五组切换顺序准备受控维护，不重复已完成的修复／测试／Git保存。
+[本轮实施记录](/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app/docs/security-remaining-five-20261011.md)
+区分代码、本地回归与未执行的线上／真实凭据迁移。
+
+没有新部署、真实付款／退款、手机／TestFlight、保留账号删除或FanPass变更；原扫描未重启。
+前一轮076bd5a／CI124／archive31结果保留其原范围；本轮有独立的74a9c66ac／CI125／archive32证据。最终收尾只补文档与回执。

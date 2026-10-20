@@ -1,0 +1,30 @@
+"""Check changed Markdown links, using immutable catalogs for historical paths."""
+from pathlib import Path
+import json,re,subprocess,urllib.parse,datetime
+root=Path.cwd();catalog=set()
+for summary in [root/'collaboration/snapshot.json',*sorted((root/'collaboration/verification').glob('*/snapshot.json'))]:
+ data=json.loads(summary.read_text())
+ for name in data.get('catalogFiles',[]):
+  for row in json.loads((root/name).read_text()):
+   catalog.add(row['sourcePath'])
+files=set(subprocess.check_output(['git','diff','--name-only','HEAD','--','*.md'],text=True).splitlines())
+files.update(subprocess.check_output(['git','ls-files','--others','--exclude-standard','--','*.md'],text=True).splitlines())
+issues=[];count=0;historical=0
+for name in sorted(files):
+ p=root/name
+ if not p.is_file():continue
+ body=re.sub(r'```.*?```','',p.read_text(),flags=re.S)
+ for target in re.findall(r'(?<!!)\[[^\]]*\]\(([^)]+)\)',body):
+  target=target.strip().strip('<>')
+  if re.match(r'^(https?:|mailto:|tel:|app:|codex:|#)',target):continue
+  target=urllib.parse.unquote(target.split('#',1)[0]);target=re.sub(r':\d+$','',target)
+  if not target:continue
+  resolved=(p.parent/target).resolve();count+=1
+  if resolved.exists():continue
+  try:rel=resolved.relative_to(root).as_posix()
+  except ValueError:rel=''
+  if rel in catalog or (target.endswith('/') and any(x.startswith(rel.rstrip('/')+'/')for x in catalog)):historical+=1
+  else:issues.append({'document':name,'target':target})
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'checked':count,'historicalCatalogResolutions':historical,'documents':len(files),'issues':issues,'passed':not issues,'scope':'Changed project Markdown plus new archive README; prior unchanged links retain previous evidence.'}
+(root/'collaboration/verification/app-review-20261015/markdown-links.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(report,ensure_ascii=False));assert not issues

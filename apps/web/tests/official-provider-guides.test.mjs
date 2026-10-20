@@ -1,9 +1,10 @@
+import { createHash } from "node:crypto";
 import assert from "node:assert/strict";
 import test from "node:test";
 import { readFileSync } from "node:fs";
 
 import {
-  getOfficialProviderGuide,
+  getOfficialProviderGuide, localizeOfficialProviderGuide,
   officialProviderGuides,
   selfReportedProviderKeys, guideInitialPart, guideLinksForPart, guideMatchesQuery, suggestedAccountGuides,
 } from "../src/officialProviderGuides.js";
@@ -81,4 +82,44 @@ test("aliases, regional requirements and task-specific links stay accurate", () 
   const apple = getOfficialProviderGuide("apple");
   assert.ok(guideLinksForPart(apple, "now").every(link => link.phase !== "afterDeath"));
   assert.ok(guideLinksForPart(apple, "later").every(link => link.phase !== "prepare"));
+});
+
+
+test("every guide has complete Chinese prose without changing routes or evidence", () => {
+  for (const source of officialProviderGuides) {
+    for (const locale of ["zh-CN", "zh-Hans", "zh_Hans_CN"]) {
+      const guide = localizeOfficialProviderGuide(source, locale);
+      assert.equal(guide.contentLocale, "zh-Hans", source.key);
+      for (const field of ["key", "id", "name", "kindCode", "reviewed", "group"]) assert.equal(guide[field], source[field]);
+      for (const field of ["aliases", "matterMatch"]) assert.deepEqual(guide[field], source[field]);
+      for (const field of ["doNow", "later", "requirements"]) {
+        assert.equal(guide[field].length, source[field].length);
+        guide[field].forEach(value => assert.match(value, /\p{Script=Han}/u));
+      }
+      assert.match(guide.detail, /\p{Script=Han}/u);
+      assert.match(guide.boundary, /\p{Script=Han}/u);
+      assert.deepEqual(guide.linkDetails.map(({urlString, phase}) => ({urlString, phase})), source.linkDetails.map(({urlString, phase}) => ({urlString, phase})));
+      assert.deepEqual(localizeOfficialProviderGuide(guide, "en").doNow, source.doNow);
+    }
+    assert.deepEqual(localizeOfficialProviderGuide(source, "fr").doNow, source.doNow);
+  }
+});
+
+test("missing or incomplete translations fall back to the complete English guide", () => {
+  const source = getOfficialProviderGuide("apple");
+  for (const translations of [undefined, {"zh-Hans": {...source.translations["zh-Hans"], laterSteps: []}}, {"zh-Hans": {...source.translations["zh-Hans"], boundary: " "}}, {"zh-Hans": {...source.translations["zh-Hans"], links: source.links.map(() => null)}}]) {
+    const fixture = {...source, key: "synthetic-fallback", id: "synthetic-fallback", translations};
+    const actual = localizeOfficialProviderGuide(fixture, "zh-CN");
+    assert.equal(actual.contentLocale, "en");
+    assert.deepEqual(actual.doNow, source.doNow);
+    assert.deepEqual(actual.linkDetails, source.linkDetails);
+  }
+});
+
+
+test("Chinese overlays are pinned to exact canonical content, including source order", () => {
+  const catalog = JSON.parse(readFileSync(new URL("../../../config/provider-guides.json", import.meta.url), "utf8"));
+  for (const { translations, ...source } of catalog.guides) {
+    assert.equal(translations["zh-Hans"].sourceDigest, createHash("sha256").update(JSON.stringify(source)).digest("hex"), `${source.id}: review the Chinese overlay after any canonical change`);
+  }
 });

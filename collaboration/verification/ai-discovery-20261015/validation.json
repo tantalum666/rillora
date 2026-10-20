@@ -1,0 +1,32 @@
+{
+  "at": "2026-10-15T03:10:29.616932+00:00",
+  "scope": "research and documentation only",
+  "sourceScan": {
+    "passed": true,
+    "reviewedNonSecrets": 32,
+    "unreviewed": 0,
+    "authorityBase": "fec1ad3bcd97984768eed8b2fd95a86ac4f01f35"
+  },
+  "documentation": {
+    "passed": true,
+    "newOrChangedLocalLinks": 24,
+    "bilingualCases": 14,
+    "languageVariants": 28,
+    "modelEvaluationsExecuted": 0
+  },
+  "runtimeChanges": false,
+  "deployments": false,
+  "earlierEvidenceReused": true,
+  "nonProductFailures": [
+    {
+      "action": "initial documentation patch",
+      "result": "rejected before edits because the same handoff path appeared in both Delete and Add operations",
+      "resolution": "reissued as independent updates and one handoff replacement"
+    },
+    {
+      "action": "git diff whitespace",
+      "result": "existing hard-break syntax on an edited metadata line flagged",
+      "resolution": "removed trailing whitespace from new/edited metadata without changing meaning"
+    }
+  ]
+}

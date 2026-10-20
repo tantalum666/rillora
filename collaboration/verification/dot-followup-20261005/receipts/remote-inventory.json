@@ -1,0 +1,381 @@
+{
+  "recordedAt": "2026-10-05T06:18:52.357056+00:00",
+  "localBase": "03c97fc035f0ef23de5e0cd32084435d972d53c6",
+  "branches": [
+    {
+      "ref": "origin/codex/web-ux-acceptance-20261005",
+      "sha": "730071039b2deccaae1404e70cbe002e0af45575",
+      "mergeBase": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+      "files": [
+        "docs/qa/README.md",
+        "docs/qa/web-ux-acceptance-20261005/README.md",
+        "docs/qa/web-ux-acceptance-20261005/checkpoint-01.md",
+        "docs/qa/web-ux-acceptance-20261005/checkpoint-02.md",
+        "docs/qa/web-ux-acceptance-20261005/evidence-index.md",
+        "docs/qa/web-ux-acceptance-20261005/final-report.md",
+        "docs/qa/web-ux-acceptance-20261005/fixtures/plain-text-viewer-probe.txt",
+        "docs/qa/web-ux-acceptance-20261005/manifest.json",
+        "docs/qa/web-ux-acceptance-20261005/publication-log.md",
+        "docs/qa/web-ux-acceptance-20261005/screens/01-home-desktop.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/02-product-desktop.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/03-preview-entry.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/04-sharing-example-alex.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/05-sharing-example-expanded.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/06-pricing-desktop.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/07-support-desktop.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/08-signup-entry.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/09-signup-auth-page.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/10-signup-empty-validation.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/11-signup-invalid-validation.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/12-support-sharing-answer.png",
+        "docs/qa/web-ux-acceptance-20261005/screens/13-signup-passkey-choice.png",
+        "docs/qa/web-ux-acceptance-20261005/verification.json"
+      ],
+      "markdownReads": [
+        {
+          "path": "docs/qa/README.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/README.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-01.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/checkpoint-02.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/evidence-index.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/final-report.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/web-ux-acceptance-20261005/publication-log.md",
+          "scope": "complete new body"
+        }
+      ]
+    },
+    {
+      "ref": "origin/codex/chinese-ios-20261005",
+      "sha": "26134d44c3bf43c22841039df410d14e133bb6de",
+      "mergeBase": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+      "files": [
+        "apps/ios/Rillora.xcodeproj/project.pbxproj",
+        "apps/ios/Rillora/App/AppShellView.swift",
+        "apps/ios/Rillora/Core/API/APIClient.swift",
+        "apps/ios/Rillora/Core/API/APIConfiguration.swift",
+        "apps/ios/Rillora/Core/API/RilloraAPIError.swift",
+        "apps/ios/Rillora/Core/Authentication/AuthenticationStore.swift",
+        "apps/ios/Rillora/Core/Authentication/NativeAuthenticationService.swift",
+        "apps/ios/Rillora/Core/Authentication/NativeReauthenticationPrompt.swift",
+        "apps/ios/Rillora/Core/Authentication/SessionTokenStore.swift",
+        "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+        "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+        "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+        "apps/ios/Rillora/Core/Design/AppAppearance.swift",
+        "apps/ios/Rillora/Core/Design/AppLanguageView.swift",
+        "apps/ios/Rillora/Core/Design/L10n.swift",
+        "apps/ios/Rillora/Core/Design/RilloraInteractionComponents.swift",
+        "apps/ios/Rillora/Core/Design/RilloraSharingMotion.swift",
+        "apps/ios/Rillora/Core/Design/RilloraSurfaceMotion.swift",
+        "apps/ios/Rillora/Core/Design/RilloraTheme.swift",
+        "apps/ios/Rillora/Core/Domain/AccountDataModels.swift",
+        "apps/ios/Rillora/Core/Domain/FamilyMaintenanceModels.swift",
+        "apps/ios/Rillora/Core/Domain/MatterDetailFields.swift",
+        "apps/ios/Rillora/Core/Domain/Models.swift",
+        "apps/ios/Rillora/Core/Domain/SharingModels.swift",
+        "apps/ios/Rillora/Features/Account/AccountDataView.swift",
+        "apps/ios/Rillora/Features/Account/AccountDeletionView.swift",
+        "apps/ios/Rillora/Features/Account/AccountView.swift",
+        "apps/ios/Rillora/Features/Account/ApplePurchaseEntryView.swift",
+        "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+        "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+        "apps/ios/Rillora/Features/Account/PlanAccessView.swift",
+        "apps/ios/Rillora/Features/Account/ProfileDashboardComponents.swift",
+        "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+        "apps/ios/Rillora/Features/Account/StoreKitSandboxCatalogView.swift",
+        "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift",
+        "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+        "apps/ios/Rillora/Features/Contacts/MatterPeopleSection.swift",
+        "apps/ios/Rillora/Features/Contacts/SharedAccessStore.swift",
+        "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift",
+        "apps/ios/Rillora/Features/Contacts/SharingPreviewContent.swift",
+        "apps/ios/Rillora/Features/Contacts/TrustedContactEditorStore.swift",
+        "apps/ios/Rillora/Features/Contacts/TrustedContactEditorView.swift",
+        "apps/ios/Rillora/Features/FirstUse/FirstUseViews.swift",
+        "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceStore.swift",
+        "apps/ios/Rillora/Features/Maintenance/FamilyMaintenanceView.swift",
+        "apps/ios/Rillora/Features/Maintenance/FamilyReviewSheetView.swift",
+        "apps/ios/Rillora/Features/Matters/MatterEditorStore.swift",
+        "apps/ios/Rillora/Features/Matters/MatterEditorView.swift",
+        "apps/ios/Rillora/Features/Matters/MattersView.swift",
+        "apps/ios/Rillora/Features/OfficialSetup/MatterAccountGuides.swift",
+        "apps/ios/Rillora/Features/OfficialSetup/OfficialProviderGuideCatalog.swift",
+        "apps/ios/Rillora/Features/OfficialSetup/OfficialSetupView.swift",
+        "apps/ios/Rillora/Features/Overview/ContinuityExplorer.swift",
+        "apps/ios/Rillora/Features/Overview/OverviewDashboardComponents.swift",
+        "apps/ios/Rillora/Features/Overview/OverviewStateViews.swift",
+        "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+        "apps/ios/Rillora/Features/Overview/PublicHomeSharingDemo.swift",
+        "apps/ios/Rillora/Features/Overview/PublicHomeView.swift",
+        "apps/ios/Rillora/Features/Overview/SignedOutExperienceViews.swift",
+        "apps/ios/Rillora/Features/Plan/PlanMotivationView.swift",
+        "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyStore.swift",
+        "apps/ios/Rillora/Features/Roles/RoleAssignmentPolicyView.swift",
+        "apps/ios/Rillora/Features/Simulation/DisclosureRehearsalView.swift",
+        "apps/ios/Rillora/Features/Simulation/SimulationStore.swift",
+        "apps/ios/Rillora/Features/Simulation/SimulationView.swift",
+        "apps/ios/Rillora/Features/StartHere/StartHereEncryptionService.swift",
+        "apps/ios/Rillora/Features/StartHere/StartHerePreviewStore.swift",
+        "apps/ios/Rillora/Features/StartHere/StartHerePreviewView.swift",
+        "apps/ios/Rillora/Resources/Info.plist",
+        "apps/ios/Rillora/Resources/Localizable.xcstrings",
+        "apps/ios/RilloraComponentPreview/Info.plist",
+        "apps/ios/RilloraLayoutMatrixTests/RilloraLocalizationUITests.swift",
+        "apps/ios/RilloraTests/AccountLocalizationTests.swift",
+        "apps/ios/RilloraTests/CoreLocalizationTests.swift",
+        "apps/ios/RilloraTests/LocalizationTests.swift",
+        "apps/ios/RilloraTests/SharingLocalizationTests.swift",
+        "apps/ios/project.yml",
+        "config/repository-scan-exceptions.json",
+        "docs/decision-log.md",
+        "docs/handoff-history-20261005-before-chinese-ios.md",
+        "docs/handoff.md",
+        "docs/journey/PROJECT_JOURNEY.md",
+        "docs/native-localization-20261005.md",
+        "docs/platform-contract.md",
+        "docs/product.md",
+        "docs/qa/chinese-ios-20261005/README.md",
+        "docs/qa/chinese-ios-20261005/account-validation.json",
+        "docs/qa/chinese-ios-20261005/core-validation.json",
+        "docs/qa/chinese-ios-20261005/inherited-reading-coverage.json",
+        "docs/qa/chinese-ios-20261005/local-validation.json",
+        "docs/qa/chinese-ios-20261005/remote-verification.json",
+        "docs/qa/chinese-ios-20261005/sharing-validation.json",
+        "docs/qa/chinese-ios-20261005/static-tests.log",
+        "tools/release/test_native_localization.py"
+      ],
+      "markdownReads": [
+        {
+          "path": "docs/decision-log.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/handoff-history-20261005-before-chinese-ios.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/handoff.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/journey/PROJECT_JOURNEY.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/native-localization-20261005.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/platform-contract.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/product.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/qa/chinese-ios-20261005/README.md",
+          "scope": "complete new body"
+        }
+      ]
+    },
+    {
+      "ref": "origin/codex/chinese-web-20261005",
+      "sha": "20da7b3910e9498e7ecd82e18ed9e32654987dce",
+      "mergeBase": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+      "files": [
+        "README.md",
+        "apps/web/AGENTS.md",
+        "apps/web/src/AccountDataPanel.jsx",
+        "apps/web/src/AccountDeletionStatus.jsx",
+        "apps/web/src/App.jsx",
+        "apps/web/src/AppearanceControl.jsx",
+        "apps/web/src/ConfirmationDialog.jsx",
+        "apps/web/src/ContactEditorPanel.jsx",
+        "apps/web/src/ContinuityExplorer.jsx",
+        "apps/web/src/DisclosureRehearsalPanel.jsx",
+        "apps/web/src/FamilyMaintenancePanel.jsx",
+        "apps/web/src/FirstUsePanel.jsx",
+        "apps/web/src/InvitationPage.jsx",
+        "apps/web/src/MatterAccountGuides.jsx",
+        "apps/web/src/MatterForm.jsx",
+        "apps/web/src/PlatformGuides.jsx",
+        "apps/web/src/ProductionBillingControls.jsx",
+        "apps/web/src/PublicExperience.jsx",
+        "apps/web/src/PublicHome.jsx",
+        "apps/web/src/PublicWebsite.jsx",
+        "apps/web/src/ReauthenticationPrompt.jsx",
+        "apps/web/src/RoleAssignmentPolicyPanel.jsx",
+        "apps/web/src/SavedCopyReader.jsx",
+        "apps/web/src/SharingMotion.jsx",
+        "apps/web/src/SharingPanels.jsx",
+        "apps/web/src/StartHerePanel.jsx",
+        "apps/web/src/TaskPanels.jsx",
+        "apps/web/src/TestBillingControls.jsx",
+        "apps/web/src/WebsiteAppearanceDisclosure.jsx",
+        "apps/web/src/commercialAccess.js",
+        "apps/web/src/contactEvidence.js",
+        "apps/web/src/familyMaintenance.js",
+        "apps/web/src/firstUse.js",
+        "apps/web/src/i18n/I18nProvider.jsx",
+        "apps/web/src/i18n/LanguageControl.jsx",
+        "apps/web/src/i18n/appCatalogs.js",
+        "apps/web/src/i18n/core.js",
+        "apps/web/src/i18n/errors.js",
+        "apps/web/src/i18n/i18n.css",
+        "apps/web/src/i18n/localeStore.js",
+        "apps/web/src/i18n/messages/common.js",
+        "apps/web/src/i18n/messages/forms.js",
+        "apps/web/src/i18n/messages/public.js",
+        "apps/web/src/i18n/messages/sharing.js",
+        "apps/web/src/i18n/messages/workspace.js",
+        "apps/web/src/i18n/publicCatalogs.js",
+        "apps/web/src/landing/ControlSection.jsx",
+        "apps/web/src/landing/ExampleMatter.jsx",
+        "apps/web/src/landing/LandingChrome.jsx",
+        "apps/web/src/landing/LandingFAQ.jsx",
+        "apps/web/src/landing/LandingPage.jsx",
+        "apps/web/src/landing/LegalInformation.jsx",
+        "apps/web/src/landing/LifeSituations.jsx",
+        "apps/web/src/landing/MatterDemo.jsx",
+        "apps/web/src/landing/PlanSection.jsx",
+        "apps/web/src/landing/ProductPages.jsx",
+        "apps/web/src/landing/SharingDemo.jsx",
+        "apps/web/src/landing/landing-i18n.css",
+        "apps/web/src/landing/landing.css",
+        "apps/web/src/landing/landingModel.js",
+        "apps/web/src/landing/matterExamples.js",
+        "apps/web/src/landing/public-shell-i18n.css",
+        "apps/web/src/landing/rillora-sharing-example-zh-CN.txt",
+        "apps/web/src/main.jsx",
+        "apps/web/src/matterDraftStorage.js",
+        "apps/web/src/matterForm.js",
+        "apps/web/src/public-main.jsx",
+        "apps/web/src/sharing.js",
+        "apps/web/tests/forms-i18n-render.test.mjs",
+        "apps/web/tests/forms-i18n.test.mjs",
+        "apps/web/tests/i18n-catalogs.test.mjs",
+        "apps/web/tests/i18n-core.test.mjs",
+        "apps/web/tests/public-experience.test.mjs",
+        "apps/web/tests/public-i18n.test.mjs",
+        "apps/web/tests/public-website.test.mjs",
+        "apps/web/tests/sharing-i18n.test.mjs",
+        "apps/web/tests/workspace-i18n.test.mjs",
+        "apps/web/worker/public-router.js",
+        "docs/decision-log.md",
+        "docs/handoff-history-20261005-before-chinese-web.md",
+        "docs/handoff.md",
+        "docs/journey/PROJECT_JOURNEY.md",
+        "docs/product.md",
+        "docs/qa/chinese-web-20261005/BROWSER-QA.md",
+        "docs/qa/chinese-web-20261005/README.md",
+        "docs/qa/chinese-web-20261005/browser-qa.py",
+        "docs/qa/chinese-web-20261005/browser-results.json",
+        "docs/qa/chinese-web-20261005/local-validation.json",
+        "docs/qa/chinese-web-20261005/reading-coverage.json",
+        "docs/qa/chinese-web-20261005/remote-verification.json",
+        "docs/qa/chinese-web-20261005/source-review.json",
+        "docs/web-localization-20261005.md"
+      ],
+      "markdownReads": [
+        {
+          "path": "README.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "apps/web/AGENTS.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/decision-log.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/handoff-history-20261005-before-chinese-web.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/handoff.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/journey/PROJECT_JOURNEY.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/product.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/qa/chinese-web-20261005/BROWSER-QA.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/qa/chinese-web-20261005/README.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/web-localization-20261005.md",
+          "scope": "complete new body"
+        }
+      ]
+    },
+    {
+      "ref": "origin/codex/ai-mcp-plan-20261005",
+      "sha": "4a470080b917931ce5577dc3d228d2ef97f37251",
+      "mergeBase": "2cc95f77c1279bdad43547b7e58a8faca9da7a93",
+      "files": [
+        "docs/architecture/ai-mcp-plan-20261005.md",
+        "docs/decision-log.md",
+        "docs/handoff.md",
+        "docs/journey/PROJECT_JOURNEY.md",
+        "docs/product.md",
+        "docs/qa/ai-mcp-plan-20261005/README.md"
+      ],
+      "markdownReads": [
+        {
+          "path": "docs/architecture/ai-mcp-plan-20261005.md",
+          "scope": "complete new body"
+        },
+        {
+          "path": "docs/decision-log.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/handoff.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/journey/PROJECT_JOURNEY.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/product.md",
+          "scope": "all changed hunks and relevant current context; unchanged body retained from continuous release full-read baseline"
+        },
+        {
+          "path": "docs/qa/ai-mcp-plan-20261005/README.md",
+          "scope": "complete new body"
+        }
+      ]
+    }
+  ]
+}

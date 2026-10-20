@@ -1,0 +1,31 @@
+"""Read only the exact provider-generated Live notification's signature/inbox outcome."""
+from pathlib import Path
+import datetime,json,subprocess,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=ROOT/'output/qa/rillora-live-configuration-20261009';PRIVATE=ROOT/'.local-secrets/live-configuration-20261009'
+receipt=QA/'live-probe-read-task.json';assert not receipt.exists()
+def aws(args,profile='rillora-production-operator'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json']))
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+o={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};event=json.loads((QA/'live-probe-event.json').read_text())['id']
+script="""import pg from 'pg';import {loadDatabaseConfig} from './dist/config.js';import {databaseConnectionOptions} from './dist/db.js';
+const cfg=loadDatabaseConfig();if(cfg.sslMode!=='verify-full')throw new Error('tls_required');const c=new pg.Client({...databaseConnectionOptions(cfg),application_name:'rillora-live-notification-proof'});await c.connect();
+try{await c.query('begin read only');await c.query("set local statement_timeout='10s'");
+ const rows=(await c.query(`select provider_code,provider_environment,provider_event_reference,event_type,signature_verified,processing_status,last_error_code,attempt_count,processed_at,octet_length(payload_sha256) as digest_bytes
+ from app.commerce_provider_event_inbox where provider_code='stripe' and provider_environment='production' and provider_event_reference=$1`,[process.env.RILLORA_PROBE_EVENT])).rows;
+ if(rows.length!==1||rows[0].signature_verified!==true||rows[0].processing_status!=='ignored'||rows[0].last_error_code!==null||rows[0].digest_bytes!==32)throw new Error('exact_signed_ignored_live_event_required');
+ const counts=(await c.query(`select (select count(*)::int from app.commerce_orders where provider_code='stripe' and provider_environment='production') as live_stripe_orders,
+ (select count(*)::int from app.commerce_subscriptions where renewal_provider='stripe' and provider_environment='production') as live_stripe_subscriptions,
+ (select count(*)::int from app.commerce_provider_events where provider_code='stripe' and provider_environment='production' and provider_event_reference=$1) as probe_financial_ledger_events`,[process.env.RILLORA_PROBE_EVENT])).rows[0];
+ await c.query('commit');console.log(JSON.stringify({readOnly:true,tlsVerified:true,event:rows[0],counts}));
+}finally{await c.end();}"""
+body={'cluster':o['ClusterName'],'taskDefinition':o['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+ 'networkConfiguration':{'awsvpcConfiguration':{'subnets':o['MaintenanceSubnetIds'].split(','),'securityGroups':[o['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+ 'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','--input-type=module','-e',script],
+ 'environment':[{'name':'RILLORA_PROBE_EVENT','value':event}]}]}}
+path=PRIVATE/'live-probe-read-request.json'
+if path.exists():body=json.loads(path.read_text())
+else:path.write_text(json.dumps(body));path.chmod(0o600)
+r=aws(['ecs','run-task','--cli-input-json','file://'+str(path)]);assert not r.get('failures') and len(r['tasks'])==1
+arn=r['tasks'][0]['taskArn'];result={'startedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'cluster':o['ClusterName'],'taskArn':arn,
+ 'logGroup':o['MaintenanceLogGroup'],'logStream':'migration/Maintenance/'+arn.rsplit('/',1)[-1],'readOnly':True,'event':event}
+receipt.write_text(json.dumps(result,indent=2)+'\n');print(json.dumps(result))

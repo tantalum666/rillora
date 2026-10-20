@@ -113,7 +113,7 @@ struct OverviewContent: View {
                 Button(action: onOpenShared) {
                     HStack(spacing: 14) {
                         Image(systemName: "tray.and.arrow.down").foregroundStyle(RilloraTheme.sage)
-                        Text("Shared with me").foregroundStyle(RilloraTheme.ink)
+                        Text(String(localized: "Shared with me")).foregroundStyle(RilloraTheme.ink)
                         Spacer(); Image(systemName: "chevron.right").font(.footnote)
                     }.frame(minHeight: 54).contentShape(Rectangle())
                 }.buttonStyle(RilloraQuietButtonStyle()).accessibilityIdentifier("overview.shared")
@@ -127,7 +127,7 @@ struct OverviewContent: View {
                 }
 
                 if snapshot.plan.firstUseState.showsStarter {
-                    Button(snapshot.plan.firstUseState == .guidePaused ? "Resume quick start guide" : "Quick start guide", action: onOpenFirstUseGuide)
+                    Button(snapshot.plan.firstUseState == .guidePaused ? String(localized: "Resume quick start guide") : String(localized: "Quick start guide"), action: onOpenFirstUseGuide)
                         .font(.subheadline).frame(minHeight: 44)
                         .accessibilityIdentifier("overview.quick-start")
                 }
@@ -154,22 +154,22 @@ private struct OverviewHero: View {
         VStack(alignment: .leading, spacing: 12) {
             if snapshot.matters.isEmpty {
                 VStack(spacing: 5) {
-                    Text("Your map").font(.system(.largeTitle, design: .serif).weight(.medium))
+                    Text(String(localized: "Your map")).font(.system(.largeTitle, design: .serif).weight(.medium))
                         .foregroundStyle(RilloraTheme.ink).accessibilityAddTraits(.isHeader)
-                    Text("0 matters").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                    Text(L10n.format("%1$lld matters", 0)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                 }.frame(maxWidth: .infinity).multilineTextAlignment(.center)
             } else { HStack(alignment: .firstTextBaseline) {
-                Text("Your map")
+                Text(String(localized: "Your map"))
                 .font(.system(.title, design: .serif).weight(.medium))
                 .foregroundStyle(RilloraTheme.ink)
                 .accessibilityAddTraits(.isHeader)
                 Spacer()
-                Text("\(snapshot.matters.count) \(snapshot.matters.count == 1 ? "matter" : "matters")").font(.subheadline).foregroundStyle(RilloraTheme.muted)
+                Text(L10n.format("%1$lld matters", snapshot.matters.count)).font(.subheadline).foregroundStyle(RilloraTheme.muted)
                     .contentTransition(.numericText())
             } }
             Button(action: snapshot.matters.isEmpty ? onAddFirstMatter : onReviewMatters) {
                 RilloraFolioArtwork(compact: !snapshot.matters.isEmpty).frame(maxWidth: .infinity)
-            }.buttonStyle(RilloraQuietButtonStyle()).accessibilityLabel(snapshot.matters.isEmpty ? "Add a matter" : "Open your matters")
+            }.buttonStyle(RilloraQuietButtonStyle()).accessibilityLabel(snapshot.matters.isEmpty ? String(localized: "Add a matter") : String(localized: "Open your matters"))
             primaryAction
         }
         .rilloraEntrance()
@@ -177,8 +177,8 @@ private struct OverviewHero: View {
 
     private var primaryAction: some View {
         Button {
-            if let matter = snapshot.nextMatter {
-                onOpenMatter(matter)
+            if let nextAction {
+                onOpenMatter(nextAction.matter)
             } else {
                 if snapshot.matters.isEmpty { onAddFirstMatter() }
                 else { onReviewMatters() }
@@ -232,12 +232,16 @@ private struct OverviewHero: View {
     }
 
     private var primaryActionTitle: String {
-        if snapshot.matters.isEmpty { return "Add your first matter" }
-        return snapshot.nextMatter == nil ? "View your matters" : "Review next matter"
+        if snapshot.matters.isEmpty { return String(localized: "Add your first matter") }
+        return nextAction?.title ?? String(localized: "View your matters")
     }
 
     private var nextMatterTitle: String? {
-        snapshot.matters.isEmpty ? nil : snapshot.nextMatter?.title
+        nextAction?.matter.title
+    }
+
+    private var nextAction: MatterOrganizationAction? {
+        MatterListPresentation.nextAction(in: snapshot.matters)
     }
 }
 
@@ -258,10 +262,10 @@ private struct OverviewPeopleSection: View {
                 InviteSomeoneRow(state: ConnectionVisualState(connection.status), title: contact.displayName,
                     detail: connection.statusLabel, action: { onOpenContact(contact) })
                     .accessibilityIdentifier("overview.open-profile")
-                Button("Invite someone", action: onInvite).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
+                Button(String(localized: "Invite someone"), action: onInvite).frame(maxWidth: .infinity, minHeight: 44, alignment: .leading)
                     .accessibilityIdentifier("overview.invite")
             } else {
-                InviteSomeoneRow(detail: failed ? "Share by link or QR · refresh unavailable" : "Share by link or QR", action: onInvite)
+                InviteSomeoneRow(detail: failed ? String(localized: "Share by link or QR · refresh unavailable") : String(localized: "Share by link or QR"), action: onInvite)
                     .accessibilityIdentifier("overview.invite")
             }
             Divider().overlay(RilloraTheme.divider)
@@ -287,7 +291,7 @@ private struct DevelopmentIdentityBanner: View {
             Image(systemName: "hammer")
                 .font(.system(size: 14, weight: .semibold))
                 .accessibilityHidden(true)
-            Text("Local QA · test data")
+            Text(String(localized: "Local QA · test data"))
                 .fixedSize(horizontal: false, vertical: true)
         }
         .font(.caption.weight(.semibold))
@@ -301,7 +305,7 @@ private struct DevelopmentIdentityBanner: View {
         )
         .accessibilityIdentifier("overview.development-identity")
         .accessibilityElement(children: .ignore)
-        .accessibilityLabel("Local development identity. Test data, not production sign-in.")
+        .accessibilityLabel(String(localized: "Local development identity. Test data, not production sign-in."))
     }
 }
 

@@ -1,0 +1,40 @@
+- generic [ref=f7e3]:
+  - complementary "Primary navigation" [ref=f7e4]:
+    - navigation [ref=f7e5]:
+      - button "Overview" [ref=f7e6] [cursor=pointer]
+      - button "My plan" [ref=f7e10] [cursor=pointer]
+      - button "Matters" [ref=f7e14] [cursor=pointer]
+      - button "Trusted contacts" [ref=f7e18] [cursor=pointer]
+      - button "Shared with me" [ref=f7e22] [cursor=pointer]
+      - button "Shared reviews" [ref=f7e26] [cursor=pointer]
+      - button "Account inheritance" [ref=f7e30] [cursor=pointer]
+      - button "Plan & access" [ref=f7e34] [cursor=pointer]
+      - button "Activity" [ref=f7e38] [cursor=pointer]
+    - generic [ref=f7e43]:
+      - strong [ref=f7e46]: Directions, not passwords.
+      - button "Safety & privacy" [ref=f7e47] [cursor=pointer]
+    - button "Settings" [ref=f7e48] [cursor=pointer]
+  - main [ref=f7e52]:
+    - generic [ref=f7e53]:
+      - paragraph [ref=f7e54]: Local QA · test data
+      - 'button "Appearance: system" [ref=f7e57] [cursor=pointer]'
+    - generic [ref=f7e61]:
+      - heading "Settings" [level=1] [ref=f7e62]
+      - generic [ref=f7e63]:
+        - paragraph [ref=f7e68]: Alex Chen
+        - button "Download my complete map" [ref=f7e69] [cursor=pointer]
+        - button "Open a saved copy" [ref=f7e76] [cursor=pointer]
+        - button "Archived matters · 0" [ref=f7e83] [cursor=pointer]
+        - button "Delete my account" [active] [ref=f7e90] [cursor=pointer]
+        - region "Delete account" [ref=f7e95]:
+          - heading "Delete your Rillora account" [level=3] [ref=f7e96]
+          - paragraph [ref=f7e97]: Keep a map backup first if you need it. Required consent and payment records may be retained.
+          - generic [ref=f7e98]:
+            - checkbox "I understand copies already saved or shared cannot be removed." [ref=f7e99]
+            - text: I understand copies already saved or shared cannot be removed.
+          - generic [ref=f7e100]:
+            - text: Type DELETE to confirm
+            - textbox "Type DELETE to confirm" [ref=f7e101]
+          - button "Save deletion reference" [ref=f7e102] [cursor=pointer]
+          - button "Delete account" [disabled] [ref=f7e103] [cursor=pointer]
+      - button "Review plan & access" [ref=f7e92] [cursor=pointer]

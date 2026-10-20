@@ -9,7 +9,9 @@ if (
   !allowedOrigins.has(entry.appOrigin) ||
   entry.accountPath !== "/account" ||
   entry.invitationPath !== "/invite" ||
-  entry.preview !== (entry.appOrigin === "https://app.staging.rillora.xyz")
+  entry.preview !== (entry.appOrigin === "https://app.staging.rillora.xyz") ||
+  !["review", "live"].includes(entry.customerAccess) ||
+  (entry.preview && entry.customerAccess !== "review")
 ) {
   throw new Error("Invalid public account destination");
 }
@@ -19,4 +21,5 @@ export const publicEntry = Object.freeze({
   accountURL: `${entry.appOrigin}${entry.accountPath}`,
   invitationURL: `${entry.appOrigin}${entry.invitationPath}`,
   preview: entry.preview,
+  customerAccess: entry.customerAccess,
 });

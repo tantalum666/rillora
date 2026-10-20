@@ -22,9 +22,14 @@ jobs:
       - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
         with:
           persist-credentials: false
+          fetch-depth: 0
       - uses: actions/setup-python@5fda3b95a4ea91299a34e894583c3862153e4b97 # v7.0.0
         with:
           python-version: '3.12'
+      - name: Install shell fixture prerequisites
+        run: |
+          sudo apt-get update
+          sudo apt-get install --yes jq ripgrep zsh libdigest-sha-perl
       - name: Install verified secret scanner
         run: |
           curl --fail --location --retry 3 --output "$RUNNER_TEMP/gitleaks.tar.gz" https://github.com/gitleaks/gitleaks/releases/download/v8.30.1/gitleaks_8.30.1_linux_x64.tar.gz
@@ -35,8 +40,11 @@ jobs:
         run: |
           python3 -m unittest discover -s tools/release -p 'test_*.py'
           python3 -m unittest discover -s tools/godaddy -p 'test_*.py'
+          python3 -m unittest discover -s tools/auth0 -p 'test_*.py'
           python3 -m unittest discover -s tools/collaboration -p 'test_*.py'
           python3 tools/release/prepare_repository.py
+          python3 -m unittest discover -s tools/security -p 'test_*.py'
+          python3 -m unittest discover -s infra/aws/recovery-journal-broker -p 'test_*.py'
           python3 tools/release/scan_repository.py --report output/ci/source-scan.json
           python3 tools/collaboration/verify_publication.py --scan --report output/ci/work-publication.json
 
@@ -71,7 +79,7 @@ jobs:
           cache-dependency-path: apps/api/package-lock.json
       - name: Create isolated test databases
         run: |
-          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test; do
+          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test continuity_apple_commerce_test continuity_apple_delivery_test continuity_apple_purchase_test continuity_apple_review_test continuity_production_commerce_test continuity_web_activation_test rillora_migration_atomicity_test rillora_recovery_history_test rillora_recovery_history_restore_test rillora_authority_test rillora_email_metadata_test rillora_mcp_test rillora_customer_mcp_test; do
             createdb "$database"
             psql -d postgres -v ON_ERROR_STOP=1 -c "COMMENT ON DATABASE \"$database\" IS 'rillora-disposable-test:$database'"
           done
@@ -100,6 +108,7 @@ jobs:
         run: |
           npm ci
           npm run build
+          node --input-type=module -e "import { readdirSync } from 'node:fs'; if (readdirSync('dist/client/assets').some(name => name.startsWith('AiConnectionsPanel-'))) throw new Error('Default build must exclude optional AI entry');"
           web_tests=()
           for test_file in tests/*.test.mjs; do
             if [[ "$test_file" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=("$test_file"); fi
@@ -107,7 +116,9 @@ jobs:
           node --test "${web_tests[@]}"
       - name: Build public information artifact without account or API entry
         working-directory: apps/web
-        run: npm run build:public
+        run: |
+          npm run build:public
+          RILLORA_TEST_PUBLIC_BUILD=1 node --test tests/public-seo.test.mjs
       - name: Verify legal packaging fixture (not a publication artifact)
         working-directory: apps/web
         # Intentionally no real operator/address environment and no upload.
@@ -134,5 +145,17 @@ jobs:
         run: npm run build:production-closed
       - name: Verify public health checker
         run: node --test tools/ops/health-check.test.mjs
+      - name: Verify AI client package generation without credentials or installation
+        run: node --test tools/mcp/client-packages.test.mjs
+      - name: Verify isolated AI candidate without provider credentials
+        working-directory: infra/ai-candidate
+        run: |
+          npm ci --prefix ../../apps/api
+          npm ci --ignore-scripts
+          npm run typecheck
+          npm test
+          npm run build
+      - name: Verify constrained maintenance broker
+        run: node --check tools/maintenance-broker/handler.mjs && node --test tools/maintenance-broker/core.test.mjs
       - name: Verify restricted review identity action
         run: node --test infra/auth0/hosted-consent/production-review-action.test.cjs

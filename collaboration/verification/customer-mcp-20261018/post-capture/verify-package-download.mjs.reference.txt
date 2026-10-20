@@ -1,0 +1,18 @@
+import {readFile,writeFile} from 'node:fs/promises';
+import {createHash} from 'node:crypto';
+import {resolve} from 'node:path';
+const qa=resolve('output/qa/rillora-customer-mcp-20261018');
+const final=JSON.parse(await readFile('apps/web/dist-production-live/production-build.json','utf8'));
+const previous=JSON.parse(await readFile(resolve(qa,'web-language-artifact/production-build.json'),'utf8'));
+const changed=Object.keys(previous.files).filter(p=>final.files[p]!==previous.files[p]);
+if(changed.length!==1||changed[0]!=='integrations/rillora-ai-v1.zip')throw Error('Unexpected artifact difference');
+if(!JSON.parse(await readFile(resolve(qa,'web-package-deployment-verified.json'),'utf8')).passed)throw Error('Deployment not verified');
+const results=[];
+for(const path of ['index.html','integrations/rillora-ai-v1.zip']){
+ const response=await fetch('https://app.rillora.xyz'+(path==='index.html'?'/':'/'+path),{signal:AbortSignal.timeout(30000)});
+ const bytes=Buffer.from(await response.arrayBuffer());const digest=createHash('sha256').update(bytes).digest('hex');
+ if(response.status!==200||digest!==final.files[path])throw Error('Published file mismatch: '+path);
+ results.push({path,status:response.status,bytes:bytes.length,sha256:digest});
+}
+await writeFile(resolve(qa,'package-download-live.json'),JSON.stringify({passed:true,at:new Date().toISOString(),changedFiles:changed,remaining88FilesUnchangedInVerifiedArtifact:true,unchangedFilesPreviouslyVerified:'web-language-live-http.json',indexStillMatches:true,results},null,2)+'\n');
+console.log('Current public download and preserved HTML match; other88file checks reused from unchanged verified artifact.');

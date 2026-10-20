@@ -1,0 +1,67 @@
+{
+  "capturedFrom": "2026-10-12T15:03:01.505506+00:00",
+  "capturedThrough": "2026-10-12T15:03:02.009155+00:00",
+  "workFiles": 262,
+  "uniqueRawObjects": 172,
+  "workBytes": 69500661,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-034.tar.zst.age",
+      "sha256": "4232b7bd61a840d7edfcd368918ff876c44a3dba4b43303c2d6cd25657534f50",
+      "bytes": 37927569,
+      "plainBytes": 42640492,
+      "uniqueObjects": 172
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/native-cross-platform-20261012/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": ".local-secrets",
+      "reason": "credentials_real_account_or_system_authentication_screenshots_provider_bodies"
+    },
+    {
+      "path": "old_archives_001_to_033",
+      "reason": "immutable_previous_evidence_not_recaptured_or_downloaded"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/publication",
+      "reason": "reproducible_capture_and_download_cache"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.67fe236f0f26fc31e16451792eeb80eb2b397fc520b999ddcc08027a72fff3bf",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.faa95a81ae7d7373f3e1f242268f904eb748d8d0fdd306e8a6fe515a1905a7d6",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.2819175352ad1ce0dae768e83fc328fb70fb5f10b4a8ff0ccbcb791f02b0716d",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.90fc73bf363fb5a3f55b2f385dcdb74f80fcd7475d6554c9c976f0f9dc332246",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraStaging-assembly/asset.34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraProductionWeb-assembly/asset.97e9ebf0b174a5c8f7faa505739022b7f509edddffcab9211dcd08b759944c4f",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    },
+    {
+      "path": "output/qa/rillora-native-cross-platform-20261012/RilloraProductionWeb-assembly/asset.eb3b675f9004c095a8bd7992f44aabe884297c811d9dd5dd2ce6ae0fd3eeddd5",
+      "reason": "expanded_cdk_asset_duplicate_of_source_or_built_web"
+    }
+  ],
+  "selection": "New scoped QA, including failed browser-runtime preparation and true red/green regression, reviewed runners, stack assemblies without expanded duplicate assets, and final two Web builds. Current source/specifications are normal Git.",
+  "boundary": "Independent Web checks and two minimal fixes delivered at d9825b616/CI131;172live assets matched. Phone operation Owner-deferred, no new payment/refund/restore/backend migration/TestFlight. No claim of current active Apple cross-client or actual refund/expiry completion. Remote and final documentation receipts follow without recursive archiving."
+}

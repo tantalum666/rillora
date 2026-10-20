@@ -1,0 +1,53 @@
+{
+  "at": "2026-10-12T20:33:10.280607+00:00",
+  "ownerDirection": "Ignore tax strategy as a prerequisite",
+  "result": "Explicit automatic-tax-disabled billing deployed; final customer activation safely held until old Preview identity tokens expire",
+  "price": {
+    "currency": "USD",
+    "amountMinor": 8899,
+    "interval": "annual",
+    "unchanged": true
+  },
+  "taxAutomation": false,
+  "apiRevision": 25,
+  "databaseSchema": 103,
+  "noNewDatabaseMigration": true,
+  "productionEntitlementsEnabled": true,
+  "newSalesCurrentlyEnabled": false,
+  "customerIdentityMode": "original three-person review gate",
+  "oldPreviewClientsStopped": 4,
+  "oldServiceCredentialRequestsRejected": 2,
+  "earliestCustomerActivationHongKong": "2026-10-14T04:20:46.299059+08:00",
+  "roundedNextGateHongKong": "2026-10-14 04:21",
+  "tokenWindowSeconds": 86700,
+  "noNewCustomerTransaction": true,
+  "noNativeInstallOrTestFlight": true,
+  "realDataPricesFanPassPreserved": true,
+  "ci141": {
+    "source": "f87ac62c90a016174a2a7994ee1006d50c879296",
+    "allThreeJobsPassed": true
+  },
+  "[PUBLIC_IDENTIFIER_OMITTED]": false,
+  "newArchive36Pending": true,
+  "scopeAndDecisionDocs": [
+    "docs/web-billing-activation-20261013.md",
+    "docs/decision-log.md",
+    "docs/handoff.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/release-readiness.md",
+    "config/release-gates.json",
+    "docs/production-identity-mail-20260924.md",
+    "docs/production-commerce-20260926.md",
+    "docs/live-configuration-20261009.md",
+    "docs/product.md",
+    "docs/platform-contract.md"
+  ],
+  "decisionReason": "Existing Owner tax instruction recorded; identity hold corrects implementation sequence under the existing security rule, no new approval required.",
+  "finalHttpsFilesMatched": 117,
+  "finalPublicBilingualUiReadBack": true,
+  "productionUrlIsNotTestPreview": true,
+  "prematureOpeningTimeGuardVerified": true,
+  "newRelativeMarkdownLinksPass": true,
+  "historicalOutputLinksResolvedAtPrimary": 156,
+  "releaseRegisterChecksPassed": 7
+}

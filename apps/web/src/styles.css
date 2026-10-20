@@ -526,7 +526,9 @@ h1,
   margin: 0;
   min-height: 58px;
   display: grid;
-  grid-template-columns: 26px 1fr auto;
+  grid-template-columns: 26px minmax(0, 1fr);
+  column-gap: 10px;
+  padding-block: 14px;
   align-items: center;
   border-bottom: 1px solid var(--divider);
 }
@@ -535,7 +537,22 @@ h1,
   border-bottom: 0;
 }
 
-.activity-list span {
+.activity-list .activity-action {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: baseline;
+  gap: 4px 10px;
+  min-width: 0;
+}
+
+.activity-action .text-button {
+  min-width: 0;
+  overflow-wrap: anywhere;
+  text-align: left;
+}
+
+.activity-list time {
+  grid-column: 2;
   color: var(--muted);
   font-size: 13px;
 }
@@ -1684,7 +1701,11 @@ h1,
   .overview-grid { grid-template-columns: 1fr; }
   .trusted-card { padding: 30px 0 0; border-top: 1px solid var(--divider); border-left: 0; }
   .wide-only { display: none; }
-  .matter-status { min-width: auto; font-size: 0; }
+  .matter-row { grid-template-columns: 38px minmax(0, 1fr) 18px; gap: 4px 12px; padding-block: 12px; }
+  .matter-row > .matter-icon { grid-column: 1; grid-row: 1 / 3; }
+  .matter-row > .matter-name { grid-column: 2; overflow-wrap: anywhere; }
+  .matter-row > .matter-status { grid-column: 2; grid-row: 2; min-width: 0; justify-content: flex-start; font-size: 12px; }
+  .matter-row > svg:last-child { grid-column: 3; grid-row: 1 / 3; }
   .drawer { padding: 54px 26px; }
 }
 

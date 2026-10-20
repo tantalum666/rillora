@@ -51,7 +51,7 @@ struct TrustedContactEditorView: View {
                 Section {
                     HStack(spacing: 10) {
                         ProgressView()
-                        Text("Checking the latest version…")
+                        Text(String(localized: "Checking the latest version…"))
                             .foregroundStyle(RilloraTheme.muted)
                     }
                 }
@@ -59,8 +59,8 @@ struct TrustedContactEditorView: View {
 
             Section {
                 RilloraTextField(
-                    title: "Name",
-                    prompt: "Who would you trust to help?",
+                    title: String(localized: "Contact name", defaultValue: "Name"),
+                    prompt: String(localized: "Who would you trust to help?"),
                     text: $editor.draft.displayName,
                     identifier: "contact.edit.name",
                     required: true
@@ -68,14 +68,14 @@ struct TrustedContactEditorView: View {
                     .textContentType(.name)
 
                 RilloraTextField(
-                    title: "Relationship",
-                    prompt: "How you know this person",
+                    title: String(localized: "Relationship"),
+                    prompt: String(localized: "How you know this person"),
                     text: $editor.draft.relationshipLabel,
                     identifier: "contact.edit.relationship"
                 )
                     .textInputAutocapitalization(.words)
             } header: {
-                if !(editor.isNew && onCreated != nil) { Text("Contact record") }
+                if !(editor.isNew && onCreated != nil) { Text(String(localized: "Contact record")) }
             }
 
             Section {
@@ -84,19 +84,19 @@ struct TrustedContactEditorView: View {
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                 }
                 if editor.isNew && onCreated != nil {
-                    Label("Next: choose access, then get a link or QR.", systemImage: "link")
+                    Label(String(localized: "Next: choose access, then get a link or QR."), systemImage: "link")
                         .font(.subheadline).foregroundStyle(RilloraTheme.muted)
-                } else { RilloraInfoDisclosure("Record only") {
-                    Text("No invitation, email or text is sent.")
+                } else { RilloraInfoDisclosure(String(localized: "Record only")) {
+                    Text(String(localized: "No invitation, email or text is sent."))
                         .font(.subheadline).foregroundStyle(RilloraTheme.body)
                     RilloraFactStrip([
-                        .init(title: "No appointment", systemImage: "doc.text"),
-                        .init(title: "No recovery", systemImage: "key.slash"),
-                        .init(title: "No account access", systemImage: "lock.shield"),
+                        .init(title: String(localized: "No appointment"), systemImage: "doc.text"),
+                        .init(title: String(localized: "No recovery"), systemImage: "key.slash"),
+                        .init(title: String(localized: "No account access"), systemImage: "lock.shield"),
                     ])
                     if let source = editor.source {
-                        LabeledContent("Record", value: source.status.capitalized)
-                        LabeledContent("Role", value: (source.roleStatus ?? "Not assigned").capitalized)
+                        LabeledContent(String(localized: "Record"), value: contactStatusLabel(source.status))
+                        LabeledContent(String(localized: "Role"), value: contactStatusLabel(source.roleStatus))
                     }
                 } }
             }
@@ -113,29 +113,29 @@ struct TrustedContactEditorView: View {
             if !editor.isNew {
                 Section {
                     if editor.canRevoke {
-                        Button("Revoke trusted-contact role", role: .destructive) {
+                        Button(String(localized: "Revoke trusted-contact role"), role: .destructive) {
                             showsRevokeConfirmation = true
                         }
                         .accessibilityIdentifier("contact.edit.revoke")
                     } else {
-                        Label("Trusted-contact role revoked", systemImage: "person.crop.circle.badge.xmark")
+                        Label(String(localized: "Trusted-contact role revoked"), systemImage: "person.crop.circle.badge.xmark")
                             .foregroundStyle(RilloraTheme.muted)
                     }
                 } footer: {
-                    Text("Revokes the Rillora role only. External legal or account authority is unchanged.")
+                    Text(String(localized: "Revokes the Rillora role only. External legal or account authority is unchanged."))
                 }
             }
         }
         .rilloraStructuredList()
         .rilloraFocusedTask()
         .disabled(editor.isBusy)
-        .navigationTitle(editor.isNew && onCreated != nil ? "Invite someone" : editor.isNew ? "New contact" : "Edit contact")
+        .navigationTitle(editor.isNew && onCreated != nil ? String(localized: "Invite someone") : editor.isNew ? String(localized: "New contact") : String(localized: "Edit contact"))
         .navigationBarTitleDisplayMode(.inline)
         .interactiveDismissDisabled(editor.isBusy || editor.hasUnsavedChanges)
         .navigationBarBackButtonHidden(editor.isBusy || editor.hasUnsavedChanges)
         .toolbar {
             ToolbarItem(placement: .confirmationAction) {
-                Button(editor.state == .saving ? "Saving…" : editor.isNew && onCreated != nil ? "Next" : "Save") {
+                Button(editor.state == .saving ? String(localized: "Saving…") : editor.isNew && onCreated != nil ? String(localized: "Next") : String(localized: "Save")) {
                     Task {
                         let wasNew = editor.isNew
                         guard let saved = await editor.save() else { return }
@@ -153,17 +153,17 @@ struct TrustedContactEditorView: View {
             }
 
             ToolbarItem(placement: .cancellationAction) {
-                Button("Cancel") {
+                Button(String(localized: "Cancel")) {
                     if editor.hasUnsavedChanges { showsDiscardConfirmation = true }
                     else { dismiss() }
                 }
                 .disabled(editor.isBusy)
                 .accessibilityIdentifier("contact.edit.cancel")
-                .alert("Discard unsaved changes?", isPresented: $showsDiscardConfirmation) {
-                    Button("Discard changes", role: .destructive) { dismiss() }
-                    Button("Keep editing", role: .cancel) {}
+                .alert(String(localized: "Discard unsaved changes?"), isPresented: $showsDiscardConfirmation) {
+                    Button(String(localized: "Discard changes"), role: .destructive) { dismiss() }
+                    Button(String(localized: "Keep editing"), role: .cancel) {}
                 } message: {
-                    Text("Your changes to this contact have not been saved.")
+                    Text(String(localized: "Your changes to this contact have not been saved."))
                 }
             }
         }
@@ -178,14 +178,14 @@ struct TrustedContactEditorView: View {
             )
         ) {
             if editorHasConflict {
-                Button("Reload latest") {
+                Button(String(localized: "Reload latest")) {
                     Task { await editor.loadLatest() }
                 }
-                Button("Keep editing", role: .cancel) {
+                Button(String(localized: "Keep editing"), role: .cancel) {
                     editor.clearFailure()
                 }
             } else {
-                Button("OK", role: .cancel) {
+                Button(String(localized: "OK"), role: .cancel) {
                     editor.clearFailure()
                 }
             }
@@ -193,11 +193,11 @@ struct TrustedContactEditorView: View {
             Text(editorFailureMessage)
         }
         .confirmationDialog(
-            "Revoke this trusted-contact role?",
+            String(localized: "Revoke this trusted-contact role?"),
             isPresented: $showsRevokeConfirmation,
             titleVisibility: .visible
         ) {
-            Button("Revoke role", role: .destructive) {
+            Button(String(localized: "Revoke role"), role: .destructive) {
                 Task {
                     guard let revoked = await editor.revoke() else { return }
                     overviewStore.applySavedTrustedContact(revoked)
@@ -205,12 +205,25 @@ struct TrustedContactEditorView: View {
                     await overviewStore.reconcileAfterMutation()
                 }
             }
-            Button("Cancel", role: .cancel) {}
+            Button(String(localized: "Cancel"), role: .cancel) {}
         } message: {
-            Text("Rillora will revoke this role and any current invitation record. No external legal or account authority changes.")
+            Text(String(localized: "Rillora will revoke this role and any current invitation record. No external legal or account authority changes."))
         }
         .accessibilityIdentifier("contact.editor")
         .rilloraEntrance()
+    }
+
+    // Presentation only: stored statuses and permission checks keep their raw values.
+    private func contactStatusLabel(_ status: String?) -> String {
+        switch status {
+        case nil: String(localized: "Not assigned")
+        case "draft": String(localized: "Draft")
+        case "active": String(localized: "Active")
+        case "pending": String(localized: "Pending")
+        case "revoked": String(localized: "Revoked")
+        case "archived": String(localized: "Archived")
+        default: String(localized: "Unknown status")
+        }
     }
 
     private var avatarInitials: String {
@@ -219,7 +232,7 @@ struct TrustedContactEditorView: View {
     }
 
     private var editorFailureTitle: String {
-        editorHasConflict ? "This contact changed" : "Contact not saved"
+        editorHasConflict ? String(localized: "This contact changed") : String(localized: "Contact not saved")
     }
 
     private var editorFailureMessage: String {

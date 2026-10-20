@@ -1,0 +1,96 @@
+{
+  "readOnly": true,
+  "target": "retained_owner_planner",
+  "receipts": [
+    {
+      "provider_environment": "sandbox",
+      "binding_code": "apple_review_hkg_88800_20261006",
+      "storefront_country_code": "HKG",
+      "price_milliunits": "888000",
+      "currency_code": "HKD",
+      "purchased_at": "2026-10-08T14:25:09.000Z",
+      "paid_through": "2026-10-09T14:25:09.000Z",
+      "signed_at": "2026-10-08T14:24:54.933Z",
+      "recorded_at": "2026-10-08T14:25:19.975Z",
+      "signed_proof_recorded": true
+    },
+    {
+      "provider_environment": "sandbox",
+      "binding_code": "apple_review_hkg_88800_20261006",
+      "storefront_country_code": "HKG",
+      "price_milliunits": "888000",
+      "currency_code": "HKD",
+      "purchased_at": "2026-10-07T14:25:09.000Z",
+      "paid_through": "2026-10-08T14:25:09.000Z",
+      "signed_at": "2026-10-07T14:24:27.537Z",
+      "recorded_at": "2026-10-07T14:24:47.961Z",
+      "signed_proof_recorded": true
+    },
+    {
+      "provider_environment": "sandbox",
+      "binding_code": "apple_review_hkg_88800_20261006",
+      "storefront_country_code": "HKG",
+      "price_milliunits": "888000",
+      "currency_code": "HKD",
+      "purchased_at": "2026-10-06T14:25:09.000Z",
+      "paid_through": "2026-10-07T14:25:09.000Z",
+      "signed_at": "2026-10-06T14:25:09.974Z",
+      "recorded_at": "2026-10-06T14:25:22.157Z",
+      "signed_proof_recorded": true
+    }
+  ],
+  "subscriptions": [
+    {
+      "state": "active",
+      "renewal_provider": "storekit",
+      "provider_environment": "sandbox",
+      "current_period_starts_at": "2026-10-08T14:25:09+00:00",
+      "current_period_ends_at": "2026-10-09T14:25:09+00:00",
+      "cancel_at_period_end": false,
+      "renewal_is_possible": true,
+      "provider_observed_at": "2026-10-09T14:15:22.368+00:00"
+    }
+  ],
+  "orders": [
+    {
+      "provider_environment": "sandbox",
+      "status": "canceled",
+      "amount_minor": "19999",
+      "currency_code": "AUD",
+      "price_code": "family_apple_review_aud_19999_20261006",
+      "apple_session_state": "closed",
+      "storefront_country_code": "AUS",
+      "consent_amount_minor": "19999",
+      "consent_currency": "AUD",
+      "created_at": "2026-10-06T14:24:33.545Z"
+    }
+  ],
+  "events": [
+    {
+      "provider_environment": "sandbox",
+      "event_type": "CLIENT_SIGNED_TRANSACTION",
+      "signature_verified": true,
+      "processing_status": "applied",
+      "count": 4,
+      "last_processed_at": "2026-10-09T14:15:22.371Z"
+    },
+    {
+      "provider_environment": "sandbox",
+      "event_type": "DID_RENEW",
+      "signature_verified": true,
+      "processing_status": "applied",
+      "count": 2,
+      "last_processed_at": "2026-10-08T14:25:19.975Z"
+    },
+    {
+      "provider_environment": "sandbox",
+      "event_type": "SUBSCRIBED:INITIAL_BUY",
+      "signature_verified": true,
+      "processing_status": "applied",
+      "count": 1,
+      "last_processed_at": "2026-10-06T14:25:22.157Z"
+    }
+  ],
+  "privateContentRead": false,
+  "financialIdentifiersExported": false
+}

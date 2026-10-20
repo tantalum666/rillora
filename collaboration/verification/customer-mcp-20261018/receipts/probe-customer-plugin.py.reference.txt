@@ -1,0 +1,28 @@
+"""Read a local generated plugin through Codex's real parser; never install or run a model."""
+from pathlib import Path
+import json,subprocess,selectors,time
+q=Path(__file__).resolve().parent;market=q/'customer-plugin-probe/.agents/plugins/marketplace.json'
+with (q/'customer-plugin-parser.stderr.log').open('w') as err:
+ overrides=json.loads(Path('.local-secrets/mcp-customer-20261018/codex-test-overrides.json').read_text())+['-c','features.plugins=true','-c','mcp_servers.rillora_customer_20261018.enabled=false']
+ p=subprocess.Popen(['codex','app-server','--stdio',*overrides],cwd=q/'customer-plugin-probe',stdin=subprocess.PIPE,stdout=subprocess.PIPE,stderr=err,text=True,bufsize=1)
+ selector=selectors.DefaultSelector();selector.register(p.stdout,selectors.EVENT_READ)
+ def rpc(seq,method,params):
+  p.stdin.write(json.dumps({'jsonrpc':'2.0','id':seq,'method':method,'params':params})+'\n');p.stdin.flush();end=time.monotonic()+40
+  while time.monotonic()<end:
+   if not selector.select(timeout=1):continue
+   line=p.stdout.readline()
+   if not line:raise RuntimeError('Codex parser exited')
+   data=json.loads(line)
+   if data.get('id')==seq:return data
+  raise TimeoutError(method)
+ try:
+  init=rpc(1,'initialize',{'clientInfo':{'name':'rillora_package_validation','version':'0.1.0'},'capabilities':{'experimentalApi':True,'explicitGatewayOauth':True}})
+  assert 'error' not in init
+  p.stdin.write(json.dumps({'jsonrpc':'2.0','method':'initialized','params':{}})+'\n');p.stdin.flush()
+  result=rpc(2,'plugin/read',{'marketplacePath':str(market),'pluginName':'rillora-codex'})
+  (q/'customer-plugin-parser.json').write_text(json.dumps(result,indent=2)+'\n')
+  print(json.dumps({'parsed':'result' in result,'keys':list(result.get('result',{})),'error':result.get('error'),'installed':False,'modelInvoked':False}))
+ finally:
+  selector.close();p.terminate()
+  try:p.wait(timeout=5)
+  except subprocess.TimeoutExpired:p.kill();p.wait()

@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "fda980549270ba05cf0956499482c9fa5fc4a975",
+  "branch": "codex/ai-discovery-vnext-20261015",
+  "remoteHeadMatched": true,
+  "files": [
+    {
+      "path": "docs/marketing/readiness-audit-20261018.md",
+      "exactTextMatches": true,
+      "remoteCharacters": 6647,
+      "exitCode": 0
+    },
+    {
+      "path": "config/marketing/aso-vnext.json",
+      "exactTextMatches": true,
+      "remoteCharacters": 4905,
+      "exitCode": 0
+    },
+    {
+      "path": "tools/mcp/client-packages.mjs",
+      "exactTextMatches": true,
+      "remoteCharacters": 8339,
+      "exitCode": 0
+    }
+  ],
+  "ci": {
+    "run": 179,
+    "id": 39061611207,
+    "url": "https://github.com/tantalum666/rillora/actions/runs/39061611207",
+    "status": "completed",
+    "jobs": [
+      {
+        "name": "source",
+        "conclusion": "success"
+      },
+      {
+        "name": "api",
+        "conclusion": "success"
+      },
+      {
+        "name": "web-and-infrastructure",
+        "conclusion": "success"
+      }
+    ]
+  },
+  "reviewedProviderContentNormalization": "GitHub connector returns contents as raw text; compared directly after an initial JSON parse mismatch.",
+  "newEncryptedArchive": false,
+  "at": "2026-10-17T19:18:00.908Z",
+  "metadataFollowup": "Post-CI receipt only; no runtime or marketing publication"
+}

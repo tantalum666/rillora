@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-13T14:20:51.230600+00:00",
+  "mode": "same-release-workflow-focused-owner-feedback",
+  "baseline": "output/qa/rillora-final-readiness-20261013/reading.json",
+  "projectMarkdownFullReadRepeated": false,
+  "read": {
+    "AGENTS.md": "1-end",
+    "apps/web/AGENTS.md": "1-end",
+    "docs/product.md": "1-31 plus retained locked/authority baseline",
+    "docs/handoff.md": "1-end",
+    "docs/decision-log.md": "3450-end",
+    "docs/public-legal-pages.md": "1-85 current hosting and superseded shell notice scope",
+    "apps/web/src/LegalPublicationApp.jsx": "1-end",
+    "apps/web/src/WebsiteAppearanceDisclosure.jsx": "1-end",
+    "apps/web/src/public-experience.css": "1840-1864 existing print/notice rules",
+    "tools/legal/run-legal-sites-build.sh": "1-end",
+    "tools/legal/package-legal-sites.sh": "1-end",
+    "apps/web/package.json": "1-end"
+  },
+  "targetFlow": "Native legal link -> legal.rillora.xyz/privacy in selected language -> policy title first, optional settings disclosure after body -> language and legal navigation retain selection",
+  "ownerEvidence": "Both native Terms and Privacy links open. Return to the same account was not explicitly stated in the free-text reply.",
+  "browser": "Unified Computer Use with supported Playwright/viewport APIs; no legacy Browser skill is available. Higher-priority CUA instructions used."
+}

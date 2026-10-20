@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-08T18:29:30.188465+00:00",
+  "checks": [
+    {
+      "path": "/api/health/live",
+      "status": 404,
+      "cacheControl": null,
+      "setsCookie": false
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 404,
+      "cacheControl": null,
+      "setsCookie": false
+    },
+    {
+      "path": "/api/v1/account/identity",
+      "status": 401,
+      "cacheControl": "no-store, max-age=0",
+      "setsCookie": false
+    }
+  ]
+}

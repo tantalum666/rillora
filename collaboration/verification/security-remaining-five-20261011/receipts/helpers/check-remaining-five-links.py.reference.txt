@@ -1,0 +1,28 @@
+"""Check all inherited project Markdown and new remaining-five specs, without claiming external link verification."""
+from pathlib import Path
+import datetime,json,re,subprocess,urllib.parse,os
+ROOT=Path('/Users/tantalum/.codex/worktrees/security-findings-20261011/电子遗嘱app')
+PRIMARY=Path('/Users/tantalum/Documents/电子遗嘱app')
+QA=ROOT/'output/qa/rillora-security-remaining-five-20261011'
+files={x['path'] for x in json.loads((ROOT/'output/qa/rillora-security-remediation-20261011/reading.json').read_text())['files']}
+files.update(['docs/handoff-history-20261011-security-before-approval.md','docs/handoff-history-20261011-before-git-closeout.md','docs/handoff-history-20261011-before-remaining-five.md','docs/security-remaining-five-20261011.md','tools/security/README.md','output/qa/rillora-security-remaining-five-20261011/README.md','collaboration/verification/security-remediation-20261011/README.md'])
+new=ROOT/'collaboration/verification/security-remaining-five-20261011/README.md'
+if new.exists():files.add(str(new.relative_to(ROOT)))
+missing=[];count=0;historical=0
+for name in sorted(files):
+ p=ROOT/name
+ body=re.sub(r'\x60{3}[\s\S]*?\x60{3}','',p.read_text())
+ links=re.findall(r'\]\((<[^>]+>|[^\n)]+)\)',body)+re.findall(r'^\s*\[[^]]+\]:\s*(\S+)',body,re.M)
+ for raw in links:
+  target=raw.strip().strip('<>').split(' "')[0]
+  if not target or target.startswith('#') or re.match(r'^[a-zA-Z][a-zA-Z+.-]*:',target):continue
+  target=urllib.parse.unquote(target.split('#')[0]);count+=1
+  candidate=(p.parent/target).resolve()
+  if candidate.exists():continue
+  try:rel=candidate.relative_to(ROOT)
+  except ValueError:rel=None
+  if rel and (PRIMARY/rel).exists():historical+=1;continue
+  missing.append({'file':name,'target':target})
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'files':len(files),'localLinks':count,'historicalPrimaryReferences':historical,'missing':missing,'passed':not missing,'boundary':'Local Markdown destinations, not product tests, external HTTP checks or a new full-body reading claim.'}
+(QA/'markdown-links.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(report,ensure_ascii=False));raise SystemExit(bool(missing))

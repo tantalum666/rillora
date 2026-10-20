@@ -1,0 +1,38 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/sharing-lifecycle.integration.test.ts (15 tests | 1 failed) 2677ms
+     × keeps the paid-term version when a later edit occurs before any expiry job/read 172ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions > keeps the paid-term version when a later edit occurs before any expiry job/read
+AssertionError: expected { …(7) } to match object { title: 'AFTER EXPIRY', …(1) }
+(5 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "locationHint": "New folder",
+-   "title": "AFTER EXPIRY",
++   "locationHint": null,
++   "title": "Bank account",
+  }
+
+ ❯ tests/sharing-lifecycle.integration.test.ts:133:41
+    131|     expect(guide.package.matters[0]).toMatchObject({title:doc.title,lo…
+    132|     const personal=(await request(app).post('/v1/exports/start-here/pr…
+    133|     expect(personal.package.matters[0]).toMatchObject({title:'AFTER EX…
+       |                                         ^
+    134|     expect((await access()).used).toBe(0);
+    135|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed | 1 passed (2)
+      Tests  1 failed | 27 passed (28)
+   Start at  22:37:37
+   Duration  4.98s (transform 353ms, setup 80ms, import 1.05s, tests 3.57s, environment 0ms)
+

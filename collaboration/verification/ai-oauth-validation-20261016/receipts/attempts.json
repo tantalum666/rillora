@@ -1,0 +1,26 @@
+{
+  "attempts": [
+    {
+      "step": "Codex actual OAuth",
+      "observed": "Auth0 invalid_request: resource parameter must be a string",
+      "cause": "explicit oauth_resource duplicates resource automatically discovered by actual Codex",
+      "repair": "omit duplicate override; real generated request has exactly one resource and exchange succeeds"
+    },
+    {
+      "step": "Temporary Codex cleanup",
+      "observed": "direct client-grant deletion did not succeed",
+      "repair": "delete only the purpose-tagged temporary client using available client permission; readback confirms its grants were also removed",
+      "additionalScopeRequested": false
+    },
+    {
+      "step": "Gemini driver discovery",
+      "observed": "fallback discovery at MCP endpoint returned no authorization metadata",
+      "repair": "match the installed authenticate implementation: consume the HEAD 401 WWW-Authenticate protected-resource challenge first"
+    },
+    {
+      "step": "GitHub CI163",
+      "observed": "source publication guard: Readable manifest has missing, extra or duplicate files; api and web-and-infrastructure passed",
+      "repair": "Regenerate the actual collaboration readable manifest and verify coverage and hashes; keep scanner rules unchanged"
+    }
+  ]
+}

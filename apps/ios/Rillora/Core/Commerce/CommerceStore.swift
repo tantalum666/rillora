@@ -33,6 +33,7 @@ final class CommerceStore {
     private var localAppAccountToken: UUID?
     private var pendingStoreKitSandboxTransaction: StoreKitTransactionEvidence?
     private var refreshRevision = 0
+    private var lifecycleRevision = 0
 
     init(
         service: any CommerceServing,
@@ -77,9 +78,13 @@ final class CommerceStore {
     }
 
     var currentPlanLabel: String {
-        guard let planCode = status?.currentAccess.planCode else { return "View" }
-        let label = planCode == "free" ? "Free" : planCode.capitalized
-        return label + (status?.validationOnly == true ? " · Test access" : "")
+        guard let planCode = status?.currentAccess.planCode else { return String(localized: "View") }
+        let label = switch planCode {
+        case "free": String(localized: "Free")
+        case "family": String(localized: "Family")
+        default: planCode
+        }
+        return status?.validationOnly == true ? L10n.format("%1$@ · Test access", label) : label
     }
 
     var purchaseIsAvailable: Bool {
@@ -89,23 +94,30 @@ final class CommerceStore {
     }
 
     func start(appAccountToken: UUID? = nil) async {
+        guard !Task.isCancelled else { return }
+        lifecycleRevision += 1
+        let lifecycle = lifecycleRevision
         localAppAccountToken = appAccountToken
         await refresh()
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if storeKitTestEnvironment.isEnabled {
             await loadStoreKitProducts()
         }
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if storeKitLocalTestingEnabled {
             await refreshLocalStoreKitState()
         }
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
 
         async let storefrontUpdates: Void = observeStorefrontUpdates()
         async let transactionUpdates: Void = observeStoreKitTransactionUpdates()
         async let subscriptionStatusUpdates: Void = observeStoreKitSubscriptionStatusUpdates()
-        async let productionUpdates: Void = startProductionPurchases(owner: appAccountToken)
+        async let productionUpdates: Void = startProductionPurchases(owner: appAccountToken, lifecycle: lifecycle)
         _ = await (storefrontUpdates, transactionUpdates, subscriptionStatusUpdates, productionUpdates)
     }
 
-    private func startProductionPurchases(owner: UUID?) async {
+    private func startProductionPurchases(owner: UUID?, lifecycle: Int) async {
+        guard lifecycle == lifecycleRevision, !Task.isCancelled else { return }
         if let owner { await applePurchase?.start(owner: owner) }
     }
 
@@ -156,7 +168,7 @@ final class CommerceStore {
                     await acceptStoreKitSandboxTransaction(evidence)
                 }
             case .unverified:
-                storeKitMessage = "StoreKit returned an unverified transaction. It was not recorded or finished."
+                storeKitMessage = String(localized: "StoreKit returned an unverified transaction. It was not recorded or finished.")
             }
         }
     }
@@ -169,7 +181,7 @@ final class CommerceStore {
             guard !Task.isCancelled else { return }
             applyLocalStoreKitSubscriptionStatuses(snapshot)
             if let state = storeKitLocalSubscriptionStatuses.first?.state {
-                storeKitMessage = "Local subscription state: \(Self.subscriptionStateLabel(state)). Ordinary Rillora access is unchanged."
+                storeKitMessage = L10n.format("Local subscription state: %1$@. Ordinary Rillora access is unchanged.", Self.subscriptionStateLabel(state))
             }
         }
     }
@@ -190,6 +202,7 @@ final class CommerceStore {
     }
 
     func reset() {
+        lifecycleRevision += 1
         refreshRevision += 1
         applePurchase?.reset()
         status = nil
@@ -218,11 +231,11 @@ final class CommerceStore {
         guard storeKitLocalTestingEnabled else { return }
         guard RilloraStoreKitCatalog.purchasableFamilyProductIDs.contains(productID),
               storeKitProducts.contains(where: { $0.productID == productID }) else {
-            storeKitMessage = "The selected local StoreKit product is not available."
+            storeKitMessage = String(localized: "The selected local StoreKit product is not available.")
             return
         }
         guard let localAppAccountToken else {
-            storeKitMessage = "A signed-in Rillora account is required to bind the local transaction."
+            storeKitMessage = String(localized: "A signed-in Rillora account is required to bind the local transaction.")
             return
         }
 
@@ -233,22 +246,25 @@ final class CommerceStore {
             let outcome = try await storeKitClient.purchase(
                 productID: productID,
                 appAccountToken: localAppAccountToken,
-                expectedStorefrontCountryCode: storefrontCountryCode
+                expectedStorefrontCountryCode: storefrontCountryCode,
+                expectedProduct: storeKitProducts.first { $0.productID == productID }
             )
             switch outcome {
             case .verified(let evidence):
                 await acceptLocalStoreKitTransaction(evidence)
             case .pending:
-                storeKitMessage = "The local StoreKit purchase is pending. No Rillora access changed."
+                storeKitMessage = String(localized: "The local StoreKit purchase is pending. No Rillora access changed.")
             case .userCancelled:
-                storeKitMessage = "The local StoreKit purchase was cancelled."
+                storeKitMessage = String(localized: "The local StoreKit purchase was cancelled.")
+            case .quoteChanged:
+                storeKitMessage = String(localized: "The price changed or is unavailable. Review it before subscribing.")
             case .unverified:
-                storeKitMessage = "StoreKit returned an unverified purchase. It was not recorded or finished."
+                storeKitMessage = String(localized: "StoreKit returned an unverified purchase. It was not recorded or finished.")
             }
         } catch is CancellationError {
             return
         } catch {
-            storeKitMessage = "The local StoreKit purchase could not be completed. No Rillora access changed."
+            storeKitMessage = String(localized: "The local StoreKit purchase could not be completed. No Rillora access changed.")
         }
     }
 
@@ -256,11 +272,11 @@ final class CommerceStore {
         guard storeKitSandboxPurchaseTestingEnabled else { return }
         guard RilloraStoreKitCatalog.purchasableFamilyProductIDs.contains(productID),
               storeKitProducts.contains(where: { $0.productID == productID }) else {
-            storeKitMessage = "The selected App Store Sandbox product is not available."
+            storeKitMessage = String(localized: "The selected App Store Sandbox product is not available.")
             return
         }
         guard let localAppAccountToken else {
-            storeKitMessage = "The Sandbox purchase is missing its synthetic Rillora account binding."
+            storeKitMessage = String(localized: "The Sandbox purchase is missing its synthetic Rillora account binding.")
             return
         }
 
@@ -271,22 +287,25 @@ final class CommerceStore {
             let outcome = try await storeKitClient.purchase(
                 productID: productID,
                 appAccountToken: localAppAccountToken,
-                expectedStorefrontCountryCode: storefrontCountryCode
+                expectedStorefrontCountryCode: storefrontCountryCode,
+                expectedProduct: storeKitProducts.first { $0.productID == productID }
             )
             switch outcome {
             case .verified(let evidence):
                 await acceptStoreKitSandboxTransaction(evidence)
             case .pending:
-                storeKitMessage = "The Sandbox purchase is pending. No Rillora access changed."
+                storeKitMessage = String(localized: "The Sandbox purchase is pending. No Rillora access changed.")
             case .userCancelled:
-                storeKitMessage = "The Sandbox purchase was cancelled."
+                storeKitMessage = String(localized: "The Sandbox purchase was cancelled.")
+            case .quoteChanged:
+                storeKitMessage = String(localized: "The price changed or is unavailable. Review it before subscribing.")
             case .unverified:
-                storeKitMessage = "Apple returned an unverified Sandbox purchase. It was not submitted or finished."
+                storeKitMessage = String(localized: "Apple returned an unverified Sandbox purchase. It was not submitted or finished.")
             }
         } catch is CancellationError {
             return
         } catch {
-            storeKitMessage = "The Sandbox purchase could not be completed. No Rillora access changed."
+            storeKitMessage = String(localized: "The Sandbox purchase could not be completed. No Rillora access changed.")
         }
     }
 
@@ -306,11 +325,11 @@ final class CommerceStore {
         do {
             try await storeKitClient.sync()
             await refreshLocalStoreKitState()
-            storeKitMessage = "Local StoreKit history was refreshed. Ordinary Rillora access is still server-owned."
+            storeKitMessage = String(localized: "Local StoreKit history was refreshed. Ordinary Rillora access is still server-owned.")
         } catch is CancellationError {
             return
         } catch {
-            storeKitMessage = "Local StoreKit history could not be refreshed. No Rillora access changed."
+            storeKitMessage = String(localized: "Local StoreKit history could not be refreshed. No Rillora access changed.")
         }
     }
 
@@ -326,8 +345,8 @@ final class CommerceStore {
                   }) else {
                 storeKitProducts = []
                 storeKitMessage = storeKitSandboxCatalogTestingEnabled
-                    ? "The App Store Sandbox catalog is incomplete or belongs to another subscription group. Purchases remain unavailable."
-                    : "The local StoreKit catalog is incomplete. Purchases remain unavailable."
+                    ? String(localized: "The App Store Sandbox catalog is incomplete or belongs to another subscription group. Purchases remain unavailable.")
+                    : String(localized: "The local StoreKit catalog is incomplete. Purchases remain unavailable.")
                 return
             }
             storeKitProducts = products
@@ -336,8 +355,8 @@ final class CommerceStore {
         } catch {
             storeKitProducts = []
             storeKitMessage = storeKitSandboxCatalogTestingEnabled
-                ? "The App Store Sandbox catalog could not be loaded."
-                : "The local StoreKit catalog could not be loaded."
+                ? String(localized: "The App Store Sandbox catalog could not be loaded.")
+                : String(localized: "The local StoreKit catalog could not be loaded.")
         }
     }
 
@@ -378,7 +397,7 @@ final class CommerceStore {
 
     private func acceptLocalStoreKitTransaction(_ evidence: StoreKitTransactionEvidence) async {
         guard matchesLocalStoreKitEvidence(evidence) else {
-            storeKitMessage = "The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished."
+            storeKitMessage = String(localized: "The local transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.")
             return
         }
 
@@ -388,7 +407,7 @@ final class CommerceStore {
         }
         await storeKitClient.finish(transactionID: evidence.transactionID)
         await refreshLocalStoreKitState()
-        storeKitMessage = "StoreKit verified the local transaction. It changed no ordinary Rillora entitlement."
+        storeKitMessage = String(localized: "StoreKit verified the local transaction. It changed no ordinary Rillora entitlement.")
     }
 
     private func acceptStoreKitSandboxTransaction(
@@ -396,7 +415,7 @@ final class CommerceStore {
     ) async {
         guard matchesStoreKitSandboxEvidence(evidence),
               let storefrontCountryCode else {
-            storeKitMessage = "The Sandbox transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished."
+            storeKitMessage = String(localized: "The Sandbox transaction did not match the Rillora account, catalog, environment, or storefront. It was not finished.")
             return
         }
 
@@ -410,7 +429,7 @@ final class CommerceStore {
             )
             storeKitSandboxServerStatus = response.result.status
             guard response.result.finishAuthorized else {
-                storeKitMessage = "Apple verified the Sandbox transaction, but the authoritative server snapshot is still pending. The transaction remains unfinished."
+                storeKitMessage = String(localized: "Apple verified the Sandbox transaction, but the authoritative server snapshot is still pending. The transaction remains unfinished.")
                 return
             }
 
@@ -422,12 +441,12 @@ final class CommerceStore {
             }
             await storeKitClient.finish(transactionID: evidence.transactionID)
             pendingStoreKitSandboxTransaction = nil
-            storeKitMessage = "Apple and the Rillora server verified the Sandbox subscription. The transaction was finished after durable acknowledgement; ordinary access remains Free."
+            storeKitMessage = String(localized: "Apple and the Rillora server verified the Sandbox subscription. The transaction was finished after durable acknowledgement; ordinary access remains Free.")
         } catch is CancellationError {
             return
         } catch {
             storeKitSandboxServerStatus = "verification_failed"
-            storeKitMessage = "The Rillora server could not verify the authoritative Sandbox status. The transaction remains unfinished and ordinary access is unchanged."
+            storeKitMessage = String(localized: "The Rillora server could not verify the authoritative Sandbox status. The transaction remains unfinished and ordinary access is unchanged.")
         }
     }
 
@@ -490,12 +509,12 @@ final class CommerceStore {
 
     private static func subscriptionStateLabel(_ state: StoreKitSubscriptionState) -> String {
         switch state {
-        case .subscribed: "subscribed"
-        case .expired: "expired"
-        case .inBillingRetryPeriod: "billing retry"
-        case .inGracePeriod: "grace period"
-        case .revoked: "revoked"
-        case .unknown: "unknown"
+        case .subscribed: String(localized: "subscribed")
+        case .expired: String(localized: "expired")
+        case .inBillingRetryPeriod: String(localized: "billing retry")
+        case .inGracePeriod: String(localized: "grace period")
+        case .revoked: String(localized: "revoked")
+        case .unknown: String(localized: "unknown")
         }
     }
 
@@ -546,7 +565,7 @@ final class CommerceStore {
             guard revision == refreshRevision else { return }
             purchaseRoute = nil
             isLoading = false
-            errorMessage = "Plan availability could not be checked. Purchases remain unavailable."
+            errorMessage = String(localized: "Plan availability could not be checked. Purchases remain unavailable.")
         }
     }
 }

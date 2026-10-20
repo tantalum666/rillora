@@ -1,0 +1,49 @@
+{
+  "sourceCommit": "1ab6316a8bfd9a168ba029155e0dd0891c423139",
+  "runtime": {
+    "checkedAt": "2026-10-03T10:21:59.320438+00:00",
+    "desired": 1,
+    "running": 1,
+    "rollout": "COMPLETED",
+    "health": "HEALTHY",
+    "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:11",
+    "imageDigest": "sha256:7fe1d89a7cf22c2269372b27731f2d42a3abd59ee662c74923306f4cc7db14e3",
+    "runtimeEnvironmentAndSecretReferencesUnchanged": true,
+    "reviewIdentityDigestSetUnchanged": true,
+    "reviewExpiry": "2026-10-06T17:08:57Z",
+    "ordinaryCustomerAccess": false,
+    "liveBilling": false,
+    "retentionWorker": "true"
+  },
+  "schema": "0093",
+  "existingMigrationChecksumsUnchanged": 91,
+  "privateTableFingerprintsUnchanged": 8,
+  "staticFilesMatched": 116,
+  "surfaces": [
+    {
+      "surface": "production",
+      "origin": "https://app.rillora.xyz",
+      "filesVerified": 86,
+      "reviewAccess": "identity-allowlist",
+      "staticWriteStatus": 403
+    },
+    {
+      "surface": "public",
+      "origin": "https://www.rillora.xyz",
+      "filesVerified": 30,
+      "reviewAccess": null,
+      "staticWriteStatus": 403
+    }
+  ],
+  "websiteRender": "public-live-render.json; no broken images/fonts loaded/no horizontal overflow; no console errors",
+  "native": "1.0(3), normal upload eligibility, Apple processed, Owner-confirmed OS-only declaration saved; Ready to Submit read back",
+  "ordinaryCustomers": false,
+  "liveBilling": false,
+  "physicalDeviceUsed": false,
+  "ownerSimulatorUsed": false,
+  "noProviderEmailOrApplicationRepeated": true,
+  "newProductSuitesRerun": false,
+  "retainedRegression": "CI47/API400/Web115+7/native190pass1priorStoreKitSkip/infra53",
+  "boundary": "Deployment/artifact acceptance only; no new real sign-in/consent/purchase/restore/AppReview/public activation.",
+  "nativeDeclarationMetadataOnlyChange": "ITSAppUsesNonExemptEncryption=false, all other plist values equal; build3itself uses its saved portal declaration"
+}

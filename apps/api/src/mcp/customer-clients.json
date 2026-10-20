@@ -1,0 +1,80 @@
+[
+  {
+    "key": "openai",
+    "name": "ChatGPT",
+    "clientId": "rillora-openai-v1",
+    "privacyUrl": "https://openai.com/policies/privacy-policy/",
+    "native": false,
+    "identityScopes": true,
+    "redirectUris": [
+      "https://chatgpt.com/connector_platform_oauth_redirect"
+    ]
+  },
+  {
+    "key": "codex",
+    "name": "Codex",
+    "clientId": "rillora-codex-v1",
+    "privacyUrl": "https://openai.com/policies/privacy-policy/",
+    "native": true,
+    "identityScopes": false,
+    "redirectUris": [
+      "http://127.0.0.1/callback"
+    ]
+  },
+  {
+    "key": "claude",
+    "name": "Claude",
+    "clientId": "rillora-claude-v1",
+    "privacyUrl": "https://www.anthropic.com/legal/privacy",
+    "native": false,
+    "identityScopes": false,
+    "redirectUris": [
+      "https://claude.ai/api/mcp/auth_callback"
+    ]
+  },
+  {
+    "key": "claude-code",
+    "name": "Claude Code",
+    "clientId": "rillora-claude-code-v1",
+    "privacyUrl": "https://www.anthropic.com/legal/privacy",
+    "native": true,
+    "identityScopes": false,
+    "redirectUris": [
+      "http://localhost/callback"
+    ]
+  },
+  {
+    "key": "cursor",
+    "name": "Cursor",
+    "clientId": "rillora-cursor-v1",
+    "privacyUrl": "https://cursor.com/privacy",
+    "native": true,
+    "identityScopes": false,
+    "redirectUris": [
+      "http://localhost:8787/callback",
+      "https://www.cursor.com/agents/mcp/oauth/callback"
+    ]
+  },
+  {
+    "key": "gemini-cli",
+    "name": "Gemini CLI",
+    "clientId": "rillora-gemini-cli-v1",
+    "privacyUrl": "https://policies.google.com/privacy",
+    "native": true,
+    "identityScopes": false,
+    "redirectUris": [
+      "http://localhost:7777/oauth/callback"
+    ]
+  },
+  {
+    "key": "qwen-code",
+    "name": "Qwen Code",
+    "clientId": "rillora-qwen-code-v1",
+    "privacyUrl": "https://qwen.ai/privacypolicy",
+    "native": true,
+    "identityScopes": false,
+    "redirectUris": [
+      "http://localhost:7777/oauth/callback"
+    ]
+  }
+]

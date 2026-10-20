@@ -1,0 +1,27 @@
+{
+  "scope": "Account, commerce UI/messages and authentication UI/error descriptions",
+  "catalogKeys": 328,
+  "pluralEntries": 1,
+  "localizedSourceOccurrences": 357,
+  "uniqueExplicitSourceKeys": 327,
+  "staticCatalogKeys": [
+    "Subscription consent is shown in English. The English text is authoritative."
+  ],
+  "missingKeys": 0,
+  "placeholderMismatches": 0,
+  "unknownAPIContent": "Kept raw rather than passed into localization lookup",
+  "storeKitDisplayPrice": "Unmodified",
+  "purchaseConsent": "Exact English literal displayed with Text(verbatim:); not in catalog",
+  "deleteConfirmation": "DELETE token unchanged",
+  "languageEntry": "AppLanguageButton before AppAppearanceMenu in Profile toolbar",
+  "testsAdded": "apps/ios/RilloraTests/AccountLocalizationTests.swift",
+  "testsAddedCount": 5,
+  "testsRun": "Source/catalog/format-placeholder checks only. Native XCTest compilation and execution not available on Linux.",
+  "protectedCurrentSha256": {
+    "apps/ios/Rillora/Core/Authentication/LegalConsentContract.swift": "c0f589743b2e00a785e83743123ca346fa902eb6c503216a1fe293a9e21785dd",
+    "apps/ios/Rillora/Core/Authentication/HostedLegalAcceptanceProof.swift": "bb389c03684786bd1125e489128c397dd779a8e0b8eed66d509a21192d103ba6",
+    "apps/ios/Rillora/Core/Domain/CommerceModels.swift": "29586cab1656877755b94ea75b610cc94c5b856936d5b2d28aed5762abbd1873",
+    "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift": "ff42630ffbe789f559a677ac7f0ed7a9ce4d8aced51dd3dacd46ee9b354d95fe",
+    "apps/ios/Rillora/Core/Commerce/RilloraStoreKitCatalog.swift": "4bfed2625fd1b3d4d7658efbb96ab59eb0acc5f4a9716d3d48e4df113cf588b9"
+  }
+}

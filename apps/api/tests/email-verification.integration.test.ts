@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { createHash, randomBytes } from "node:crypto";
 import request from "./http-fixture.js";
 import { beforeAll, afterAll, describe, it, expect } from "vitest";
@@ -9,7 +10,7 @@ import { currentLegalContract as legal } from "../src/legal-contract.js";
 import { seedDevelopmentFixture, developmentPlannerPublicId as ownerId } from "../src/seed-dev.js";
 import type { EmailIdentity } from "../src/email-verification.js";
 
-const databaseUrl = "postgresql:///continuity_email_verification_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_email_verification_test", "continuity_email_verification_test");
 const config = loadConfig({ NODE_ENV: "test", DATABASE_URL: databaseUrl, ALLOW_DEV_AUTH: "true", CORS_ORIGINS: "http://localhost:4191" });
 const hash = (value: string) => createHash("sha256").update(value).digest();
 let pool: DatabasePool;
@@ -32,7 +33,7 @@ async function actor(credentialKind = "browser_cookie") {
 }
 describe.sequential("Email verification without another sign-in", () => {
   beforeAll(async () => {
-    if (!databaseUrl.endsWith("/continuity_email_verification_test")) throw Error("Dedicated verification test database required");
+    await assertDedicatedTestDatabase(databaseUrl, 'continuity_email_verification_test');
     await runMigrations(databaseUrl); pool=createPool(config);
     await pool.query("truncate app.planners restart identity cascade"); await seedDevelopmentFixture(pool);
     app=createApp(pool,config,{emailIdentityVerifier:{verifiedEmail: identity=>proof(identity)}});
@@ -50,7 +51,7 @@ describe.sequential("Email verification without another sign-in", () => {
     verified=true;
     await attempt().expect(200);
     const row=(await pool.query("select token_hash,legal_acceptance_id,verified_email_hash from app.auth_sessions where public_id=$1",[recipient.session])).rows[0];
-    expect(row.token_hash).toEqual(hash(recipient.token));expect(row.legal_acceptance_id).toBe(recipient.acceptance);expect(row.verified_email_hash).not.toBeNull();
+    expect(row.token_hash).toEqual(hash(recipient.token));expect(row.legal_acceptance_id).toBe(recipient.acceptance);expect(row.verified_email_hash).toBeNull();
     expect((await request(app).get("/v1/sharing/shared-with-me").set(recipient.headers).expect(200)).body.connections).toHaveLength(1);
   });
   it("requires CSRF and refuses caller-selected identity or email fields",async()=>{
@@ -58,6 +59,27 @@ describe.sequential("Email verification without another sign-in", () => {
     await request(app).post("/v1/sharing/email-verification").set("cookie",`continuity_session=${recipient.token}`).send({}).expect(403);
     await request(app).post("/v1/sharing/email-verification").set(recipient.headers).send({subject:"someone-else",email:"recipient@example.test",verified:true}).expect(400);
     await request(app).post("/v1/sharing/email-verification").send({}).expect(401);
+  });
+  it("rechecks cached email at acceptance and clears stale proof on change, revocation and outage",async()=>{
+    const recipient=await actor('native_bearer');
+    const contact=(await request(app).post('/v1/trusted-contacts').set(owner).send({displayName:'Current proof fixture'}).expect(201)).body.trustedContact.publicId;
+    const invite=(await request(app).post('/v1/sharing/connections').set(owner).send({personPublicId:contact,email:'cached@example.test',grants:[]}).expect(201)).body;
+    const invitationToken=new URLSearchParams(new URL(invite.invitationUrl).hash.slice(1)).get('invitation');
+    const accept=()=>request(app).post('/v1/sharing/invitations/accept').set(recipient.headers).send({invitationToken,accepted:true});
+    for (const next of ['changed@example.test',null,'outage'] as const) {
+      proof=async()=> 'cached@example.test';
+      await pool.query('update app.auth_sessions set verified_email_hash=null where public_id=$1',[recipient.session]);
+      await request(app).post('/v1/sharing/email-verification').set(recipient.headers).send({}).expect(200);
+      proof=async()=> {if(next==='outage') throw Error('synthetic outage');return next;};
+      const failed=await accept().expect(next==='outage'?503:403);
+      expect(failed.body.error.code).toBe(next==='outage'?'email_verification_unavailable':next?'invitation_account_mismatch':'verified_email_required');
+      if (!next || next==='outage') expect((await pool.query('select verified_email_hash from app.auth_sessions where public_id=$1',[recipient.session])).rows[0].verified_email_hash).toBeNull();
+    }
+    proof=async()=> 'cached@example.test';await accept().expect(200);
+    const terminal=await request(app).post('/sharing/invitations/resolve').send({invitationToken}).expect(404);
+    expect(terminal.headers['set-cookie']).toBeUndefined();
+    expect(JSON.stringify(terminal.body)).not.toContain('Current proof fixture');
+    expect((await request(app).get('/v1/sharing/shared-with-me').set(recipient.headers).expect(200)).body.connections).toHaveLength(1);
   });
   it("supports the same native bearer session and leaves it usable on provider outage",async()=>{
     const recipient=await actor("native_bearer"); proof=async()=>{throw Error("provider unavailable");};
@@ -71,4 +93,38 @@ describe.sequential("Email verification without another sign-in", () => {
     await request(app).post("/v1/sharing/email-verification").set(recipient.headers).send({}).expect(401);
     expect((await pool.query("select verified_email_hash from app.auth_sessions where public_id=$1",[recipient.session])).rows[0].verified_email_hash).toBeNull();
   });
+  it("shows only the active cookie or bearer account and does not persist displayed email", async () => {
+    for (const kind of ["browser_cookie", "native_bearer"]) {
+      const recipient = await actor(kind);
+      proof = async identity => { expect(identity.subject).toBe(recipient.subject); return "current@example.test"; };
+      const profile = (await request(app).get("/v1/account/identity?subject=ignored").set(recipient.headers).expect(200));
+      expect(profile.body.account.displayName).toBe("Recipient");
+      expect(profile.body.account.publicId).toBe((await request(app).get("/v1/session").set(recipient.headers).expect(200)).body.plannerPublicId);
+      expect(profile.body.account.verifiedEmail).toBe("current@example.test");
+      expect(profile.body.emailStatus).toBe("available");
+      expect(profile.headers["cache-control"]).toContain("no-store");
+      expect(JSON.stringify(profile.body)).not.toContain(recipient.subject);
+      expect((await pool.query("select verified_email_hash from app.auth_sessions where public_id=$1", [recipient.session])).rows[0].verified_email_hash).toBeNull();
+    }
+  });
+  it("protects display identity from anonymous and mismatched-workspace requests", async () => {
+    await request(app).get("/v1/account/identity").expect(401);
+    const recipient = await actor(); proof = async () => { throw Error("must not call provider"); };
+    await request(app).get("/v1/account/identity").set(recipient.headers).set("x-rillora-planner", ownerId).expect(409);
+  });
+  it("returns honest email fallback without blocking the authenticated account", async () => {
+    const recipient = await actor(); proof = async () => null;
+    expect((await request(app).get("/v1/account/identity").set(recipient.headers).expect(200)).body.emailStatus).toBe("not_provided");
+    proof = async () => { throw Error("provider unavailable"); };
+    const profile = (await request(app).get("/v1/account/identity").set(recipient.headers).expect(200)).body;
+    expect(profile.emailStatus).toBe("unavailable"); expect(profile.account.verifiedEmail).toBeNull();
+    await request(app).get("/v1/session").set(recipient.headers).expect(200);
+  });
+  it("discards a displayed email when its session is revoked during lookup", async () => {
+    const recipient = await actor();
+    proof = async () => { await pool.query("update app.auth_sessions set revoked_at=now() where public_id=$1", [recipient.session]); return "stale@example.test"; };
+    await request(app).get("/v1/account/identity").set(recipient.headers).expect(401);
+  });
+
 });
+

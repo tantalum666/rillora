@@ -1,0 +1,55 @@
+{
+  "at": "2026-10-13T17:11:29.347240+00:00",
+  "annualProduct": "com.rillora.family.annual",
+  "period": "P1Y",
+  "storefronts": [
+    "USA",
+    "HKG"
+  ],
+  "annualPrices": {
+    "USA": {
+      "currency": "USD",
+      "amount": "119.99"
+    },
+    "HKG": {
+      "currency": "HKD",
+      "amount": "888.00"
+    }
+  },
+  "appDownloadPrices": {
+    "USA": "USD0.00",
+    "HKG": "HKD0.00"
+  },
+  "appAvailableTerritories": [
+    "USA",
+    "HKG"
+  ],
+  "macOptIn": false,
+  "visionOptIn": false,
+  "appleFamilySharing": false,
+  "multiSeatPurchases": false,
+  "monthlyAnnualContractOfferConfigured": false,
+  "upcomingPriceChanges": 0,
+  "introductoryOffers": 0,
+  "subscriptionTaxCategory": "matches app",
+  "paidAppsAgreement": "active,2026-08-20 through2027-06-10",
+  "freeAppsAgreement": "active,2026-08-20 through2027-06-10",
+  "primaryCategory": "Productivity",
+  "ageRating": "18+, legacy17+, regional Apple conversions retained",
+  "primaryLanguage": "en-US",
+  "license": "Apple standard license agreement",
+  "privacyPublished": true,
+  "privacyDataTypes": 13,
+  "privacyAccountLinked": true,
+  "productionNotificationURL": "https://app.rillora.xyz/api/commerce/storekit/production/notifications",
+  "reviewNotificationURL": "https://app.rillora.xyz/api/commerce/storekit/review/notifications",
+  "newProviderWrites": {
+    "annualEnglishDescription": "Up to 5 recipients, shared reviews and one contributor.",
+    "annualChineseDescription": "最多五位接收人同步查看、共同复核，一位亲友可提出修改建议。",
+    "savedAndReloaded": true,
+    "priceChanges": false,
+    "agreementChanges": false,
+    "privacyDeclarationChanges": false
+  },
+  "boundary": "Actual browser readback; saved draft configuration, not App Review approval, public availability or a new financial transaction."
+}

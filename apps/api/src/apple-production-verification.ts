@@ -33,9 +33,10 @@ export class AppleProductionVerification {
     this.storefronts = new Set(allowedStorefronts);
   }
 
-  async verifyClientTransaction(input: { signedTransaction: string; expectedAppAccountToken: string }): Promise<AppleProductionSignal> {
+  async verifyClientTransaction(input: { signedTransaction: string; expectedAppAccountToken?: string }): Promise<AppleProductionSignal> {
     const transaction = await this.transaction(input.signedTransaction);
-    if (uuid(transaction.appAccountToken) !== uuid(input.expectedAppAccountToken)) throw new Error('Production Apple client transaction ownership mismatch');
+    uuid(transaction.appAccountToken);
+    if (input.expectedAppAccountToken !== undefined && uuid(transaction.appAccountToken) !== uuid(input.expectedAppAccountToken)) throw new Error('Production Apple client transaction ownership mismatch');
     // Historical receipts retain their signed storefront after the device moves country.
     // A new purchase's current storefront is checked by its separate quote/preflight.
     const receipt = appleReceiptEvidence(transaction, input.signedTransaction);
@@ -56,7 +57,8 @@ export class AppleProductionVerification {
     return this.signal(signedPayload, uuid(notification.notificationUUID),
       type + (notification.subtype ? ':' + identifier(notification.subtype) : ''), signalType(type),
       time(notification.signedDate), transaction, renewal,
-      transaction ? appleReceiptEvidence(transaction, data.signedTransactionInfo!) : null);
+      transaction ? { ...appleReceiptEvidence(transaction, data.signedTransactionInfo!, transaction.appAccountToken??renewal?.appAccountToken),
+        ...(renewal ? { renewalSignedAt: new Date(time(renewal.signedDate)).toISOString() } : {}) } : null);
   }
 
   async verifySubscriptionStatus(input: { signedTransaction: string; signedRenewalInfo: string;

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-06T14:14:44.920234+00:00",
+  "appleEnvironment": "sandbox",
+  "beforeStorefronts": [
+    "USA",
+    "HKG"
+  ],
+  "afterStorefronts": [
+    "USA",
+    "HKG",
+    "AUS"
+  ],
+  "otherSecretFieldsUnchanged": true,
+  "readbackMatches": true,
+  "newVersionId": "2dc5078a-7337-4277-b216-1f465af4f707",
+  "noIdentityOrExpiryChange": true,
+  "ordinarySalesEnabled": false,
+  "cluster": "RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm",
+  "service": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+  "taskDefinition": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:14",
+  "deploymentId": "ecs-svc/0195345784298730683",
+  "purpose": "Load actual AUS Sandbox offer/verified country after StoreKit returned AUS; API14 image and reviewer window unchanged"
+}

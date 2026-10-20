@@ -1,6 +1,10 @@
 # Publication verification
 
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-11 (Asia/Hong_Kong)
+
+[October11 security remediation](security-remediation-20261011/README.md) is the
+current additive source/QA preservation record. Its archive31does not replace or
+rebuild the earlier captures; online deployment remains unchanged by Owner request.
 
 [October1 Resend configuration and verification](resend-20261001/README.md) is an
 additive record. The complete September30 snapshot and its proof below remain dated

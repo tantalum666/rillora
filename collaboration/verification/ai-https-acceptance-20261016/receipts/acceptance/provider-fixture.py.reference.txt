@@ -1,0 +1,253 @@
+"""Bounded synthetic OAuth fixture; restore the existing default Web app exactly."""
+from pathlib import Path
+import argparse
+import datetime
+import hashlib
+import importlib.util
+import json
+import os
+import secrets
+import subprocess
+from urllib.parse import urlencode
+
+ROOT = Path(__file__).resolve().parents[3]
+QA = Path(__file__).resolve().parent
+PRIVATE = ROOT / '.local-secrets/ai-https-20261016'
+PRIVATE.mkdir(mode=0o700, exist_ok=True)
+spec = importlib.util.spec_from_file_location('auth_helpers', ROOT / 'tools/auth0/prepare-production-clients.py')
+h = importlib.util.module_from_spec(spec)
+spec.loader.exec_module(h)
+PURPOSE = 'mcp-https-synthetic-20261016'
+NAME = 'Rillora HTTPS acceptance - Codex'
+WEB_NAME = 'Rillora HTTPS acceptance - Web'
+CONNECTION = 'rillora-https-synthetic-20261016'
+FIELDS = 'client_id,name,app_type,callbacks,allowed_logout_urls,web_origins,grant_types,client_metadata,is_first_party,global,oidc_conformant,jwt_configuration,token_endpoint_auth_method'
+SCOPES = ['matters:read:summary', 'readiness:read:scoped']
+
+def save(name, value, private=True):
+    path = (PRIVATE if private else QA) / name
+    path.write_text(json.dumps(value, indent=2) + '\n')
+    if private:
+        path.chmod(0o600)
+
+def stamp():
+    return datetime.datetime.now(datetime.timezone.utc).isoformat()
+
+def read_clients():
+    clients = h.api('get', 'clients?fields=' + FIELDS + '&include_fields=true&per_page=100')
+    assert len(clients) < 100
+    return clients
+
+def read_connections():
+    # The list API rejects is_domain_connection in its fields allowlist although full responses contain it.
+    values = h.api('get', 'connections?per_page=100')
+    assert len(values) < 100
+    return [{k: c.get(k) for k in ['id', 'name', 'strategy', 'is_domain_connection']} for c in values]
+
+def bindings(connections):
+    return {c['id']: h.connection_clients(c['id']) for c in connections}
+
+def signature(value):
+    return hashlib.sha256(json.dumps(value, sort_keys=True, separators=(',', ':')).encode()).hexdigest()
+
+def delete_resource(path):
+    result = subprocess.run(['auth0', 'api', 'delete', path, '--force', '--tenant', 'rillora-dev.eu.auth0.com', '--no-input'],
+                            capture_output=True, text=True, timeout=45)
+    if result.returncode:
+        diagnostic = PRIVATE / 'delete-error.txt'
+        diagnostic.write_text(result.stderr)
+        diagnostic.chmod(0o600)
+        raise RuntimeError('Scoped fixture deletion failed; protected diagnostic retained')
+
+def others(clients, web_id, ai_id):
+    return sorted([c for c in clients if c['client_id'] not in [web_id, ai_id]], key=lambda c: c['client_id'])
+
+def projection(client):
+    # Missing method is the provider's null default. No absent origin/logout fields are added.
+    return {k: client.get(k) for k in ['name', 'callbacks', 'grant_types', 'token_endpoint_auth_method']} | {
+        'jwt_configuration': {k: client['jwt_configuration'][k] for k in ['alg', 'lifetime_in_seconds']}
+    }
+
+def restore():
+    state = json.loads((PRIVATE / 'registration.json').read_text())
+    before = json.loads((PRIVATE / 'before.json').read_text())
+    assert state['purpose'] == PURPOSE
+    web_id = state['webClientId']
+    original = h.exact(before['clients'], web_id, 'client_id')
+    restored_projection = projection(original)
+    normalization = state.get('restoreNormalization')
+    if normalization:
+        assert normalization == {'field': 'token_endpoint_auth_method', 'from': None, 'to': 'client_secret_post'}
+        assert original['name'] == 'Default App' and original['callbacks'] == [] and restored_projection['token_endpoint_auth_method'] is None
+        restored_projection['token_endpoint_auth_method'] = 'client_secret_post'
+    current = h.api('get', 'clients/' + web_id + '?fields=' + FIELDS + '&include_fields=true')
+    if projection(current) != restored_projection:
+        assert projection(current) == state['webPatch'], 'Web app changed outside this fixture; stop restoration'
+        h.api('patch', 'clients/' + web_id, restored_projection)
+    for connection in before['connections']:
+        wanted = web_id in before['bindings'][connection['id']]
+        active = web_id in h.connection_clients(connection['id'])
+        if active != wanted:
+            h.api('patch', 'connections/' + connection['id'] + '/clients', [{'client_id': web_id, 'status': wanted}])
+    users = h.api('get', 'users-by-email?' + urlencode({'email': 'rillora-https-acceptance-20261016@example.test'}))
+    user = h.exact(users, state.get('syntheticUserId'), 'user_id')
+    if user:
+        assert user.get('app_metadata', {}).get('purpose') == PURPOSE
+        assert any(x.get('connection') == CONNECTION for x in user.get('identities', []))
+        delete_resource('users/' + state['syntheticUserId'])
+    current_ai = h.exact(read_clients(), state.get('clientId'), 'client_id')
+    if current_ai:
+        assert current_ai['client_metadata']['purpose'] == PURPOSE
+        delete_resource('clients/' + state['clientId'])
+    resource = h.exact(h.api('get', 'resource-servers?per_page=100'), state.get('resourceServerId'), 'id')
+    if resource:
+        assert resource['identifier'] == state['resource']
+        delete_resource('resource-servers/' + state['resourceServerId'])
+    if h.exact(read_connections(), state.get('syntheticConnectionId'), 'id'):
+        c = h.api('get', 'connections/' + state['syntheticConnectionId'])
+        assert c['name'] == CONNECTION and c.get('metadata', {}).get('purpose') == PURPOSE
+        delete_resource('connections/' + state['syntheticConnectionId'])
+    clients = read_clients()
+    assert not h.exact(clients, state['clientId'], 'client_id')
+    restored = h.exact(clients, web_id, 'client_id')
+    assert projection(restored) == restored_projection
+    assert_untouched_default(original, restored)
+    assert others(clients, web_id, state.get('clientId')) == others(before['clients'], web_id, None)
+    assert bindings(before['connections']) == before['bindings']
+    assert h.api('get', 'tenants/settings') == before['settings']
+    current_connections = read_connections()
+    assert sorted(current_connections, key=lambda c: c['id']) == sorted(before['connections'], key=lambda c: c['id'])
+    assert sorted(h.api('get', 'resource-servers?per_page=100'), key=lambda r: r['id']) == sorted(before['resourceServers'], key=lambda r: r['id'])
+    assert h.api('get', 'client-grants?client_id=' + state['clientId']) == []
+    result = {'checkedAt': stamp(), 'defaultWebManagedFieldsRestored': not bool(normalization),
+              'defaultWebOnlyDeclaredAuthenticationNormalization': normalization, 'otherClientsMatched': True,
+              'originalBindingsMatched': True, 'tenantSettingsMatched': True,
+              'temporaryProviderResourcesRemoved': True, 'secretUnchanged': True, 'paidPlanChanged': False}
+    state['restored'] = True
+    save('registration.json', state)
+    save('provider-restored.json', result, False)
+    print(json.dumps(result))
+
+def prepare():
+    assert not (PRIVATE / 'registration.json').exists(), 'Existing fixture must be resumed or restored, not overwritten'
+    origin = json.loads((ROOT / '.local-secrets/ai-oauth-20261016/https-origin.json').read_text())['origin']
+    from urllib.parse import urlsplit
+    u = urlsplit(origin)
+    assert u.scheme == 'https' and u.hostname.endswith('.trycloudflare.com') and not u.query and not u.fragment and not u.username and u.path == ''
+    clients = read_clients()
+    web = h.exact(clients, 'Default App')
+    assert web and web['callbacks'] == [] and web.get('is_first_party') is True and web.get('oidc_conformant') is True
+    assert web['jwt_configuration']['alg'] == 'RS256'
+    assert h.api('get', 'client-grants?client_id=' + web['client_id']) == []
+    assert sum(not c.get('global', False) for c in clients) == 9
+    connections = read_connections()
+    assert len(connections) < 100 and not h.exact(connections, CONNECTION)
+    old_bindings = bindings(connections)
+    settings = h.api('get', 'tenants/settings')
+    assert settings['resource_parameter_profile'] == 'compatibility'
+    servers = h.api('get', 'resource-servers?per_page=100')
+    assert len(servers) < 10
+    resource = origin + '/api/mcp'
+    assert not h.exact(servers, resource, 'identifier')
+    save('before.json', {'clients': clients, 'connections': connections, 'bindings': old_bindings, 'settings': settings, 'resourceServers': servers})
+    patch = {'name': WEB_NAME, 'callbacks': [origin + '/api/auth/callback'], 'grant_types': ['authorization_code'],
+             'token_endpoint_auth_method': 'client_secret_post', 'jwt_configuration': {'alg': 'RS256', 'lifetime_in_seconds': 900}}
+    state = {'purpose': PURPOSE, 'origin': origin, 'resource': resource, 'webClientId': web['client_id'],
+             'webPatch': patch, 'webChanged': False, 'issuer': 'https://login.rillora.xyz/', 'restored': False}
+    save('registration.json', state)
+    # Track every created resource before the next mutation, for precise cleanup after interruption.
+    connection = h.api('post', 'connections', {'name': CONNECTION, 'strategy': 'auth0', 'is_domain_connection': True,
+        'enabled_clients': [], 'metadata': {'purpose': PURPOSE},
+        'options': {'disable_signup': True, 'passwordPolicy': 'excellent', 'brute_force_protection': True}})
+    state['syntheticConnectionId'] = connection['id']
+    state['syntheticConnectionName'] = CONNECTION
+    save('registration.json', state)
+    ai = h.api('post', 'clients', {'name': NAME, 'app_type': 'native', 'oidc_conformant': True, 'is_first_party': False,
+        'token_endpoint_auth_method': 'none', 'grant_types': ['authorization_code'], 'callbacks': [],
+        'client_metadata': {'purpose': PURPOSE}, 'jwt_configuration': {'alg': 'RS256', 'lifetime_in_seconds': 900}})
+    state['clientId'] = ai['client_id']
+    save('registration.json', state)
+    for c in connections:
+        if state['clientId'] in h.connection_clients(c['id']):
+            h.api('patch', 'connections/' + c['id'] + '/clients', [{'client_id': state['clientId'], 'status': False}])
+    server = h.api('post', 'resource-servers', {'name': 'Rillora HTTPS synthetic acceptance', 'identifier': resource,
+        'signing_alg': 'RS256', 'token_lifetime': 900, 'token_lifetime_for_web': 900, 'allow_offline_access': False,
+        'skip_consent_for_verifiable_first_party_clients': False,
+        'scopes': [{'value': SCOPES[0], 'description': 'Read selected synthetic matter summaries'},
+                   {'value': SCOPES[1], 'description': 'Check selected synthetic preparation gaps'}]})
+    state['resourceServerId'] = server['id']
+    save('registration.json', state)
+    grant = h.api('post', 'client-grants', {'client_id': state['clientId'], 'audience': resource, 'scope': SCOPES, 'subject_type': 'user'})
+    state['clientGrantId'] = grant['id']
+    save('registration.json', state)
+    resume_activation()
+
+
+def assert_untouched_default(original, current):
+    changed = {'name', 'callbacks', 'grant_types', 'token_endpoint_auth_method', 'jwt_configuration'}
+    assert all(original.get(k) == current.get(k) for k in (set(original) | set(current)) - changed)
+    remaining = lambda c: {k: v for k, v in c['jwt_configuration'].items() if k not in {'alg', 'lifetime_in_seconds'}}
+    assert remaining(original) == remaining(current), 'Unmanaged JWT attributes changed'
+
+
+def resume_activation():
+    state = json.loads((PRIVATE / 'registration.json').read_text())
+    before = json.loads((PRIVATE / 'before.json').read_text())
+    assert state['purpose'] == PURPOSE and not state['restored'] and not state.get('syntheticUserId')
+    clients, connections, old_bindings, settings = before['clients'], before['connections'], before['bindings'], before['settings']
+    web = h.exact(clients, state['webClientId'], 'client_id')
+    connection = h.api('get', 'connections/' + state['syntheticConnectionId'])
+    assert connection['name'] == CONNECTION and connection['metadata']['purpose'] == PURPOSE
+    ai = h.api('get', 'clients/' + state['clientId'] + '?fields=client_metadata&include_fields=true')
+    assert ai['client_metadata']['purpose'] == PURPOSE
+    patch = {'name': WEB_NAME, 'callbacks': [state['origin'] + '/api/auth/callback'], 'grant_types': ['authorization_code'],
+             'token_endpoint_auth_method': 'client_secret_post', 'jwt_configuration': {'alg': 'RS256', 'lifetime_in_seconds': 900}}
+    state['webPatch'] = patch
+    save('registration.json', state)
+    current_web = h.api('get', 'clients/' + web['client_id'] + '?fields=' + FIELDS + '&include_fields=true')
+    assert projection(current_web) in [projection(web), patch], 'Default app changed outside this fixture'
+    assert_untouched_default(web, current_web)
+    if projection(current_web) != patch:
+        h.api('patch', 'clients/' + web['client_id'], patch)
+    state['webChanged'] = True
+    save('registration.json', state)
+    for c in connections:
+        if web['client_id'] in old_bindings[c['id']]:
+            h.api('patch', 'connections/' + c['id'] + '/clients', [{'client_id': web['client_id'], 'status': False}])
+    h.api('patch', 'connections/' + connection['id'] + '/clients', [{'client_id': web['client_id'], 'status': True}])
+    password = secrets.token_urlsafe(32) + 'aA9!'
+    email = 'rillora-https-acceptance-20261016@example.test'
+    user = h.api('post', 'users', {'connection': CONNECTION, 'email': email, 'password': password,
+        'email_verified': False, 'verify_email': False, 'name': 'Rillora HTTPS synthetic acceptance', 'app_metadata': {'purpose': PURPOSE}})
+    state['syntheticUserId'] = user['user_id']
+    save('registration.json', state)
+    current = read_clients()
+    assert projection(h.exact(current, web['client_id'], 'client_id')) == patch
+    assert_untouched_default(web, h.exact(current, web['client_id'], 'client_id'))
+    assert others(current, web['client_id'], state['clientId']) == others(clients, web['client_id'], None)
+    new_bindings = bindings(connections)
+    assert {k: [x for x in v if x != web['client_id']] for k, v in old_bindings.items()} == new_bindings
+    assert h.connection_clients(connection['id']) == [web['client_id']]
+    assert h.api('get', 'tenants/settings') == settings
+    result = {'checkedAt': stamp(), 'webUsesOnlySyntheticConnection': True, 'webSecretUnchangedAndNotRead': True,
+              'otherEightOrdinaryAppsUnchanged': True, 'retiredAppsRemainRetired': True,
+              'existingBindingChangesOnlyDefaultWebRemoval': True, 'tenantSettingsUnchanged': True,
+              'ordinaryApplications': 10, 'syntheticAccountCreated': True, 'verificationEmailSent': False,
+              'aiThirdPartyIndependent': True, 'twoUserScopesOnly': True, 'newTenantCreated': False,
+              'paidPlanChanged': False, 'productionRuntimeChanged': False, 'preparedForTemporaryHttps': True}
+    save('provider-prepared.json', result, False)
+    print(json.dumps(result), flush=True)
+    fifo = PRIVATE / 'synthetic-login.fifo'
+    os.mkfifo(fifo, 0o600)
+    print(json.dumps({'credentialTransferReady': True, 'passwordPersisted': False}), flush=True)
+    try:
+        with fifo.open('w') as target:
+            target.write(json.dumps({'email': email, 'password': password}))
+    finally:
+        password = ''
+        fifo.unlink(missing_ok=True)
+
+parser = argparse.ArgumentParser(description=__doc__)
+parser.add_argument('operation', choices=['prepare', 'resume', 'restore'])
+args = parser.parse_args()
+{'prepare': prepare, 'resume': resume_activation, 'restore': restore}[args.operation]()

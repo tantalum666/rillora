@@ -1,0 +1,59 @@
+from pathlib import Path
+import argparse,json,subprocess,sys,datetime,uuid
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+SOURCE='474702c06c00eadf1054910cc603fd0b81d8b506';name='RilloraProduction';assembly=q/'live-assembly'
+parser=argparse.ArgumentParser();parser.add_argument('operation',choices=['prepare','execute','status']);args=parser.parse_args()
+assert json.loads((q/'live-reviewed-diff.json').read_text())['passed']
+before=json.loads((p/'live-before-template.json').read_text());wanted=json.loads((assembly/(name+'.template.json')).read_text());aws=Aws('rillora-cdk-deploy')
+def save(file,data):file.write_text(json.dumps(data,indent=2)+'\n');file.chmod(0o600)
+def template():
+ value=aws.call('cloudformation','get-template',{'StackName':name})['TemplateBody'];return json.loads(value) if isinstance(value,str) else value
+def change():
+ record=json.loads((p/'live-changeset.json').read_text());d=aws.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':record['id']})
+ assert d['Status']=='CREATE_COMPLETE' and d['Changes']
+ for row in d['Changes']:
+  c=row['ResourceChange'];assert c['Action']=='Modify' and c['LogicalResourceId'] in before['Resources']
+  if c['ResourceType']=='AWS::ECS::TaskDefinition':assert c['LogicalResourceId']=='RuntimeApiTaskCF645D67'
+  elif c['LogicalResourceId']=='CDKMetadata':
+   assert c['ResourceType']=='AWS::CDK::Metadata' and all(x['Target'].get('Name')=='Analytics' for x in c.get('Details',[]))
+  elif c['ResourceType'] in ['AWS::EC2::SecurityGroupIngress','AWS::EC2::SecurityGroupEgress'] and c.get('Replacement')=='Conditional':
+   assert before['Resources'][c['LogicalResourceId']]==wanted['Resources'][c['LogicalResourceId']], 'Network rule bytes changed'
+   parent=next(x['ResourceChange'] for x in d['Changes'] if x['ResourceChange']['LogicalResourceId']=='RuntimeApiNetwork3B2CC8BA')
+   assert parent['Replacement']=='False'
+   assert c.get('Details') and all(x.get('ChangeSource')=='ResourceAttribute' and x.get('Evaluation')=='Dynamic'
+    and x.get('CausingEntity')=='RuntimeApiNetwork3B2CC8BA.GroupId'
+    and x['Target'].get('Name') in ['GroupId','SourceSecurityGroupId','DestinationSecurityGroupId'] for x in c['Details'])
+  else:assert c.get('Replacement')=='False','Unexpected replacement: '+c['LogicalResourceId']
+ return record,d
+stack=aws.call('cloudformation','describe-stacks',{'StackName':name})['Stacks'][0]
+if args.operation!='status':
+ assert subprocess.check_output(['git','rev-parse','HEAD'],cwd=w,text=True).strip()==SOURCE
+ assert subprocess.run(['git','diff','--quiet','HEAD','--','apps','infra','tools','config','.github'],cwd=w).returncode==0
+ assert stack['StackStatus']=='UPDATE_COMPLETE' and template()==before
+if args.operation=='prepare':
+ assert not (p/'live-changeset.json').exists()
+ label='rillora-web-billing-live-'+SOURCE[:9]
+ command=['npx','cdk','deploy',name,'--app',str(assembly),'--exclusively','--profile','rillora-cdk-session','--require-approval','never',
+  '--previous-parameters','true','--method','prepare-change-set','--change-set-name',label,'--outputs-file',str(p/'live-outputs.json')]
+ for param in stack.get('Parameters',[]):
+  if param['ParameterKey'] in wanted['Parameters'] and param['ParameterKey']!='BootstrapVersion' and param.get('ParameterValue')!='****':command+=['--parameters',param['ParameterKey']+'='+param['ParameterValue']]
+ with (q/'live-prepare.log').open('w') as log:r=subprocess.run(command,cwd=w/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+ assert r.returncode==0,'Inspect preparation before retry'
+ d=aws.call('cloudformation','describe-change-set',{'StackName':name,'ChangeSetName':label});save(p/'live-changeset.json',{'id':d['ChangeSetId'],'source':SOURCE})
+ _,d=change();save(p/'live-changeset-details.json',d)
+ print(json.dumps({'prepared':True,'resourceChanges':len(d['Changes']),'executed':False}))
+elif args.operation=='execute':
+ ci=json.loads((q/'ci136-readback.json').read_text());assert ci['commit']==SOURCE and ci['allJobsPassed']
+ assert json.loads((q/'disabled-tax-configured.json').read_text())['readBackMatched']
+ record,d=change();assert d['ExecutionStatus']=='AVAILABLE'
+ marker=p/'live-execution.json';assert not marker.exists()
+ request={'StackName':name,'ChangeSetName':record['id'],'ClientRequestToken':'rillora-'+uuid.uuid4().hex};save(marker,request)
+ aws.call('cloudformation','execute-change-set',request);print(json.dumps({'executed':True,'complete':False}))
+else:
+ complete=stack['StackStatus']=='UPDATE_COMPLETE' and template()==wanted
+ report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':SOURCE,'phase':'live','status':stack['StackStatus'],'templateMatches':complete}
+ if complete:
+  assert set(x['ParameterKey'] for x in stack['Parameters'])=={'BootstrapVersion'};report['onlyExpiredReviewParametersRemoved']=True
+  save(q/'live-deployed.json',report)
+ print(json.dumps(report))

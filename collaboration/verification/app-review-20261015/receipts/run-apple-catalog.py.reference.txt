@@ -1,0 +1,47 @@
+from pathlib import Path
+import argparse,datetime,json,re,secrets,sys,uuid
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/app-review-20261014'
+sys.path.insert(0,str(w/'tools/release'));from recovery_drill import Aws
+parser=argparse.ArgumentParser();parser.add_argument('action',choices=['start','status']);parser.add_argument('label')
+parser.add_argument('--operation',choices=['inspect','prepare','close-new-sales','renew-review','enroll-review','provision-reviewer']);parser.add_argument('--expected');parser.add_argument('--review-file',type=Path)
+args=parser.parse_args();assert re.fullmatch('[a-z0-9-]{1,48}',args.label)
+aws=Aws('rillora-production-operator');identity=aws.call('sts','get-caller-identity')
+assert identity['Account']=='133857166372' and ':assumed-role/rillora-production-operator/' in identity['Arn']
+stack=aws.call('cloudformation','describe-stacks',{'StackName':'RilloraProduction'})['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']};state_file=p/('apple-catalog-'+args.label+'.json')
+def save(file,data):file.write_text(json.dumps(data,indent=2)+'\n');file.chmod(0o600)
+if args.action=='start':
+ assert args.operation and not state_file.exists(),'Inspect the saved invocation before any retry'
+ run=secrets.token_hex(8);token=secrets.token_urlsafe(32);env=[{'name':'RECOVERY_RUN','value':run}]
+ if args.operation!='inspect':
+  assert out['ProductionTrafficReady']=='true' and re.fullmatch('[a-f0-9]{64}',args.expected or '')
+  env.append({'name':'RILLORA_APPLE_EXPECTED_SNAPSHOT','value':args.expected})
+ if args.operation in ['renew-review','enroll-review','provision-reviewer']:
+  assert args.review_file and args.review_file.resolve().is_relative_to(p.resolve())
+  r=json.loads(args.review_file.read_text());assert set(r)==({'identityDigests','expiresAt','reviewerSubject'} if args.operation=='provision-reviewer' else {'identityDigests','expiresAt'})
+  env.extend([{'name':'APPLE_REVIEW_IDENTITY_SHA256','value':','.join(r['identityDigests'])},{'name':'APPLE_REVIEW_EXPIRES_AT','value':r['expiresAt']}])
+ if args.operation=='provision-reviewer':env.append({'name':'RILLORA_APPLE_REVIEW_SUBJECT','value':r['reviewerSubject']})
+ request={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':uuid.uuid4().hex,
+  'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+  'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','dist/configure-production-apple.js',args.operation],'environment':env}]}}
+ payload={'operation':'task','run':run,'runToken':token,'request':request};state={'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'operation':args.operation,'payload':payload};save(state_file,state)
+ response=aws.invoke_broker(out['MaintenanceBrokerFunctionName'],payload)
+ assert not response.get('failures') and len(response.get('tasks',[]))==1
+ state['taskArn']=response['tasks'][0]['taskArn'];save(state_file,state);print(json.dumps({'started':True,'label':args.label,'operation':args.operation}))
+else:
+ state=json.loads(state_file.read_text());assert state.get('taskArn'),'Investigate ambiguous invocation using its saved client token'
+ response=aws.call('ecs','describe-tasks',{'cluster':out['ClusterName'],'tasks':[state['taskArn']]});assert not response.get('failures') and len(response['tasks'])==1
+ task=response['tasks'][0];report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'label':args.label,'operation':state['operation'],'status':task['lastStatus'],'exitCode':task['containers'][0].get('exitCode')}
+ if task['lastStatus']=='STOPPED':
+  logs=aws.call('logs','get-log-events',{'logGroupName':out['MaintenanceLogGroup'],'logStreamName':'migration/Maintenance/'+state['taskArn'].rsplit('/',1)[1],'startFromHead':True})
+  save(p/('apple-catalog-'+args.label+'-logs.json'),logs)
+  messages=[json.loads(x['message']) for x in logs['events'] if x['message'].startswith('{')]
+  result=next((x for x in messages if x.get('operation')==state['operation']),None)
+  report['passed']=report['exitCode']==0 and result is not None
+  if result:
+   save(p/('apple-catalog-'+args.label+'-result.json'),result)
+   report.update({'beforeSha256':result['before']['sha256'],'afterSha256':result['after']['sha256'],
+    'marketSalesChanged':result['marketSalesChanged'],'userContentChanged':result['userContentChanged'],
+    'historicalPaymentsChanged':result['historicalPaymentsChanged'],'rowCounts':{k:len(v) for k,v in result['after']['data'].items()}})
+  save(q/('apple-catalog-'+args.label+'.json'),report)
+ print(json.dumps(report))

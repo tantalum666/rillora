@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-09-19",
+  "updatedAt": "2026-10-03",
   "deploymentEvidenceRequired": true,
   "jobs": [
     {
@@ -22,14 +22,14 @@
     },
     {
       "id": "billing-reconciliation",
-      "state": "planned",
+      "state": "restricted_intake_and_recovery_implemented_live_daily_backfill_planned",
       "trigger": "Signed webhook plus daily backfill",
       "maximumAttempts": 3,
       "sideEffects": "Reconcile verified provider facts to own ledger; no unsigned callback entitlement",
       "livePrerequisites": [
-        "Paid cutoff and quota lifecycle",
-        "production merchant readiness",
-        "idempotent outbox"
+        "Actual Apple purchase/restore evidence",
+        "Production merchant readiness",
+        "Daily backfill/outbox operational acceptance"
       ]
     },
     {
@@ -39,37 +39,35 @@
       "maximumAttempts": 3,
       "sideEffects": "Minimal transactional messages with opt-out preferences and suppression",
       "livePrerequisites": [
-        "Verified sender",
-        "template and language test",
-        "outbox and recipient consent",
-        "delivery and bounce test"
-      ]
+        "Application outbox/recipient consent and template review",
+        "Dedupe/retry and actual app-triggered invitation acceptance"
+      ],
+      "evidence": "docs/transaction-mail-resend-20261001.md"
     },
     {
       "id": "backup-restore",
-      "state": "planned",
+      "state": "automated_backups_and_scoped_restore_verified_recurring_drill_planned",
       "trigger": "Daily backup freshness; monthly isolated restore; pre-migration restore",
       "maximumAttempts": 1,
       "sideEffects": "Restore only into encrypted isolated disposable target; never production overwrite",
       "livePrerequisites": [
-        "Separate production",
-        "7day retention",
-        "budget and cleanup TTL",
-        "sanitized restore validation"
-      ]
+        "Repeat drill schedule/cleanup acceptance",
+        "Current-provider reconciliation after real transactions"
+      ],
+      "evidence": "docs/review-rollout-20261003.md"
     },
     {
       "id": "dependency-security",
-      "state": "planned",
+      "state": "source_ci_and_current_audit_verified_recurring_review_planned",
       "trigger": "Dependency change and weekly advisory review",
       "maximumAttempts": 1,
       "sideEffects": "Evidence-backed patch and regression checks; production rollout separate",
       "livePrerequisites": [
-        "Connected source CI",
-        "lockfile/SBOM capture",
-        "secret scan",
-        "rollback tested"
-      ]
+        "Recurring advisory schedule remains unconfigured",
+        "CDK bundled brace-expansion upstream patch",
+        "Bounded patch regression and separate production rollout"
+      ],
+      "evidence": "docs/code-review-20261002.md"
     },
     {
       "id": "cost-quota",
@@ -134,6 +132,24 @@
         "verified private destination",
         "incident ownership"
       ]
+    },
+    {
+      "id": "retention-cleanup",
+      "state": "deployed_serialized_hold_cleanup_heartbeat_verified",
+      "trigger": "Bounded scheduled retention worker",
+      "implementation": "apps/api/src/retention.ts",
+      "sideEffects": "Delete only due eligible records without active independent holds; privacy-journal replay preserves restrictions",
+      "evidence": "docs/review-rollout-20261003.md",
+      "livePrerequisites": []
+    },
+    {
+      "id": "manual-snapshot-retirement",
+      "state": "deployed_exact_resource_deadline_guard",
+      "trigger": "Scheduled exact-snapshot90day deadline check",
+      "implementation": "tools/snapshot-retention/handler.mjs",
+      "sideEffects": "Retire only the named snapshot after its actual deadline; no broad backup deletion",
+      "evidence": "docs/release-engineering-20260930.md",
+      "livePrerequisites": []
     }
   ]
 }

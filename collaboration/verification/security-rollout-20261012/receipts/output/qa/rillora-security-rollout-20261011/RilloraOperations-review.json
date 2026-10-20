@@ -1,0 +1,41 @@
+{
+  "stack": "RilloraOperations",
+  "changed": [
+    {
+      "id": "HealthCheckA1C381C7",
+      "type": "AWS::Lambda::Function",
+      "changedProperties": [
+        "Code"
+      ]
+    },
+    {
+      "id": "AlertsPolicy425C338D",
+      "type": "AWS::SNS::TopicPolicy",
+      "changedProperties": [
+        "PolicyDocument"
+      ]
+    },
+    {
+      "id": "[PUBLIC_IDENTIFIER_OMITTED]",
+      "type": "AWS::Lambda::Function",
+      "changedProperties": [
+        "Code"
+      ]
+    },
+    {
+      "id": "SnapshotRetirementRunbook91A9EB67",
+      "type": "AWS::IAM::Policy",
+      "changedProperties": [
+        "PolicyDocument"
+      ]
+    },
+    {
+      "id": "OperationsRunbook277D4959",
+      "type": "AWS::IAM::Policy",
+      "changedProperties": [
+        "PolicyDocument"
+      ]
+    }
+  ],
+  "added": []
+}

@@ -1,0 +1,38 @@
+{
+  "savedAt": "2026-10-16T12:59:25.719053+00:00",
+  "updatedSpecifications": [
+    "docs/architecture/public-discovery-rollout-20261016.md",
+    "docs/architecture/ai-discovery-vnext-20261015.md",
+    "docs/architecture/ai-oauth-validation-20261016.md",
+    "tools/godaddy/README.md"
+  ],
+  "authorityAndHandoff": [
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/source-control.md",
+    "collaboration/README.md"
+  ],
+  "historicalHandoff": "docs/handoff-history-20261016-before-public-discovery-closeout.md",
+  "decisionEntry": "Public GEO delivery and minimal search-provider access",
+  "decisionReason": "Exact Bing profile approval and bounded deployment/DNS choices; no product or price change",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "testsReused": [
+    "existing public build and local matrix",
+    "real two-client OAuth",
+    "source653093e62 CI165"
+  ],
+  "newVerification": [
+    "two-phase cloud actual readback",
+    "public byte and route checks",
+    "live browser bilingual navigation",
+    "Google and Bing ownership and sitemap submission",
+    "Google actual live fetch"
+  ],
+  "notClaimed": [
+    "indexing",
+    "AI recommendations",
+    "hosted MCP",
+    "model tool selection",
+    "App approval"
+  ]
+}

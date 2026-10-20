@@ -1,0 +1,37 @@
+{
+  "content": [
+    {
+      "type": "text",
+      "text": "\n🚀 Build & Run\n\nℹ️ Resolving app path\n✅ Resolving app path\nℹ️ Booting simulator\n✅ Booting simulator\nℹ️ Installing app\n✅ Installing app\nℹ️ Launching app\n\n✅ Build succeeded. (⏱️ 14.4s)\n✅ Build & Run complete\n  ├ Bundle ID: com.rillora.component-preview\n  ├ Process ID: 90122\n  └ Files:\n     ├── /tmp/rillora-device-config-20261006/Build/Products/Debug-iphonesimulator/RilloraPreview.app — App Path\n     └── ~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/\n         ├── build_run_sim_2026-10-07T02-46-58-210Z_pid25052_68df52ad.log — Build Logs\n         ├── com.rillora.component-preview_2026-10-07T02-47-09-871Z_helperpid90102_ownerpid25052_76484ea6.log — Runtime Logs\n         └── com.rillora.component-preview_oslog_2026-10-07T02-47-12-550Z_helperpid90220_ownerpid25052_e6235013.log — OSLog\n\nNext steps:\n1. Stop app in simulator: stop_app_sim({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", bundleId: \"com.rillora.component-preview\" })\n"
+    }
+  ],
+  "structuredContent": {
+    "schema": "xcodebuildmcp.output.build-run-result",
+    "schemaVersion": "2",
+    "didError": false,
+    "error": null,
+    "data": {
+      "summary": {
+        "status": "SUCCEEDED",
+        "durationMs": 14391,
+        "target": "simulator"
+      },
+      "artifacts": {
+        "appPath": "/tmp/rillora-device-config-20261006/Build/Products/Debug-iphonesimulator/RilloraPreview.app",
+        "bundleId": "com.rillora.component-preview",
+        "processId": 90122,
+        "simulatorId": "15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0",
+        "buildLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/build_run_sim_2026-10-07T02-46-58-210Z_pid25052_68df52ad.log",
+        "runtimeLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.component-preview_2026-10-07T02-47-09-871Z_helperpid90102_ownerpid25052_76484ea6.log",
+        "osLogPath": "/Users/tantalum/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/com.rillora.component-preview_oslog_2026-10-07T02-47-12-550Z_helperpid90220_ownerpid25052_e6235013.log"
+      },
+      "diagnostics": {
+        "warnings": [],
+        "errors": []
+      }
+    },
+    "nextSteps": [
+      "Stop app in simulator: stop_app_sim({ simulatorId: \"15FD7AB7-DEFC-4F4A-B75B-1A21E7FEECF0\", bundleId: \"com.rillora.component-preview\" })"
+    ]
+  }
+}

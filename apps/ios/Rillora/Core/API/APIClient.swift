@@ -20,7 +20,7 @@ extension CommerceServing {
         request: StoreKitSandboxTransactionRequest
     ) async throws -> StoreKitSandboxTransactionResponse {
         throw RilloraAPIError.requestFailed(
-            "StoreKit Sandbox server verification is unavailable."
+            String(localized: "StoreKit Sandbox server verification is unavailable.")
         )
     }
 }
@@ -130,34 +130,34 @@ protocol StartHerePreviewing: Sendable {
 
 extension StartHerePreviewing {
     func previewStartHere(recipientConnectionPublicID: String?) async throws -> StartHerePreview {
-        guard recipientConnectionPublicID == nil else { throw RilloraAPIError.requestFailed("Recipient exports are unavailable.") }
+        guard recipientConnectionPublicID == nil else { throw RilloraAPIError.requestFailed(String(localized: "Recipient exports are unavailable.")) }
         return try await previewStartHere()
     }
     func exportRecipients() async throws -> [SharingConnection] { [] }
     func recipientRehearsalContacts() async throws -> [TrustedContact] {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func createRecipientRehearsal(personPublicID: String) async throws -> RecipientRehearsalCreateEnvelope {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func acceptRecipientRehearsal(acceptanceToken: String) async throws -> RecipientRehearsalAcceptEnvelope {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func enrollRecipientDeviceKey(
         sessionToken: String,
         request: RecipientDeviceKeyCreateRequest
     ) async throws -> RecipientDeviceKeyRecord {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func prepareRecipientRehearsalPackage(
         rehearsalPublicID: String,
         previewPublicID: String
     ) async throws -> EncryptedStartHerePreparation {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func finalizeRecipientRehearsalPackage(
@@ -165,39 +165,39 @@ extension StartHerePreviewing {
         packagePublicID: String,
         request: EncryptedStartHereFinalizeRequest
     ) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func fetchRecipientRehearsalPackage(
         sessionToken: String,
         packagePublicID: String
     ) async throws -> RecipientEncryptedStartHereArtifact {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func revokeRecipientDeviceKey(sessionToken: String, keyPublicID: String) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func revokeRecipientRehearsal(publicID: String) async throws {
-        throw RilloraAPIError.requestFailed("Synthetic recipient rehearsal is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Synthetic recipient rehearsal is unavailable."))
     }
 
     func prepareEncryptedStartHere(
         previewPublicID: String
     ) async throws -> EncryptedStartHerePreparation {
-        throw RilloraAPIError.requestFailed("Encrypted Start Here is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Encrypted Start Here is unavailable."))
     }
 
     func finalizeEncryptedStartHere(
         packagePublicID: String,
         request: EncryptedStartHereFinalizeRequest
     ) async throws -> EncryptedStartHereFinalizedRecord {
-        throw RilloraAPIError.requestFailed("Encrypted Start Here is unavailable.")
+        throw RilloraAPIError.requestFailed(String(localized: "Encrypted Start Here is unavailable."))
     }
 }
 
-actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FamilyMaintenanceServing, AccountDataServing {
+actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FamilyMaintenanceServing, AccountDataServing, AccountIdentityServing {
     private let configuration: APIConfiguration
     private let transport: any HTTPTransport
     private let sessionTokenStore: (any SessionTokenStore)?
@@ -628,8 +628,8 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
             options: .regularExpression
         ) != nil,
               let text = String(data: result.data, encoding: .utf8),
-              text.hasPrefix("RILLORA — START HERE\n"),
-              text.contains("Rillora cannot revoke that copy") else {
+              text.hasPrefix(request.locale == "zh-CN" ? "RILLORA — 查找指引\n" : "RILLORA — START HERE\n"),
+              text.contains(request.locale == "zh-CN" ? "Rillora 无法撤回该副本" : "Rillora cannot revoke that copy") else {
             throw RilloraAPIError.invalidPayload(
                 "The printable guide content did not preserve its safety boundary."
             )
@@ -910,6 +910,20 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
     }
 
     func fetchAccountDataProfile() async throws -> AccountDataProfile { try await get("account/profile") }
+    func fetchAccountIdentity() async throws -> AccountIdentityResponse {
+        do {
+            return try await get("account/identity")
+        } catch RilloraAPIError.server(status: 404, code: _, message: _, requestID: _) {
+            // Version-compatible read: the profile endpoint is already bound to
+            // this authenticated account. It has no email, so never invent one.
+            let profile = try await fetchAccountDataProfile()
+            return AccountIdentityResponse(
+                account: .init(publicId: profile.account.publicId,
+                               displayName: profile.account.displayName, verifiedEmail: nil),
+                emailStatus: .unavailable
+            )
+        }
+    }
     func requestAccountDeletion(receipt: String, acknowledgesBilling: Bool) async throws -> AccountDeletionEnvelope {
         let body = try JSONSerialization.data(withJSONObject: ["confirmation": "DELETE", "receipt": receipt, "acknowledgesSavedCopies": true, "acknowledgesBilling": acknowledgesBilling])
         return try await send(path: "account/delete", method: "POST", body: body)
@@ -1075,7 +1089,7 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
             return .server(
                 status: result.response.statusCode,
                 code: "request_failed",
-                message: "The continuity service could not complete the request.",
+                message: String(localized: "The continuity service could not complete the request."),
                 requestID: requestID
             )
         }

@@ -1,0 +1,671 @@
+{
+  "schemaVersion": 1,
+  "date": "2026-10-11",
+  "baseline": "647317834bd785ace1499e251f0e501530163239",
+  "status": "remediation-in-progress",
+  "sourceStatus": "Local export snapshots; successful terminal workbench completion is not claimed or changed.",
+  "inputDigests": {
+    "A": {
+      "scanId": "3ad2e5c3-cabc-4370-a266-335e3ea0d080",
+      "sha256": "0442db376c2323df1a8c00863c15598c3d8aad72b99654eecb400d9505fe4953",
+      "count": 51
+    },
+    "B": {
+      "scanId": "68d7ce20-35a0-4f5f-b78f-d96f962e6150",
+      "sha256": "83b922b5b2d7a4b165b7376fb99481f43c52be4c8fe65432bb5971d8c8d1b176",
+      "count": 22
+    }
+  },
+  "occurrenceCount": 73,
+  "groupCount": 35,
+  "groups": [
+    {
+      "group": 1,
+      "name": "近期认证遗漏",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 2,
+          "findingId": "csf_1be38f2411b18c428d1bec5e",
+          "title": "Stale sessions can open billing management and mutate purchase workflows"
+        },
+        {
+          "input": "A",
+          "number": 35,
+          "findingId": "csf_2992c2c0680e4bc0c0b61c3b",
+          "title": "A stale session can finalize an encrypted export without renewed authentication"
+        },
+        {
+          "input": "A",
+          "number": 44,
+          "findingId": "csf_75717639b4d1233ee0e8b759",
+          "title": "Stale sessions can create and manage production billing capabilities"
+        },
+        {
+          "input": "B",
+          "number": 15,
+          "findingId": "csf_ca7678957bebdac331278b31",
+          "title": "Stale invited-account sessions can accept private sharing without the configured step-up"
+        },
+        {
+          "input": "B",
+          "number": 16,
+          "findingId": "csf_76ffef9b054f63f8d5773f1c",
+          "title": "Stale sessions can enter sensitive commerce workflows without the configured step-up"
+        },
+        {
+          "input": "B",
+          "number": 22,
+          "findingId": "csf_3695601b3d694aff23f6a07d",
+          "title": "Stale sessions can accept private sharing and enter commerce without the configured step-up"
+        }
+      ]
+    },
+    {
+      "group": 2,
+      "name": "生产配置隐式开放及保护缺省",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 13,
+          "findingId": "csf_481d5a88a3ef8d25b5d6ba77",
+          "title": "Omitting production runtime mode opens account access with core hardening defaults disabled"
+        },
+        {
+          "input": "A",
+          "number": 26,
+          "findingId": "csf_4089f728fd8e595b4a948be0",
+          "title": "Production-mode customer routes can fail open without recent authentication"
+        },
+        {
+          "input": "A",
+          "number": 36,
+          "findingId": "csf_e68cd94b13a0c81d2146aa1d",
+          "title": "Implicit production-open configuration can persist private planner content in plaintext"
+        },
+        {
+          "input": "A",
+          "number": 42,
+          "findingId": "csf_a1c2e7524918f98ddb7845a8",
+          "title": "Production-mode customer routes can fail open without recent authentication"
+        },
+        {
+          "input": "A",
+          "number": 45,
+          "findingId": "csf_8a2d8e727a9c91186a985682",
+          "title": "Open production can disable step-up checks on destructive and bulk-data routes"
+        },
+        {
+          "input": "B",
+          "number": 12,
+          "findingId": "csf_861acfa60488a6fd5ff32b7d",
+          "title": "Sensitive account routes silently skip recent authentication by default"
+        },
+        {
+          "input": "B",
+          "number": 13,
+          "findingId": "csf_abe295da5d5e793bc3cade75",
+          "title": "Omitting the production runtime mode silently opens account routes"
+        },
+        {
+          "input": "B",
+          "number": 21,
+          "findingId": "csf_34828441128c30625b3232d9",
+          "title": "Generic production starts with sensitive step-up authentication disabled unless operators opt in"
+        }
+      ]
+    },
+    {
+      "group": 3,
+      "name": "转发地址限流来源",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 3,
+          "findingId": "csf_cafa168e62b10efc0ded2282",
+          "title": "Spoofed Forwarded values bypass per-client API and authentication rate limits"
+        },
+        {
+          "input": "A",
+          "number": 43,
+          "findingId": "csf_714409bdc72c79f85517bf18",
+          "title": "Spoofed `Forwarded` values bypass per-client rate limits"
+        },
+        {
+          "input": "B",
+          "number": 3,
+          "findingId": "csf_e83ae7b08666653b6b0e23ab",
+          "title": "A forged `Forwarded` header can rotate global and authentication rate-limit buckets"
+        }
+      ]
+    },
+    {
+      "group": 4,
+      "name": "Apple 首购绑定与服务器购买意图",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 4,
+          "findingId": "csf_aad18f8e1f80dd65a56c065b",
+          "title": "Unseen Apple transactions can bind and grant without a server-authorized purchase intent"
+        },
+        {
+          "input": "A",
+          "number": 51,
+          "findingId": "csf_c702d6ee17e2e11deb3f1aab",
+          "title": "A modified iOS purchase can attach an attacker-controlled subscription to another planner"
+        },
+        {
+          "input": "B",
+          "number": 7,
+          "findingId": "csf_1b454100e0931216e30df496",
+          "title": "An Apple purchase can be bound to another planner through a client-chosen account token"
+        },
+        {
+          "input": "B",
+          "number": 8,
+          "findingId": "csf_29c329df6e75100343306b23",
+          "title": "A new Apple transaction can grant access without the required purchase preflight and consent"
+        }
+      ]
+    },
+    {
+      "group": 5,
+      "name": "Apple 待处理状态回退",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 18,
+          "findingId": "csf_7cc088fd53025f26bb37d0dc",
+          "title": "Stale client actions can cancel or regress an Apple purchase that may still complete"
+        }
+      ]
+    },
+    {
+      "group": 6,
+      "name": "Apple 签名状态滞后",
+      "occurrences": [
+        {
+          "input": "B",
+          "number": 17,
+          "findingId": "csf_8bd0c7620634f43a3ffd38b8",
+          "title": "A lagging Apple status read can leave revoked access active and terminally acknowledge the event"
+        }
+      ]
+    },
+    {
+      "group": 7,
+      "name": "原生托管法律证明",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 28,
+          "findingId": "csf_c0732e1a7642cff0813fa5a5",
+          "title": "Native session exchange records client-authored legal acceptance"
+        }
+      ]
+    },
+    {
+      "group": 8,
+      "name": "原生 OAuth 私有协议回调",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 7,
+          "findingId": "csf_c1d1f60f8d43e6a0d05283e7",
+          "title": "A malicious iOS app can impersonate the public native client and obtain a Rillora session"
+        },
+        {
+          "input": "B",
+          "number": 1,
+          "findingId": "csf_d39049ffe8b47b70b938b364",
+          "title": "A spoofed iOS client can turn a victim's Auth0 login into a Rillora session"
+        },
+        {
+          "input": "B",
+          "number": 11,
+          "findingId": "csf_c2701c5de55a6740f0cc7aa3",
+          "title": "A counterfeit iOS app can authenticate as the production native client"
+        }
+      ]
+    },
+    {
+      "group": 9,
+      "name": "邀请私有协议令牌",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 6,
+          "findingId": "csf_6f9f48aa164404a4d38e9b45",
+          "title": "Invitation capabilities leak through the non-exclusive iOS custom URL scheme"
+        },
+        {
+          "input": "A",
+          "number": 38,
+          "findingId": "csf_7ac96c09775c6904258cb8f2",
+          "title": "A non-exclusive custom URL scheme exposes invitation capabilities to other installed apps"
+        },
+        {
+          "input": "A",
+          "number": 39,
+          "findingId": "csf_6eee2d73615997abadfa8c79",
+          "title": "Invitation capabilities leak through the non-exclusive iOS custom URL scheme"
+        },
+        {
+          "input": "A",
+          "number": 41,
+          "findingId": "csf_87222da5fa237c4d41acccf5",
+          "title": "Invitation capabilities leak through the non-exclusive iOS custom URL scheme"
+        },
+        {
+          "input": "B",
+          "number": 2,
+          "findingId": "csf_d99f24c21e66907fb4046a6e",
+          "title": "Another installed iOS app can receive the raw Rillora invitation token"
+        },
+        {
+          "input": "B",
+          "number": 10,
+          "findingId": "csf_645326a00720f0be56631f02",
+          "title": "Opening an invitation in the iOS app can disclose its live capability to another app"
+        },
+        {
+          "input": "B",
+          "number": 19,
+          "findingId": "csf_bac67f5390224453c6beadb0",
+          "title": "The iOS private URL scheme exposes invitation bearer tokens to competing apps"
+        }
+      ]
+    },
+    {
+      "group": 10,
+      "name": "终态和过期邀请元数据",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 17,
+          "findingId": "csf_bca92676b6a237bd5a2cfca5",
+          "title": "Old invitation links keep revealing status after expiry, acceptance, or revocation"
+        },
+        {
+          "input": "A",
+          "number": 50,
+          "findingId": "csf_19e21aef5a46fc131c2c77fe",
+          "title": "Expired and revoked invitation links still disclose relationship metadata"
+        },
+        {
+          "input": "B",
+          "number": 9,
+          "findingId": "csf_38618a98ada1d3d2212a6f13",
+          "title": "Expired and revoked invitation links remain a durable metadata oracle"
+        }
+      ]
+    },
+    {
+      "group": 11,
+      "name": "缓存邮箱验证",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 21,
+          "findingId": "csf_a9a8ac6e643d65b1fd82c9c1",
+          "title": "Invitation acceptance trusts a session-cached email after provider verification may have changed"
+        }
+      ]
+    },
+    {
+      "group": 12,
+      "name": "iOS 退出失败被吞掉",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 19,
+          "findingId": "csf_b22ce85b7e0187f332e20303",
+          "title": "iOS sign-out can report success while the server session or Keychain bearer remains active"
+        },
+        {
+          "input": "B",
+          "number": 20,
+          "findingId": "csf_14ea5549a60e3b7692069430",
+          "title": "Native sign-out reports success while a copied bearer can remain active"
+        }
+      ]
+    },
+    {
+      "group": 13,
+      "name": "认证 Cookie 遮蔽",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 23,
+          "findingId": "csf_d89a76c76e60d1f3970f6425",
+          "title": "Sibling-domain cookie shadowing can fix a victim into an attacker-controlled account"
+        }
+      ]
+    },
+    {
+      "group": 14,
+      "name": "解密内容未核对承诺值",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 12,
+          "findingId": "csf_7d5f785d211891fc78da604a",
+          "title": "A malicious client can substitute encrypted Start Here contents while retaining the reviewed commitment"
+        }
+      ]
+    },
+    {
+      "group": 15,
+      "name": "完整地图导出审计",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 20,
+          "findingId": "csf_37ead3ee4a7e34a3d573249b",
+          "title": "Complete plaintext account-map exports leave no audit record"
+        }
+      ]
+    },
+    {
+      "group": 16,
+      "name": "iOS 文件读取无内存边界",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 5,
+          "findingId": "csf_00ce58f43f2bb22293456f27",
+          "title": "Selected iOS import files can exhaust memory before size validation"
+        }
+      ]
+    },
+    {
+      "group": 17,
+      "name": "集合、预览和快照资源边界",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 29,
+          "findingId": "csf_cd76164136653b84bc6e203f",
+          "title": "Shared-with-me builds an unbounded cross-owner JSON aggregate"
+        },
+        {
+          "input": "A",
+          "number": 37,
+          "findingId": "csf_c76347acc3c433bc1276534a",
+          "title": "Unbounded tenant growth amplifies full-map preview and rehearsal work"
+        },
+        {
+          "input": "B",
+          "number": 4,
+          "findingId": "csf_bb21ec9a479b9372fef35c58",
+          "title": "A planner can grow contacts until full-collection reads exhaust decryption and shared API resources"
+        },
+        {
+          "input": "B",
+          "number": 6,
+          "findingId": "csf_664ffb948671ca165c824968",
+          "title": "An authenticated planner can exhaust shared compute and storage with unbounded records and previews"
+        }
+      ]
+    },
+    {
+      "group": 18,
+      "name": "登录事务累积",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 24,
+          "findingId": "csf_fee7fb9301865a1feabc8017",
+          "title": "Unauthenticated auth starts can outpace transaction cleanup and grow the database indefinitely"
+        }
+      ]
+    },
+    {
+      "group": 19,
+      "name": "Stripe 等锁占用连接池",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 31,
+          "findingId": "csf_3e1938c5cacbf3393d3bc680",
+          "title": "Concurrent Stripe checkout requests can occupy every production database connection"
+        }
+      ]
+    },
+    {
+      "group": 20,
+      "name": "恢复清单网络被信任",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 10,
+          "findingId": "csf_42b3a2166d464238f87b87c8",
+          "title": "A crafted recovery state file can attach a restored clone to the live database network"
+        }
+      ]
+    },
+    {
+      "group": 21,
+      "name": "回滚的保留解除被重放",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 32,
+          "findingId": "csf_0547ff12d1ef400dbc8a3c11",
+          "title": "A rolled-back hold release can become authoritative during recovery"
+        }
+      ]
+    },
+    {
+      "group": 22,
+      "name": "被 Git 忽略但已跟踪的文件漏扫",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 27,
+          "findingId": "csf_ccac9a0cb174832b70f6089f",
+          "title": "Force-tracked ignored files bypass the CI source secret scan"
+        },
+        {
+          "input": "A",
+          "number": 49,
+          "findingId": "csf_34fb7303732e505973a2d3a5",
+          "title": "CI omits tracked files that match credential-oriented ignore rules"
+        }
+      ]
+    },
+    {
+      "group": 23,
+      "name": "PR 自行批准秘密扫描例外",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 30,
+          "findingId": "csf_a8ffc0046bc82e195d5b9eee",
+          "title": "Pull requests can approve their own secret-scan exceptions"
+        }
+      ]
+    },
+    {
+      "group": 24,
+      "name": "开发代理默认暴露局域网",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 15,
+          "findingId": "csf_34681f1cd928263424b383d3",
+          "title": "A LAN client can use the default development proxy to impersonate the seeded planner"
+        }
+      ]
+    },
+    {
+      "group": 25,
+      "name": "引导默认管理员权限",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 25,
+          "findingId": "csf_0d18face142308bdbdc6b67a",
+          "title": "AWS bootstrap defaults to a standing AdministratorAccess role"
+        }
+      ]
+    },
+    {
+      "group": 26,
+      "name": "Docker 可变基础镜像",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 33,
+          "findingId": "csf_960cebcae4abbeaf507a7b34",
+          "title": "Production API builds resolve mutable upstream base-image tags"
+        }
+      ]
+    },
+    {
+      "group": 27,
+      "name": "运维原始特权 ECS 覆盖",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 1,
+          "findingId": "csf_bd85e90a08144b77d6b40d66",
+          "title": "Operator sessions can override privileged ECS maintenance tasks and execute arbitrary code"
+        },
+        {
+          "input": "A",
+          "number": 40,
+          "findingId": "csf_b5055e02ae92352de6958e62",
+          "title": "Operator sessions can override privileged ECS maintenance tasks and execute arbitrary code"
+        },
+        {
+          "input": "A",
+          "number": 46,
+          "findingId": "csf_2c313360ce63f0b3d1ff8828",
+          "title": "Scoped production operator can run arbitrary code with database and KMS authority"
+        }
+      ]
+    },
+    {
+      "group": 28,
+      "name": "恢复资源标签及跨运行清理",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 47,
+          "findingId": "csf_7c6e8c613f614f3013b8c1ae",
+          "title": "Recovery operator can mint the tag that authorizes cross-run deletion"
+        }
+      ]
+    },
+    {
+      "group": 29,
+      "name": "快照保留角色解除法定保留",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 48,
+          "findingId": "csf_be272b314d4db7f18e64a4b5",
+          "title": "Snapshot retirement operator can clear the legal hold that blocks deletion"
+        }
+      ]
+    },
+    {
+      "group": 30,
+      "name": "暂存运维角色修改生产警报",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 34,
+          "findingId": "csf_5623b0729b3ff86e320176fa",
+          "title": "A staging operator can forge or suppress authentic production alerts"
+        }
+      ]
+    },
+    {
+      "group": 31,
+      "name": "受信任运行时 SQL 权限及自设租户",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 8,
+          "findingId": "csf_521af5cb0afb9cef9ebb5cdc",
+          "title": "The normal runtime database credential can erase arbitrary planner accounts"
+        },
+        {
+          "input": "A",
+          "number": 16,
+          "findingId": "csf_69f7889e067d9cd4b85818df",
+          "title": "A compromised runtime database login can synthesize provider-verified entitlements"
+        },
+        {
+          "input": "B",
+          "number": 5,
+          "findingId": "csf_0b3c43e20888ef512046f915",
+          "title": "A constrained runtime database role can select another planner by rewriting the RLS context"
+        },
+        {
+          "input": "B",
+          "number": 14,
+          "findingId": "csf_c4b70420b8079677587ac47b",
+          "title": "Runtime database credentials can mint arbitrary planner sessions and unlock decrypted data"
+        }
+      ]
+    },
+    {
+      "group": 32,
+      "name": "受信任运行时自证恢复日志",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 9,
+          "findingId": "csf_5e11af648ef5a49bd979d7c6",
+          "title": "The ordinary API runtime can forge or overwrite recovery evidence"
+        }
+      ]
+    },
+    {
+      "group": 33,
+      "name": "HTTP 进程持有 Auth0 删除凭据",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 14,
+          "findingId": "csf_782c58df856ae90a95989c1c",
+          "title": "The Internet-facing API task holds tenant-wide Auth0 user-deletion authority"
+        }
+      ]
+    },
+    {
+      "group": 34,
+      "name": "确定性邮箱摘要的元数据风险",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 11,
+          "findingId": "csf_838961ae4c71c3b504aec27e",
+          "title": "A database reader can recover and correlate email identities from deterministic SHA-256 tokens"
+        },
+        {
+          "input": "B",
+          "number": 18,
+          "findingId": "csf_80bf61f7f63b6d0e11d687b1",
+          "title": "Deterministic email hashes expose recipient identities and cross-planner relationship links to database readers"
+        }
+      ]
+    },
+    {
+      "group": 35,
+      "name": "本机受保护凭据副本",
+      "occurrences": [
+        {
+          "input": "A",
+          "number": 22,
+          "findingId": "csf_d80445eece03f1d2a7d16b34",
+          "title": "Provider credentials are duplicated in cleartext repository-local operational artifacts"
+        }
+      ]
+    }
+  ]
+}

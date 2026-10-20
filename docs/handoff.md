@@ -1,69 +1,18 @@
-# Rillora Current Handoff
+# Rillora 当前交接
 
-Status: INDEPENDENT RELEASE PREPARATION COMPLETE FOR CURRENT DEPENDENCIES; INTERNAL TESTFLIGHT BUILD UPLOADED
-Last updated: 2026-10-02 (Asia/Shanghai)
+Status: PUBLICATION REPAIR CANDIDATE / PR3 WAITING FOR VERIFICATION AND MERGE
+Last updated: 2026-10-20 (Asia/Shanghai)
 
-## Current task
+## 当前任务与发现
 
-Owner asks to finish all work not requiring their participation. Preserve UI/full03,
-Free1/Family5, Web88.99, conditional Apple prices, real data and FanPass. Physical-device
-and merchant facts remain explicitly deferred. Public customers and live billing stay
-closed. [Current independent contract](independent-release-closeout-20261002.md).
+Owner要求复核Dot的CI提醒并检查合并GitHub工作。[本轮记录](git-integration-20261020.md)独立证实26个新增验证文件未进入readable-manifest；实际报告运行的API及Web／基础设施成功，源码测试／扫描成功后在完整覆盖校验失败。当前所有23个远端分支tip已包含于整合head，初始main仍落后200提交，无额外独立Dot源码需要导入。既有PR1／2已合并；本次建立[PR3](https://github.com/tantalum666/rillora/pull/3)合入main。
 
-## Completed
+## 当前候选与边界
 
-- API10/restricted Web/router/WWW repairs, schema0091, retention/recovery/monitoring
-  preparation and all13Dot fixes retain their actual deployment/test evidence.
-  CI44 covers the latest source; no unchanged product suite or cloud rollout repeated.
-- Real Google Web and native consent/login loaded the same one synthetic matter;
-  QQ accepted the Directions share and found the assisted email outside the primary
-  inbox. Password reset succeeded in Owner/provider evidence, new QQ Web login works,
-  and API200/no-store/readOnly returns exactly5allowed fields without Notes/private hint.
-- The supported duplicate-signup guidance is saved/read back in Auth0. Mail images
-  are present, HTTP200 and rendered in Resend; QQ-specific image loading is unresolved.
-- Apple Sandbox notification URL/official TEST succeeded after the measured OCSP
-  fix. Only the existing consented QA planner is enrolled; original expiry remains
-  2026-10-06T17:08:57Z. No real order or entitlement was fabricated.
-- Internal TestFlight1.0(2) is archived, App Store signed, strictly verified and
-  uploaded through existing Xcode credentials at19:40+08. Apple processed it and
-  reports Internal / Missing Compliance. Eight artifact checks pass; no debug
-  entitlement, development planner or StoreKit fixture. Source defaults stay closed.
-- Four iPhone/two iPad designed images are saved in the English App Store draft and
-  read back in intended order. Existing public listing matches source. Beta basics
-  and build-specific test steps are saved/read back. No tester invite or installation.
+修复完整清单，AGENTS／source-control明确最后一份回执写完后须重建、核验完整发布清单并读回实际CI。保留所有扫描器、既有例外与密文，不删除文件或跳过CI。尚未把候选、PR创建或push当成PR3合并完成。PR4已在三项CI通过后合并，仅将原已批准的精确测试／公开标识登记同步到旧main；整合分支保留当前28项登记。额外浏览器检查发现的3项夹具／过期断言问题已修，局部3项通过；最终完整CI仍待运行。
 
-## Evidence boundaries and parked dependencies
+当前修改交接／元数据及两处浏览器测试配置／断言，无产品运行代码变化，不重复原生、付款或部署验收。候选工作流没有云凭据或部署步骤。App14审核、手动发布、TestFlight暂停、数据／价格／收费、FanPass和Owner停止真机检查的决定保持。Apple案例103001356140及OpenAI本人验证暂后保持；[上一交接](handoff-history-20261020-before-git-integration.md)与其条件披露设计属于保留的下一版本工作。
 
-Build2 is internal-only; it cannot be used for external TestFlight/App Store release.
-Apple's encryption questionnaire was inspected and cancelled unanswered. Final export,
-privacy/age/contact/market declarations, SBP effective fee/final Apple price and a later
-submission build remain. Local export hash and Apple's upload/processing result are
-separate evidence. All12gate classifications remain, with2verified and10dependent gates.
+## 唯一下一步
 
-The native planner's later session actually expired. Only that simulator session was
-signed out; Google reuse reached a fresh unchecked Account terms. This genuine Owner
-step is parked; no synthetic-share revocation has been performed. Do not manufacture
-consent through an operator task. Remaining core journeys use this existing synthetic
-fixture; deletion must use a deliberately disposable identity, never a real Owner account.
-
-Real-device purchase/restore/lifecycle and actual provider reconciliation remain
-Owner-deferred. Do not install or ask again merely because the paired phone exists.
-Live Stripe depends on real merchant facts; customer cutover depends on upstream
-acceptance and exact Preview retirement plus86400seconds token expiry and skew.
-No further SES application/reply wait is required for the adopted Resend sender.
-
-The new archive, local export, logs and safe Apple receipts are preserved by the
-[current Git addendum](../collaboration/verification/independent-release-20261002/README.md).
-Prior archives and CI keep their original dates. Credentials, raw recovery links,
-personal authentication UI and device inventories remain excluded from Git.
-
-## Single next step
-
-When Owner resumes personal participation, complete the planner's pending genuine
-Account terms/authentication and continue only the named synthetic share's remaining
-scope/revocation acceptance. Do not ask again or restart this step while Owner's
-current instruction is independent work only. Keep physical-device work deferred;
-export compliance and final declarations remain separately parked. Existing Apple,
-AWS and Auth0 sessions are reused until an actual failure proves renewal is needed.
-The exact mirror cleanup/state is recorded in the current QA closeout.
-[Previous handoff](handoff-history-20261002-before-independent-preparation.md) is HISTORICAL.
+完成整份可读材料发布验证，读取修复提交的GitHub检查；通过后合并PR3并核对main的祖先关系与文件树，最后追加真实结果。本轮未完成前不再回到条件披露开发或营销执行。

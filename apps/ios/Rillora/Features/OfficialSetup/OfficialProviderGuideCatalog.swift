@@ -4,9 +4,9 @@ enum OfficialProviderGuideKind: String, Decodable, Sendable {
     case prepareNow, estateRequest, prepareAndRequest
     var label: String {
         switch self {
-        case .prepareNow: "Preparation guidance"
-        case .estateRequest: "After-death request"
-        case .prepareAndRequest: "Preparation and requests"
+        case .prepareNow: String(localized: "Preparation guidance")
+        case .estateRequest: String(localized: "After-death request")
+        case .prepareAndRequest: String(localized: "Preparation and requests")
         }
     }
 }
@@ -21,7 +21,7 @@ struct OfficialProviderLink: Identifiable, Equatable, Decodable, Sendable {
         guard let url = URL(string: urlString), url.scheme == "https" else { return nil }
         return url
     }
-    var hostLabel: String { url?.host?.replacingOccurrences(of: "www.", with: "") ?? "Official site" }
+    var hostLabel: String { url?.host?.replacingOccurrences(of: "www.", with: "") ?? String(localized: "Official site") }
 }
 
 struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
@@ -39,6 +39,23 @@ struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
     let links: [OfficialProviderLink]
     let lastReviewed: String
     let matterMatch: ProviderMatterMatch
+    let translations: ProviderGuideTranslations?
+
+    /// Locale overlays only change authored prose, never routing, source provenance,
+    /// matching, or provider state. Incomplete overlays fall back as one whole guide.
+    func localized(localeIdentifier: String = Bundle.main.preferredLocalizations.first ?? "en") -> Self {
+        let language = localeIdentifier.replacingOccurrences(of: "_", with: "-").lowercased()
+        guard (language == "zh" || language.hasPrefix("zh-")),
+              let translation = translations?.values["zh-Hans"], translation.isComplete(for: self) else { return self }
+        return Self(id: id, name: name, systemImage: systemImage, kind: kind, group: group,
+                    aliases: aliases, summary: translation.summary,
+                    prepareSteps: translation.prepareSteps, laterSteps: translation.laterSteps,
+                    usuallyRequested: translation.usuallyRequested, boundary: translation.boundary,
+                    links: zip(links, translation.links).map { source, text in
+                        OfficialProviderLink(title: text.title, detail: text.detail,
+                                             urlString: source.urlString, phase: source.phase)
+                    }, lastReviewed: lastReviewed, matterMatch: matterMatch, translations: nil)
+    }
 
     var supportsSelfReportedCheck: Bool { OfficialProviderGuideCatalog.selfReportedProviderKeys.contains(id) }
     var initialPart: String { kind == .estateRequest ? "later" : "now" }
@@ -53,6 +70,34 @@ struct OfficialProviderGuide: Identifiable, Equatable, Decodable, Sendable {
     }
 }
 
+/// Invalid optional translations must never make the reviewed English catalog unreadable.
+struct ProviderGuideTranslations: Equatable, Decodable, Sendable {
+    let values: [String: ProviderGuideTranslation]
+    init(from decoder: any Decoder) throws {
+        values = (try? decoder.singleValueContainer().decode([String: ProviderGuideTranslation].self)) ?? [:]
+    }
+}
+
+struct ProviderGuideTranslation: Equatable, Decodable, Sendable {
+    struct LinkText: Equatable, Decodable, Sendable { let title: String; let detail: String }
+    let summary: String
+    let prepareSteps: [String]
+    let laterSteps: [String]
+    let usuallyRequested: [String]
+    let boundary: String
+    let links: [LinkText]
+
+    func isComplete(for source: OfficialProviderGuide) -> Bool {
+        let texts = [summary, boundary] + prepareSteps + laterSteps + usuallyRequested
+            + links.flatMap { [$0.title, $0.detail] }
+        return prepareSteps.count == source.prepareSteps.count
+            && laterSteps.count == source.laterSteps.count
+            && usuallyRequested.count == source.usuallyRequested.count
+            && links.count == source.links.count
+            && texts.allSatisfy { !$0.trimmingCharacters(in: .whitespacesAndNewlines).isEmpty }
+    }
+}
+
 struct ProviderMatterMatch: Equatable, Decodable, Sendable {
     let terms: [String]
     let exactProviderTerms: [String]
@@ -62,6 +107,18 @@ struct ProviderMatterMatch: Equatable, Decodable, Sendable {
 struct OfficialProviderGuideGroup: Identifiable, Decodable, Sendable {
     let id: String
     let title: String
+
+    // Known interface groups have authored keys; new source content stays verbatim.
+    var localizedTitle: String {
+        switch id {
+        case "cloud": String(localized: "Cloud & email")
+        case "social": String(localized: "Social accounts")
+        case "money": String(localized: "Money & crypto")
+        case "work": String(localized: "Work & passwords")
+        case "software": String(localized: "Software & subscriptions")
+        default: title
+        }
+    }
 }
 
 private struct ProviderGuideDocument: Decodable, Sendable {
@@ -121,3 +178,4 @@ enum OfficialProviderGuideCatalog {
         return text.range(of: pattern, options: .regularExpression) != nil
     }
 }
+

@@ -1,0 +1,23 @@
+{
+  "domain": "rillora.xyz",
+  "applied": false,
+  "preview": {
+    "providerPreview": {
+      "action": "would set",
+      "created": 0,
+      "deleted": 0,
+      "domain": "rillora.xyz",
+      "name": "legal",
+      "plan": [
+        {
+          "action": "replace",
+          "data": "rillora-legal-pages.pages.dev",
+          "recordId": "bba978e5-09a2-42ef-a7d2-eb953cdf3430"
+        }
+      ],
+      "replaced": 1,
+      "type": "CNAME"
+    },
+    "strategy": "delete one existing CNAME, add replacement, restore prior value on failure"
+  }
+}

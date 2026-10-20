@@ -1,6 +1,6 @@
 import { createHash, randomBytes } from 'node:crypto';
 import { Router, type Request } from 'express';
-import { parseCookie } from 'cookie';
+import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import * as oidc from 'openid-client';
 import { z } from 'zod';
 import { authenticate, requireCsrf, sessionCookieName } from './auth.js';
@@ -12,6 +12,8 @@ import { currentLegalContract } from './legal-contract.js';
 import { authenticationIsRecent } from './recent-authentication.js';
 import type { PoolClient } from 'pg';
 import { reviewAccessOpen } from './production-review-access.js';
+import { admitAuthenticationTransaction, authenticationBusy } from './auth-transaction-budget.js';
+import { sealSessionDeletionProof } from './identity-deletion-proof.js';
 
 const digest = (value: string) => createHash('sha256').update(value).digest();
 const opaque = () => randomBytes(32).toString('base64url');
@@ -25,8 +27,9 @@ export type ReauthenticationTransaction = {
 async function refreshSession(client: PoolClient, config: AppConfig, publicId: string,
   identity: ExternalIdentity, tokenHash?: Buffer): Promise<void> {
   if (!reviewAccessOpen(config) || !authenticationIsRecent(identity.authenticatedAt)) throw invalid();
+  const deletionProof=await sealSessionDeletionProof(config,identity,publicId);
   const result = await client.query(`update app.auth_sessions s
-    set authenticated_at=$2, authentication_methods=$3::text[]
+    set authenticated_at=$2, authentication_methods=$3::text[],deletion_identity_proof=$11::jsonb
     from app.legal_acceptances a, app.planners p
     where s.public_id=$1 and s.revoked_at is null and s.expires_at>now()
       and (s.last_seen_at is null or s.last_seen_at>now()-make_interval(mins=>$4))
@@ -40,7 +43,7 @@ async function refreshSession(client: PoolClient, config: AppConfig, publicId: s
     config.sessionIdleMinutes, digest(`${identity.issuer}\u001f${identity.subject}`),
     currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
     Buffer.from(currentLegalContract.bundleSha256,'hex'), tokenHash ?? null,
-    config.productionReviewAccess?.identityDigests ?? null]);
+    config.productionReviewAccess?.identityDigests ?? null,deletionProof?JSON.stringify(deletionProof):null]);
   if (result.rowCount !== 1) throw invalid();
 }
 
@@ -52,7 +55,9 @@ export function createReauthenticationRouter(pool: DatabasePool, config: AppConf
     if (!provider || !config.oidc || request.auth.mode !== 'session') throw invalid();
     const cookieToken=opaque(), pollToken=opaque();
     const transaction={state:oidc.randomState(),nonce:oidc.randomNonce(),codeVerifier:oidc.randomPKCECodeVerifier()};
-    const result=await withAuthDatabase(pool, client=>client.query(`insert into app.auth_transactions(
+    const result=await withAuthDatabase(pool, async client=>{
+      if (!await admitAuthenticationTransaction(client)) return null;
+      return client.query(`insert into app.auth_transactions(
       token_hash,state_hash,code_verifier,nonce,return_to,expires_at,
       legal_acceptance_required,terms_version,privacy_version,consent_text_version,legal_bundle_sha256,
       accepted_terms,acknowledged_privacy,accepted_electronic_records,legal_client_surface,
@@ -63,10 +68,12 @@ export function createReauthenticationRouter(pool: DatabasePool, config: AppConf
       from app.auth_sessions s join app.legal_acceptances a on a.id=s.legal_acceptance_id and a.planner_id=s.planner_id
       where s.public_id=$6 and s.revoked_at is null and s.expires_at>now()`,
     [digest(cookieToken),digest(transaction.state),transaction.codeVerifier,transaction.nonce,
-      config.authTransactionTtlSeconds,request.auth.sessionPublicId,digest(pollToken)]));
+      config.authTransactionTtlSeconds,request.auth.sessionPublicId,digest(pollToken)]);
+    });
+    if (!result) throw authenticationBusy();
     if (result.rowCount !== 1) throw invalid();
     const url=await provider.createAuthorizationUrl(transaction,{prompt:'login',maxAge:0});
-    response.cookie('continuity_auth_tx',cookieToken,{httpOnly:true,secure:config.nodeEnv==='production',
+    response.cookie(securityCookieName(config, 'continuity_auth_tx'),cookieToken,{httpOnly:true,secure:usesSecureCookies(config),
       sameSite:'lax',path:'/',maxAge:config.authTransactionTtlSeconds*1_000});
     // The poll capability is separate from the HTTP-only OAuth/PKCE transaction cookie.
     response.status(201).json({authorizationUrl:url.href,pollToken,expiresIn:config.authTransactionTtlSeconds});
@@ -100,7 +107,7 @@ export async function completeReauthentication(pool: DatabasePool, config: AppCo
   transaction: ReauthenticationTransaction, identity: ExternalIdentity, request: Request): Promise<void> {
   if (!transaction.reauth_session_public_id || !authenticationIsRecent(identity.authenticatedAt)
     || identity.authenticatedAt!.getTime()<transaction.created_at.getTime()-5_000) throw invalid();
-  const cookie=parseCookie(request.get('cookie')??'')[sessionCookieName];
+  const cookie=readSecurityCookie(request.get('cookie'),securityCookieName(config,sessionCookieName));
   if (!cookie || !/^[A-Za-z0-9_-]{43,128}$/.test(cookie)) throw invalid();
   await withAuthDatabase(pool,async client=>{
     await refreshSession(client,config,transaction.reauth_session_public_id!,identity,digest(cookie));

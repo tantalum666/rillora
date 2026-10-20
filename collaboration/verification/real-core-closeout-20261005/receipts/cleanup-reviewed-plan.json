@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-05T04:42:34.673879+00:00",
+  "status": "CREATE_COMPLETE",
+  "execution": "AVAILABLE",
+  "changes": [
+    {
+      "type": "AWS::ECS::TaskDefinition",
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "action": "Modify",
+      "replacement": "True"
+    },
+    {
+      "type": "AWS::ECS::Service",
+      "logicalId": "RuntimeService1702E585",
+      "action": "Modify",
+      "replacement": "False"
+    }
+  ],
+  "onlyTemporaryDigestRemoval": true,
+  "ownerDecisionAt": "2026-10-05T05:04:58.550851+00:00",
+  "executionPrecondition": "Owner chose to retain the account; cancel deletion and end the test session, then restore original three identities without deleting account/data.",
+  "accountDeletionRequired": false,
+  "originalThreeAndExpiryRetained": true
+}

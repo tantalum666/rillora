@@ -7,7 +7,21 @@ import {
   normalizePurchaseRoute,
   unavailableCommercialStatus,
   testBillingDestination,
+  subscriptionPreventsNewCheckout,
 } from "../src/commercialAccess.js";
+
+test("terminated refund history permits repurchase while resumable or uncertain subscriptions block it", () => {
+  assert.equal(subscriptionPreventsNewCheckout(null), false);
+  for (const state of ["refunded", "revoked", "expired_read_only"]) {
+    assert.equal(subscriptionPreventsNewCheckout({ state, renewalIsPossible: false }), false);
+    for (const renewalIsPossible of [true, null, undefined]) {
+      assert.equal(subscriptionPreventsNewCheckout({ state, renewalIsPossible }), true);
+    }
+  }
+  for (const state of ["active", "cancel_at_period_end", "grace", "past_due", "previewing", "unknown"]) {
+    assert.equal(subscriptionPreventsNewCheckout({ state, renewalIsPossible: false }), true);
+  }
+});
 
 const safeBoundaries = {
   serverAuthoritative: true,

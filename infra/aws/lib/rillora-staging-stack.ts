@@ -1,5 +1,7 @@
 import { dirname, resolve } from "node:path";
 import { fileURLToPath } from "node:url";
+import {readFileSync} from 'node:fs';
+import {createHash} from 'node:crypto';
 import {
   Aws,
   ArnFormat,
@@ -28,6 +30,8 @@ import * as servicediscovery from "aws-cdk-lib/aws-servicediscovery";
 import * as s3 from "aws-cdk-lib/aws-s3";
 import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import type { Construct } from "constructs";
+import { RilloraMaintenanceBroker } from './rillora-maintenance-broker.js';
+import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 
 export type RilloraStagingStackProps = StackProps & {
   desiredCount: number;
@@ -319,6 +323,7 @@ export class RilloraStagingStack extends Stack {
       CONTENT_KMS_KEY_ARN: contentKey.keyArn,
       CONTENT_KEY_NAMESPACE: "rillora-staging",
     };
+    const boundaryKeys=new RilloraRuntimeBoundaryKeys(this,'RuntimeBoundaries','staging');
     const allowContentKeys = (role: iam.IRole) => role.addToPrincipalPolicy(new iam.PolicyStatement({
       sid: "UseOnlyStagingContentKeys",
       actions: ["kms:GenerateDataKey", "kms:Decrypt"],
@@ -362,16 +367,15 @@ export class RilloraStagingStack extends Stack {
         ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: "false",
         DATABASE_POOL_MAX: "5",
         TRUST_PROXY_HOPS: "1",
+        PRODUCTION_RUNTIME_MODE: "staging",
+        REQUIRE_RECENT_AUTHENTICATION: "true",
         OIDC_ISSUER_URL: oidcIssuer.valueAsString,
         OIDC_CLIENT_ID: webOidcClientId.valueAsString,
         ...(props.emailVerificationEnabled ? {
           AUTH0_EMAIL_VERIFICATION_DOMAIN: verificationDomain.valueAsString,
           AUTH0_EMAIL_VERIFICATION_CLIENT_ID: verificationClientId.valueAsString,
         } : {}),
-        ...(props.accountDeletionEnabled ? {
-          AUTH0_DELETION_DOMAIN: deletionDomain.valueAsString,
-          AUTH0_DELETION_CLIENT_ID: deletionClientId.valueAsString,
-        } : {}),
+        ...(props.accountDeletionEnabled ? {DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:boundaryKeys.proof.keyArn} : {}),
         OIDC_REDIRECT_URI: webOidcRedirectUri.valueAsString,
         WEB_APP_ORIGIN: webCorsOrigin.valueAsString,
         NATIVE_OIDC_CLIENT_ID: nativeOidcClientId.valueAsString,
@@ -405,12 +409,10 @@ export class RilloraStagingStack extends Stack {
       secrets: {
         DATABASE_USER: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "username"),
         DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "password"),
+        ...boundaryKeys.apiSecrets(),
         OIDC_CLIENT_SECRET: ecs.Secret.fromSecretsManager(webOidcClientSecret),
         ...(props.emailVerificationEnabled ? {
           AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET: ecs.Secret.fromSecretsManager(emailVerificationSecret),
-        } : {}),
-        ...(props.accountDeletionEnabled ? {
-          AUTH0_DELETION_CLIENT_SECRET: ecs.Secret.fromSecretsManager(accountDeletionSecret),
         } : {}),
         ...(props.stripeTestIntegrationEnabled
           ? {
@@ -474,6 +476,16 @@ export class RilloraStagingStack extends Stack {
       containerPort: apiContainerPort,
     });
     service.node.addDependency(database);
+    let identityWorker:RilloraIdentityDeletionWorker|undefined;
+    if(props.accountDeletionEnabled){
+      boundaryKeys.allowProof(taskDefinition.taskRole,'staging','kms:GenerateDataKey');
+      identityWorker=new RilloraIdentityDeletionWorker(this,'IdentityWorker',{environment:'staging',vpc,cluster,
+        databaseNetwork:databaseSecurityGroup,databaseEnvironment:sharedEnvironment,keys:boundaryKeys,image,
+        providerEnvironment:{AUTH0_DELETION_DOMAIN:deletionDomain.valueAsString,AUTH0_DELETION_CLIENT_ID:deletionClientId.valueAsString},
+        providerSecrets:{AUTH0_DELETION_CLIENT_SECRET:ecs.Secret.fromSecretsManager(accountDeletionSecret)},
+        issuers:[oidcIssuer.valueAsString],clients:[webOidcClientId.valueAsString,nativeOidcClientId.valueAsString],
+        desiredCount:props.desiredCount>0?1:0});
+    }
 
     const migrationLogGroup = new logs.LogGroup(this, "MigrationLogGroup", {
       retention: logs.RetentionDays.ONE_MONTH,
@@ -492,7 +504,7 @@ export class RilloraStagingStack extends Stack {
     if (props.contentMigrationEnabled) allowContentKeys(migrationTaskDefinition.taskRole);
     migrationTaskDefinition.addContainer("Migration", {
       image,
-      command: ["/bin/sh", "-c", "node dist/migrate.js && node dist/bootstrap-runtime.js"],
+      command: ["/bin/sh", "-c", "node dist/migrate.js && node dist/bootstrap-runtime.js && node dist/migrate-email-matches.js"],
       logging: ecs.LogDrivers.awsLogs({ logGroup: migrationLogGroup, streamPrefix: "migration" }),
       environment: {
         ...sharedEnvironment,
@@ -503,10 +515,12 @@ export class RilloraStagingStack extends Stack {
         DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(database.secret, "password"),
         RUNTIME_DATABASE_USER: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "username"),
         RUNTIME_DATABASE_PASSWORD: ecs.Secret.fromSecretsManager(runtimeDatabaseSecret, "password"),
+        ...boundaryKeys.migrationSecrets(),
       },
     });
 
-    stagingOperatorRole.addToPolicy(
+    const stagingMaintenancePolicies: iam.PolicyStatement[] = [];
+    stagingMaintenancePolicies.push(
       new iam.PolicyStatement({
         sid: "RunOnlyTheStagingMigrationTask",
         actions: ["ecs:RunTask"],
@@ -534,7 +548,7 @@ export class RilloraStagingStack extends Stack {
         resources: [stripeTestApiKeySecret.secretArn, stripeTestWebhookSecret.secretArn],
       }),
     );
-    stagingOperatorRole.addToPolicy(
+    stagingMaintenancePolicies.push(
       new iam.PolicyStatement({
         sid: "PassOnlyTheMigrationTaskRoles",
         actions: ["iam:PassRole"],
@@ -545,6 +559,17 @@ export class RilloraStagingStack extends Stack {
         conditions: { StringEquals: { "iam:PassedToService": "ecs-tasks.amazonaws.com" } },
       }),
     );
+    const maintenanceBroker = new RilloraMaintenanceBroker(this,'MaintenanceBroker',{
+      operator:stagingOperatorRole,policies:stagingMaintenancePolicies,
+      settings:{environment:'staging',cluster:cluster.clusterName,migrationTask:migrationTaskDefinition.taskDefinitionArn,
+        subnets:vpc.publicSubnets.map(subnet=>subnet.subnetId),migrationSecurityGroup:taskSecurityGroup.securityGroupId,
+        securityAuditScriptSha256:createHash('sha256').update(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)),'../../../tools/release/probe_security_rollout.mjs'))).digest('hex'),
+        securityAuthorityScriptSha256:createHash('sha256').update(readFileSync(resolve(dirname(fileURLToPath(import.meta.url)),'../../../tools/release/probe_security_authority.mjs'))).digest('hex')},
+    });
+    new CfnOutput(this,'MaintenanceBrokerFunctionName',{value:maintenanceBroker.function.functionName});
+    stagingOperatorRole.addToPolicy(new iam.PolicyStatement({
+      sid:'ReadOwnMaintenanceOutputs',actions:['cloudformation:DescribeStacks'],resources:[this.stackId],
+    }));
     stagingOperatorRole.addToPolicy(
       new iam.PolicyStatement({
         sid: "ObserveAndStopStagingTasks",
@@ -570,7 +595,7 @@ export class RilloraStagingStack extends Stack {
       new iam.PolicyStatement({
         sid: "InspectStagingService",
         actions: ["ecs:DescribeClusters", "ecs:DescribeServices"],
-        resources: [cluster.clusterArn, service.serviceArn],
+        resources: [cluster.clusterArn, service.serviceArn,...(identityWorker?[identityWorker.service.serviceArn]:[])],
       }),
     );
     // These APIs do not support resource-level IAM authorization. Keep them
@@ -591,6 +616,7 @@ export class RilloraStagingStack extends Stack {
           `${migrationLogGroup.logGroupArn}:*`,
           apiLogGroup.logGroupArn,
           `${apiLogGroup.logGroupArn}:*`,
+          ...(identityWorker?[identityWorker.logGroup.logGroupArn,`${identityWorker.logGroup.logGroupArn}:*`]:[]),
         ],
       }),
     );
@@ -708,6 +734,10 @@ export class RilloraStagingStack extends Stack {
       runtime: cloudfront.FunctionRuntime.JS_2_0,
       code: cloudfront.FunctionCode.fromInline(`function handler(event) {
   var request = event.request;
+  if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
+    return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
+      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*"]}]}}' };
+  }
   var uri = request.uri;
   if (uri.endsWith('/')) {
     request.uri = uri + 'index.html';

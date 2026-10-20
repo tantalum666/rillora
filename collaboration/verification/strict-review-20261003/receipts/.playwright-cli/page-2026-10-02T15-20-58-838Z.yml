@@ -1,0 +1,47 @@
+- generic [ref=f1e11]:
+  - complementary "Primary navigation" [ref=f1e12]:
+    - navigation [ref=f1e13]:
+      - button "Overview" [ref=f1e14] [cursor=pointer]
+      - button "My plan" [ref=f1e18] [cursor=pointer]
+      - button "Matters" [ref=f1e22] [cursor=pointer]
+      - button "Trusted contacts" [ref=f1e26] [cursor=pointer]
+      - button "Shared with me" [ref=f1e30] [cursor=pointer]
+      - button "Shared reviews" [ref=f1e34] [cursor=pointer]
+      - button "Account inheritance" [ref=f1e38] [cursor=pointer]
+      - button "Plan & access" [ref=f1e42] [cursor=pointer]
+      - button "Activity" [ref=f1e46] [cursor=pointer]
+    - generic [ref=f1e51]:
+      - strong [ref=f1e54]: Directions, not passwords.
+      - button "Safety & privacy" [ref=f1e55] [cursor=pointer]
+    - button "Settings" [ref=f1e56] [cursor=pointer]
+  - main [ref=f1e60]:
+    - generic [ref=f1e61]:
+      - paragraph [ref=f1e62]: Local QA · test data
+      - 'button "Appearance: system" [ref=f1e65] [cursor=pointer]'
+    - generic [ref=f1e185]:
+      - generic [ref=f1e186]:
+        - heading "Your map" [level=1] [ref=f1e187]
+        - generic [ref=f1e188]: 5 matters
+      - generic [ref=f1e189]:
+        - button "Open your matters" [ref=f1e190] [cursor=pointer]
+        - generic [ref=f1e191]:
+          - button "Add a matter" [ref=f1e192] [cursor=pointer]
+          - button "Invite someone Share by link or QR" [ref=f1e195] [cursor=pointer]:
+            - generic [ref=f1e202]:
+              - strong [ref=f1e203]: Invite someone
+              - generic [ref=f1e204]: Share by link or QR
+          - button "Shared with me" [ref=f1e207] [cursor=pointer]
+      - generic [ref=f1e213]:
+        - generic [ref=f1e214]:
+          - heading "Your matters" [level=2] [ref=f1e215]
+          - button "View all" [ref=f1e216] [cursor=pointer]
+        - generic [ref=f1e219]:
+          - button "Open Insurance, draft" [ref=f1e220] [cursor=pointer]:
+            - generic [ref=f1e224]: Insurance
+            - generic [ref=f1e225]: Draft
+          - button "Open Subscriptions, draft" [ref=f1e229] [cursor=pointer]:
+            - generic [ref=f1e233]: Subscriptions
+            - generic [ref=f1e234]: Draft
+          - button "Open Bank account, directions added" [ref=f1e238] [cursor=pointer]:
+            - generic [ref=f1e242]: Bank account
+            - generic [ref=f1e243]: Directions added

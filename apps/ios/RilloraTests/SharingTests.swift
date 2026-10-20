@@ -34,7 +34,9 @@ final class SharingTests: XCTestCase {
     func testInvitationCapabilityMustBeACompleteFragment() {
         let token = String(repeating: "x", count: 43)
         XCTAssertEqual(ReceivedInvitation.token(from: "https://app.rillora.xyz/invite#invitation=\(token)"), token)
-        XCTAssertEqual(ReceivedInvitation.token(from: "rillora://invite#invitation=\(token)"), token)
+        XCTAssertNil(ReceivedInvitation.token(from: "rillora://invite#invitation=\(token)"))
+        XCTAssertNil(ReceivedInvitation.token(from: "https://attacker.example/invite#invitation=\(token)"))
+        XCTAssertNil(ReceivedInvitation.token(from: "http://app.rillora.xyz/invite#invitation=\(token)"))
         XCTAssertNil(ReceivedInvitation.token(from: "https://app.rillora.xyz/invite?invitation=\(token)"))
         XCTAssertNil(ReceivedInvitation.token(from: "javascript:alert(1)#invitation=\(token)"))
         XCTAssertNil(ReceivedInvitation.token(from: "rillora://invite#invitation=short"))

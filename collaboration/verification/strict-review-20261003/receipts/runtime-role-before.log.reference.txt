@@ -1,0 +1,65 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/bootstrap-runtime.test.ts (8 tests | 6 failed) 197ms
+     × rejects an existing runtime login with bypassrls 7ms
+     × rejects an existing runtime login with replication 5ms
+     × rejects privileged membership continuity_retention_service instead of preserving it during rotation 12ms
+     × rejects privileged membership continuity_share_service instead of preserving it during rotation 9ms
+     × rejects privileged membership continuity_account_service instead of preserving it during rotation 10ms
+     × rejects privileged membership pg_read_all_data instead of preserving it during rotation 8ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 6 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects an existing runtime login with bypassrls
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects an existing runtime login with replication
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ tests/bootstrap-runtime.test.ts:89:79
+     87|     await client.query(`alter role ${runtimeRole} ${attribute}`);
+     88|     try {
+     89|       await expect(bootstrapRuntimeRole(client, runtimeRole, runtimePa…
+       |                                                                               ^
+     90|     } finally { await client.query(`alter role ${runtimeRole} no${attr…
+     91|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/6]⎯
+
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects privileged membership continuity_retention_service instead of preserving it during rotation
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects privileged membership continuity_share_service instead of preserving it during rotation
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects privileged membership continuity_account_service instead of preserving it during rotation
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap > rejects privileged membership pg_read_all_data instead of preserving it during rotation
+AssertionError: promise resolved "undefined" instead of rejecting
+
+- Expected:
+Error {
+  "message": "rejected promise",
+}
+
++ Received:
+undefined
+
+ ❯ tests/bootstrap-runtime.test.ts:97:100
+     95|       await client.query(`grant ${membership} to ${runtimeRole}`);
+     96|       try {
+     97|         await expect(bootstrapRuntimeRole(client, runtimeRole, `${runt…
+       |                                                                                                    ^
+     98|       } finally { await client.query(`revoke ${membership} from ${runt…
+     99|     });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/6]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  6 failed | 2 passed (8)
+   Start at  22:13:30
+   Duration  611ms (transform 108ms, setup 41ms, import 238ms, tests 197ms, environment 0ms)
+

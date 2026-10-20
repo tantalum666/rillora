@@ -1,0 +1,28 @@
+from pathlib import Path
+import json,subprocess,hashlib,datetime
+w=Path(__file__).resolve().parents[3];q=Path(__file__).resolve().parent;p=w/'.local-secrets/web-billing-activation-20261013'
+retirement=q/'preview-identity-retired.json'
+if retirement.exists():
+ deadline=datetime.datetime.fromisoformat(json.loads(retirement.read_text())['earliestCustomerActivationAt'])
+ assert datetime.datetime.now(datetime.timezone.utc)>=deadline,'Old identity token lifetime plus tolerance has not elapsed'
+assert json.loads((q/'live-deployed.json').read_text())['templateMatches']
+assert json.loads((q/'catalog-activate-web.json').read_text())['passed']
+def api(method,path,body=None):
+ r=subprocess.run(['auth0','api',method,path,'--tenant','rillora-dev.eu.auth0.com','--no-input'],input=json.dumps(body) if body is not None else None,capture_output=True,text=True,timeout=45)
+ assert r.returncode==0,'Auth0 request failed; raw provider body suppressed'
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+old=json.loads((p/'auth0-review-action-before.json').read_text());original=json.loads((p/'auth0-bindings-before.json').read_text())['bindings'];candidate=json.loads((p/'auth0-live-action-candidate.json').read_text())
+current=api('get','actions/actions/'+old['id']);assert current['deployed_version']['code']==old['deployed_version']['code'],'Action changed concurrently'
+bindings=api('get','actions/triggers/post-login/bindings?per_page=100')['bindings']
+assert [(x['id'],x['action']['id']) for x in bindings]==[(x['id'],x['action']['id']) for x in original]
+other={x['action']['id']:api('get','actions/actions/'+x['action']['id'])['deployed_version']['code'] for x in bindings if x['action']['id']!=old['id']}
+api('patch','actions/actions/'+old['id'],candidate);api('post','actions/actions/'+old['id']+'/deploy')
+actual=api('get','actions/actions/'+old['id']);assert actual['deployed_version']['code']==candidate['code']
+for identity,code in other.items():assert api('get','actions/actions/'+identity)['deployed_version']['code']==code
+wanted=[{'ref':{'type':'binding_id','value':x['id']},'display_name':candidate['name'] if x['action']['id']==old['id'] else x['display_name']} for x in bindings]
+api('patch','actions/triggers/post-login/bindings',{'bindings':wanted});after=api('get','actions/triggers/post-login/bindings?per_page=100')['bindings']
+assert [(x['id'],x['action']['id']) for x in after]==[(x['id'],x['action']['id']) for x in original]
+report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'productionActionReadbackMatches':True,'actionId':old['id'],'currentName':candidate['name'],
+ 'nativeConsentFormsAndUncheckedAcknowledgementPreserved':True,'webClickwrapUnchanged':True,'existingOtherActionUnchanged':True,'sameBindingsAndOrder':True,
+ 'reviewIdentityAndExpiryGateRemovedOnlyForProductionClients':True,'noAccountsCreatedOrDeleted':True,'noCredentialOrCallbackChanges':True}
+(q/'auth0-live-deployed.json').write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report))

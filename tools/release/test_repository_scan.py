@@ -1,6 +1,9 @@
 import hashlib
 import importlib.util
 import tempfile
+import json
+import subprocess
+import sys
 import unittest
 from pathlib import Path
 
@@ -8,6 +11,23 @@ spec=importlib.util.spec_from_file_location('scan',Path(__file__).with_name('sca
 scan=importlib.util.module_from_spec(spec);spec.loader.exec_module(scan)
 
 class SourceScanBoundaryTests(unittest.TestCase):
+    def test_candidate_scanner_configuration_and_inline_allow_cannot_suppress_new_findings(self):
+        with tempfile.TemporaryDirectory() as d:
+            root=Path(d);(root/'config').mkdir()
+            (root/'config/repository-scan-exceptions.json').write_text('{"findings":[]}')
+            (root/'.gitleaks.toml').write_text('[allowlist]\ndescription="candidate bypass"\npaths=[".*"]\n')
+            # Deterministic local-only text, with no provider/account authority.
+            # Random hex can fall below the scanner's entropy threshold or hit
+            # its stopwords, making this policy-bypass assertion intermittent.
+            value=hashlib.sha256(b'rillora-publication-guard-local-negative-control').hexdigest()
+            (root/'candidate.py').write_text('api_key = "' + value + '" # gitleaks:allow\n')
+            report=root/'scan.json'
+            result=subprocess.run([sys.executable,str(Path(__file__).with_name('scan_repository.py')),
+                '--source',str(root),'--report',str(report)],capture_output=True,text=True)
+            self.assertEqual(result.returncode,1,result.stderr)
+            evidence=json.loads(report.read_text())
+            self.assertFalse(evidence['passed'])
+            self.assertTrue(any(f['path']=='candidate.py' for f in evidence['unreviewedFindings']))
     def test_only_exact_reviewed_span_passes_and_changed_material_fails(self):
         with tempfile.TemporaryDirectory() as d:
             root=Path(d);p=root/'fixture.py';p.write_text('synthetic constant\n')

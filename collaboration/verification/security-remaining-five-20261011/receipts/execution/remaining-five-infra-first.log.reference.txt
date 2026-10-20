@@ -1,0 +1,348 @@
+
+> rillora-aws-infrastructure@0.1.0 test
+> vitest run --exclude 'dist/**' --maxWorkers=2 --testTimeout=20000
+
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws
+
+ ❯ test/rillora-staging-stack.test.ts (16 tests | 16 failed) 1612ms
+     × retains and rotates content keys with only purpose-scoped runtime usage 203ms
+     × enables migration keys explicitly while retaining a compatibility reader 106ms
+     × keeps capacity diagnostics read-only and in the stack region 97ms
+     × isolates the read-only verification secret and injects it only after activation 94ms
+     × scopes gateway diagnostics to its access log group without granting writes 92ms
+     × injects the dedicated deletion credential only after explicit activation 95ms
+     × keeps maintenance preview explicit without adding billing resources 89ms
+     × keeps the first deploy at zero API tasks until migrations are complete 93ms
+     × keeps Single-AZ RDS PostgreSQL private, encrypted, and deletion protected 91ms
+     × keeps the interactive API and payment receiver on regular Fargate capacity 87ms
+     × creates an MFA-gated least-privilege staging operator role 89ms
+     × injects runtime credentials from Secrets Manager and disables unsafe surfaces 89ms
+     × creates three write-only Apple IAP secrets only when Sandbox Server API is enabled 96ms
+     × creates write-only operator paths for separate Stripe test secrets and injects them only when enabled 107ms
+     × does not create a NAT gateway or a public database 92ms
+     × serves the Web app from a private S3 origin and proxies only /api through CloudFront 90ms
+ ❯ test/rillora-production-stack.test.ts (10 tests | 5 failed) 3826ms
+     × keeps privileged task execution and recovery writes behind the fixed broker rather than the human operator 1555ms
+     × prepares isolated vault resources while retaining closed runtime and the old immutable API image 270ms
+     × activates only restricted review, leaving ordinary sales and customer access closed 258ms
+     × keeps production identity service credentials separate and injects only after activation 284ms
+     × keeps the existing data resources and uses a verified private TLS integration 248ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 21 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Closed production data and recovery foundation > keeps privileged task execution and recovery writes behind the fixed broker rather than the human operator
+AssertionError: expected [ …(4) ] to include 'ecs:RunTask'
+ ❯ test/rillora-production-stack.test.ts:21:25
+     19|     .filter(p=>p.Properties.Roles?.some((r:any)=>r.Ref===brokerRole)).…
+     20|     .flatMap(s=>typeof s.Action==='string'?[s.Action]:s.Action);
+     21|   expect(brokerActions).toContain('ecs:RunTask');expect(brokerActions)…
+       |                         ^
+     22|  });
+     23|  it('requires seven-day encrypted private storage and keeps customer t…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/21]⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Optional closed production HTTPS runtime > prepares isolated vault resources while retaining closed runtime and the old immutable API image
+AssertionError: expected [ …(4) ] to have a length of 2 but got 4
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ test/rillora-production-stack.test.ts:116:23
+    114|   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora…
+    115|   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')…
+    116|   expect(api.Secrets).toHaveLength(2);
+       |                       ^
+    117|   expect(api.Environment).toContainEqual({Name:'PRODUCTION_RUNTIME_MOD…
+    118|   expect(api.Environment.some((e:any)=>e.Name==='APPLE_REVIEW_SECRET_A…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/21]⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Optional closed production HTTPS runtime > activates only restricted review, leaving ordinary sales and customer access closed
+AssertionError: expected [ …(5) ] to have a length of 3 but got 5
+
+- Expected
++ Received
+
+- 3
++ 5
+
+ ❯ test/rillora-production-stack.test.ts:129:23
+    127|   expect(env.PRODUCTION_REVIEW_IDENTITY_SHA256.Ref).toBeDefined();expe…
+    128|   for(const name of ['ALLOW_DEV_AUTH','ALLOW_APPLE_PRODUCTION_INTEGRAT…
+    129|   expect(api.Secrets).toHaveLength(3);t.hasOutput('ProductionTrafficRe…
+       |                       ^
+    130|   const ocspRules=Object.values(t.findResources('AWS::EC2::SecurityGro…
+    131|   expect(ocspRules).toHaveLength(2);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/21]⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Optional closed production HTTPS runtime > keeps production identity service credentials separate and injects only after activation
+AssertionError: expected [ …(8) ] to have a length of 9 but got 8
+
+- Expected
++ Received
+
+- 9
++ 8
+
+ ❯ test/rillora-production-stack.test.ts:142:23
+    140|   t.hasResourceProperties('AWS::SecretsManager::Secret',{Name:'rillora…
+    141|   const api=(Object.values(t.findResources('AWS::ECS::TaskDefinition')…
+    142|   expect(api.Secrets).toHaveLength(9);
+       |                       ^
+    143|   for(const prefix of ['AUTH0_DELETION','AUTH0_EMAIL_VERIFICATION']){
+    144|     for(const field of ['DOMAIN','CLIENT_ID','CLIENT_SECRET']) expect(…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/21]⎯
+
+ FAIL  test/rillora-production-stack.test.ts > Optional closed production HTTPS runtime > keeps the existing data resources and uses a verified private TLS integration
+AssertionError: expected [ …(4) ] to have a length of 2 but got 4
+
+- Expected
++ Received
+
+- 2
++ 4
+
+ ❯ test/rillora-production-stack.test.ts:163:23
+    161|   expect(env.ALLOW_DEV_AUTH).toBe('false');expect(env.ALLOW_STRIPE_TES…
+    162|   expect(api.ReadonlyRootFilesystem).toBe(true);expect(api.LinuxParame…
+    163|   expect(api.Secrets).toHaveLength(2);expect(JSON.stringify(api.Secret…
+       |                       ^
+    164|   const incoming=Object.values(t.findResources('AWS::EC2::SecurityGrou…
+    165|   expect(incoming.every(x=>!x.Properties.CidrIp)).toBe(true);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > retains and rotates content keys with only purpose-scoped runtime usage
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:33: test/rillora-staging-stack.test.ts:33:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > enables migration keys explicitly while retaining a compatibility reader
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:52: test/rillora-staging-stack.test.ts:52:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps capacity diagnostics read-only and in the stack region
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:61: test/rillora-staging-stack.test.ts:61:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > isolates the read-only verification secret and injects it only after activation
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:74: test/rillora-staging-stack.test.ts:74:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > scopes gateway diagnostics to its access log group without granting writes
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:82: test/rillora-staging-stack.test.ts:82:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > injects the dedicated deletion credential only after explicit activation
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:94: test/rillora-staging-stack.test.ts:94:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps maintenance preview explicit without adding billing resources
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:104: test/rillora-staging-stack.test.ts:104:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps the first deploy at zero API tasks until migrations are complete
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps Single-AZ RDS PostgreSQL private, encrypted, and deletion protected
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:119: test/rillora-staging-stack.test.ts:119:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > keeps the interactive API and payment receiver on regular Fargate capacity
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates an MFA-gated least-privilege staging operator role
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > injects runtime credentials from Secrets Manager and disables unsafe surfaces
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:164: test/rillora-staging-stack.test.ts:164:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates three write-only Apple IAP secrets only when Sandbox Server API is enabled
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:201: test/rillora-staging-stack.test.ts:201:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > creates write-only operator paths for separate Stripe test secrets and injects them only when enabled
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:244: test/rillora-staging-stack.test.ts:244:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > does not create a NAT gateway or a public database
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:289: test/rillora-staging-stack.test.ts:289:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/21]⎯
+
+ FAIL  test/rillora-staging-stack.test.ts > Rillora staging infrastructure > serves the Web app from a private S3 origin and proxies only /api through CloudFront
+CannotFindAsset: Cannot find asset at /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/apps/web/dist/client
+ ❯ new RilloraStagingStack lib/rillora-staging-stack.ts:779:5
+    777|       },
+    778|     });
+    779|     new s3deploy.BucketDeployment(this, "WebDeployment", {
+       |     ^
+    780|       sources: [s3deploy.Source.asset(webAssetDirectory)],
+    781|       destinationBucket: webBucket,
+ ❯ templateFor test/rillora-staging-stack.test.ts:17:17
+ ❯ /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/remaining-five-workspace/infra/aws/test/rillora-staging-stack.test.ts:295: test/rillora-staging-stack.test.ts:295:2
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/21]⎯
+
+
+ Test Files  2 failed | 5 passed (7)
+      Tests  21 failed | 35 passed (56)
+   Start at  20:43:47
+   Duration  7.63s (transform 169ms, setup 0ms, import 1.53s, tests 12.69s, environment 0ms)
+

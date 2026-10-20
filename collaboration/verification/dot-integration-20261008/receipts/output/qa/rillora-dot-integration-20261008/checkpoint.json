@@ -1,0 +1,42 @@
+{
+  "at": "2026-10-08T03:03:50.769654+00:00",
+  "task": "Review/fix/merge the four new Dot refs; Owner also explicitly instructs Agent to execute legal DNS cutover now.",
+  "operatorBase": "06da360715ad68e165bd3e1334dec32911aad345",
+  "candidate": "codex/dot-integration-20261008",
+  "candidateHead": "8cdaf2eaa76e4971013ab226a9461daf9a4880bb",
+  "candidateMergeState": "PR2 merged392f0e81; exact tree equals tested8cdaf2eaa; local operator branch fast-forwarded",
+  "checks": [
+    "186 Web nonlegal +7legal fixtures pass",
+    "24native guards +8catalog tests pass",
+    "final zh3 and final en3 pass across exact-source run/recovered case/recorded navigation",
+    "unsigned Release success",
+    "combined43browser pass before dependency-only patches; ZIP hash verified",
+    "seven legal routes/TLS/DNS/Safari validated"
+  ],
+  "remaining": [
+    "Archive25 publication/fresh remote verification and final metadata closeout"
+  ],
+  "dns": {
+    "authorizedNow": true,
+    "goDaddyAuthAndActualRead": "success without new login",
+    "records": 34,
+    "oldLegalCNAME": "custom-domains.chatgpt.site.",
+    "ttl": 600,
+    "target": "rillora-legal-pages.pages.dev",
+    "mutationPerformed": true,
+    "protectedSnapshot": ".local-secrets/legal-cloudflare-cutover-20261008/zone-before.json",
+    "independentReadback": "34records; other33exactly unchanged; target pages.dev/ttl600",
+    "authoritativeAndPublicDNS": "ns73/ns74/1.1.1.1/8.8.8.8 return new target",
+    "cloudflareDomainCertificate": "active",
+    "liveBrowser": "seven routes200/TLS1.3/safety headers; root308; Privacy→Terms navigation; Privacy body unchanged",
+    "limitations": "Python HTTP client403/error1010 before and after; browser inspector blocked /account negative probe before server response, no bypass or more negative probes; live HEAD/write refusal and original iPhone Safari not claimed."
+  },
+  "retainedDeferrals": [
+    "Incremental TestFlight",
+    "External testers",
+    "Disposable account deletion",
+    "Live business/tax facts"
+  ],
+  "note": "Original failures and simulator snapshot timeout retained; one failed case recovered after rebooting only owned simulator. No new native test follows dependency-only changes.",
+  "updatedAt": "2026-10-08T15:41:54.328221+00:00"
+}

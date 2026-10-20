@@ -1,3 +1,4 @@
+import { useI18n } from "../i18n/I18nProvider.jsx";
 import { AppearanceLink } from "../AppearanceControl.jsx";
 import {
   ArrowRight,
@@ -11,17 +12,14 @@ import { QuestionList, landingQuestions } from "./LandingFAQ.jsx";
 import { publicEntry } from "../publicEntry.js";
 
 export function ProductPage() {
+  const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-product-page">
       <header className="lp-page-intro lp-container">
         <h1>
-          A clear next step
-          <br />
-          for the people you trust.
+          {t("public.product.title")}
         </h1>
-        <p>
-          Bring the important details together, then decide who can see them.
-        </p>
+        <p>{t("public.product.intro")}</p>
       </header>
       <MatterDemo />
       <section
@@ -30,55 +28,43 @@ export function ProductPage() {
         className="lp-section lp-container"
         aria-labelledby="lp-inviting-title"
       >
-        <h2 id="lp-inviting-title">Everyone uses their own account.</h2>
+        <h2 id="lp-inviting-title">{t("public.product.ownAccount")}</h2>
         <div className="lp-invitation-columns">
           <div>
             <LinkIcon size={32} aria-hidden="true" />
-            <h3>You choose and invite.</h3>
-            <p>
-              Select the matters and details a person may see, then send your
-              invitation link or QR code.
-            </p>
-            <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>
-              Open your private map <ArrowRight size={20} aria-hidden="true" />
+            <h3>{t("public.product.chooseTitle")}</h3>
+            <p>{t("public.product.chooseDescription")}</p>
+            <AppearanceLink className="lp-text-link" href={publicEntry.accountURL}>{t("public.auth.openMap")}<ArrowRight size={20} aria-hidden="true" />
             </AppearanceLink>
           </div>
           <div>
             <UserCircle size={34} aria-hidden="true" />
-            <h3>They sign in and accept.</h3>
-            <p>
-              They can use the web or iOS app. Their own account gives them
-              access to the information you chose.
-            </p>
-            <AppearanceLink className="lp-text-link" href={publicEntry.invitationURL}>
-              Received an invitation?{" "}
+            <h3>{t("public.product.acceptTitle")}</h3>
+            <p>{t("public.product.acceptDescription")}</p>
+            <AppearanceLink className="lp-text-link" href={publicEntry.invitationURL}>{t("public.auth.invitation")}{" "}
               <ArrowRight size={20} aria-hidden="true" />
             </AppearanceLink>
           </div>
         </div>
-        <p className="lp-product-note">
-          Relevant account inheritance guidance appears with your matters after
-          sign-in.
-        </p>
+        <p className="lp-product-note">{t("public.product.guidance")}</p>
       </section>
       <LifeSituations />
     </main>
   );
 }
 export function SecurityPage() {
+  const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-security-page">
       <header className="lp-page-intro lp-container">
         <h1>
-          Your information.
-          <br />
-          Your choices.
+          {t("public.security.title")}
         </h1>
-        <p>Understand what you share and how your information is protected.</p>
+        <p>{t("public.security.intro")}</p>
       </header>
       <ControlSection />
       <section className="lp-section lp-container">
-        <h2>Clear answers about access.</h2>
+        <h2>{t("public.security.answers")}</h2>
         <QuestionList
           questions={landingQuestions.filter((_, index) => index >= 2)}
         />
@@ -87,27 +73,23 @@ export function SecurityPage() {
   );
 }
 export function SupportPage() {
+  const { t } = useI18n();
   return (
     <main id="lp-main" className="lp-support lp-container">
       <header className="lp-page-intro">
-        <h1>How can we help?</h1>
+        <h1>{t("public.support.title")}</h1>
       </header>
       <div className="lp-support-grid">
         <div>
-          <a className="lp-button" href="mailto:support@rillora.xyz">
-            Contact support <ArrowRight size={20} aria-hidden="true" />
+          <a className="lp-button" href="mailto:support@rillora.xyz">{t("public.support.contact")}<ArrowRight size={20} aria-hidden="true" />
           </a>
           <p>
-            Start with what happened.
-            <br />
-            Leave passwords and private account details out of your message.
+            {t("public.support.description")}
           </p>
-          <nav aria-label="Specific support requests">
-            <a className="lp-text-link" href="mailto:privacy@rillora.xyz">
-              Privacy request <ArrowRight size={18} aria-hidden="true" />
+          <nav aria-label={t("public.support.specific")}>
+            <a className="lp-text-link" href="mailto:privacy@rillora.xyz">{t("public.support.privacy")}<ArrowRight size={18} aria-hidden="true" />
             </a>
-            <a className="lp-text-link" href="mailto:security@rillora.xyz">
-              Report a security issue{" "}
+            <a className="lp-text-link" href="mailto:security@rillora.xyz">{t("public.support.security")}{" "}
               <ArrowRight size={18} aria-hidden="true" />
             </a>
           </nav>
@@ -116,9 +98,8 @@ export function SupportPage() {
           questions={[
             ...landingQuestions,
             {
-              title: "Can I try Rillora now?",
-              answer:
-                "Yes. Preview sign-in opens our test app. Please use sample information. The production app and paid subscriptions are still being prepared. Specific account inheritance guidance is available after sign-in.",
+              titleKey: "public.faq.preview.title",
+              answerKey: publicEntry.preview ? "public.faq.preview.answer" : publicEntry.customerAccess === "live" ? "public.faq.available.answer" : "public.faq.restricted.answer",
             },
           ]}
         />

@@ -1,0 +1,71 @@
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/api
+
+ ❯ tests/apple-production-intake.integration.test.ts (27 tests | 1 failed) 3740ms
+     × restores new-token ownership from a pre-purchase snapshot and still processes a later refund 157ms
+ ❯ tests/recovery-commerce.integration.test.ts (10 tests | 10 failed) 1287ms
+     × removes the post-snapshot refunded entitlement using a fresh API read, with no fabricated signed webhook or private-map change 102ms
+     × keeps incomplete, wrong-owner, stale or failed provider evidence quarantined without advancing the journal checkpoint 84ms
+     × does not treat a checkpoint copied from the source backup as current provider verification 84ms
+     × rejects missing independent inventory instead of silently skipping restored paid access 81ms
+     × does not reuse out-of-window recovery observations when a current provider read fails: -6 minutes 124ms
+     × does not reuse out-of-window recovery observations when a current provider read fails: 6 minutes 86ms
+     × reconciles under a non-superuser recovery login that obeys forced owner policies 89ms
+     × clears a restored refund override only with verified refund reversal: false 88ms
+     × clears a restored refund override only with verified refund reversal: true 91ms
+     × restores a provider-owned subscription absent from the old snapshot while keeping the same existing owner and customer binding 91ms
+
+⎯⎯⎯⎯⎯⎯ Failed Tests 11 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/apple-production-intake.integration.test.ts > production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL) > restores new-token ownership from a pre-purchase snapshot and still processes a later refund
+AssertionError: expected { accepted: true, …(4) } to match object { finishAuthorized: true }
+(4 matching properties omitted from actual)
+
+- Expected
++ Received
+
+  {
+-   "finishAuthorized": true,
++   "finishAuthorized": false,
+  }
+
+ ❯ tests/apple-production-intake.integration.test.ts:190:63
+    188|     await pool.query('update app.recovery_policy set enforced=true');
+    189|     try {
+    190|       expect(await f.intake.acceptClientTransaction(f.input)).toMatchO…
+       |                                                               ^
+    191|       const control=journal.get(`unreconciled_access:${owner.plannerPu…
+    192|       expect(control.facts.subscriptions).toEqual([expect.objectContai…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/11]⎯
+
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > removes the post-snapshot refunded entitlement using a fresh API read, with no fabricated signed webhook or private-map change
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > keeps incomplete, wrong-owner, stale or failed provider evidence quarantined without advancing the journal checkpoint
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > does not treat a checkpoint copied from the source backup as current provider verification
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > rejects missing independent inventory instead of silently skipping restored paid access
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > does not reuse out-of-window recovery observations when a current provider read fails: -6 minutes
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > does not reuse out-of-window recovery observations when a current provider read fails: 6 minutes
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > reconciles under a non-superuser recovery login that obeys forced owner policies
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > clears a restored refund override only with verified refund reversal: false
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > clears a restored refund override only with verified refund reversal: true
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database > restores a provider-owned subscription absent from the old snapshot while keeping the same existing owner and customer binding
+error: permission denied for table commerce_apple_transaction_receipts
+ ❯ ../../../../../../../../../../Users/tantalum/Documents/电子遗嘱app/apps/api/node_modules/pg/lib/client.js:652:17
+ ❯ publishRecoveryTransaction src/recovery-journal.ts:92:15
+     90|  const publisher=publishers.get(pool);
+     91|  if(!publisher)return; // SQL's deferred guard still rejects unjournal…
+     92|  const result=await client.query<{events:unknown[]}>('select app.recov…
+       |               ^
+     93|  for(const raw of result.rows[0]?.events??[]){
+     94|   const event=parseRecoveryControl(raw);
+ ❯ inRoleTransaction src/db.ts:79:5
+ ❯ tests/recovery-commerce.integration.test.ts:57:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/11]⎯
+
+
+ Test Files  2 failed | 2 passed (4)
+      Tests  11 failed | 49 passed (60)
+   Start at  17:17:06
+   Duration  10.13s (transform 311ms, setup 109ms, import 1.19s, tests 8.36s, environment 0ms)
+

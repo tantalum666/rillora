@@ -1,0 +1,5 @@
+{
+  "finding": "Git diff check flagged CSV CRLF line endings as trailing whitespace",
+  "fix": "Normalize the two new CSV files to LF; content and fields unchanged",
+  "runtimeChange": false
+}

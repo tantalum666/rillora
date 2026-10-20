@@ -1,0 +1,47 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 32990,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-02T17-30-20-661Z_pid26593_818069fe.log",
+      "xcresultPath": "output/qa/rillora-strict-review-20261002/native-fixture-url-guard.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-02T17-30-20-661Z_pid26593_616c5957.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testFixtureEndpointRejectsRemoteOriginsAndHiddenCredentials"
+      ],
+      "discovered": {
+        "total": 1,
+        "items": [
+          "RilloraLayoutMatrixTests/RilloraLayoutMatrixTests/testFixtureEndpointRejectsRemoteOriginsAndHiddenCredentials"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "RilloraLayoutMatrixTests",
+        "test": "testFixtureEndpointRejectsRemoteOriginsAndHiddenCredentials",
+        "status": "passed",
+        "durationMs": 500
+      }
+    ]
+  }
+}

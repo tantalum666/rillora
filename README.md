@@ -1,10 +1,16 @@
 # Rillora — Digital Legacy & Estate Continuity / 数字遗产与事务连续性
 
-最后更新：2026-09-30（Asia/Shanghai）
+最后更新：2026-10-05（Asia/Shanghai）
+
+October5本机跟进：Dot四条分支已整合到`codex/dot-integration-20261005`，补原生Debug/Release、215单测与2项双语UI检查，以及真实本地浏览器回归；修复焦点、窄屏状态、活动时间和邀请邮箱反馈。未部署，更多矩阵仍开放。[准确结果](docs/qa/dot-followup-20261005/README.md)。
+
+October5中文Web：应用和官网已实现简体中文/English、集中可维护词典与语言偏好，保留原业务/法律边界。本地构建与169项Web/法律测试通过；浏览器视觉验收被环境阻止，未部署。[维护合同](docs/web-localization-20261005.md) · [QA与Git/CI回读](docs/qa/chinese-web-20261005/README.md)。本条仅描述中文分支，不把下方旧检查点当作新验证。
 
 已完成Owner要求的全量Rillora Git保存，支持Dot协作。请先看[完整协作入口](collaboration/README.md)、[保存范围与恢复方法](docs/source-control.md)和[当前交接](docs/handoff.md)。源码、设计与文档、发布候选、QA和历史都有目录；46,768工作文件和7个加密归档已从远端完整读回验证，[CI42通过](https://github.com/tantalum666/rillora/actions/runs/36737542600)。
 
-最新发布边界：Dot报告的13项问题已本地修复；38307b0d0的CI41通过。修复尚未云端部署，AWS既有会话实际过期；生产最后观察为API7／schema0091、客户访问关闭。新商店设计已有四张iPhone和两张iPad图，尚未上传或获得最终视觉确认。本人验证、真实Apple交易、SES／SBP回复和最终发布仍分开验收。
+最新工程任务是Owner要求的[严格全项目代码审查与直接修复](docs/code-review-20261002.md)。完整活动源码正文已经读完；本轮修复、回归、Git记录与尚未部署的边界在该报告及[handoff](docs/handoff.md)中分别记录，不能借用旧CI证明新改动。
+
+保留的发布检查点：Dot的13项修复及后续受限身份／Apple证书检查修复已经部署；最后记录为API10／schema0091，普通客户访问与正式收费仍关闭。Resend已接通，QQ真实收件、密码重置、重新登录及有界共享已验证；六张商店设计图已保存，内部TestFlight1.0(2)已处理、仍为Missing Compliance。本人验证、真实Apple交易、SBP有效费率和最终上架继续单独验收；SES旧申请不再阻塞当前邮件路线。本轮没有重复部署或申请。
 
 以下按日期保留项目沿革；涉及“当前”的旧检查点按原日期理解，最新状态只取[handoff](docs/handoff.md)。
 

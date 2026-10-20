@@ -1,8 +1,8 @@
 # Rillora DNS command line
 
-Status: OFFICIAL CLI REUSED; RESEND DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
+Status: OFFICIAL CLI REUSED; RESEND AND SEARCH VERIFICATION DNS VERIFIED; LEGACY WWW LIMITATION RETAINED
 
-Last updated: 2026-10-01 (Asia/Shanghai)
+Last updated: 2026-10-18 (Asia/Shanghai)
 
 The Owner explicitly requested GoDaddy CLI setup. The official `gddy`0.2.20
 Apple Silicon binary is installed at `~/.local/bin/gddy` from the public
@@ -16,6 +16,36 @@ macOS keyring storage, with no PAT in environment variables or repository.
 The browser callback later showed connection-refused after the local listener
 ended, but CLI status and actual API calls independently prove authentication
 succeeded. Do not repeatedly log in because of that spent callback page.
+
+## October18 official MCP Registry proof
+
+Reused the same scoped wrapper and keyring session to add one root TXT public-key
+proof for the official MCP Registry. The complete36-record zone is preserved and
+the new count is37; both authoritative nameservers and two public resolvers read
+the exact proof. Registry publication and an independent public GET return active
+for xyz.rillora/rillora@0.1.0. This grants no runtime data access, changes no DNS
+delegation, and does not touch mail, WWW, FanPass or billing. The registry-only
+signing key is encrypted locally; no plaintext key or authentication token enters
+Git. [Current evidence](../../docs/architecture/customer-mcp-20261018.md).
+
+## October16 Google and Bing site ownership
+
+Reused the existing keyring and unchanged project wrapper. Added one Google TXT
+and then one isolated Bing CNAME:34→35→36records. Each actual API readback
+preserved every previous record, including other root TXT records; two authoritative
+and two public DNS resolvers confirmed each addition. Both webmaster dashboards
+accepted ownership, and each received the same public sitemap once. The verification
+records remain for continuing ownership. No DNS-account delegation, GSC-data import,
+mail/WWW/nameserver/FanPass change, new credential or test rerun occurred.
+[Deployment and search evidence](../../docs/architecture/public-discovery-rollout-20261016.md).
+
+## October3 strict-review implementation boundary
+
+DNS readback now verifies requested MX priority and CAA flag/tag in addition to
+value/TTL. An add may retain an older same-value record with different attributes,
+but must find the exact requested new record; a misleading same-value readback fails.
+All10guard tests pass with the CLI intercepted. No DNS write or fresh OAuth login
+was performed in this review. [Evidence](../../docs/code-review-20261002.md).
 
 ## October1 Resend configuration
 

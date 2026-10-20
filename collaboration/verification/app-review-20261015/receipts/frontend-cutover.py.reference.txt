@@ -1,0 +1,126 @@
+"""Deliver the two validated static candidates, changing only their existing asset keys."""
+from pathlib import Path
+import argparse, datetime, hashlib, json, os, subprocess, sys, uuid, zipfile
+
+ROOT = Path(__file__).resolve().parents[3]
+Q = Path(__file__).resolve().parent
+P = ROOT / '.local-secrets/app-review-20261014'
+SOURCE = '40c76496f23d6523a962b44b3b64c264cd6aba74'
+sys.path.insert(0, str(ROOT / 'tools/release'))
+from recovery_drill import Aws
+
+parser = argparse.ArgumentParser()
+parser.add_argument('operation', choices=['prepare', 'inspect', 'execute', 'status'])
+parser.add_argument('stack', choices=['RilloraPublicWeb', 'RilloraProductionWeb'])
+args = parser.parse_args()
+name = args.stack
+aws = Aws('rillora-cdk-deploy')
+before = json.loads((P / (name + '-20261015-before-template.json')).read_text())
+original_stack = json.loads((P / (name + '-20261015-before-stack.json')).read_text())
+logical = 'PublicDeploymentCustomResource947B276F' if name == 'RilloraPublicWeb' else '[PUBLIC_IDENTIFIER_OMITTED]'
+candidate = P / ('public-live' if name == 'RilloraPublicWeb' else 'production-live')
+state_file = P / (name + '-cutover-state.json')
+template_file = P / (name + '-cutover-template.json')
+
+def save(path, value):
+    path.write_text(json.dumps(value, indent=2) + '\n')
+    path.chmod(0o600)
+
+def actual():
+    value = aws.call('cloudformation', 'get-template', {'StackName': name})['TemplateBody']
+    return json.loads(value) if isinstance(value, str) else value
+
+def checked_change():
+    state = json.loads(state_file.read_text())
+    wanted = json.loads(template_file.read_text())
+    expected = json.loads(json.dumps(before))
+    expected['Resources'][logical]['Properties']['SourceObjectKeys'] = [state['objectKey']]
+    assert wanted == expected and state['source'] == SOURCE
+    assert hashlib.sha256(template_file.read_bytes()).hexdigest() == state['templateSha256']
+    change = aws.call('cloudformation', 'describe-change-set', {'StackName': name, 'ChangeSetName': state['changeSetId']})
+    assert change['Status'] == 'CREATE_COMPLETE', change['Status']
+    assert len(change['Changes']) == 1
+    resource = change['Changes'][0]['ResourceChange']
+    assert resource['Action'] == 'Modify' and resource['LogicalResourceId'] == logical
+    assert resource['ResourceType'] == 'Custom::CDKBucketDeployment'
+    assert resource['Replacement'] in ['False', 'Conditional']
+    assert resource.get('Details') and all(d['Target'].get('Name') == 'SourceObjectKeys' for d in resource['Details'])
+    return state, wanted, change
+
+stack = aws.call('cloudformation', 'describe-stacks', {'StackName': name})['Stacks'][0]
+if args.operation == 'prepare':
+    assert not state_file.exists(), 'Inspect existing operation before retrying'
+    assert stack['StackStatus'] == 'UPDATE_COMPLETE' and actual() == before
+    assert subprocess.check_output(['git', 'rev-parse', 'HEAD'], cwd=ROOT, text=True).strip() == SOURCE
+    assert subprocess.run(['git', 'diff', '--quiet', 'HEAD', '--', 'apps', 'infra', 'tools', 'config', ':(exclude)config/release-gates.json'], cwd=ROOT).returncode == 0
+    files = sorted(f for f in candidate.rglob('*') if f.is_file())
+    manifest_name = 'public-build.json' if name == 'RilloraPublicWeb' else 'production-build.json'
+    manifest = json.loads((candidate / manifest_name).read_text())
+    assert len(manifest['files']) == (31 if name == 'RilloraPublicWeb' else 86)
+    assert {f.relative_to(candidate).as_posix() for f in files} == set(manifest['files']) | {manifest_name}
+    assert all(hashlib.sha256((candidate / f).read_bytes()).hexdigest() == digest for f, digest in manifest['files'].items())
+    bundle = P / (name + '-cutover.zip')
+    assert not bundle.exists()
+    with zipfile.ZipFile(bundle, 'x', zipfile.ZIP_DEFLATED) as archive:
+        for f in files:
+            assert not f.is_symlink()
+            archive.write(f, f.relative_to(candidate).as_posix())
+    bundle.chmod(0o600)
+    digest = hashlib.sha256(bundle.read_bytes()).hexdigest()
+    key = digest + '.zip'
+    bucket = before['Resources'][logical]['Properties']['SourceBucketNames']
+    assert bucket == ['cdk-hnb659fds-assets-133857166372-eu-central-1']
+    # Reuse the existing CDK file-publishing role. Credentials remain in this
+    # process and its upload child only; no profile/permission is created.
+    credentials = Aws('rillora-operator').call('sts', 'assume-role', {
+        'RoleArn': 'arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1',
+        'RoleSessionName': 'rillora-web-cutover-20261015', 'DurationSeconds': 900})['Credentials']
+    environment = {**os.environ, 'AWS_ACCESS_KEY_ID': credentials['AccessKeyId'],
+        'AWS_SECRET_ACCESS_KEY': credentials['SecretAccessKey'], 'AWS_SESSION_TOKEN': credentials['SessionToken']}
+    environment.pop('AWS_PROFILE', None)
+    uploaded = subprocess.run(['aws', 's3api', 'put-object', '--bucket', bucket[0], '--key', key,
+        '--body', str(bundle), '--metadata', 'sha256=' + digest, '--region', 'eu-central-1', '--output', 'json'],
+        env=environment, capture_output=True, text=True, timeout=90)
+    del credentials, environment
+    assert uploaded.returncode == 0, 'Static upload failed; inspect before retry'
+    wanted = json.loads(json.dumps(before))
+    wanted['Resources'][logical]['Properties']['SourceObjectKeys'] = [key]
+    save(template_file, wanted)
+    change_name = 'rillora-open-web-20261015-' + name.lower()
+    marker = {'source': SOURCE, 'objectKey': key, 'zipSha256': digest,
+        'templateSha256': hashlib.sha256(template_file.read_bytes()).hexdigest(),
+        'changeSetName': change_name, 'uploaded': True, 'fileCount': len(files)}
+    save(state_file, marker)
+    response = aws.call('cloudformation', 'create-change-set', {
+        'StackName': name, 'ChangeSetName': change_name, 'ChangeSetType': 'UPDATE',
+        'TemplateBody': json.dumps(wanted), 'RoleARN': original_stack['RoleARN'],
+        'Parameters': [{'ParameterKey': p['ParameterKey'], 'UsePreviousValue': True} for p in original_stack.get('Parameters', [])],
+        'Capabilities': ['CAPABILITY_IAM', 'CAPABILITY_NAMED_IAM'],
+        'Description': 'Only the validated static entry asset changes; preserve every resource and parameter.',
+        'ClientToken': 'rillora-' + uuid.uuid4().hex})
+    marker['changeSetId'] = response['Id']; save(state_file, marker)
+    print(json.dumps({'stack': name, 'prepared': True, 'executed': False, 'fileCount': len(files)}))
+elif args.operation == 'inspect':
+    state, wanted, change = checked_change()
+    save(Q / (name + '-changeset-check.json'), {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+        'onlyExistingStaticAssetChanges': True, 'allOtherResourcesAndParametersPreserved': True, 'source': SOURCE})
+    print(json.dumps({'stack': name, 'passed': True, 'executionStatus': change['ExecutionStatus']}))
+elif args.operation == 'execute':
+    state, wanted, change = checked_change()
+    ci = json.loads((Q / 'ci153.json').read_text())
+    assert ci['source'] == SOURCE and ci['conclusion'] == 'success' and all(j['conclusion'] == 'success' for j in ci['jobs']) and len(ci['jobs']) == 3
+    assert stack['StackStatus'] == 'UPDATE_COMPLETE' and actual() == before
+    assert change['ExecutionStatus'] == 'AVAILABLE'
+    assert not state.get('executionRequested'), 'Inspect prior execution instead of retry'
+    state['executionRequested'] = True; save(state_file, state)
+    aws.call('cloudformation', 'execute-change-set', {'StackName': name, 'ChangeSetName': state['changeSetId'], 'ClientRequestToken': 'rillora-' + uuid.uuid4().hex})
+    print(json.dumps({'stack': name, 'executionRequested': True, 'complete': False}))
+else:
+    state = json.loads(state_file.read_text()); wanted = json.loads(template_file.read_text())
+    matches = stack['StackStatus'] == 'UPDATE_COMPLETE' and actual() == wanted
+    if matches:
+        assert stack.get('Parameters', []) == original_stack.get('Parameters', [])
+    report = {'at': datetime.datetime.now(datetime.timezone.utc).isoformat(), 'source': SOURCE,
+        'stack': name, 'status': stack['StackStatus'], 'templateMatches': matches,
+        'allParametersUnchanged': matches, 'fileCount': state['fileCount']}
+    save(Q / (name + '-cutover-status.json'), report); print(json.dumps(report))

@@ -1,0 +1,45 @@
+{
+  "at": "2026-10-06T20:03:45.262288+00:00",
+  "checks": [
+    {
+      "path": "/api/health/live",
+      "status": 200,
+      "expected": 200,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "expected": 200,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/v1/overview",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    },
+    {
+      "path": "/api/v1/account/identity",
+      "status": 401,
+      "expected": 401,
+      "cacheControl": "no-store",
+      "issuedCookie": false
+    }
+  ],
+  "guideLanguageRedirect": {
+    "status": 302,
+    "location": "https://app.staging.rillora.xyz/account?next=guides&service=binance_us&langHint=zh-CN",
+    "cacheControl": "no-store"
+  }
+}

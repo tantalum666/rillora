@@ -13,6 +13,7 @@ export function authenticationReturnPath(search, pathname = "") {
   if (["/account/billing", "/account/billing/complete"].includes(pathname) || query.get("next") === "billing") return "/?view=access";
   if (query.get("next") === "shared") return "/?view=shared";
   if (query.get("next") === "reviews") return "/?view=maintenance&inbox=received";
+  if (query.get("next") === "ai-connect") return "/?view=settings";
   const category = query.get("category");
   return query.get("next") === "add-matter" && categories.has(category)
     ? `/?compose=${category}`

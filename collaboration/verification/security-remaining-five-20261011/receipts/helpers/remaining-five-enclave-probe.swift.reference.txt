@@ -1,0 +1,28 @@
+import Foundation
+import CryptoKit
+import Security
+import LocalAuthentication
+do {
+ guard SecureEnclave.isAvailable else { print("secureEnclaveUnavailable"); exit(2) }
+ let context=LAContext();context.interactionNotAllowed=true
+ let control=try SecureEnclave.P256.KeyAgreement.PrivateKey()
+ let ephemeral=P256.KeyAgreement.PrivateKey()
+ let a=try ephemeral.sharedSecretFromKeyAgreement(with:control.publicKey)
+ let restored=try SecureEnclave.P256.KeyAgreement.PrivateKey(dataRepresentation:control.dataRepresentation,authenticationContext:context)
+ let b=try restored.sharedSecretFromKeyAgreement(with:ephemeral.publicKey)
+ guard a.withUnsafeBytes({Data($0)})==b.withUnsafeBytes({Data($0)}) else { exit(3) }
+ let access=SecAccessControlCreateWithFlags(nil,kSecAttrAccessibleWhenUnlockedThisDeviceOnly,[.privateKeyUsage,.userPresence],nil)!
+ let protected=try SecureEnclave.P256.KeyAgreement.PrivateKey(accessControl:access,authenticationContext:context)
+ do {
+  let loaded=try SecureEnclave.P256.KeyAgreement.PrivateKey(dataRepresentation:protected.dataRepresentation,authenticationContext:context)
+  _ = try loaded.sharedSecretFromKeyAgreement(with:ephemeral.publicKey)
+  print("unattendedReadUnexpectedlyAllowed");exit(4)
+ } catch {
+  let e=error as NSError
+  print("controlRoundTrip=true protectedUnattendedReadDenied=true errorDomain=\(e.domain) code=\(e.code)")
+ }
+} catch {
+ let e=error as NSError
+ print("probeFailed errorDomain=\(e.domain) code=\(e.code)")
+ exit(1)
+}

@@ -1,13 +1,56 @@
 # Recovery control journal and quarantine
 
 Role: engineering contract for restoring encrypted Rillora data safely
-Status: SCOPED CLOUD RESTORE BASELINE RETAINED; HOLDS/COMMERCE REPLAY IMPLEMENTED; REAL TRANSACTION ACCEPTANCE OPEN
-Last updated: 2026-09-30 (Asia/Hong_Kong)
+Status: OCT10 CLOUD EVIDENCE RETAINED; OCT11 ATTESTED JOURNAL LOCALLY VERIFIED; ONLINE UNCHANGED
+Last updated: 2026-10-11 (Asia/Hong_Kong)
 
 The production foundation is separate from staging. Customer traffic remains
 closed while the [production/recovery gate](production-recovery-20260923.md)
 is validated. Git source history, database snapshots and control-state recovery
 are distinct evidence.
+
+## October11 attestation and source-writer isolation — not deployed
+
+[The remaining-five source repair](security-remaining-five-20261011.md) closes the old SQL-only unsigned publication acknowledgement as well as HTTP's direct Dynamo write permission. The database attests only captured current-transaction control metadata; a separate Lambda validates generation, exact canonical payload and monotonic revision, then returns a receipt bound to that same record. The SQL commit guard accepts only that receipt for an ordinary runtime login. NULL, forged, changed-payload and cross-transaction receipts fail. The signing secret belongs to the protected database service and the independent writer, not HTTP or deletion-worker configuration.
+
+Privileged initial migration/backfill still has explicit administrative journal authority. It cannot be inferred by SET ROLE from a normal runtime login. The independent deletion worker remains a source writer and must be frozen together with API: trusted stack output, broker settings and exact DescribeServices permissions now enumerate both. Either service's nonzero desired/running/pending count refuses reconciliation; missing inventory fails closed. The driver does not stop either service automatically or refresh an old uncertain request's freeze timestamp.
+
+The shared production migration command performs migrate, runtime bootstrap, private-content enforcement and scoped-email backfill. Old uncertain commands are not silently upgraded. All changes are source/local-test evidence; the October10 provider/cloud receipts below continue to describe the deployed older protocol. A future upgrade needs an explicit maintenance cutover and old deletion-job preflight, not an online rolling mixture of both schemas.
+
+## October10 current inventory and financial evidence
+
+[Item3 acceptance](recovery-financial-acceptance-20261010.md) supplements the retained baseline with real provider evidence. A backup's copied recovery checkpoint cannot suppress a new provider read. Reuse requires dedicated recovery observations after this verified source freeze, no older than five minutes or in the future, bound to the current subscription and exact control revision. Forced owner policies use an explicit transaction-local owner context; missing independent inventory fails closed before reconciliation.
+
+The final read-only coverage guard was cloud-tested with complete/missing inventory and wrong generation after its deployment. The full earlier c6125d988 cloud reconciliation is a separately dated execution, not re-labelled as that final run. Three Stripe TEST-backed local restores revoke old paid grants correctly; actual Apple Sandbox cloud restoration retains legitimate current Family. Source service and exact templates resumed, and owned temporary resources are absent. No new Live payment, customer activation, automatic failover, client Restore tap or deletion of the Owner-retained account is claimed.
+
+## HISTORICAL — October3 deployed permission history and hold serialization
+
+0092/0093 are now applied to production schema0093. All93checksums match; existing91
+migration bytes and eight private table fingerprints are unchanged. Actual constrained
+runtime/TLS checks and a rolled-back retention call pass. New worker heartbeat has
+0failures. This is not a repeated cloud restore drill or real paid-history reconciliation.
+[Rollout evidence](review-rollout-20261003.md).
+
+
+## October3 strict-review implementation boundary
+
+Migration0092 records permissionHistoryVersion2, grant lineage IDs, remaining field
+names and revocation bounds. Replay intersects both lineage and fields with restored
+snapshots, preserving permanent saved-copy redaction and preventing remove/regrant
+from reviving old grants. A pending legacy accepted-connection update cannot prove
+intermediate restrictions and remains quarantined for reconciliation. Unaffected
+recipients keep their independently proven scope. No private body enters the journal.
+
+Migration0093 and the application acquire the same transaction advisory lock before
+fresh hold/cleanup reads, preventing a hold acknowledged concurrently with deletion.
+The recovery task driver only reuses a saved ECS RunTask request within55minutes,
+with identical reconstructed parameters/token, fresh clone/snapshot checks and a
+current source freeze. Old freeze evidence cannot be renewed by retrying the CLI.
+The cloud's idempotency retention may be as short as task lifetime plus1hour;
+[official ECS contract](https://docs.aws.amazon.com/AmazonECS/latest/developerguide/ECS_Idempotency.html).
+Actual local PostgreSQL backup/replay and mocked AWS positive/negative checks pass.
+At the initial strict-review checkpoint these migrations/tool repairs were undeployed; the later deployment above supersedes that status. Earlier real cloud drills are retained
+with their original scope. [Strict review](code-review-20261002.md).
 
 ## September30 holds and commerce reconciliation
 
@@ -40,8 +83,9 @@ RDS/application encryption still has its own scope; this is not E2EE.
 ## Commit and failure boundary
 
 Restrictive database changes create a transaction-local control record. Before
-commit, the API publishes its final minimal state to DynamoDB and marks the
-record published. A deferred SQL constraint rejects unjournaled commits when
+commit, the API forwards the final minimal state to the independently attested broker and submits
+its verified receipt to mark the record published (the October10 deployed baseline wrote directly).
+A deferred SQL constraint rejects unjournaled commits when
 enforcement is on. Missing publishers and publication failures therefore cannot
 silently save an unprotected restriction. Temporary failures return503 and leave
 the original database transaction rolled back. Source readiness also verifies

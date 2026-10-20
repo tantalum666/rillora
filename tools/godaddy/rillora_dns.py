@@ -187,8 +187,22 @@ def main(argv=None):
     # Hosts may be normalized with a trailing dot by the provider.
     normalize = lambda values: {value.rstrip('.') if args.type in ['CNAME', 'MX'] else value for value in values}
     values_match = normalize(expected) == normalize(actual) if args.operation == 'set' else normalize(expected).issubset(normalize(actual))
-    if not values_match or any(row.get('ttl') != args.ttl for row in selected if normalize({str(row.get('data', ''))}) & normalize(expected)):
-        raise RuntimeError('Provider readback does not contain the requested value; consult the saved snapshot')
+    requested_attributes = {'ttl': args.ttl}
+    requested_attributes.update({name: getattr(args, name) for name in ['priority', 'flag', 'tag']
+                                 if getattr(args, name) is not None})
+
+    def attributes_match(row):
+        return isinstance(row.get('data'), str) and all(
+            type(row.get(name)) is type(value) and row[name] == value
+            for name, value in requested_attributes.items())
+
+    # An add can coexist with an older record whose data is identical but whose
+    # MX priority or CAA property differs. Each requested record needs a full match.
+    attributes_match_request = (all(attributes_match(row) for row in selected) if args.operation == 'set' else
+        all(any(normalize({str(row.get('data', ''))}) == {value} and attributes_match(row) for row in selected)
+            for value in normalize(expected)))
+    if not values_match or not attributes_match_request:
+        raise RuntimeError('Provider readback does not confirm all requested values and attributes; consult the saved snapshot')
     print(json.dumps({'domain': DOMAIN, 'applied': True, 'result': result,
                       'unrelatedRecordsUnchanged': True, 'snapshot': str(target)}, indent=2))
 

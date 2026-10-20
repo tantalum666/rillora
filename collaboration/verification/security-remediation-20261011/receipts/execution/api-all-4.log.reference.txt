@@ -1,0 +1,397 @@
+
+> continuity-api@0.1.0 test
+> vitest run
+
+
+ RUN  v4.1.11 /private/var/folders/w9/57v4cx3137g74nh7t0g2g2qc0000gn/T/codex-security-artifacts-64847fa85dcc04e86d23dd2eccc4f7b8851c4cb1289f2a3cd9fe9ce35efc7b4e/test-workspace/apps/api
+
+ ❯ tests/apple-production-runtime.test.ts (5 tests | 2 failed) 30ms
+     × requires the named secret and real production safeguards, without enabling Stripe or new sales 6ms
+     × pins review to its named Sandbox secret and the same real authentication/encryption boundary 1ms
+ ❯ tests/runtime-mode.test.ts (24 tests | 1 failed) 21ms
+     × preserves an intentional production configuration without implicitly enabling payment providers 8ms
+ ❯ tests/p1-repair.integration.test.ts (14 tests | 14 skipped) 66ms
+ ❯ tests/sharing-lifecycle.integration.test.ts (15 tests | 15 skipped) 80ms
+ ❯ tests/recovery-journal.integration.test.ts (7 tests | 7 skipped) 85ms
+ ❯ tests/apple-production-intake.integration.test.ts (24 tests | 24 skipped) 56ms
+ ❯ tests/recovery-commerce.integration.test.ts (10 tests | 10 skipped) 63ms
+ ❯ tests/apple-purchase-preflight.integration.test.ts (11 tests | 11 skipped) 53ms
+ ❯ tests/apple-review.integration.test.ts (12 tests | 12 skipped) 53ms
+ ❯ tests/recovery-permission-history.integration.test.ts (2 tests | 2 skipped) 74ms
+ ❯ tests/api.integration.test.ts (64 tests | 64 skipped) 55ms
+ ❯ tests/security-remediation.integration.test.ts (4 tests | 4 skipped) 48ms
+ ❯ tests/family-maintenance.integration.test.ts (14 tests | 14 skipped) 63ms
+ ❯ tests/recent-authentication.integration.test.ts (10 tests | 10 skipped) 51ms
+ ❯ tests/sharing.integration.test.ts (12 tests | 12 skipped) 69ms
+ ❯ tests/private-content.integration.test.ts (10 tests | 10 skipped) 56ms
+ ❯ tests/email-verification.integration.test.ts (9 tests | 9 skipped) 55ms
+ ❯ tests/private-content-migration.integration.test.ts (6 tests | 6 skipped) 250ms
+ ❯ tests/production-commerce.integration.test.ts (15 tests | 15 skipped) 92ms
+ ❯ tests/retention.integration.test.ts (11 tests | 11 skipped) 50ms
+ ❯ tests/matter-details.integration.test.ts (6 tests | 6 skipped) 64ms
+ ❯ tests/apple-commerce.integration.test.ts (8 tests | 7 skipped) 52ms
+ ❯ tests/production-review-access.integration.test.ts (3 tests | 3 skipped) 88ms
+Managed TLS certificate renewed.
+ ❯ tests/bootstrap-runtime.test.ts (8 tests | 8 skipped) 56ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 22 ⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/api.integration.test.ts > Continuity API
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/api.integration.test.ts:270:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/26]⎯
+
+ FAIL  tests/apple-commerce.integration.test.ts > shared subscription clock with Apple-authorized grace (isolated database)
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/apple-commerce.integration.test.ts:28:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/26]⎯
+
+ FAIL  tests/apple-production-intake.integration.test.ts > production Apple durable intake (decoded Apple fixtures + real isolated PostgreSQL)
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/apple-production-intake.integration.test.ts:122:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/26]⎯
+
+ FAIL  tests/apple-purchase-preflight.integration.test.ts > ordinary Apple purchase preflight with a local, synthetic catalog
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/apple-purchase-preflight.integration.test.ts:27:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[4/26]⎯
+
+ FAIL  tests/apple-review.integration.test.ts > enrolled Apple review purchases share the strict lifecycle without production sales
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/apple-review.integration.test.ts:61:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[5/26]⎯
+
+ FAIL  tests/bootstrap-runtime.test.ts > runtime database role bootstrap
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/bootstrap-runtime.test.ts:18:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[6/26]⎯
+
+ FAIL  tests/email-verification.integration.test.ts > Email verification without another sign-in
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/email-verification.integration.test.ts:37:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[7/26]⎯
+
+ FAIL  tests/family-maintenance.integration.test.ts > Family maintenance — scoped ongoing work
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/family-maintenance.integration.test.ts:56:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[8/26]⎯
+
+ FAIL  tests/matter-details.integration.test.ts > Category-specific matter entry and initial map
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/matter-details.integration.test.ts:20:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[9/26]⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/p1-repair.integration.test.ts:27:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[10/26]⎯
+
+ FAIL  tests/private-content-migration.integration.test.ts > Existing-data migration and paid ciphertext snapshots
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/private-content-migration.integration.test.ts:22:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[11/26]⎯
+
+ FAIL  tests/private-content.integration.test.ts > Application-encrypted content and authorization
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/private-content.integration.test.ts:23:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[12/26]⎯
+
+ FAIL  tests/production-commerce.integration.test.ts > production commerce ledger with a synthetic provider only
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/production-commerce.integration.test.ts:81:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[13/26]⎯
+
+ FAIL  tests/production-review-access.integration.test.ts > Production review identity restriction
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/production-review-access.integration.test.ts:40:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[14/26]⎯
+
+ FAIL  tests/recent-authentication.integration.test.ts > Recent identity authentication without replaying the sensitive action
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/recent-authentication.integration.test.ts:44:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[15/26]⎯
+
+ FAIL  tests/recovery-commerce.integration.test.ts > Current provider reconciliation in an isolated restored database
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/recovery-commerce.integration.test.ts:35:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[16/26]⎯
+
+ FAIL  tests/recovery-journal.integration.test.ts > Durable restrictions and quarantined restore
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/recovery-journal.integration.test.ts:38:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[17/26]⎯
+
+ FAIL  tests/recovery-permission-history.integration.test.ts > restore preserves permanent permission reductions
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/recovery-permission-history.integration.test.ts:50:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[18/26]⎯
+
+ FAIL  tests/retention.integration.test.ts > Purpose-specific bounded retention
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/retention.integration.test.ts:24:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[19/26]⎯
+
+ FAIL  tests/security-remediation.integration.test.ts > reported allocation and aggregate boundaries
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/security-remediation.integration.test.ts:22:89
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[20/26]⎯
+
+ FAIL  tests/security-remediation.integration.test.ts > reported allocation and aggregate boundaries
+TypeError: Cannot read properties of undefined (reading 'end')
+ ❯ tests/security-remediation.integration.test.ts:23:33
+     21| describe.sequential('reported allocation and aggregate boundaries',()=…
+     22|   beforeAll(async()=>{await assertDedicatedTestDatabase(url,'rillora_r…
+     23|   afterAll(async()=>{await pool.end();});
+       |                                 ^
+     24|   it('refuses oversized contact/role/export collections instead of ret…
+     25|     const who=await owner(),app=createApp(pool,config);
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[21/26]⎯
+
+ FAIL  tests/sharing-lifecycle.integration.test.ts > Commercial sharing: quotas, paid cutoff and restrictive permissions
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/sharing-lifecycle.integration.test.ts:70:112
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[22/26]⎯
+
+ FAIL  tests/sharing.integration.test.ts > Account-bound directed sharing
+Error: Applied migration checksum changed: 0096_apple_purchase_owner_binding.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/sharing.integration.test.ts:64:5
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[23/26]⎯
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/apple-production-runtime.test.ts > Apple production runtime boundaries > requires the named secret and real production safeguards, without enabling Stripe or new sales
+Error: Production runtime mode must be explicit; customer access never opens by omission
+ ❯ loadConfig src/config.ts:595:48
+    593|
+    594|   if (parsed.NODE_ENV === 'production') {
+    595|     if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production r…
+       |                                                ^
+    596|     if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Erro…
+    597|     if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+ ❯ tests/apple-production-runtime.test.ts:43:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[24/26]⎯
+
+ FAIL  tests/apple-production-runtime.test.ts > Apple production runtime boundaries > pins review to its named Sandbox secret and the same real authentication/encryption boundary
+Error: Production runtime mode must be explicit; customer access never opens by omission
+ ❯ loadConfig src/config.ts:595:48
+    593|
+    594|   if (parsed.NODE_ENV === 'production') {
+    595|     if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production r…
+       |                                                ^
+    596|     if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Erro…
+    597|     if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+ ❯ tests/apple-production-runtime.test.ts:75:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[25/26]⎯
+
+ FAIL  tests/runtime-mode.test.ts > explicit protected production activation > preserves an intentional production configuration without implicitly enabling payment providers
+ZodError: [
+  {
+    "code": "invalid_value",
+    "values": [
+      "closed",
+      "review",
+      "staging"
+    ],
+    "path": [
+      "PRODUCTION_RUNTIME_MODE"
+    ],
+    "message": "Invalid option: expected one of \"closed\"|\"review\"|\"staging\""
+  }
+]
+ ❯ loadConfig src/config.ts:267:31
+    265|
+    266| export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppC…
+    267|   const parsed = configSchema.parse(env);
+       |                               ^
+    268|   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "…
+    269|   const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'rev…
+ ❯ tests/runtime-mode.test.ts:20:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[26/26]⎯
+
+
+ Test Files  24 failed | 30 passed (54)
+      Tests  3 failed | 215 passed | 274 skipped (492)
+   Start at  16:52:38
+   Duration  17.86s (transform 706ms, setup 1.42s, import 7.98s, tests 2.45s, environment 3ms)
+

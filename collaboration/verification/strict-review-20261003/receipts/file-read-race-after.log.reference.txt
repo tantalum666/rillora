@@ -1,0 +1,37 @@
+### Result
+{"results":[{"case":"latest selected file wins","first":0,"second":1,"passed":true},{"case":"close invalidates pending older read","first":0,"second":0,"passed":true}],"syntheticOnly":true,"delayedRead":"Controlled File.text promise; actual React/file-input path, no import or server mutation"}
+### Ran Playwright code
+```js
+await (async (page) => {
+  const results=[];
+  for(const close of [false,true]) {
+    await page.goto('http://127.0.0.1:4413/?view=settings');
+    await page.getByRole('button',{name:'Open a saved copy',exact:true}).click();
+    await page.evaluate(()=>{
+      const descriptor=Object.getOwnPropertyDescriptor(File.prototype,'text'),original=File.prototype.text;
+      window.__restoreFileText=()=>{if(descriptor)Object.defineProperty(File.prototype,'text',descriptor);else delete File.prototype.text;};
+      File.prototype.text=function(){
+        if(this.name==='slow-file-a.json')return new Promise(resolve=>{window.__releaseFirstRead=()=>original.call(this).then(resolve);});
+        return original.call(this);
+      };
+    });
+    try {
+      const input=page.getByLabel('Saved copy file');
+      await input.setInputFiles('/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-strict-review-20261002/slow-file-a.json');
+      await page.waitForFunction(()=>typeof window.__releaseFirstRead==='function');
+      await input.setInputFiles('/Users/tantalum/Documents/电子遗嘱app/output/qa/rillora-strict-review-20261002/fast-file-b.json');
+      await page.getByRole('heading',{name:'Second synthetic selection'}).waitFor();
+      if(close)await page.getByRole('button',{name:'Close this copy',exact:true}).click();
+      await page.evaluate(async()=>{await window.__releaseFirstRead();await new Promise(resolve=>requestAnimationFrame(()=>requestAnimationFrame(resolve)));});
+      const first=await page.getByRole('heading',{name:'First synthetic selection'}).count();
+      const second=await page.getByRole('heading',{name:'Second synthetic selection'}).count();
+      results.push({case:close?'close invalidates pending older read':'latest selected file wins',first,second,passed:first===0&&second===(close?0:1)});
+    } finally {await page.evaluate(()=>{window.__restoreFileText();delete window.__restoreFileText;delete window.__releaseFirstRead;});}
+  }
+  if(results.some(result=>!result.passed))throw Error(JSON.stringify(results));
+  return {results,syntheticOnly:true,delayedRead:'Controlled File.text promise; actual React/file-input path, no import or server mutation'};
+}
+)(page);
+```
+### Events
+- New console entries: output/qa/rillora-strict-review-20261002/.playwright-cli/console-2026-10-02T15-28-52-494Z.log#L9-L12

@@ -1,3 +1,4 @@
+import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
 import { randomUUID, randomBytes } from "node:crypto";
 import { afterAll, beforeAll, describe, expect, it } from "vitest";
 import request from "./http-fixture.js";
@@ -7,7 +8,7 @@ import { createPool,withPlannerDatabase,type DatabasePool } from "../src/db.js";
 import { runMigrations } from "../src/migrate.js";
 import { TestContentKeys } from "./content-test-keys.js";
 
-const databaseUrl="postgresql:///continuity_content_test";
+const databaseUrl = dedicatedTestDatabaseUrl("postgresql:///continuity_content_test", "continuity_content_test");
 const A="91111111-1111-4111-8111-111111111111",B="92222222-2222-4222-8222-222222222222",C="93333333-3333-4333-8333-333333333333",D="94444444-4444-4444-8444-444444444444";
 const config=loadConfig({NODE_ENV:"test",DATABASE_URL:databaseUrl,ALLOW_DEV_AUTH:"true",ALLOW_FAMILY_MAINTENANCE_PREVIEW:"true",CORS_ORIGINS:"http://localhost:4261",
  CONTENT_PROTECTION_MODE:"encrypted",CONTENT_KEY_NAMESPACE:"content-test",CONTENT_KMS_KEY_ARN:"arn:aws:kms:eu-central-1:000000000000:key/11111111-1111-4111-8111-111111111111"});
@@ -18,8 +19,8 @@ const input={category:"account",title:"sentinel title 银行",institutionName:"s
 
 describe.sequential("Application-encrypted content and authorization",()=>{
  beforeAll(async()=>{
-  if(databaseUrl!=="postgresql:///continuity_content_test")throw Error("Dedicated local database only");
-  await runMigrations(databaseUrl);pool=createPool(config,keyService);
+  await assertDedicatedTestDatabase(databaseUrl, 'continuity_content_test');
+    await runMigrations(databaseUrl);pool=createPool(config,keyService);
   await pool.query("truncate app.planners restart identity cascade");
   await pool.query("update app.private_content_policy set require_encrypted_writes=true");
   for(const [id,name] of [[A,"Owner metadata"],[B,"Recipient metadata"],[C,"Other recipient"],[D,"Backup owner"]] as const){

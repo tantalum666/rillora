@@ -1,0 +1,42 @@
+"""Prepare image-only production and image/client-only staging deltas from actual templates."""
+from pathlib import Path
+import copy,datetime,hashlib,json,shutil,subprocess
+ROOT=Path.cwd();QA=ROOT/'output/qa/rillora-payment-recheck-20261009';PRIVATE=ROOT/'.local-secrets/payment-recheck-20261009'
+asset_root=QA/'cdk-pending-asset';image_manifest=json.loads((asset_root/'RilloraPendingAsset.assets.json').read_text())
+image_hash,image_asset=next(iter(image_manifest['dockerImages'].items()))
+assert image_asset['source']['platform']=='linux/arm64'
+def cloud(stack,command):
+ r=subprocess.run(['aws','cloudformation',command,'--stack-name',stack,'--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json'],capture_output=True,text=True,timeout=55)
+ if r.returncode:raise RuntimeError('Actual cloud read failed; do not prepare replacement')
+ return json.loads(r.stdout)
+for stack_name,base in [('RilloraStaging',QA/'RilloraStaging-locale-runtime'),('RilloraProduction',QA/'RilloraProduction-locale-runtime')]:
+ stack=cloud(stack_name,'describe-stacks')['Stacks'][0];assert stack['StackStatus']=='UPDATE_COMPLETE'
+ old=cloud(stack_name,'get-template')['TemplateBody'];old=json.loads(old) if isinstance(old,str) else old
+ (PRIVATE/(stack_name+'-pending-before.json')).write_text(json.dumps(old));new=copy.deepcopy(old)
+ assembly=QA/('pending-'+stack_name);assert not assembly.exists();assembly.mkdir()
+ for name in ['manifest.json',stack_name+'.metadata.json','tree.json','cdk.out']:
+  if (base/name).exists():shutil.copy2(base/name,assembly/name)
+ manifest=json.loads((assembly/'manifest.json').read_text());old_assets=json.loads((base/(stack_name+'.assets.json')).read_text())
+ template_asset=next(copy.deepcopy(a) for a in old_assets['files'].values() if a['source']['path']==stack_name+'.template.json')
+ changed=[];expected=copy.deepcopy(old)
+ task_keys=[k for k,v in new['Resources'].items() if v['Type']=='AWS::ECS::TaskDefinition']
+ assert len(task_keys)==(2 if stack_name=='RilloraStaging' else 3)
+ for k in task_keys:
+  resource=new['Resources'][k];assert resource['Properties']['RuntimePlatform']['CpuArchitecture']=='ARM64'
+  containers=resource['Properties']['ContainerDefinitions'];assert len(containers)==1
+  old_image=containers[0]['Image'];assert set(old_image)=={'Fn::Sub'}
+  prefix,old_hash=old_image['Fn::Sub'].rsplit(':',1);assert len(old_hash)==64 and old_hash!=image_hash
+  containers[0]['Image']={'Fn::Sub':prefix+':'+image_hash};expected['Resources'][k]['Properties']['ContainerDefinitions'][0]['Image']=containers[0]['Image']
+  changed.append('/Resources/'+k+'/Properties/ContainerDefinitions/0/Image')
+ files={}
+ assert new==expected and new.get('Parameters')==old.get('Parameters')
+ template=(json.dumps(new,indent=2)+'\n').encode();template_hash=hashlib.sha256(template).hexdigest();(assembly/(stack_name+'.template.json')).write_bytes(template)
+ for dest in template_asset['destinations'].values():dest['objectKey']=template_hash+'.json'
+ files[template_hash]=template_asset
+ shutil.copytree(asset_root/image_asset['source']['directory'],assembly/image_asset['source']['directory'])
+ assets={'version':image_manifest['version'],'files':files,'dockerImages':{image_hash:image_asset}}
+ (assembly/(stack_name+'.assets.json')).write_text(json.dumps(assets,indent=2)+'\n')
+ properties=manifest['artifacts'][stack_name]['properties'];properties['stackTemplateAssetObjectUrl']=properties['stackTemplateAssetObjectUrl'].rsplit('/',1)[0]+'/'+template_hash+'.json'
+ (assembly/'manifest.json').write_text(json.dumps(manifest,indent=2)+'\n')
+ report={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'source':'f7592a3f79394c0c17cf67ffc896b71225b7c06b','stack':stack_name,'changedPaths':changed,'resourceCount':len(old['Resources']),'imageAsset':image_hash,'reviewIdentityExpiryPermissionsSecretsNetworkAndOtherConfigurationPreserved':True,'schema':94,'migrationsRun':False,'ordinaryNewCheckoutEnabled':False,'deployed':False}
+ (QA/(stack_name+'-pending-reviewed-delta.json')).write_text(json.dumps(report,indent=2)+'\n');print(json.dumps(report),flush=True)

@@ -1,0 +1,43 @@
+"""Synthesize the changed Web clients and reject every non-asset stack change."""
+from pathlib import Path
+import datetime,json,subprocess
+ROOT=Path(__file__).resolve().parents[3]
+QA=ROOT/'output/qa/rillora-plan-purchase-page-20261012'
+PRIVATE=ROOT/'.local-secrets/plan-purchase-page-20261012'
+assert all(r['exitCode']==0 for r in json.loads((QA/'web-final-builds.json').read_text())['results'])
+reports=[]
+for name in ['RilloraStaging','RilloraProductionWeb']:
+    before=json.loads((PRIVATE/(name+'-before-template.json')).read_text())
+    if name=='RilloraStaging':
+        context={'serviceDesiredCount':'1','stripeTestIntegrationEnabled':'true','familyMaintenancePreviewEnabled':'true',
+          'appleStoreKitSandboxEnabled':'false','accountDeletionEnabled':'true','emailVerificationEnabled':'true',
+          'contentProtectionMode':'encrypted','contentMigrationEnabled':'false'}
+    else:
+        distributions=[r for r in before['Resources'].values() if r['Type']=='AWS::CloudFront::Distribution']
+        assert len(distributions)==1
+        certificate=distributions[0]['Properties']['DistributionConfig']['ViewerCertificate']['AcmCertificateArn']
+        assert certificate.startswith('arn:aws:acm:us-east-1:133857166372:certificate/')
+        context={'productionWebOnly':'true','productionWebReviewEnabled':'true','productionWebCertificateArn':certificate}
+    assembly=QA/(name+'-assembly')
+    assert not assembly.exists(),'Existing synthesis must be inspected, not overwritten'
+    command=['npx','cdk','synth',name,'--exclusively','--no-lookups','--profile','rillora-cdk-session','--output',str(assembly)]
+    for key,value in context.items():command+=['-c',key+'='+value]
+    with (QA/(name+'-synth.log')).open('w') as log:
+        result=subprocess.run(command,cwd=ROOT/'infra/aws',stdout=log,stderr=subprocess.STDOUT)
+    assert result.returncode==0,'Inspect synthesis log'
+    candidate=json.loads((assembly/(name+'.template.json')).read_text())
+    assert {k:v for k,v in candidate.items() if k!='Resources'}=={k:v for k,v in before.items() if k!='Resources'},'Non-resource template drift'
+    assert set(candidate['Resources'])==set(before['Resources'])
+    changes=[]
+    for logical,old in before['Resources'].items():
+        new=candidate['Resources'][logical]
+        if old==new:continue
+        assert old['Type']==new['Type']=='Custom::CDKBucketDeployment','Non-Web resource changed: '+logical
+        assert {k:v for k,v in old.items() if k!='Properties'}=={k:v for k,v in new.items() if k!='Properties'}
+        changed={k for k in set(old['Properties'])|set(new['Properties']) if old['Properties'].get(k)!=new['Properties'].get(k)}
+        assert changed=={'SourceObjectKeys'},'Unexpected deployment property drift'
+        changes.append({'logicalId':logical,'type':new['Type'],'properties':sorted(changed)})
+    assert len(changes)==1
+    reports.append({'stack':name,'resourcesRetained':len(candidate['Resources']),'changes':changes,'runtimeDatabaseIdentityPriceAndSalesConfigurationUnchanged':True})
+(QA/'web-candidate-diff.json').write_text(json.dumps({'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'passed':True,'stacks':reports,'deployed':False},indent=2)+'\n')
+print(json.dumps(reports))

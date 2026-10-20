@@ -17,7 +17,7 @@ final class FamilyMaintenanceStore {
         do {
             let result = try await service.fetchFamilyMaintenance()
             guard current == generation, !Task.isCancelled else { return false }
-            guard result.isValid else { throw RilloraAPIError.invalidPayload("The review response exceeded its scope.") }
+            guard result.isValid else { throw RilloraAPIError.invalidPayload(String(localized: "The review response exceeded its scope.")) }
             data = result; errorMessage = nil; requiresAuthentication = false; return true
         } catch {
             guard current == generation, !Task.isCancelled else { return false }
@@ -30,7 +30,7 @@ final class FamilyMaintenanceStore {
         defer { isWorking = false }
         do {
             try await operation()
-            if !(await reload()) { errorMessage = "Saved. Reload to see the latest review." }
+            if !(await reload()) { errorMessage = String(localized: "Saved. Reload to see the latest review.") }
             return true
         } catch {
             if (error as? RilloraAPIError)?.isAuthenticationRequired == true { data = nil; requiresAuthentication = true }

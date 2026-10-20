@@ -7,8 +7,9 @@ import { runMigrations } from "../src/migrate.js";
 import { createHash, randomBytes } from "node:crypto";
 import { AccountDeletionProcessor, Auth0AccountIdentityDeleter } from "../src/account-deletion.js";
 import { currentLegalContract } from "../src/legal-contract.js";
+import {assertDedicatedTestDatabase,dedicatedTestDatabaseUrl} from './dedicated-test-database.js';
 
-const databaseUrl="postgresql:///continuity_p1_repair_final_test";
+const databaseUrl=dedicatedTestDatabaseUrl("postgresql:///continuity_p1_repair_final_test","continuity_p1_repair_final_test");
 const A="11111111-1111-4111-8111-111111111111",B="22222222-2222-4222-8222-222222222222",C="33333333-3333-4333-8333-333333333333",D="44444444-4444-4444-8444-444444444444";
 const owner={"x-dev-planner-id":A};
 const config=loadConfig({NODE_ENV:"test",DATABASE_URL:databaseUrl,ALLOW_DEV_AUTH:"true",CORS_ORIGINS:"http://localhost:4261"});
@@ -22,7 +23,7 @@ async function connect(personName:string,recipient:string,grants:any[]){
 }
 describe.sequential("P1 map reliability and export privacy",()=>{
  beforeAll(async()=>{
-  if(!databaseUrl.endsWith("/continuity_p1_repair_final_test"))throw Error("Dedicated P1 test database required");
+  await assertDedicatedTestDatabase(databaseUrl,"continuity_p1_repair_final_test");
   await runMigrations(databaseUrl);pool=createPool(config);await pool.query("truncate app.planners restart identity cascade");
   for(const [id,name] of [[A,"Alex QA"],[B,"Parent QA"],[C,"Friend QA"],[D,"Restored QA"]]){
    const p=(await pool.query("insert into app.planners(public_id,display_name) values($1,$2) returning id",[id,name])).rows[0];
@@ -109,6 +110,14 @@ describe.sequential("P1 map reliability and export privacy",()=>{
   await request(app).post(`/v1/account/archived-matters/${bank}/restore`).set(owner).send({expectedVersion:archived.version}).expect(200);
   expect((await request(app).get("/v1/sharing/shared-with-me").set("x-dev-planner-id",B)).body.items).toEqual([]);
   expect((await request(app).get("/v1/sharing/shared-with-me").set("x-dev-planner-id",C)).body.items).toHaveLength(1);
+  await request(app).post(`/v1/account/archived-matters/${bank}/restore`).set(owner).send({expectedVersion:archived.version}).expect(409);
+  const audit=(await request(app).get("/v1/audit-events?limit=100").set(owner).expect(200)).body.auditEvents;
+  const restored=audit.filter((event:any)=>event.action==="matter.restored" && event.resourcePublicId===bank);
+  expect(restored).toHaveLength(1);
+  expect(restored[0].metadata).toEqual({status:"draft",sharingRestored:false});
+  expect(JSON.stringify(restored[0])).not.toContain("Private bank note");
+  const recipientAudit=(await request(app).get("/v1/audit-events?limit=100").set("x-dev-planner-id",B).expect(200)).body.auditEvents;
+  expect(recipientAudit.some((event:any)=>event.resourcePublicId===bank)).toBe(false);
  });
  it("account removal revokes access and exposes only an opaque status receipt",async()=>{
   const receipt=randomBytes(32).toString("base64url");
@@ -129,7 +138,7 @@ describe.sequential("P1 map reliability and export privacy",()=>{
   const consent=(await pool.query(`insert into app.legal_acceptances(planner_id,identity_account_id,terms_version,privacy_version,consent_text_version,legal_bundle_sha256,accepted_terms,acknowledged_privacy,accepted_electronic_records,client_surface,identity_reference_sha256)
     values($1,$2,$3,$4,$5,$6,true,true,true,'web',$7) returning id`,[identity.planner_id,identity.identity_account_id,currentLegalContract.termsVersion,currentLegalContract.privacyVersion,currentLegalContract.consentTextVersion,Buffer.from(currentLegalContract.bundleSha256,"hex"),sha("test deletion consent")])).rows[0];
   await pool.query(`insert into app.auth_sessions(planner_id,identity_account_id,legal_acceptance_id,token_hash,csrf_token_hash,expires_at,last_seen_at) values($1,$2,$3,$4,$5,now()+interval '1 hour',now())`,[identity.planner_id,identity.identity_account_id,consent.id,sha(session),sha(csrf)]);
-  let calls=0;const processor=new AccountDeletionProcessor(pool,{async deleteIdentity(value){expect(value.subject).toBe("auth0|erase-fixture");if(++calls===1)throw Error("transient");}});
+  let calls=0;const processor=new AccountDeletionProcessor(pool,{async deleteIdentity(value){expect(value.subject).toBe("auth0|erase-fixture");if(++calls===1)throw Error("transient");}},async()=>{/* Synthetic provider adapter; independent signed-proof coverage is separate. */});
   const instance=createApp(pool,config,{accountDeletionProcessor:processor});
   const body={confirmation:"DELETE",receipt,acknowledgesSavedCopies:true,acknowledgesBilling:true};
   const unavailable=await request(app).post("/v1/account/delete").set({cookie:`continuity_session=${session}`,"x-csrf-token":csrf,"x-rillora-planner":identity.planner_public_id}).send(body).expect(409);
@@ -155,5 +164,77 @@ describe.sequential("P1 map reliability and export privacy",()=>{
   await expect(adapter.deleteIdentity({issuer:"https://foreign.example/",subject:"auth0|other"})).rejects.toThrow("identity_scope_mismatch");expect(calls).toHaveLength(0);
   await adapter.deleteIdentity({issuer:"https://login.example/",subject:"auth0|one"});await adapter.deleteIdentity({issuer:"https://login.example",subject:"auth0|one"});
   expect(calls.map(c=>c.method)).toEqual(["POST","DELETE","DELETE"]);expect(calls[1].url).toContain("auth0%7Cone");
+ });
+
+ it('round-trips an actual exported backup at the 2 MiB boundary with its import envelope',async()=>{
+  const source='55555555-5555-4555-8555-555555555555',target='66666666-6666-4666-8666-666666666666';
+  let sourceId:string|undefined;
+  for(const publicId of [source,target]){
+   const id=(await pool.query("insert into app.planners(public_id,display_name) values($1,'Large map fixture') returning id::text",[publicId])).rows[0].id;
+   if(publicId===source)sourceId=id;
+   await pool.query('insert into app.plans(planner_id) values($1)',[id]);
+  }
+  await pool.query(`insert into app.matter_items(planner_id,plan_id,category,title,location_hint,desired_outcome,notes)
+   select $1,p.id,'document','Backup '||n,'Box','notify',repeat('界',1500)
+   from app.plans p cross join generate_series(1,350) n where p.planner_id=$1`,[sourceId]);
+  const exported=await request(app).post('/v1/account/map/export').set('x-dev-planner-id',source).send({acknowledgesPrivateCopy:true}).expect(200);
+  const limit=2*1024*1024;let remaining=limit-16-Buffer.byteLength(exported.text);
+  expect(remaining).toBeGreaterThan(0);
+  const changes=exported.body.matters.map((m:{publicId:string;notes:string})=>{
+   const wide=Math.min(500,Math.floor(remaining/3));remaining-=wide*3;
+   const ascii=Math.min(500-wide,remaining);remaining-=ascii;
+   return {id:m.publicId,notes:m.notes+'界'.repeat(wide)+'x'.repeat(ascii)};
+  });
+  expect(remaining).toBe(0);
+  await pool.query(`update app.matter_items m set notes=x.notes from jsonb_to_recordset($1::jsonb) x(id uuid,notes text)
+   where m.public_id=x.id and m.planner_id=$2`,[JSON.stringify(changes),sourceId]);
+  const large=await request(app).post('/v1/account/map/export').set('x-dev-planner-id',source).send({acknowledgesPrivateCopy:true}).expect(200);
+  expect(Buffer.byteLength(large.text)).toBe(limit-16);
+  const envelope={backup:large.body,acknowledgesPrivateImport:true};
+  expect(Buffer.byteLength(JSON.stringify(envelope))).toBeGreaterThan(limit);
+  await request(app).post('/api/v1/account/map/import').send({}).expect(401);
+  const imported=await request(app).post('/api/v1/account/map/import').set('x-dev-planner-id',target)
+   .set('Content-Type','application/vnd.rillora.backup+json').send(envelope).expect(201);
+  expect(imported.body).toMatchObject({matterCount:350,sharingRestored:false});
+  const room=large.body.matters.find((m:{notes:string})=>m.notes.length<1983);
+  room.notes+='x'.repeat(17);
+  const tooLarge=await request(app).post('/v1/account/map/import').set('x-dev-planner-id',target)
+   .send({backup:large.body,acknowledgesPrivateImport:true}).expect(413);
+  expect(tooLarge.body.error.code).toBe('backup_size_limit');
+ });
+
+ it('reports oversized ordinary request bodies as 413',async()=>{
+  const response=await request(app).post('/v1/matters').set(owner).send({notes:'x'.repeat(66_000)}).expect(413);
+  expect(response.body.error.code).toBe('request_body_too_large');
+ });
+
+ it('rechecks billing atomically when a concurrent checkout commits before deletion',async()=>{
+  const publicId='77777777-7777-4777-8777-777777777777';
+  const id=(await pool.query("insert into app.planners(public_id,display_name) values($1,'Checkout race fixture') returning id::text",[publicId])).rows[0].id;
+  const plan=(await pool.query('insert into app.plans(planner_id) values($1) returning id',[id])).rows[0].id;
+  const account=(await pool.query("insert into app.commerce_accounts(planner_id,plan_id,operating_plane_code,service_market_code) values($1,$2,'global','GLOBAL_US') returning id",[id,plan])).rows[0].id;
+  const checkout=await pool.connect();let deletion:Promise<any>|undefined;
+  try{
+   await checkout.query('begin');
+   await checkout.query("select pg_advisory_xact_lock(hashtextextended('checkout:'||$1::text,0))",[id]);
+   await checkout.query(`insert into app.commerce_orders(planner_id,commerce_account_id,operator_code,price_id,
+    purchase_route_policy_code,purchase_route_policy_version,provider_code,provider_environment,amount_minor,currency_code,status)
+    select $1,$2,operator_code,id,'global_us_web_stripe_v1',1,'stripe','test',amount_minor,currency_code,'pending'
+    from app.commerce_prices where price_code='family_usd_annual_v1'`,[id,account]);
+   deletion=request(app).post('/v1/account/delete').set('x-dev-planner-id',publicId)
+    .send({confirmation:'DELETE',receipt:randomBytes(32).toString('base64url'),acknowledgesSavedCopies:true}).then(response=>response);
+   let waiting=false;
+   for(let attempt=0;attempt<100&&!waiting;attempt++){
+    waiting=(await pool.query("select exists(select 1 from pg_stat_activity where datname=current_database() and state='active' and wait_event_type='Lock' and pid<>pg_backend_pid()) as waiting")).rows[0].waiting;
+    if(!waiting)await new Promise(resolve=>setTimeout(resolve,10));
+   }
+   expect(waiting).toBe(true);
+   await checkout.query('commit');
+   const result=await deletion;
+   expect(result.status).toBe(400);expect(result.body.error.code).toBe('billing_confirmation_required');
+   expect((await pool.query('select status from app.planners where id=$1',[id])).rows[0].status).toBe('active');
+   const profile=(await request(app).get('/v1/account/profile').set('x-dev-planner-id',publicId).expect(200)).body;
+   expect(profile.billing).toMatchObject({hasSubscription:false,hasPendingPurchase:true,providers:['stripe']});
+  }finally{await checkout.query('rollback');checkout.release();await deletion;}
  });
 });

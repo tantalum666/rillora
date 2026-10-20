@@ -1,0 +1,1010 @@
+- banner "App Store Connect":
+  - heading "App Store Connect" [level=1]:
+    - link "App Store Connect":
+      - /url: /
+  - navigation "全球":
+    - list:
+      - link "App":
+        - /url: /apps
+      - link "Xcode Cloud":
+        - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/xcode-cloud
+      - link "趋势":
+        - /url: /trends
+      - link "报告":
+        - /url: /itc/payments_and_financial_reports
+      - link "商务":
+        - /url: /business
+      - link "用户和访问":
+        - /url: /access/users
+  - button "Yuchen [REDACTED_PRIVATE_VALUE] YUAN|19416635507|1 Account name menu":
+    - generic: Yuchen Yuan
+    - generic: Yuchen YUAN|19416635507|1
+- button "App 菜单，已选择Rillora":
+  - generic "Rillora":
+    - img "Rillora"
+  - generic: Rillora
+- navigation "App":
+  - list:
+    - link "分发":
+      - /url: /apps/6803957639/distribution
+    - link "分析":
+      - /url: /apps/6803957639/analytics
+    - link "TestFlight":
+      - /url: /teams/cde47cef-14cf-43a8-91a7-0d87b812bc87/apps/6803957639/testflight
+- main:
+  - link "Rillora Family Yearly":
+    - /url: /apps/6803957639/distribution/subscriptions/6803959021
+    - text: Rillora Family Yearly
+  - heading "订阅定价" [level=2]
+  - navigation:
+    - link "订阅价格":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing
+    - link "推介促销优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/intro-offers
+    - link "回归用户优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/win-back-offers
+    - link "优惠代码":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/offer-codes
+    - link "促销优惠":
+      - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing/promo-offers
+  - heading "订阅价格" [level=3]
+  - link "所有价格和货币":
+    - /url: /apps/6803957639/distribution/subscriptions/6803959021/pricing-matrix
+    - paragraph: 所有价格和货币
+  - paragraph:
+    - text: 下方的价格调整日期会反映订阅的当前价格，以及为现有订阅者保留定价的任何开始日期。
+    - text: 点按最初价格或日期，管理当前定价和即将进行的调整。进一步了解
+    - link "订阅定价":
+      - /url: https://developer.apple.com/help/app-store-connect/manage-subscriptions/manage-pricing-for-auto-renewable-subscriptions
+    - text: 。
+  - heading "当前价格" [level=4]
+  - button "下载":
+    - text: 下载
+  - grid "当前价格":
+    - rowgroup:
+      - row "日期 国家或地区 操作":
+        - columnheader "日期":
+          - generic: 日期
+        - columnheader "国家或地区":
+          - generic: 国家或地区
+        - columnheader "操作"
+    - rowgroup:
+      - row "最初价格":
+        - rowheader "最初价格":
+          - button "最初价格"
+        - gridcell "175 个国家或地区":
+          - generic: 175 个国家或地区
+        - gridcell
+- dialog "最初订阅价格 下载" [active]:
+  - document:
+    - heading "最初订阅价格 下载" [level=2]:
+      - paragraph: 最初订阅价格
+      - button "下载":
+        - text: 下载
+    - table:
+      - rowgroup:
+        - row "国家或地区 (175) 价格 第 1 年所得 More information 第 2 年所得 More information":
+          - columnheader "国家或地区 (175)"
+          - columnheader "价格"
+          - columnheader "第 1 年所得 More information":
+            - generic: 第 1 年所得
+            - button "More information": "?"
+          - columnheader "第 2 年所得 More information":
+            - generic: 第 2 年所得
+            - button "More information": "?"
+    - button "美国和加拿大 (2)" [expanded]:
+      - text: 美国和加拿大 (2)
+    - region "美国和加拿大 (2)":
+      - table:
+        - rowgroup:
+          - row "加拿大 (CAD) $149.99 $104.99 $127.49":
+            - cell "加拿大 (CAD)"
+            - cell "$149.99"
+            - cell "$104.99"
+            - cell "$127.49"
+          - row "美国 (USD) $119.99 $84.00 $101.99":
+            - cell "美国 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+    - button "欧洲 (42)" [expanded]:
+      - text: 欧洲 (42)
+    - region "欧洲 (42)":
+      - table:
+        - rowgroup:
+          - row "阿尔巴尼亚 (USD) $149.99 $87.49 $106.24":
+            - cell "阿尔巴尼亚 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "爱尔兰 (EUR) €129.99 €73.98 €89.83":
+            - cell "爱尔兰 (EUR)"
+            - cell "€129.99"
+            - cell "€73.98"
+            - cell "€89.83"
+          - row "爱沙尼亚 (EUR) €129.99 €73.38 €89.11":
+            - cell "爱沙尼亚 (EUR)"
+            - cell "€129.99"
+            - cell "€73.38"
+            - cell "€89.11"
+          - row "奥地利 (EUR) €129.99 €75.83 €92.08":
+            - cell "奥地利 (EUR)"
+            - cell "€129.99"
+            - cell "€75.83"
+            - cell "€92.08"
+          - row "白俄罗斯 (USD) $149.99 $87.49 $106.24":
+            - cell "白俄罗斯 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "保加利亚 (EUR) €129.99 €75.83 €92.08":
+            - cell "保加利亚 (EUR)"
+            - cell "€129.99"
+            - cell "€75.83"
+            - cell "€92.08"
+          - row "北马其顿 (USD) $119.99 $84.00 $101.99":
+            - cell "北马其顿 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "比利时 (EUR) €129.99 €75.20 €91.32":
+            - cell "比利时 (EUR)"
+            - cell "€129.99"
+            - cell "€75.20"
+            - cell "€91.32"
+          - row "冰岛 (USD) $149.99 $84.67 $102.82":
+            - cell "冰岛 (USD)"
+            - cell "$149.99"
+            - cell "$84.67"
+            - cell "$102.82"
+          - row "波兰 (PLN) zł 499.99 zł 284.55 zł 345.52":
+            - cell "波兰 (PLN)"
+            - cell "zł 499.99"
+            - cell "zł 284.55"
+            - cell "zł 345.52"
+          - row "波斯尼亚和黑塞哥维那 (EUR) €129.99 €77.77 €94.44":
+            - cell "波斯尼亚和黑塞哥维那 (EUR)"
+            - cell "€129.99"
+            - cell "€77.77"
+            - cell "€94.44"
+          - row "丹麦 (DKK) kr 999.00 kr 559.44 kr 679.32":
+            - cell "丹麦 (DKK)"
+            - cell "kr 999.00"
+            - cell "kr 559.44"
+            - cell "kr 679.32"
+          - row "德国 (EUR) €129.99 €76.46 €92.85":
+            - cell "德国 (EUR)"
+            - cell "€129.99"
+            - cell "€76.46"
+            - cell "€92.85"
+          - row "俄罗斯 (RUB) ₽9,990.00 ₽5,731.97 ₽6,960.25":
+            - cell "俄罗斯 (RUB)"
+            - cell "₽9,990.00"
+            - cell "₽5,731.97"
+            - cell "₽6,960.25"
+          - row "法国 (EUR) €129.99 €75.83 €92.08":
+            - cell "法国 (EUR)"
+            - cell "€129.99"
+            - cell "€75.83"
+            - cell "€92.08"
+          - row "芬兰 (EUR) €129.99 €72.50 €88.04":
+            - cell "芬兰 (EUR)"
+            - cell "€129.99"
+            - cell "€72.50"
+            - cell "€88.04"
+          - row "荷兰 (EUR) €129.99 €75.20 €91.32":
+            - cell "荷兰 (EUR)"
+            - cell "€129.99"
+            - cell "€75.20"
+            - cell "€91.32"
+          - row "黑山 (EUR) €99.99 €69.99 €84.99":
+            - cell "黑山 (EUR)"
+            - cell "€99.99"
+            - cell "€69.99"
+            - cell "€84.99"
+          - row "捷克共和国 (CZK) Kč 2,990.00 Kč 1,729.75 Kč 2,100.41":
+            - cell "捷克共和国 (CZK)"
+            - cell "Kč 2,990.00"
+            - cell "Kč 1,729.75"
+            - cell "Kč 2,100.41"
+          - row "科索沃 (EUR) €129.99 €77.11 €93.64":
+            - cell "科索沃 (EUR)"
+            - cell "€129.99"
+            - cell "€77.11"
+            - cell "€93.64"
+          - row "克罗地亚 (EUR) €129.99 €72.79 €88.39":
+            - cell "克罗地亚 (EUR)"
+            - cell "€129.99"
+            - cell "€72.79"
+            - cell "€88.39"
+          - row "拉脱维亚 (EUR) €129.99 €75.20 €91.32":
+            - cell "拉脱维亚 (EUR)"
+            - cell "€129.99"
+            - cell "€75.20"
+            - cell "€91.32"
+          - row "立陶宛 (EUR) €129.99 €75.20 €91.32":
+            - cell "立陶宛 (EUR)"
+            - cell "€129.99"
+            - cell "€75.20"
+            - cell "€91.32"
+          - row "卢森堡 (EUR) €129.99 €77.77 €94.44":
+            - cell "卢森堡 (EUR)"
+            - cell "€129.99"
+            - cell "€77.77"
+            - cell "€94.44"
+          - row "罗马尼亚 (RON) lei 699.99 lei 404.95 lei 491.73":
+            - cell "罗马尼亚 (RON)"
+            - cell "lei 699.99"
+            - cell "lei 404.95"
+            - cell "lei 491.73"
+          - row "马耳他 (EUR) €129.99 €77.11 €93.64":
+            - cell "马耳他 (EUR)"
+            - cell "€129.99"
+            - cell "€77.11"
+            - cell "€93.64"
+          - row "摩尔多瓦 (USD) $149.99 $87.49 $106.24":
+            - cell "摩尔多瓦 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "挪威 (NOK) kr 1,490.00 kr 834.40 kr 1,013.20":
+            - cell "挪威 (NOK)"
+            - cell "kr 1,490.00"
+            - cell "kr 834.40"
+            - cell "kr 1,013.20"
+          - row "葡萄牙 (EUR) €129.99 €73.98 €89.83":
+            - cell "葡萄牙 (EUR)"
+            - cell "€129.99"
+            - cell "€73.98"
+            - cell "€89.83"
+          - row "瑞典 (SEK) kr 1,495.00 kr 837.20 kr 1,016.60":
+            - cell "瑞典 (SEK)"
+            - cell "kr 1,495.00"
+            - cell "kr 837.20"
+            - cell "kr 1,016.60"
+          - row "瑞士 (CHF) CHF 100.00 CHF 64.75 CHF 78.63":
+            - cell "瑞士 (CHF)"
+            - cell "CHF 100.00"
+            - cell "CHF 64.75"
+            - cell "CHF 78.63"
+          - row "塞尔维亚 (EUR) €129.99 €75.83 €92.08":
+            - cell "塞尔维亚 (EUR)"
+            - cell "€129.99"
+            - cell "€75.83"
+            - cell "€92.08"
+          - row "塞浦路斯 (EUR) €129.99 €76.46 €92.85":
+            - cell "塞浦路斯 (EUR)"
+            - cell "€129.99"
+            - cell "€76.46"
+            - cell "€92.85"
+          - row "斯洛伐克 (EUR) €129.99 €73.98 €89.83":
+            - cell "斯洛伐克 (EUR)"
+            - cell "€129.99"
+            - cell "€73.98"
+            - cell "€89.83"
+          - row "斯洛文尼亚 (EUR) €129.99 €74.58 €90.57":
+            - cell "斯洛文尼亚 (EUR)"
+            - cell "€129.99"
+            - cell "€74.58"
+            - cell "€90.57"
+          - row "土耳其 (TRY) ₺5,999.99 ₺3,324.99 ₺4,037.49":
+            - cell "土耳其 (TRY)"
+            - cell "₺5,999.99"
+            - cell "₺3,324.99"
+            - cell "₺4,037.49"
+          - row "乌克兰 (USD) $149.99 $87.49 $106.24":
+            - cell "乌克兰 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "西班牙 (EUR) €129.99 €74.86 €91.11":
+            - cell "西班牙 (EUR)"
+            - cell "€129.99"
+            - cell "€74.86"
+            - cell "€91.11"
+          - row "希腊 (EUR) €129.99 €73.38 €89.11":
+            - cell "希腊 (EUR)"
+            - cell "€129.99"
+            - cell "€73.38"
+            - cell "€89.11"
+          - row "匈牙利 (HUF) Ft 49,990.00 Ft 27,554.00 Ft 33,458.00":
+            - cell "匈牙利 (HUF)"
+            - cell "Ft 49,990.00"
+            - cell "Ft 27,554.00"
+            - cell "Ft 33,458.00"
+          - row "意大利 (EUR) €129.99 €73.98 €90.20":
+            - cell "意大利 (EUR)"
+            - cell "€129.99"
+            - cell "€73.98"
+            - cell "€90.20"
+          - row "英国 (GBP) £119.99 £69.57 £84.74":
+            - cell "英国 (GBP)"
+            - cell "£119.99"
+            - cell "£69.57"
+            - cell "£84.74"
+    - button "非洲、中东和印度 (57)" [expanded]:
+      - text: 非洲、中东和印度 (57)
+    - region "非洲、中东和印度 (57)":
+      - table:
+        - rowgroup:
+          - row "阿尔及利亚 (USD) $119.99 $84.00 $101.99":
+            - cell "阿尔及利亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "阿富汗 (USD) $119.99 $84.00 $101.99":
+            - cell "阿富汗 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "阿拉伯联合酋长国 (AED) AED 499.99 AED 333.33 AED 404.75":
+            - cell "阿拉伯联合酋长国 (AED)"
+            - cell "AED 499.99"
+            - cell "AED 333.33"
+            - cell "AED 404.75"
+          - row "阿曼 (USD) $119.99 $79.99 $97.13":
+            - cell "阿曼 (USD)"
+            - cell "$119.99"
+            - cell "$79.99"
+            - cell "$97.13"
+          - row "阿塞拜疆 (USD) $149.99 $88.98 $108.04":
+            - cell "阿塞拜疆 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "埃及 (EGP) E£5,999.99 E£3,684.20 E£4,473.68":
+            - cell "埃及 (EGP)"
+            - cell "E£5,999.99"
+            - cell "E£3,684.20"
+            - cell "E£4,473.68"
+          - row "安哥拉 (USD) $119.99 $84.00 $101.99":
+            - cell "安哥拉 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴林 (USD) $129.99 $82.72 $100.45":
+            - cell "巴林 (USD)"
+            - cell "$129.99"
+            - cell "$82.72"
+            - cell "$100.45"
+          - row "贝宁 (USD) $149.99 $88.98 $108.04":
+            - cell "贝宁 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "博茨瓦纳 (USD) $119.99 $84.00 $101.99":
+            - cell "博茨瓦纳 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "布基纳法索 (USD) $119.99 $84.00 $101.99":
+            - cell "布基纳法索 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "佛得角 (USD) $119.99 $84.00 $101.99":
+            - cell "佛得角 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "冈比亚 (USD) $119.99 $84.00 $101.99":
+            - cell "冈比亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "刚果共和国 (USD) $149.99 $88.98 $108.04":
+            - cell "刚果共和国 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "刚果民主共和国 (USD) $119.99 $84.00 $101.99":
+            - cell "刚果民主共和国 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "格鲁吉亚 (USD) $149.99 $88.98 $108.04":
+            - cell "格鲁吉亚 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "几内亚比绍 (USD) $119.99 $84.00 $101.99":
+            - cell "几内亚比绍 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "加纳 (USD) $149.99 $87.49 $106.24":
+            - cell "加纳 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "加蓬 (USD) $119.99 $84.00 $101.99":
+            - cell "加蓬 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "津巴布韦 (USD) $149.99 $86.36 $104.86":
+            - cell "津巴布韦 (USD)"
+            - cell "$149.99"
+            - cell "$86.36"
+            - cell "$104.86"
+          - row "喀麦隆 (USD) $149.99 $88.04 $106.91":
+            - cell "喀麦隆 (USD)"
+            - cell "$149.99"
+            - cell "$88.04"
+            - cell "$106.91"
+          - row "卡塔尔 (QAR) QAR 399.99 QAR 279.99 QAR 339.99":
+            - cell "卡塔尔 (QAR)"
+            - cell "QAR 399.99"
+            - cell "QAR 279.99"
+            - cell "QAR 339.99"
+          - row "科特迪瓦 (USD) $149.99 $88.98 $108.04":
+            - cell "科特迪瓦 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "科威特 (USD) $119.99 $84.00 $101.99":
+            - cell "科威特 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "肯尼亚 (USD) $149.99 $90.10 $109.66":
+            - cell "肯尼亚 (USD)"
+            - cell "$149.99"
+            - cell "$90.10"
+            - cell "$109.66"
+          - row "黎巴嫩 (USD) $119.99 $84.00 $101.99":
+            - cell "黎巴嫩 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "利比里亚 (USD) $119.99 $84.00 $101.99":
+            - cell "利比里亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "利比亚 (USD) $119.99 $84.00 $101.99":
+            - cell "利比亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "卢旺达 (USD) $119.99 $84.00 $101.99":
+            - cell "卢旺达 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "马达加斯加 (USD) $119.99 $84.00 $101.99":
+            - cell "马达加斯加 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "马拉维 (USD) $119.99 $84.00 $101.99":
+            - cell "马拉维 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "马里 (USD) $119.99 $84.00 $101.99":
+            - cell "马里 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "毛里求斯 (USD) $149.99 $91.30 $110.86":
+            - cell "毛里求斯 (USD)"
+            - cell "$149.99"
+            - cell "$91.30"
+            - cell "$110.86"
+          - row "毛里塔尼亚 (USD) $119.99 $84.00 $101.99":
+            - cell "毛里塔尼亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "摩洛哥 (USD) $149.99 $87.49 $106.24":
+            - cell "摩洛哥 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "莫桑比克 (USD) $119.99 $84.00 $101.99":
+            - cell "莫桑比克 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "纳米比亚 (USD) $119.99 $84.00 $101.99":
+            - cell "纳米比亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "南非 (ZAR) R 2,499.99 R 1,521.73 R 1,847.82":
+            - cell "南非 (ZAR)"
+            - cell "R 2,499.99"
+            - cell "R 1,521.73"
+            - cell "R 1,847.82"
+          - row "尼日尔 (USD) $119.99 $84.00 $101.99":
+            - cell "尼日尔 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "尼日利亚 (NGN) ₦199,900.00 ₦130,167.44 ₦158,060.47":
+            - cell "尼日利亚 (NGN)"
+            - cell "₦199,900.00"
+            - cell "₦130,167.44"
+            - cell "₦158,060.47"
+          - row "塞拉利昂 (USD) $119.99 $84.00 $101.99":
+            - cell "塞拉利昂 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "塞内加尔 (USD) $149.99 $88.98 $108.04":
+            - cell "塞内加尔 (USD)"
+            - cell "$149.99"
+            - cell "$88.98"
+            - cell "$108.04"
+          - row "塞舌尔 (USD) $119.99 $84.00 $101.99":
+            - cell "塞舌尔 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "沙特阿拉伯 (SAR) SAR 499.99 SAR 304.34 SAR 369.56":
+            - cell "沙特阿拉伯 (SAR)"
+            - cell "SAR 499.99"
+            - cell "SAR 304.34"
+            - cell "SAR 369.56"
+          - row "圣多美和普林西比 (USD) $119.99 $84.00 $101.99":
+            - cell "圣多美和普林西比 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "斯威士兰 (USD) $119.99 $84.00 $101.99":
+            - cell "斯威士兰 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "坦桑尼亚 (TZS) TZS 349,900.00 TZS 201,340.76 TZS 244,485.21":
+            - cell "坦桑尼亚 (TZS)"
+            - cell "TZS 349,900.00"
+            - cell "TZS 201,340.76"
+            - cell "TZS 244,485.21"
+          - row "突尼斯 (USD) $119.99 $84.00 $101.99":
+            - cell "突尼斯 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "乌干达 (USD) $149.99 $84.53 $102.64":
+            - cell "乌干达 (USD)"
+            - cell "$149.99"
+            - cell "$84.53"
+            - cell "$102.64"
+          - row "亚美尼亚 (USD) $149.99 $87.49 $106.24":
+            - cell "亚美尼亚 (USD)"
+            - cell "$149.99"
+            - cell "$87.49"
+            - cell "$106.24"
+          - row "也门 (USD) $119.99 $84.00 $101.99":
+            - cell "也门 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "伊拉克 (USD) $119.99 $84.00 $101.99":
+            - cell "伊拉克 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "以色列 (ILS) ₪399.90 ₪279.93 ₪339.92":
+            - cell "以色列 (ILS)"
+            - cell "₪399.90"
+            - cell "₪279.93"
+            - cell "₪339.92"
+          - row "印度 (INR) ₹11,900.00 ₹7,059.32 ₹8,572.03":
+            - cell "印度 (INR)"
+            - cell "₹11,900.00"
+            - cell "₹7,059.32"
+            - cell "₹8,572.03"
+          - row "约旦 (USD) $119.99 $84.00 $101.99":
+            - cell "约旦 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "赞比亚 (USD) $149.99 $90.51 $109.91":
+            - cell "赞比亚 (USD)"
+            - cell "$149.99"
+            - cell "$90.51"
+            - cell "$109.91"
+          - row "乍得 (USD) $119.99 $84.00 $101.99":
+            - cell "乍得 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+    - button "拉丁美洲和加勒比海地区 (37)" [expanded]:
+      - text: 拉丁美洲和加勒比海地区 (37)
+    - region "拉丁美洲和加勒比海地区 (37)":
+      - table:
+        - rowgroup:
+          - row "阿根廷 (USD) $119.99 $84.00 $101.99":
+            - cell "阿根廷 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "安圭拉 (USD) $119.99 $84.00 $101.99":
+            - cell "安圭拉 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "安提瓜和巴布达 (USD) $119.99 $84.00 $101.99":
+            - cell "安提瓜和巴布达 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴巴多斯 (USD) $149.99 $89.36 $108.50":
+            - cell "巴巴多斯 (USD)"
+            - cell "$149.99"
+            - cell "$89.36"
+            - cell "$108.50"
+          - row "巴哈马 (USD) $129.99 $82.72 $100.45":
+            - cell "巴哈马 (USD)"
+            - cell "$129.99"
+            - cell "$82.72"
+            - cell "$100.45"
+          - row "巴拉圭 (USD) $119.99 $84.00 $101.99":
+            - cell "巴拉圭 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴拿马 (USD) $119.99 $84.00 $101.99":
+            - cell "巴拿马 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴西 (BRL) R$799.90 R$489.24 R$594.08":
+            - cell "巴西 (BRL)"
+            - cell "R$799.90"
+            - cell "R$489.24"
+            - cell "R$594.08"
+          - row "百慕大 (USD) $119.99 $84.00 $101.99":
+            - cell "百慕大 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "玻利维亚 (USD) $119.99 $84.00 $101.99":
+            - cell "玻利维亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "伯利兹 (USD) $119.99 $84.00 $101.99":
+            - cell "伯利兹 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "多米尼加共和国 (USD) $119.99 $84.00 $101.99":
+            - cell "多米尼加共和国 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "多米尼克 (USD) $119.99 $84.00 $101.99":
+            - cell "多米尼克 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "厄瓜多尔 (USD) $119.99 $84.00 $101.99":
+            - cell "厄瓜多尔 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "哥伦比亚 (COP) $599,900.00 $352,882.35 $428,500.00":
+            - cell "哥伦比亚 (COP)"
+            - cell "$599,900.00"
+            - cell "$352,882.35"
+            - cell "$428,500.00"
+          - row "哥斯达黎加 (USD) $119.99 $84.00 $101.99":
+            - cell "哥斯达黎加 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "格林纳达 (USD) $119.99 $84.00 $101.99":
+            - cell "格林纳达 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "圭亚那 (USD) $119.99 $84.00 $101.99":
+            - cell "圭亚那 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "洪都拉斯 (USD) $119.99 $84.00 $101.99":
+            - cell "洪都拉斯 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "开曼群岛 (USD) $119.99 $84.00 $101.99":
+            - cell "开曼群岛 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "蒙特塞拉特 (USD) $119.99 $84.00 $101.99":
+            - cell "蒙特塞拉特 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "秘鲁 (PEN) PEN 499.90 PEN 296.55 PEN 360.10":
+            - cell "秘鲁 (PEN)"
+            - cell "PEN 499.90"
+            - cell "PEN 296.55"
+            - cell "PEN 360.10"
+          - row "墨西哥 (MXN) $2,499.00 $1,508.02 $1,831.16":
+            - cell "墨西哥 (MXN)"
+            - cell "$2,499.00"
+            - cell "$1,508.02"
+            - cell "$1,831.16"
+          - row "尼加拉瓜 (USD) $119.99 $84.00 $101.99":
+            - cell "尼加拉瓜 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "萨尔瓦多 (USD) $119.99 $84.00 $101.99":
+            - cell "萨尔瓦多 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "圣基茨和尼维斯 (USD) $119.99 $84.00 $101.99":
+            - cell "圣基茨和尼维斯 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "圣卢西亚 (USD) $119.99 $84.00 $101.99":
+            - cell "圣卢西亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "圣文森特和格林纳丁斯 (USD) $119.99 $84.00 $101.99":
+            - cell "圣文森特和格林纳丁斯 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "苏里南 (USD) $129.99 $82.72 $100.45":
+            - cell "苏里南 (USD)"
+            - cell "$129.99"
+            - cell "$82.72"
+            - cell "$100.45"
+          - row "特克斯和凯科斯群岛 (USD) $119.99 $84.00 $101.99":
+            - cell "特克斯和凯科斯群岛 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "特立尼达和多巴哥 (USD) $119.99 $84.00 $101.99":
+            - cell "特立尼达和多巴哥 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "危地马拉 (USD) $119.99 $84.00 $101.99":
+            - cell "危地马拉 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "委内瑞拉 (USD) $119.99 $84.00 $101.99":
+            - cell "委内瑞拉 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "乌拉圭 (USD) $119.99 $81.31 $100.34":
+            - cell "乌拉圭 (USD)"
+            - cell "$119.99"
+            - cell "$81.31"
+            - cell "$100.34"
+          - row "牙买加 (USD) $119.99 $84.00 $101.99":
+            - cell "牙买加 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "英属维尔京群岛 (USD) $119.99 $84.00 $101.99":
+            - cell "英属维尔京群岛 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "智利 (CLP) $129,990.00 $76,465.00 $92,850.00":
+            - cell "智利 (CLP)"
+            - cell "$129,990.00"
+            - cell "$76,465.00"
+            - cell "$92,850.00"
+    - button "亚太地区 (37)" [expanded]:
+      - text: 亚太地区 (37)
+    - region "亚太地区 (37)":
+      - table:
+        - rowgroup:
+          - row "澳大利亚 (AUD) $199.99 $127.27 $154.54":
+            - cell "澳大利亚 (AUD)"
+            - cell "$199.99"
+            - cell "$127.27"
+            - cell "$154.54"
+          - row "澳门 (USD) $119.99 $84.00 $101.99":
+            - cell "澳门 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴布亚新几内亚 (USD) $119.99 $84.00 $101.99":
+            - cell "巴布亚新几内亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "巴基斯坦 (PKR) Rs 29,900.00 Rs 20,930.00 Rs 25,415.00":
+            - cell "巴基斯坦 (PKR)"
+            - cell "Rs 29,900.00"
+            - cell "Rs 20,930.00"
+            - cell "Rs 25,415.00"
+          - row "不丹 (USD) $119.99 $79.99 $97.13":
+            - cell "不丹 (USD)"
+            - cell "$119.99"
+            - cell "$79.99"
+            - cell "$97.13"
+          - row "菲律宾 (PHP) ₱7,990.00 ₱4,993.75 ₱6,063.84":
+            - cell "菲律宾 (PHP)"
+            - cell "₱7,990.00"
+            - cell "₱4,993.75"
+            - cell "₱6,063.84"
+          - row "斐济 (USD) $119.99 $84.00 $101.99":
+            - cell "斐济 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "哈萨克斯坦 (KZT) ₸69,990.00 ₸42,235.34 ₸51,285.78":
+            - cell "哈萨克斯坦 (KZT)"
+            - cell "₸69,990.00"
+            - cell "₸42,235.34"
+            - cell "₸51,285.78"
+          - row "韩国 (KRW) ₩199,000.00 ₩126,636.00 ₩153,773.00":
+            - cell "韩国 (KRW)"
+            - cell "₩199,000.00"
+            - cell "₩126,636.00"
+            - cell "₩153,773.00"
+          - row "吉尔吉斯斯坦 (USD) $129.99 $81.24 $98.65":
+            - cell "吉尔吉斯斯坦 (USD)"
+            - cell "$129.99"
+            - cell "$81.24"
+            - cell "$98.65"
+          - row "柬埔寨 (USD) $129.99 $82.72 $100.45":
+            - cell "柬埔寨 (USD)"
+            - cell "$129.99"
+            - cell "$82.72"
+            - cell "$100.45"
+          - row "老挝 (USD) $129.99 $82.72 $100.45":
+            - cell "老挝 (USD)"
+            - cell "$129.99"
+            - cell "$82.72"
+            - cell "$100.45"
+          - row "马尔代夫 (USD) $119.99 $84.00 $101.99":
+            - cell "马尔代夫 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "马来西亚 (MYR) RM 599.90 RM 388.82 RM 472.14":
+            - cell "马来西亚 (MYR)"
+            - cell "RM 599.90"
+            - cell "RM 388.82"
+            - cell "RM 472.14"
+          - row "蒙古 (USD) $119.99 $84.00 $101.99":
+            - cell "蒙古 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "密克罗尼西亚 (USD) $119.99 $84.00 $101.99":
+            - cell "密克罗尼西亚 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "缅甸 (USD) $119.99 $84.00 $101.99":
+            - cell "缅甸 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "瑙鲁 (USD) $119.99 $84.00 $101.99":
+            - cell "瑙鲁 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "尼泊尔 (USD) $149.99 $91.06 $110.57":
+            - cell "尼泊尔 (USD)"
+            - cell "$149.99"
+            - cell "$91.06"
+            - cell "$110.57"
+          - row "帕劳 (USD) $119.99 $84.00 $101.99":
+            - cell "帕劳 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "日本 (JPY) ¥20,000.00 ¥12,727.00 ¥15,455.00":
+            - cell "日本 (JPY)"
+            - cell "¥20,000.00"
+            - cell "¥12,727.00"
+            - cell "¥15,455.00"
+          - row "斯里兰卡 (USD) $119.99 $84.00 $101.99":
+            - cell "斯里兰卡 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "所罗门群岛 (USD) $119.99 $84.00 $101.99":
+            - cell "所罗门群岛 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "塔吉克斯坦 (USD) $129.99 $79.82 $96.92":
+            - cell "塔吉克斯坦 (USD)"
+            - cell "$129.99"
+            - cell "$79.82"
+            - cell "$96.92"
+          - row "台湾 (TWD) NT$3,990.00 NT$2,580.00 NT$3,133.00":
+            - cell "台湾 (TWD)"
+            - cell "NT$3,990.00"
+            - cell "NT$2,580.00"
+            - cell "NT$3,133.00"
+          - row "泰国 (THB) ฿3,990.00 ฿2,610.28 ฿3,169.63":
+            - cell "泰国 (THB)"
+            - cell "฿3,990.00"
+            - cell "฿2,610.28"
+            - cell "฿3,169.63"
+          - row "汤加 (USD) $119.99 $84.00 $101.99":
+            - cell "汤加 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "土库曼斯坦 (USD) $119.99 $84.00 $101.99":
+            - cell "土库曼斯坦 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "瓦努阿图 (USD) $119.99 $84.00 $101.99":
+            - cell "瓦努阿图 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "文莱 (USD) $119.99 $84.00 $101.99":
+            - cell "文莱 (USD)"
+            - cell "$119.99"
+            - cell "$84.00"
+            - cell "$101.99"
+          - row "乌兹别克斯坦 (USD) $129.99 $81.24 $98.65":
+            - cell "乌兹别克斯坦 (USD)"
+            - cell "$129.99"
+            - cell "$81.24"
+            - cell "$98.65"
+          - row "香港 (HKD) $888.00 $621.60 $754.80":
+            - cell "香港 (HKD)"
+            - cell "$888.00"
+            - cell "$621.60"
+            - cell "$754.80"
+          - row "新加坡 (SGD) $179.98 $115.58 $140.35":
+            - cell "新加坡 (SGD)"
+            - cell "$179.98"
+            - cell "$115.58"
+            - cell "$140.35"
+          - row "新西兰 (NZD) $199.99 $121.73 $147.82":
+            - cell "新西兰 (NZD)"
+            - cell "$199.99"
+            - cell "$121.73"
+            - cell "$147.82"
+          - row "印度尼西亚 (IDR) Rp 2,299,000.00 Rp 1,449,820.00 Rp 1,760,495.00":
+            - cell "印度尼西亚 (IDR)"
+            - cell "Rp 2,299,000.00"
+            - cell "Rp 1,449,820.00"
+            - cell "Rp 1,760,495.00"
+          - row "越南 (VND) ₫3,999,000.00 ₫2,519,370.00 ₫3,059,235.00":
+            - cell "越南 (VND)"
+            - cell "₫3,999,000.00"
+            - cell "₫2,519,370.00"
+            - cell "₫3,059,235.00"
+          - row "中国大陆 (CNY) ¥798.00 ¥548.72 ¥672.25":
+            - cell "中国大陆 (CNY)"
+            - cell "¥798.00"
+            - cell "¥548.72"
+            - cell "¥672.25"
+    - button "编辑价格"
+    - button "完成"
+- contentinfo:
+  - list:
+    - link "App Store Connect":
+      - /url: /apps
+  - list:
+    - listitem: Copyright © 2026 Apple Inc. 保留所有权利。 |
+    - link "服务条款":
+      - /url: /WebObjects/iTunesConnect.woa/wa/termsOfService
+    - text: "|"
+    - link "隐私政策":
+      - /url: https://www.apple.com/legal/privacy
+    - text: "|"
+    - link "联系我们":
+      - /url: /contact-us

@@ -20,7 +20,7 @@ const configSchema = z
     NODE_ENV: z.enum(["development", "test", "production"]).default("development"),
     HOST: z.string().min(1).max(255).default("127.0.0.1"),
     PORT: z.coerce.number().int().min(1).max(65_535).default(4180),
-    PRODUCTION_RUNTIME_MODE: z.enum(["closed", "review"]).optional(),
+    PRODUCTION_RUNTIME_MODE: z.enum(["closed", "review", "staging", "live"]).optional(),
     PRODUCTION_REVIEW_IDENTITY_SHA256: z.string().regex(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/).optional(),
     PRODUCTION_REVIEW_EXPIRES_AT: z.iso.datetime().optional(),
     ALLOW_RETENTION_WORKER: booleanFromString,
@@ -45,18 +45,21 @@ const configSchema = z
     ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: booleanFromString,
     ALLOW_STRIPE_TEST_INTEGRATION: booleanFromString,
     ALLOW_STRIPE_PRODUCTION_INTEGRATION: booleanFromString,
+    ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS: booleanFromString,
     STRIPE_PRODUCTION_SECRET_ARN: z.string().regex(stripeProductionSecretArnPattern).optional(),
     STRIPE_TEST_STAGING_MODE: booleanFromString,
     ALLOW_APPLE_SANDBOX_INTEGRATION: booleanFromString,
     ALLOW_APPLE_PRODUCTION_INTEGRATION: booleanFromString,
     ALLOW_APPLE_REVIEW_INTEGRATION: booleanFromString,
+    APPLE_REVIEW_IDENTITY_SHA256: z.string().regex(/^[a-f0-9]{64}(,[a-f0-9]{64}){0,7}$/).optional(),
+    APPLE_REVIEW_EXPIRES_AT: z.iso.datetime().optional(),
     APPLE_REVIEW_SECRET_ARN:z.string().regex(appleReviewSecretArnPattern).optional(),
     APPLE_PRODUCTION_SECRET_ARN: z.string().regex(appleProductionSecretArnPattern).optional(),
     ALLOW_FAMILY_MAINTENANCE_PREVIEW: booleanFromString,
     APPLE_SANDBOX_STAGING_MODE: booleanFromString,
     DATABASE_POOL_MAX: z.coerce.number().int().min(1).max(50).default(10),
     DATABASE_CONNECTION_TIMEOUT_MS: z.coerce.number().int().min(1_000).max(120_000).default(5_000),
-    TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(10).default(0),
+    TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(1).default(0),
     SESSION_TTL_MINUTES: z.coerce.number().int().min(15).max(1_440).default(480),
     SESSION_IDLE_MINUTES: z.coerce.number().int().min(5).max(240).default(30),
     AUTH_TRANSACTION_TTL_SECONDS: z.coerce.number().int().min(120).max(900).default(600),
@@ -133,11 +136,17 @@ export type AppleSandboxConfig = {
 };
 
 export type AppConfig = {
+  databaseAuthorityKey?: string | null;
+  emailMatchKey?: string | null;
+  deletionWorkerEnabled?: boolean;
+  deletionProof?: {keyArn:string;namespace:string;region:string} | null;
   appleReview?: { secretArn:string;rootCertificateDirectory:string } | null;
   appleProduction?: { secretArn: string; rootCertificateDirectory: string } | null;
   stripeProductionSecretArn?: string | null;
+  stripeProductionCheckoutEnabled?: boolean;
   productionRuntimeClosed?: boolean;
   productionReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
+  appleReviewAccess?: { identityDigests: readonly string[]; expiresAt: number } | null;
   allowRetentionWorker?: boolean;
   requireRecentAuthentication?: boolean;
   apiTls?: { certificateArn: string; serverName: string; region: string } | null;
@@ -224,7 +233,9 @@ function parseDatabaseConfig(parsed: ParsedEnvironment): DatabaseConfig {
     if (!['postgres:', 'postgresql:'].includes(databaseUrl.protocol)) {
       throw new Error("DATABASE_URL must use the postgres or postgresql protocol");
     }
-    for (const key of ["sslmode", "sslcert", "sslkey", "sslrootcert"]) {
+    // pg parses connection-string TLS settings after the explicit ssl object.
+    // Even `ssl=true` would discard the configured CA, while `ssl=0` disables TLS.
+    for (const key of ["ssl", "sslmode", "sslcert", "sslkey", "sslrootcert"]) {
       if (databaseUrl.searchParams.has(key)) {
         throw new Error(`${key} must be configured through DATABASE_SSL_MODE and DATABASE_SSL_CA_PATH`);
       }
@@ -264,6 +275,30 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const productionRuntimeClosed = parsed.PRODUCTION_RUNTIME_MODE === "closed";
   const productionReviewMode = parsed.PRODUCTION_RUNTIME_MODE === 'review';
   const reviewExpiresAt = Date.parse(parsed.PRODUCTION_REVIEW_EXPIRES_AT ?? '');
+  const appleReviewExpiresAt = Date.parse(parsed.APPLE_REVIEW_EXPIRES_AT ?? '');
+  const liveAppleReview = parsed.PRODUCTION_RUNTIME_MODE === 'live' && parsed.ALLOW_APPLE_REVIEW_INTEGRATION;
+  if (liveAppleReview && (!parsed.APPLE_REVIEW_IDENTITY_SHA256 || !Number.isFinite(appleReviewExpiresAt)
+    || appleReviewExpiresAt > Date.now() + 31 * 86_400_000)) {
+    throw new Error('Live App Review requires explicit identities and an expiry within 31 days');
+  }
+  if (!liveAppleReview && (parsed.APPLE_REVIEW_IDENTITY_SHA256 || parsed.APPLE_REVIEW_EXPIRES_AT)) {
+    throw new Error('Apple review access restrictions require its explicit live review context');
+  }
+  // An omitted mode must never choose the customer path. Deliberate activation
+  // requires the exact production identity boundary; IaC still uses closed/review.
+  if (parsed.PRODUCTION_RUNTIME_MODE === 'live' && (
+    parsed.NODE_ENV !== 'production' || parsed.WEB_APP_ORIGIN !== 'https://app.rillora.xyz'
+    || parsed.DATA_REGION !== 'eu-central-1'
+    || parsed.OIDC_ISSUER_URL !== 'https://login.rillora.xyz'
+    || parsed.OIDC_CLIENT_ID !== 'EcevpyKt1GELKwkLnVU3aCbh3Ix2SJhz'
+    || !parsed.OIDC_CLIENT_SECRET
+    || parsed.NATIVE_OIDC_CLIENT_ID !== 'POpNKTqlr6dHbJZLWPWxhyjg5qPtdrm4'
+    || parsed.OIDC_API_AUDIENCE !== 'urn:rillora:production:api'
+    || parsed.OIDC_REDIRECT_URI !== 'https://app.rillora.xyz/api/auth/callback'
+    || parsed.ALLOW_DEV_AUTH || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL
+    || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
+    || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
+  )) throw new Error('Explicit live mode requires the exact production identity boundary and no diagnostic test surfaces');
   if (productionReviewMode && (!parsed.ALLOW_APPLE_REVIEW_INTEGRATION
     || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION
     || !parsed.PRODUCTION_REVIEW_IDENTITY_SHA256 || !Number.isFinite(reviewExpiresAt)
@@ -294,18 +329,20 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     || !parsed.API_TLS_CERTIFICATE_ARN || parsed.API_TLS_SERVER_NAME !== "origin.production.rillora.xyz"
     || parsed.DATA_REGION !== "eu-central-1" || parsed.ALLOW_STRIPE_TEST_INTEGRATION
     || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
-    || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION)) {
+    || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+    || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION)) {
     throw new Error("Closed production requires encrypted content, its independent recovery journal and verified TLS; test features stay disabled");
   }
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_DEV_AUTH) {
     throw new Error("ALLOW_DEV_AUTH must never be enabled in production");
   }
-  if ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) && (
+  if ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+    || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) && (
     parsed.NODE_ENV !== 'production' || productionRuntimeClosed || parsed.ALLOW_DEV_AUTH
     || parsed.ALLOW_STRIPE_TEST_INTEGRATION || parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
     || parsed.ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL || parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
     || parsed.WEB_APP_ORIGIN !== 'https://app.rillora.xyz'
-    || (parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION && !parsed.STRIPE_PRODUCTION_SECRET_ARN)
+    || ((parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS) && !parsed.STRIPE_PRODUCTION_SECRET_ARN)
     || (parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION && (!parsed.APPLE_PRODUCTION_SECRET_ARN
       || !parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY || parsed.APPLE_IAP_PRIVATE_KEY || parsed.APPLE_IAP_KEY_ID || parsed.APPLE_IAP_ISSUER_ID))
     || (parsed.ALLOW_APPLE_REVIEW_INTEGRATION && (!parsed.APPLE_REVIEW_SECRET_ARN
@@ -352,6 +389,7 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   }
   const deletionValues = [parsed.AUTH0_DELETION_DOMAIN, parsed.AUTH0_DELETION_CLIENT_ID, parsed.AUTH0_DELETION_CLIENT_SECRET];
   const hasDeletion = deletionValues.some(value => value !== undefined);
+  if (hasDeletion && parsed.NODE_ENV === 'production') throw new Error('Auth0 deletion credentials belong only to the isolated worker');
   if (hasDeletion && (deletionValues.some(value => value === undefined) || !parsed.OIDC_ISSUER_URL?.startsWith("https://"))) {
     throw new Error("Account deletion requires its complete Auth0 service configuration and HTTPS OIDC issuer");
   }
@@ -585,6 +623,23 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     };
   }
 
+  if (parsed.NODE_ENV === 'production') {
+    if (!parsed.PRODUCTION_RUNTIME_MODE) throw new Error('Production runtime mode must be explicit; customer access never opens by omission');
+    if (parsed.CONTENT_PROTECTION_MODE !== 'encrypted') throw new Error('Production-shaped account services require encrypted private content');
+    if (parsed.PRODUCTION_RUNTIME_MODE === 'staging') {
+      if (parsed.WEB_APP_ORIGIN !== 'https://app.staging.rillora.xyz'
+        || parsed.CONTENT_KEY_NAMESPACE !== 'rillora-staging' || parsed.DATA_REGION !== 'eu-central-1'
+        || parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+        || parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION || parsed.ALLOW_APPLE_REVIEW_INTEGRATION) {
+        throw new Error('Staging mode is restricted to the encrypted Rillora synthetic staging environment');
+      }
+    } else if (!parsed.RECOVERY_JOURNAL_TABLE || parsed.RECOVERY_ENVIRONMENT !== 'production'
+      || parsed.CONTENT_KEY_NAMESPACE !== 'rillora-production' || !parsed.API_TLS_CERTIFICATE_ARN
+      || parsed.API_TLS_SERVER_NAME !== 'origin.production.rillora.xyz') {
+      throw new Error('Production requires its independent recovery journal, content encryption and verified TLS');
+    }
+  }
+
   const origins = parsed.CORS_ORIGINS.split(",")
     .map((origin) => origin.trim())
     .filter(Boolean)
@@ -592,17 +647,31 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
 
   return {
     productionRuntimeClosed,
+    databaseAuthorityKey: env.DATABASE_AUTHORITY_KEY ?? null,
+    emailMatchKey: env.EMAIL_MATCH_KEY ?? null,
+    deletionWorkerEnabled: env.DELETION_WORKER_ENABLED === 'true',
+    deletionProof: env.DELETION_PROOF_KMS_KEY_ARN ? {
+      keyArn: z.string().regex(/^arn:aws:kms:[a-z0-9-]+:\d{12}:key\/[a-f0-9-]{36}$/).parse(env.DELETION_PROOF_KMS_KEY_ARN),
+      namespace: parsed.CONTENT_KEY_NAMESPACE ?? 'development', region: parsed.DATA_REGION,
+    } : null,
     allowRetentionWorker: parsed.ALLOW_RETENTION_WORKER,
-    requireRecentAuthentication: productionReviewMode || parsed.REQUIRE_RECENT_AUTHENTICATION,
+    requireRecentAuthentication: parsed.NODE_ENV === 'production' || parsed.REQUIRE_RECENT_AUTHENTICATION,
     productionReviewAccess: productionReviewMode ? {
       identityDigests: parsed.PRODUCTION_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: reviewExpiresAt,
+    } : null,
+    // Expiration closes only reviewer purchase routes. Ordinary customer
+    // authentication and signed notification reconciliation remain available.
+    appleReviewAccess: liveAppleReview ? {
+      identityDigests: parsed.APPLE_REVIEW_IDENTITY_SHA256!.split(','), expiresAt: appleReviewExpiresAt,
     } : null,
     appleReview: parsed.ALLOW_APPLE_REVIEW_INTEGRATION ? {secretArn:parsed.APPLE_REVIEW_SECRET_ARN!,
       rootCertificateDirectory:parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY!} : null,
     appleProduction: parsed.ALLOW_APPLE_PRODUCTION_INTEGRATION ? {
       secretArn: parsed.APPLE_PRODUCTION_SECRET_ARN!, rootCertificateDirectory: parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY!,
     } : null,
-    stripeProductionSecretArn: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION ? parsed.STRIPE_PRODUCTION_SECRET_ARN! : null,
+    stripeProductionSecretArn: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION || parsed.ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS
+      ? parsed.STRIPE_PRODUCTION_SECRET_ARN! : null,
+    stripeProductionCheckoutEnabled: parsed.ALLOW_STRIPE_PRODUCTION_INTEGRATION,
     apiTls: parsed.API_TLS_CERTIFICATE_ARN ? {
       certificateArn: parsed.API_TLS_CERTIFICATE_ARN, serverName: parsed.API_TLS_SERVER_NAME!, region: parsed.DATA_REGION,
     } : null,

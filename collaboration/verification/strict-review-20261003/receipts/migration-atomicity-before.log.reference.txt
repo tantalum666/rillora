@@ -1,0 +1,53 @@
+
+ RUN  v4.1.11 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/migration-atomicity.test.ts (2 tests | 2 failed) 584ms
+     × rolls back wrapped DDL if writing its checksum fails 38ms
+     × retains the migration lock after a wrapped file until the whole batch commits 22ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 2 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/migration-atomicity.test.ts > migration transaction ownership > rolls back wrapped DDL if writing its checksum fails
+AssertionError: expected 'app.atomic_probe' to be null
+
+- Expected:
+null
+
++ Received:
+"app.atomic_probe"
+
+ ❯ tests/migration-atomicity.test.ts:42:109
+     40|     await writeFile(join(directory, '0001_wrapped.sql'), 'begin;\ncrea…
+     41|     await expect(runMigrations(database, directory)).rejects.toThrow('…
+     42|     expect((await client.query("select to_regclass('app.atomic_probe')…
+       |                                                                                                             ^
+     43|     expect((await client.query('select count(*)::int as n from app.sch…
+     44|   });
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/2]⎯
+
+ FAIL  tests/migration-atomicity.test.ts > migration transaction ownership > retains the migration lock after a wrapped file until the whole batch commits
+AssertionError: expected true to be false // Object.is equality
+
+- Expected
++ Received
+
+- false
++ true
+
+ ❯ tests/migration-atomicity.test.ts:62:24
+     60|       expect(waiting).toBe(true);
+     61|       acquired = (await client.query("select pg_try_advisory_lock(hash…
+     62|       expect(acquired).toBe(false);
+       |                        ^
+     63|     } finally {
+     64|       if (acquired) await client.query("select pg_advisory_unlock(hash…
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/2]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  2 failed (2)
+   Start at  22:00:57
+   Duration  984ms (transform 97ms, setup 46ms, import 219ms, tests 584ms, environment 0ms)
+

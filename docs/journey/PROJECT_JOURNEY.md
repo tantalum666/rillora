@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-10-02 (Asia/Shanghai)
+Last updated: 2026-10-20 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -3032,3 +3032,1139 @@ Owner先确认小型企业资格事实、再当场确认最终声明，申请已
 - **判断变化**：Apple实际详情和Xcode上传均可复用现有登录，无需再次打扰Owner。批量图片上传按完成顺序改变了2/3位置，使用支持的键盘排序纠正。准备签名文件、上传完成、Apple处理完成与实际可安装／购买仍是不同结果。
 - **结果**：8项新产物检查通过，预检不再报告原生文件阻塞；Apple已处理内部build2并明确显示缺少出口合规证明。六图计数／顺序及测试文案保存后回读。修正主清单里的重置未完成、旧修复未部署和没有上传等过期状态；原实现／测试／部署不重跑。
 - **未完成项**：真实本人同意／剩余共享与敏感操作验收、已暂缓真机和Apple交易、真实商户事实／有效费率／最终价格与申报，随后才有外部分发、客户切换和最终上架。加密问卷只读后取消，未冒填；未邀请测试员或操作手机。[本轮合同](../independent-release-closeout-20261002.md)。
+
+
+## 2026-10-02 — 严格全项目代码审查开始，首批可复现问题修复
+
+- **目标**：Owner要求全部代码逐项细审并直接修复问题，取代等待本人条款确认的活动下一步。
+- **尝试**：完整阅读184份Markdown共31665行，建立活动工程文件与阅读行段账本；尝试一次深度安全协调器，再直接检查当前源码并补失败前回归。
+- **判断变化**：插件因当前权限配置不能创建受管只读工作器而未启动，没有安全报告。实际源码检查已发现普通回归漏掉的URL规范化、失败Promise缓存、数据库TLS参数优先级和Stripe二次争议核验问题；测试替身需经过真实解析器而非忽略输入。
+- **阶段结果**：四项本地修复及各自聚焦验证通过，原始失败和一次测试放置错误分别保留。尚未提交、部署或完成全项目覆盖；不拿旧CI／部署结果替代新修复验证。
+- **未完成项**：继续全部剩余代码、SQL最终状态与客户端／工具检查，验证恢复撤销历史和文件大小边界等候选，完成回归、文档漂移与完整Git保存。个人、真机和实际付款门保持原状态。[当前合同](../code-review-20261002.md)。
+
+## 2026-10-02 — Strict review second repair batch; whole-project coverage remains open
+
+- Goal: validate the database and recovery candidates with actual local concurrency and restore evidence.
+- Attempts: separate guarded fixtures exercised nested migration COMMIT, unsafe runtime roles, old paid-copy restore after narrow/expand and remove/regrant, hold/cleanup races, and near-limit file round trips.
+- Judgment change: latest permission state alone is insufficient restore evidence; immutable grant identity and permanently retained field/review bounds are needed. A row lock alone cannot refresh an earlier hold predicate, so hold placement and cleanup share a transaction advisory lock.
+- Result: R05–R09 locally repaired; new migrations0092/0093, constrained role/restore checks, maximum65536-byte ciphertext,2097136-byte backup roundtrip and independent oversize rejection pass. API typecheck passes. Original applied91SQLfiles are unchanged; production has not been modified.
+- Incomplete: remaining active code body review, outstanding candidates, full integration, documentation drift and Git/evidence preservation. These nine fixes do not close the whole review or release.
+
+## 2026-10-02 — Strict review third repair batch and first full API regression
+
+- Goal: align recipient exports, account deletion and test execution with the existing permission/consent/data boundaries.
+- Attempts: reproduced post-cutoff guide leakage, checkout/deletion concurrency, ambient PostgreSQL host resolution, and synthetic checklist completion setting a verified flag.
+- Judgment change: recipient-specific exports must use the same saved projection as recipient reads; pending checkout is billing activity before a subscription row exists. A test database name alone is not connection identity. Simulated preparation never verifies a real emergency plan.
+- Result: R10–R13 implemented. Shared billing-status and readiness helpers remove duplicated logic.48APItestfiles/399tests pass before R13; R13then passes6focused checks. Web/native existing billing confirmation controls now include pending purchases and a fresh server demand, with client verification still pending.
+- Incomplete: full Web/iOS/infra/tools/config source review, client validation, final integration and Git/evidence closeout. Production, real data, price, UIlayout and FanPass remain unchanged. No additional Owner product decision was needed.
+
+## 2026-10-03 — Browser race repairs and isolated native billing validation
+
+- Goal: exercise the real client paths around unsaved drafts, private files, account changes and deletion acknowledgement.
+- Attempts: reproduce fast/repeated browser Back, delayed file reads and private Blob completion; add a pending synthetic order after each client's deletion page is already open. Inspect the original Swift models and purchase lifecycle while an isolated simulator runs the changed app.
+- Judgment change: a guard notified by a passive React effect can miss immediate navigation. A latest-only local file choice also needs explicit invalidation on Close. Unsigned simulator Keychain failure was a test-build limitation; local ad-hoc signing restored the intended path without weakening production storage.
+- Result: R14–R17 repaired with13navigation checks across two viewports,2real file-input race checks and27API-client/saved-copy checks. Web internal build/115tests, public build, legal fixture/7tests and native AccountDataTests/3tests pass. Both rendered deletion flows reject the late pending purchase and reveal an unchecked billing acknowledgement; account retention is read back and synthetic orders removed. R09also preserves the exact2MiB downloaded backup. R18's native account-switch purchase-state race is reproduced and fixed;31related native commerce tests pass.
+- Incomplete: remaining native/infra/tools/config source coverage, final integration, focused-contract/current-document reconciliation and Git preservation. No new product decision, deployment, real login, payment, physical-device action or FanPass operation was required.
+
+## 2026-10-03 — Native mutation ordering and acknowledgement recovery
+
+- Goal: prevent duplicate editor operations and preserve server-confirmed outcomes during network failure.
+- Attempts: hold the first contact/matter/role request while repeating save or requesting reload/archive/revoke; separately fail a role-list read after the mutation acknowledgement. Trace the invitation email retry through the actual server route.
+- Judgment change: disabled controls are not a sufficient serialization boundary for asynchronous editor methods. A later read failure does not undo an acknowledged write. The email retry candidate is rejected because the existing accept endpoint already refreshes provider proof before acceptance.
+- Result: R19guards editor operations, and R20preserves confirmed role state with a bounded refresh retry.26editor tests and the earlier31native commerce checks pass. The local UI runner now validates its loopback-only endpoint before mutation; its URL guard passes. Final API typecheck/build and48files/400tests pass, including the readiness correction omitted from the first full run.
+- Incomplete: complete native unit run, remaining infrastructure/tool/config/test body review, source/contract reconciliation and Git preservation. No additional Owner product decision or live environment change is required.
+
+## 2026-10-03 — Full source coverage and strict-review closeout
+
+- Goal: inspect the entire active project carefully and directly repair confirmed
+  defects while preserving the selected UI, pricing, real accounts and FanPass.
+- Attempts: completed686source bodies/91721lines after184Markdown startup files;
+  reproduced failures in local PostgreSQL/HTTP, actual browser interactions, isolated
+  native tests and intercepted provider/release tooling. Validated six dependency
+  locks and preserved every applied migration checksum.
+- Judgment changes: old green tests missed race/restore/operational branches; these
+  needed negative-before proof. A suspected native email retry was rejected after
+  tracing the existing server refresh. CDK latest still bundles the advisory version,
+  so a blind library upgrade would not resolve it. Optional security scan could not
+  start and contributes no scan evidence.
+- Result:28repairs locally verified; final API400, Web115/7, native190/1existing skip,
+  infra53, prototype10/4 and tool/operations regressions recorded with overlap limits.
+  Task-only fixture servers stopped, simulator shut down, global profile restored.
+  QA/build originals are encrypted in additive raw-work-012; readable references,
+  current contracts and source are prepared for Git with exact final receipts.
+- Unfinished: remote/CI closeout is recorded separately as it completes; new repairs
+  and0092/0093 are not deployed. CDK upstream patch, real transactions, deferred
+  personal/device/merchant work and final store gates remain distinct.
+
+- CI follow-up: first remote CI45 passed API/Web/infrastructure, while a new Auth0
+  shell fixture lacked runner prerequisites. Explicit Linux prerequisites and better
+  failure diagnostics are added; the legitimate404creation branch also passes.
+  The code ledger is reconciled after this focused correction; the original failure
+  and archive capture remain immutable dated evidence.
+
+- Publication follow-up: CI46 passed tools, API, Web/infrastructure and source scan;
+  its readable-manifest guard exposed30ignored reference copies. Their encrypted
+  originals were already remote-verified. Stage only the scanned exact references
+  and validate the staged inventory; preserve global ignore rules and failedCI evidence.
+
+- Final result: CI47 at ef09d0b22f7586cf4e60d3039f986b6fe6c19d02 passes all three jobs.
+  The new archive was freshly fetched and934objects/1,433paths decrypted/verified.
+  Final active-source coverage is686files/91,738lines after the small CI/test follow-up.
+  Review/repairs/Git preservation are complete; coordinated restricted rollout of
+  reviewed source and0092/0093 is the single next step, not another personal login.
+
+## 2026-10-03 — Remaining launch work after strict review
+
+- Goal: answer what remains before release using current source and dated provider evidence.
+- Attempt: reconcile handoff, release gates, submission worksheet and latest distribution
+  receipts; check Apple's current encryption/submission/TestFlight guidance.
+- Judgment change: the older release inventory still called repair deployment complete.
+  That is true for the previous13Dot fixes, but not the new28strict-review repairs.
+- Result: correct the deployment row and runtime/security gate descriptions; preserve
+  all12gate IDs/statuses, existing authorization, completed mail/images/CI and deferrals.
+- Unfinished: coordinated restricted rollout is still first; real core/Apple acceptance,
+  operator/payment facts, final store declarations/review and customer cutover follow.
+  No product tests, deployment, private portal refresh or personal login were repeated.
+
+## 2026-10-03 — Deploy reviewed repairs and prepare build3
+
+- Goal: complete Owner-selected packages1/2 without changing UI/pricing/data/FanPass
+  or resuming deferred physical-device/merchant work.
+- Attempt: actual AWS expiry was renewed through existing browser login; constrain
+  template diffs, pause the review API, migrate once, verify checksums/data/roles and
+  restore1healthy task. Build/export/check/upload the new signed native candidate.
+- Judgment changes: first Web readback targeted an older closed build directory;
+  correct manifest gives full matching bytes. Heartbeat parsing needs the retention
+  namespace because commerce also emits Heartbeat. Neither required product repair.
+- Result: API11/schema0093 and Web/WWW deployed;93checksums, unchanged eight-table
+  fingerprints, runtime/TLS/closed-billing checks and116HTTP file hashes pass. Native
+  1.0(3) is uploaded/processed,8artifact checks pass, test notes saved and testers0.
+- Unfinished: final OS-only encryption declaration is prepared for action-time Owner
+  confirmation. Real core/device/purchase, commercial facts and AppReview/cutover remain
+  separate. No completed authentication/email/AppleTEST/application was repeated.
+
+- Completion after Owner reply: the specific OS-only declaration was explicitly
+  confirmed, saved for1.0(3), and read back in the build list as准备提交. Matching
+  declaration metadata is now versioned for later builds; plist syntax and an exact
+  semantic comparison pass. Business/encryption code is unchanged, and build3was
+  not rebuilt or re-uploaded. Packages1/2are complete; remaining real core/device/
+  purchase and store/commercial gates retain their separate scope.
+
+- Preservation closeout: artifact commit94a4b8890292a4e1e0858e30328ec6839234f8c8 was
+  pushed on the current review branch. A fresh GitHub LFS download and remotely read
+  metadata verify raw-work-013,284objects/312paths, with no previous archive downloads.
+  Two remaining present-tense references to未部署 were corrected into dated historical
+  states. Final receipt-only changes do not repeat CI47, deployment, upload or consent.
+
+## 2026-10-04 — Continue real Web/native core acceptance
+
+- Goal: finish remaining core journeys under actual production identities while
+  preserving the reviewed deployment, UI/prices/data/FanPass and phone deferral.
+- Attempt: inspect actual browser/native state; Owner restores the absent QQ session.
+  The simulator still has the October1app, so build/check/install the reviewed Release
+  simulator artifact without erasing data, then reuse the existing Google session.
+- Judgment change: Xcode runtime semantic snapshots returned no interaction targets;
+  use the supported CUA Simulator screenshot controls. No source or accessibility
+  defect is inferred from the automation snapshot. Browser warnings sampled are
+  extension scripts rather than a proved Rillora failure.
+- Result so far: QQ actual shared HTTP200/live/readOnly response retains exactly5
+  Directions fields. Unchecked deletion preview can be left with the account intact.
+  The native session reaches current unchecked Account terms; confirmation is pending.
+- Unfinished: actual planner callback and scope/revoke/export/recovery/recent-auth/
+  disposable-account-deletion acceptance. Existing full suites, mail/reset, deployment
+  and Apple upload/declaration are retained; no false completion of the core package.
+
+- Additional actual Web result: the download event initially waited on Chrome's native
+  Save dialog. Saving through that dialog produced the1,299-byte empty-map JSON,
+  and the product reader opened the exact file as readOnly/0matters/0people. After
+  recent-auth aged naturally, a further export returned403reauthentication_required;
+  Keep editing cancelled the escalation while ordinary shared reading remained usable.
+  The pending native Account terms is still a personal confirmation dependency.
+
+
+## 2026-10-04 — Actual scope, saved copies and native recent-auth repair
+
+- Goal: continue the real planner/recipient core loop after Owner consent.
+- Attempt: save Name restriction, cancel then complete fresh authentication for Details,
+  save native plaintext/full-map/encrypted files, and read those exact files in Web.
+- Judgment change: real encrypted export showed a generic alert masking the common
+  sign-in prompt. This was a product defect, distinct from earlier automation/no-target
+  output and transient network errors. Fix only that state ownership; keep UI/crypto.
+- Result: actual Name/Details recipient projection and explicit retry passed. Focused
+  native tests went from7pass/3fail to10pass; fixed Release UI completed authentication,
+  expired-preview refresh, encryption, independent file save and Web local decryption.
+  Same fixed binary retains its session on restart; initial ad-hoc replacement signout
+  remains unattributed. Original build3does not contain this new repair.
+- Unfinished: native reader/import, Web fresh-auth, revocation, disposable deletion and
+  logout; new signed candidate and additive Git evidence preservation. AWS/CLI restored
+  after Owner MFA. Temporary fourth-identity-only access is being prepared, retaining
+  the original three/expiry and restoring them after the test; no Owner account deletion.
+
+
+- Later October4 result: the encrypted package opens in both actual readers. Native
+  revocation clears the already-open QQ detail and HTTP200returns empty items/connections.
+  Both current-device logout paths passed; restarting the fixed native binary stays
+  public. Signed1.0(4)passed9artifact checks, uploaded/processed to Ready to Submit,
+  retained approved encryption metadata and saved test notes; groups0. CI48passed
+  for81c08bf4c. No physical purchase, tester invitation or review submission occurred.
+- Remaining personal gate: isolated disposable Web terms confirmation was requested
+  at the actual unchecked page. Import/Web fresh-auth/delete have not occurred.
+  Temporary4identity access is verified with original expiry and same runtime image;
+  restore original3after acceptance. This dependency does not undo completed journeys.
+
+
+- Preservation closeout: raw-work-015contains387new/changed paths and262objects,
+  35,005,928encrypted bytes. A fresh remote LFS download atbc9b502fbfe4de6f25f56c3e6794abcd1c3fae86
+  decrypts/verifies every object/catalog path. Readable scan initially matched public/
+  wrapped crypto strings; omit them from the metadata reference, retain exact sealed
+  originals and rescan with0findings. No scanner suppression or recovery-key publication.
+  The current incomplete disposable-identity gate remains explicit; all12release gate
+  statuses are retained. Final receipt-only changes do not repeat CI48or uploads.
+
+
+## 2026-10-05 — Resume confirmed disposable-account acceptance
+
+- Goal: complete synthetic empty-map import, Web fresh-auth and confirmed deletion,
+  then remove the exact temporary identity while retaining the original expiry.
+- Attempt: submit Owner-confirmed Web terms and normal sign-in; check actual identity
+  before mutations. Auth0/CLI and AWS credentials were genuinely expired overnight.
+- Judgment change: normal entry silently reused QQ's Auth0 SSO account. Stop before
+  import/delete, sign out the old Rillora session, and use the existing API account
+  selection option for intentional public signin/signup; no visual or permission change.
+- Result so far:29focused checks and the new review Web build pass. Auth0 renewed with
+  the same91scopes and exact disposable user readback. AWS reused saved password and
+  is waiting only for actual MFA. Earlier native4/CI48/core evidence stays retained.
+- Unfinished: Web-only deployment/account-choice proof, disposable import/fresh-auth/
+  final deletion confirmation/provider cleanup, original3access restoration and new
+  additive Git preservation. No Owner data or account has been deleted.
+
+
+- October5 actual results: the Web-only repair deployed with86matching files andCI54.
+  The initial upload used the wrong existing role; switching to the existing CDK
+  base-session role flow fixed publishing without changing IAM. The intended disposable
+  login/import passed (201,1matter/1person,no sharing restored,new draft IDs). Natural
+  recent-auth expiry produced403, same-account reauthentication completed, and explicit
+  export retry produced200plus a verified2,309-byte saved file. A save-panel controller
+  interruption was recovered in a fresh tab using the existing account session.
+- Current gate: the isolated account's final irreversible delete dialog is prepared,
+  with backup/reference retained; action-time Owner confirmation has been requested.
+  Cleanup's original3-identity-only change set is prepared/reviewed, not executed.
+
+
+- Owner result: at the actual final irreversible dialog, Owner chose保留，暂不删除.
+  Cancelled with Keep my account, cleared DELETE/acknowledgement, then freshly read
+  HTTP200with1matter/1person. Auth0 independently still returns the prepared identity;
+  no deletion endpoint/provider delete was called. Current-session logout returned204.
+- Cleanup result: the reviewed access-only change completed as runtime13; Auth0/runtime
+  lists are the original3and original expiry,1healthy task, same image/roles/network/
+  secrets. The account/data remain. Actual deletion is Owner-deferred, not passed;
+  physical-device/merchant deferrals and public/live closure remain separate.
+- Remaining for this execution: final documentation and additive all-work Git archive;
+  no repeated native4upload, old full-suite run, email send or new public activation.
+
+
+- Final preservation:149paths/149objects (30,897,688original bytes) are sealed in
+  raw-work-016 (28,717,330bytes), pushed and freshly downloaded/decrypted/verified
+  atd7aad3b38d02e172ff687088845b9481dd20b669. Source/readable scans pass, with opaque CDK asset names omitted from readable
+  metadata and exact originals retained. Account/data retention and Owner deletion
+  deferral remain explicit; no further product tests, uploads or personal steps ran.
+
+## 2026-10-05 — Native Chinese localization continuation
+
+- Goal: fulfill Owner's correction that Chinese UI must include native iOS.
+- Attempt: materialize and Git-blob verify current native source, reuse the completed
+full-document reading, apply native String Catalogs and OS-owned language settings.
+- Judgment change: Web localization alone does not complete the bilingual task;
+source/static results also cannot substitute for a Chinese Simulator build.
+- Result: 1,058 paired entries, 8 plural entries, core flows and accessibility/error
+text covered; 9 static checks and 21 additional native tests prepared. Independent
+review caught and repaired an initial checked-in project group/phase wiring issue.
+- Remaining: Mac Debug/Release builds, native tests, Chinese/English layout and
+interaction acceptance, then separately decide merge/deployment. Preserve prior
+real-account acceptance dependencies and deferred physical/purchase gates.
+
+## 2026-10-05 — Chinese Web interface
+
+- Goal: Owner asks to implement Chinese directly and push maintainable code.
+- Attempt: materialize exact current Web source through authorized GitHub access, verify original blob hashes, complete 194 project-owned Markdown body reads, then implement semantic English/Simplified-Chinese catalogs and reactive locale context across Web/public flows. Preserve frontend state and request semantics rather than runtime DOM replacement.
+- Judgment changes: review found English plural fallback selected Chinese plural rules and automatic browser language became a persisted cross-site choice; both were fixed with regressions. Complete public packaging rejected a dotted Chinese sample filename; renamed within the existing safe asset rule. Existing legal source digest means even a lang attribute belongs in a wrapper, not the accepted document module.
+- Result: 1,274 paired messages; 162 App/locale and 7 legal tests pass; internal/public/legal/closed/review fixture builds pass. 98 API-call ASTs and 13 protected files preserve the baseline. No new dependencies or deployment.
+- Remaining: local Chromium fails before navigation with socket EPERM and supported cloud preview is blocked. Zero rendered checks/screenshots; real responsive/keyboard/draft/file/browser-history acceptance remains. Auth0/mail/iOS/English legal/provider/server export bodies are explicitly outside translation. Original real-core acceptance is preserved separately, not called complete.
+- [Maintenance contract](../web-localization-20261005.md), [QA](../qa/chinese-web-20261005/README.md), [remote publication/CI receipt](../qa/chinese-web-20261005/remote-verification.json).
+
+## 2026-10-05 — 将 AI/MCP 接口方向整理为可实施交接
+
+- 目标：回答 Rillora 能否进入 OpenAI 插件目录/接 MCP，并按 Owner 后续要求把接口预留方案整理推到 Git。
+- 尝试：核对当前 OpenAI 官方插件、认证、安全与提交规则，对照 strict-review 的 API、RLS、共享投影、近期认证、版本/幂等和导出源码。
+- 判断变化：目录、MCP 与业务 API 是不同层；已有 Auth0 第一方会话不能直接当第三方 AI 授权。现有 export preview 会持久化元数据，不能因名称称为只读；Matter draft 也不等于未写真实事项。平台指南保留当前登录后访问规则。额外复核明确生产审核身份限制不可被新入口绕过，幂等回执也需当前连接重新授权。
+- 结果：[实施交接](../architecture/ai-mcp-plan-20261005.md)明确现有与待建能力、最小工具/字段、OAuth 同意/撤销、精确确认、注入防护、加密边界、验收矩阵及 Codex 完成条件。独立文档分支不合并 Web 验收分支，运行代码与发布门不变。
+- 未完成项：全部 AI/MCP 运行时实现、实际 OAuth/客户端测试、真实数据披露流程、安全/隐私验收与目录提交。本文档不关闭当前真实核心验收，不将 AI 集成新增为首发阻塞项。文档验证范围见[本轮 QA](../qa/ai-mcp-plan-20261005/README.md)。
+
+## 2026-10-05 — 补充可选 MCP Events 订阅与投递架构
+
+- 目标：Owner 提供 OpenAI MCP Events 文档，并明确“你补上”，将事件预留补入已保存 AI/MCP 计划。
+- 尝试：核对当前官方协议/客户端支持、订阅与续期、callback challenge/签名、SSRF、重试和停止规则；只更新原文档分支。
+- 判断变化：Events 补足被动变化通知，但不承担 Rillora 的到期时钟、权限执行或关键提醒唯一通道。2xx 仅表示收到 webhook，不表示 AI 已完成；协议草案标签不等于整个产品 beta。
+- 结果：[计划第 15 节](../architecture/ai-mcp-plan-20261005.md)增加可选 P1E/C3E、review.due 首场景、领域 outbox/订阅/投递分层、最小字段、每次重试重新授权、受控 callback 例外、乱序/去重/重放/反馈循环及 12 组 TODO 验收。
+- 未完成项：全部 Events 运行时、真实订阅/签名密钥/投递、客户端端到端与生产部署。此文档扩充不新增当前首发门，不触碰后续 strict-review、Web 或 iOS 本地化分支。远端与 CI 结果见[同一 QA 记录](../qa/ai-mcp-plan-20261005/README.md)。
+
+## 2026-10-05 — Follow and consolidate Dot GitHub work on the Mac
+
+- Goal: inspect Dot progress and continue it without losing latest release evidence.
+- Attempt: fetch four branches, read new Markdown, compare fixed merge base and current
+03c97fc, merge histories on a new integration branch and reconcile documentation.
+- Judgment changes: green Linux CI did not compile native or prove browser behavior.
+Actual Mac builds pass; prepared test-product CLI language flags left31English assertions
+in Chinese, so bind the test-host language explicitly instead of changing app/tests.
+The resulting215passes/1existing skip include21new bilingual cases. Two native UI cases pass.
+- Result: four reported Web defects reproduced and repaired, with actual local browser
+return focus/readable status/time/email feedback. Cross-tab localization preserves drafts,
+confirmation and Back cancellation. Web162/legal7pass, native Debug/Release compile.
+Notes inclusion/exclusion and multiline display clarified without permission changes.
+- Unfinished: broader localized authenticated/iPad/AX5/VoiceOver/system-language matrix,
+Dot's remaining UX/OBS findings, future restricted candidate/deployment. AI remains proposal;
+Owner deletion/phone/merchant deferrals remain. [Current report](../qa/dot-followup-20261005/README.md).
+
+
+## 2026-10-05 — Chinese wording reviewed as product copy
+
+- Goal: incorporate Owner's request to carefully consider every Chinese UI phrase.
+- Attempt: read1,276Weband1,058native paired entries; trace key labels to actual editor,
+sharing,export,review and billing surfaces. Keep app-authored text separate from data.
+- Judgment changes: literal“入门指南”misidentified an export;Details incorrectly said
+already saved inside unsaved forms;included-place wording,account-inheritance labels
+and review terminology differed across clients. ContactNamealso needs its own context.
+- Result:371Web/225native revised units and a new contact-namekey;English display,
+placeholders,raw enums,privacy choices,prices and consent text remain. Existing language
+assertions are updated to the explicit glossary;permission/data assertions remain.
+- Remaining: final artifact/push receipts,broader matrix and live bilingual rollout;
+no personal deferral or optionalAIimplementation reopened. [Copy contract](../chinese-copy-guidelines-20261005.md).
+
+- Final publication:integrated source`747c98874`pushed with[CI56](https://github.com/tantalum666/rillora/actions/runs/37279020925)all3jobs successful. Raw-work-017/018fresh remote downloads pass decryption and exact object/catalog mapping. Copy-specific native21/UI2and Web162results remain separate from prior native215/1skip. Final receipts do not repeat builds,provider steps or deployment.
+
+## 2026-10-05 — Reconcile the remaining launch work after bilingual integration
+
+- Goal: answer Owner's current launch-gap question from evidence after Dot/copy work.
+- Attempt: read current handoff,release register,latest decisions/product and dated
+Apple/price records; compare current sourceaf34fd1beandCI56with the deployed checkpoints.
+- Judgment change: the release sheet's old completed-rollout row omitted the newly
+undeployed bilingual clients,and its October4temporary identity text was still labelled
+latest. Preserve that history with explicit dated status and update the active inventory.
+- Result: seven non-duplicated work packages; first two remain independently executable,
+existing delete/device/merchant deferrals retained. Register IDs/statuses unchanged.
+- Unfinished: actual acceptance,new client rollout,real transactions,personal facts,
+submission/review and final customer cutover. No new login,provider check,test or deployment.
+
+
+## 2026-10-05 — 按Owner优先级推进双语验收与Stripe Web
+
+- 目标：完成剩余双语/首发体验与匹配版本部署，付款优先Stripe Web。
+- 尝试：沿用完整阅读及旧验证，核对当前88.99与旧68TEST证据；复现计划下一步及恢复历史，新增独立小屏语言/横屏/AX5原生流程，实际下载中文测试备份。
+- 判断变化：旧Stripe托管付款没有当前登录Web回程证据；官网存储清单漏记已实现的语言偏好；AX5系统审计发现普通截图不易发现的多行Label问题。插件重连后仍401，后台登录实际有效，不能混称Owner未登录。
+- 结果：API400/归档恢复14、Web165及独立法律7、infra54通过；浏览器进度/恢复活动与3879字节合成备份核对成功。受限API模板审阅为仅三镜像更新，没有部署/迁移/购买。
+- 未完成：原生审计修复复测、更多设备/语言/共享/系统偏好、受限部署与新候选上传、当前88.99Stripe端到端TEST及独立live门。旧真机/删除/经营事实暂缓保持。详见[当前合同](../release-12-stripe-20261005.md)。
+
+## 2026-10-06 — Current-price Stripe Web and bilingual rollout completed
+
+- Goal: finish the independently executable acceptance/rollout and test current StripeWeb.
+- Attempt: recover the specifically approved CLI handshake; use official Rillora TEST
+Checkout/Portal with a separate real-cookie/CSRF fixture; complete current device/language
+matrix and retain every failed iteration. Deploy reviewed API14/Web/WWW and upload5once.
+- Judgment changes: CLI polling must complete while the code is valid; an authenticated
+Dashboard does not by itself install CLI credentials. Stripe period-end cancellation can
+use cancel_at while cancel_at_period_end is false. Transient concurrent callbacks503need
+explicit recovery evidence. Refund event/object linkage is present, but commerce_refunds
+is scaffold and cannot be represented as a full accounting ledger. Native iPad tabs and
+disabled-control hit testing needed correct system-aware test drivers; actual AX5 label
+and step-scroll problems needed product fixes.
+- Result: current8899hostedTESTpayment/refund/cancel/resume/duplicate flow and10applied
+events, Family→Free and no renewed subscription. Native18case/configuration outcomes
+pass, including actual Settings→two launches with data retained. API14healthy/schema93
+unchanged;86Web/31WWWfiles match and bilingual render checks pass. Signed1.0(5)uploaded;
+Apple processing and additive Git/remote proof are being closed out separately.
+- Remaining: spoken VoiceOver/physicalApplepurchase, Owner-retained deletion, merchant/
+live/market/price facts, final store review and customer cutover. No deleted account,
+real charge, tester invite or public launch claim. [Exact evidence](../release-12-stripe-20261005.md).
+
+- Same-continuation closeout: source10194de6a has actual CI58success. Apple1.0(5) is
+Ready to Submit; test notes saved/reloaded exactly, groups/individualtesters0. Local
+Stripecookie/testeligibility was expired, listener/fixtures stopped, and only3task-created
+simulators removed; all other simulator identities/states match. AdditiveGitproof follows.
+
+- Final Git result: artifact557af9f11/CI59passes. Archive19fresh remote download of
+581,672,952bytes decrypts and verifies1,541objects/9,769paths against GitHub metadata.
+The source/readable scans and changed-document links pass; final receipt-only work is
+preserved directly. No previous archive, passed flow, deployment or upload is repeated.
+
+## 2026-10-06 — 真机与发布配置恢复
+
+- 目标：按Owner新指令开始真机和各项配置，保留上轮完成证据。
+- 尝试：读取当前权威文件，检查配对设备、App安装状态、Apple实际详情和Stripe插件/后台。
+- 判断变化：手机原连接断开，Owner连接后可读取；用户选择亲自操作手机。Apple列表是缓存，
+实际详情认证失败，因此才请求恢复。Stripe插件恢复，但仍只有TEST授权，后台确认尚需激活真实账户。
+- 结果：创建独立工作分支和当前执行合同，修正“真机暂缓”的活动方向；TestFlight已在手机，
+Rillora尚未安装，构建5沿用。尚未新增交易、商户声明、邀请或部署。
+- 未完成：Apple登录恢复、Owner内部测试分发/安装、实际购买恢复及其余真实配置/本人字段。
+
+
+## 2026-10-06 — Apple119.99、构建6及Stripe Live配置
+
+- 目标：推进已恢复的真机/配置，落实Owner最终Apple119.99决定并保留Web88.99。
+- 尝试：内部邀请/真机安装登录、只读云端会话诊断、AppTransaction显式刷新红绿测试、构建6
+上传分发、Apple价格保存读回、独立Sandbox新绑定及现有API14滚动加载、Stripe本人开户/受限授权。
+- 判断变化：旧68Sandbox报价已过期但仍在目录，现已停用；商店初始价格与销售范围分开，
+175地区价格矩阵不等于开放175地区。维护角色无服务更新权限，复用既有部署身份完成同镜像滚动，
+没有扩权。首个目录预检因UNION排序表达式失败并回滚；修正版完成新绑定，保留失败证据。
+- 结果：手机5登录保留原事项；17单测及13产物检查通过，6处理完成且仅原内部组。Apple119.99
+及新云端报价读回一致，旧历史/Web/SKU保留。Stripe实际收款/提现启用，无待补资料，Live商品/
+价格/门户/禁用回调已准备；签名秘密只在保护存储。插件Live权限已经本人批准并实际读回。
+- 未完成：Owner手机6恢复/价格/购买结果，经营及税务事实、服务器RAK最终创建/配置、真实Live
+生命周期、最终商店审核与客户开放。外部两个邮箱邀请/不可撤销删除保持Owner暂缓。
+
+- 后续：Owner批准服务器RAK并完成Stripe邮件验证；密钥本机/AWS保护保存及实际接口核验
+完成，准备JSON拒绝作为正式配置加载。Owner又允许iPhone镜像；手机6已验证Sandbox环境，
+历史同步仍失败。只读诊断发现HKG目录缺口，已追加商店HKD888的限期账号Sandbox路由，
+不改普通市场/主体/SKU/历史价格。Apple服务HTTP410仅保留为观察，未推断根因。未切换主
+Apple账户或虚构税务登记，真机交易继续核验。
+
+## 2026-10-07 — 已验证Sandbox购买，按Owner要求简化购买页
+
+- 目标：完成真机购买，并解决Owner发现的币种不明、App报价与Apple付款页不同，以及多余确认控件。
+- 尝试：检查Apple实际店面/地区、补AUS受限Sandbox绑定并加载同一API14；Owner完成购买后只读
+核对签名收据和权益。保留失败同步与旧AUD预备订单，修复StoreKit调用前的商品缓存/报价间隙。
+- 判断变化：实际成交为HKG/HKD888，先前AUS报价不能替代签名事实；购买与恢复是独立证据。
+Owner进一步否定勾选框及Large text预览控件，应直接展示权益、年价、购买按钮，Apple最终确认。
+- 结果：首笔Sandbox签名收据/初始通知/客户端回传已applied、Family active。币种修复构建7已
+上传处理但未分发；新简化流程39聚焦回归通过、1既有平台跳过，11静态检查通过，中英文预览
+已观察。英文第三行首次显示被截断，增加自然换行后重新构建；前一产物保留，不重复下单。
+- 未完成：构建8最终渲染/签名分发、真机更新及购后恢复/跨端权益；实际经营/税务事实、Stripe
+Live运行接入及真实交易、最终商店审核与客户开放。全部新工作仍待archive20与远端保存。
+
+- 后续检查点：构建8最终13签名检查通过，00:30香港时间上传并处理完成，原内部组1人及
+测试说明已保存重读；App Store草稿8/手动发布重读一致。最新源码08afb3821/CI63通过。
+手机被Owner使用，镜像断开，已请求锁屏；没有把分发写成真机安装/恢复或再次购买。
+
+- 保存收尾：raw-work-020有3,102路径/677对象，141,191,492字节；本地及GitHub独立新下载的
+解密核验通过，提交3e46e5130。二进制plist保留原件；6个疑似token实为与源码相符的SHA256，
+仅改变可读清单结构，未加扫描例外。480个相关Markdown本地链接通过。Git遗留空锁无进程/
+文件句柄，保留锁副本后恢复提交，无历史重写。源码CI63已验证；证据提交CI因浏览器连接结束/
+CLI读取权限不足未读回。手机镜像仍使用中，真机8及恢复保留为下一步，没有重购或偷偷延期。
+
+## 2026-10-07 — 云端修复原生体验并显示当前账号
+
+- 目标：按 Owner 实际截图和反馈消除原生指南／设置／动画／事项语义问题，补两端账号识别，并交付可维护代码。
+- 尝试：读取当前合同及新增 Markdown，观察原始截图，逐一追踪加载状态、导航、共享折叠样式、分类字段和身份生命周期；官方指南逐平台核对来源，Auth0 能力按现有 SDK／权限确认。
+- 判断变化：旧截图／静态局部检查没有覆盖这次真实原生问题，不能声称全盘体验已验证。分类不是复核状态；账号邮箱必须由服务端当前会话给出；能重置数据库密码不等于可以管理通行密钥和 MFA。
+- 结果：实现源码、集中双语文案、身份／重置／分类的回归测试和资源同步；最新 operator 购买源码08afb382完整保留，独立复核补齐身份传输边界用例。共享身份基础CI62通过；本轮精确原生分支CI以最终回执为准。
+- 未完成：这批原生代码的 Xcode 编译、XCTest、真实 UI／辅助功能矩阵；通行密钥／MFA 管理配置；生产部署和实际邮件。没有以既有 build5–8 或云端语法检查冒充当次运行证明。
+
+- 云端交付收尾：原生产品源码0e452bc5的65项blob读回一致。首轮CI发现继承e950078可读清单多列25个被Git忽略的.xcresult/.dSYM副本；仅修正可读声明／目录元数据，保留3,102原始记录和archive20密文。8492822f的CI70源码／API／Web-infrastructure全部通过，可读证据10,458份校验／扫描通过。原生Xcode／49个新增单测／3个新增UI方法仍未运行，未配置收费Mac CI。
+- 并行Web最终产品源码f95a1c23全量CI和20/20实际Chromium场景通过；独立分支各自交付，未合并或部署。当前交接以原生运行门和精确分支整合为后续项，不重复本人认证、购买或旧构建。
+
+## 2026-10-07 — 接手Dot三条分支并实际验证整合
+
+- 目标：按Owner新授权审阅GitHub、修复问题并合并，保留最新购买和所有发布证据。
+- 尝试：取回三条分支、核对共享祖先和完整Markdown增量、读取全部运行改动及新增测试，
+通过GitHub核对CI；本机生成工程、Xcode编译/单元测试和双语UI，Web/API聚焦验证。
+- 判断变化：云端语法/静态绿灯漏过SwiftUI Section重载错误和XCTest私有fixture引用，需实际
+Apple编译器才能发现；分类UI测试误把装饰图标和导航栏搜索按列表行判可点击，截图确认后修正。
+- 结果：2处编译阻断已修，272原生单测通过/1既有跳过，174Web/17API/66guards通过；英文
+指南和设置场景通过。原始archive20与构建8保留；新运行证据和完整合并状态待最终收尾。
+- 未完成：最终分类/中文UI、Release构建、GitHub合并与本轮追加原件保存；未部署或进行真实交易。
+
+- 最终整合结果：272原生单测/1既有跳过，Debug/Release成功；英文/中文各3个受影响UI场景通过，
+174Web/17API/66guards及PR CI73/20浏览器通过。PR1按精确头5a547339a合并为eb5fb1a70，并读回
+GitHub和本地发布分支。新浏览器ZIP与Dot三个历史ZIP全已下载校验，避免7天失效；初次连接器
+导出403，改用现有已登录GitHub的可见下载/系统保存流程完成，没有新登录或权限扩张。合成
+服务停止、任务模拟器已关闭；新源码未部署、TestFlight仍8，真实验收和商业门保持独立。
+
+- 全量保存完成：archive21提交06519bde8保留7,314路径/913对象和233,637,603加密字节；已从
+GitHub独立新下载并解密/指纹核验。可读扫描0未知、535个文档链接通过，新增暂存树核对每条
+readable-manifest路径实际进入Git，避免忽略规则造成虚假可读声明。最终只追加回执，未重测/
+部署/下单/重复下载前20归档。当前发布代码仍为已合并eb5fb1a70的相同运行树。
+
+## 2026-10-07 — 部署已审查的Dot整合并续接验收
+
+- 目标：按Owner“开始部署和下一步”，把已合并源码变成实际发布候选，沿用已有验证。
+- 尝试：审核CloudFormation精确差异，更新API镜像、Web/WWW和真实Preview入口的前端；
+  归档签名9并上传，检查线上文件/健康/匿名边界，核对过期审核访问及实际provider会话。
+- 判断变化：官网入口仍指向Preview，不能只更生产Web就称入口问题已修；只更新其前端。
+  Preview首次准备缺模板发布资产，未更云资源，补齐后完成。Auth0 CLI实际过期但现有
+  浏览器可恢复原权限；Apple实际详情失败且需要密码，才交回Owner。
+- 结果：API16健康，Web86/WWW31/Preview86逐文件匹配，四栈模板与审核结果一致；原三
+  身份/原Sandbox资格续至香港10月9日04:00。14签名检查通过，9上传成功；新部署没有
+  再跑数据库迁移、历史产品套件、原成功购买或旧构建上传。
+- 未完成：Apple9处理/原内部组分发/草稿读回及真机安装/购后恢复；经营税务事实、Stripe
+  Live运行接入/真实交易、App Review与客户开放。独立删除和外部邀请仍按Owner暂缓。
+
+- 保存检查点：archive22新增387路径/274对象，55,533,496字节，本地解密/目录/原件指纹通过。
+  源码扫描29已审核/0未知，477个变更文档本地链接通过；此前产品测试/CI73沿用原结果。
+  远端上传/新下载核验作为冻结归档后的单独回执，不重复前21归档。
+
+- 远端保存完成：7d4189371已推送，archive22从GitHub独立新下载并解密核验274对象/387路径；
+  前21归档没有重下。新可读CFN里的32处长字符串均为资产文件摘要，原件密文保持，只在
+  阅读副本中标注省略摘要，未增加扫描豁免；全局可读扫描通过。遗留空Git锁确认无句柄/
+  Git进程后保留副本恢复，未重置索引或历史。Apple登录仍是当前唯一人工门。
+
+- 自动CI75在归档提交7d4189371上三项成功；可见GitHub读回API413/49文件、基础设施54/7文件。
+  本机Actions API令牌403后复用现有浏览器读取结果，没有要求扩大令牌范围或重新登录。
+  最后回执只补充远端/CI/文档状态；线上部署、原生上传、原签名购买没有重复。
+
+## 2026-10-07 — 真机9揭示套餐分支遗漏并修复
+
+- 目标：恢复Apple会话后分发9并继续真实套餐/恢复验收。
+- 尝试：保存/重读原内部组、双语说明及App Store草稿9；Owner亲自更新并确认原事项。
+- 判断变化：Owner实际已订阅，原预览只渲染nil订阅的子视图，未覆盖回退旧套餐页的条件；
+  恢复也在已有签名历史前强制系统同步。分发/安装成功不能算此项体验通过。
+- 结果：后台只读证据确认HKD888仍active且已有新回传；统一Apple套餐完整页面，保留只读
+  目录价格和严格购买报价的区别，Restore先核验已有购买。新增红测复现，修复后44通过/1既有
+  跳过、34原生guards通过；真实PlanAccessView的4状态×中英8屏已渲染，无新产品测试控件。
+- 未完成：新10签名/上传/分发和Owner物理复核；Live商业及最后发布门继续独立。
+
+- 额外完整点击检查发现新增borderless样式缩小了Restore有效点击范围，10虽已上传但保持不分发；
+  删除该样式，采用原生Form行行为。实际点按未订阅/已订阅两种完整页面均得到预期的模拟
+  历史状态反馈并留在App，未误触管理链接。11作为替代候选，真实恢复仍待Owner复核。
+
+## 2026-10-08 — 改用无线直装集中迭代
+
+- 目标：按Owner最新指示停止每次小改就TestFlight，直接在原手机验证。
+- 尝试：恢复当前文档与源码，检查原配对设备和签名，复用已验Release11导出development包；
+  Owner提醒可无线，本机记录localNetwork，尝试连接成功后进行原位安装。
+- 判断变化：不把“连接断开”直接当作必须有数据线；实际无线通道可以建立，但一次App读取
+  随即掉线，需要以安装/读回实际结果判定。原发布候选不再继续分发。
+- 结果：12项直装签名/配置/原编译UUID检查通过，开发者模式和既有配对已确认；无需重编实现。
+- 未完成：实际安装/启动与Owner物理验收、当前及前轮材料的追加Git保存；商业/最终发布门保留。
+
+- Wireless continuation: in-place install succeeded at00:45:00Z, device readback shows
+  1.0(11), and foreground launch succeeded at00:50:29Z. The transient first app-info
+  failure remains recorded. No cable, account reset, unpairing or network change was
+  needed. Owner has been asked to confirm the actual UI/data and list remaining issues.
+
+- Owner confirms original matters and requested page contents are present. Exact current
+  price/currency and actual Apple restoration remain unverified. The44focused checks,
+  34native guards and earlier render checks were retained rather than rerun for signing.
+  Archive23adds4,208eligible paths/507objects and157,419,068encrypted bytes; local
+  decryption passes, with remote publication/readback recorded separately.
+
+- 目标：解释直装后恢复购买为何提示不同于媒体与购买/TestFlight的QQ邮箱。
+  尝试：核对实际development签名、Restore和StoreKit代码及Apple官方沙盒规则，请Owner仅查看
+  开发者设置里的Sandbox Apple Account。判断变化：Owner确认那里正是QQ，因此独立沙盒账号
+  已有本人证据，不再只列为猜测；Rillora没有向StoreKit传入该邮箱。结果：解释直装与TestFlight
+  的账号差别，保留正常Apple账号、购买历史和原数据，不用重复购买或放松验签解决弹窗。
+  未完成：原购买在相应账号/安装环境下的实际恢复与后续集中问题验收；本轮未捕获具体是哪一个
+  Apple认证API弹窗，也没有把账号设置确认记为恢复成功。没有新的Owner产品决定，决策日志沿用
+  本日已追加的直装/暂停TestFlight决定。
+
+- Owner进一步明确有线、无线直装都可以，有线方便就用有线。更新交付合同与决策：连接方式
+  按实际可用性选择，集中修复及暂停零碎TestFlight保持。本次已经完成的无线安装不重做。
+
+- 全量保存收尾：a14c7bb74已推送，archive23通过独立GitHub新下载和解密核验507对象/4,208路径；
+  旧1–22不重下。源码扫描29已审核/0未知、全局可读扫描0未知、本地文档链接547项通过。
+  后续账号原因与有线/无线偏好以单独可读回执保存，不覆盖冻结原件，不重跑产品测试或部署。
+
+## 2026-10-08 — 精简事项分类并直装
+
+- 目标：Owner确认本人切回原沙盒账号后，恢复显示家庭版；同时提供事项页截图，要求处理拥挤分类。
+- 尝试：沿用完整阅读记录，定位到事项列表复用表单FlowLayout，两排描边按钮又套了大底板。
+  仅为事项页换成横向单行控件，保留数据逻辑；更新现有UI回归的横向定位，复用合成fixture。
+- 判断变化：改进范围是布局，不需要新分类、筛选服务或新设置；Owner恢复反馈与后台收据核验分开记录。
+- 结果：中文深浅色实际页面检查、末项空列表/返回全部、中文/英文七类与搜索回归均通过，14guards通过。
+  源码35f37e1b2已编译Release，12项签名/配置验证通过，原手机无线连接可用并已原位安装。
+- 未完成：Owner对新分类栏的实际使用反馈及后续集中问题；商户事实、Live/最终发布等门继续独立。
+  本地build11迭代没有上传/分发TestFlight，购买代码与已完成购买测试未重复。
+
+- 直装读回和前台启动均成功；最初CLI参数排列错误已改正并保留记录，没有要求Owner重新登录。
+  源码和archive24在efc22209a已推送，独立GitHub新下载解密验证364对象/3,251路径通过；
+  前23包不重下。源码扫描29项已审核/0未知，全局可读扫描0未知，501项本地链接检查通过。
+  本轮启动的合成fixture已核对标识后停止。另一个无人持有、重复观测稳定的空Git锁已保留副本
+  后恢复，未重置索引或历史。最终回执只更新保存状态，不再次安装、测试或部署。
+
+
+## 2026-10-08 — Dot指南/Web整合与法律域名切换
+
+- 目标：审阅Dot增量、直接修复后合并；Owner进一步明确GoDaddy步骤由Agent执行，取代旧暂缓。
+- 尝试：三有效分支合到最新操作基线，逐项阅读18中英指南，保留分类栏/套餐修正；实际运行原生UI和完整浏览器回归。
+  DNS先保护保存快照和预览，仅改legal CNAME，复用Dot已有Pages部署。
+- 判断变化：原生新搜索框显示正常，但页面AX标识覆盖了输入框，且留白不能聚焦；两项均用局部结构/FocusState修正。
+  审查中误判限制说明缺失造成临时重复，完整差异纠正后删除，未提交/部署重复UI，不算Dot缺陷。
+  一次英文模拟器查询超时不能当通过；重启任务模拟器后仅重跑失败项并成功，最终英文冷暖导航录屏也通过。
+- 结果：最终8cdaf2eaa的CI100三任务、43browser通过，原生8单测/24guards/最终中英3场景各自通过、Release成功。
+  npm告警追加兼容source-map-js和proxy-addr补丁；Web/API/原型审计清零，CDK内嵌既有告警明确保留。
+  PR2合并392f0e81d，tree与已验源码一致，本机fast-forward。法律DNS独立读回34条/其余33不变、TTL600、证书active，
+  七GET/TLS、安全头、根跳转、新旧Privacy正文以及Mac Safari导航通过。
+- 未完成项/边界：新应用Web/API和原生尚未交付到真实运行环境，不冒充已部署；原iPhone Safari和live负面方法矩阵未验证。
+  原购买/恢复结果、价格、真实数据、FanPass、TestFlight暂停和本人商业决定保持。新增原件archive25及远端读回独立收尾，
+  旧1–24不重打包/下载。GoDaddy/Cloudflare/GitHub全程复用已有认证，没有要求重复登录。
+
+
+## 2026-10-09 — October8整合的完整保存收尾
+
+- 目标：完成所有新增工作推Git，避免只合并源码而丢失失败记录、录屏、测试产品和浏览器原件。
+- 尝试：追加archive25，逐项过滤凭据/真实provider备份/私人法律字段，扫描可读镜像，核对Git索引与清单字节。
+- 判断变化：长录屏及多轮原生诊断属于本轮原件，按Owner“所有工作”保留加密；不为了缩小上传省略失败证据。
+- 结果：9,810路径/1,049对象、632,132,864加密字节本地核验通过；758e6dc5f推送后，独立新LFS下载和解密全部通过。
+  两份CI浏览器ZIP均匹配GitHub摘要，可读扫描0未审核项，索引10,845路径无遗漏/字节不一致。
+- 未完成项：已合并应用修正尚未Web/API部署或原iPhone直装；下一步是集中交付与实际界面验收。
+  本轮不重新申请/登录、复跑已完成业务测试或改动TestFlight暂停决定；旧1–24归档不重复处理。
+
+
+## 2026-10-09 — 补齐实际Web部署与Stripe云端回调
+
+- 目标：Owner指出www和Preview仍是旧行为，随后要求查看Gmail Stripe webhook信及Web购买流程。
+- 尝试：实际复现1280导航折叠，按模板最小差异发布三套Web；Preview identity404进一步定位到API38/schema75，先核对PITR和旧迁移指纹，再仅补18迁移并滚动镜像。
+- 判断变化：代码合并不是线上结果。构建的远程CA下载也不可复现，保留原批准108根、原digest/TLS后vendor；最初AMD64辅助脚本错误从未部署，不能归咎Dot。
+- 结果：www31/正式86/Preview86文件匹配，实际响应式中英导航及Preview旧会话的设置/权益/指南修正已见；API40/schema93健康。6219c8296和8b1f91798各自CI三任务通过。
+- Stripe判断：信为TEST500，8事件来自本地fixture账户，旧metadata UUID没有核对本地存在。修正后真实重发未送达数0、8事件验签保留needs_mapping；旧9.99 TEST取消回调实际applied。唯一过期未付订单关闭，历史paid记录/原1事项保留，原账号48小时TEST资格就绪。
+- 未完成项：Preview会话长时间空闲后实际401，Owner本人登录尚未回复；新邮箱/按钮/托管年付云端全流程仍未通过。Live/经营税务/商店门分开，原正式审核期限已过且未延长。原生手机仍35f37e1b2，不重复TestFlight或安装。
+- 收尾：当前合同、产品入口、决策、交接与QA已更新；全部新增合格原件追加archive26，旧1–25保持，远端读回结果另记。没有为文档收尾重跑产品测试。
+
+
+- 保存结果：archive26的422路径/289对象、34,932,485加密字节已在fd17f52ea推Git并独立新下载解密通过。46条扫描命中均为CDK/Git公开内容指纹，逐项核对后仅从可读镜像隐去，原件密文保持、扫描规则不变；全局可读扫描0未知、505文档链接通过。无进程持有且两次稳定的空Git锁保留在.git后恢复操作，未reset索引/历史。收尾只追加回执，无新付款、部署或原生安装。
+
+
+## 2026-10-09 — 原账号的真实云端Stripe TEST闭环
+
+- 目标：Owner完成Preview登录，继续当前年付购买/回调/权益验收，解决只有本地fixture证据的缺口。
+- 尝试：使用原Auth0会话与一笔真实托管TEST Checkout；取消返回、拒付、成功、门户取消/恢复、重复回调、退款/结束均读回服务端与provider。
+- 判断变化：测试按钮原由资格/旧账单状态决定，实际可用后US$88.99与页面USD一致。已结束账期仍用未来时和笼统停售提示会混淆，做3文件局部修正。一次通用CLI路径query未过滤发票的断言失败是Agent探针问题，改用官方list --subscription后精确1张，不当成重复扣款。
+- 结果：实际返回仍登录，Family-v2/5联系人；退款后Free，精确测试订阅终止无续订。独立数据库8事件签名/applied、1订单/1付款尝试，原事项1条。22相关测试、源码35515ef3f的CI37890571237三任务、Preview UPDATE_COMPLETE/86文件哈希/实际中文页面通过。
+- 未完成项：Live还需真实BR及税务评估/登记事实，已发问题；当前付款不代表市场/正式收款。API40/schema93、正式API16、www/正式Web、原生和TestFlight政策保持。AWS原浏览器刷新成功，未因callback渲染错误索要MFA。
+- 收尾：更新当前合同/旧待登录状态/产品路由/交接；没有新产品政策，无需另加决策日志条目。所有新增合格QA/构建/失败探针追加archive27，认证与完整私人provider数据排除，远端验证另记。
+
+
+## 2026-10-09 — 按Owner指示继续Live配置，纠正BR过度前置
+
+- 目标：Owner指出开业后一月登记并明确直接配置；取消先取得BR才开始任何配置的旧门，复用已有Live对象/密钥。
+- 尝试：核对IRD规则、实际Live商户/Tax状态；用独立通知开关和显式未配置税务拆开接入与新购。激活原商品/年价并设默认、核对门户、装入既有保险库/精确权限，再发布生产。
+- 判断变化：Stripe商户当前可收款并无due资料；Tax仍缺head_office，不能伪造已评估。源代码此前把Live通知与开售绑一起，无须为接回调就放开审核身份。第一次类型失败是fixture联合类型，源码扫描只需移动同hash标记行；原始记录保留。CDK查询DNS失败不代表云端部署失败，403是旧审核门，不是认证丢失。
+- 结果：987327d37/CI37894861343三任务、36API/9infra通过；79资源仅预期差异、API17健康、schema93不重迁。真实Live事件evt_1UOXyTCxTlowhyiGh0Vge3ks验签有效/安全ignored，0订单/订阅；回调正常18事件已启用。精确Live价格绑定准备，旧市场/权益/用户数据保持。
+- 未完成项：普通客户开售、新购税务策略与真实付款验收仍独立；BR不再阻断技术配置。iOS/TestFlight/其他Web域和FanPass本轮未动。原件追加archive28，archive27远端已验证，旧包不重打。
+
+
+- Live收尾：新增archive28保存232路径/228对象、297,714加密字节并本机解密核验；archive27已在a738b61a0独立GitHub新下载验证。原件保留类型检查/扫描行号调整/DNS轮询/403判断修正的过程，不把操作探针问题当产品缺陷。当前真实签名及目录绑定完成，税务/开售证据仍按实际状态记录，未新增个人声明或资金交易。
+
+
+- 最终远端保存：archive28在bed2405af新下载并解密核验228对象/232路径通过；521本地Markdown链接通过，可读秘密扫描0未知。一个公开AWS版本UUID仅从可读镜像隐去，原件密文保留。回调后台旧disabled说明已按实际配置改正，AWSPENDING标记已清理、AWSCURRENT/旧版本保留。可选浏览器截图超时/调试断开不影响已取得的API与云端验签证据，没有因此再请求登录。
+
+
+## 2026-10-09 — 当前上线差距复核与登记纠偏
+
+- 目标：回答Owner“现在距离上线还差什么”，以实际交付与付款证据归并剩余工作。
+- 尝试：沿用全文阅读记录，聚焦交接、最新Web/TEST/Live/原生合同和机器发布登记；不重新打开provider或重复验收。
+- 判断变化：发布总表/机器登记仍把Stripe商品、运行密钥、手机安装及购买写成未完成，且商户资料授权落后于Owner决定。这是文档漂移，不能据此重做配置或再索要授权。
+- 结果：同步五组当前工作、各门的最新证据与准确下一步；明确真实TEST和Live非资金通知、Apple签名购买与Owner恢复反馈、同号直装和TestFlight产物的区别。历史正文保留并标明其日期边界。
+- 未完成项：正式市场/税务与真钱验收、原生汇总交付/余下实际权益核验、最终安全/恢复计费复核、App Review和客户身份切换。独立删除按Owner保留，外部邀请仍暂缓；不改价格、真实数据、FanPass或暂停零碎TestFlight决定。
+- 文档选择：本轮无新批准/否决或产品决定，decision-log保持追加原则，不添加虚构决定；只更新发布合同、登记、handoff及此旅程。检查仅覆盖文档/登记一致性，不冒充新产品测试或后台状态读回。
+
+
+## 2026-10-09 — Stripe退款解释与真钱测试门纠正
+
+- 目标：回答真实款项留在Stripe还是退回付款卡，以及退款费用。
+- 尝试：通过Stripe官方docs CLI读取退款、测试、提现文档，并核对香港官方价格页；无账户后台查询或资金操作。
+- 判断变化：真实付款不会自动退款，需显式退款且原处理费不退；更关键的是官方明确禁止真实卡Live测试。前一轮Agent把真钱测试列为必做上线门不当，立即撤回。
+- 结果：生产配置与非资金验证继续，已通过沙盒生命周期沿用；真实客户付款发生后记录实际结果，不要求Owner自付自退。发布合同、机器登记、commerce/Live聚焦规范、decision-log与handoff同步。
+- 未完成项：开售配置、最终原生/发布验收及App Review保持原准确状态；没有声称真实付款或退款通过，也没有新增扣款、退款、取消订阅或提现授权。只做文档一致性检查，不重跑产品测试。
+
+
+## 2026-10-09 — 直装12与付款深查，Owner追加完整双语要求（进行中）
+
+- 目标：先安装集中修正，再重新严格检查钱款状态；Owner要求双语各自完整，移除中英混排和英文优先提示。
+- 尝试：新development12签名核验、原位安装/独立读回与启动，有限恢复原审核访问；运行付款专项并按Stripe官方异步退款失败场景补用例。
+- 判断变化：既有151API/11Web全过不足以覆盖退款先成功后失败；新增红例发现sticky退款override，隔离恢复同样有该缺口。真实Preview还显示历史退款会永久隐藏重新购买。
+- 结果：三处已修源码，共享解析器减少TEST/Live重复，55/31相关检查通过、类型检查通过。手机12已交付；Owner报告无需Restore已显示订阅，后台读回进行中。原三身份/原资格有限续期，API18健康且较17只改变期限。
+- 未完成项：修复CI/云端交付及真实TEST，Apple剩余实际状态和操作，完整双语/法律同意显示、最终集中直装与完整Git追加保存。初始CLI启动参数和测试草稿放置错误保留，不算产品问题；原生44通过/1平台跳过，中文环境英文断言失败另行区分。
+
+## 2026-10-10 — 退款修复已部署，完整单一语言交付继续
+
+- 目标：完成Owner新增的中文/英文各自完整，同时保留正在进行的付款复核和集中直装。
+- 尝试：615bf1322通过CI108并完成两套云端模板更新；只读确认原Apple Sandbox订阅/HKD888签名及自动客户端同步。整理七份双语法律、60节、同意、登录、结账/门户、打印指引与共享预演。
+- 判断变化：单改界面会遗漏外链和provider语言；直接把新locale用于付款重试会改变Stripe幂等载荷。94迁移固定首次请求语言，历史NULL不改；法律站通过URL保留语言且不引入应用存储。旧Auth0自定义外壳实际402，属于套餐限制，不是会话失效。
+- 结果：Web189、法律8、原生53、14法律页面SSR检查通过；API441中439通过，新增两项失败为响应夹具缺失，补齐后相关16项通过。66发布工具、5Auth0工具及Action检查通过；复用已保存的原签名/账号/事项，不重复购买或分发TestFlight。
+- 未完成项：94迁移与新API/客户端/法律/Action成套上线、当前源码浏览器/真机和真实TEST回读、全部Git追加保存。Auth0外壳需受支持的模板修改能力；不擅自付费或切换认证架构。以上各层证据不能互相替代。
+
+## 2026-10-10 — 双语实际交付与异步退款边界完成
+
+- 目标：交付可用的双语手机/Web版本，严查付款退款并完整交接。
+- 尝试：成套发布94/API/三Web/法律/两Auth0同意表单；原位直装13。真实Stripe TEST以5126、7726验证异步失败、部分/全额待处理、成功、取消/恢复及重复回调，独立读取TLS只读数据库。
+- 判断变化：Charge累计退款会提前包含pending，不能当作成功退款；新增6红例修复为共享成功退款库存。并发503需重试而非放宽租约，第三独立订单补齐了第二单未实际应用pending分支的证据缺口。Auth0官方工单入口也没有权限，不把支持请求写成已提交。
+- 结果：最终API21/43同镜像健康、schema94；四Web表面及手机13实际验证。Owner确认已订阅/HKD888/无混排。三个TEST订单各一尝试，退款失败恢复与pending保持/成功撤销均有provider/UI/数据库对应；旧退款重复回调返回duplicate。三条测试订阅结束、原事项保留，代码f7592a3/CI112成功。
+- 未完成项：Auth0桌面旧英文外壳的provider路径与外发授权；正式开售/税务、统一TestFlight/App Review等各自原发布门。Apple本轮未重新购买/退款/Restore，不制造结果；暂缓删除/邀请继续。新增原件归档与远端验真随收尾记录，不复做旧档案。
+- 文档：更新付款、双语、法律和托管同意聚焦合同；Owner本轮条款确认与手机反馈是执行证据，没有新增定价或市场决定，decision-log无须重复追加。早期进行中段落保留为HISTORICAL。
+
+- 完整保存结果：archive29新增2,658路径/1,130对象、61,653,260加密字节，本机及GitHub独立新下载/解密校验通过，归档提交d15cbd59c。40条公开CDK ZIP对象名触发启发式扫描，仅在20份可读镜像隐去，原件不变；源扫描29已审阅/0未知、可读扫描0未知，290个变更文档本地链接和7项现有发布登记测试通过。最终机器状态/远端回执作为捕获后的普通Git元数据保存，不重封旧包。
+
+- 归档提交的CI113完成：source/API/Web-infrastructure三任务成功，447API/55infra通过；随后提交仅收尾回执，不改应用代码或部署产物。
+
+## 2026-10-10 — 免费方案与失败通知澄清
+
+- 目标：回应Owner对Auth0免费优先及Stripe失败邮件的疑问。
+- 尝试：读取两封Gmail原文，按退款编号与本轮官方测试卡用例对齐，再只读查询Stripe退款、Charge、失败事件与端点。
+- 判断变化：最新邮件是刻意测试的异步退款失败，不是实际资金损失；另一封才是已修复的旧HTTP500回调告警。邮件通用的“余额返回/线下补退”措辞不能脱离TEST标题解释。
+- 结果：确认免费优先未变、无Auth0升级；TEST退款与5126/失败原因匹配，失败事件未送达0，端点enabled。补充脱敏回执和现交接，不重做交易/部署/认证，不关闭告警。
+- 未完成项：Auth0旧外壳的免费官方路径；社区草稿仍未获外发授权。无新产品/定价或购买决定，decision-log无需重复追加。类似失败测试可能产生管理邮件，Agent应提前说明。
+
+## 2026-10-10 — 正式上线剩余工作复核
+
+- 目标：回答Owner当前还差什么，剔除已完成的安装、部署、支付测试与申请。
+- 尝试：聚焦读取现交接/发布登记/Live合同和手机13签名回执，执行只读本地产物preflight并读取Stripe Live Tax settings。
+- 判断变化：当前只缺的工作应按五组发布结果归并，不能把十个重叠in_progress登记当十份新工程。Auth0三句外壳文案不应成为其余独立准备的唯一前置。
+- 结果：确认Live税务配置仍缺head_office，原生形状/配置无新问题；保留Web正式开售、Apple余下边界、恢复后财务对账、App Review、客户身份/入口切换五组。Agent选择先收束无需Owner操作的最终恢复财务验收，免费Auth0并行。
+- 未完成项：上述各自真实发布结果，Owner暂缓的特定删除/外部邀请继续保持。未执行新部署、交易、安装或本人认证；Apple后台仅引用上轮核对，不冒称本次再查。无新Owner产品/市场/购买决定，decision-log无需重复追加。
+
+## 2026-10-10 — Stripe Tax暂后与收款能力纠正
+
+- 目标：回应Owner“税务可以先放着、现在不是能收款”的指示。
+- 尝试：通过MCP只读获取Rillora Live账户；按Stripe文档skill更新本机CLI至1.53.1并读取官方Checkout/Tax资料；查看实际adapter的策略和独立自动计税分支。
+- 判断变化：自动计税是可选产品，Tax Settings pending不是支付账户被禁用；此前状态说明混淆了服务配置、应用发布门与真实税务义务。
+- 结果：账户收款/提现/卡能力启用且无待补/逾期资料；将Stripe Tax配置暂后，更新产品/决策/Live/commerce/发布登记和handoff。未改运行配置、创建真实交易、修改税率或虚构评估。
+- 未完成项：Rillora应用自身正式结账配置与其他发布门；税务事实保持真实独立。继续优先无人参与的最终恢复计费验收，不因可选服务配置等待而停下。无新产品回归或部署；文档与provider只读证据单独保存。
+
+## 2026-10-10 — 第3项恢复/权限验收完成
+
+- 目标：完成Owner指定的最终产物、权限与恢复后计费对账，沿用已完成的基础与付款证据。
+- 尝试：实际AWS会话过期后复用浏览器恢复；建立唯一标记的生产快照/私有克隆，读取真实支付平台并进行本地和云端恢复；源服务按既有runbook短暂静止后恢复。
+- 判断变化：实际发现恢复任务缺Stripe配置、备份检查点错误跳过provider、强制RLS下owner上下文缺失，以及缺少金融inventory仍返回成功四个缺口。均先有失败断言/实际受限角色结果，再修正。
+- 结果：580f7e1/c6125d9/cb6fd61及CI119–121成功；最终23项聚焦检查通过。三笔真实TEST支撑的本地恢复各由2条旧有效权益归零，负向/幂等/私人事项保持验证通过；真实RDS克隆重新核对现有Apple Sandbox并保留合法Family。缺失inventory和错误generation在云端实际拒绝，恢复角色对源库/KMS生成/journal写入的拒绝通过。API21/原镜像恢复1/1健康，两健康端点200；克隆及临时快照均absent，原库保持7天备份与保护。
+- 证据边界：完整云端重放属于c6125d9；最终cb6fd61只读前置保护在同一克隆另验，没有第二次停服。Stripe基线由原已付记录重建并实际pg_dump/restore，不伪称原始云端Stripe数据库；没有Live测试交易、提审、客户开放或重新安装手机。
+- 未完成项：第1/2/4/5项及Owner既有暂缓决定保持。第3项当前范围已完成；未来商店产物和身份/客户配置随实际变更验收。新QA和冻结源码进入增量归档30，远端验证单独记录。
+- 过程纠正：本地探针最初对冻结SDK对象使用Proxy导致调用前失败；目录初始化/测试故障注入权限/审计读取scope问题已正确修复，均与四个产品缺陷分开记录。一次健康URL写错得到404，正确两个路径已200。旧QA运行读回被误写后已从无脱敏镜像按原字节恢复，新结果另存本轮QA。
+
+- 第3项最终保存：archive30保留653路径/376对象、595,640加密字节，在99c2537f4从GitHub独立新下载/解密核验全部通过。源扫描29已审阅/0未知，可读扫描0未知；7条公开提交哈希/CDK对象名的启发式命中仅修正可读镜像。一次零字节Git索引锁经确认无进程/持有者后清除；先于提交的远端404未冒称认证失败。
+
+## 2026-10-11 — 多份安全报告的核对、修复与补丁复核
+
+- 目标：按Owner澄清修复Rillora最近审计报告中的问题，保留原报告供多模型比较，不再排查Daybreak工具或重新启动深度扫描。
+- 尝试：锁定647317834并建独立工作树，73条导出映射35组；在实际业务路由、签名数据和数据库／运维边界实施候选，复用专用合成测试库与独立模拟器。
+- 判断变化：报告中若干条是同一根因，另有任意SQL／全进程RCE／同用户文件访问等不同攻击前提，不能与普通请求越权混计。独立候选复核又找出Apple恢复缺令牌、旧购买升级、账户切换吞退出失败及可读协作资料漏受信任扫描4处回归，均补修并增加验证。重复JSON键的双解析假设没有在纯Swift探针复现，未计为漏洞。
+- 结果：最新60项Apple／恢复与45项iOS聚焦通过；此前API489/492、Web191、infra56、发布工具70等检查点保留其准确范围。三项API失败属于显式正式模式草稿被审批拦截；没有隐藏失败或弱化检查。过期预览权限草稿先被拒绝，随后改为只读特定元数据列、只删已过期preview行的RLS方案并通过负例。
+- 未完成项：自动审批要求Owner批准显式live源码模式和精确测试夹具扫描登记；两份具体草稿均已保存，尚未应用／提交／推送。Provider／AASA／IAM／手机／GitHub保护的联动发布独立，真实数据、资金和FanPass未改动。唯一下一步在当前handoff；不恢复旧发布下一步，也不重复已完成的购买和认证。
+
+- 最后检查点：iOS全量287通过／1既有跳过；API全量492/495通过，审核模式测试随后用明确review配置修正，模式专项27/29通过，剩2个合法正式模式控制由上述审批门阻塞。所有失败原件保留。没有把这些数字相加或宣称API最终全绿。
+
+## 2026-10-11 — 两项明确批准后完成源码验收
+
+- 目标：应用Owner刚批准的两个精确草稿，完成剩余验证与Git保存；按新指令保持线上原状。
+- 尝试：校验草稿哈希和每个已批准源码片段；增加显式live及精确生产身份／保护门，更新28条扫描登记，只调整相同字节的移动行号。
+- 判断变化：此前3个全量失败经审核模式夹具修正和获准正式模式实现全部解除；没有删测试或关闭扫描规则。旧等待批准状态现为历史，不能再作为阻塞。
+- 结果：API54文件495项、typecheck/build全部通过；源扫描32命中均匹配、0未知。其余本轮原生／Web／infra等已完成证据沿用，没有重复实际部署、购买或本人认证。
+- 未完成项：本轮合规工作增量归档、Git推送、CI和独立远端核验正在继续；实际HTTPS回调、IAM／broker与原生联动发布保持独立，本轮不执行。
+
+## 2026-10-11 — 审计修复的Git与远端证据闭环
+
+- 目标：保存这轮全部合规源码和新验证证据，完成两项批准后的交接，线上按Owner要求保持原状。
+- 尝试：只封存新增archive31，执行源及可读资料扫描；推送076bd5a后使用现有GitHub连接读取CI，用独立空LFS缓存从远端重新下载并解密核验新档案。
+- 判断变化：本机GitHub CLI的CI查询403是权限范围问题，已有连接和浏览器有效，没有要求重新登录。零字节Git索引锁在确认无持有者、无活跃Git进程及元数据未变化后才移除。此前等待批准／保存进行中状态现为历史。
+- 结果：源码／archive31位于codex/security-findings-20261011；CI124的API、Web／基础设施和源码三任务成功。6,289,927密文字节中的1,389原件／2,430路径全部匹配该提交的远端清单；旧1—30不重下、不重封。最终文档和回执直接保存为捕获后的Git元数据，沿用已通过的源码测试，不伪称重新验收。
+- 未完成项：新95—99迁移、HTTPS回调／AASA、Action、broker／IAM、GitHub保护及新原生候选尚未联动发布；已备实施顺序，当前源码任务完成，待Owner恢复部署任务后执行。第31—35组的信任／隔离及元数据风险继续明确保留，不能写成全部漏洞消除。
+- 文档：聚焦修复记录、product、source-control、当前handoff与协作入口已同步；此前两项明确批准已追加decision-log，Git回执没有新增定价／市场／发布决定，无需再追加虚构批准。真实数据、资金、手机、TestFlight和FanPass均未变。
+
+## 2026-10-11 — 剩余五组安全边界续修
+
+- 目标：Owner要求继续第31—35组，先完成代码和测试，再统一推送GitHub；线上保持原状，取代先前仅分类的范围。
+- 尝试：沿用b6f5b8c97工作树和完整阅读记录，执行一次新的独立边界调查；加入0100—0103、事务授权／强制RLS、独立日志签发、独立删除任务／密封近期身份、owner作用域邮箱HMAC和本机硬件封套。
+- 判断变化：旧SQL本身即可伪造日志mark，前次归因仅完整API RCE不够准确；管理员所有的8个definer也须收束。历史邀请接受重试、过期错误、原会话重新认证与未完成删除任务必须保留明确语义。裸CLI的Data Protection Keychain限制使原型改用Secure Enclave封套，无新增线上权限。自动审批拒绝删除通用秘密脱敏收集后，保留原实现而非绕过保护。
+- 复核：唯一一次新候选审查确认CLI迁移命令漂移和恢复停写遗漏独立删除worker；父代理核对后改为共用固定命令及全源写入服务清单，并补真实调用链与worker单独运行负例。不启动第二次代理复核／深度扫描。
+- 结果：API519/519与类型／构建、infra58/58与类型、发布工具73、维护broker7、凭据7、Auth0工具7、日志broker4、collaboration9通过；Swift当前源码编译及真实硬件合成拒绝路径通过。源扫描32匹配／0未知；原1—99迁移与发布脱敏器逐字节未变。最初失败及修正过程保留，不把旧检查点相加。
+- 未完成项：本轮Git证据封存／推送／CI／远端核验继续收尾。真实云端／本机凭据迁移及未来受控维护切换另行执行；未停线上服务、未碰真实身份或资金、未装手机／发TestFlight。应用签发器、管理员和本人批准的OS使用仍是信任边界。
+
+## 2026-10-11 — 五组续修的统一Git交付完成
+
+- 目标：按Owner要求一次保存这批全部代码、测试与新增证据，结束本轮源码任务，线上不变。
+- 尝试：封存新archive32而不重封前31个；源码32匹配／0未知，可读资料0未知。核对私有目标分支无协作者新提交后推送74a9c66ac，读取GitHub CI125，再用独立空LFS缓存重新下载新档案。
+- 判断变化：一处零字节Git锁先在沙箱无法查询进程，随后通过受审操作确认同用户／无Git进程／无持有者／inode未变才清除。旧浏览器临时标签已关闭，复用同一Chrome会话新开只读GitHub标签，无需重新登录。两者均不是产品缺陷或授权失效。
+- 结果：CI125的source、api、web-and-infrastructure全成功；新345,291加密字节的232原件／249路径与不可变提交的远端清单完全匹配。发布清单覆盖当前可读文件，最终回执直接入Git，不递归重封。源码、测试、Git与线上生效保持不同结论。
+- 未完成项：本轮无剩余代码／测试／Git修复步骤；实际部署、旧凭据迁移和受控升级仍按Owner要求未执行。只有后续明确恢复部署任务才继续切换，不能静默开售或重跑旧购买。规范、决策结果、活动handoff、主检出指针和QA均同步。
+
+## 2026-10-11/12 — 整批安全修复部署准备
+
+- 目标：Owner恢复部署任务，保持既有数据／价格／收费开关，不发TestFlight，并再次明确默认最高授权。
+- 尝试：复用CI125与原阅读链，读取五个实际栈与旧镜像；实际会话过期才续期。跨夜后AWS复用浏览器会话，Auth0也维持原scope；没有因此新增人类权限。恢复既有Colima并从锁文件构建API与三套Web。
+- 判断变化：固定维护broker收紧后仍需要受限的只读数据／权限核验，遂加入精确源哈希白名单；首稿8677字节超过ECS限制，拆成两份而不开放任意脚本。发现Preview运维缺少自身CF输出读取、新worker状态／日志不可观察，按精确资源补只读权限；首次查询失败未启动云任务，不重复认证。旧手机尚未交付新版本，所以HTTPS回调工具补保留旧入口的兼容选项。
+- 结果：实际production与Preview只读任务均退出0，94摘要一致、旧角色安全、未决身份删除0、每库68表指纹保存、内容强制加密。固定脚本8、Auth0工具8、发布工具73、infra59／类型通过，源扫描32匹配／0未知。冻结模板保留所有原数据／密钥资源和收费／审核参数，Preview新前端留到API恢复。
+- 未完成项：兼容补丁CI、Preview后production的受控切换、Auth0／AASA及原生交付联动、具名本机凭据迁移、实际读回与新增Git证据保存。截止此条尚未停服务、部署或迁移，不把准备和只读核验当作部署成功。
+
+## 2026-10-12 — Preview安全切换与执行权限不一致
+
+- 目标：继续已授权的安全部署，保留数据／定价／收费开关；Owner再次明确拒绝逐条审批。
+- 尝试：bfe9baaf5／CI126通过后按固定模板停Preview两类写入服务，执行冻结数据审计、创建可用加密备份，运行95—103迁移、数据和权限核验，再恢复匹配API／worker／Web。Auth0增加兼容HTTPS回调并发布匹配Action。
+- 判断变化：快照带标签创建因缺AddTagsToResource失败，确认资源不存在后用已有无标签创建权限完成；未扩大IAM。CFN对前端上传SourceObjectKeys标记Conditional，仅在核对其余属性不变后增加精确执行例外，未允许数据资源替换。Agent承诺不再审批后又触发弹窗，Owner指出；只读核对发现全局danger-full-access／项目trusted与本轮workspace-write／网络受限不一致，不再以逐条审批掩盖该问题，也不声称已修复Codex权限。
+- 结果：Preview迁移及两个后置探针退出0，103摘要匹配、68表原业务指纹不变、权限负例和合法owner控制通过。恢复栈2026-10-12T08:06:48Z UPDATE_COMPLETE、模板匹配。原Auth0绑定／表单／审核到期保持。没有真实资金、删除、手机、TestFlight或FanPass操作。
+- 未完成项：当前聊天实际权限需在后续轮次重新核对；Preview恢复后HTTP／任务／日志、production及其余三个候选栈、AASA／原生交付、本机具名凭据迁移、当前增量Git保存继续待做。Preview已离开停写模板，不重复已完成步骤；正式环境保持原状。
+
+## 2026-10-12 — 整批安全修复实际交付与原生到期问题修复
+
+- 目标：完成已授权部署，消除重复终端审批，保留数据／价格／收费开关并暂停TestFlight。
+- 尝试：新执行轮次实际FullAccess后完成Preview后置验证、production冻结／备份／迁移／核验／恢复，再发布Web／官网／运维；检查203资源、实际IAM／broker拒绝和Auth0关联，直装14。
+- 判断变化：production原审核期限过期的403不是API崩溃；Owner手机反馈后仅原3身份续48小时，API23和Action一致，Owner随后确认首页／原事项。签名助手的codesign表达式及AWSCLI整包JSON二次读管道在真实安装／调用时失败，分别补正确表达式与受限逐字段管道；真实CLI回环还揭示CRLF规范化，现拒绝原始CR并验证JSON转义保真，不吞掉失败或写明文临时文件。
+- 结果：两库103摘要、各68表原业务指纹匹配；五栈完成，203静态文件匹配，API／worker稳定。手机14及同原生client的新登录／换码有证据，旧协议回调退役；9份指定凭据经本人验证完成加密读回。工具修复042f4e100推送、CI127三任务成功；主检出快速前进、旧交接具名stash和副本保留，未丢历史。
+- 未完成项：当前增量archive33、Git／CI和独立远端解密核验继续收尾。GitHub当前私有方案不强制分支保护是实际平台限制，未付费或迁移组织；正式收费／普通客户／商店发布与剩余Apple验收保持独立。没有新购买／退款、保留账号删除、深度扫描重启或FanPass变更。
+
+## 2026-10-12 — 安全部署与全部新增证据的Git闭环完成
+
+- 目标：完成已授权安全切换的最后保存步骤，避免把本地部署或上传成功当作远端恢复证明。
+- 尝试：只封存archive33，复用旧1—32；扫描可读副本，推送d33e0b31f，按不可变GitHub清单从空LFS缓存新下载并认证解密。
+- 判断变化：79个扫描提示经逐项核对是78个CDK产物哈希文件名及1个源码编号，可读副本省略这些重复值，密文原件及扫描规则未改。CI128另暴露随机合成hex有时不命中启发式规则；复现同类低熵样本后采用固定摘要，保留拒绝断言与失败日志，不靠反复重跑变绿，也不宣称取得当次未记录的随机字节。
+- 结果：665路径／536原件／55,781,041加密字节远端完全匹配；测试修正5adf61570通过73项发布工具、本地源／可读扫描及CI129三任务。两库103、68表×2原业务字段、五栈、203线上文件、手机14首页／原事项、HTTPS回调和9份具名本机凭据结果均分层保留。最终回执只改文档／元数据，主目录沿相同历史同步，不重复部署或封存。
+- 未完成项：本批部署和Git保存无剩余执行步骤。现有GitHub私有方案不强制分支保护，未采购或迁移组织；正式发布清单的剩余原生／Apple验收、普通客户／收费切换和商店最终候选仍分别开放，TestFlight继续暂停。无需重做旧交易、本人验证或删除保留账号。
+
+## 2026-10-12 — 剩余原生／跨端验收的独立部分
+
+- 目标：只补剩余验收，复用已完成的真实交易／核心流程，继续自主工作，不发TestFlight。
+- 尝试：镜像实际停在Mac本人验证，Owner本轮选择暂后；正式Web由Owner登录原Google账号。按真实页面／响应核对当前Free、USD88.99、关闭新购、原事项、中英文与键盘，并沿实际法律链接检查返回。
+- 判断变化：Free响应与旧Sandbox资格截止相符，不能拿旧手机Family截图推断当前一致或实际退款。页面另复现重复关闭提示及法律页返回访客首页两个真问题；后者手动刷新恢复原事项，说明不是会话失效。新增5个隔离浏览器用例先4失败／1通过，修正后全过；最初浏览器运行时缺失属于工具准备，改用已安装Chrome的独立测试上下文。
+- 结果：两处最小前端修正、12相关检查及CI131通过；每个栈只改一个Web资源包，全部参数保留，172线上文件匹配。真实正式账号从法律页直接返回原事项、两语言仅一条关闭提示；修正后的返回无需再次登录／同意，没有新购买／退款、API迁移、原生重建／安装或TestFlight。
+- 未完成项：原机未订阅／VoiceOver／法律返回和有效Apple权益的当次双端对照仍待Owner方便手机操作；保留原Sandbox及实际退款／到期证据边界。新增归档34与Git回执独立收尾，不重封前33个，也不把Web通过记成手机通过。
+
+## 2026-10-12 — 本轮独立验收的Git保存完成
+
+- 目标：保存本轮全部新增工作，保留真机未完成项而不重复已过验证。
+- 尝试：新增archive34，保留失败的运行时准备、真正的红／绿回归、部署材料和最终两套Web产物；源码／可读扫描及7项发布登记检查通过，文档新增链接通过。
+- 判断变化：代码CI131与随后证据／文档提交分别记录；后者不改应用实现，不再触发一次相同的后端全套验收。
+- 结果：5a42e7f8c的37,927,569加密字节从独立空LFS缓存新下载，172对象／262路径与不可变GitHub清单完全匹配；旧1—33未重下。最终回执直接入Git，主目录同历史同步，真实Web会话保留用于后续。
+- 未完成项：仅按Owner本轮安排保留上述真实手机和有效Apple对照；不把Free／过期测试资格、旧手机截图或本地模拟称为本轮通过。
+
+
+## 2026-10-13 — 落实套餐页的单一购买路径
+
+目标：响应Owner再次明确的付费权益、价格、订阅按钮。尝试：先前仅去重提示，仍保留免费状态／折叠块／刷新，Owner指出没有完成。判断变化：本次直接移除这些块和订阅前额外勾选，让明确点击接续当前报价验证与托管结账；已订阅转原渠道管理。结果：13项Node通过，23隔离浏览器场景最终通过（仅2个错误夹具断言修正后重跑），双语五宽度无溢出；两套Web构建通过。AWS实际过期后Owner完成MFA，继续发布准备。未完成项：实际两套Web部署／线上读回／新增Git证据包；原生真实剩余验收仍依Owner先前暂后决定。价格、真实数据、收费开关及暂停TestFlight保持。[本轮合同](../plan-purchase-page-20261013.md)。
+
+October13同轮完成更新：最终源码759c00112／CI133全部通过；先Preview后正式Web仅更新静态包，172文件逐一匹配。CI发现的旧checkbox源码断言被实际渲染／行为覆盖取代；未重建运行代码相同的产物。新archive35本地认证256路径／164对象。正式浏览器当前已退出登录，Owner登录回复未到，真实账号新版UI明确保留为待验，不将隔离截图算作通过。未改真实数据、价格、收费或手机，后续仅保存远端回执。
+
+October13本轮保存闭环：archive提交4ef71b47f5的远端元数据按不可变SHA读取，唯一新归档35下载到空LFS目录，164对象／256路径全部认证通过。最终文档／回执普通提交；先前归档不重下，CI133与两套真实部署不重跑。真实Web账号UI仍待登录，未冒领通过。
+
+
+## 2026-10-13 — 补齐真实账号的新版套餐页回读
+
+目标：Owner完成正式Web登录后，补前轮唯一缺失的真实页面证据。尝试：复用原Chrome会话，从总览进入套餐与权限，读取中文、切换英文并恢复中文；截图采集范围排除私人标题栏。判断变化：已从“静态交付／隔离页面通过，真实UI待登录”推进到正式原账号双语UI通过。结果：原1事项仍在；三权益、USD88.99年价、唯一订阅按钮，旧免费状态／折叠块／复选框均为0；按钮禁用和暂未开放说明符合保留的收费设置。回执及实际图片普通入Git，不生成新归档、不重复CI／构建／部署／交易。未完成项：原先暂后的手机未订阅、VoiceOver、原生法律往返及当前有效Apple跨端对照，未替Owner冒领通过。[当前合同](../plan-purchase-page-20261013.md)。
+
+
+## 2026-10-13 — 区分Stripe已接通和Rillora尚未开售
+
+目标：回答Owner为何Stripe已配置而订阅按钮仍关闭。尝试：读取当前合同／应用守卫、AWS实际API23配置和Stripe真实账户／商品／价格；插件及本机CLI认证不可用后复用现有运行时受限连接，密钥只在内存。判断变化：目前商户确实可收款／提现，问题是应用保留review、正式Checkout false、tax.mode not_configured；不能把Stripe Tax可选服务pending再次当作Stripe收款失败。结果：明确剩余live部署入口、销售／价格／权益联动与真实非自动计税配置，官方Checkout参数佐证automatic_tax可选。未完成项：实际应用开售交付及原先暂后的真机工作；未改代码、配置、数据、价格或税务声明，未造Live交易，不把状态询问当立即开售。安全原件和核对说明普通入Git，已有测试／部署／归档不重复。[证据](../../collaboration/verification/billing-opening-status-20261013/README.md)。
+
+
+## 2026-10-13 — 按Owner决定取消计税策略的开售前置
+
+目标：Owner明确忽略计税策略后，继续正式Web订阅收尾。尝试：加入显式不自动计税及独立live／Checkout IaC配置，新增限定目录启用／关闭新购命令与指纹前置，补独立数据库及broker测试；实际Auth0管理过期后沿原权限完成续期。判断变化：不再把Tax设置、登记或虚构评估作为本次阻塞，但保留缺省失败关闭和既有商户／金额／订单／验签校验；原生条款Action需保留证明功能。结果：候选局部检查通过，仍未改生产。未完成项：精确差异／CI、兼容发布、实际目录和账号入口切换、无资金交易的正式验收与Git收尾。USD88.99、真实数据、FanPass和TestFlight暂停保持。[本轮合同](../web-billing-activation-20261013.md)。
+
+## 2026-10-13 — 部署计费能力并纠正身份切换顺序
+
+目标：按Owner忽略计税策略的决定完成Web收费准备。尝试：兼容发布后切API25live，设置显式disabled计税，指纹约束启用目录／权益，交付正式客户端／官网并核对117个文件；CI137暴露的旧指南跳转修复后，CI138／139通过。判断变化：最后检查发现旧Preview两个租户管理授权仍可签发，不能把支付就绪直接当成普通客户开售，先恢复原三人Action并close-new-sales。结果：4旧客户端停发、2M2M实际403，当前寿命86400秒已读回，保留300秒容差；原用户／订单／价格／权益保持。未完成项：香港October14 04:21后负向复核及最后开放；官网受限文案和本轮完整Git保存收尾单独读回。没有新金融交易、原生安装或TestFlight。此前无成功事件的日志查询不冒充完整零用户／旧token已失效证明。
+
+October13同轮前端收尾：真实官网先暴露“预览版连接测试应用”的错误沿用，已改为把production目的地与customerAccess=review分开；不能因为暂未开售就把真实生产叫测试应用。f87ac62c9／CI141三任务通过，两栈各只换静态包、117线上文件匹配，实际中英文价格／登录入口／帮助限制说明通过并恢复中文。时间守卫已验证能在任何provider调用前拒绝过早恢复Action；无新付款或同意。当前仅余旧令牌窗口及新增Git证据保存。
+
+October13本轮Git保存完成：新增archive36的36,394,455密文字节已从e29d417b6独立下载到空LFS目录，486对象／540路径全部认证；旧1—35未重下。最终回执／元数据普通提交，不再封存相同内容或触发同一产品回归。空Git锁复发经精确无进程／空文件／过期检查后清理，未宣称找到全部根因。最终唯一下一步仍是香港October14 04:21之后的身份负向核对与正式新购开启，计税策略不再阻塞。
+
+## 2026-10-13 — 从单项Web切换推进到整体收尾
+
+目标：Owner要求所有工作达到正式上线准备状态。尝试：复核当前权威与发布登记，恢复实际AWS／Apple会话、读取已有配对设备并核对原生归档；没有因缓存断开或回调错误重复索取本人登录。判断变化：现有Web准备不能覆盖Apple正式后台，live与审核context的配置冲突需要按既有独立环境合同补齐。结果：建立本轮聚焦合同、保留准确身份时间门与所有已过证据，进入Apple／原生／商店共同收尾。未完成项：候选实现／反向测试、实际Apple配置、商店导出／剩余设备与材料，以及时间到后的Web最后开放；未发TestFlight或造真实交易。
+
+October13同轮候选：补独立Apple正式保险库与到期审核配置，精确身份守卫只作用审核购买。15项IaC、5项隔离目录和10项broker检查通过；目录不修改市场／Web／历史付款。Owner解锁镜像后接回，原Google登录进入真实条款页，未代造接受。商店原价119.99／888已读回；原14商店签名复用成功，无新编译／安装／TestFlight。候选推送／CI与实际部署继续独立记账。
+
+October13下午续接：de5d7838b／CI142与383669b75／CI143通过，先准备保险库／目录，再启用独立Apple配置，两份实际云端模板均匹配；未迁移数据库或动Web开售。14已上传并处理，手动草稿由9切到14，未分发；中文年付和群组资料保存。正式通知地址补齐，Sandbox官方TEST成功，Production请求401仍未解决。原审核账号缺的是首次应用资料，登记失败完整回滚；已定位并补限定预置，保留真实条款与未验证邮箱事实，不用假接受记录满足验收。后续仍需该修正CI／交付、实际provider调查、中文商店图／材料及待Owner条款后的手机检查。
+
+
+## 2026-10-13 — Consolidated store, native and Apple readiness
+
+- 目标：利用既有身份令牌等待窗口完成正式上线准备，复用原生14与旧金融证明，保持数据、价格、单续费渠道和TestFlight暂停。
+- 尝试：分阶段部署Apple正式保险库／独立审核context和白名单内审核资料；Sandbox官方TEST成功，Production相同JWT却401。按实测事实补独立Apple新购关闭命令，避免后续Web市场开放顺带开放Apple；兼容云端差异、固定维护命令与CI分别验证。
+- 判断变化：原生无会话必须走真实同意；Owner本次确认后完成手机14原Google登录。新审核账号此前没有应用资料，只预建空资料和有限登记，未造登录／同意。商店版权对话框的完成不等于总页保存，实际提交前校验暴露这一点，随后补持久保存。
+- 结果：eb2b3c4d2／CI145通过，Apple独立运行及四项Production告警部署；两个Apple新购路由关闭，其余目录／Web／市场不变，云健康通过。当前手机家庭测试版／HKD888与同账号Web的Apple测试订阅对应，无新支付／退款／恢复。构建14复用归档上传、选入手动草稿；Owner确认的13类隐私答复发布，审核联系方式及专用凭据按明确授权保存。中文4图、英文6图及当前原生截图分别保留来源与实际上传；数字与实体购买证据没有混淆。
+- 未完成：Production401、原有Auth0Free模板402、剩余未订阅／VoiceOver／原生法律往返和专用审核身份实际登录；镜像后续退出，未冒领完成。普通Web开售仍等香港October14 04:21并做原拒绝复核。当前仍未TestFlight分发、App Review送审／通过或手动发布；新增归档与Git回执待本轮最后收尾。
+
+## 2026-10-13 — 官方支持收件与提交预检纠正
+
+- 目标：按Owner“两份都发送”处理Auth0免费模板402与Apple正式API401，同时保存本轮完整工作。
+- 尝试：复用两服务会话；Auth0新社区账号另外需要条款，Owner确认后注册并发送原无敏感稿；Apple使用私密API／密钥技术表。
+- 判断变化：Auth0“发帖”只得到管理员待批准，不能编造公开链接或官方解决结论。Apple草稿补齐群组后，操作序列实际把三项送审，早于最后验收；立即说明并撤回，未把实际提交藏成草稿保存。具体触发原因未确认。
+- 结果：Apple案例102995248851已收件；Auth0一篇待管理员批准。Apple重载显示提交已移除、版本被开发者拒绝，这是主动撤回而非Apple驳回。双语10张材料原图摘要／尺寸／可编辑源核验通过，本地合成素材服务已停止。
+- 未完成项：审核账号实际登录及剩余设备检查后再重提；Apple401／Auth0402等待官方答复；Web仍等既有香港October14 04:21身份窗口。本次没有新资金交易、数据删除、原生重建或TestFlight分发。新增Git归档和远端回读继续。
+
+同日收尾：重新打开镜像实际要求Mac本人验证，Owner回复“现在先完成其他收尾”，因此真机余项保持暂后。专用审核字段、14和手动发布经撤回后再读确认保留；不重复填表或触发新提交。新增archive37完成568路径／530对象本地认证，cba5b92bb已推送；后续远端认证与最终元数据另记。
+
+同日保存闭环：cba5b92bb的CI146三个任务全过；从空LFS目录新下载唯一archive37，37,831,161字节及530对象／568路径全部认证，旧归档不重下。527文档链接中134历史output路径经既有目录解析；没有把未展开旧原件误写为本轮断链。空Git锁再次出现，精确检查零字节／超过60秒／无句柄／无Git进程及inode未变后清理，未宣称找到根因。最终回执／文档普通入Git，不递归封存或重复运行代码测试。唯一下一步恢复为香港October14 04:21后的Web身份拒绝复核及最后开放；Owner本轮暂后真机、两个官方回复和审核账号验收独立保留。
+
+Owner随后恢复镜像：最新“镜像已经解锁了”取代暂后。窗口完整画面与既有开发连接启动原App成功，原账号仍在；但点按／滚动／拖动／键盘操作没有实际页面变化，Mac菜单指令可生效。有限的居中／缩放／重绑未解决，未假定登录过期、安装新包或声称Rillora法律路径失败。当前请求Owner直接操作两条法律链接并返回，等待实际结果；VoiceOver及未订阅／审核账号余项仍保留。此新进展以普通Git补充回执保存，不重封archive37。
+
+## 2026-10-13 — 法律页首屏删去重复设置说明
+
+- 目标：Owner确认原生两条法律入口都能打开，要求处理隐私页顶部影响阅读的两块说明。
+- 尝试：实际390×844首屏显示外观／语言更新使政策标题下移到约973px；先做文末折叠候选并验证，尚未发布。
+- 判断变化：Owner进一步明确没有必要独立展示就删除。既有www法律信息页已含实际偏好存储说明；最终改为只删法律壳层的重复插入点，撤掉新CSS及折叠，不改接受正文／版本。
+- 结果：最终191项Web与8项法律产物检查通过，18资源包就绪；候选中文／英文政策正文与当前线上一致，无新购买／登录或原生重建。公开服务的实时发布及Git增量保存继续。
+- 未完成项：只剩本次法律站发布和精确资源／浏览器回读、Git保存；其他原生／Apple／时间门沿既有合同，不因为入口打开就冒领返回／VoiceOver已通过。
+
+同轮交付：最终源码78f262a3a／CI148三个任务成功，Cloudflare生产e2d5857d与canonical/latest/源码匹配；50HTTPS、18资源摘要、正式390×844／1440×900和双语正文对比通过，两个说明块及替代折叠均为0。只发布法律静态站，沿用正式法律内容，不触发新同意。新增archive38本地认证64路径／62对象，未发布候选及最终结果都保留，旧1—37不动；远端独立回读与最后文档收尾继续。
+
+同轮Git闭环：6c073f70b的不可变元数据及空LFS缓存新下载认证全部62对象／64路径，只有新archive38被下载。367文档链接通过，可读扫描无未知命中。最终回执与交接普通入Git，保持实际已部署源码78f262a3a与CI148的证据边界，不再部署同一文件或生成另一个原生版本。
+
+## 2026-10-13 — Auth0稳定性与Apple发布顺序纠正
+
+- 目标：解释当前Auth0登录页未完成项，降低后续配置返工，查明Apple401应由谁处理并按Owner意图结束已得到解释的工单。
+- 尝试：检查既有JWT控制对照、Apple员工答复、Auth0员工支持路径及真实中文页面；实际Apple会话要求密码后仅由Owner恢复一次。
+- 判断变化：Apple正式API在正式发布前不开放，故不能要求提审前先成功。Auth0的实际问题是被Free限制的旧页面外壳和语言混排，公开帖子收件不代表支持已处理；旧配置工具还可能只更新一半。
+- 结果：修复配置工具在模板不可读时继续写主题的风险，7项测试及8种失败组合通过。正式页面未改。Apple原案例收到附官方来源的关闭请求，尚未显示Closed。更新发布顺序，保留独立Sandbox审核与发布后Production开售检查。
+- 未完成项：Auth0标准外壳恢复、剩余原生／专用审核账号验收、App审核／手动发布后实际Production核验，以及原Web身份窗口。价格／真实数据／收费开关和FanPass保持，未部署或发TestFlight。可读结果及工具补丁一起保存Git，不重封旧归档。
+
+October14保存闭环：86fc7cf5e已推送并从GitHub独立读回，CI151三个任务成功；原项目目录仅快进，旧分支及stash保留。677链接通过，144历史路径由既有归档目录解析；首轮目录解析遗漏保留在失败回执中。源码32已审查／0未知、可读资料扫描通过。Git空锁再次出现，核对零字节、同Owner、超过60秒、无句柄／Git进程与相同inode后才清理；不声称修复其产生原因。最后回执直接入Git，无线上重新部署或原生／付款重测。
+
+## 2026-10-15 — 审核账号验收与Web正式开放
+
+- 目标：按Owner要求再次严格复核Apple资料，暂缓Auth0外壳，完成其余上线工作。
+- 尝试：沿用全量阅读与旧支付证据，逐项读取Apple图文／协议／隐私／地区／价格。受保护密码实际读取后，浏览器认证成功；模拟器文本丢字和窗口截断造成误判，改系统按键及完整窗口定位后原生成功。
+- 判断变化：Apple遮蔽字段不能当密码；本地模拟器1.0(1)不是上传14。旧身份等待已经结束，实测4客户端仍停发、2M2M仍403，故不再等待过时日期。原机网络同意失败在同次重试后成功，不把一次网络错误写成页面已修复。
+- 结果：专用账号Web建1条无个人数据示例、iOS修改、Web重载读回；年付双语权益和审核说明保存。40c76496f／CI153通过，两Web栈只替换静态包且117资源一致；原Web目录新购开放、USD88.99与关闭自动计税保持，Apple两条新购继续关闭。原机仍为原账号／事项，Owner确认法律往返。
+- 未完成项：Owner最新取消余下真机验证，停止继续操作，不伪称未订阅真机或VoiceOver已通过。Apple三项送审与Git新增封存／远端核验继续；不重做旧归档、交易、API或数据库部署，不分发TestFlight。
+
+同轮送审：Apple校验先指出年订阅需要所属群组，补齐既有群组后检查三项列表，再明确点击提交。香港October15 09:49收到6537a10c-38f2-425e-8b8e-c76e5fa730b1；详情中App14／年订阅／群组三项均等待审核。没有把草稿或处理中当作收件，没有加入月订阅或切自动发布。新的Git封存／远端核验继续，不再进行真机操作。
+
+同轮Git闭环：archive39保存316路径／276对象／23,202,691密文字节；3113de7a7已推送，CI154三任务成功，从独立空LFS缓存重新下载该唯一归档并全部认证，旧1—38不重下。706个变更文档链接路径通过，146历史路径由目录解析；初始遗漏历史目录链接的失败记录保留。来源32条既有已审查常量／0未知，可读资料0未知。空Git锁再次出现，仅在同Owner、0字节、超过60秒、无句柄／Git进程且inode未变时清理，未宣称根因已解决。最终回执普通Git保存，后续只待Apple实际审核结果。
+
+## 2026-10-15 — 审核期间转向跨平台 AI 下一版本
+
+- 目标：按 Owner 要求继续新功能工作，使 Rillora 更容易被各家 AI 发现、推荐和调用，新版本不打断当前 Apple 审核。
+- 尝试：完整阅读原 AI/MCP 提案，复用权威阅读链；OpenAI Docs MCP 遇到403后改读官方公开页面，并核对 Google、Claude、Perplexity、Microsoft、Grok 和开放 MCP 生态。对官网做四次公开匿名 HTTP 检查及源码对照。
+- 判断变化：仅做 MCP 不能解决陌生用户的推荐发现，目录上架也不等于默认安装。官网现有原始 HTML 为空壳、发现文件404，是比先做复杂插件 UI 更直接的改进入口；这不等于所有爬虫无法读 JS 或已经证明无索引。
+- 结果：建立[跨平台方案](../architecture/ai-discovery-vnext-20261015.md)、阶段验收和14组双语评估种子，在独立下一版分支保存。保持 App14、真实数据／定价／收费状态；未部署新功能或创建第三方授权。
+- 未完成项：D0 公开官网候选、最小 MCP 契约／实现、各平台真实验收及目录／增长证据。Apple 审核保持外部等待，取消的真机验收及暂缓的 Auth0 外壳不重启。
+
+
+## 2026-10-16 — 官网发现与只读AI下一版候选
+
+- 目标：落实Owner批准的顺序，先改官网GEO／SEO，再做MCP和多平台接入，保持当前审核与真实服务原状，保存全部新工作到GitHub。
+- 尝试：补20页双语静态正文、元数据、发现文件和两篇文章；沿用签名数据库/RLS建立独立OAuth的选定事项授权；采用官方SDK实现两个只读工具及五种客户端配置生成，使用本地合成账号验证。
+- 判断变化：React流式标记需要内联执行且被既有CSP拒绝，改静态渲染和预加载，不放宽CSP；普通编辑不应使选择授权失效，改固定事项／字段7天有效，但不披露／归档永久移除。全量回归发现恢复日志包装漏授独立删除worker权限，用0105精确补齐；法律测试需要先构建法律产物，不能拿普通Web构建当夹具。
+- 结果：API560、Web194、法律8、公开聚焦20、infra66、broker5和配置生成2通过；公开浏览器7＋导航2、AI授权EN／ZH2通过。官网54文件／20页上传指纹通过；选择／替换／撤销和恢复后失效有本地证据。截图检查后补英文数量表达和禁用按钮外观。
+- 未完成项：Git当前交付与新原件封存／远端核验继续；实际候选部署、独立Auth0回调与至少两家真实客户端、目录提交和索引／推荐实测仍单独进行。当前在审App14、生产数据／价格／收费状态不改，没有真实交易、手机验证或TestFlight。 [完整实施记录](../architecture/ai-discovery-implementation-20261015.md)。
+
+同轮保存：新增archive40保存1,057路径／507对象／8,802,787密文字节，本地完整解密认证通过。最终默认关闭构建不输出AI组件，非Vite账户渲染也通过；原始失败尝试保留。CLI可读写Git但读取Actions返回403，两个浏览器尝试均为连接关闭；未误报登录失效或要求Owner扩大权限，远端CI结果与本地测试分开记录。
+
+同轮远端闭环：15770aa4d已推送；三份关键源码逐字节匹配，archive40在独立空LFS目录新下载并认证全部507对象／1,057路径。GitHub Actions和GraphQL checks均因既有令牌权限拒绝，IAB／Chrome为连接关闭，故远端CI仍未验证，不虚报通过、不重登。最后回执普通Git补交，无源码、云端或审核变更。
+
+
+## 2026-10-16 — 补齐远端CI与实际客户端兼容
+
+- 目标：继续补齐上一批验收，保留当前审核。Owner另要求重新拉起AWS和Auth0登录。
+- 尝试：恢复可用的GitHub连接器，核对两次CI与各任务；只读检查管理会话并恢复AWS。取得官方插件schema，调用本机Codex真实解析器，再以实际Codex／Gemini CLI连接本地Rillora服务。
+- 判断变化：CI158／159都成功，旧读取阻塞关闭。通用schema与新版OAuth扩展文档不一致，且当前Codex会实际丢掉服务，不能只把“manifest解析成功”当接入成功；采用单独兼容包并确认一个服务被识别。Gemini信任检查正确阻止未信任目录，改为独立profile只登记受控fixture；其Connected输出在stderr，修正验收脚本误判并沿用已成功的连接。
+- 结果：兼容包生成检查通过，真实Codex解析一服务；Codex发现两只读工具、Gemini连接成功。没有模型调用／真实用户数据，测试账号／角色／临时profile清理。AWS已恢复且只读核对原账户；无部署。
+- 未完成项：Auth0首次设备流网络变化被拒绝，后续流正常到邮箱登录但等待时到期；收尾重新打开有效页面，需本人完成。真实OAuth、实际对话工具调用、目录及新版本发布仍独立。新的代码／证据继续推Git，不重封旧归档或重跑旧560检查。
+
+同轮收尾：436af7a07／CI160成功；archive41保存87路径／66对象／113,628密文字节，独立GitHub新下载认证全部通过。新的Auth0设备流已到原邮箱页并置前，界面明确安全挑战加载失败300030；留下本人刷新／验证步骤，不冒称登录完成或绕过挑战。AWS已恢复，不要求再登；当前云端与App审核继续保持。
+
+October16本人验证续接：Owner要求检查是否成功、否则再次打开。只读管理API仍报告过期，旧浏览器密码步骤显示Auth0通用错误；新设备流已到Chrome原邮箱Welcome页并选中。Owner开始操作浏览器后停止继续控制并保留页面，等待真正的API成功回读；无配置变更、测试重跑或部署。证据在当轮QA的auth0-owner-reopen.json。
+
+October16Auth0恢复：Owner确认“可以了”后，实际租户设置、应用列表和API列表三个GET均成功。resource参数兼容本已启用，CIMD未启用，发现未声明iss响应支持；没有MCP专用资源／客户端。继续专用OAuth准备，不改现有租户总开关或重复登录。
+
+
+## 2026-10-16 — 真实OAuth准备与第三方连接边界
+
+- 目标：复用Owner已恢复的AWS／Auth0登录，补独立真实OAuth验收，不改变当前审核服务。
+- 尝试：读取现有resource兼容／配额；创建临时公共第三方客户端和独立API；本机合成加密库、真实MCP与Codex授权请求，登记实际完整回调。
+- 判断变化：Auth0拒绝第三方应用绑定普通连接，官方要求域级连接和显式用户API grant。保留原三条正式连接，转为独立合成连接；创建又被CLI缺少create:connections明确阻止，不能误报登录失败或通过。
+- 结果：S256、精确resource／两scope／无secret、准确回调已实际读回；旧应用／API／连接绑定／租户设置保持。没有交换token、真实事项读取或模型调用；本机规划者／临时角色清零并停服务。最新既有CI161成功。
+- 未完成项：只增create／delete connections的管理授权页面已打开；工具点按未推进，等待Owner当场操作。临时新客户端／API保留但不可实际授权，独立连接／用户仍未创建。随后继续真实OAuth／读取／撤销和第二家客户端；本轮材料保存到Git，旧测试／部署／档案不重复。
+
+同轮保存：08ef68cf4已推到下一版分支，32变更文件的远端Git对象指纹一致。18份无凭据文本原件直接保存，另附后续扫描／链接／远端回执；认证材料及上游schema缓存排除，旧archive1—41不动。源码扫描32条原登记／0未知，新增可读材料扫描与618本地链接检查通过。CI162当次回读仍运行，原CI161成功不冒充本次CI；追加Auth0连接权限仍待本人完成。
+
+October16再次打开授权：Owner要求重开；旧追加流程已退出并报Invalid network change。已新建相同create／delete connections设备流，在Chrome打开并保留Device Confirmation页面；Owner接管浏览器后停止输入。当前未取得追加授权成功结果，没有重复测试、部署或创建资源。此次只更新操作交接与QA，不新增产品决定。
+
+
+## 2026-10-16 — 两家真实OAuth及撤销完成
+
+- 目标：接续Owner已完成的追加授权，补真实身份提供方与客户端证据，保持当前审核／生产原状。
+- 尝试：创建独立合成域级连接与账号，顺序注册Codex和Gemini公共第三方client及两scope用户grant；本机真实MCP服务校验Auth0签名，协议驱动读取并撤销。
+- 判断变化：Codex显式oauth-resource与发现重复导致Auth0拒绝，去掉重复配置后真实请求／授权成功。Gemini驱动先走401挑战再fallback才匹配其真实实现；此为驱动修正。单独删除grant失败后删除自己创建的client，实际确认grant级联清除，不扩管理权限。
+- 结果：Codex实际OAuth工具发现、Gemini原版OAuth函数＋实际CLI Connected；两者只读选定事项且备注／未选项不出，撤销后同一未过期token拒绝。无模型请求。全部临时Auth0／本机资源清理，原9应用／3API／3连接及完整租户设置一致。生成器2项检查通过。
+- 未完成项：公网HTTPS候选、托管Web选择闭环、模型选工具与消费端／目录。旧CI163应用任务通过但证据manifest漏同步，本轮补清单及发布校验；AWS只读请求实际过期，原管理会话需恢复。源代码与当轮原件继续推Git，不重复旧验证或TestFlight。
+
+同轮AWS接续：原CLI会话实际过期后，复用仍有效的rillora-operator控制台会话，经受保护命名管道把一次性code交回发起CLI；旧剪贴板为空，已恢复为空。CLI退出0、原部署账户STS成功，无需再次要求OwnerMFA，没有云端部署。
+
+同轮保存与官网准备：archive42新增44路径／38对象／119,709密文字节，本地认证通过，旧原件不重复。完整可读清单12,513文件及0未知扫描通过，621链接通过。独立官网CDK合成复用既有54文件候选、账户及证书，只改变静态上传和公开路由函数；尚未执行云端更新，先完成源码CI。
+
+## 2026-10-16 — 官网实际交付与两家搜索站长平台
+
+- 目标：按Owner顺序先完成官网GEO／SEO，再续隔离MCP，同时不打断App14审核或改变正式数据／收费。
+- 尝试：复用54文件产物及CI165，以两阶段更新独立www栈；核对S3／HTTP／函数／模板／浏览器，随后使用原Google登录、原GoDaddy CLI做两家最小DNS所有权验证。
+- 判断变化：已承担部署角色的profile无法再次承担文件发布角色，改用原operator分别承担既有角色，没有扩IAM。Google成功提交不等于常规报告已读取：实际即时提取成功，但报告仍失败。Bing旧回调失败后同范围新流程成功，验证后提供方React错误导致空白，重新加载原后台后恢复；不改用户浏览器或虚构根因。
+- 结果：51阶段文件／53公开HTTP对象／2根对象／20语言页面及真实浏览器通过；两条DNS新增，34→35→36，所有旧记录及四路解析确认。Google与Bing所有权和各一次地图提交均完成；Google即时提取成功，Bing地图Processing。无GSC数据导入、DNS账号委托、广告或Clarity。
+- 未完成项：常规抓取／索引／AI实际提及、公网HTTPS MCP及Web选择授权闭环、消费端／目录／模型选工具。将新原件、精简交接与远端回执一并推Git；旧OAuth／测试／部署／归档不重复。
+
+同轮保存：f91a4ba61已推送，CI166三任务成功；新增archive43保存226路径／118对象／1,646,127密文字节，本地及独立GitHub新下载认证通过。660个当前修改文档链接及12,569项当时可读文件扫描通过，晚到回执直接补交并刷新清单，不重复原归档或部署。
+
+同轮托管前置：原Auth0管理API再次成功并实际进入Dashboard；9普通应用，对照Free10应用实体上限，独立Web与AI至少需要2个名额。未删除Default App、未重用4个停发旧客户端、未升级套餐；转为核对独立开发租户。Quota／Create Tenant入口进入单独Auth0 Teams登录，安全验证组件未完成，已交Owner处理并保留页。没有新租户、候选运行服务、模型调用或生产变更，后续由当前handoff继续。
+
+同轮晚到结果：96743dd36远端11对象匹配、CI167成功。Bing重新加载后地图Success、发现20网址、0错误／警告；Google刷新仍无法抓取／0已发现。新增截图／回执普通Git保存，不改旧归档。Owner要求重开Auth0验证，原Teams标签已不在；新Dashboard入口实际停在原邮箱密码页并保留，CLI仍有效，未创建租户或更改套餐。
+
+## 2026-10-16 — Teams恢复与临时HTTPS验收准备
+
+- 目标：接续Owner已完成登录，解决独立Web／MCP验收的免费容量安排。
+- 尝试：实际进入Dashboard及Teams；Teams跳转短暂连接中断，重载复用会话后恢复。只读核对Free/$0和租户上限、Default App回调／grant／连接／日志与活动源码引用。
+- 判断变化：不能新建第二免费租户；不付费、不删旧应用。准备将无当前接入引用的Default App可逆用于合成Web，AI仍独立登记，先写还原脚本再做变更。
+- 结果：41相关回归及类型检查通过，HTTPS预览Cookie现在同样带Secure；官方cloudflared已安装，未装后台服务。CI168实际成功，原已过结果保留。
+- 未完成项：隔离运行器／临时HTTPS／实际OAuth登记、Web选择及撤销、清理和Git保存；当前Default App及正式提供方配置未变。
+
+同轮HTTPS首次启动：87文件前端与临时提供方配置就绪后，MCP checkReady被基础NOINHERIT角色拒绝。已改用既有受控auth事务，19项回归／类型通过，权限未扩大。驱动的finally掩盖异常也已纠正。全部新提供方资源、0本机规划者和临时角色已清理，隧道已关；Default App仅保留显式client_secret_post这一已说明的旧空值规范化，其他字段／绑定／应用／租户设置恢复匹配。继续从明确基线重试HTTPS验收，旧成功项不重跑。
+
+## 2026-10-16 — 公网HTTPS选择、读取与撤销闭环
+
+- 目标：补真实Web界面选择到公网MCP的剩余证据，保留当前审核和正式服务。
+- 尝试：使用免费现有租户、临时默认Web／独立第三方client、独立合成连接／数据库和短时HTTPS；先验证匿名拒绝，再按Owner当场确认登录、选1项、真实Codex OAuth和两个工具调用。
+- 判断变化：真实浏览器发现Secure和Cookie前缀必须一致，否则CSRF拒绝保存；修正后42 API／27 Web及类型检查通过。临时服务的robots被Cloudflare加前缀，记录其事实，不把原件逐字相等或爬虫全拒绝当作通过条件；noindex及认证边界分别核验。
+- 结果：11公网检查、Web授权保存、Codex两工具发现与选定读取通过；撤销后同一令牌尚余819秒仍立即拒绝。Web退出后会话0，清理后规划者／临时role0、三端口关闭、隧道进程不存在，新增提供方资源删除，原应用／绑定／设置匹配既定基线。Default App原空值规范化显式保留；无密钥轮换，未比较密钥字节。
+- 未完成项：长期身份容量／隔离托管、模型实际选工具、消费端和目录、索引／推荐效果。本轮源码及新成功／失败原件保存到Git，旧矩阵／部署／归档不重做；App14、生产数据／定价／收费、FanPass和TestFlight保持。
+
+同轮保存完成：源码／archive44提交7902622f2已推送，CI169的API、source、Web-infrastructure三任务成功。新增344路径／174对象／4,375,200密文字节在独立空LFS目录从GitHub取回并认证通过；原件与失败证据均保留，旧1—43不重做。最终收尾仅补普通Git回执和当前交接，不改运行源码或部署。
+
+## 2026-10-17 — 免费长期候选托管准备
+
+- 目标：继续长期隔离托管和新AI入口，不重做旧验收，不打断App14。
+- 尝试：核对Neon／Cloudflare Free、Auth0容量和各平台官方方式；创建空Neon候选及operator-only探针，再通过Cloudflare验证外部路径。
+- 判断变化：免费参数不能显式覆盖固定休眠／CPU限制；保留默认值后成功创建。Neon实际自动休眠，但函数公网仍为平台前置403，部署Completed不能算服务可用。Cloudflare官方独立OAuth服务提供了减少Auth0应用数量的可行架构，仍需实现和验证。
+- 结果：独立资源与配额就绪，Cloudflare匿名401及probe3项检查通过；未迁移数据、未改变生产或Auth0配置。
+- 未完成项：Cloudflare运行器／独立OAuth、Neon受限角色接线、其他AI真实验收及新Git保存。具体资源和阻塞见当前handoff，不恢复旧登录／测试门。
+
+## 2026-10-17 — 免费长期候选与两端真实OAuth闭环
+
+- 目标：继续长期托管与更多AI客户端，不重复旧验证、不影响审核并保存到GitHub。
+- 尝试：创建Neon Free隔离空库，核对休眠；Functions入口403未进入应用，于是使用Cloudflare Worker／Hyperdrive。105原迁移在单事务执行，候选专用适配处理预处理语句及owner权限，原校验和不变。
+- 判断变化：Auth0 Free名额不能支持每个下游均建应用，采用一个新上游应用和官方Cloudflare OAuth授权层；各平台clientId与数据库范围仍独立。Chrome表单因no-referrer导致Origin:null而被拒，修正来源策略并保留CSRF。Owner没有Claude账号，停止该消费入口、不要求新注册。
+- 结果：受限数据库实际连通，两条加密合成事项；原版Claude Code与Cursor实际授权、工具目录、限定读取、刷新及浏览器撤销通过，撤销时有效令牌尚余608／814秒。前置失败保留、旧探针关闭、新候选长期保留。当前生产、数据、价格、App14和TestFlight不变。
+- 未完成：普通客户的完整加密／恢复托管路径、模型实际选工具、消费平台账号或平台目录及推荐效果尚未证明；其他客户端依证据逐端补齐。Git及归档远端结果在当次可读回执中单列，不能由本段推导。
+
+October17 Git收尾：源码／archive45已推8233d8691；GitHub独立新下载解密117对象／133路径通过。CI171的source通过，但新增候选任务的共享API依赖安装遗漏导致失败；只修工作流安装顺序，保持当前运行和真实验收证据，最终CI另记。
+
+October17最终结果：依赖安装修正da394a1ac的CI172三任务全部通过；远端归档45的117对象／133路径认证完成，最终回执另以普通Git追加。候选源码与独立Cloudflare读取的模块字节一致，旧探针实际404。当前无活动AI验收授权；Qwen还缺专用模型配置，Claude官网无账号，未冒领模型或消费平台结果。
+
+## 2026-10-18 — Qwen续验与更完整的公开内容
+
+- 目标：先补齐剩余AI接入证据，再让SEO／GEO有真实、可发现的内容，不影响App14。
+- 尝试：读取Qwen官方组件，独立调用原版PKCE、callback、token交换及加密存储，再运行真实CLI；同时核对Google、Bing报告，补四篇不同主题的中英文指南、导航、文章结构和日期。
+- 判断变化：Qwen交互入口要求模型配置，但协议组件与CLI可以独立验收，不应因此让Owner购买模型。官网旧20页只是8类信息页和2篇文章的双语版本，需要增加有实际用途的公开内容。Bing的AI报告截至October15，早于旧发布，不能用来评价发布后效果。
+- 结果：Qwen Connected、限定读取、原版刷新及撤销后拒绝通过，剩822秒时失效，alias凭据清理、浏览器退出。28页／6篇双语文章构建、26项Web检查、10项官网栈测试、类型检查及浏览器重点路径通过；390px布局无溢出，触摸模拟的工具输入超时单列。官网模板仍只改两项已有资源。
+- 未完成：AWS实际过期会话只停MFA，已请求本人完成；本轮新网页尚未发布、搜索未重新提交。先保存源码／证据到Git，收到MFA完成后执行保留原20页的两阶段切换并补实际回执。模型交互、消费端、目录及推荐效果保持独立，未要求Claude新注册或付费。
+
+October18保存结果：6b7c041b2已推源码及archive46，CI174三任务全部成功。只将该新归档下载到空LFS目录，解密验证94对象／95路径通过；旧归档不重下。扫描中的7个S3对象名是生成文件摘要，移除重复可读镜像后仍保留加密原件，扫描规则未改、最终0未审发现。收尾回执以普通Git追加，网站部署继续等待已打开页面的本人MFA。
+
+## 2026-10-18 — 公开官网实际发布与导航纠正
+
+- 目标：接续Owner已完成的AWS MFA，发布已有SEO／GEO工作并取得真实搜索回执。
+- 尝试：复用原AWS会话，核对原站点和回滚包；先暂存资源／新页、保持原20页，再准备最终路由与页面切换。长验证码的终端输入／编码问题按原版CLI解析器修正，没有再次要求Owner登录。
+- 判断变化：Owner明确“整理方法”放在主导航太显眼且无意义；移除该项与废弃文案，保留页脚／相关链接，写入持久设计规则。修正后重建并核对28页导航位置，只更新暂存源对象。CloudFormation的分发条目来自FunctionARN动态依赖，不是配置改变或资源替换；先发布路由并核对8个新URL，再更新HTML，避免并发更新造成短暂断链。
+- 结果：58780f79b／CI176三任务通过；最终栈UPDATE_COMPLETE，模板、LIVE函数、62份产物和28页均匹配，分发／桶／上传资源身份不变。真实Chrome确认导航5项、页脚进入6篇文章。Google地图提交与新文章实时测试通过，已加入优先队列；Bing成功读取28URL、0错误／警告。
+- 未完成项：Google常规地图总表提交后仍显示无法抓取／0，后续处理结果与实际索引、流量、AI引用仍需真实数据。新部署证据单独保存archive47并推Git，不重做旧归档、Qwen、付款、真机或TestFlight；生产API、真实数据和收费不变。
+
+同轮补充：Google对sitemap.xml本身的实时测试也通过，没有请求给XML建立搜索索引。普通地图总表仍显示无法抓取／0；当前访问、地图解析、文章排队和实际收录分开记录，不为报告状态反复部署或提交。
+
+发布保存完成：437ff70f3／CI177三任务全部通过。新archive47已从GitHub独立下载并认证111对象／220路径，完整可读发布扫描0未审发现。最后结果仅以普通Git回执追加，不重复旧归档、实际部署或真人操作。
+
+
+## 2026-10-18 — 从发现能力建设转向营销验证
+
+- 目标：完成已开始的官网工作后，重新核对全部SEO／GEO、插件／MCP，补AI平台范围，并给出最低成本获客与ASO执行材料。
+- 尝试：重读6篇双语内容、生成和路由代码、托管登记、旧客户端证据；查平台官方资格／目录及Apple字段规则；只读核对Google地图和生成式搜索，匿名探测MCP发现。
+- 判断变化：Google包含开关实际已开启，但地图处理仍失败且根因未确定；长期候选当前只有4个登记，Codex／Gemini的旧临时闭环不能冒充长期地址可装。Python被Cloudflare1010拒绝而Node正常，不扩大为服务停机。OpenAI简介36字符超限，以及商店本地状态停在旧撤回，均需具体修正。
+- 结果：简介缩短并补5项聚焦检查；当前托管6份文本包与生成器一致；Node匿名401／发现200。完成复核矩阵、两类客群、4周零新增广告预算计划、8份双语帖子、演示／截图脚本、下一版双语ASO、8条渠道链接、结果表和5正／3负目录测试草稿。ASO字段及字节检查通过。当前审查状态只按October15回执纠偏，未声称新读取Apple状态。
+- 未完成项：Google地图／实际收录、客户MCP与下游UserInfo、当前长期Codex／Gemini注册、模型选工具和消费端目录、真实首轮用户及获客成本。草稿未外发，未购买广告／模型服务；官网、生产数据、价格、收费与App14均未部署更改。保存新文件到Git，不重封旧归档。
+
+源码与材料fda980549已推送到codex/ai-discovery-vnext-20261015，CI179的source、api、web-and-infrastructure三项全部成功；GitHub读回复核报告、ASO草稿和插件生成器，与本地逐字一致。后续只保存此回执，不部署或重复验收。
+
+## 2026-10-18 — 普通用户正式接入与Google地图续修（进行中）
+
+- 目标：按Owner要求把MCP／插件推进到普通用户可用，并修复Google地图读取，不影响当前Apple审核。
+- 尝试：续回实际失效的AWS会话；核对28URL原始XML、HTTP及GSC；按现有正式登录设计独立标准OAuth、加密临时状态和明确事项选择。
+- 判断变化：URL前缀属性继承同一Google失败记录，不能当作修复；保留原平面地图，新增索引及两个语言子地图，逐个取得真实回执。合成Cloudflare候选不能充当客户生产服务，正式接入复用现有AWS应用与安全边界。
+- 结果：官网候选66份文件中，原62份只改robots，其余61份逐字保持；5项公开发现与10项官网栈检查通过。新OAuth代码正在测试，尚未部署或开放。
+- 未完成项：官网切换及Google读取结果、正式MCP部署／客户端任务／安装入口；在审原生构建、现有数据与收费不变。
+
+## 2026-10-18 — 正式MCP、Google地图和免费公共登记完成
+
+- 目标：把已有AI实现交付给普通用户，取得真实客户端有用任务与撤销证据，补齐Google读取结果并保存Git。
+- 尝试：独立官网三阶段发布；现有AWS新增加密OAuth状态与固定恢复broker，原子迁移103→106后滚动API／Web；真实Codex通过原Google账号只选择Owner批准的合成事项。
+- 判断变化：真实代理链暴露精确Host拒绝及OIDC动态内部端点两个部署问题，分别固定私有集成Host与公开issuer请求上下文，保持Origin／TLS／Cookie边界。CDK复制assembly缓存导致候选变更集包含额外任务镜像，执行前已阻止并删除，改用按真实内容hash上传的精确模板；没有误部署。等待Owner确认使第一次本机OAuth回调超时，同一范围续接成功，不重复询问或扩权。
+- 结果：原68表数据指纹、103迁移校验和及角色保持；官网66文件、Web89文件和三条发现路由实际匹配。Google两个语言子图均成功解析，各14URL。Codex模型实际调用两工具，仅回1条合成摘要与字段名称缺项；立即撤销后原凭据连接被拒，测试alias已登出。当前客户端从正式下载包识别独立插件。官方Registry发布及公开读取为active；1条新增TXT经过四个解析器验证，原36条DNS记录保持，私钥只保留加密副本。
+- 未完成项：最后语言标签窄范围Web交付及新增归档的远端认证正在收尾；OpenAI／Claude消费端目录、其他模型会话、文章索引、AI推荐和获客仍按各自证据推进。没有改变在审App14、TestFlight、原事项、定价／收费或FanPass。旧隔离测试和迁移、付款、原生验证没有重复冒称为本次结果。
+
+同轮语言修正收尾：46d745bf4／CI186三任务通过，仅一个静态上传资源变更；最终栈模板及89份线上文件匹配，原会话Chrome中文标签没有并排英文。临时Codex驱动和合成UI进程已停止，用户原localhost3200与全局配置未改；正式托管继续运行。归档远端结果随后追加，不重复构建或发布。
+
+同轮目录推进：最终官方字段复核补了独立supportURL和Codex作者，6检查／当前解析器通过；已制备公开草稿包和8条预期测试案例。Owner完成OpenAI Platform登录后，上传入口实际要求开发者身份验证，已定位General的Individual／Business入口交Owner本人办理。未上传证件、冒填身份、充值或把草稿当已提交。更新下载包时发现重复prepare造成HTML变化，在执行前恢复已验证HTML，最终只换ZIP、保持其它88文件；错误候选从未部署。Archive48保留初次完整交付，随后非秘密包／回执按普通Git增补，不重封旧归档。
+
+Owner随后明确暂后OpenAI开发者验证、先保存其他成果。已依此停止该入口；abcaf2af1把源码／档案推到GitHub，新增archive48在空LFS目录独立下载后，318对象／439路径认证通过。可读证据扫描发现18个CDK公开S3资产hash形态，已仅从可读日志去除、原密文保留，扫描规则和秘密例外未改。最后下载包实际发布与CI结果另追加。
+
+最终结果：abcaf2af1／CI187三任务成功，下载包元数据窄范围发布完成；真实公共ZIP与保留首页均匹配，其它88文件仍为原已验证字节。当前交接仅保留Owner暂后的OpenAI开发者身份门及其后平台材料，不恢复Google失败、Codex无模型证据、旧迁移或真机待办。收尾文档／回执以普通Git追加，不再次封存或部署。
+
+## 2026-10-18 — 营销平台注册与联系邮箱准备
+
+- 目标：按Owner指示配置social@和hello@两个Zoho别名，实际验证收发，不多买邮箱。
+- 尝试：沿用本工作流完整阅读链，核对既有一邮箱加privacy/security别名的合同；检查当前浏览器及Gmail连接，准备两个独立测试编号和各自回复。
+- 判断变化：原Zoho会话已返回登录页，输入原support身份后仍需密码／可能的本人验证，不能把历史成功当当前会话有效。Gmail实际连接和精确测试检索可用，没有同编号旧测试。
+- 结果：已保留原账号登录页并向Owner说明实际阻塞，完成无需登录的测试与记录准备。尚未新增别名、发送邮件或购买任何服务，DNS／Resend和原三个角色地址未改。
+- 未完成项：恢复原Zoho会话，核对账号／套餐数量后新增别名，再完成两个外部往返及发件身份读回。营销外发／平台注册和Owner暂后的OpenAI身份验证均不在本轮自动执行范围。
+
+## 2026-10-19 — 同一邮箱两别名已建立，外部回执逐封核对
+
+- 目标：完成跨午夜继续的别名配置及真实Gmail往返，不增加邮箱成本。
+- 尝试：Owner完成原登录；后台普通刷新恢复后，核对Mail Lite／1用户／1许可证，分别添加social@及hello@并保留主地址、原别名。各发一封测试到新别名，随后用对应From回复。
+- 判断变化：新建别名前打开的邮箱发件列表仍缓存旧别名，故保存本次草稿并刷新；从实际From控件确认新地址后再发送。Sent中的Delivered Time只是列表时间字段，不足以证明成功；实际送达状态必须另读。
+- 结果：2封入站均进入Zoho INBOX并显示TLS；hello回复进入Gmail INBOX，Google SPF／DKIM／DMARC均pass。social第一封遇到Google4.3.0临时拒收，Zoho自动重试，故暂不计为完整往返通过，没有手动重复发送或修改DNS。
+- 未完成项：原social邮件的外部回执与最终Git收尾；账号／许可证仍1，未购买、迁移、注册营销平台或开展营销外发。
+
+同轮最终能力验收：首封social持续在提供方自动重试时，只加一封独立编号的新发信探针，目的及收件人不变。Gmail实际Inbox收到该信，From／主题／正文均正确，SPF、DKIM、DMARC全pass。两个别名的收信和发信均已证明；共5封测试中4封由对端实际读回，原social回复的临时队列单独保留，未删除或假称送达。主邮箱与原角色地址、Mail Lite1用户／1许可证、DNS和Resend保持，新增费用为零份邮箱许可；最后安全记录及Git收尾继续完成。
+
+## 2026-10-19 — 社交横幅从抽象纸带改为清楚的资料册
+
+- 目标：Owner准备营销账号，要求补做可用社交banner，保留原Rillora品牌。
+- 尝试：检查现有品牌／营销素材，没有发现独立横幅；使用built-in ImageGen做墨绿纸色底图，再用原始Logo路径及转曲文字输出中英文X尺寸版本。
+- 判断变化：Owner认为纸带不像书、记事本或地图，并担心画面网址的平台规定。改用明显的打开资料册、纸面事项节点与连线；核对X官方资料设置／链接规则，没有把未找到禁止条款推断为全平台许可。
+- 结果：当前02版中英文1500×500 PNG及SVG源稿完成，均不带网址；第一版完整保留但标为历史。Logo母版与既有产品保持。几何／字形／文件大小和实际导出图已检查，新增素材与文档单独Git保存，不重跑App／支付／原生或MCP验收。
+- 未完成项：具体社交账号的上传／保存和平台最终裁切仍待指定目标；其他平台尺寸需适配，不把设计文件当作账号发布、获客结果或政策批准。
+
+## 2026-10-19 — X官网连接警告诊断与用户侧恢复
+
+- 目标：查明Owner从X打开官网时遇到的不安全提示，区分浏览器TLS与平台内容警告。
+- 尝试：保留Owner正在编辑的X资料表单，另开只读页实际点击当前链接；检查HTTP／HTTPS、根域与www证书、t.co跳转及Google安全浏览显示。没有账号保存、安全绕过、外发申诉或配置改动。
+- 判断变化：Owner明确是浏览器连接不安全；根域TLS1.3正常，但两个GoDaddy转发地址均拒绝TLS1.2，www两协议都通过。当前X链接直接使用HTTPSwww，已绕开根域转发；原始错误代码仍未知，不把相关性冒充唯一根因。
+- 结果：桌面实际X点击正常，Owner随后复测确认“现在可以正常打开”。当前入口恢复已由Owner确认；Google无不安全内容的报告保留其September24日期。营销链接采用已有规范HTTPSwww，不重构服务或改安全策略。
+- 未完成项：根域转发的TLS1.2兼容性作为独立维护记录保留，当前无需为恢复已正常的X入口改变DNS。其他营销平台／内容发布仍由具体任务推进，不新增审批或登录请求。
+
+## 2026-10-19 — 向Apple查询已等待四天多的审核
+
+- 目标：按Owner明确请求向Apple写邮件／开工单，查明审核超过48小时的进度，不打断当前提交。
+- 尝试：复用现有Apple登录，进入实际提交详情；核对October15 09:49、构建14及三项Waiting for Review。近期案例只有旧API／密钥问题，没有重复进度单。读取当前官方审核状态与加急规则。
+- 判断变化：实际等待已约102小时，当前是排队未开始，并非驳回。官方48小时是大多数提交的目标，不是保证；没有真实紧急理由，因此选择App Review Status普通邮件工单。
+- 结果：一封英文事实查询已提交，要求确认队列、缺失资料／所需操作和可提供的进度时间；Apple明确返回案例103001356140及收件页。原审核、构建、手动发布和既有数据／价格／收费保持，没有新登录、密码外发、TestFlight或重复验收。
+- 未完成项：Apple答复、审核开始／结论及预计时间尚无证据；后续沿同一案例处理，不新建重复催单，也未开启自动轮询。
+
+## 2026-10-19 — 平台营销规则与200—500美元的分期验证
+
+- 目标：按Owner要求研究平台注册／玩法／规则并保存，避免把200—500美元平均撒在多个渠道或把曝光当获客。
+- 尝试：复用当前营销／产品／事件／单位经济合同，读取32项官方来源；Meta和小红书网页检索受限时用正常浏览器读到官方正文。没有登录新平台、创建账号、发送宣传或填写支付信息。
+- 判断变化：Product Hunt要求个人Maker；小红书商业导流和第三方APP推广有明确限制；X广告验证、TikTok预算／外链资格不能省略。Google新Search总预算可以约束全期金额，普通日预算却可能超日均；Meta网页广告后台可避免某些iOSBoost服务费。因而先集中X／Instagram自然内容及单渠道搜索候选，不照搬“所有平台同账号同外链”。
+- 结果：平台手册、账号登记、条件预算和空实测模板完成。200方案拆50＋50＋50媒体与50预留；500方案拆50＋100＋250媒体与100预留。公式与预算复算通过，真实CAC／CPC／转化仍未知；既有发布和收费配置未动。单位经济旧顶部关闭状态修正，历史模型未改成当前利润。
+- 未完成项：实际账号资格／可用handle、关键词量价、最小来源→激活→净付款核对和真实客户队列。下一步按具体执行任务推进；研究不是充值、广告发布或稳定获客的证明。Apple进度案例继续保留，不重复催单。
+
+## 2026-10-19 — Apple Watch心率与特殊权限的可行性复核
+
+- 目标：回答Owner能否调用心率判断死亡、是否能申请，避免把平台权限与证据能力混为一谈。
+- 尝试：读取原August16研究，复核Apple现行开发者协议、HealthKit授权／后台投递、心率支持文档和跌倒／车祸申请链接；匿名申请入口跳转登录，未为只读问题要求Owner重新认证。
+- 判断变化：普通心率是标准HealthKit能力，特殊申请针对具体跌倒／车祸事件。新款已可更频繁测量，旧文的间歇采样概括需要修正；现行协议限制实际健康／运动／健身用途，不能引用2015旧版“整个App主要用于健康”的表述。缺失数据和安全事件均不能证明死亡。
+- 结果：聚焦报告补充最新来源、可申请入口和用途判断，并保持独立死亡事实／身份／合法权限／披露边界。只更新研究与交接，没有创建Watch目标、请求用户健康权限、申请entitlement或影响App14审核；旧SDK检查仍标注历史。
+- 未完成项：Rillora具体健康关怀用途的Apple个案答复、特殊资格审批和任何实际接入均未发生；本次可行性问题不自动扩大下一版本范围，既有营销计划保留。
+
+## 2026-10-19 — 多信号规则与生前封存的需求澄清
+
+- 目标：准确承接Owner要求：由Rillora判断多种异常并提醒，再按预设条件处理；指定亲友知道有安排，生前不见内容。
+- 尝试：复核当前账号绑定共享、非操作性披露演练、死亡证据合同，以及Google不活跃账号与Apple遗产联系人官方路径；未发送通知或改变任何真实权限。
+- 判断变化：上一答复侧重“不能证明死亡”，没有充分区分自动判断异常、自动执行条件和死亡事实。可将失联条件交付与仅身后交付分别定义，但不能将一个模式的承诺用另一个模式的触发替代。现有Name共享仍暴露标题，不能充当封存预告。
+- 结果：形成下一版本需求／候选规则：数据质量优先、不重复计算同源信号、明确回应与送达、未来接收人独立关系、零内容预告、分别核验及版本绑定放行；补充条件密钥方案是独立工程门。产品入口、共享／平台／Watch文档和决策记录同步，均标注未实现。
+- 未完成项：精确超时与误报验证、失联模式规则、健康用途适配、死亡证据服务及条件密钥方案；没有生产定时任务、实际数据收集或新亲友邀请。在审App14、已有价格、收费、数据和营销研究保持。
+
+## 2026-10-20 — Dot清单提醒与Git主分支整合
+
+- 目标：按Owner要求复核Dot提醒，修复交接验证并检查合并GitHub剩余工作。
+- 尝试：CLI的PR／Actions读取权限受限时改用现有GitHub连接器，无需重新登录；取得实际失败步骤、成功的API／Web任务及远端分支。逐路径比较清单与实物，复现26个遗漏。
+- 判断变化：问题是此前只做源码及新证据扫描，漏做全局清单覆盖。各工作分支实际上已经汇入当前head，但main仍落后200提交；“工作分支整合”不能当作“默认分支合并完成”。
+- 结果：保留旧工作和扫描政策，准备完整清单修复、强化收尾协议并建立PR3；候选不会触发线上部署、Apple审核或价格变化。
+- 未完成项：本条写入时当前候选的完整发布验证、GitHubCI、实际合并和远端读回仍须分别完成，最终结果后续追加。
+
+- 同轮补充：旧main的可信扫描登记未包含后来已批准的行号与两条合成加密夹具。逐条匹配后通过独立PR4同步，三项CI通过并合并，不弱化扫描器。PR3浏览器66项中发现2项未启动AI测试服务、1项过期地图断言；修复测试接线，原3项本地合成测试通过，最终完整CI待续。
