@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October20：[总清单修复与main整合](../docs/git-integration-20261020.md)已复现Dot提醒的26份遗漏，并通过[PR3](https://github.com/tantalum666/rillora/pull/3)推进。所有远端工作分支已包含在当前整合分支，旧main尚需同步；合并和CI最终状态只看当前handoff及该PR，不把旧分支合并记录当作main已更新。新增回执必须与完整readable-manifest一起校验保存。
+October20：[总清单与主分支整合已完成](../docs/git-integration-20261020.md)。26份遗漏已补齐，精确登记同步PR4与主整合[PR3](https://github.com/tantalum666/rillora/pull/3)均已合并；主合并6b757b885与通过CI203／浏览器14的提交文件树一致，24个远端分支均包含于main，开放PR为0。API580／浏览器66通过；[完成回执](verification/git-integration-20261020/completion.json)。当前本机使用main，旧分支记录保留，未部署或改变审核。新增回执仍必须连同完整清单一起核验。
 
 October18营销复核：[SEO／GEO、MCP和平台矩阵](../docs/marketing/readiness-audit-20261018.md)及[四周获客计划](../docs/marketing/acquisition-plan-20261018.md)已准备，OpenAI简介限制／商店旧状态已纠正；客户MCP和实际增长不冒充完成。[新回执](verification/marketing-readiness-20261018/README.md)以小型可读文件直接Git保存，旧1—47不重封。当前下一步只看handoff。
 

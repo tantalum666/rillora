@@ -12,7 +12,7 @@ Last updated: 2026-10-20 (Asia/Hong_Kong)
 
 ## October20 complete publication manifest and main integration
 
-[Current repair and integration](git-integration-20261020.md) reproduces26 omitted readable verification files and tracks[PR3](https://github.com/tantalum666/rillora/pull/3). All remote working tips already belong to the integrated head, while the initial main is200commits behind. Prior branch-specific merge notes below remain historical, not a current prohibition on the Owner-requested main integration.
+[Completed repair and integration](git-integration-20261020.md) resolves26 omitted readable verification files and merges[PR3](https://github.com/tantalum666/rillora/pull/3)after the independent exact-registry PR4. Main merge6b757b885matches the validated candidate tree and contains all24remote branch tips. API580and browser66pass; no open PR remains. Prior branch-specific merge notes below remain historical; main is now the consolidated source baseline.
 
 After the last readable receipt is written, run `python3 tools/collaboration/verify_publication.py --write-manifest --scan --report output/qa/<task>/publication.json`, stage the resulting manifest with the files, and read back the actual checks for the submitted commit. Source scanning and scanning only the new evidence folder cannot replace this complete coverage/hash/secret check. A later receipt edit invalidates its old manifest hash and requires regeneration. Keep all guards enabled and avoid CI-skipping commits for unresolved failures.
 

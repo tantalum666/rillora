@@ -1,0 +1,189 @@
+{
+  "recordedAt": "2026-10-20T15:34:42.950396+08:00",
+  "pullRequests": [
+    {
+      "number": 4,
+      "url": "https://github.com/tantalum666/rillora/pull/4",
+      "merged": true,
+      "commit": "88ea0be25a9e792972af343e429f99780cb49e97"
+    },
+    {
+      "number": 3,
+      "url": "https://github.com/tantalum666/rillora/pull/3",
+      "merged": true,
+      "commit": "6b757b885dead82c91b63e09308f43bba9505f8c"
+    }
+  ],
+  "validatedHead": "ecd13a75a73fe1dbff8a20783c0d0d44a7a7c366",
+  "ci": {
+    "verifyPR": {
+      "runId": 39386277079,
+      "number": 203,
+      "source": "success",
+      "api": "success",
+      "web-and-infrastructure": "success",
+      "apiTestsPassed": 580
+    },
+    "verifyPush": {
+      "runId": 39386269305,
+      "number": 202,
+      "jobs": "all3success"
+    },
+    "browser": {
+      "runId": 39386277086,
+      "number": 14,
+      "conclusion": "success",
+      "passed": 66,
+      "failed": 0
+    }
+  },
+  "sourceGuards": {
+    "unitTestsPassed": 117,
+    "reviewedNonSecrets": 32,
+    "unreviewed": 0
+  },
+  "publicationAtValidatedHead": {
+    "readableFiles": 13107,
+    "coveredHistoricalWorkFiles": 46768,
+    "CIArchiveLFSPointers": 7,
+    "unreviewedFindings": 0
+  },
+  "mergeReadback": {
+    "mergedCommit": "6b757b885dead82c91b63e09308f43bba9505f8c",
+    "candidate": "ecd13a75a73fe1dbff8a20783c0d0d44a7a7c366",
+    "treeIdentical": true,
+    "remoteBranches": [
+      {
+        "branch": "origin/codex/account-identity-20261006",
+        "sha": "8cc5e10042d5c9f3688b1093306b2e4377a92c82",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/ai-discovery-vnext-20261015",
+        "sha": "ecd13a75a73fe1dbff8a20783c0d0d44a7a7c366",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/ai-mcp-plan-20261005",
+        "sha": "4a470080b917931ce5577dc3d228d2ef97f37251",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/apple-plan-restore-20261007",
+        "sha": "a49f3f95aa6809904e2f28a67e40fb0b10acb9f2",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/chinese-ios-20261005",
+        "sha": "26134d44c3bf43c22841039df410d14e133bb6de",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/chinese-web-20261005",
+        "sha": "20da7b3910e9498e7ecd82e18ed9e32654987dce",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/cloudflare-hosting-handoff-20261008",
+        "sha": "3ae1abf6d3520148b4ef98be2de55270758ac079",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/device-config-20261006",
+        "sha": "58fadf35781fb165afe0920be3b6c213480089ed",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/dot-integration-20261005",
+        "sha": "36555a22c33f7f37a9bab14b42f1a654d16c32f0",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/dot-integration-20261007",
+        "sha": "5a547339a689fadd4f2241d4d17d2e2756931be2",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/dot-integration-20261008",
+        "sha": "8cdaf2eaa76e4971013ab226a9461daf9a4880bb",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/dot-rollout-20261007",
+        "sha": "fbb61ad23b15082a35bf45cd957ce95a64d693e5",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/external-link-hygiene-20261007",
+        "sha": "1ec30b7a3faa94899b298698133bf588a23d3878",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/guide-layout-locale-20261008",
+        "sha": "0fb73e434751888a6c1dcca19365f433f04f24b7",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/ios-ux-refinement-20261006",
+        "sha": "3c6e05b1cd484cd9605164013db50993ed607254",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/matter-category-bar-20261008",
+        "sha": "647317834bd785ace1499e251f0e501530163239",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/release-12-stripe-20261005",
+        "sha": "909bea4f0eaf23c9153aae3182374cb86585a70b",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/scan-authority-sync-20261020",
+        "sha": "382e3b5174b4b87c55c2b2b1eeb04936319814aa",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/security-findings-20261011",
+        "sha": "fec1ad3bcd97984768eed8b2fd95a86ac4f01f35",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/strict-review-20261002",
+        "sha": "03c97fc035f0ef23de5e0cd32084435d972d53c6",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/web-plan-layout-20261008",
+        "sha": "a3cd0dfac66dbb77d47f3e93473f32c205ea0f43",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/web-ux-acceptance-20261005",
+        "sha": "730071039b2deccaae1404e70cbe002e0af45575",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/codex/web-ux-refinement-20261006",
+        "sha": "75d4d7d9f3f17657286b9adc80a9e400245f3288",
+        "containedInMain": true
+      },
+      {
+        "branch": "origin/main",
+        "sha": "6b757b885dead82c91b63e09308f43bba9505f8c",
+        "containedInMain": true
+      }
+    ],
+    "allContained": true,
+    "localBranch": "main",
+    "workingTreeClean": true
+  },
+  "openPRCountAfterMerge": 0,
+  "finalRuntimeDeltaFromInitialHead": [
+    "apps/web/e2e/public-discovery.spec.mjs",
+    "apps/web/playwright.config.mjs"
+  ],
+  "productionSourceAndSettingsUnchanged": true,
+  "deployment": false,
+  "closeoutBoundary": "Subsequent closeout edits only synchronize these verified results and the manifest. Their final main commit/checks are independently read back and recorded in PR3 and local git-readback.json, avoiding a self-referential Git receipt."
+}

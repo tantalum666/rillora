@@ -1,18 +1,20 @@
 # Rillora 当前交接
 
-Status: PUBLICATION REPAIR CANDIDATE / PR3 WAITING FOR VERIFICATION AND MERGE
+Status: GIT INTEGRATION COMPLETE / PR3 AND PR4 MERGED / CURRENT REVIEW UNCHANGED
 Last updated: 2026-10-20 (Asia/Shanghai)
 
-## 当前任务与发现
+## 当前任务与完成
 
-Owner要求复核Dot的CI提醒并检查合并GitHub工作。[本轮记录](git-integration-20261020.md)独立证实26个新增验证文件未进入readable-manifest；实际报告运行的API及Web／基础设施成功，源码测试／扫描成功后在完整覆盖校验失败。当前所有23个远端分支tip已包含于整合head，初始main仍落后200提交，无额外独立Dot源码需要导入。既有PR1／2已合并；本次建立[PR3](https://github.com/tantalum666/rillora/pull/3)合入main。
+Owner要求复核Dot的CI提醒并检查合并GitHub工作。[本轮已完成](git-integration-20261020.md)：26份新增验证文件补入总清单，PR4同步原已批准的精确扫描登记，PR3将整合历史合入main。另修复AI浏览器夹具服务未启动及站点地图旧断言，未改产品运行逻辑。AGENTS／source-control已要求在最后回执后核验完整清单并读回实际CI。
 
-## 当前候选与边界
+## 验证与合并证据
 
-修复完整清单，AGENTS／source-control明确最后一份回执写完后须重建、核验完整发布清单并读回实际CI。保留所有扫描器、既有例外与密文，不删除文件或跳过CI。尚未把候选、PR创建或push当成PR3合并完成。PR4已在三项CI通过后合并，仅将原已批准的精确测试／公开标识登记同步到旧main；整合分支保留当前28项登记。额外浏览器检查发现的3项夹具／过期断言问题已修，局部3项通过；最终完整CI仍待运行。
+候选ecd13a75a的Verify source203及push202三任务成功，API580项通过；浏览器14共66项通过。完整发布校验覆盖13,107份可读文件，扫描0未知项。PR3主合并6b757b885与验证候选文件树完全一致，重新fetch核对24个远端分支tip均已包含于main，开放PR为0。本机当前在main。结果见[完成回执](../collaboration/verification/git-integration-20261020/completion.json)；随后文档／清单收尾的实际main提交与自动CI另由PR3及本机QA读回，不伪造自引用提交。
 
-当前修改交接／元数据及两处浏览器测试配置／断言，无产品运行代码变化，不重复原生、付款或部署验收。候选工作流没有云凭据或部署步骤。App14审核、手动发布、TestFlight暂停、数据／价格／收费、FanPass和Owner停止真机检查的决定保持。Apple案例103001356140及OpenAI本人验证暂后保持；[上一交接](handoff-history-20261020-before-git-integration.md)与其条件披露设计属于保留的下一版本工作。
+## 保留边界
+
+本轮没有部署、重新验证原生／付款、读取健康数据或通知亲友。App14审核、手动发布、TestFlight暂停、真实数据／价格／收费、FanPass及Owner停止真机检查的决定保持。Apple案例103001356140和OpenAI本人验证暂后保持。[上一交接](handoff-history-20261020-before-git-integration.md)与条件披露／营销材料作为已保存的后续工作，不重开旧验证门。
 
 ## 唯一下一步
 
-完成整份可读材料发布验证，读取修复提交的GitHub检查；通过后合并PR3并核对main的祖先关系与文件树，最后追加真实结果。本轮未完成前不再回到条件披露开发或营销执行。
+下一版本继续时从最新main建立工作分支，先细化[未来接收人、生前封存及条件密钥合同](conditional-disclosure-vnext-20261019.md)；具体时限、用途与真实放行仍未实现。当前Git修复／合并任务已关闭，不把这次整合当作健康接入或上线部署。

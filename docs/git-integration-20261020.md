@@ -1,6 +1,6 @@
 # October20 Git consolidation and publication-manifest repair
 
-Status: REPAIR CANDIDATE / MERGE WAITING FOR CURRENT CI
+Status: PR3 AND PR4 MERGED / VALIDATED TREE READ BACK / DOCUMENTATION CLOSEOUT
 Last updated: 2026-10-20 (Asia/Shanghai)
 
 ## Owner request and finding
@@ -28,10 +28,12 @@ All three workflows were inspected: source validation, a trusted-base publicatio
 
 ## Verification and final merge
 
-Local publication validation, current PR checks, merged commit/tree equality and post-merge main state are separate receipts. At this candidate checkpoint the merge is deliberately not represented as complete. Final status will be updated after the checks and actual remote merge.
+PR3 merged as`6b757b885dead82c91b63e09308f43bba9505f8c`after Verify source203(source/API/Web)and browser14all pass for`ecd13a75a73fe1dbff8a20783c0d0d44a7a7c366`. API580tests and browser66cases pass. Fresh Git fetch confirms the merge tree is byte-identical to that validated head, all24remote branch tips are ancestors of main, and no open PR remains. The local checkout is nowmain. [Completion receipt](../collaboration/verification/git-integration-20261020/completion.json).
 
 ## Additional integration checks and repairs
 
 The first repaired-head PR check correctly used the old protected main registry and reported26 unmatched findings, distinct from the26 omitted readable files. Independent comparison identified22 missing registry rows:20 source-span hashes already approved on main at older positions, plus2 synthetic CryptoKit fixtures explicitly approved October11 and present in076bd5a8b. [PR4](https://github.com/tantalum666/rillora/pull/4) adds those exact rows while retaining all27 old rows; its source/API/Web checks pass and it merges as88ea0be25. No scanner or rule is changed. The integration retains its exact28-row registry after resolving the expected registry conflict; old positions are removed with their old source. [Authority evidence](../collaboration/verification/git-integration-20261020/authority-sync.json).
 
-The broader PR browser run exposes3 harness failures among66 cases: two AI tests target a server the config never starts, and the robots assertion predates the split sitemap deployment. The optional AI fixture now starts on4184 in an isolated ignored output directory; the default build remains AI-disabled. Discovery checks now cover the sitemap index, both language maps and the retained legacy XML route. The3 failing cases pass locally using existing Playwright/Chrome with synthetic APIs. No product UI or live endpoint changes. [Browser repair and screenshots](../collaboration/verification/git-integration-20261020/browser-repair.json). Full final-head CI remains a separate gate.
+The broader PR browser run exposes3 harness failures among66 cases: two AI tests target a server the config never starts, and the robots assertion predates the split sitemap deployment. The optional AI fixture now starts on4184 in an isolated ignored output directory; the default build remains AI-disabled. Discovery checks now cover the sitemap index, both language maps and the retained legacy XML route. The3 failing cases pass locally using existing Playwright/Chrome with synthetic APIs. No product UI or live endpoint changes. [Browser repair and screenshots](../collaboration/verification/git-integration-20261020/browser-repair.json). Full final-head CI subsequently passes all66browser cases. Existing production code/configuration matches the initial head; only these two test-harness files differ under active code directories.
+
+The final documentation/manifest closeout adds these actual results without rerunning native/provider/payment acceptance or deploying. Its exact main commit and automatic checks are read back independently and recorded in PR3 plus local QA; the receipt does not pretend to contain its own future Git hash.
