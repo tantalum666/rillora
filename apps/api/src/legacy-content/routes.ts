@@ -40,7 +40,13 @@ export function contentUploadHandlers(context: ContentContext): RequestHandler[]
 export function contentNoticeHandler(): RequestHandler { return (_request, response) => { response.json({ notice: contentNotice }); }; }
 export function createContentRouter(context: ContentContext) {
   const router = Router(), assets = new ContentAssets(context), packs = new ContentPacks(context);
-  router.use(requireCsrf);
+  router.use((request, response, next) => {
+    // Cookie-authenticated reads do not send a CSRF token in either client.
+    // Every mutation still needs the existing token check; upload has its own
+    // authenticated handler above and retains the same protection.
+    if (['GET', 'HEAD', 'OPTIONS'].includes(request.method)) next();
+    else requireCsrf(request, response, next);
+  });
   router.get('/', asyncHandler(async (request, response) => {
     response.json(await context.transaction(request.auth.plannerId, async ({ client, owner }) => {
       const inbox = await packs.received(client);

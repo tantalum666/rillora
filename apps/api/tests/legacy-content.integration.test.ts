@@ -103,6 +103,26 @@ describe.sequential('Web content — real database, synthetic files and identiti
     await upload(payload(), { ...B, 'x-rillora-planner': A }).expect(409);
     expect((await overview()).acceptedNotice).toBe(false);
   });
+  it('allows browser cookie reads without a CSRF header while requiring it for every content mutation', async () => {
+    // Match the shipped Web client: safe reads carry the session and planner
+    // binding; only mutations send x-csrf-token. Do not use development auth.
+    const browser = { cookie: B.cookie!, 'x-rillora-planner': B['x-rillora-planner']! };
+    const initial = await request(app).get('/v1/legacy-content').set(browser).expect(200);
+    expect(initial.body.acceptedNotice).toBe(false);
+    await request(app).post('/v1/legacy-content/consent').set(browser)
+      .send({ version: contentNoticeVersion, accepted: true }).expect(403);
+    await enable(B);
+    const file = (await upload(payload(), B).expect(201)).body.asset;
+    const download = await request(app).get(`/v1/legacy-content/assets/${file.publicId}/download`).set(browser).expect(200);
+    expect(download.body).toEqual(pdf);
+    await request(app).get('/v1/legacy-content/received').set(browser).expect(200);
+    await upload(payload(), browser).expect(403);
+    await request(app).post('/v1/legacy-content/packs').set(browser).send({}).expect(403);
+    await request(app).patch(`/v1/legacy-content/assets/${file.publicId}`).set(browser)
+      .send({ expectedVersion: 1, metadata: { name: 'Changed.pdf' } }).expect(403);
+    await request(app).delete(`/v1/legacy-content/assets/${file.publicId}`).set(browser).expect(403);
+    expect((await request(app).get('/v1/legacy-content').set(browser).expect(200)).body.assets).toHaveLength(1);
+  });
   it('encrypts original bytes and metadata, retrieves exactly, and denies another account', async () => {
     await enable(); const result = await upload().expect(201), id = result.body.asset.publicId;
     expect(result.body.asset.name).toBe('保单副本.pdf');
