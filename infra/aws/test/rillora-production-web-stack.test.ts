@@ -81,6 +81,7 @@ describe('Closed production client delivery', () => {
       const csp = headers[0].Properties.ResponseHeadersPolicyConfig.SecurityHeadersConfig.ContentSecurityPolicy.ContentSecurityPolicy;
       expect(csp).toContain("media-src 'self' blob:"); expect(csp).toContain("worker-src 'self'");
       expect(csp).not.toContain('unsafe-eval');
+      t.hasResourceProperties('AWS::Lambda::Function', { MemorySize: 512 });
       manifest.localTranscription = true; writeFileSync(path, JSON.stringify(manifest));
       expect(() => verifyProductionClientArtifact(directory, false, true, false, true, true)).toThrow('Speech model bytes');
       expect(() => verifyProductionClientArtifact(directory, false, true, false, false, true)).toThrow('access mode');

@@ -798,6 +798,7 @@ export class RilloraStagingStack extends Stack {
       },
     });
     new s3deploy.BucketDeployment(this, "WebDeployment", {
+      memoryLimit: props.legacyContentEnabled ? 512 : 128,
       sources: [s3deploy.Source.asset(webAssetDirectory)],
       destinationBucket: webBucket,
       distribution,

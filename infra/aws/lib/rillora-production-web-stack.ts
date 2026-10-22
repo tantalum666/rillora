@@ -103,6 +103,7 @@ export class RilloraProductionWebStack extends Stack {
       errorResponses: [400, 403, 404, 405, 414, 416, 500, 501, 502, 503, 504].map(httpStatus => ({ httpStatus, ttl: Duration.seconds(0) })),
     });
     const upload = new deployment.BucketDeployment(this, 'Deployment', {
+      memoryLimit: props.legacyContentEnabled ? 512 : 128,
       sources: [deployment.Source.asset(directory)], destinationBucket: assets,
       // Existing browser tabs may still request immutable chunks from the previous build.
       distribution, distributionPaths: ['/*'], prune: !props.customerMcpEnabled,

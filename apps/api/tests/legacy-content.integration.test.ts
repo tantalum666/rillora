@@ -140,6 +140,9 @@ describe.sequential('Web content — real database, synthetic files and identiti
     const first = task(), next = task('Submit the official request', null, [first.id]);
     const saved = await pack({ intent: 'current', personPublicId: p.person, assets: [file.publicId], tasks: [first, next] }), id = await publish(saved);
     expect((await receive(id).expect(200)).body.publication.assets[0].transcript).toBe('');
+    const receivedFile = await request(app).get(`/v1/legacy-content/received/${id}/assets/${file.publicId}/download`).set(B).expect(200);
+    expect(receivedFile.body).toEqual(pdf);
+    await request(app).get(`/v1/legacy-content/received/${id}/assets/${file.publicId}/download`).set(C).expect(404);
     await receive(id, C).expect(404); await receive(id, owner).expect(200);
     await request(app).patch(`/v1/legacy-content/packs/${saved.publicId}`).set(owner).send({ expectedVersion: 1,
       personPublicId: p.person, intent: 'current', body: { ...saved.body, note: 'NEW PRIVATE DRAFT' } }).expect(200);
