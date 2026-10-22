@@ -3757,3 +3757,11 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly asks to develop the discussed features now: recipient action packs, selected important-file copies and original spoken instructions. This supersedes the prior research-only scope, without changing prices, existing purchased terms or real data.
 - Keep current native build/review materials and published contracts compatible. Integrate the already deployed Node22.23.4 source patch before building the new API; do not repeat that separate rollout.
 - [Implementation](web-content-development-20261022.md) will separate private preparation and explicit current sharing from unverified post-death release. No scan/image, inactivity, payment failure or health signal becomes automatic release evidence. Unconfigured operational corridors remain closed and accurately described.
+
+## 2026-10-22 — Proceed with next-version heart-rate reading after Apple's non-preapproval reply
+
+- Status: OWNER AUTHORIZED next-version source development; current App Review remains isolated.
+- Apple case103002496561 actually replied that concepts are not pre-approved and implementation feedback comes during review. This neither approves nor denies the three proposed use cases.
+- Owner explicitly directs continuing the agreed Apple Watch health-data reading direction. The earlier wait-for-concept-answer development gate is superseded. Start with the bounded, optional, foreground heart-rate reader in [the contract](healthkit-preparation-20261020.md), without health-derived access grants or unapproved reminder thresholds.
+- Separate next-version configuration and local package keep current entitlements, main project, binary, submission and provider capabilities unchanged. Individual system permission, device reading and future App Review remain independent evidence.
+- The Google redirect notification is separately investigated: its three examples are intentional aliases; the final homepage is indexed and all28 sitemap URLs return200 with matching canonical. No unnecessary redirect removal, re-submission or public deployment follows from this notification.

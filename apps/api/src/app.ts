@@ -1,4 +1,6 @@
 import express, { type Express, type RequestHandler } from "express";
+import type { ContentContext } from './legacy-content/context.js';
+import { contentNoticeHandler, contentUploadHandlers, createContentRouter } from './legacy-content/routes.js';
 import { createFutureNoticeRouter, createPublicFutureNoticeRouter } from "./future-notice-routes.js";
 import type { McpIntegration } from './mcp/integration.js';
 import type { AppleProductionIntake } from './apple-production-intake.js';
@@ -59,6 +61,7 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  legacyContent?: ContentContext;
   futureNoticesEnabled?: boolean;
   mcp?: McpIntegration;
   appleReviewIntake?: AppleProductionIntake;
@@ -83,6 +86,7 @@ export function createApp(
   if (dependencies.futureNoticesEnabled && (config.productionRuntimeClosed || config.productionReviewAccess)) {
     throw new Error("Future notices cannot be enabled in a closed or review-only runtime");
   }
+  if (dependencies.legacyContent && (config.productionRuntimeClosed || config.productionReviewAccess)) throw new Error('Content cannot be enabled in a closed or review-only runtime');
   const app = express();
   const emailVerifier = dependencies.emailIdentityVerifier
     ?? (config.emailVerification ? new Auth0EmailIdentityVerifier(config.emailVerification) : null);
@@ -101,6 +105,8 @@ export function createApp(
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
       await dependencies.mcp?.checkReady();
+      if (dependencies.legacyContent && !(await pool.query("select to_regclass('app.legacy_content_assets') is not null as ready")).rows[0]?.ready)
+        throw new Error('Content migration is unavailable');
       if (dependencies.futureNoticesEnabled) {
         const ready = await pool.query("select to_regclass('app.future_recipient_notices') is not null as ready");
         if (!ready.rows[0]?.ready) throw new Error("Future notice migration is unavailable");
@@ -199,6 +205,10 @@ export function createApp(
   // backup's own 2 MiB limit, which the handler enforces independently.
   const jsonTypes = ["application/json", "application/*+json"];
   const fileAuthentication = [preventCaching, authenticate(pool, config), requireWorkspaceIdentity];
+  if (dependencies.legacyContent) {
+    app.get(['/legacy-content/notice', '/api/legacy-content/notice'], contentNoticeHandler());
+    app.post(['/v1/legacy-content/assets', '/api/v1/legacy-content/assets'], ...fileAuthentication, ...contentUploadHandlers(dependencies.legacyContent));
+  }
   app.post(["/v1/account/map/import", "/api/v1/account/map/import"],
     ...fileAuthentication, express.json({ limit: mapBackupMaxBytes + 1024, strict: true, type: jsonTypes }));
   const encryptedPaths = ["/v1/exports/start-here/encrypted/:publicId/finalize", "/api/v1/exports/start-here/encrypted/:publicId/finalize"];
@@ -241,6 +251,7 @@ export function createApp(
   const plannerApi = express.Router();
   plannerApi.use(preventCaching, authenticate(pool, config));
   plannerApi.use(requireWorkspaceIdentity, rejectForbiddenSecretFields);
+  if (dependencies.legacyContent) plannerApi.use('/legacy-content', createContentRouter(dependencies.legacyContent));
   if (config.allowSyntheticRecipientRehearsal) {
     plannerApi.use(
       "/recipient-rehearsals",

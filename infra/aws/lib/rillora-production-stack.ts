@@ -17,6 +17,7 @@ export interface ProductionStackProps extends StackProps {
  reviewPrepared?:boolean; reviewEnabled?:boolean; runtimeImageTag?:string;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
  customerMcpPrepared?:boolean; customerMcpEnabled?:boolean;
+ legacyContentPrepared?:boolean; legacyContentEnabled?:boolean;
  appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
@@ -41,6 +42,8 @@ export class RilloraProductionStack extends Stack {
   if(props.identityServicesEnabled&&!activeRuntime)throw new Error('Identity services require a prepared active production runtime');
   if(props.customerMcpPrepared&&(!props.runtimeEnabled||props.env?.account!=='133857166372'))throw new Error('Customer MCP preparation is limited to the existing Rillora runtime');
   if(props.customerMcpEnabled&&(!props.customerMcpPrepared||!props.liveEnabled))throw new Error('Customer MCP requires its prepared secret and ordinary-user live access');
+  if(props.legacyContentPrepared&&(!props.runtimeEnabled||props.env?.account!=='133857166372'))throw new Error('Private content is restricted to the Rillora runtime');
+  if(props.legacyContentEnabled&&(!props.legacyContentPrepared||!props.liveEnabled||!props.identityServicesEnabled))throw new Error('Content requires live identity and isolated cleanup');
   if(props.retentionEnabled&&!activeRuntime)throw new Error('Retention requires an operational production runtime');
   if(props.stripeNotificationsSecretArn&&(!activeRuntime
    || !/^arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora\/production\/stripe-billing-[A-Za-z0-9]{6}$/.test(props.stripeNotificationsSecretArn)))throw new Error('Stripe notification preparation requires restricted review and the exact production billing secret');
@@ -176,6 +179,7 @@ export class RilloraProductionStack extends Stack {
     repositoryName:`cdk-hnb659fds-container-assets-${Aws.ACCOUNT_ID}-eu-central-1`}),props.runtimeImageTag):image,
    operator,environment,reviewPrepared:props.reviewPrepared,reviewEnabled:props.reviewEnabled,liveEnabled:props.liveEnabled,stripeCheckoutEnabled:props.stripeCheckoutEnabled,retentionEnabled:props.retentionEnabled,identityServicesEnabled:props.identityServicesEnabled,recoveryTask:recovery,
    customerMcpPrepared:props.customerMcpPrepared,customerMcpEnabled:props.customerMcpEnabled,
+   legacyContentPrepared:props.legacyContentPrepared,legacyContentEnabled:props.legacyContentEnabled,
    stripeNotificationsSecretArn:props.stripeNotificationsSecretArn,
    appleProductionPrepared:props.appleProductionPrepared,appleProductionEnabled:props.appleProductionEnabled,appleReviewEnabled:props.appleReviewEnabled,
    desiredCount:props.runtimeDesiredCount??0,

@@ -61,9 +61,14 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   let applied=0;
   const hasAiConnections=Boolean((await client.query("select to_regclass('app.ai_connections') as table_name")).rows[0]?.table_name);
   const hasFutureNotices=Boolean((await client.query("select to_regclass('app.future_recipient_notices') as table_name")).rows[0]?.table_name);
+  const hasLegacyContent=Boolean((await client.query("select to_regclass('app.legacy_content_assets') as table_name")).rows[0]?.table_name);
   for(const event of pending){
    const facts=event.facts;
-   if(event.kind==='future_notice'){
+   if(event.kind==='legacy_asset'){
+    if(hasLegacyContent)await client.query('delete from app.legacy_content_assets where public_id=$1',[event.id]);
+   }else if(event.kind==='legacy_publication'){
+    if(hasLegacyContent)await client.query('update app.legacy_pack_publications set revoked_at=coalesce(revoked_at,now()) where public_id=$1',[event.id]);
+   }else if(event.kind==='future_notice'){
     if(hasFutureNotices)await client.query("update app.future_recipient_notices set status='revoked',closed_at=coalesce(closed_at,now()),version=version+1 where public_id=$1",[event.id]);
    }else if(event.kind==='ai_connection'){
     if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=coalesce(revoked_at,now()),version=version+1 where public_id=$1',[event.id]);
@@ -154,6 +159,7 @@ export async function replayRecoveryControls(pool:Pool,events:RecoveryControl[],
   // External OAuth tokens are not part of this database. Require fresh explicit
   // grants after a restore, even when an old access token is still valid.
   if(hasAiConnections)await client.query('update app.ai_connections set revoked_at=now(),version=version+1 where revoked_at is null');
+  if(hasLegacyContent)await client.query('update app.legacy_pack_publications set revoked_at=now() where revoked_at is null');
   if(hasFutureNotices){
    await client.query("update app.future_recipient_notices set status='revoked',closed_at=coalesce(closed_at,now()),version=version+1 where status<>'revoked'");
    await client.query("delete from app.future_notice_handoffs");

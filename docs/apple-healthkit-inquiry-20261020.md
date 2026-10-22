@@ -1,7 +1,7 @@
 # Apple HealthKit future-use inquiry — 2026-10-20
 
-Status: SUBMITTED AS CASE103002496561 / AWAITING APPLE RESPONSE
-Last updated: 2026-10-20 (Asia/Shanghai)
+Status: APPLE DECLINED CONCEPT PRE-APPROVAL / NEXT-VERSION IMPLEMENTATION AUTHORIZED BY OWNER
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 Owner's “开始吧，但是不要影响当前审核” authorizes the previously proposed next-version preparation and Apple purpose consultation. The request is separate from the existing App Review status case. No private health records, credentials, review passwords or unrelated project data are included.
 
@@ -30,4 +30,8 @@ Thank you.
 
 ## Evidence boundary
 
-Apple accepted the independently submitted message as case103002496561. The form contained the Subject line above, a blank line, and this body; [exact submitted field and receipt](../collaboration/verification/healthkit-prep-20261020/README.md) preserve the result. No reply is recorded yet. The receipt is not an entitlement grant, App Review approval or permission to collect user health data without individual consent.
+Apple accepted the independently submitted message as case103002496561. The form contained the Subject line above, a blank line, and this body; [exact submitted field and receipt](../collaboration/verification/healthkit-prep-20261020/README.md) preserve the result.
+
+On 2026-10-22 at 12:47 Hong Kong time, appreview_cn@apple.com replied under the subject “[103002496561] 6803957639 - Pre-review issue”. The reply says Apple does not provide concept pre-approval or guidance and will give implementation-specific feedback during review. It did not answer A/B/C individually. The actual message was read in the existing developer-account Gmail session; no repeated login, new inquiry or change to the current submission occurred.
+
+Owner then explicitly authorized the agreed next-version reading implementation without waiting for concept pre-approval. This changes the development gate, not platform permitted-use facts, personal HealthKit consent or App Review status. Scope and current evidence are in [the preparation contract](healthkit-preparation-20261020.md).

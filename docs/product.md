@@ -9,6 +9,10 @@ Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-22 HealthKit进入下一版源码，保留当前审核
+
+Apple在案例103002496561回复不提供概念预批准，未对A／B／C分别批准或否决。Owner随后明确继续按既定方向读取Apple Watch同步的健康数据。因此不再等待预审答复才开发，先按[心率只读合同](healthkit-preparation-20261020.md)实现可选、前台、本机的下一版能力；不从无数据或未回应推断死亡，不连接资料放行，不改变在审二进制、审核资料或开发者门户能力。
+
 ## 2026-10-22 开始三项功能开发，Web先行
 
 Owner现在明确开发亲友办理包、重要文件副本和本人原声交代，可先部署Web；iOS等当前审核通过后在下一版本部署。[本轮实施合同](web-content-development-20261022.md)取代此前“不开发”的当前门。新增API保持旧原生接口和审核路径兼容，原价格／已购权益／真实数据／FanPass保持；真实身后放行仍需原有四门与法域证据，不由功能开发授权推断已满足。
@@ -589,7 +593,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
-| 下一版本HealthKit数据范围、权限说明、用途咨询与进入实现的条件 | `docs/healthkit-preparation-20261020.md` → `docs/apple-healthkit-inquiry-20261020.md` | 准备计划与已提交独立案例；不代表平台用途获批或已读取健康数据 |
+| 下一版本HealthKit数据范围、权限说明、用途咨询与进入实现的条件 | `docs/healthkit-preparation-20261020.md` → `docs/apple-healthkit-inquiry-20261020.md` | 准备合同、已回复独立案例及下一版源码；不代表平台用途获批或已读取真实健康数据 |
 | 多信号异常确认、仅身后披露、失联条件与生前封存预告 | `docs/conditional-disclosure-vnext-20261019.md` | Owner需求与候选规则；未实现，时限／用途／证据／密钥门分别验证 |
 | 营销平台注册、逐平台运营／广告规则与200—500美元预算 | `docs/marketing/platform-playbook-20261019.md` → `docs/marketing/acquisition-budget-20261019.md` | 官方规则、建议、实际账号资格、分期支出和市场结果分别记录；计划不是投放授权 |
 | 社交平台banner、品牌封面与上传素材 | `docs/marketing/social-banner-20261019.md` | 原03品牌、单语成稿、平台尺寸与网址规则分开；设计交付不等于上传 |

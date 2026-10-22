@@ -1,4 +1,7 @@
 import SwiftUI
+#if RILLORA_HEALTHKIT_NEXT_VERSION
+import RilloraHeartRateKit
+#endif
 
 struct AuthenticatedProfileContent: View {
     let snapshot: OverviewSnapshot
@@ -136,6 +139,9 @@ struct AuthenticatedProfileContent: View {
 
     private var preparationSection: some View {
         Section {
+            #if RILLORA_HEALTHKIT_NEXT_VERSION
+            HeartRateEntryView()
+            #endif
             if let dataService = startHereService as? any AccountDataServing {
                 NavigationLink { AccountDataView(service: dataService, overviewStore: store, onDeletionRequested: authenticationStore.endSessionAfterDeletion) } label: {
                     ProfileTaskLabel(title: String(localized: "My data"), detail: String(localized: "Backups and saved copies"), systemImage: "externaldrive")

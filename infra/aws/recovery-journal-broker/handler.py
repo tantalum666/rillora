@@ -9,7 +9,7 @@ import boto3
 
 UUID = re.compile(r"^[a-f0-9]{8}-[a-f0-9]{4}-[1-8][a-f0-9]{3}-[89ab][a-f0-9]{3}-[a-f0-9]{12}$")
 SEQUENCE = re.compile(r"^[1-9][0-9]{0,18}$")
-KINDS = {"account", "connection", "matter", "person", "free_slot", "unreconciled_access", "retention_hold", "ai_connection", "future_notice"}
+KINDS = {"account", "connection", "matter", "person", "free_slot", "unreconciled_access", "retention_hold", "ai_connection", "future_notice", "legacy_asset", "legacy_publication"}
 
 
 def verify_envelope(envelope, key):
@@ -33,8 +33,10 @@ def verify_envelope(envelope, key):
             or not isinstance(event["revision"], str) or not SEQUENCE.fullmatch(event["revision"])
             or not isinstance(event["facts"], dict)):
         raise ValueError("Invalid captured journal record")
-    if event["kind"] in {"ai_connection", "future_notice"} and (set(event["facts"]) != {"revokeOnRestore"} or event["facts"]["revokeOnRestore"] is not True):
+    if event["kind"] in {"ai_connection", "future_notice", "legacy_publication"} and (set(event["facts"]) != {"revokeOnRestore"} or event["facts"]["revokeOnRestore"] is not True):
         raise ValueError("Optional connection recovery records must only revoke access")
+    if event["kind"] == "legacy_asset" and (set(event["facts"]) != {"deleted"} or event["facts"]["deleted"] is not True):
+        raise ValueError("Content recovery records must only erase deleted files")
     return event
 
 

@@ -44,7 +44,8 @@ export class Auth0AccountIdentityDeleter implements AccountIdentityDeleting {
 export class AccountDeletionProcessor {
   private running=false;
   constructor(private pool:DatabasePool,private deleter:AccountIdentityDeleting|null,
-    private authorize:(job:DeletionProofJob)=>Promise<void>=async job=>{if(job.identities.length)throw new Error('Independent identity proof is required');}){}
+    private authorize:(job:DeletionProofJob)=>Promise<void>=async job=>{if(job.identities.length)throw new Error('Independent identity proof is required');},
+    private cleanupContent:(job:DeletionJob)=>Promise<void>=async()=>{}){}
   get identityCleanupConfigured(): boolean { return this.deleter !== null; }
   async process(publicId:string|null=null):Promise<void>{
     if(this.running)return;this.running=true;
@@ -55,6 +56,7 @@ export class AccountDeletionProcessor {
       try{
         if(job.identities.length && !this.deleter)throw new Error("identity_cleanup_unavailable");
         await this.authorize(job);
+        await this.cleanupContent(job);
         for(const identity of job.identities)await this.deleter!.deleteIdentity(identity);
         success=true;
       }catch{ /* Durable job retries. It is not reported as deleted. */ }

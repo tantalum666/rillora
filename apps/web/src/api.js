@@ -1,6 +1,7 @@
 import { normalizeCommercialStatus, normalizePurchaseRoute } from "./commercialAccess.js";
 import { validateSharingPreview, validateSharedResponse } from "./sharing.js";
 import { validateFamilyMaintenance } from "./familyMaintenance.js";
+import { createLegacyClient, contentMediaTypes } from './legacyContent.js';
 import { validateFutureNoticeEnvelope, validateFutureNoticeList, validateFutureNoticeDecision, validateFutureNoticeLeave } from "./futureNotices.js";
 
 export class ApiClientError extends Error {
@@ -62,7 +63,7 @@ export function createApiClient({
   async function request(path, options = {}, context = {}) {
     if (accountChanged && !context.publicAuth && !context.publicRehearsal) throw rejectAccountChange();
     const responseKind = options.responseKind ?? "json";
-    const { responseKind: _responseKind, ...fetchOptions } = options;
+    const { responseKind: _responseKind, binary: _binary, expectedFile: _expectedFile, ...fetchOptions } = options;
     const method = (options.method ?? "GET").toUpperCase();
     const headers = new Headers(options.headers);
     if (!context.publicRehearsal) headers.set("x-rillora-client", "web");
@@ -88,7 +89,7 @@ export function createApiClient({
       method,
       credentials: context.publicRehearsal ? "omit" : "include",
       headers,
-      body: options.body === undefined || typeof options.body === "string"
+      body: options.binary || options.body === undefined || typeof options.body === "string"
         ? options.body
         : JSON.stringify(options.body),
     });
@@ -114,6 +115,17 @@ export function createApiClient({
         payload?.error?.message ?? "The request could not be completed.",
         requestId,
       );
+    }
+    if (responseKind === 'legacy-file') {
+      const size = Number(response.headers.get('x-rillora-file-bytes'));
+      if (!contentMediaTypes.includes(contentType) || !Number.isSafeInteger(size) || size < 1 || size > 8388608
+        || size !== options.expectedFile?.bytes || contentType !== options.expectedFile?.mediaType
+        || !response.headers.get('content-disposition')?.startsWith('attachment;'))
+        throw new ApiClientError(502, 'legacy_invalid_response', 'The file response is invalid.', requestId);
+      const blob = await response.blob();
+      if (accountChanged) throw rejectAccountChange();
+      if (blob.size !== size) throw new ApiClientError(502, 'legacy_invalid_response', 'The file is incomplete.', requestId);
+      return { blob };
     }
     if (responseKind === "printable-start-here") {
       const exportPublicId = response.headers.get("x-rillora-export-id") ?? "";
@@ -148,6 +160,7 @@ export function createApiClient({
   }
 
   return {
+    legacy: createLegacyClient(request),
     getFutureNotice: personId => request(`/future-notices/people/${encodeURIComponent(personId)}`).then(validateFutureNoticeEnvelope),
     createFutureNotice: input => request("/future-notices", { method: "POST", body: input }).then(validateFutureNoticeEnvelope),
     regenerateFutureNotice: (id, expectedVersion) => request(`/future-notices/${encodeURIComponent(id)}/link`, { method: "POST", body: { expectedVersion } }).then(validateFutureNoticeEnvelope),

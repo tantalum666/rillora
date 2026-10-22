@@ -48,6 +48,7 @@ import { useConfirmation } from "./ConfirmationDialog.jsx";
 import { ContactSharingPanel, PeoplePanel, SharedWithMePanel } from "./SharingPanels.jsx";
 import { InvitationPage } from "./InvitationPage.jsx";
 import { FUTURE_NOTICES_ENABLED } from "./futureNoticeFeature.js";
+import { LEGACY_CONTENT_ENABLED } from './legacyContentFeature.js';
 import { ProviderGuidePanel, SafetyPanel } from "./TaskPanels.jsx";
 import { PlatformGuideDirectory } from "./PlatformGuides.jsx";
 import "./interaction-refinement.css";
@@ -78,12 +79,14 @@ const navigation = [
   { id: "contacts", icon: UserCircle },
   { id: "shared", icon: UserCircle },
   { id: "maintenance", icon: ClipboardText },
+  ...(LEGACY_CONTENT_ENABLED ? [{ id: 'legacy', icon: FileText }] : []),
   { id: "guides", icon: BookOpen },
   { id: "access", icon: CreditCard },
   { id: "activity", icon: Pulse },
 ];
 
 const FamilyMaintenancePanel = lazy(() => import("./FamilyMaintenancePanel.jsx").then((module) => ({ default: module.FamilyMaintenancePanel })));
+const LegacyContentPanel = LEGACY_CONTENT_ENABLED ? lazy(() => import('./LegacyContentPanel.jsx')) : null;
 const FutureNoticePanel = FUTURE_NOTICES_ENABLED ? lazy(() => import("./FutureNoticePanels.jsx").then(module => ({ default: module.FutureNoticePanel }))) : null;
 const FutureInvitationPage = FUTURE_NOTICES_ENABLED ? lazy(() => import("./FutureInvitationPage.jsx")) : null;
 
@@ -98,6 +101,7 @@ const mobileMoreDestinationIcons = {
   contacts: UserCircle,
   shared: UserCircle,
   maintenance: ClipboardText,
+  legacy: FileText,
   guides: BookOpen,
   activity: Pulse,
   settings: GearSix,
@@ -250,6 +254,8 @@ export function App() {
   const [drawer, setDrawer] = useState(null);
   const [panelHasChanges, setPanelHasChanges] = useState(false);
   const [panelBusy, setPanelBusy] = useState(false);
+  const [legacyHasChanges, setLegacyHasChanges] = useState(false);
+  const [legacyBusy, setLegacyBusy] = useState(false);
   const [panelExitWarning, setPanelExitWarning] = useState("");
   const [sharingRefreshVersion, setSharingRefreshVersion] = useState(0);
   const { confirm, confirmation, cancel: cancelConfirmation } = useConfirmation();
@@ -271,11 +277,11 @@ export function App() {
     }
   }, [drawer, unsavedMatter]);
   useEffect(() => {
-    if (!unsavedMatter && !panelHasChanges) return;
+    if (!unsavedMatter && !panelHasChanges && !legacyHasChanges) return;
     const protectDraft = (event) => { event.preventDefault(); event.returnValue = ""; };
     window.addEventListener("beforeunload", protectDraft);
     return () => window.removeEventListener("beforeunload", protectDraft);
-  }, [unsavedMatter, panelHasChanges]);
+  }, [unsavedMatter, panelHasChanges, legacyHasChanges]);
 
   const loadWorkspace = useCallback(async () => {
     const revision = ++workspaceRevision.current;
@@ -456,6 +462,17 @@ export function App() {
     return true;
   }
 
+  async function mayLeaveLegacy() {
+    if (activeNav !== 'legacy') return true;
+    if (legacyBusy) return false;
+    if (legacyHasChanges && !await confirm({ titleKey: 'workspace.draft.discardQuestion' })) return false;
+    setLegacyHasChanges(false); return true;
+  }
+  async function navigateWorkspace(view) {
+    if (view !== activeNav && !await mayLeaveLegacy()) return;
+    setActiveNav(view);
+  }
+
   async function closeDrawer() {
     if ((window.history.state?.rillora?.index ?? 0) > 0) { window.history.back(); return; }
     if (!await mayLeaveDrawer()) return;
@@ -474,7 +491,7 @@ export function App() {
 
   useWorkspaceHistory({ enabled: !!session && !!plan && !startsOnInvitationRoute && !startsOnPublicReadOnlyRoute,
     state: { view: activeNav, q: matterQuery, filter: matterFilter, sharingMatterId: activeNav === "contacts" ? sharingMatterId : null, ...drawerRoute(drawer) },
-    restore: restoreRoute, canLeave: mayLeaveDrawer, cancelLeave: cancelConfirmation });
+    restore: restoreRoute, canLeave: async route => (route.view === activeNav || await mayLeaveLegacy()) && await mayLeaveDrawer(), cancelLeave: cancelConfirmation });
 
   function contactSaved(saved) {
     const isNew = !contacts.some((person) => person.publicId === saved.publicId);
@@ -675,6 +692,7 @@ export function App() {
   }
 
   async function signOut() {
+    if (!await mayLeaveLegacy()) return;
     setBusy(true);
     try {
       ++workspaceRevision.current;
@@ -751,6 +769,8 @@ export function App() {
         {activeNav === "contacts" && <PeoplePanel contacts={contacts} matterContext={matters.find(item => item.id === sharingMatterId)} onReturnToMatter={() => { if ((window.history.state?.rillora?.index ?? 0) > 0) window.history.back(); else { const item = matters.find(item => item.id === sharingMatterId); setActiveNav("matters"); if (item) openMatter(item); } }} apiClient={api} refreshVersion={sharingRefreshVersion} onAdd={() => setDrawer({ type: "contact" })} onEdit={(person) => setDrawer({ type: "contact", contactId: person.publicId })} onShare={(person) => setDrawer({ type: "contact-sharing", contactId: person.publicId })} onIncoming={() => setActiveNav("shared")} onFutureNotice={FUTURE_NOTICES_ENABLED ? person => setDrawer({ type: "future-notice", id: person.publicId }) : undefined} />}
         {activeNav === "shared" && <SharedWithMePanel apiClient={api} />}
         {activeNav === "maintenance" && <Suspense fallback={<p role="status">{t("workspace.reviews.loading")}</p>}><FamilyMaintenancePanel apiClient={api} onChanged={() => void loadWorkspace()} onManageSharing={() => setActiveNav("contacts")} onDirtyChange={setPanelHasChanges} onBusyChange={setPanelBusy} /></Suspense>}
+        {activeNav === 'legacy' && LegacyContentPanel && <Suspense fallback={<p role="status">{t('content.loading')}</p>}><LegacyContentPanel key={session.plannerPublicId} apiClient={api} contacts={contacts} matters={matters}
+          onDirtyChange={setLegacyHasChanges} onBusyChange={setLegacyBusy} onReviewPlan={() => void navigateWorkspace('access')} onOpenGuide={providerKey => setDrawer({ type: 'provider-guide', providerKey })}/></Suspense>}
         {activeNav === "guides" && <PlatformGuideDirectory renderMark={(guide) => <ProviderMark providerKey={guide.key} label={guide.label}/>} onOpen={(guide) => setDrawer({ type: "provider-guide", providerKey: guide.key })}/>}
         {activeNav === "access" && <PlanAccessPreview commerce={commerce} onAccessChanged={setCommerce} returnedFromCheckout={returnedFromCheckout} />}
         {activeNav === "activity" && <div className="activity-list">
@@ -776,7 +796,7 @@ export function App() {
         {activeNav === "settings" && <AccountDataPanel apiClient={api} onChanged={() => void loadWorkspace()} onDeletionRequested={accountDeletionRequested}/>}
         {activeNav === "settings" && <div className="plan-card settings-card"><button className="secondary-button" type="button" onClick={() => setActiveNav("access")}><CreditCard size={20} /> {t("workspace.settings.reviewAccess")}</button><button className="secondary-button" type="button" onClick={() => setDrawer({ type: "start-here" })}><FileText size={20} /> {t("workspace.plan.reviewStart")}</button>{session?.authenticationMode === "session" && <><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOut()}><SignOut size={20} /> {busy ? t("workspace.settings.signingOut") : t("workspace.settings.signOut")}</button><button className="secondary-button settings-sign-out" disabled={busy} onClick={() => void signOutAllDevices()}><SignOut size={20} /> {t("workspace.settings.signOutAll")}</button><p className="drawer-intro">{t("workspace.settings.sessionScope")}</p></>}</div>}
         {activeNav === "more" && <InviteAction onInvite={() => setDrawer({ type: "contact" })} />}
-        {activeNav === "more" && <nav className="mobile-more-menu" aria-label={t("workspace.nav.moreDestinations")}>{mobileMoreDestinations.map(({ id, icon: Icon }) => <button type="button" key={id} onClick={() => setActiveNav(id)}><Icon size={22} aria-hidden="true" /><span><strong>{t(`workspace.nav.${id}`)}</strong><small>{t(`workspace.navDetail.${id}`)}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
+        {activeNav === "more" && <nav className="mobile-more-menu" aria-label={t("workspace.nav.moreDestinations")}>{mobileMoreDestinations.map(({ id, icon: Icon }) => <button type="button" key={id} onClick={() => void navigateWorkspace(id)}><Icon size={22} aria-hidden="true" /><span><strong>{t(`workspace.nav.${id}`)}</strong><small>{t(`workspace.navDetail.${id}`)}</small></span><CaretRight size={18} aria-hidden="true" /></button>)}</nav>}
       </section>
     );
   }
@@ -820,15 +840,15 @@ export function App() {
     <div className="app-shell">
       <ReauthenticationPrompt apiClient={api} />
       <aside className="sidebar" aria-label={t("workspace.nav.primary")}>
-        <nav>{navigation.map(({ id, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => setActiveNav(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{t(`workspace.nav.${id}`)}</span></button>)}</nav>
+        <nav>{navigation.map(({ id, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => void navigateWorkspace(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{t(`workspace.nav.${id}`)}</span></button>)}</nav>
         <div className="sidebar-spacer" />
         <section className="safety-note"><Leaf size={27} /><strong>{t("workspace.safety.motto")}</strong><button onClick={() => setDrawer({ type: "safety" })}>{t("workspace.safety.title")}</button></section>
         {session?.authenticationMode === "session" && <button type="button" className="sign-out-nav" disabled={busy} onClick={() => void signOut()}><SignOut size={23} aria-hidden="true" /> <span>{t("workspace.settings.signOut")}</span></button>}
-        <button type="button" className={`settings-nav ${activeNav === "settings" ? "active" : ""}`} aria-current={activeNav === "settings" ? "page" : undefined} onClick={() => setActiveNav("settings")}><GearSix size={23} aria-hidden="true" /> <span>{t("workspace.settings.title")}</span></button>
+        <button type="button" className={`settings-nav ${activeNav === "settings" ? "active" : ""}`} aria-current={activeNav === "settings" ? "page" : undefined} onClick={() => void navigateWorkspace("settings")}><GearSix size={23} aria-hidden="true" /> <span>{t("workspace.settings.title")}</span></button>
       </aside>
 
       <main className="main-content" tabIndex={-1}>
-        <div className={`workspace-chrome${activeNav === "settings" ? " is-settings" : ""}`}><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => setActiveNav("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
+        <div className={`workspace-chrome${activeNav === "settings" ? " is-settings" : ""}`}><AccountSummary identity={accountIdentity} plannerPublicId={session.plannerPublicId} onOpen={() => void navigateWorkspace("settings")} />{session?.authenticationMode === "development" && <p className="development-notice">{t("workspace.workspace.testData")}</p>}{activeNav !== "settings" && <LanguageControl />}<AppAppearanceControl /></div>
         {recoverableDraft && !drawer && <section className="draft-recovery" aria-label={t("workspace.draft.label")}>
           <div><strong>{t("workspace.draft.continue")}</strong><p>{recoverableDraft.title || t("workspace.matter.new")}</p></div>
           <button className="secondary-button" onClick={() => void resumeDraft()}>{t("workspace.draft.resume")}</button>
@@ -848,7 +868,7 @@ export function App() {
               key={id}
               className={isActive ? "active" : ""}
               aria-current={isActive ? "page" : undefined}
-              onClick={() => setActiveNav(id)}
+              onClick={() => void navigateWorkspace(id)}
             >
               <Icon size={22} weight="regular" aria-hidden="true" />
               <span>{t(`workspace.nav.${id}`)}</span>

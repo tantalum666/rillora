@@ -97,6 +97,22 @@ class JournalProof(unittest.TestCase):
             else:
                 with self.assertRaises(ValueError): broker.verify_envelope(envelope, self.key)
 
+    def test_content_controls_cannot_restore_files_or_carry_content(self):
+        for kind, facts, accepted in [("legacy_asset", {"deleted": True}, True),
+                                      ("legacy_asset", {"deleted": False}, False),
+                                      ("legacy_asset", {"deleted": True, "file": "private"}, False),
+                                      ("legacy_publication", {"revokeOnRestore": True}, True),
+                                      ("legacy_publication", {"revokeOnRestore": False}, False)]:
+            envelope = self.envelope()
+            event = json.loads(envelope["event"])
+            event.update(key=kind + ":" + ENTITY, kind=kind, facts=facts)
+            envelope["event"] = json.dumps(event, sort_keys=True)
+            envelope["signature"] = hmac.new(self.key.encode(), f'rillora-journal-event-v1|{GENERATION}|200|{envelope["event"]}'.encode(), hashlib.sha256).hexdigest()
+            if accepted:
+                self.assertEqual(broker.verify_envelope(envelope, self.key)["facts"], facts)
+            else:
+                with self.assertRaises(ValueError): broker.verify_envelope(envelope, self.key)
+
 
 if __name__ == "__main__":
     unittest.main()

@@ -2,6 +2,7 @@ import { Construct } from 'constructs';
 import { allowAppleCertificateStatusChecks } from './apple-certificate-egress.js';
 import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 import {RilloraCustomerMcp} from './rillora-customer-mcp.js';
+import {RilloraPrivateContent} from './rillora-private-content.js';
 import { CfnOutput, CfnParameter, Duration, RemovalPolicy, aws_ec2 as ec2, aws_ecs as ecs,
  aws_iam as iam, aws_logs as logs, aws_kms as kms, aws_dynamodb as dynamodb,
  aws_rds as rds, aws_secretsmanager as secrets, aws_certificatemanager as acm,
@@ -15,6 +16,7 @@ interface Props {
  reviewPrepared?:boolean; reviewEnabled?:boolean;
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
  customerMcpPrepared?:boolean; customerMcpEnabled?:boolean;
+ legacyContentPrepared?:boolean; legacyContentEnabled?:boolean;
  appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
@@ -54,6 +56,8 @@ export class RilloraProductionRuntime extends Construct {
   const reviewEnvironment:Record<string,string>={};
   const customerMcp=p.customerMcpPrepared?new RilloraCustomerMcp(this,'CustomerMcp',{
     enabled:p.customerMcpEnabled===true,runtime:task.taskRole,operator:p.operator}):null;
+  const privateContent=p.legacyContentPrepared?new RilloraPrivateContent(this,'PrivateContent','production'):null;
+  privateContent?.allowApi(task.taskRole);
   const reviewSecrets:Record<string,ecs.Secret>={};
   const deletionSecrets:Record<string,ecs.Secret>={};
   if(p.reviewPrepared){
@@ -156,6 +160,7 @@ export class RilloraProductionRuntime extends Construct {
     ALLOW_APPLE_SANDBOX_INTEGRATION:'false',ALLOW_FAMILY_MAINTENANCE_PREVIEW:'false',
     ALLOW_APPLE_PRODUCTION_INTEGRATION:'false',ALLOW_STRIPE_PRODUCTION_INTEGRATION:p.liveEnabled&&p.stripeCheckoutEnabled?'true':'false',
     ALLOW_RETENTION_WORKER:p.retentionEnabled?'true':'false',...customerMcp?.environment,
+    ...privateContent?.environmentValues(p.legacyContentEnabled===true),
     ...(p.identityServicesEnabled?{DELETION_WORKER_ENABLED:'true',DELETION_PROOF_KMS_KEY_ARN:p.boundaryKeys.proof.keyArn}:{}),...reviewEnvironment},
    secrets:{DATABASE_USER:ecs.Secret.fromSecretsManager(p.credential,'username'),DATABASE_PASSWORD:ecs.Secret.fromSecretsManager(p.credential,'password'),
     ...p.boundaryKeys.apiSecrets(),...reviewSecrets},
@@ -177,6 +182,7 @@ export class RilloraProductionRuntime extends Construct {
     providerEnvironment:{},providerSecrets:deletionSecrets,
     issuers:[reviewEnvironment.OIDC_ISSUER_URL!],clients:[reviewEnvironment.OIDC_CLIENT_ID!,reviewEnvironment.NATIVE_OIDC_CLIENT_ID!],
     broker:p.journalBroker});
+   privateContent?.allowCleanup(deletionWorker.task,p.legacyContentEnabled===true);
   }
   const link=new gateway.VpcLink(this,'VpcLink',{vpc:p.vpc,subnets:{subnetType:ec2.SubnetType.PRIVATE_ISOLATED},securityGroups:[ingress]});
   const api=new gateway.HttpApi(this,'HttpApi',{apiName:'rillora-production-closed',

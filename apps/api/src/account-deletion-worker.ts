@@ -6,6 +6,9 @@ import { databaseConnectionOptions } from './db.js';
 import { loadDatabaseConfig } from './config.js';
 import { IdentityDeletionProofVault, DeletionIdentityProofVerifier } from './identity-deletion-proof.js';
 import { configureRecoveryPool, recoveryPublisherFromEnvironment } from './recovery-journal.js';
+import { contentConfiguration } from './legacy-content/runtime.js';
+import { S3ContentObjectStore } from './legacy-content/object-store.js';
+import { ContentCleanup } from './legacy-content/cleanup.js';
 
 export function loadDeletionWorkerConfig(env:NodeJS.ProcessEnv=process.env){
   return z.object({
@@ -23,18 +26,21 @@ export function loadDeletionWorkerConfig(env:NodeJS.ProcessEnv=process.env){
 async function main(){
   const config=loadDeletionWorkerConfig(),pool=new pg.Pool({...databaseConnectionOptions(loadDatabaseConfig()),max:2,application_name:'rillora-identity-deletion-worker'});
   const publisher=recoveryPublisherFromEnvironment();if(publisher)configureRecoveryPool(pool,publisher);
+  const storage=contentConfiguration();
+  if(storage&&!storage.bucket.startsWith(`${config.CONTENT_KEY_NAMESPACE}-private-content-`))throw new Error('Content cleanup environment mismatch');
+  const cleanup=storage?new ContentCleanup(pool,new S3ContentObjectStore(storage.bucket,'eu-central-1')):null;
   const verifier=new DeletionIdentityProofVerifier(new IdentityDeletionProofVault({keyArn:config.DELETION_PROOF_KMS_KEY_ARN,
     namespace:config.CONTENT_KEY_NAMESPACE,region:'eu-central-1'}),config.DELETION_ALLOWED_ISSUERS,config.DELETION_ALLOWED_CLIENT_IDS);
   const processor=new AccountDeletionProcessor(pool,new Auth0AccountIdentityDeleter({domain:config.AUTH0_DELETION_DOMAIN,
     clientId:config.AUTH0_DELETION_CLIENT_ID,clientSecret:config.AUTH0_DELETION_CLIENT_SECRET,allowedIssuers:config.DELETION_ALLOWED_ISSUERS}),
-    job=>verifier.authorize(job));
+    job=>verifier.authorize(job),job=>cleanup?.prepareAccount(job)??Promise.resolve());
   let stopped=false;
   for(const signal of ['SIGTERM','SIGINT'])process.on(signal,()=>{stopped=true;});
   try{
     const actual=(await pool.query("select session_user as name,pg_has_role(session_user,'continuity_deletion_worker','MEMBER') as allowed")).rows[0];
     if(!actual?.allowed||!/^continuity_deletion_(production|staging)$/.test(actual.name))throw new Error('Invalid deletion worker login');
     while(!stopped){
-      try{await processor.process();}catch{process.stderr.write('Identity deletion pass will retry.\n');}
+      try{await cleanup?.sweep();await processor.process();}catch{process.stderr.write('Identity or content deletion pass will retry.\n');}
       if(!stopped)await new Promise(resolve=>setTimeout(resolve,30000));
     }
   }finally{await pool.end();}
