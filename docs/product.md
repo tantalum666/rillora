@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-20 (Asia/Hong_Kong)
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-22 Node安全修复
+
+Owner要求升级并部署Node安全修复，优先云端、使用额度前告知，并已批准云端准备后的有限本机部署核验。[本次聚焦规范](node-security-upgrade-20261022.md)将API镜像与CI同补丁升级到22.23.4，不改变产品、鉴权、数据库、收费或Apple审核边界。源码测试、GitHub CI和线上运行时是三个不同证据层级；未取得真实部署回执前不宣称生产已修复。
 
 ## 2026-10-20 Git清单修复与主分支整合
 
