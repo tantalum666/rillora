@@ -238,6 +238,20 @@ describe.sequential('Web content — real database, synthetic files and identiti
     expect((await overview()).received).toHaveLength(0);
     await request(app).get('/v1/legacy-content/received?cursor=invalid').set(B).expect(400);
   });
+  it('checks optional schema readiness through the non-inheriting runtime role', async () => {
+    const login = 'continuity_ready_' + randomUUID().replaceAll('-', '').slice(0, 12);
+    const password = randomBytes(36).toString('base64url');
+    const quoted = (await pool.query('select quote_ident($1) as login, quote_literal($2) as password', [login, password])).rows[0];
+    await pool.query(`create role ${quoted.login} login noinherit nosuperuser nocreatedb nocreaterole nobypassrls password ${quoted.password}`);
+    await pool.query(`grant continuity_auth to ${quoted.login}`);
+    const runtimeUrl = new URL(url); runtimeUrl.username = login; runtimeUrl.password = password;
+    const runtimePool = createPool({ ...config, database: { connectionString: runtimeUrl.toString(), sslMode: 'disable', sslCaPath: null } });
+    try {
+      await expect(runtimePool.query("select to_regclass('app.legacy_content_assets')")).rejects.toMatchObject({ code: '42501' });
+      const candidate = createApp(runtimePool, config, { legacyContent: context, futureNoticesEnabled: true });
+      await request(candidate).get('/health/ready').expect(200);
+    } finally { await runtimePool.end(); await pool.query(`drop role ${quoted.login}`); }
+  });
   it('does not resurrect files or shared versions from an older database snapshot', async () => {
     await enable(); const p = await person(), file = (await upload().expect(201)).body.asset;
     const saved = await pack({ intent: 'current', personPublicId: p.person, assets: [file.publicId] }), id = await publish(saved);

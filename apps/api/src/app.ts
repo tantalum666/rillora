@@ -12,7 +12,7 @@ import { authenticate, requireWorkspaceIdentity } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
-import { checkContentKeys } from "./db.js";
+import { checkContentKeys, withAuthDatabase } from "./db.js";
 import { checkRecoveryJournal } from './recovery-journal.js';
 import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
@@ -105,11 +105,14 @@ export function createApp(
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
       await dependencies.mcp?.checkReady();
-      if (dependencies.legacyContent && !(await pool.query("select to_regclass('app.legacy_content_assets') is not null as ready")).rows[0]?.ready)
-        throw new Error('Content migration is unavailable');
-      if (dependencies.futureNoticesEnabled) {
-        const ready = await pool.query("select to_regclass('app.future_recipient_notices') is not null as ready");
-        if (!ready.rows[0]?.ready) throw new Error("Future notice migration is unavailable");
+      if (dependencies.legacyContent || dependencies.futureNoticesEnabled) {
+        // Production logins deliberately do not inherit schema privileges.
+        // Use the existing signed role transaction even for catalog metadata.
+        const ready = await withAuthDatabase(pool, async client => (await client.query(
+          "select to_regclass('app.legacy_content_assets') is not null as content, to_regclass('app.future_recipient_notices') is not null as notices",
+        )).rows[0]);
+        if (dependencies.legacyContent && !ready?.content) throw new Error('Content migration is unavailable');
+        if (dependencies.futureNoticesEnabled && !ready?.notices) throw new Error('Future notice migration is unavailable');
       }
       if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });

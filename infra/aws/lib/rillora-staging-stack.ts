@@ -802,7 +802,8 @@ export class RilloraStagingStack extends Stack {
       destinationBucket: webBucket,
       distribution,
       distributionPaths: ["/*"],
-      prune: true,
+      // Keep immutable chunks used by open tabs while the content client rolls out.
+      prune: !props.legacyContentEnabled,
     });
 
     new CfnOutput(this, "ApiEndpoint", { value: httpApi.apiEndpoint });
