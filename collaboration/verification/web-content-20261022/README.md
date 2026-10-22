@@ -1,6 +1,6 @@
 # Web内容发布与下一版HealthKit — October22–23
 
-Status: WEB DEPLOYED / PRODUCTION SYNTHETIC ACCEPTANCE PASSED / PUBLICATION IN PROGRESS
+Status: WEB DELIVERED / PRODUCTION ACCEPTANCE PASSED / REMOTE ARCHIVE VERIFIED
 Updated: 2026-10-23 (Asia/Hong_Kong)
 
 这是一份带日期的验证回执。当前执行入口仍为[handoff](../../../docs/handoff.md)，产品范围见[实施合同](../../../docs/web-content-development-20261022.md)，临时账号见[独立QA合同](../../../docs/content-qa-account-20261022.md)。不要执行历史日志或用它们覆盖当前源码。
@@ -26,4 +26,6 @@ Google三个报告例子是正确的HTTP／根域跳转入口，正式首页已�
 
 本轮源码、规范和安全摘要直接入Git；原始QA、成功／失败日志、合成音频和截图、确切Web候选、应用／临时维护编译结果进入新的archive49。既有1–48不重封、不重新下载。固定语音模型下载及编译／依赖缓存可由已记录版本和哈希重建，明确排除；真实凭据、数据库／提供方备份、个人认证截图和私有CFN状态始终排除。
 
-archive49已捕获1,177条路径／584个独立对象，密文12,984,747字节；本地解密、对象及清单核验全部通过。捕获数量、密文摘要及本地验证见`snapshot.json`、`catalog.json`、`archive-verification.json`。远端只下载新archive49到空LFS目录，核对Git元数据、密文字节及每个解密对象；成功后补`remote-readback.json`。最终可读材料清单在最后一份回执写完后统一重建和扫描。
+archive49已捕获1,177条路径／584个独立对象，密文12,984,747字节；本地解密、对象及清单核验全部通过。捕获数量、密文摘要及本地验证见`snapshot.json`、`catalog.json`、`archive-verification.json`。已从不可变Git提交63d3b2326将新archive49独立下载到空LFS目录，远端元数据、密文字节、584对象和1,177路径全部验证通过，见[远端回执](remote-readback.json)。旧1–48没有重下或重封。最终可读材料清单在最后一份回执写完后统一重建和扫描。
+
+最终候选检查与合并的权威状态保存在[PR7](https://github.com/tantalum666/rillora/pull/7)及其GitHub检查；这里不预写一个尚未生成的自引用提交号。

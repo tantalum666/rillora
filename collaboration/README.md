@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October23当前：[Web办理包／文件／原声发布](../docs/web-content-development-20261022.md)已完成两环境部署与独立合成账号的真实文件／私有办理包验收；临时权益／会话已撤销、维护模板恢复并拒绝QA命令。API53c904…／Web113+110文件匹配，源码1537b3f0d／Verify242与Web UX24通过。HealthKit只读模块为下一版本源码，Google报告已核实为正常别名。新增[本轮回执与archive49](verification/web-content-20261022/README.md)正在完成远端校验和Git收尾；旧归档不重做。当前唯一下一步以handoff为准。
+October23当前：[Web办理包／文件／原声发布](../docs/web-content-development-20261022.md)已完成两环境部署与独立合成账号的真实文件／私有办理包验收；临时权益／会话已撤销、维护模板恢复并拒绝QA命令。API53c904…／Web113+110文件匹配，源码1537b3f0d／Verify242与Web UX24通过。HealthKit只读模块为下一版本源码，Google报告已核实为正常别名。新增[本轮回执与archive49](verification/web-content-20261022/README.md)已在63d3b2326独立远端下载／解密核验584对象与1,177路径；最终检查／合并见PR7，旧归档不重做。当前唯一下一步以handoff为准。
 
 October20当前任务：[独立身后安排告知](../docs/future-recipient-notices-20261020.md)在codex/future-recipient-notices-20261020完成，源码6491fe5c6／CI207三任务通过，远端82文件一致，[回执](verification/future-notices-20261020/README.md)已保存。三端默认关闭、仅下一版本。HealthKit答复不再阻塞此项；本轮没有部署或修改在审构建。实现、测试、推送／CI与实际亲友送达分别记录，当前唯一下一步只看handoff。
 

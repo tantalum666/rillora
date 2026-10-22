@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: WEB DEPLOYED AND ACCEPTED / GIT PUBLICATION FINISHING / IOS NEXT VERSION
+Status: WEB DELIVERED / REMOTE EVIDENCE VERIFIED / IOS NEXT VERSION
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -23,8 +23,8 @@ Google报告的三个例子是正常HTTP／根域别名，单次跳到HTTPS www�
 
 原声录制和本地模型推理有此前合成浏览器证据，本次未录取真人声音；生产正向验收限定独立账号的文件与私有办理包，没有重复真实接收人共享、购买／退款或真机验收。iOS三项新功能的App集成、真实HealthKit个人授权／设备读取和后续分发尚未完成。
 
-源码及原始证据正在按[本轮Git回执](../collaboration/verification/web-content-20261022/README.md)收尾。工作目录仍为原仓库、分支codex/web-legacy-content-20261022；完整阅读链、临时操作与保护状态在output/qa/rillora-web-content-20261022，私有凭据／CFN状态不进可读Git。没有重新申请同一许可或重复已完成部署。
+源码及原始证据已按[本轮Git回执](../collaboration/verification/web-content-20261022/README.md)推送。archive49在63d3b2326已完成独立远端下载、解密与584对象／1,177路径核验；完整可读清单与扫描同步执行。最后候选检查及合并状态以[PR7](https://github.com/tantalum666/rillora/pull/7)的GitHub记录为准。工作目录仍为原仓库，功能分支codex/web-legacy-content-20261022供追溯；完整阅读链、临时操作与保护状态在output/qa/rillora-web-content-20261022，私有凭据／CFN状态不进可读Git。没有重新申请同一许可或重复已完成部署。
 
 ## 唯一下一步
 
-完成本轮archive49的独立远端核验、最后提交CI和PR7主分支合并；然后按既定审核隔离安排进入下一版iOS集成与设备授权阶段。当前生产Web已交付，不把后续iOS工作写成本轮已完成。
+按既定审核隔离安排，先核实原审核结果，再进入下一版iOS三项内容功能集成与真实HealthKit个人授权／设备验收；未经对应阶段验证不分发新App。当前生产Web已交付，本轮Git最终结果由PR7原生记录证明，不把后续iOS工作写成已完成。
