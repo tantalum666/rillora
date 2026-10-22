@@ -18,6 +18,7 @@ export interface ProductionStackProps extends StackProps {
  liveEnabled?:boolean; stripeCheckoutEnabled?:boolean;
  customerMcpPrepared?:boolean; customerMcpEnabled?:boolean;
  legacyContentPrepared?:boolean; legacyContentEnabled?:boolean;
+ contentQaScope?:{subject:string;identitySha256:string;label:string;expiresAt:string};
  appleProductionPrepared?:boolean; appleProductionEnabled?:boolean; appleReviewEnabled?:boolean;
  retentionEnabled?:boolean;
  identityServicesEnabled?:boolean;
@@ -44,6 +45,14 @@ export class RilloraProductionStack extends Stack {
   if(props.customerMcpEnabled&&(!props.customerMcpPrepared||!props.liveEnabled))throw new Error('Customer MCP requires its prepared secret and ordinary-user live access');
   if(props.legacyContentPrepared&&(!props.runtimeEnabled||props.env?.account!=='133857166372'))throw new Error('Private content is restricted to the Rillora runtime');
   if(props.legacyContentEnabled&&(!props.legacyContentPrepared||!props.liveEnabled||!props.identityServicesEnabled))throw new Error('Content requires live identity and isolated cleanup');
+  if(props.contentQaScope){
+   const q=props.contentQaScope,expiry=Date.parse(q.expiresAt);
+   if(!props.legacyContentEnabled||!/^auth0\|[a-f0-9]{24}$/.test(q.subject)
+    ||createHash('sha256').update('https://login.rillora.xyz\u001f'+q.subject).digest('hex')!==q.identitySha256
+    ||!/^Rillora Web Content QA \d{4}-\d{2}-\d{2}$/.test(q.label)
+    ||!Number.isFinite(expiry)||expiry<=Date.now()||expiry>Date.now()+4*3600_000)
+    throw new Error('Content QA requires one explicit synthetic identity and a four-hour deadline');
+  }
   if(props.retentionEnabled&&!activeRuntime)throw new Error('Retention requires an operational production runtime');
   if(props.stripeNotificationsSecretArn&&(!activeRuntime
    || !/^arn:aws:secretsmanager:eu-central-1:133857166372:secret:rillora\/production\/stripe-billing-[A-Za-z0-9]{6}$/.test(props.stripeNotificationsSecretArn)))throw new Error('Stripe notification preparation requires restricted review and the exact production billing secret');
@@ -189,6 +198,7 @@ export class RilloraProductionStack extends Stack {
     environment:'production',source:'rillora-production',sourceHost:database.instanceEndpoint.hostname,cluster:cluster.clusterName,
     productionRuntimeMode:props.liveEnabled?'live':props.reviewEnabled?'review':'closed',
     ...(runtime?.appleReviewScope?{appleReviewScope:runtime.appleReviewScope}:{}),
+    ...(props.contentQaScope?{contentQaScope:props.contentQaScope}:{}),
     migrationTask:migration.taskDefinitionArn,recoveryTask:recovery.taskDefinitionArn,
     subnets:vpc.publicSubnets.map(s=>s.subnetId),migrationSecurityGroup:sourceJobs.securityGroupId,
     recoveryTaskSecurityGroup:recoveryJobs.securityGroupId,recoveryDatabaseSecurityGroup:recoveryDatabaseNetwork.securityGroupId,

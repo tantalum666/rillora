@@ -96,6 +96,8 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
     &&['inspect','activate','close-new-sales'].includes(command[2]))operation='billing-'+command[2];
   else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-production-apple.js'
     &&['inspect','prepare','close-new-sales','renew-review','enroll-review','provision-reviewer'].includes(command[2]))operation='apple-'+command[2];
+  else if(command.length===3&&command[0]==='node'&&command[1]==='dist/configure-content-qa.js'
+    &&['inspect','prepare','revoke'].includes(command[2]))operation='content-qa-'+command[2];
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
     &&typeof command[3]==='string'&&hash(command[3])===config.isolationScriptSha256)operation='isolation';
   else if(command.length===4&&command[0]==='node'&&command[1]==='--input-type=module'&&command[2]==='-e'
@@ -104,6 +106,17 @@ export async function executeMaintenance(input,call,config,clock=Date.now){
   const recovery=['restore','reconcile-commerce','isolation'].includes(operation);
   assert(request.taskDefinition===(recovery?config.recoveryTask:config.migrationTask),'exact task definition');
   const allowed=['RECOVERY_RUN'];
+  if(operation.startsWith('content-qa-')){
+    const scope=config.contentQaScope,expiry=Date.parse(scope?.expiresAt??'');
+    assert(config.productionRuntimeMode==='live'&&scope&&/^auth0\|[a-f0-9]{24}$/.test(scope.subject??'')
+      &&/^[a-f0-9]{64}$/.test(scope.identitySha256??'')
+      &&hash('https://login.rillora.xyz\u001f'+scope.subject)===scope.identitySha256
+      &&/^Rillora Web Content QA \d{4}-\d{2}-\d{2}$/.test(scope.label??'')&&Number.isFinite(expiry),'exact deployed content QA scope');
+    const fields={RILLORA_CONTENT_QA_SUBJECT:'subject',RILLORA_CONTENT_QA_IDENTITY_SHA256:'identitySha256',
+      RILLORA_CONTENT_QA_LABEL:'label',RILLORA_CONTENT_QA_EXPIRES_AT:'expiresAt'};
+    for(const [name,key] of Object.entries(fields)){assert(values[name]===scope[key],'content QA scope mismatch');allowed.push(name);}
+    if(operation==='content-qa-prepare')assert(expiry>clock()&&expiry<=clock()+4*3600_000,'bounded content QA expiry');
+  }
   if(operation==='billing-activate')assert(config.productionRuntimeMode==='live','billing activation requires explicit live runtime');
   if(['billing-activate','billing-close-new-sales'].includes(operation)){
     assert(/^[a-f0-9]{64}$/.test(values.RILLORA_BILLING_EXPECTED_SNAPSHOT??''),'fresh billing catalog fingerprint');

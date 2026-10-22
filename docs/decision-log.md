@@ -3765,3 +3765,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly directs continuing the agreed Apple Watch health-data reading direction. The earlier wait-for-concept-answer development gate is superseded. Start with the bounded, optional, foreground heart-rate reader in [the contract](healthkit-preparation-20261020.md), without health-derived access grants or unapproved reminder thresholds.
 - Separate next-version configuration and local package keep current entitlements, main project, binary, submission and provider capabilities unchanged. Individual system permission, device reading and future App Review remain independent evidence.
 - The Google redirect notification is separately investigated: its three examples are intentional aliases; the final homepage is indexed and all28 sitemap URLs return200 with matching canonical. No unnecessary redirect removal, re-submission or public deployment follows from this notification.
+
+## 2026-10-22 — Prepare an independent account for production content acceptance
+
+- Status: OWNER REQUESTED synthetic test account after confirming no other active Family test identity is available.
+- The existing personal Google identity correctly has no active Family creation entitlement. Owner says “暂无，你看看能不能弄个测试账号”; prepare a separate synthetic identity and narrowly scoped, expiring test grants, without charging, changing ordinary sale controls or repurposing the Apple App Review identity.
+- Use the existing Auth0 connection and signed credential store. Do not claim an example.test address is verified, fabricate an order/subscription, widen user access or bypass the fixed maintenance broker. Any required operator command must validate exact identity, test label, deadline and unchanged commercial configuration before use.
+- Production positive upload/download and pack-save acceptance remains pending until actual evidence; current source/build/static/API-health checks are retained.

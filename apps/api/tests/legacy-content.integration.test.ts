@@ -17,6 +17,7 @@ import { AccountDeletionProcessor } from '../src/account-deletion.js';
 import { contentNoticeVersion } from '../src/legacy-content/notice.js';
 import { contentObjectKey } from '../src/legacy-content/object-store.js';
 import { replayRecoveryControls } from '../src/recovery-replay.js';
+import { configureContentQa, validateContentQaScope } from '../src/configure-content-qa.js';
 
 const name = 'continuity_legacy_content_v2_test';
 const url = dedicatedTestDatabaseUrl(`postgresql:///${name}`, name);
@@ -93,6 +94,52 @@ describe.sequential('Web content — real database, synthetic files and identiti
     app = createApp(pool, config, { legacyContent: context, emailIdentityVerifier: identities }); B = await actor('B'); C = await actor('C');
   });
   afterAll(async () => { await pool?.end(); });
+
+  it('provides expiring QA access without a purchase, fabricated session, or changes to ordinary accounts', async () => {
+    const subject = 'auth0|' + 'a'.repeat(24), now = Date.now();
+    const scope = { subject, identitySha256: hash(`https://login.rillora.xyz\u001f${subject}`).toString('hex'),
+      label: 'Rillora Web Content QA 2026-10-22', expiresAt: new Date(now + 3600_000).toISOString() };
+    const client = await pool.connect();
+    const sessionsBefore = (await pool.query('select count(*)::int n from app.auth_sessions')).rows[0].n;
+    const policy = (await pool.query('select sharing_limits_enabled from app.commerce_runtime_policy where singleton')).rows[0].sharing_limits_enabled;
+    try {
+      // The same grant must work under live sharing limits, not a preview bypass.
+      await pool.query('update app.commerce_runtime_policy set sharing_limits_enabled=true where singleton');
+      const result = await configureContentQa(client, 'prepare', scope, now);
+      expect(result.grants).toHaveLength(2); expect(result.commercialConfigurationUnchanged).toBe(true);
+      const id = String((await pool.query('select id from app.planners where public_id=$1', [result.publicId])).rows[0].id);
+      expect(await context.transaction(id, ({ client }) => context.canCreate(client))).toBe(true);
+      expect((await configureContentQa(client, 'prepare', scope, now)).grants).toHaveLength(2);
+      await expect(configureContentQa(client, 'prepare', { ...scope, expiresAt: new Date(now + 2 * 3600_000).toISOString() }, now)).rejects.toThrow('expiry cannot be extended');
+      expect((await pool.query('select count(*)::int n from app.auth_sessions')).rows[0].n).toBe(sessionsBefore);
+      expect((await pool.query('select count(*)::int n from app.legal_acceptances where planner_id=$1', [id])).rows[0].n).toBe(0);
+      expect((await pool.query('select count(*)::int n from app.commerce_orders where planner_id=$1', [id])).rows[0].n).toBe(0);
+      expect((await pool.query('select count(*)::int n from app.commerce_subscriptions where planner_id=$1', [id])).rows[0].n).toBe(0);
+      const revoked = await configureContentQa(client, 'revoke', scope, now + 5 * 3600_000);
+      expect(revoked.grants.every(g => g.revoked_at !== null)).toBe(true);
+      expect(await context.transaction(id, ({ client }) => context.canCreate(client))).toBe(false);
+      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('cannot be reactivated');
+      expect((await pool.query('select count(*)::int n from app.auth_sessions where revoked_at is null')).rows[0].n).toBe(sessionsBefore);
+    } finally { await pool.query('update app.commerce_runtime_policy set sharing_limits_enabled=$1 where singleton', [policy]); client.release(); }
+  });
+  it('refuses invalid scope, personal identities and any enrolled Apple reviewer as a content QA account', async () => {
+    const subject = 'auth0|' + 'b'.repeat(24), now = Date.now();
+    const scope = { subject, identitySha256: hash(`https://login.rillora.xyz\u001f${subject}`).toString('hex'),
+      label: 'Rillora Web Content QA 2026-10-22', expiresAt: new Date(now + 3600_000).toISOString() };
+    for (const patch of [{ subject: 'google-oauth2|personal' }, { identitySha256: 'c'.repeat(64) }, { label: 'Rillora App Review' },
+      { expiresAt: new Date(now - 1).toISOString() }, { expiresAt: new Date(now + 5 * 3600_000).toISOString() }]) {
+      expect(() => validateContentQaScope({ ...scope, ...patch }, 'prepare', now)).toThrow();
+    }
+    const existing = (await pool.query("select * from app.provision_oidc_planner($1,$2,'Personal account','en','UTC')", ['https://login.rillora.xyz', subject])).rows[0];
+    const client = await pool.connect();
+    try {
+      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('cannot be repurposed');
+      await pool.query('update app.planners set display_name=$2 where id=$1', [existing.planner_id, scope.label]);
+      await pool.query("insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '1 day','Existing review fixture')", [existing.planner_id]);
+      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('Apple-review');
+      expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where planner_id=$1', [existing.planner_id])).rows[0].n).toBe(0);
+    } finally { client.release(); }
+  });
 
   it('is disabled by default and rejects unauthenticated, stale-account and unconsented changes', async () => {
     await request(createApp(pool, config)).get('/v1/legacy-content').set(owner).expect(404);
