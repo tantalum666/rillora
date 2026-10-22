@@ -1,0 +1,49 @@
+"""Prepare, read back and validate an image-only rollback. Does NOT execute it.
+
+This restores Node 22.22.3 and therefore reintroduces the vulnerability. Use only
+for a separately assessed recovery need. No database/schema operation is performed.
+"""
+import copy
+import datetime
+import json
+import subprocess
+import sys
+from pathlib import Path
+
+environment=sys.argv[1];assert environment in ['staging','production']
+stack_name='Rillora'+environment.title()
+HERE=Path(__file__).resolve().parent;ROOT=HERE.parents[2]
+PRIVATE=ROOT/'.local/node-security-deployment-20261022';PRIVATE.mkdir(parents=True,exist_ok=True,mode=0o700)
+operation_file=PRIVATE/(environment+'-rollback-request.json')
+assert not operation_file.exists(),'A rollback request already exists. Inspect its actual AWS status before retrying.'
+def aws(*args):
+ p=subprocess.run(['aws','--profile','rillora-cdk-deploy','--region','eu-central-1','--output','json','--no-cli-pager',*args],text=True,capture_output=True,timeout=90)
+ if p.returncode:raise RuntimeError(p.stderr.strip())
+ return json.loads(p.stdout)
+def body(value):return json.loads(value) if isinstance(value,str) else value
+stack=aws('cloudformation','describe-stacks','--stack-name',stack_name)['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE','Stop: stack is not stable'
+live=body(aws('cloudformation','get-template','--stack-name',stack_name,'--template-stage','Original')['TemplateBody'])
+target=copy.deepcopy(live)
+review=next(r for r in json.loads((HERE/'image-only-template-review.json').read_text()) if r['stack']==stack_name)
+for change in review['imageChanges']:
+ container=target['Resources'][change['path'][1]]['Properties']['ContainerDefinitions'][0]
+ assert container['Image']==change['after'],'Stop: current image differs from this release'
+ container['Image']=change['before']
+verify=copy.deepcopy(target)
+for change in review['imageChanges']:verify['Resources'][change['path'][1]]['Properties']['ContainerDefinitions'][0]['Image']=change['after']
+assert verify==live,'Stop: non-image rollback drift'
+file=PRIVATE/(stack_name+'-template-rollback.json');file.write_text(json.dumps(target,separators=(',',':')));file.chmod(0o600)
+upload=json.loads(subprocess.check_output([sys.executable,str(HERE/'publish_template.py'),str(file)],text=True))
+suffix=datetime.datetime.now(datetime.timezone.utc).strftime('%Y%m%dT%H%M%SZ')
+name='node22-rollback-'+environment+'-'+suffix
+request={'StackName':stack_name,'ChangeSetName':name,'ChangeSetType':'UPDATE','TemplateURL':upload['templateUrl'],
+         'Description':'Recovery only: restore previous images; Node22.22.3 vulnerability returns; data and schema untouched',
+         'Parameters':[{'ParameterKey':p['ParameterKey'],'UsePreviousValue':True} for p in stack.get('Parameters',[])],
+         'Capabilities':stack.get('Capabilities',[]),'RoleARN':stack['RoleARN'],'ClientToken':name}
+operation_file.write_text(json.dumps(request,indent=2)+'\n');operation_file.chmod(0o600)
+result=aws('cloudformation','create-change-set','--cli-input-json','file://'+str(operation_file))
+actual=body(aws('cloudformation','get-template','--stack-name',stack_name,'--change-set-name',result['Id'],'--template-stage','Original')['TemplateBody'])
+assert actual==target,'Stop: actual rollback TemplateBody mismatch'
+print(json.dumps({'changeSetId':result['Id'],'stack':stack_name,'templateMatches':True,'onlyImageChanges':True,'executed':False,
+                 'next':'Read describe-change-set; ensure CREATE_COMPLETE/AVAILABLE and only task revisions with derived references, then execute the exact returned Id if recovery is still required.'},indent=2))

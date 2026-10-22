@@ -1,0 +1,38 @@
+import datetime
+import json
+from pathlib import Path
+import subprocess
+import sys
+
+environment=sys.argv[1]
+assert environment in ['staging','production']
+rollback=len(sys.argv)>2 and sys.argv[2]=='rollback'
+stack_name='Rillora'+environment.title()
+ROOT=Path(__file__).resolve().parents[3]
+OUT=Path(__file__).parent
+PRIVATE=ROOT/'.local/node-security-deployment-20261022'
+def aws(*args):
+ p=subprocess.run(['aws','--profile','rillora-cdk-deploy','--region','eu-central-1','--no-cli-pager','--output','json',*args],text=True,capture_output=True,timeout=90)
+ if p.returncode:raise RuntimeError(p.stderr.strip())
+ return json.loads(p.stdout)
+old=json.loads((PRIVATE/(stack_name+('-template-patched.json' if rollback else '-template-before.json'))).read_text())
+live=aws('cloudformation','get-template','--stack-name',stack_name,'--template-stage','Original')['TemplateBody']
+if isinstance(live,str):live=json.loads(live)
+assert live==old,'Live template changed after baseline capture'
+stack=aws('cloudformation','describe-stacks','--stack-name',stack_name)['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+original_stack=json.loads((PRIVATE/(stack_name+'-stack-before.json')).read_text())
+assert stack.get('Parameters')==original_stack.get('Parameters'),'Parameter drift'
+upload=json.loads((OUT/(environment+('-rollback-template-upload.json' if rollback else '-template-upload.json'))).read_text())
+name='node-22-23-4-20261022-'+environment+('-rollback' if rollback else '')
+request={'StackName':stack_name,'ChangeSetName':name,'ChangeSetType':'UPDATE',
+         'Description':'Node 22.23.4 image-only upgrade; preserve each existing application baseline; no migration',
+         'TemplateURL':upload['templateUrl'],
+         'Parameters':[{'ParameterKey':p['ParameterKey'],'UsePreviousValue':True} for p in stack.get('Parameters',[])],
+         'Capabilities':stack.get('Capabilities',[]),'RoleARN':stack['RoleARN'],
+         'ClientToken':'rillora-node-22-23-4-20261022-'+environment+('-rollback' if rollback else '')}
+file=PRIVATE/(stack_name+'-create-change-set.json');file.write_text(json.dumps(request,indent=2)+'\n');file.chmod(0o600)
+result=aws('cloudformation','create-change-set','--cli-input-json','file://'+str(file))
+result.update({'stack':stack_name,'changeSetName':name,'createdAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'executed':False})
+(OUT/(environment+('-rollback' if rollback else '')+'-changeset-created.json')).write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps(result))

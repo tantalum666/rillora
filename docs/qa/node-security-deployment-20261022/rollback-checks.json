@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-22T01:35:53.788598+00:00",
+  "scope": "offline transformation/guard checks using captured actual templates; no AWS write or rollback executed",
+  "results": [
+    {
+      "stack": "RilloraStaging",
+      "imageOnlyRestorePassed": true,
+      "wrongImageRejected": true,
+      "unrelatedFieldPreserved": true
+    },
+    {
+      "stack": "RilloraProduction",
+      "imageOnlyRestorePassed": true,
+      "wrongImageRejected": true,
+      "unrelatedFieldPreserved": true
+    }
+  ]
+}

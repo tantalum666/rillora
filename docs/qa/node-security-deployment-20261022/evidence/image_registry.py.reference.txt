@@ -1,0 +1,49 @@
+"""Use the already-deployed CDK image-publishing role; no IAM changes or saved AWS keys."""
+import argparse
+import base64
+import json
+import os
+from pathlib import Path
+import subprocess
+import tempfile
+
+REGION='eu-central-1'
+ACCOUNT='133857166372'
+REGISTRY=f'{ACCOUNT}.dkr.ecr.{REGION}.amazonaws.com'
+REPOSITORY=f'cdk-hnb659fds-container-assets-{ACCOUNT}-{REGION}'
+ROLE=f'arn:aws:iam::{ACCOUNT}:role/cdk-hnb659fds-image-publishing-role-{ACCOUNT}-{REGION}'
+def capture(args,env=None):
+    p=subprocess.run(args,env=env,capture_output=True,text=True,timeout=180)
+    if p.returncode:raise RuntimeError('Command failed: '+args[0]+' '+p.stderr.strip())
+    return p.stdout
+parser=argparse.ArgumentParser()
+parser.add_argument('operation',choices=['manifest','pull','push'])
+parser.add_argument('reference')
+parser.add_argument('--local-image')
+args=parser.parse_args()
+# Credentials stay in subprocess memory/environment and are never written or printed.
+response=json.loads(capture(['aws','--profile','rillora-cdk-session','--region',REGION,'sts','assume-role','--role-arn',ROLE,'--role-session-name','rillora-node-security','--duration-seconds','900','--output','json','--no-cli-pager']))
+credentials=response.pop('Credentials')
+environment={k:v for k,v in os.environ.items() if k not in ['AWS_PROFILE','AWS_DEFAULT_PROFILE','AWS_ACCESS_KEY_ID','AWS_SECRET_ACCESS_KEY','AWS_SESSION_TOKEN']}
+environment.update(AWS_ACCESS_KEY_ID=credentials['AccessKeyId'],AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'],AWS_SESSION_TOKEN=credentials['SessionToken'],AWS_DEFAULT_REGION=REGION)
+del credentials,response
+if args.operation=='manifest':
+    key='imageDigest' if args.reference.startswith('sha256:') else 'imageTag'
+    manifest=json.loads(capture(['aws','ecr','batch-get-image','--repository-name',REPOSITORY,'--image-ids',key+'='+args.reference,'--region',REGION,'--output','json','--no-cli-pager'],environment))
+    if manifest.get('failures'):raise RuntimeError(json.dumps(manifest['failures']))
+    print(json.dumps(manifest))
+else:
+    # Docker's short-lived ECR authorization is removed when this context closes.
+    with tempfile.TemporaryDirectory(prefix='rillora-node-ecr-') as directory:
+        os.chmod(directory,0o700)
+        environment.update(DOCKER_CONFIG=directory,DOCKER_HOST='unix:///Users/tantalum/.colima/default/docker.sock')
+        password=capture(['aws','ecr','get-login-password','--region',REGION],environment)
+        login=subprocess.run(['docker','login','--username','AWS','--password-stdin',REGISTRY],input=password,env=environment,text=True,capture_output=True)
+        del password
+        if login.returncode:raise RuntimeError('ECR Docker login failed; credential output suppressed')
+        target=f'{REGISTRY}/{REPOSITORY}'+('@' if args.reference.startswith('sha256:') else ':')+args.reference
+        if args.operation=='push':
+            if not args.local_image:raise RuntimeError('--local-image required')
+            subprocess.run(['docker','tag',args.local_image,target],env=environment,check=True)
+        subprocess.run(['docker',args.operation,target],env=environment,check=True)
+        print(json.dumps({'operation':args.operation,'image':target,'temporaryDockerAuthorizationRemovedOnExit':True}))

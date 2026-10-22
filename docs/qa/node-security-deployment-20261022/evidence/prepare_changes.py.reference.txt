@@ -1,0 +1,45 @@
+# PUBLICATION REFERENCE: the non-secret API image digest constant is resolved from the included registry receipt.
+# This is a declared reference transformation, not the exact executed original; original hash is in evidence-coverage.json.
+"""Generate image-only templates from this task's live AWS baseline, never a CDK assembly."""
+import copy
+import hashlib
+import json
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[3]
+PRIVATE=ROOT/'.local/node-security-deployment-20261022'
+OUT=Path(__file__).parent
+repository='133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1'
+mapping={
+ 'RilloraStaging':{
+  'ApiTaskDefinition51EA709E':'97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4',
+  'IdentityWorkerTaskDD5047F2':'97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4',
+  'MigrationTaskDefinitionE89B136E':'97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4'},
+ 'RilloraProduction':{
+  'RuntimeApiTaskCF645D67':json.loads((OUT/'api-patched-manifest.json').read_text())['images'][0]['imageId']['imageDigest'].removeprefix('sha256:'),
+  'RuntimeIdentityWorkerTask676ED9B0':'341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a',
+  'MigrationTask69EAEF9D':'341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a',
+  'RecoveryTaskD940248B':'341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a'}}
+reviews=[]
+for name,images in mapping.items():
+ old=json.loads((PRIVATE/(name+'-template-before.json')).read_text())
+ stack=json.loads((PRIVATE/(name+'-stack-before.json')).read_text())
+ assert stack['StackStatus']=='UPDATE_COMPLETE'
+ new=copy.deepcopy(old);changes=[]
+ for logical_id,digest in images.items():
+  resource=new['Resources'][logical_id]
+  assert resource['Type']=='AWS::ECS::TaskDefinition'
+  containers=resource['Properties']['ContainerDefinitions'];assert len(containers)==1
+  before=containers[0]['Image'];after={'Fn::Sub':repository+'@sha256:'+digest}
+  containers[0]['Image']=after
+  changes.append({'path':['Resources',logical_id,'Properties','ContainerDefinitions',0,'Image'],'before':before,'after':after})
+ check=copy.deepcopy(new)
+ for c in changes:check['Resources'][c['path'][1]]['Properties']['ContainerDefinitions'][0]['Image']=c['before']
+ assert check==old,'Non-image drift detected'
+ data=json.dumps(new,separators=(',',':')).encode();digest=hashlib.sha256(data).hexdigest()
+ (PRIVATE/(name+'-template-patched.json')).write_bytes(data)
+ parameters=[{'ParameterKey':p['ParameterKey'],'UsePreviousValue':True} for p in stack.get('Parameters',[])]
+ (PRIVATE/(name+'-previous-parameters.json')).write_text(json.dumps(parameters,indent=2)+'\n')
+ reviews.append({'stack':name,'templateFileSha256':digest,'imageChanges':changes,'allNonImageTemplateFieldsIdentical':True,'allParametersUsePreviousValue':True,'rollbackTemplate':name+'-template-before.json','rollbackChangesetMustRestoreOnlyTheseImages':True})
+(OUT/'image-only-template-review.json').write_text(json.dumps(reviews,indent=2)+'\n')
+print(json.dumps([{'stack':r['stack'],'imageChanges':len(r['imageChanges']),'sha256':r['templateFileSha256'],'allNonImageTemplateFieldsIdentical':True} for r in reviews]))

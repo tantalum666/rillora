@@ -1,0 +1,623 @@
+{
+  "files": [
+    {
+      "source": "output/qa/node-security-deployment-20261022/CHECKPOINT.md",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/CHECKPOINT.md",
+      "bytes": 6839,
+      "sha256": "852b3e956cd0bbb34656575f0863fc2897af6080647aa455cad08bceca3456bd",
+      "publishedSha256": "852b3e956cd0bbb34656575f0863fc2897af6080647aa455cad08bceca3456bd",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/api-digest-pull.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/api-digest-pull.log",
+      "bytes": 976,
+      "sha256": "a27a20b7ed947b250d6e5f0a8cb9290117c74a13a2c6ca3375268276bbbd371a",
+      "publishedSha256": "a27a20b7ed947b250d6e5f0a8cb9290117c74a13a2c6ca3375268276bbbd371a",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/api-patched-manifest.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/api-patched-manifest.json",
+      "bytes": 1318,
+      "sha256": "c052607d2a7f4b0980223be454fafc9bc6d0b111ac3c82d914c648195d132839",
+      "publishedSha256": "c052607d2a7f4b0980223be454fafc9bc6d0b111ac3c82d914c648195d132839",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/application-compatibility.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/application-compatibility.json",
+      "bytes": 1661,
+      "sha256": "52d79f0c292e40775dcede0d1834e77b5b70fa63db3b39899b1e6762b208431d",
+      "publishedSha256": "52d79f0c292e40775dcede0d1834e77b5b70fa63db3b39899b1e6762b208431d",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/baseline-source-contexts.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/baseline-source-contexts.json",
+      "bytes": 552,
+      "sha256": "189f65792eb3259e7c117294e894e48b2f952dd906ea1045fea2b6d1ef36bea1",
+      "publishedSha256": "189f65792eb3259e7c117294e894e48b2f952dd906ea1045fea2b6d1ef36bea1",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/build-arm64.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/build-arm64.log",
+      "bytes": 13463,
+      "sha256": "99ecde9b578bc0b9c0d73f0e9f198ff556e8962ce1405e1b088b2af7deac9056",
+      "publishedSha256": "99ecde9b578bc0b9c0d73f0e9f198ff556e8962ce1405e1b088b2af7deac9056",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/build-maintenance.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/build-maintenance.log",
+      "bytes": 4107,
+      "sha256": "87e6bd059bb8e486c234f7f51e87159f3856205b10ddd70ad73fe60ee92c136a",
+      "publishedSha256": "87e6bd059bb8e486c234f7f51e87159f3856205b10ddd70ad73fe60ee92c136a",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/build-staging.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/build-staging.log",
+      "bytes": 8846,
+      "sha256": "d2be35e78228377c8257bfeeca1d514dab4af1caf7703fea58ab2953f7b1a194",
+      "publishedSha256": "d2be35e78228377c8257bfeeca1d514dab4af1caf7703fea58ab2953f7b1a194",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/build.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/build.log",
+      "bytes": 326,
+      "sha256": "0a0033a83aaf69fddd35047b16a66734164121ebedf2ca91c57fe16fee286518",
+      "publishedSha256": "0a0033a83aaf69fddd35047b16a66734164121ebedf2ca91c57fe16fee286518",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/consumers-before.jsonl",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/consumers-before.jsonl",
+      "bytes": 13763,
+      "sha256": "519170483d4b6a53c792fe0424cbe22b971fc65c1fac19bb35a99a5764f293f2",
+      "publishedSha256": "519170483d4b6a53c792fe0424cbe22b971fc65c1fac19bb35a99a5764f293f2",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/create_changeset.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/create_changeset.py.reference.txt",
+      "bytes": 2531,
+      "sha256": "5a0f61346dd2e7c51ebf6a14c3200a6a5ea2ab28fdac2df816dc552a17e8fea6",
+      "publishedSha256": "5a0f61346dd2e7c51ebf6a14c3200a6a5ea2ab28fdac2df816dc552a17e8fea6",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/exact-digest-runtime.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/exact-digest-runtime.json",
+      "bytes": 1596,
+      "sha256": "65e73e0fe3dc4bc98457f47eb04de30deb1e217436ca6415c3b7fe30d84f20c1",
+      "publishedSha256": "65e73e0fe3dc4bc98457f47eb04de30deb1e217436ca6415c3b7fe30d84f20c1",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/fingerprint-image.cjs",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/fingerprint-image.cjs",
+      "bytes": 758,
+      "sha256": "3ffc8cfae0c562b5a15eb876462f7b79290c06a9e63a1bc52bc0cb8b2f734e95",
+      "publishedSha256": "3ffc8cfae0c562b5a15eb876462f7b79290c06a9e63a1bc52bc0cb8b2f734e95",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/fixed-public-before-corrected.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/fixed-public-before-corrected.json",
+      "bytes": 4814,
+      "sha256": "9ead6f343a764705949c7e95639de9caf960ab6aa1f82fa8aee40c559ab6dcc8",
+      "publishedSha256": "9ead6f343a764705949c7e95639de9caf960ab6aa1f82fa8aee40c559ab6dcc8",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/fixed-public-before.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/fixed-public-before.json",
+      "bytes": 4808,
+      "sha256": "0ee8a1f61104067ff6143133a8314a404c7a5da02ccf476b041f2d1313a65d49",
+      "publishedSha256": "0ee8a1f61104067ff6143133a8314a404c7a5da02ccf476b041f2d1313a65d49",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/fixed_https_probe.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/fixed_https_probe.py.reference.txt",
+      "bytes": 2165,
+      "sha256": "577f0f13b85c9d6a72738d0a8ad4aba1e47266e37f4012b06b82233d11bd197c",
+      "publishedSha256": "577f0f13b85c9d6a72738d0a8ad4aba1e47266e37f4012b06b82233d11bd197c",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/image-id.txt",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/image-id.txt",
+      "bytes": 71,
+      "sha256": "6528f5fab972848d500203142aba272deada1af7556c4c823afc6f00f2a4af1a",
+      "publishedSha256": "6528f5fab972848d500203142aba272deada1af7556c4c823afc6f00f2a4af1a",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/image-only-template-review.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/image-only-template-review.json",
+      "bytes": 5362,
+      "sha256": "f7ca596c2888bb3855cdd0eb2fc5d9632a1f0354b4806f09d2060d66fed71870",
+      "publishedSha256": "f7ca596c2888bb3855cdd0eb2fc5d9632a1f0354b4806f09d2060d66fed71870",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/image_registry.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/image_registry.py.reference.txt",
+      "bytes": 3249,
+      "sha256": "59a2297132fdd529f67aad13c1b6c3d7c02801f629a4376f3333940b3e4a363e",
+      "publishedSha256": "59a2297132fdd529f67aad13c1b6c3d7c02801f629a4376f3333940b3e4a363e",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/local-image-inspect.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/local-image-inspect.json",
+      "bytes": 2287,
+      "sha256": "30f47293a3311e83afe5b085a40b371e0cf4df2db69a2b094cd2116743195858",
+      "publishedSha256": "30f47293a3311e83afe5b085a40b371e0cf4df2db69a2b094cd2116743195858",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/local-runtime.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/local-runtime.json",
+      "bytes": 104,
+      "sha256": "9b55f1c96bf3a7c94e565f5dee4e755e58a549f6ab685f75841e5b6b96bb586e",
+      "publishedSha256": "9b55f1c96bf3a7c94e565f5dee4e755e58a549f6ab685f75841e5b6b96bb586e",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/maintenance-digest-pull.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/maintenance-digest-pull.log",
+      "bytes": 976,
+      "sha256": "71423048932983caf8c1b1bba5693931ea1f86568f7b2473843932eb68baff40",
+      "publishedSha256": "71423048932983caf8c1b1bba5693931ea1f86568f7b2473843932eb68baff40",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/maintenance-image-id.txt",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/maintenance-image-id.txt",
+      "bytes": 71,
+      "sha256": "366e3aac115632d3312d3ef75da97ac6fdecd1454032b48aa7371ab76be75c3f",
+      "publishedSha256": "366e3aac115632d3312d3ef75da97ac6fdecd1454032b48aa7371ab76be75c3f",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/maintenance-old-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/maintenance-old-files.json",
+      "bytes": 1584800,
+      "sha256": "532ac5c01f936f4a8b0d49fc3c39032747b0c080fbf869ae093a21dc603d87ab",
+      "publishedSha256": "532ac5c01f936f4a8b0d49fc3c39032747b0c080fbf869ae093a21dc603d87ab",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/maintenance-patched-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/maintenance-patched-files.json",
+      "bytes": 1584800,
+      "sha256": "5c2dd9ef2e31308199559575d46740543fa44226edbce1a6df6a1db54b411f5e",
+      "publishedSha256": "5c2dd9ef2e31308199559575d46740543fa44226edbce1a6df6a1db54b411f5e",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/maintenance-patched-manifest.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/maintenance-patched-manifest.json",
+      "bytes": 1326,
+      "sha256": "f9327ee8ee5b8db4d0615cb972f28b38b3333a3416461efcd4f0e6156bab7572",
+      "publishedSha256": "f9327ee8ee5b8db4d0615cb972f28b38b3333a3416461efcd4f0e6156bab7572",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/managed-runtime-scope.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/managed-runtime-scope.json",
+      "bytes": 1190,
+      "sha256": "2fe0d6f306d2eae9b9420e529fd2ecca521ce3789f50ffa2fd008bf56b712a23",
+      "publishedSha256": "2fe0d6f306d2eae9b9420e529fd2ecca521ce3789f50ffa2fd008bf56b712a23",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/prepare_changes.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/prepare_changes.py.reference.txt",
+      "bytes": 2938,
+      "sha256": "ac6f4f2c0d328b1d075c0698ee724abec5c0a6df72d8c7b19ccc2759d04f9d53",
+      "publishedSha256": "2f04046cd475e249bf0d0aa52ec09474d9f5c3b88bfe60b671b528c250b4590f",
+      "byteIdentical": false,
+      "transformation": "Reference copy resolves a non-secret API image digest from the published registry receipt, avoiding a generic-api-key false positive without changing scanner rules or exceptions. Original source hash retained."
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/prepare_rollback.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/prepare_rollback.py.reference.txt",
+      "bytes": 3633,
+      "sha256": "9fc8d62e1ef42995b2a71cb94664e73cb456edc7f279ef441c8b0bf30cec4e4e",
+      "publishedSha256": "9fc8d62e1ef42995b2a71cb94664e73cb456edc7f279ef441c8b0bf30cec4e4e",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-after-public.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-after-public.json",
+      "bytes": 4814,
+      "sha256": "ccfe5dde941d2c48e2839b98e5da3e1d0c7e92b61c667c0edbca4fcb0186b2ab",
+      "publishedSha256": "ccfe5dde941d2c48e2839b98e5da3e1d0c7e92b61c667c0edbca4fcb0186b2ab",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-after-run.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-after-run.log",
+      "bytes": 5116,
+      "sha256": "b83b43f233dd86ee0b784988028abf83418b1419f36a0c3d0ed4c4e90b79ba2a",
+      "publishedSha256": "b83b43f233dd86ee0b784988028abf83418b1419f36a0c3d0ed4c4e90b79ba2a",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-after.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-after.json",
+      "bytes": 5888,
+      "sha256": "ed8a115c341d0a098b21c5ba71f517463a52d9a6b60fe8cd64d2c1bbd6dd1d60",
+      "publishedSha256": "ed8a115c341d0a098b21c5ba71f517463a52d9a6b60fe8cd64d2c1bbd6dd1d60",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-api-old-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-api-old-files.json",
+      "bytes": 1584800,
+      "sha256": "c8cabd25b884d33b1ad6a2f0a7528c1eee61d9cd39ea8715250c94a86d5198ba",
+      "publishedSha256": "c8cabd25b884d33b1ad6a2f0a7528c1eee61d9cd39ea8715250c94a86d5198ba",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-api-patched-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-api-patched-files.json",
+      "bytes": 1584800,
+      "sha256": "dea70601200ff4473410b35499d5054ad61401f62fe103f118827f44b7aca0e7",
+      "publishedSha256": "dea70601200ff4473410b35499d5054ad61401f62fe103f118827f44b7aca0e7",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-changeset-created.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-changeset-created.json",
+      "bytes": 428,
+      "sha256": "ff4c02b1450fbef362f6f9480d8c9c745d3b190eba26d8ca87dc09fbde091715",
+      "publishedSha256": "ff4c02b1450fbef362f6f9480d8c9c745d3b190eba26d8ca87dc09fbde091715",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-execution.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-execution.json",
+      "bytes": 322,
+      "sha256": "2d29e1891a28635c7dff9ca0da7c083c7e2c08a4c5eb40271e0126eae551616b",
+      "publishedSha256": "2d29e1891a28635c7dff9ca0da7c083c7e2c08a4c5eb40271e0126eae551616b",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-log-classification.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-log-classification.json",
+      "bytes": 1073,
+      "sha256": "436d3d309b0c6f4e535280f9f99ee20873e43ecbded29ff8e8bd97298464b81f",
+      "publishedSha256": "436d3d309b0c6f4e535280f9f99ee20873e43ecbded29ff8e8bd97298464b81f",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-preflight.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-preflight.json",
+      "bytes": 700,
+      "sha256": "102705eb13ff2a0d534019a6801b8f5cd57b18e22507874e16d28ed63508ef0d",
+      "publishedSha256": "102705eb13ff2a0d534019a6801b8f5cd57b18e22507874e16d28ed63508ef0d",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-reviewed-changeset.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-reviewed-changeset.json",
+      "bytes": 7887,
+      "sha256": "4103005bc61861bb07bf953a68056e0ed0bf89c7342ed289ed3eabc21e7a6b13",
+      "publishedSha256": "4103005bc61861bb07bf953a68056e0ed0bf89c7342ed289ed3eabc21e7a6b13",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-rollback-template-upload.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-rollback-template-upload.json",
+      "bytes": 325,
+      "sha256": "4fcd7b4817f5c747a4f3af55341b561133f3a227427fe89205f6f5e4c2c6daba",
+      "publishedSha256": "4fcd7b4817f5c747a4f3af55341b561133f3a227427fe89205f6f5e4c2c6daba",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/production-template-upload.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/production-template-upload.json",
+      "bytes": 326,
+      "sha256": "90140f2095285778925de60220a2c96cb1eb93816498ca7b36423e1b389956f4",
+      "publishedSha256": "90140f2095285778925de60220a2c96cb1eb93816498ca7b36423e1b389956f4",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/public-before-container.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/public-before-container.json",
+      "bytes": 3251,
+      "sha256": "f098e23736577a8ef0b4fc9d77384f88ab56f75c1d343dbdcdcdec197dc2f269",
+      "publishedSha256": "f098e23736577a8ef0b4fc9d77384f88ab56f75c1d343dbdcdcdec197dc2f269",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/public-before.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/public-before.json",
+      "bytes": 3260,
+      "sha256": "ca9e25faf4f1116e0a80149dc6a386a623074dca43b866590fe85319ddb6ccea",
+      "publishedSha256": "ca9e25faf4f1116e0a80149dc6a386a623074dca43b866590fe85319ddb6ccea",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/publication.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/publication.json",
+      "bytes": 221,
+      "sha256": "e9bdc4b57bb035ee0710c16e52c0631c17e1e04e953cd58a53661e75d73f585e",
+      "publishedSha256": "e9bdc4b57bb035ee0710c16e52c0631c17e1e04e953cd58a53661e75d73f585e",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/publish_template.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/publish_template.py.reference.txt",
+      "bytes": 1746,
+      "sha256": "0f1d1dfdc21217cd48d3e0c8fa31a28ddf91682fa560f2c3ca48949f876454a2",
+      "publishedSha256": "0f1d1dfdc21217cd48d3e0c8fa31a28ddf91682fa560f2c3ca48949f876454a2",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/pull-maintenance.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/pull-maintenance.log",
+      "bytes": 976,
+      "sha256": "8f17739359855785c8fa8bc24b287fb119fff2dd409ff3edf8b4eb619fd93701",
+      "publishedSha256": "8f17739359855785c8fa8bc24b287fb119fff2dd409ff3edf8b4eb619fd93701",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/pull-production-api.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/pull-production-api.log",
+      "bytes": 976,
+      "sha256": "21cfd7b157d3945091cc0be0de2615b47d217ee3c156215e517197e5fb13c706",
+      "publishedSha256": "21cfd7b157d3945091cc0be0de2615b47d217ee3c156215e517197e5fb13c706",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/pull-staging.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/pull-staging.log",
+      "bytes": 976,
+      "sha256": "99a9496700df82af959976fe0c88aee59592d275616e3df5891cdc286a8378fd",
+      "publishedSha256": "99a9496700df82af959976fe0c88aee59592d275616e3df5891cdc286a8378fd",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/push-api.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/push-api.log",
+      "bytes": 7060,
+      "sha256": "e239fc5d8d6ba83825aeb52fa971248e67c79b0eb315471a8d57cad5a4fc902a",
+      "publishedSha256": "e239fc5d8d6ba83825aeb52fa971248e67c79b0eb315471a8d57cad5a4fc902a",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/push-maintenance.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/push-maintenance.log",
+      "bytes": 7148,
+      "sha256": "c3aa5acf9f5441f379b5bc27b3d30dd5a97bb643ee92ecdd282c780115cd1ca9",
+      "publishedSha256": "c3aa5acf9f5441f379b5bc27b3d30dd5a97bb643ee92ecdd282c780115cd1ca9",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/push-staging.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/push-staging.log",
+      "bytes": 7548,
+      "sha256": "d6c9c017c3fc0ce41fbe656cd2d016ef6cd74e02515a9a51660434cf4f895fff",
+      "publishedSha256": "d6c9c017c3fc0ce41fbe656cd2d016ef6cd74e02515a9a51660434cf4f895fff",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/read_after.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/read_after.py.reference.txt",
+      "bytes": 7195,
+      "sha256": "18bf56b0fbebd95932b5628406f5b9f482f1b140d9b733cedc4e431426b09154",
+      "publishedSha256": "18bf56b0fbebd95932b5628406f5b9f482f1b140d9b733cedc4e431426b09154",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/read_baseline.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/read_baseline.py.reference.txt",
+      "bytes": 2858,
+      "sha256": "6b1a805050064a9f12e1202122c6ee95d701e6239b41eab669d1d06c22491a85",
+      "publishedSha256": "6b1a805050064a9f12e1202122c6ee95d701e6239b41eab669d1d06c22491a85",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/read_consumers.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/read_consumers.py.reference.txt",
+      "bytes": 4370,
+      "sha256": "8288fbcab364e289bb0550b7d454d77d30896071517ff80071bebe8ed32d2935",
+      "publishedSha256": "8288fbcab364e289bb0550b7d454d77d30896071517ff80071bebe8ed32d2935",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/review_production_changeset.py",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/review_production_changeset.py.reference.txt",
+      "bytes": 3116,
+      "sha256": "457b8ff743a802ea2ee40dcb00233dac66d4ee96e01cbe142dcd714b2c1e8448",
+      "publishedSha256": "457b8ff743a802ea2ee40dcb00233dac66d4ee96e01cbe142dcd714b2c1e8448",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/source-ci.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/source-ci.json",
+      "bytes": 1929,
+      "sha256": "6223878c17708bae5d079bf1da52860dcbfa34bc705f234835a06fa4930e66f7",
+      "publishedSha256": "6223878c17708bae5d079bf1da52860dcbfa34bc705f234835a06fa4930e66f7",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-after-public.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-after-public.json",
+      "bytes": 4814,
+      "sha256": "17b3b15cc1f5cdab653fcf9d441665e276804419557ddf8c8c8651607531ff96",
+      "publishedSha256": "17b3b15cc1f5cdab653fcf9d441665e276804419557ddf8c8c8651607531ff96",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-after-run.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-after-run.log",
+      "bytes": 4279,
+      "sha256": "cb53d93832155161a626849822a68e7e5a5c36173a22fe1a8c0d79c04b457685",
+      "publishedSha256": "cb53d93832155161a626849822a68e7e5a5c36173a22fe1a8c0d79c04b457685",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-after.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-after.json",
+      "bytes": 4947,
+      "sha256": "c23629391115d4998d1cc06748eea26ab6b101d03fc999538541ebdd615194f2",
+      "publishedSha256": "c23629391115d4998d1cc06748eea26ab6b101d03fc999538541ebdd615194f2",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-changeset-created.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-changeset-created.json",
+      "bytes": 416,
+      "sha256": "d9ca52799580a2382cc77ef91a95cd492c0ebae7be6a05a415bd8de7c8c9fcd1",
+      "publishedSha256": "d9ca52799580a2382cc77ef91a95cd492c0ebae7be6a05a415bd8de7c8c9fcd1",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-checkpoint-changeset.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-checkpoint-changeset.json",
+      "bytes": 346,
+      "sha256": "b2d70a5b9f1631b7cdb7fdff4e07ea8eb0932068b3f7190280ae4aad031d50ae",
+      "publishedSha256": "b2d70a5b9f1631b7cdb7fdff4e07ea8eb0932068b3f7190280ae4aad031d50ae",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-digest-pull.log",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-digest-pull.log",
+      "bytes": 976,
+      "sha256": "86d3bfd1c22c10e289ab4b828b96f0188236c52489054f7d93b0235ca40d5ebe",
+      "publishedSha256": "86d3bfd1c22c10e289ab4b828b96f0188236c52489054f7d93b0235ca40d5ebe",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-image-id.txt",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-image-id.txt",
+      "bytes": 71,
+      "sha256": "37af06aac96bb8b542b6bb2742056117a7eacdd2dfae0e9f91de60d27c49bccc",
+      "publishedSha256": "37af06aac96bb8b542b6bb2742056117a7eacdd2dfae0e9f91de60d27c49bccc",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-old-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-old-files.json",
+      "bytes": 1415870,
+      "sha256": "9cc2a4c67b60c37ab7341ae7d8bee743a1c76126dbf9db7b6fc60578b53f7d44",
+      "publishedSha256": "9cc2a4c67b60c37ab7341ae7d8bee743a1c76126dbf9db7b6fc60578b53f7d44",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-old-manifest.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-old-manifest.json",
+      "bytes": 3509,
+      "sha256": "9b983d764fefdc63486db4e23098439c8472dca5960d8da4970790058f0e8f33",
+      "publishedSha256": "9b983d764fefdc63486db4e23098439c8472dca5960d8da4970790058f0e8f33",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-patched-files.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-patched-files.json",
+      "bytes": 1415870,
+      "sha256": "9869b55aa70febebcb0cbc9b90b72137e1cf65db7d8f347e90b9f974294a770c",
+      "publishedSha256": "9869b55aa70febebcb0cbc9b90b72137e1cf65db7d8f347e90b9f974294a770c",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-patched-manifest.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-patched-manifest.json",
+      "bytes": 1322,
+      "sha256": "db09b893bd74c7a537446a57b17ff65b250317b8b925c0d6c91ce31a9a0719b3",
+      "publishedSha256": "db09b893bd74c7a537446a57b17ff65b250317b8b925c0d6c91ce31a9a0719b3",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-reviewed-changeset.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-reviewed-changeset.json",
+      "bytes": 5958,
+      "sha256": "8958ce2ce0f1d028b4dfb720fe4e06f47b1abdb6411a279b3ef11ff830dafbff",
+      "publishedSha256": "8958ce2ce0f1d028b4dfb720fe4e06f47b1abdb6411a279b3ef11ff830dafbff",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-rollback-template-upload.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-rollback-template-upload.json",
+      "bytes": 322,
+      "sha256": "051a53340b156173815b43ddd2601f9ae0bf9a04ace08e15503b7f4b84095bbe",
+      "publishedSha256": "051a53340b156173815b43ddd2601f9ae0bf9a04ace08e15503b7f4b84095bbe",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/staging-template-upload.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/staging-template-upload.json",
+      "bytes": 323,
+      "sha256": "b459e94cd2454acae37654c8683ed4676d0852af0e093339e1fcf584c19d1093",
+      "publishedSha256": "b459e94cd2454acae37654c8683ed4676d0852af0e093339e1fcf584c19d1093",
+      "byteIdentical": true
+    },
+    {
+      "source": "output/qa/node-security-deployment-20261022/work-state.json",
+      "published": "docs/qa/node-security-deployment-20261022/evidence/work-state.json",
+      "bytes": 1792,
+      "sha256": "d3db0cc1f93e69b8e3134f9615290ed6942956807ce00109de1e8374e13189c4",
+      "publishedSha256": "d3db0cc1f93e69b8e3134f9615290ed6942956807ce00109de1e8374e13189c4",
+      "byteIdentical": true
+    }
+  ],
+  "fileCount": 71,
+  "exclusions": [
+    {
+      "scope": ".local/node-security-deployment-20261022",
+      "reason": "Protected raw AWS provider templates, parameters, environment/task snapshots; publish sanitized derived receipts only."
+    },
+    {
+      "scope": "output/qa/node-security-deployment-20261022/contexts",
+      "reason": "Reproducible Git source/build contexts from recorded immutable commits, dependency and compiler caches; eligible build logs and file fingerprints preserved separately."
+    },
+    {
+      "scope": "AWS/browser/Docker authentication state",
+      "reason": "Credentials and authentication material are excluded; temporary Docker credential directory was removed."
+    },
+    {
+      "scope": "**/__pycache__",
+      "reason": "Reproducible Python bytecode cache."
+    },
+    {
+      "scope": "output/qa/node-security-deployment-20261022/source-prepare*.json and .local/github-preflight/source",
+      "reason": "Reproducible preflight source-copy manifests/cache; canonical Git files and actual scan results are published."
+    }
+  ],
+  "oldArchivesChanged": false,
+  "postCaptureReceipts": [
+    {
+      "path": "docs/qa/node-security-deployment-20261022/source-scan.json",
+      "sha256": "f77603f3d464d4a57ebcb636db95a96efdb408e9900fe840d55ddda22037b6bb"
+    },
+    {
+      "path": "docs/qa/node-security-deployment-20261022/source-scan-initial.json",
+      "sha256": "ce2df609ce94c5bf361d08f0048574151cc50ed7020b2cc4adde13c59289f134"
+    },
+    {
+      "path": "docs/qa/node-security-deployment-20261022/document-checks.json",
+      "sha256": "195d2bf01ba6cb7562a0c5093e114219226d350b2191fea000724381b4c9c726"
+    },
+    {
+      "path": "docs/qa/node-security-deployment-20261022/document-checks-initial.json",
+      "sha256": "2cb827632f9b86f7ddea934c16ef1189de60c758243bd1e9ba43f31999d376b2"
+    },
+    {
+      "path": "docs/qa/node-security-deployment-20261022/rollback-checks.json",
+      "sha256": "e686f9e84dfc8aa6d3240774c13217c38aa91a19b6f711741d97380f1c9f5e4b"
+    },
+    {
+      "path": "docs/qa/node-security-deployment-20261022/publication.json",
+      "sha256": "e9bdc4b57bb035ee0710c16e52c0631c17e1e04e953cd58a53661e75d73f585e"
+    }
+  ]
+}

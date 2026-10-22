@@ -387,4 +387,4 @@ VoiceOver, full device matrix and release gates are separate.
 
 ## 2026-10-22 Node安全运行时门
 
-当前候选的API构建／运行两阶段和所有CI Node版本统一为22.23.4，使用[不可变镜像与良性解压回归](node-security-upgrade-20261022.md)。既有22.22.3记录保留为其原日期的历史证明，不是当前安全基线。API／Web／基础设施完整适用检查、发布扫描和浏览器CI不得跳过。具体[当次结果](qa/node-security-20261022/README.md)明确列出云端环境阻塞。部署另需核验真实镜像摘要、Node版本、服务健康及全部镜像使用方，不以测试或提交成功代替线上结果。
+当前候选的API构建／运行两阶段和所有CI Node版本统一为22.23.4，使用[不可变镜像与良性解压回归](node-security-upgrade-20261022.md)。既有22.22.3记录保留为其原日期的历史证明，不是当前安全基线。API／Web／基础设施完整适用检查、发布扫描和浏览器CI不得跳过。具体[当次结果](qa/node-security-20261022/README.md)明确列出云端环境阻塞。[本次部署核验](qa/node-security-deployment-20261022/README.md)已覆盖七个任务定义、四个稳定服务、实际镜像digest及7/7公开检查；三个ECR精确digest镜像均在本地执行得到Node22.23.4。ECS Exec关闭，因此不声称直接读取远程进程版本；四个托管Node22 Lambda的补丁状态仍未知。

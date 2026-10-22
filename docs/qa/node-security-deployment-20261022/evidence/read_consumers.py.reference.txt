@@ -1,0 +1,55 @@
+import datetime
+import json
+import re
+import subprocess
+from pathlib import Path
+
+ROOT=Path(__file__).resolve().parents[3]
+PRIVATE=ROOT/'.local/node-security-deployment-20261022'
+def aws(profile,*args):
+    p=subprocess.run(['aws','--profile',profile,'--region','eu-central-1','--no-cli-pager','--output','json',*args],text=True,capture_output=True,timeout=75)
+    if p.returncode: raise RuntimeError(p.stderr.strip())
+    return json.loads(p.stdout)
+def save(name,data):
+    p=PRIVATE/name;p.write_text(json.dumps(data,indent=2)+'\n');p.chmod(0o600)
+for stack_name,profile in [('RilloraStaging','rillora-staging-operator'),('RilloraProduction','rillora-production-operator')]:
+    resources=json.loads((PRIVATE/(stack_name+'-resources-before.json')).read_text())
+    cluster=next(r['PhysicalResourceId'] for r in resources if r['ResourceType']=='AWS::ECS::Cluster')
+    definitions={}
+    for r in resources:
+        if r['ResourceType']!='AWS::ECS::TaskDefinition':continue
+        td=aws(profile,'ecs','describe-task-definition','--task-definition',r['PhysicalResourceId'])['taskDefinition']
+        definitions[td['taskDefinitionArn']]=td
+        save(stack_name+'-'+r['LogicalResourceId']+'-before.json',td)
+        print(json.dumps({'stack':stack_name,'logicalId':r['LogicalResourceId'],'taskDefinition':td['taskDefinitionArn'].split('/')[-1],
+                          'platform':td.get('runtimePlatform'),'containers':[{'name':c['name'],'image':c['image'],
+                          'command':c.get('command'),'healthcheck':c.get('healthCheck'),
+                          'switches':{e['name']:e['value'] for e in c.get('environment',[]) if any(x in e['name'] for x in ['ENABLED','SSL_MODE','NODE_ENV','PREVIEW','LIVE_MODE'])},
+                          'environmentNames':sorted(e['name'] for e in c.get('environment',[])),
+                          'secretNames':sorted(e['name'] for e in c.get('secrets',[]))} for c in td['containerDefinitions']]}))
+    for r in resources:
+        if r['ResourceType']!='AWS::ECS::Service':continue
+        response=aws(profile,'ecs','describe-services','--cluster',cluster,'--services',r['PhysicalResourceId'])
+        assert not response.get('failures'),response.get('failures')
+        service=response['services'][0]
+        save(stack_name+'-'+r['LogicalResourceId']+'-service-before.json',service)
+        task_ids=set()
+        for event in service.get('events',[]):
+            task_ids.update(re.findall(r'\(task ([a-f0-9]{32})\)',event.get('message','')))
+        td=definitions[service['taskDefinition']]
+        streams=[]
+        for c in td['containerDefinitions']:
+            group=c.get('logConfiguration',{}).get('options',{}).get('awslogs-group')
+            if not group:continue
+            log_response=aws(profile,'logs','describe-log-streams','--log-group-name',group,'--order-by','LastEventTime','--descending','--limit','8')
+            streams.extend({'group':group,**s} for s in log_response['logStreams'])
+            task_ids.update(s['logStreamName'].split('/')[-1] for s in log_response['logStreams'] if re.fullmatch(r'[a-f0-9]{32}',s['logStreamName'].split('/')[-1]))
+        save(stack_name+'-'+r['LogicalResourceId']+'-streams-before.json',streams)
+        tasks=aws(profile,'ecs','describe-tasks','--cluster',cluster,'--tasks',*sorted(task_ids)) if task_ids else {'tasks':[]}
+        save(stack_name+'-'+r['LogicalResourceId']+'-tasks-before.json',tasks)
+        running=[t for t in tasks['tasks'] if t['lastStatus']=='RUNNING' and t.get('group')=='service:'+service['serviceName']]
+        print(json.dumps({'stack':stack_name,'service':service['serviceName'],'status':service['status'],'desired':service['desiredCount'],
+                          'running':service['runningCount'],'pending':service['pendingCount'],'executeCommand':service.get('enableExecuteCommand'),
+                          'deployments':[{k:d.get(k) for k in ['status','rolloutState','taskDefinition','desiredCount','runningCount','pendingCount']} for d in service['deployments']],
+                          'tasks':[{'task':t['taskArn'].split('/')[-1],'definition':t['taskDefinitionArn'].split('/')[-1],'health':t.get('healthStatus'),
+                                    'containers':[{k:c.get(k) for k in ['name','image','imageDigest','lastStatus','healthStatus']} for c in t['containers']]} for t in running]}))

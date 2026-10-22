@@ -1,0 +1,252 @@
+{
+  "checkedAt": "2026-10-22T01:33:36.340772+00:00",
+  "stack": "RilloraProduction",
+  "changeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/node-22-23-4-20261022-production/8a371d60-0ade-4c13-ab23-a74f2b7036b5",
+  "status": "CREATE_COMPLETE",
+  "executionStatus": "AVAILABLE",
+  "actualTemplateMatchesReviewed": true,
+  "onlyFourImageFieldsChanged": true,
+  "parametersRequestedPreviousValue": true,
+  "parameterReadbackMatchesBaseline": true,
+  "noDirectIamPolicyChange": true,
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "MaintenanceBrokerFunctionC542279B",
+      "PhysicalResourceId": "RilloraProduction-MaintenanceBrokerFunctionC542279-pYFwf3w42dIo",
+      "ResourceType": "AWS::Lambda::Function",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "RuntimeIdentityWorkerServiceD8B21381.Name"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "RuntimeService1702E585.Name"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "RecoveryTaskD940248B"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "MigrationTask69EAEF9D"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001",
+      "PhysicalResourceId": "Rillo-Maint-CTroXdYPuEcz",
+      "ResourceType": "AWS::IAM::Policy",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "MigrationTask69EAEF9D"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "RecoveryTaskD940248B"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "MigrationTask69EAEF9D",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionMigrationTask3A96A2B6:26",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "OperatorDefaultPolicyA84BD3A6",
+      "PhysicalResourceId": "Rillo-Opera-Rvv50lIz0V7a",
+      "ResourceType": "AWS::IAM::Policy",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "MaintenanceBrokerFunctionC542279B.Arn"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "RecoveryTaskD940248B",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRecoveryTask4FA4E62D:27",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "RuntimeApiTaskCF645D67",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeApiTask93405B31:31",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "RuntimeIdentityWorkerServiceD8B21381",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/RilloraProduction-RuntimeIdentityWorkerServiceD8B21381-cPjG07g8JIhH",
+      "ResourceType": "AWS::ECS::Service",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "TaskDefinition",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "RuntimeIdentityWorkerTask676ED9B0"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "RuntimeIdentityWorkerTask676ED9B0",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraProductionRuntimeIdentityWorkerTaskCE49E148:7",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "RuntimeService1702E585",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraProduction-ClusterEB0386A7-PGlKGwBxP7Nm/RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+      "ResourceType": "AWS::ECS::Service",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "TaskDefinition",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "RuntimeApiTaskCF645D67"
+        }
+      ]
+    }
+  ]
+}

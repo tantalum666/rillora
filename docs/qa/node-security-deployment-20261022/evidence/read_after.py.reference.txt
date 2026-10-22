@@ -1,0 +1,95 @@
+"""Read deployed definitions/tasks and compare every non-image task field. Never launches a task."""
+import datetime
+import json
+import re
+import subprocess
+import sys
+from pathlib import Path
+
+name=sys.argv[1];assert name in ['staging','production']
+stack_name='Rillora'+name.title();profile='rillora-'+name+'-operator'
+ROOT=Path(__file__).resolve().parents[3];OUT=Path(__file__).parent
+PRIVATE=ROOT/'.local/node-security-deployment-20261022'
+def aws(profile,*args):
+ p=subprocess.run(['aws','--profile',profile,'--region','eu-central-1','--no-cli-pager','--output','json',*args],text=True,capture_output=True,timeout=75)
+ if p.returncode:raise RuntimeError(p.stderr.strip())
+ return json.loads(p.stdout)
+def save(file,data):
+ path=PRIVATE/file;path.write_text(json.dumps(data,indent=2)+'\n');path.chmod(0o600)
+stack=aws('rillora-cdk-deploy','cloudformation','describe-stacks','--stack-name',stack_name)['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE',stack['StackStatus']
+template=aws('rillora-cdk-deploy','cloudformation','get-template','--stack-name',stack_name,'--template-stage','Original')['TemplateBody']
+if isinstance(template,str):template=json.loads(template)
+assert template==json.loads((PRIVATE/(stack_name+'-template-patched.json')).read_text()),'Deployed template mismatch'
+before_stack=json.loads((PRIVATE/(stack_name+'-stack-before.json')).read_text())
+assert stack['Parameters']==before_stack['Parameters'],'Parameter drift'
+save(stack_name+'-stack-after.json',stack);save(stack_name+'-template-after.json',template)
+resources=aws('rillora-cdk-deploy','cloudformation','list-stack-resources','--stack-name',stack_name)['StackResourceSummaries']
+save(stack_name+'-resources-after.json',resources)
+cluster=next(r['PhysicalResourceId'] for r in resources if r['ResourceType']=='AWS::ECS::Cluster')
+definitions={};consumers=[];services=[]
+expected_image_digests={}
+for group in ['staging','maintenance','api']:
+ image=json.loads((OUT/(group+'-patched-manifest.json')).read_text())['images'][0]
+ index=image['imageId']['imageDigest'];manifest=json.loads(image['imageManifest'])
+ expected_image_digests[index]={index}|{m['digest'] for m in manifest.get('manifests',[]) if m.get('platform')=={'architecture':'arm64','os':'linux'}}
+ignore={'taskDefinitionArn','revision','status','registeredAt','registeredBy','requiresAttributes'}
+for r in resources:
+ if r['ResourceType']!='AWS::ECS::TaskDefinition':continue
+ td=aws(profile,'ecs','describe-task-definition','--task-definition',r['PhysicalResourceId'])['taskDefinition']
+ definitions[td['taskDefinitionArn']]=td;save(stack_name+'-'+r['LogicalResourceId']+'-after.json',td)
+ before=json.loads((PRIVATE/(stack_name+'-'+r['LogicalResourceId']+'-before.json')).read_text())
+ old={k:v for k,v in before.items() if k not in ignore};new={k:v for k,v in td.items() if k not in ignore}
+ # ECS returns the compatibility set in varying order; it is not ordered configuration.
+ for value in [old,new]:
+  if 'compatibilities' in value:value['compatibilities']=sorted(value['compatibilities'])
+ old_attributes={a['name'] for a in before.get('requiresAttributes',[])}
+ new_attributes={a['name'] for a in td.get('requiresAttributes',[])}
+ before_image=old['containerDefinitions'][0]['image'];after_image=new['containerDefinitions'][0]['image']
+ new['containerDefinitions'][0]['image']=before_image
+ assert old==new,'Non-image task-definition drift: '+r['LogicalResourceId']
+ new['containerDefinitions'][0]['image']=after_image
+ consumers.append({'logicalId':r['LogicalResourceId'],'beforeTaskDefinition':before['taskDefinitionArn'].split('/')[-1],
+                   'afterTaskDefinition':td['taskDefinitionArn'].split('/')[-1],'beforeImage':before_image,'afterImage':after_image,
+                   'allNonImageTaskConfigurationFieldsIdentical':True,'platform':td.get('runtimePlatform'),
+                   'ecsDerivedAttributesAdded':sorted(new_attributes-old_attributes),
+                   'ecsDerivedAttributesRemoved':sorted(old_attributes-new_attributes)})
+for r in resources:
+ if r['ResourceType']!='AWS::ECS::Service':continue
+ service=aws(profile,'ecs','describe-services','--cluster',cluster,'--services',r['PhysicalResourceId'])['services'][0]
+ save(stack_name+'-'+r['LogicalResourceId']+'-service-after.json',service)
+ assert service['runningCount']==service['desiredCount']==1 and service['pendingCount']==0
+ assert len(service['deployments'])==1 and service['deployments'][0]['rolloutState']=='COMPLETED'
+ td=definitions[service['taskDefinition']];task_ids=set();stream_map={}
+ for event in service.get('events',[]):task_ids.update(re.findall(r'\(task ([a-f0-9]{32})\)',event.get('message','')))
+ for c in td['containerDefinitions']:
+  group=c['logConfiguration']['options']['awslogs-group']
+  streams=aws(profile,'logs','describe-log-streams','--log-group-name',group,'--order-by','LastEventTime','--descending','--limit','8')['logStreams']
+  for s in streams:
+   task_id=s['logStreamName'].split('/')[-1]
+   if re.fullmatch(r'[a-f0-9]{32}',task_id):task_ids.add(task_id);stream_map[task_id]=(group,s['logStreamName'])
+ tasks=aws(profile,'ecs','describe-tasks','--cluster',cluster,'--tasks',*sorted(task_ids))
+ save(stack_name+'-'+r['LogicalResourceId']+'-tasks-after.json',tasks)
+ running=[t for t in tasks['tasks'] if t['lastStatus']=='RUNNING' and t.get('group')=='service:'+service['serviceName']]
+ assert len(running)==1 and running[0]['taskDefinitionArn']==service['taskDefinition']
+ t=running[0];task_id=t['taskArn'].split('/')[-1]
+ for container in t['containers']:
+  index=container['image'].split('@')[-1]
+  assert index in expected_image_digests and container['imageDigest'] in expected_image_digests[index],'Running digest mismatch'
+ log_errors=None;events_count=None
+ if task_id in stream_map:
+  group,stream=stream_map[task_id]
+  events=aws(profile,'logs','get-log-events','--log-group-name',group,'--log-stream-name',stream,'--limit','100')['events']
+  events_count=len(events)
+  log_errors=sum(bool(re.search(r'\b(error|fatal|retry|failed|failure)\b',e['message'],re.I)) for e in events)
+  del events
+ services.append({'service':service['serviceName'],'desired':service['desiredCount'],'running':service['runningCount'],'pending':service['pendingCount'],
+                  'rollout':service['deployments'][0]['rolloutState'],'task':task_id,'taskDefinition':t['taskDefinitionArn'].split('/')[-1],
+                  'health':t.get('healthStatus'),'executeCommand':service.get('enableExecuteCommand'),
+                  'containers':[{k:c.get(k) for k in ['name','image','imageDigest','lastStatus','healthStatus']} for c in t['containers']],
+                  'sampledRecentLogEvents':events_count,'startupOrRetryErrorKeywordMatches':log_errors,'rawLogMessagesStored':False})
+report={'checkedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stack':stack_name,'stackStatus':stack['StackStatus'],
+        'templateExactlyMatchesReviewed':True,'parametersMatchBaseline':True,'consumers':consumers,'services':services,
+        'noOneOffTasksLaunched':True,'directEcsExecRuntimeVersionReadback':False}
+(OUT/(name+'-after.json')).write_text(json.dumps(report,indent=2)+'\n')
+print(json.dumps(report))
