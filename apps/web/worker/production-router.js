@@ -2,7 +2,9 @@ function handler(event) {
   var request = event.request;
   if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
     return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
-      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*","/future-invite","/future-invite/*"]}]}}' };
+      // Preserve the current App's universal-link contract. Future notices use
+      // their Web route until a supporting native version has been distributed.
+      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*"]}]}}' };
   }
   var discovery = {
     '/.well-known/oauth-authorization-server/api/ai/oauth': '/ai/oauth/.well-known/openid-configuration',

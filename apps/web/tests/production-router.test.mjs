@@ -4,6 +4,11 @@ import assert from 'node:assert/strict';
 import test from 'node:test';
 
 const route = runInNewContext(`${await readFile(new URL('../worker/production-router.js', import.meta.url), 'utf8')}; handler`);
+test('Web release retains universal links understood by the current native build', () => {
+  const result = route({ request: { uri: '/.well-known/apple-app-site-association', method: 'GET' } });
+  assert.equal(result.statusCode, 200);
+  assert.deepEqual(JSON.parse(result.body).applinks.details[0].paths, ['/invite', '/invite/*']);
+});
 test('API routes retain methods, cookies, auth and query while only the public prefix is removed', () => {
   for (const path of ['/api/v1/overview', '/api/auth/callback', '/api/auth/native/session', '/api/health/ready']) {
     const request = { uri: path, method: 'POST', querystring: { state: { value: 'fixture' } }, headers: { authorization: { value: 'Bearer fixture' } }, cookies: { continuity_session: { value: 'fixture' } } };
