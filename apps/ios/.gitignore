@@ -1,3 +1,9 @@
+.derived-data/
+.release-derived-data/
+.xcodebuildmcp-deriveddata/
+# Shared project, schemes and resolved package versions belong in Git.
+Rillora.xcodeproj/**/xcuserdata/
+*.xcresult
 # Reproducible next-version project and generated plist; current project is unchanged.
 /RilloraHealthNext.xcodeproj/
 /NextVersionHealth/Configuration/Info.plist
