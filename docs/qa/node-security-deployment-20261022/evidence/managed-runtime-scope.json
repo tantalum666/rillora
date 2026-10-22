@@ -1,0 +1,39 @@
+{
+  "inventory": [
+    {
+      "stack": "RilloraStaging",
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "runtime": "nodejs22.x",
+      "patchVersion": "unverified",
+      "runtimeManagementMode": "unverified",
+      "changedRuntimeByThisDeployment": false
+    },
+    {
+      "stack": "RilloraProduction",
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "runtime": "nodejs22.x",
+      "patchVersion": "unverified",
+      "runtimeManagementMode": "unverified",
+      "changedRuntimeByThisDeployment": false
+    },
+    {
+      "stack": "RilloraOperations",
+      "logicalId": "HealthCheckA1C381C7",
+      "runtime": "nodejs22.x",
+      "patchVersion": "unverified",
+      "runtimeManagementMode": "unverified",
+      "changedRuntimeByThisDeployment": false
+    },
+    {
+      "stack": "RilloraOperations",
+      "logicalId": "SnapshotRetirementWorker036281CC",
+      "runtime": "nodejs22.x",
+      "patchVersion": "unverified",
+      "runtimeManagementMode": "unverified",
+      "changedRuntimeByThisDeployment": false
+    }
+  ],
+  "runtimeManagementReadDenied": true,
+  "permissionExpanded": false,
+  "cloudflareCompatibilityRuntime": "separate and unchanged"
+}

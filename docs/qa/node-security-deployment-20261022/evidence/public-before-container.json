@@ -1,0 +1,151 @@
+{
+  "schemaVersion": 1,
+  "environment": "synthetic-staging",
+  "checkedAt": "2026-10-22T01:05:58.244Z",
+  "ok": false,
+  "failed": 14,
+  "checks": [
+    {
+      "id": "public-app",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 16,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "legal-terms",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 11,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "legal-private-route-blocked",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 10,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "api-live",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 9,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "api-ready",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 9,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "private-session-blocked",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 8,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "identity-discovery",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 8,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "production-api-live",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 8,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "production-api-ready",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 7,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "production-accounts-closed",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 5,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "public-product-home",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 5,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "public-product-private-route-blocked",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 4,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "production-client-home",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 4,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    },
+    {
+      "id": "production-client-accounts-closed",
+      "ok": false,
+      "httpStatus": null,
+      "certificateDaysRemaining": null,
+      "latencyMs": 4,
+      "issues": [
+        "PRIVATE_ADDRESS_BLOCKED"
+      ]
+    }
+  ],
+  "scope": "public-metadata-only",
+  "responseBodiesStored": false
+}

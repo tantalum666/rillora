@@ -1,0 +1,48 @@
+import datetime
+import hashlib
+import json
+import os
+from pathlib import Path
+import subprocess
+
+ROOT = Path(__file__).resolve().parents[3]
+PRIVATE = ROOT / '.local/node-security-deployment-20261022'
+PRIVATE.mkdir(parents=True, exist_ok=True, mode=0o700)
+
+def save(name, data):
+    path = PRIVATE / name
+    path.write_text(json.dumps(data, indent=2) + '\n')
+    path.chmod(0o600)
+
+def aws(profile, *args):
+    process = subprocess.run(['aws', '--profile', profile, '--region', 'eu-central-1',
+                              '--no-cli-pager', '--output', 'json', *args],
+                             text=True, capture_output=True, timeout=75)
+    if process.returncode:
+        raise RuntimeError(process.stderr.strip())
+    return json.loads(process.stdout)
+
+identity = aws('rillora-cdk-session', 'sts', 'get-caller-identity')
+assert identity['Account'] == '133857166372' and 'rillora-operator' in identity['Arn']
+for stack_name in ['RilloraStaging', 'RilloraProduction']:
+    stack = aws('rillora-cdk-deploy', 'cloudformation', 'describe-stacks', '--stack-name', stack_name)['Stacks'][0]
+    template_response = aws('rillora-cdk-deploy', 'cloudformation', 'get-template', '--stack-name', stack_name, '--template-stage', 'Original')
+    template = template_response['TemplateBody']
+    if isinstance(template, str):
+        template = json.loads(template)
+    resources = aws('rillora-cdk-deploy', 'cloudformation', 'list-stack-resources', '--stack-name', stack_name)['StackResourceSummaries']
+    save(stack_name + '-stack-before.json', stack)
+    save(stack_name + '-template-before.json', template)
+    save(stack_name + '-resources-before.json', resources)
+    task_resources = []
+    for logical_id, resource in template['Resources'].items():
+        if resource['Type'] == 'AWS::ECS::TaskDefinition':
+            properties = resource['Properties']
+            task_resources.append({'logicalId': logical_id, 'runtimePlatform': properties.get('RuntimePlatform'),
+                                   'containers': [{'name': c['Name'], 'image': c['Image'], 'command': c.get('Command')} for c in properties['ContainerDefinitions']]})
+    print(json.dumps({'stack': stack_name, 'status': stack['StackStatus'],
+                      'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+                      'templateSha256': hashlib.sha256(json.dumps(template, sort_keys=True).encode()).hexdigest(),
+                      'parameters': [p['ParameterKey'] for p in stack.get('Parameters', [])],
+                      'taskDefinitions': task_resources,
+                      'resources': [{'logicalId': r['LogicalResourceId'], 'physicalId': r.get('PhysicalResourceId'), 'type': r['ResourceType']} for r in resources if r['ResourceType'] in ['AWS::ECS::Cluster', 'AWS::ECS::Service', 'AWS::ECS::TaskDefinition', 'AWS::Lambda::Function']]}))

@@ -1,0 +1,51 @@
+"""Read and verify the prepared production change set; no AWS writes."""
+import datetime
+import json
+import subprocess
+from pathlib import Path
+
+OUT = Path(__file__).parent
+PRIVATE = Path(__file__).resolve().parents[3] / '.local/node-security-deployment-20261022'
+created = json.loads((OUT / 'production-changeset-created.json').read_text())
+
+def aws(*args):
+    result = subprocess.run(['aws', '--profile', 'rillora-cdk-deploy', '--region', 'eu-central-1',
+                             '--output', 'json', '--no-cli-pager', *args],
+                            capture_output=True, text=True, timeout=55)
+    if result.returncode:
+        raise RuntimeError(result.stderr.strip())
+    return json.loads(result.stdout)
+
+change = aws('cloudformation', 'describe-change-set', '--stack-name', 'RilloraProduction',
+             '--change-set-name', created['Id'])
+file = PRIVATE / 'RilloraProduction-changeset-described.json'
+file.write_text(json.dumps(change, indent=2)); file.chmod(0o600)
+if change['Status'] == 'CREATE_IN_PROGRESS':
+    print(json.dumps({'status': change['Status'], 'executionStatus': change['ExecutionStatus']}))
+    raise SystemExit(0)
+assert change['Status'] == 'CREATE_COMPLETE' and change['ExecutionStatus'] == 'AVAILABLE', change['Status']
+actual = aws('cloudformation', 'get-template', '--stack-name', 'RilloraProduction',
+             '--change-set-name', created['Id'], '--template-stage', 'Original')['TemplateBody']
+if isinstance(actual, str):
+    actual = json.loads(actual)
+file = PRIVATE / 'RilloraProduction-changeset-template.json'
+file.write_text(json.dumps(actual, indent=2)); file.chmod(0o600)
+assert actual == json.loads((PRIVATE / 'RilloraProduction-template-patched.json').read_text())
+baseline = json.loads((PRIVATE / 'RilloraProduction-template-before.json').read_text())
+review = next(r for r in json.loads((OUT / 'image-only-template-review.json').read_text())
+              if r['stack'] == 'RilloraProduction')
+assert len(review['imageChanges']) == 4
+for item in review['imageChanges']:
+    actual['Resources'][item['path'][1]]['Properties']['ContainerDefinitions'][0]['Image'] = item['before']
+assert actual == baseline
+request = json.loads((PRIVATE / 'RilloraProduction-create-change-set.json').read_text())
+assert all(v.get('UsePreviousValue') is True and 'ParameterValue' not in v for v in request['Parameters'])
+assert change['Parameters'] == json.loads((PRIVATE / 'RilloraProduction-stack-before.json').read_text())['Parameters']
+report = {'checkedAt': datetime.datetime.now(datetime.timezone.utc).isoformat(),
+          'stack': 'RilloraProduction', 'changeSetId': created['Id'], 'status': change['Status'],
+          'executionStatus': change['ExecutionStatus'], 'actualTemplateMatchesReviewed': True,
+          'onlyFourImageFieldsChanged': True, 'parametersRequestedPreviousValue': True,
+          'parameterReadbackMatchesBaseline': True, 'noDirectIamPolicyChange': True,
+          'changes': [c['ResourceChange'] for c in change['Changes']]}
+(OUT / 'production-reviewed-changeset.json').write_text(json.dumps(report, indent=2) + '\n')
+print(json.dumps(report))

@@ -1,0 +1,23 @@
+{
+  "checkedAt": "2026-10-22T01:32:05.241403+00:00",
+  "stackStatus": "UPDATE_COMPLETE",
+  "templateMatchesBaseline": true,
+  "parametersMatchBaseline": true,
+  "fourTaskDefinitionsMatchBaseline": true,
+  "services": [
+    {
+      "service": "RilloraProduction-RuntimeIdentityWorkerServiceD8B21381-cPjG07g8JIhH",
+      "taskDefinition": "RilloraProductionRuntimeIdentityWorkerTaskCE49E148:7",
+      "rollout": "COMPLETED",
+      "running": 1,
+      "pending": 0
+    },
+    {
+      "service": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+      "taskDefinition": "RilloraProductionRuntimeApiTask93405B31:31",
+      "rollout": "COMPLETED",
+      "running": 1,
+      "pending": 0
+    }
+  ]
+}

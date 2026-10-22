@@ -1,0 +1,30 @@
+{
+  "recordedAt": "2026-10-22T01:43:45.235392+00:00",
+  "sourceHead": "f95d99d90d3ae221d720f671ed70327b6233c443",
+  "mergedMain": "4347d7db803388a8f1308f76adcc9348b66d6584",
+  "tree": "ac57e2cf541b2ecc099d32d630f5caacfaa823d4",
+  "stage": "production-and-staging-verified-publication-in-progress",
+  "stagingStackStatus": "UPDATE_COMPLETE",
+  "stagingChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/node-22-23-4-20261022-staging/bcdea9d7-d806-4b64-a8b2-f4c99c28129a",
+  "productionRolloutStarted": true,
+  "productionChangeSetCreated": true,
+  "productionStackStatus": "UPDATE_COMPLETE",
+  "productionLastUpdated": "2026-10-18T08:58:41.747000+00:00",
+  "awsWritesStillRunning": false,
+  "currentApprovalWait": false,
+  "activeTechnicalBlockers": [],
+  "pauseReason": null,
+  "nextActions": [
+    "Publish complete sanitized GitHub handoff and read exact documentation commit checks."
+  ],
+  "boundedLimitations": [
+    "ECS Exec disabled; Node version verified by running the same digest-linked image locally, not a remote process exec.",
+    "lambda:GetRuntimeManagementConfig denied for existing staging operator; AWS-managed patch version remains unverified.",
+    "Generic monitor rejects reserved addresses from local DNS/proxy; separate fixed TLS-verified HTTPS metadata probe passed all 7 endpoints.",
+    "Post-execution DescribeChangeSet by name returned ChangeSetNotFound; final deployed template, stack, services and running digest independently verified."
+  ],
+  "stagingReport": "staging-after.json",
+  "publicReport": "staging-after-public.json",
+  "githubDeploymentHandoffPublished": false,
+  "productionChangeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/node-22-23-4-20261022-production/8a371d60-0ade-4c13-ab23-a74f2b7036b5"
+}

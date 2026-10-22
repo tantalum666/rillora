@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-21 (Asia/Shanghai)
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3744,3 +3744,16 @@ local correction/tests and actual restoration remain separate evidence.
 - Agent compares [selected-file custody/delivery and original spoken instructions](paid-content-options-20261021.md). Both are new research candidates only; previous deferred attachments and media ideas are not represented as novel technology.
 - Public competitors already offer uploads, exports, video notes and voice/transcription. Potential Rillora value must be demonstrated in exact content selection, actual retrieval, user-confirmed instructions and scoped delivery, not a claim of global uniqueness.
 - No user files/recordings, model calls, new product tests, provider mutations, billing, deployment, App Review or FanPass work. Existing baseline security, exit rights and the map-not-password boundary remain intact.
+
+## 2026-10-22 — Node安全补丁与受限部署路径
+
+Owner明确要求“你帮我直接升级并部署吧，留下交接文档在github就行”，随后要求“优先在你云端操作，尽量不要花额度，要花再跟我说”。在明确说明仅本机部署／线上核验可能使用Codex额度后，Owner答复“可以”。因此先在云端准备Node22.23.4同主版本补丁及检查，再复用既有部署路径；这不授权新增付费资源、改身份／网络权限或发布未来功能。解释GitHub Actions分钟数且说明无法保证零额外费用后，Owner另明确“你跑吧，应该不用额外收费”，批准照常运行现有CI；不新增收费runner或构建服务。
+
+[安全升级规范](node-security-upgrade-20261022.md)保留解析行为、锁文件、schema106和已上线customer MCP；七个镜像使用方与独立Lambda运行时须分别记录状态。源码和测试不是线上修复证明；交接在实际镜像与Node版本核验前保持待部署。
+
+## 2026-10-22 — Start content and action-pack development with Web-first delivery
+
+- Status: OWNER AUTHORIZED implementation and Web deployment; iOS release deferred until the current review is complete.
+- Owner explicitly asks to develop the discussed features now: recipient action packs, selected important-file copies and original spoken instructions. This supersedes the prior research-only scope, without changing prices, existing purchased terms or real data.
+- Keep current native build/review materials and published contracts compatible. Integrate the already deployed Node22.23.4 source patch before building the new API; do not repeat that separate rollout.
+- [Implementation](web-content-development-20261022.md) will separate private preparation and explicit current sharing from unverified post-death release. No scan/image, inactivity, payment failure or health signal becomes automatic release evidence. Unconfigured operational corridors remain closed and accurately described.

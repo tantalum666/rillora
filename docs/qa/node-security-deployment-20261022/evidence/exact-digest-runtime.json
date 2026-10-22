@@ -1,0 +1,47 @@
+[
+  {
+    "checkedAt": "2026-10-22T01:34:54.598205+00:00",
+    "group": "staging",
+    "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4",
+    "runtime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "localExecutionByImmutableEcrDigest": true,
+    "network": "none",
+    "readOnlyRootFilesystem": true,
+    "remoteEcsExec": false
+  },
+  {
+    "checkedAt": "2026-10-22T01:35:05.326713+00:00",
+    "group": "maintenance",
+    "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+    "runtime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "localExecutionByImmutableEcrDigest": true,
+    "network": "none",
+    "readOnlyRootFilesystem": true,
+    "remoteEcsExec": false
+  },
+  {
+    "checkedAt": "2026-10-22T01:35:16.497437+00:00",
+    "group": "api",
+    "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:62b440548b3e248ff236d845720cf598c93e9109f9e13cce5c3f7a22a9a5c68e",
+    "runtime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "localExecutionByImmutableEcrDigest": true,
+    "network": "none",
+    "readOnlyRootFilesystem": true,
+    "remoteEcsExec": false
+  }
+]

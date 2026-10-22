@@ -1,0 +1,101 @@
+{
+  "checkedAt": "2026-10-22T01:13:54.085582+00:00",
+  "scope": "fixed-public-https-metadata-only",
+  "cookiesOrCredentialsUsed": false,
+  "responseBodiesStored": false,
+  "tlsVerificationDisabled": false,
+  "checks": [
+    {
+      "id": "staging-live",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/live",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headers": {
+        "cache-control": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-security-policy": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "staging-ready",
+      "url": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headers": {
+        "cache-control": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-security-policy": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "staging-session",
+      "url": "https://app.staging.rillora.xyz/api/v1/session",
+      "httpStatus": 401,
+      "expectedStatus": 401,
+      "headers": {
+        "cache-control": "no-store, max-age=0",
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "production-live",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/live",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headers": {
+        "cache-control": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-security-policy": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "production-ready",
+      "url": "https://j749rhzub7.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "httpStatus": 200,
+      "expectedStatus": 200,
+      "headers": {
+        "cache-control": null,
+        "strict-transport-security": "max-age=31536000; includeSubDomains",
+        "content-security-policy": "default-src 'self';base-uri 'self';font-src 'self' https: data:;form-action 'self';frame-ancestors 'self';img-src 'self' data:;object-src 'none';script-src 'self';script-src-attr 'none';style-src 'self' https: 'unsafe-inline';upgrade-insecure-requests",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "production-session",
+      "url": "https://app.rillora.xyz/api/v1/session",
+      "httpStatus": 401,
+      "expectedStatus": 401,
+      "headers": {
+        "cache-control": "no-store",
+        "strict-transport-security": "max-age=31536000",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": true
+    },
+    {
+      "id": "production-mcp-discovery",
+      "url": "https://app.rillora.xyz/.well-known/oauth-protected-resource",
+      "httpStatus": 404,
+      "expectedStatus": 200,
+      "headers": {
+        "cache-control": "no-store",
+        "strict-transport-security": "max-age=31536000",
+        "content-security-policy": "default-src 'self'; base-uri 'self'; connect-src 'self'; font-src 'self'; form-action 'self' https://login.rillora.xyz; frame-ancestors 'none'; img-src 'self' data:; object-src 'none'; script-src 'self'; style-src 'self'",
+        "x-content-type-options": "nosniff"
+      },
+      "passed": false
+    }
+  ],
+  "passed": false
+}

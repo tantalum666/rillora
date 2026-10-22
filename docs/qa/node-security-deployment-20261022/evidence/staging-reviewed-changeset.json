@@ -1,0 +1,190 @@
+{
+  "checkedAt": "2026-10-22T01:19:35.214116+00:00",
+  "stack": "RilloraStaging",
+  "changeSetId": "arn:aws:cloudformation:eu-central-1:133857166372:changeSet/node-22-23-4-20261022-staging/bcdea9d7-d806-4b64-a8b2-f4c99c28129a",
+  "status": "CREATE_COMPLETE",
+  "executionStatus": "AVAILABLE",
+  "actualTemplateMatchesReviewed": true,
+  "onlyThreeImageFieldsChanged": true,
+  "parametersRequestedPreviousValue": true,
+  "parameterReadbackMatchesBaseline": true,
+  "noDirectIamPolicyChange": true,
+  "changes": [
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "ApiServiceC9037CF0",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-ApiServiceC9037CF0-5g3SX8ZcaI5n",
+      "ResourceType": "AWS::ECS::Service",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "TaskDefinition",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "ApiTaskDefinition51EA709E"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "ApiTaskDefinition51EA709E",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingApiTaskDefinitionF6347BA4:44",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "IdentityWorkerService1E7E1C54",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:service/RilloraStaging-ClusterEB0386A7-TmbtI6fqpnz5/RilloraStaging-IdentityWorkerService1E7E1C54-mIyAUR2a39d1",
+      "ResourceType": "AWS::ECS::Service",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "TaskDefinition",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "IdentityWorkerTaskDD5047F2"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "IdentityWorkerTaskDD5047F2",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingIdentityWorkerTaskE9CF37C5:1",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "MaintenanceBrokerFunctionC542279B",
+      "PhysicalResourceId": "RilloraStaging-MaintenanceBrokerFunctionC542279B-R2heNaovkRXC",
+      "ResourceType": "AWS::Lambda::Function",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "MigrationTaskDefinitionE89B136E"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001",
+      "PhysicalResourceId": "Rillo-Maint-piYLyPr8ifYg",
+      "ResourceType": "AWS::IAM::Policy",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "ResourceReference",
+          "CausingEntity": "MigrationTaskDefinitionE89B136E"
+        }
+      ]
+    },
+    {
+      "PolicyAction": "ReplaceAndDelete",
+      "Action": "Modify",
+      "LogicalResourceId": "MigrationTaskDefinitionE89B136E",
+      "PhysicalResourceId": "arn:aws:ecs:eu-central-1:133857166372:task-definition/RilloraStagingMigrationTaskDefinitionD83F7D18:37",
+      "ResourceType": "AWS::ECS::TaskDefinition",
+      "Replacement": "True",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "ContainerDefinitions",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "Action": "Modify",
+      "LogicalResourceId": "StagingOperatorRoleDefaultPolicyCF77C65B",
+      "PhysicalResourceId": "Rillo-Stagi-S8mlzqTxUjAr",
+      "ResourceType": "AWS::IAM::Policy",
+      "Replacement": "False",
+      "Scope": [
+        "Properties"
+      ],
+      "Details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "MaintenanceBrokerFunctionC542279B.Arn"
+        }
+      ]
+    }
+  ]
+}

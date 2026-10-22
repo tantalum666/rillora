@@ -1,0 +1,40 @@
+{
+  "checkedAt": "2026-10-22T01:41:46.331467+00:00",
+  "scope": "recent production API log sample only",
+  "task": "c6aa0a6e6d5540c4ab92d8629f632ec7",
+  "events": 46,
+  "structuredLogLevels": {
+    "30": 17
+  },
+  "failureMetricSamples": {
+    "Failures": {
+      "count": 1,
+      "maximum": 0,
+      "sum": 0
+    },
+    "Failed": {
+      "count": 26,
+      "maximum": 0,
+      "sum": 0
+    },
+    "WorkerErrors": {
+      "count": 26,
+      "maximum": 0,
+      "sum": 0
+    }
+  },
+  "nonJsonMessages": [
+    {
+      "sha256": "fa7914c2d043196bcf249ffc6ff00e09180522c4ae820857dab7dde4f785b91a",
+      "startupListening": false,
+      "errorKeyword": false
+    },
+    {
+      "sha256": "7b16d93e440d6e613e90bc0983c2045dc0e4ff2d4dd09e918c49c3994ea04401",
+      "startupListening": true,
+      "errorKeyword": false
+    }
+  ],
+  "rawLogMessagesStored": false,
+  "initialKeywordCountExplanation": "The first scan matched the JSON metric key Failed, including zero values. Numeric metrics and structured levels are evaluated here; keyword matches alone are not error counts."
+}

@@ -5,9 +5,18 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-21 (Asia/Shanghai)
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-22 开始三项功能开发，Web先行
+
+Owner现在明确开发亲友办理包、重要文件副本和本人原声交代，可先部署Web；iOS等当前审核通过后在下一版本部署。[本轮实施合同](web-content-development-20261022.md)取代此前“不开发”的当前门。新增API保持旧原生接口和审核路径兼容，原价格／已购权益／真实数据／FanPass保持；真实身后放行仍需原有四门与法域证据，不由功能开发授权推断已满足。
+
+## 2026-10-22 Node安全修复
+
+Owner要求升级并部署Node安全修复，优先云端、使用额度前告知，并已批准云端准备后的有限本机部署核验。[本次聚焦规范](node-security-upgrade-20261022.md)将API镜像与CI同补丁升级到22.23.4，不改变产品、鉴权、数据库、收费或Apple审核边界。源码测试、GitHub CI和线上运行时分别有证据。[部署回执](qa/node-security-deployment-20261022/README.md)确认七类容器定义与四个常驻服务完成补丁更新，保留三种实际应用基线；Node版本由同digest镜像本地执行与线上任务摘要对应证明，未启用ECS Exec，独立Lambda补丁状态仍未知。
+
 
 ## 2026-10-21 保留办理包方向，继续比较实际内容交付
 
