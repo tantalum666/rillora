@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import pg, { type PoolClient } from 'pg';
 import { loadDatabaseConfig } from './config.js';
 import { databaseConnectionOptions } from './db.js';
+import { configureRecoveryPool, publishRecoveryTransaction, recoveryPublisherFromEnvironment } from './recovery-journal.js';
 
 type Operation = 'inspect' | 'prepare' | 'revoke';
 export type ContentQaScope = { subject: string; identitySha256: string; label: string; expiresAt: string };
@@ -38,12 +39,13 @@ async function catalogFingerprint(client: Pick<PoolClient, 'query'>) {
 }
 
 /** Internal maintenance only. No session, agreement, order or subscription is fabricated. */
-export async function configureContentQa(client: Pick<PoolClient, 'query'>, operation: Operation,
+export async function configureContentQa(pool: pg.Pool, operation: Operation,
   scope: ContentQaScope, now = Date.now()) {
   validateContentQaScope(scope, operation, now);
   const reference = `content-qa:${scope.identitySha256}`;
-  await client.query(operation === 'inspect' ? 'begin isolation level repeatable read read only' : 'begin isolation level serializable');
+  const client = await pool.connect();
   try {
+    await client.query(operation === 'inspect' ? 'begin isolation level repeatable read read only' : 'begin isolation level serializable');
     await client.query("set local statement_timeout='15s'");
     if (operation !== 'inspect') await client.query('select pg_advisory_xact_lock(hashtextextended($1,0))', [reference]);
     const before = await catalogFingerprint(client);
@@ -95,10 +97,12 @@ export async function configureContentQa(client: Pick<PoolClient, 'query'>, oper
     requireFact(after === before, 'Commercial configuration changed');
     const rows = identity ? (await client.query(`select capability_code,allowance,expires_at,revoked_at from app.commerce_entitlement_grants
       where planner_id=$1 and source_reference=$2 order by capability_code`, [identity.id, reference])).rows : [];
+    if (operation !== 'inspect') await publishRecoveryTransaction(pool, client);
     await client.query('commit');
     return { operation, exists: Boolean(identity), publicId: identity?.public_id ?? null, grants: rows,
       commercialConfigurationUnchanged: true, catalogSha256: after, fabricatedPaymentsOrSessions: false };
   } catch (error) { await client.query('rollback'); throw error; }
+  finally { client.release(); }
 }
 
 async function main() {
@@ -106,16 +110,19 @@ async function main() {
   requireFact(process.env.CONTENT_KEY_NAMESPACE === 'rillora-production' && process.env.RECOVERY_ENVIRONMENT === 'production'
     && db.sslMode === 'verify-full' && db.host?.endsWith('.eu-central-1.rds.amazonaws.com')
     && !db.connectionString && db.database === 'rillora', 'Only the existing protected production database is allowed');
-  const client = new pg.Client({ ...databaseConnectionOptions(db), application_name: 'rillora-content-qa' });
-  await client.connect();
+  const pool = new pg.Pool({ ...databaseConnectionOptions(db), max: 1, application_name: 'rillora-content-qa' });
   try {
-    requireFact((await client.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl === true, 'Verified TLS required');
-    requireFact((await client.query("select exists(select 1 from app.schema_migrations where name='0108_legacy_content_workspace.sql') as ready")).rows[0]?.ready, 'Current content schema required');
-    console.log(JSON.stringify(await configureContentQa(client, process.argv[2] as Operation, {
+    const publisher = recoveryPublisherFromEnvironment();
+    requireFact(publisher, 'Independent recovery publication is required');
+    configureRecoveryPool(pool, publisher);
+    requireFact((await pool.query('select ssl from pg_stat_ssl where pid=pg_backend_pid()')).rows[0]?.ssl === true, 'Verified TLS required');
+    requireFact((await pool.query("select exists(select 1 from app.schema_migrations where name='0108_legacy_content_workspace.sql') as ready")).rows[0]?.ready, 'Current content schema required');
+    requireFact((await pool.query('select enforced from app.recovery_policy where singleton')).rows[0]?.enforced === true, 'Recovery journal must remain enforced');
+    console.log(JSON.stringify(await configureContentQa(pool, process.argv[2] as Operation, {
       subject: process.env.RILLORA_CONTENT_QA_SUBJECT ?? '', identitySha256: process.env.RILLORA_CONTENT_QA_IDENTITY_SHA256 ?? '',
       label: process.env.RILLORA_CONTENT_QA_LABEL ?? '', expiresAt: process.env.RILLORA_CONTENT_QA_EXPIRES_AT ?? '',
     })));
-  } finally { await client.end(); }
+  } finally { await pool.end(); }
 }
 if (resolve(process.argv[1] ?? '') === fileURLToPath(import.meta.url)) {
   main().catch(error => { console.error(JSON.stringify({ contentQaFailed: true, privateValuesSuppressed: true,

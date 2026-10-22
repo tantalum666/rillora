@@ -1,4 +1,4 @@
-import { createHash, randomBytes, randomUUID } from 'node:crypto';
+import { createHash, createHmac, randomBytes, randomUUID } from 'node:crypto';
 import { beforeAll, beforeEach, afterAll, describe, it, expect, vi } from 'vitest';
 import request from './http-fixture.js';
 import { assertDedicatedTestDatabase, dedicatedTestDatabaseUrl } from './dedicated-test-database.js';
@@ -18,6 +18,7 @@ import { contentNoticeVersion } from '../src/legacy-content/notice.js';
 import { contentObjectKey } from '../src/legacy-content/object-store.js';
 import { replayRecoveryControls } from '../src/recovery-replay.js';
 import { configureContentQa, validateContentQaScope } from '../src/configure-content-qa.js';
+import { configureRecoveryPool, type RecoveryControl } from '../src/recovery-journal.js';
 
 const name = 'continuity_legacy_content_v2_test';
 const url = dedicatedTestDatabaseUrl(`postgresql:///${name}`, name);
@@ -99,28 +100,27 @@ describe.sequential('Web content — real database, synthetic files and identiti
     const subject = 'auth0|' + 'a'.repeat(24), now = Date.now();
     const scope = { subject, identitySha256: hash(`https://login.rillora.xyz\u001f${subject}`).toString('hex'),
       label: 'Rillora Web Content QA 2026-10-22', expiresAt: new Date(now + 3600_000).toISOString() };
-    const client = await pool.connect();
     const sessionsBefore = (await pool.query('select count(*)::int n from app.auth_sessions')).rows[0].n;
     const policy = (await pool.query('select sharing_limits_enabled from app.commerce_runtime_policy where singleton')).rows[0].sharing_limits_enabled;
     try {
       // The same grant must work under live sharing limits, not a preview bypass.
       await pool.query('update app.commerce_runtime_policy set sharing_limits_enabled=true where singleton');
-      const result = await configureContentQa(client, 'prepare', scope, now);
+      const result = await configureContentQa(pool, 'prepare', scope, now);
       expect(result.grants).toHaveLength(2); expect(result.commercialConfigurationUnchanged).toBe(true);
       const id = String((await pool.query('select id from app.planners where public_id=$1', [result.publicId])).rows[0].id);
       expect(await context.transaction(id, ({ client }) => context.canCreate(client))).toBe(true);
-      expect((await configureContentQa(client, 'prepare', scope, now)).grants).toHaveLength(2);
-      await expect(configureContentQa(client, 'prepare', { ...scope, expiresAt: new Date(now + 2 * 3600_000).toISOString() }, now)).rejects.toThrow('expiry cannot be extended');
+      expect((await configureContentQa(pool, 'prepare', scope, now)).grants).toHaveLength(2);
+      await expect(configureContentQa(pool, 'prepare', { ...scope, expiresAt: new Date(now + 2 * 3600_000).toISOString() }, now)).rejects.toThrow('expiry cannot be extended');
       expect((await pool.query('select count(*)::int n from app.auth_sessions')).rows[0].n).toBe(sessionsBefore);
       expect((await pool.query('select count(*)::int n from app.legal_acceptances where planner_id=$1', [id])).rows[0].n).toBe(0);
       expect((await pool.query('select count(*)::int n from app.commerce_orders where planner_id=$1', [id])).rows[0].n).toBe(0);
       expect((await pool.query('select count(*)::int n from app.commerce_subscriptions where planner_id=$1', [id])).rows[0].n).toBe(0);
-      const revoked = await configureContentQa(client, 'revoke', scope, now + 5 * 3600_000);
+      const revoked = await configureContentQa(pool, 'revoke', scope, now + 5 * 3600_000);
       expect(revoked.grants.every(g => g.revoked_at !== null)).toBe(true);
       expect(await context.transaction(id, ({ client }) => context.canCreate(client))).toBe(false);
-      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('cannot be reactivated');
+      await expect(configureContentQa(pool, 'prepare', scope, now)).rejects.toThrow('cannot be reactivated');
       expect((await pool.query('select count(*)::int n from app.auth_sessions where revoked_at is null')).rows[0].n).toBe(sessionsBefore);
-    } finally { await pool.query('update app.commerce_runtime_policy set sharing_limits_enabled=$1 where singleton', [policy]); client.release(); }
+    } finally { await pool.query('update app.commerce_runtime_policy set sharing_limits_enabled=$1 where singleton', [policy]); }
   });
   it('refuses invalid scope, personal identities and any enrolled Apple reviewer as a content QA account', async () => {
     const subject = 'auth0|' + 'b'.repeat(24), now = Date.now();
@@ -131,14 +131,37 @@ describe.sequential('Web content — real database, synthetic files and identiti
       expect(() => validateContentQaScope({ ...scope, ...patch }, 'prepare', now)).toThrow();
     }
     const existing = (await pool.query("select * from app.provision_oidc_planner($1,$2,'Personal account','en','UTC')", ['https://login.rillora.xyz', subject])).rows[0];
-    const client = await pool.connect();
+    await expect(configureContentQa(pool, 'prepare', scope, now)).rejects.toThrow('cannot be repurposed');
+    await pool.query('update app.planners set display_name=$2 where id=$1', [existing.planner_id, scope.label]);
+    await pool.query("insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '1 day','Existing review fixture')", [existing.planner_id]);
+    await expect(configureContentQa(pool, 'prepare', scope, now)).rejects.toThrow('Apple-review');
+    expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where planner_id=$1', [existing.planner_id])).rows[0].n).toBe(0);
+  });
+  it('publishes attested QA controls before commit and rolls back the whole grant when publication fails', async () => {
+    const subject = 'auth0|' + 'c'.repeat(24), now = Date.now(), key = randomBytes(48).toString('base64url');
+    const scope = { subject, identitySha256: hash(`https://login.rillora.xyz\u001f${subject}`).toString('hex'),
+      label: 'Rillora Web Content QA 2026-10-22', expiresAt: new Date(now+3600_000).toISOString() };
+    const candidate = createPool(config), events: RecoveryControl[] = []; let unavailable = true;
+    configureRecoveryPool(candidate, { async publish() { throw new Error('Unsigned publication refused'); }, async publishAttested(e) {
+      expect(e.signature).toBe(createHmac('sha256',key).update(`rillora-journal-event-v1|${e.generation}|${e.transaction}|${e.event}`).digest('hex'));
+      if (unavailable) throw new Error('Unavailable fixture publisher');
+      const event = JSON.parse(e.event); events.push(event);
+      return createHmac('sha256',key).update(`rillora-journal-ack-v1|${e.generation}|${e.transaction}|${hash(e.event).toString('hex')}|${event.revision}`).digest('hex');
+    } });
+    await pool.query('insert into rillora_guard.journal_authority(singleton,signing_key) values(true,$1) on conflict(singleton) do update set signing_key=excluded.signing_key',[key]);
+    await pool.query('update app.recovery_policy set enforced=true,coverage_started_at=now()');
     try {
-      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('cannot be repurposed');
-      await pool.query('update app.planners set display_name=$2 where id=$1', [existing.planner_id, scope.label]);
-      await pool.query("insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '1 day','Existing review fixture')", [existing.planner_id]);
-      await expect(configureContentQa(client, 'prepare', scope, now)).rejects.toThrow('Apple-review');
-      expect((await pool.query('select count(*)::int n from app.commerce_entitlement_grants where planner_id=$1', [existing.planner_id])).rows[0].n).toBe(0);
-    } finally { client.release(); }
+      await expect(configureContentQa(candidate, 'prepare', scope, now)).rejects.toThrow('saved safely');
+      expect((await pool.query('select 1 from app.identity_accounts where issuer=$1 and subject=$2',['https://login.rillora.xyz',subject])).rowCount).toBe(0);
+      unavailable = false;
+      const result = await configureContentQa(candidate, 'prepare', scope, now);
+      expect(result.grants).toHaveLength(2);
+      expect(events.some(e=>e.kind==='unreconciled_access')).toBe(true);
+      expect(JSON.stringify(events)).not.toContain(scope.subject);
+      expect(JSON.stringify(events)).not.toContain(scope.label);
+      await configureContentQa(candidate, 'revoke', scope, now);
+      expect((await pool.query('select count(*)::int n from app.recovery_controls where not published')).rows[0].n).toBe(0);
+    } finally { await pool.query('update app.recovery_policy set enforced=false'); await candidate.end(); }
   });
 
   it('is disabled by default and rejects unauthenticated, stale-account and unconsented changes', async () => {
