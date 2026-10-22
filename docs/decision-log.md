@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-20 (Asia/Hong_Kong)
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3679,3 +3679,9 @@ local correction/tests and actual restoration remain separate evidence.
 - Repair the generated manifest and retain full scanners. Add the final-receipt regeneration/check step to the repository closeout protocol. Preserve history through[PR3](https://github.com/tantalum666/rillora/pull/3), check its actual CI, and verify merge ancestry/tree without deployments, TestFlight, changed prices, real-data operations or FanPass work.
 
 - Result: PR4merges88ea0be25after all3checks; PR3merges6b757b885after Verify source203and browser14pass (API580/browser66). Fresh main tree equals validated ecd13a75a and contains all24remote tips, openPRcount0. The initial no-runtime-change scope is preserved; only two browser-harness files required correction.
+
+## 2026-10-22 — Node安全补丁与受限部署路径
+
+Owner明确要求“你帮我直接升级并部署吧，留下交接文档在github就行”，随后要求“优先在你云端操作，尽量不要花额度，要花再跟我说”。在明确说明仅本机部署／线上核验可能使用Codex额度后，Owner答复“可以”。因此先在云端准备Node22.23.4同主版本补丁及检查，再复用既有部署路径；这不授权新增付费资源、改身份／网络权限或发布未来功能。解释GitHub Actions分钟数且说明无法保证零额外费用后，Owner另明确“你跑吧，应该不用额外收费”，批准照常运行现有CI；不新增收费runner或构建服务。
+
+[安全升级规范](node-security-upgrade-20261022.md)保留解析行为、锁文件、schema106和已上线customer MCP；七个镜像使用方与独立Lambda运行时须分别记录状态。源码和测试不是线上修复证明；交接在实际镜像与Node版本核验前保持待部署。

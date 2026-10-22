@@ -5,7 +5,7 @@ Authority scope: product truth, design, Web/iOS parity, trust and validation evi
 Superseded by: stricter platform, legal, security or Owner requirement  
 Do not use for: replacing a detailed test plan  
 Status: ACTIVE  
-Last updated: 2026-10-03 (Asia/Shanghai)
+Last updated: 2026-10-22 (Asia/Shanghai)
 
 ## October3 strict-review implementation boundary
 
@@ -384,3 +384,7 @@ Exact raw iterations, final screenshots, source snapshots, tenant readbacks and
 limits are in [the hosted-login report](../output/qa/rillora-single-hosted-entry-20260906/README.md).
 The remaining Apple identity-key/Services ID, physical-device, localization,
 VoiceOver, full device matrix and release gates are separate.
+
+## 2026-10-22 Node安全运行时门
+
+当前候选的API构建／运行两阶段和所有CI Node版本统一为22.23.4，使用[不可变镜像与良性解压回归](node-security-upgrade-20261022.md)。既有22.22.3记录保留为其原日期的历史证明，不是当前安全基线。API／Web／基础设施完整适用检查、发布扫描和浏览器CI不得跳过。具体[当次结果](qa/node-security-20261022/README.md)明确列出云端环境阻塞。部署另需核验真实镜像摘要、Node版本、服务健康及全部镜像使用方，不以测试或提交成功代替线上结果。

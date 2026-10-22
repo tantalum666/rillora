@@ -1,20 +1,20 @@
 # Rillora 当前交接
 
-Status: GIT INTEGRATION COMPLETE / PR3 AND PR4 MERGED / CURRENT REVIEW UNCHANGED
-Last updated: 2026-10-20 (Asia/Shanghai)
+Status: NODE SECURITY SOURCE PREPARED / CI AND DEPLOYMENT PENDING
+Last updated: 2026-10-22 (UTC)
 
 ## 当前任务与完成
 
-Owner要求复核Dot的CI提醒并检查合并GitHub工作。[本轮已完成](git-integration-20261020.md)：26份新增验证文件补入总清单，PR4同步原已批准的精确扫描登记，PR3将整合历史合入main。另修复AI浏览器夹具服务未启动及站点地图旧断言，未改产品运行逻辑。AGENTS／source-control已要求在最后回执后核验完整清单并读回实际CI。
+Owner要求直接升级Node安全修复并部署，交接留在GitHub，优先云端且用额度前告知。已完成当前全部380份项目Markdown阅读、部署基线比较、官方22.23.4镜像摘要核验及最小源码补丁。两阶段API镜像和三处CI固定版本同步升级，新增无攻击载荷的解压边界回归；不改npm锁文件、鉴权顺序或产品逻辑。[聚焦升级规范](node-security-upgrade-20261022.md)列出准确摘要、来源、七个镜像使用方和最小部署流程。
 
-## 验证与合并证据
+## 验证与证据边界
 
-候选ecd13a75a的Verify source203及push202三任务成功，API580项通过；浏览器14共66项通过。完整发布校验覆盖13,107份可读文件，扫描0未知项。PR3主合并6b757b885与验证候选文件树完全一致，重新fetch核对24个远端分支tip均已包含于main，开放PR为0。本机当前在main。结果见[完成回执](../collaboration/verification/git-integration-20261020/completion.json)；随后文档／清单收尾的实际main提交与自动CI另由PR3及本机QA读回，不伪造自引用提交。
+[云端验证回执](qa/node-security-20261022/README.md)区分已执行检查、环境阻塞及待完成项。官方Node22.23.4下最终API588项、Web198项和基础设施68项通过，构建／类型／良性压缩回归及源码扫描通过；独立复核未发现阻塞缺陷。GitHub检查及线上镜像／Node版本仍须实际读回，不能把分支提交当作部署完成。云端没有可用AWS部署路线；Owner已批准云端准备完成后仅用本机做部署和线上核验，可能消耗其Codex额度。不升级Mac本身Node。
 
-## 保留边界
+## 保留边界与阻塞
 
-本轮没有部署、重新验证原生／付款、读取健康数据或通知亲友。App14审核、手动发布、TestFlight暂停、真实数据／价格／收费、FanPass及Owner停止真机检查的决定保持。Apple案例103001356140和OpenAI本人验证暂后保持。[上一交接](handoff-history-20261020-before-git-integration.md)与条件披露／营销材料作为已保存的后续工作，不重开旧验证门。
+生产customer MCP已存在；schema106、真实数据、价格、收费与权限、现有身份／TLS、App14审核及手动发布、TestFlight暂停、FanPass和未来条件披露边界保持。只复用既有ECR/ECS及本机ARM64构建，不启动新付费资源。Owner随后已批准照常运行仓库原有GitHub Actions；可能使用现有分钟数，不保证额外费用为零，不新增runner或构建服务，也不弱化检查。
 
 ## 唯一下一步
 
-下一版本继续时从最新main建立工作分支，先细化[未来接收人、生前封存及条件密钥合同](conditional-disclosure-vnext-20261019.md)；具体时限、用途与真实放行仍未实现。当前Git修复／合并任务已关闭，不把这次整合当作健康接入或上线部署。
+完成并读回这次补丁的实际CI，在既有部署路径执行受审的最小镜像替换，分别核验全部受影响常驻服务及维护任务定义，并把真实运行时回执追加到本交接。尚未完成的线上验证保持待办，不宣称生产已修复。[上一轮Git整合交接](handoff-history-20261022-before-node-security.md)保留为HISTORICAL；不重开原生、付款或未来功能发布。

@@ -74,7 +74,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.4'
           cache: npm
           cache-dependency-path: apps/api/package-lock.json
       - name: Create isolated test databases
@@ -97,7 +97,7 @@ jobs:
           persist-credentials: false
       - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
         with:
-          node-version: '22.22.3'
+          node-version: '22.23.4'
           cache: npm
           cache-dependency-path: |
             apps/web/package-lock.json
