@@ -1,0 +1,31 @@
+{
+  "head": "279f342d2c6f8dd58e61df22a2e280f55fcc0a8d",
+  "checkedAt": "2026-10-22T13:28:16.669866+00:00",
+  "runs": [
+    {
+      "name": "Verify source",
+      "id": 39782477337,
+      "number": 236,
+      "status": "completed",
+      "conclusion": "success",
+      "jobs": [
+        "source",
+        "web-and-infrastructure",
+        "api"
+      ]
+    },
+    {
+      "name": "Web UX browser regression",
+      "id": 39782477129,
+      "number": 21,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "api": {
+    "job": 119836978577,
+    "testFilesPassed": 69,
+    "testsPassed": 622
+  },
+  "boundary": "Read back from GitHub connector. CI browser run does not include model downloads; real browser local ASR is separately evidenced."
+}

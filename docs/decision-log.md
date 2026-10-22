@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3772,3 +3772,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - The existing personal Google identity correctly has no active Family creation entitlement. Owner says “暂无，你看看能不能弄个测试账号”; prepare a separate synthetic identity and narrowly scoped, expiring test grants, without charging, changing ordinary sale controls or repurposing the Apple App Review identity.
 - Use the existing Auth0 connection and signed credential store. Do not claim an example.test address is verified, fabricate an order/subscription, widen user access or bypass the fixed maintenance broker. Any required operator command must validate exact identity, test label, deadline and unchanged commercial configuration before use.
 - Production positive upload/download and pack-save acceptance remains pending until actual evidence; current source/build/static/API-health checks are retained.
+
+## 2026-10-23 — Complete the authorized Web release and retire temporary QA access
+
+- Status: IMPLEMENTATION OUTCOME / NO NEW COMMERCIAL OR REVIEW APPROVAL. Owner’s Web-first and independent-test-account instructions remain the authority.
+- Keep the three Web content capabilities at the existing Family price. The bounded file/recording limits and local-only transcription are implementation choices with explicit copy; no E2EE, unlimited storage, automatic death decision or verified post-death delivery claim is introduced.
+- Production-cookie and enforced-journal gaps were reproduced and repaired; neither CSRF protection for mutations nor recovery enforcement was disabled. The independent QA account used two expiring manual test grants, no fabricated payments or consent. Normal login followed Owner’s actual confirmation.
+- Actual synthetic file/private-pack acceptance passed. Test grants and sessions were revoked, the exact original maintenance/broker configuration was restored and the QA command was denied again. Synthetic samples are retained, not claimed deleted. Current native build/review, personal data, prices, sale controls and FanPass remain unchanged.

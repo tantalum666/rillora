@@ -1,0 +1,31 @@
+{
+  "head": "d67238b9e9062416461f8bf7c66a8168ec0fedc1",
+  "checkedAt": "2026-10-22T14:00:01.066468+00:00",
+  "runs": [
+    {
+      "id": 39790340352,
+      "name": "Verify source",
+      "number": 238,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39790340234,
+      "name": "Web UX browser regression",
+      "number": 22,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "sourceScan": {
+    "passed": true,
+    "reviewedNonSecrets": 32,
+    "unreviewed": 0
+  },
+  "localNewRegression": "15 content integration tests passed after actual Cookie GET403 reproduction; typecheck passes",
+  "api": {
+    "job": 119864405217,
+    "testFilesPassed": 69,
+    "testsPassed": 623
+  }
+}

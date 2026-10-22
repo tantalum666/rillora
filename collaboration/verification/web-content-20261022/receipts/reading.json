@@ -1,0 +1,58 @@
+{
+  "mode": "same-next-version-workflow-development-authorized",
+  "continuedFrom": "output/qa/rillora-paid-content-options-20261021/closeout.json",
+  "retainedFullBodyReadChain": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "inventory": "markdown-inventory.json",
+  "exclusions": [
+    "dependencies",
+    "build outputs",
+    "caches including .local/github-preflight generated source copy",
+    "output evidence",
+    "collaboration/evidence,catalog,archives generated copies"
+  ],
+  "currentBodyReads": [
+    "AGENTS.md",
+    "apps/web/AGENTS.md",
+    "docs/paid-content-options-20261021.md",
+    "docs/conditional-disclosure-vnext-20261019.md retained full/current",
+    "docs/death-verification-evidence-research.md 1-130 plus retained remainder",
+    "docs/security-hardening-20260921/implementation/envelope.md",
+    "docs/node-security-upgrade-20261022.md",
+    "docs/qa/node-security-20261022/README.md",
+    "docs/qa/node-security-deployment-20261022/README.md",
+    "docs/qa/node-security-deployment-20261022/evidence/CHECKPOINT.md",
+    "both new Node handoff histories",
+    "latest changes in product/decision-log/journey/quality-gates"
+  ],
+  "boundary": "Retained complete bodies from this ongoing workflow; hashes only check change, not a substitute for reading. Newly added Node documents read in full; no new whole-repository read claim.",
+  "completedAt": "2026-10-22T02:08:02.235652+00:00",
+  "continuedAt": "2026-10-22T11:04:04.517309+00:00",
+  "additionalFullBodyReads": [
+    "docs/healthkit-preparation-20261020.md",
+    "docs/apple-healthkit-inquiry-20261020.md",
+    "docs/architecture/google-sitemap-20261018.md",
+    "apps/ios/NextVersionHealth/README.md (authored in full)",
+    "docs/asset-licenses.md (retained body; new section authored in full)"
+  ],
+  "currentRecoveryRanges": {
+    "AGENTS.md": "1-86",
+    "docs/product.md": "1-65,477-605; remaining bodies retained from full-read chain",
+    "docs/handoff.md": "1-EOF current",
+    "docs/decision-log.md": "latest65 lines; entire prior record retained",
+    "docs/web-content-development-20261022.md": "1-EOF"
+  },
+  "additionalRecovery20261022": {
+    "AGENTS.md": "full",
+    "docs/product.md": "1-42 current plus prior full-body retained",
+    "docs/handoff.md": "full current",
+    "docs/decision-log.md": "latest36 lines, new decisions complete",
+    "docs/web-content-development-20261022.md": "full before rewrite; new body authored",
+    "docs/source-control.md": "1-36 current routing; remainder retained",
+    "collaboration/README.md": "1-25 current routing; remainder retained",
+    "apps/web/AGENTS.md": "full",
+    "docs/journey/PROJECT_JOURNEY.md": "latest50 lines"
+  },
+  "additionalAuthoredBodies": [
+    "docs/content-qa-account-20261022.md complete"
+  ]
+}

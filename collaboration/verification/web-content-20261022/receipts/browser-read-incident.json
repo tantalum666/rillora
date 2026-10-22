@@ -1,0 +1,11 @@
+{
+  "detectedOn": "2026-10-22",
+  "surface": "Production authenticated Web /api/v1/legacy-content",
+  "actualHTTP": 403,
+  "actualErrorCode": "csrf_validation_failed",
+  "rootCause": "New router applied CSRF middleware to safe reads while actual Web client sends token only on mutations. Synthetic cookie fixtures had always included the header.",
+  "regressionBefore": "1 failed: expected200 got403",
+  "regressionAfter": "15 tests passed; real cookie read withoutcsrf succeeds; all content mutations still requirecsrf",
+  "repairScope": "legacy-content router only; no global authentication, pricing, DB permissions, schema, frontend or current native review change",
+  "rollout": "New API image built and publishing; both current Web publications verified, no source of genuine user content modified."
+}

@@ -1,0 +1,64 @@
+{
+  "checkpoint": "Web deployment and bounded production acceptance complete; Git publication in progress",
+  "date": "2026-10-22",
+  "runtimeCode": "d67238b9e9062416461f8bf7c66a8168ec0fedc1",
+  "latestSource": "1537b3f0d77ba38255106fd8489c4f31bbc7e798",
+  "webFilesMatched": {
+    "production": 113,
+    "staging": 110
+  },
+  "dataPreserved": {
+    "productionTables": 71,
+    "stagingTables": 68
+  },
+  "worker": "9fb560a8cb25afd41c63b6704b4fe3f93e3b1ad13d7e3b412b119c37c35ed3da",
+  "actualBrowser": {
+    "dedicatedSyntheticQA": true,
+    "fileUpload": 201,
+    "metadataUpdateVersion": 2,
+    "downloadBytes": 842,
+    "byteIdentical": true,
+    "realFileAnonymous": 401,
+    "packSave": 201,
+    "private": true,
+    "steps": 2,
+    "fileVersion": 2,
+    "reloadRetains": true,
+    "sessionRevoked": 401,
+    "newPayments": 0
+  },
+  "pending": [
+    "Archive49 and remote verification",
+    "Final Git/CI/PR merge",
+    "Later-version iOS App integration and real HealthKit authorization/device evidence"
+  ],
+  "preserved": [
+    "existing data",
+    "prices and billing switches",
+    "current App Review",
+    "FanPass"
+  ],
+  "healthKit": "independent next-version read-only source,6synthetic tests,3isolation guards,two-architecture library compile; no actualhealthread/Appdistribution",
+  "google": "three expected aliases; finalhomepageindexed;28canonicalURLs200,selfcanonical,noindexabsent; no WWWchange",
+  "documentation": [
+    "docs/web-content-development-20261022.md",
+    "docs/content-qa-account-20261022.md",
+    "docs/healthkit-preparation-20261020.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md"
+  ],
+  "decisionReason": "NewOwner instruction tocreate separate QA account is appended; technical bounded scope is not a price, sale, or App Review decision.",
+  "completedLocalDate": "2026-10-23",
+  "temporaryScope": {
+    "grantsRevoked": true,
+    "originalTemplateAndParametersRestored": true,
+    "oldQAMaintenanceCommandDenied": true
+  },
+  "retained": {
+    "syntheticAccount": true,
+    "syntheticFiles": 1,
+    "privatePacks": 1
+  },
+  "runtimeImageDigest": "53c90464832623da09b6820ff6f6a8dd19175643d872b5cbf845616f1ad61ad2"
+}

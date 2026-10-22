@@ -1,0 +1,22 @@
+{
+  "operation": "Synthetic QA grants only",
+  "initialTaskExit": 1,
+  "databaseError": "55000 recovery_journal_unavailable at deferred COMMIT guard",
+  "rootCause": "New maintenance command used a raw pg.Client transaction without the existing attested recovery publisher. Local initial fixture had journal enforcement disabled.",
+  "independentReadback": {
+    "taskExit": 0,
+    "syntheticIdentityExists": true,
+    "grants": [],
+    "catalogUnchanged": true
+  },
+  "fix": "Use pg.Pool configured with recoveryPublisherFromEnvironment and publishRecoveryTransaction before commit; CLI requires enforcement enabled.",
+  "tests": {
+    "newTestBefore": "failed with the same journal guard",
+    "contentAfter": 18,
+    "typecheck": "passed"
+  },
+  "newSource": "1537b3f0d77ba38255106fd8489c4f31bbc7e798",
+  "boundsUnchanged": true,
+  "billingSwitchesChanged": false,
+  "dataProtectionDisabled": false
+}
