@@ -1,0 +1,123 @@
+{
+  "checkedAt": "2026-10-22T01:40:28.051845+00:00",
+  "stack": "RilloraProduction",
+  "stackStatus": "UPDATE_COMPLETE",
+  "templateExactlyMatchesReviewed": true,
+  "parametersMatchBaseline": true,
+  "consumers": [
+    {
+      "logicalId": "MigrationTask69EAEF9D",
+      "beforeTaskDefinition": "RilloraProductionMigrationTask3A96A2B6:26",
+      "afterTaskDefinition": "RilloraProductionMigrationTask3A96A2B6:27",
+      "beforeImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f",
+      "afterImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+      "allNonImageTaskConfigurationFieldsIdentical": true,
+      "platform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+      },
+      "ecsDerivedAttributesAdded": [
+        "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      ],
+      "ecsDerivedAttributesRemoved": []
+    },
+    {
+      "logicalId": "RecoveryTaskD940248B",
+      "beforeTaskDefinition": "RilloraProductionRecoveryTask4FA4E62D:27",
+      "afterTaskDefinition": "RilloraProductionRecoveryTask4FA4E62D:28",
+      "beforeImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f",
+      "afterImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+      "allNonImageTaskConfigurationFieldsIdentical": true,
+      "platform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+      },
+      "ecsDerivedAttributesAdded": [
+        "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      ],
+      "ecsDerivedAttributesRemoved": []
+    },
+    {
+      "logicalId": "RuntimeApiTaskCF645D67",
+      "beforeTaskDefinition": "RilloraProductionRuntimeApiTask93405B31:31",
+      "afterTaskDefinition": "RilloraProductionRuntimeApiTask93405B31:32",
+      "beforeImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:edec30a788e8b454a6a482cbc0484d93e736f3ad9c1503ae3bd055038bc31158",
+      "afterImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:62b440548b3e248ff236d845720cf598c93e9109f9e13cce5c3f7a22a9a5c68e",
+      "allNonImageTaskConfigurationFieldsIdentical": true,
+      "platform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+      },
+      "ecsDerivedAttributesAdded": [
+        "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      ],
+      "ecsDerivedAttributesRemoved": []
+    },
+    {
+      "logicalId": "RuntimeIdentityWorkerTask676ED9B0",
+      "beforeTaskDefinition": "RilloraProductionRuntimeIdentityWorkerTaskCE49E148:7",
+      "afterTaskDefinition": "RilloraProductionRuntimeIdentityWorkerTaskCE49E148:8",
+      "beforeImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f",
+      "afterImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+      "allNonImageTaskConfigurationFieldsIdentical": true,
+      "platform": {
+        "cpuArchitecture": "ARM64",
+        "operatingSystemFamily": "LINUX"
+      },
+      "ecsDerivedAttributesAdded": [
+        "com.amazonaws.ecs.capability.docker-remote-api.1.21"
+      ],
+      "ecsDerivedAttributesRemoved": []
+    }
+  ],
+  "services": [
+    {
+      "service": "RilloraProduction-RuntimeIdentityWorkerServiceD8B21381-cPjG07g8JIhH",
+      "desired": 1,
+      "running": 1,
+      "pending": 0,
+      "rollout": "COMPLETED",
+      "task": "ff0ff2de9de6461ea2909053574e6cf9",
+      "taskDefinition": "RilloraProductionRuntimeIdentityWorkerTaskCE49E148:8",
+      "health": "UNKNOWN",
+      "executeCommand": false,
+      "containers": [
+        {
+          "name": "IdentityDeletion",
+          "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+          "imageDigest": "sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a",
+          "lastStatus": "RUNNING",
+          "healthStatus": "UNKNOWN"
+        }
+      ],
+      "sampledRecentLogEvents": null,
+      "startupOrRetryErrorKeywordMatches": null,
+      "rawLogMessagesStored": false
+    },
+    {
+      "service": "RilloraProduction-RuntimeService1702E585-ErGGlNwv9YvL",
+      "desired": 1,
+      "running": 1,
+      "pending": 0,
+      "rollout": "COMPLETED",
+      "task": "c6aa0a6e6d5540c4ab92d8629f632ec7",
+      "taskDefinition": "RilloraProductionRuntimeApiTask93405B31:32",
+      "health": "HEALTHY",
+      "executeCommand": false,
+      "containers": [
+        {
+          "name": "Api",
+          "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:62b440548b3e248ff236d845720cf598c93e9109f9e13cce5c3f7a22a9a5c68e",
+          "imageDigest": "sha256:62b440548b3e248ff236d845720cf598c93e9109f9e13cce5c3f7a22a9a5c68e",
+          "lastStatus": "RUNNING",
+          "healthStatus": "HEALTHY"
+        }
+      ],
+      "sampledRecentLogEvents": 37,
+      "startupOrRetryErrorKeywordMatches": 20,
+      "rawLogMessagesStored": false
+    }
+  ],
+  "noOneOffTasksLaunched": true,
+  "directEcsExecRuntimeVersionReadback": false
+}

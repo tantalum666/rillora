@@ -1,0 +1,90 @@
+[
+  {
+    "stack": "RilloraStaging",
+    "taskDefinition": "RilloraStagingMigrationTaskDefinitionD83F7D18:37",
+    "container": "Migration",
+    "baselineSwitches": {
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraStaging",
+    "taskDefinition": "RilloraStagingIdentityWorkerTaskE9CF37C5:1",
+    "container": "IdentityDeletion",
+    "baselineSwitches": {
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraStaging",
+    "taskDefinition": "RilloraStagingApiTaskDefinitionF6347BA4:44",
+    "container": "Api",
+    "baselineSwitches": {
+      "ALLOW_FAMILY_MAINTENANCE_PREVIEW": "true",
+      "ALLOW_APPLE_SANDBOX_INTEGRATION": "false",
+      "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL": "false",
+      "ALLOW_DEV_AUTH": "false",
+      "PRODUCTION_RUNTIME_MODE": "staging",
+      "DELETION_WORKER_ENABLED": "true",
+      "ALLOW_STRIPE_TEST_INTEGRATION": "true",
+      "CONTENT_PROTECTION_MODE": "encrypted",
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraProduction",
+    "taskDefinition": "RilloraProductionRecoveryTask4FA4E62D:27",
+    "container": "Maintenance",
+    "baselineSwitches": {
+      "CONTENT_PROTECTION_MODE": "encrypted",
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraProduction",
+    "taskDefinition": "RilloraProductionMigrationTask3A96A2B6:26",
+    "container": "Maintenance",
+    "baselineSwitches": {
+      "CONTENT_PROTECTION_MODE": "encrypted",
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraProduction",
+    "taskDefinition": "RilloraProductionRuntimeIdentityWorkerTaskCE49E148:7",
+    "container": "IdentityDeletion",
+    "baselineSwitches": {
+      "CONTENT_PROTECTION_MODE": "encrypted",
+      "DATABASE_SSL_MODE": "verify-full"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  },
+  {
+    "stack": "RilloraProduction",
+    "taskDefinition": "RilloraProductionRuntimeApiTask93405B31:31",
+    "container": "Api",
+    "baselineSwitches": {
+      "ALLOW_FAMILY_MAINTENANCE_PREVIEW": "false",
+      "ALLOW_STRIPE_PRODUCTION_INTEGRATION": "true",
+      "ALLOW_APPLE_SANDBOX_INTEGRATION": "false",
+      "ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL": "false",
+      "DELETION_WORKER_ENABLED": "true",
+      "ALLOW_STRIPE_TEST_INTEGRATION": "false",
+      "ALLOW_APPLE_REVIEW_INTEGRATION": "true",
+      "DATABASE_SSL_MODE": "verify-full",
+      "ALLOW_APPLE_PRODUCTION_INTEGRATION": "true",
+      "ALLOW_STRIPE_PRODUCTION_NOTIFICATIONS": "true",
+      "ALLOW_DEV_AUTH": "false",
+      "PRODUCTION_RUNTIME_MODE": "live",
+      "ALLOW_MCP_INTEGRATION": "true",
+      "CONTENT_PROTECTION_MODE": "encrypted",
+      "ALLOW_RETENTION_WORKER": "true"
+    },
+    "verification": "Full non-image task configuration compared separately, including all environment and secret references; values outside this safe list excluded."
+  }
+]

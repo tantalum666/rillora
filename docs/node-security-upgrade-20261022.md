@@ -1,7 +1,11 @@
 # October22 Node security runtime upgrade
 
 Last updated: 2026-10-22 (UTC)
-Status: SOURCE PATCH PREPARED; PRODUCTION RUNTIME NOT YET VERIFIED
+Status: STAGING AND PRODUCTION CONTAINER UPGRADE VERIFIED; MANAGED RUNTIMES SEPARATE
+
+## October22 deployment result
+
+[Actual deployment receipt](qa/node-security-deployment-20261022/README.md) completes the approved staging-then-production rollout. All seven task definitions use patched ARM64 images; all four services are stable, both APIs healthy, and fixed public checks pass7/7. Three distinct application baselines were preserved byte-for-byte. Actual ECS digests match ECR artifacts executed locally asNode22.23.4; ECS Exec remains disabled, so this is not a direct remote-process version query. No migration/recovery task, database change or Web release occurred. Separate managed Lambda patch status remains unknown.
 
 ## Scope and security basis
 
@@ -36,7 +40,7 @@ The October18 canonical deployment receipt records an API-only rollout, verified
 7. Preserve prior compatible images/task definitions and exact rollback parameters. Prefer a patched compatible prior application build if rollback is needed; reverting to22.22.3 reintroduces the security issue and must be explicitly reported. Do not roll back data/schema or use an obsolete pre-hardening image.
 8. Append a sanitized, dated deployment receipt to the GitHub handoff: actual source commit, finished image digest(s), task-definition/service references, runtime readback, health, retained flags/data and any unpatched consumers. No credentials, signed URLs, raw private records, or masked values presented as proofs. Source/CI success alone must not be reported as production remediated.
 
-The three separately managed AWS Node22 Lambda runtimes are not changed by this container patch. Inventory their runtime update mode/version separately and record provider-managed patch status; do not imply the API image upgrades Lambda. The cloud preparation environment has no usable AWS/Docker deployment route, so it cannot produce runtime deployment proof.
+The actual deployment inventory found four separately managed AWS Node22 Lambda functions, correcting the preparation estimate of three. Their runtime-management read was denied under the existing operator scope; update mode and patch version remain unverified, without permission expansion. This container patch does not upgrade Lambda. Cloudflare compatibility mode is independent and unchanged. The original cloud preparation could not produce deployment proof; the subsequent approved local deployment supplies the bounded artifact/live-task evidence above.
 
 ## Validation and evidence boundary
 

@@ -25,9 +25,9 @@ Installed Chromium155 cannot create its required Unix socket in the cloud sandbo
 
 No Docker daemon/AWS deployment identity is available here, so the final ARM64 application container was not built or deployed in cloud. Registry config verification is not finished-container execution or production Node proof. Full collaboration publication verification needs the complete Git checkout; the partial connector materialization is not an equivalent exhaustive13,107-file scan. The publication manifest and security exceptions are unchanged and the real CI guard remains required.
 
-## Required remaining evidence
+## Original deployment handoff — subsequently completed
 
-Read the actual checks for the submitted commit, then build/publish/roll out the minimal reviewed image through the existing approved local deployment route. Follow the [deployment inventory and constraints](../../node-security-upgrade-20261022.md). Append actual application image digests, task/runtime readback and health. Existing normal GitHub CI was explicitly approved after the Actions-minutes question; no new runner/build service or new paid infrastructure is authorized. No production remediation claim is made here.
+The cloud stage handed off actual CI readback and minimal ARM64 image deployment. Those steps were subsequently completed through the approved local route; see the [dated deployment receipt](../node-security-deployment-20261022/README.md) for all seven consumers, distinct application baselines, final digests, runtime proof limits and health. The three required PR checks and merged-main check passed. Existing normal GitHub CI was explicitly approved; no new runner/build service or cloud service was created. The checks above remain the original cloud results, not local reruns.
 
 ## Documentation closeout
 

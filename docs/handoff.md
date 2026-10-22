@@ -1,20 +1,20 @@
 # Rillora 当前交接
 
-Status: NODE SECURITY SOURCE PREPARED / CI AND DEPLOYMENT PENDING
+Status: NODE SECURITY CONTAINER DEPLOYMENT COMPLETE
 Last updated: 2026-10-22 (UTC)
 
 ## 当前任务与完成
 
-Owner要求直接升级Node安全修复并部署，交接留在GitHub，优先云端且用额度前告知。已完成当前全部380份项目Markdown阅读、部署基线比较、官方22.23.4镜像摘要核验及最小源码补丁。两阶段API镜像和三处CI固定版本同步升级，新增无攻击载荷的解压边界回归；不改npm锁文件、鉴权顺序或产品逻辑。[聚焦升级规范](node-security-upgrade-20261022.md)列出准确摘要、来源、七个镜像使用方和最小部署流程。
+已完成Owner批准的Node22.23.4窄范围升级、staging先行与production滚动部署。源码[PR5](https://github.com/tantalum666/rillora/pull/5)合并为4347d7db803388a8f1308f76adcc9348b66d6584，三个必需PR检查及main216均成功。云端API588／Web198／infra68等结果沿用原检查点，没有在本机重做整轮开发。
 
-## 验证与证据边界
+[完整部署交接](qa/node-security-deployment-20261022/README.md)保存当前七类消费者、三种实际应用基线、前后镜像／任务定义、实际change-set模板核对、健康、失败与恢复记录，以及只恢复镜像的可执行回滚步骤。两栈均UPDATE_COMPLETE；四个常驻服务各1/1、pending0且COMPLETED，两API健康；公开检查7/7通过。Production API32、删除worker8、migration27、recovery28；staging API45、worker2、migration38。维护任务只更新定义，未执行。
 
-[云端验证回执](qa/node-security-20261022/README.md)区分已执行检查、环境阻塞及待完成项。官方Node22.23.4下最终API588项、Web198项和基础设施68项通过，构建／类型／良性压缩回归及源码扫描通过；独立复核未发现阻塞缺陷。GitHub检查及线上镜像／Node版本仍须实际读回，不能把分支提交当作部署完成。云端没有可用AWS部署路线；Owner已批准云端准备完成后仅用本机做部署和线上核验，可能消耗其Codex额度。不升级Mac本身Node。
+## 验证与保留边界
 
-## 保留边界与阻塞
+四个运行任务的实际digest与ECR精确digest拉取并在本地只读／断网执行的Node22.23.4 ARM64镜像一致。ECS Exec原本关闭并保持关闭，未直接在远程任务内执行版本查询。删除worker没有容器健康检查，UNKNOWN是既有配置；不冒称实际删除功能已测试。四个AWS托管Node22 Lambda的更新模式／补丁版本读取受现有权限限制，仍未知；Cloudflare兼容运行时独立、未改变。
 
-生产customer MCP已存在；schema106、真实数据、价格、收费与权限、现有身份／TLS、App14审核及手动发布、TestFlight暂停、FanPass和未来条件披露边界保持。只复用既有ECR/ECS及本机ARM64构建，不启动新付费资源。Owner随后已批准照常运行仓库原有GitHub Actions；可能使用现有分钟数，不保证额外费用为零，不新增runner或构建服务，也不弱化检查。
+实际模板除七处Image外完全一致，所有参数保留原值；任务定义非镜像配置一致。CloudFormation同步了现有服务、maintenance broker和策略中的任务引用，没有直接权限扩展。三组应用package／依赖／dist／migrations／证书文件逐项相同；未改数据库、schema、功能开关、价格、Apple审核／手动发布、Web产物或未来功能。schema106是既有记录，本轮未查询／迁移数据库。没有新服务、收费runner、长期凭据或Mac Node升级。
 
 ## 唯一下一步
 
-完成并读回这次补丁的实际CI，在既有部署路径执行受审的最小镜像替换，分别核验全部受影响常驻服务及维护任务定义，并把真实运行时回执追加到本交接。尚未完成的线上验证保持待办，不宣称生产已修复。[上一轮Git整合交接](handoff-history-20261022-before-node-security.md)保留为HISTORICAL；不重开原生、付款或未来功能发布。
+本次容器部署工作完成。后续按Owner指定的下一任务继续；不重开已完成原生／付款验收或自动发布未来功能。当前部署交接提交的实际GitHub检查与结果记录在关联部署PR，push本身不作为CI成功。原[源码待部署交接](handoff-history-20261022-node-source.md)和[上一轮Git整合交接](handoff-history-20261022-before-node-security.md)仅保留为HISTORICAL。

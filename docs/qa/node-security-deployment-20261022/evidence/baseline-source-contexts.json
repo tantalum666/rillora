@@ -1,0 +1,14 @@
+[
+  {
+    "consumerGroup": "staging",
+    "applicationSource": "bfe9baaf520e051e70081daf7ed459f0926264b4",
+    "patch": "same two immutable FROM replacements as f95d99d90",
+    "dockerfileSha256": "95e6b77049fb46e3f71e87f7de0d9c6e68e804d9b1020ef9bf5162819bca2553"
+  },
+  {
+    "consumerGroup": "production-maintenance",
+    "applicationSource": "aa1864fbda5295a8e75939ae2e166ba3fbf050ff",
+    "patch": "same two immutable FROM replacements as f95d99d90",
+    "dockerfileSha256": "95e6b77049fb46e3f71e87f7de0d9c6e68e804d9b1020ef9bf5162819bca2553"
+  }
+]

@@ -1,0 +1,65 @@
+[
+  {
+    "group": "staging",
+    "oldImageDigest": "sha256:75fa633d5d30cc4b74a0c9de5cfec9c187d2eab4f118f3b8b7842cb0214fc734",
+    "patchedImage": "rillora-node-security:staging-bfe9baaf5",
+    "oldRuntime": {
+      "node": "v22.22.3",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "patchedRuntime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "oldFiles": 8974,
+    "patchedFiles": 8974,
+    "changedFiles": [],
+    "applicationBytesIdentical": true
+  },
+  {
+    "group": "maintenance",
+    "oldImageDigest": "sha256:f3a1e36545af4fc56e284d55d48b704cfcc699783aa0de8d5fe57dcff85c6543",
+    "patchedImage": "rillora-node-security:maintenance-aa1864fbd",
+    "oldRuntime": {
+      "node": "v22.22.3",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "patchedRuntime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "oldFiles": 10126,
+    "patchedFiles": 10126,
+    "changedFiles": [],
+    "applicationBytesIdentical": true
+  },
+  {
+    "group": "production-api",
+    "oldImageDigest": "sha256:1985c37321fd8bd22b585410d3b88005b89a6a272234a566cc57062b0f47f071",
+    "patchedImage": "rillora-node-security:f95d99d90",
+    "oldRuntime": {
+      "node": "v22.22.3",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "patchedRuntime": {
+      "node": "v22.23.4",
+      "arch": "arm64",
+      "platform": "linux",
+      "uid": 1000
+    },
+    "oldFiles": 10126,
+    "patchedFiles": 10126,
+    "changedFiles": [],
+    "applicationBytesIdentical": true
+  }
+]

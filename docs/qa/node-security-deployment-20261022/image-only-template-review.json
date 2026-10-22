@@ -1,0 +1,134 @@
+[
+  {
+    "stack": "RilloraStaging",
+    "templateFileSha256": "ed69d172bb7e98701ed51ddfe4ef2f6f9efdc6a066d508e6462d25b729afb779",
+    "imageChanges": [
+      {
+        "path": [
+          "Resources",
+          "ApiTaskDefinition51EA709E",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4"
+        }
+      },
+      {
+        "path": [
+          "Resources",
+          "IdentityWorkerTaskDD5047F2",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4"
+        }
+      },
+      {
+        "path": [
+          "Resources",
+          "MigrationTaskDefinitionE89B136E",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:34a35de0a94dd4c68addf83ab29e9eba027a14c81bbeb68c97d3ffda1e69a77f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:97d87dd1f5adad24a8b043c1eaf580041848f5f8c3ee2c43b7c37be16f958bb4"
+        }
+      }
+    ],
+    "allNonImageTemplateFieldsIdentical": true,
+    "allParametersUsePreviousValue": true,
+    "rollbackTemplate": "RilloraStaging-template-before.json",
+    "rollbackChangesetMustRestoreOnlyTheseImages": true
+  },
+  {
+    "stack": "RilloraProduction",
+    "templateFileSha256": "96320eb3d35f6373da2ce3e80273d774d1c411e4c4a4d3723cbd9b7f262f8f10",
+    "imageChanges": [
+      {
+        "path": [
+          "Resources",
+          "RuntimeApiTaskCF645D67",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:edec30a788e8b454a6a482cbc0484d93e736f3ad9c1503ae3bd055038bc31158"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:62b440548b3e248ff236d845720cf598c93e9109f9e13cce5c3f7a22a9a5c68e"
+        }
+      },
+      {
+        "path": [
+          "Resources",
+          "RuntimeIdentityWorkerTask676ED9B0",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a"
+        }
+      },
+      {
+        "path": [
+          "Resources",
+          "MigrationTask69EAEF9D",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a"
+        }
+      },
+      {
+        "path": [
+          "Resources",
+          "RecoveryTaskD940248B",
+          "Properties",
+          "ContainerDefinitions",
+          0,
+          "Image"
+        ],
+        "before": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1:6f8389c5ee5d7e73586bd2fcd091b65b0d841f6129d239060f0f9c6d65a0ff0f"
+        },
+        "after": {
+          "Fn::Sub": "133857166372.dkr.ecr.eu-central-1.${AWS::URLSuffix}/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:341e86009284fed26f08cac62ac4c5e06b2b092b1dedbf9355c8e3e2ea2c5c1a"
+        }
+      }
+    ],
+    "allNonImageTemplateFieldsIdentical": true,
+    "allParametersUsePreviousValue": true,
+    "rollbackTemplate": "RilloraProduction-template-before.json",
+    "rollbackChangesetMustRestoreOnlyTheseImages": true
+  }
+]
