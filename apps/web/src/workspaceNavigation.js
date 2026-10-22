@@ -1,8 +1,10 @@
 import { preserveTransientLocale } from "./i18n/localeStore.js";
 import { useEffect, useRef } from "react";
 import { requestedGuideKey } from './guideAccess.js';
+import { LEGACY_CONTENT_ENABLED } from './legacyContentFeature.js';
 
 const pages = new Set(["overview", "matters", "contacts", "shared", "maintenance", "guides", "access", "activity", "settings", "more"]);
+if (LEGACY_CONTENT_ENABLED) pages.add('legacy');
 const categories = new Set(["account", "document", "device", "financial_asset", "debt", "subscription", "crypto_asset"]);
 const tasks = new Set(["matter", "matter-create", "contact", "contact-sharing", "start-here", "provider-guide", "settings", "safety", "first-use-guide", "role-policy"]);
 const uuid = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;

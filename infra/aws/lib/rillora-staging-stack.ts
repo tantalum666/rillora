@@ -32,6 +32,7 @@ import * as s3deploy from "aws-cdk-lib/aws-s3-deployment";
 import type { Construct } from "constructs";
 import { RilloraMaintenanceBroker } from './rillora-maintenance-broker.js';
 import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
+import {RilloraPrivateContent} from './rillora-private-content.js';
 
 export type RilloraStagingStackProps = StackProps & {
   desiredCount: number;
@@ -42,6 +43,9 @@ export type RilloraStagingStackProps = StackProps & {
   emailVerificationEnabled?: boolean;
   contentProtectionMode?: "read-compatible" | "encrypted";
   contentMigrationEnabled?: boolean;
+  legacyContentPrepared?: boolean;
+  legacyContentEnabled?: boolean;
+  localTranscriptionEnabled?: boolean;
 };
 
 const apiContainerPort = 8080;
@@ -57,6 +61,9 @@ export class RilloraStagingStack extends Stack {
     if (props.env?.region && props.env.region !== "eu-central-1") {
       throw new Error("Rillora staging must be deployed in eu-central-1");
     }
+    if (props.legacyContentEnabled && (!props.legacyContentPrepared || !props.accountDeletionEnabled || props.contentProtectionMode === 'read-compatible'))
+      throw new Error('Private content requires encrypted staging and isolated cleanup');
+    if (props.localTranscriptionEnabled && !props.legacyContentEnabled) throw new Error('Local transcription requires the content workspace');
 
     const oidcIssuer = new CfnParameter(this, "OidcIssuer", {
       type: "String",
@@ -335,6 +342,8 @@ export class RilloraStagingStack extends Stack {
       },
     }));
     allowContentKeys(taskDefinition.taskRole);
+    const privateContent = props.legacyContentPrepared ? new RilloraPrivateContent(this, 'PrivateContent', 'staging') : null;
+    privateContent?.allowApi(taskDefinition.taskRole);
     stagingOperatorRole.addToPolicy(new iam.PolicyStatement({
       sid: "InspectOnlyStagingContentKey",
       actions: ["kms:DescribeKey", "kms:GetKeyRotationStatus"],
@@ -362,6 +371,7 @@ export class RilloraStagingStack extends Stack {
       environment: {
         ...sharedEnvironment,
         ...contentEnvironment,
+        ...privateContent?.environmentValues(props.legacyContentEnabled === true),
         CORS_ORIGINS: webCorsOrigin.valueAsString,
         ALLOW_DEV_AUTH: "false",
         ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: "false",
@@ -485,6 +495,7 @@ export class RilloraStagingStack extends Stack {
         providerSecrets:{AUTH0_DELETION_CLIENT_SECRET:ecs.Secret.fromSecretsManager(accountDeletionSecret)},
         issuers:[oidcIssuer.valueAsString],clients:[webOidcClientId.valueAsString,nativeOidcClientId.valueAsString],
         desiredCount:props.desiredCount>0?1:0});
+      privateContent?.allowCleanup(identityWorker.task, props.legacyContentEnabled === true);
     }
 
     const migrationLogGroup = new logs.LogGroup(this, "MigrationLogGroup", {
@@ -707,7 +718,8 @@ export class RilloraStagingStack extends Stack {
               "frame-ancestors 'none'",
               "img-src 'self' data:",
               "object-src 'none'",
-              "script-src 'self'",
+              props.localTranscriptionEnabled ? "script-src 'self' 'wasm-unsafe-eval'" : "script-src 'self'",
+              ...(props.legacyContentEnabled ? ["media-src 'self' blob:", "worker-src 'self'"] : []),
               "style-src 'self'",
             ].join("; "),
             override: true,
@@ -736,7 +748,7 @@ export class RilloraStagingStack extends Stack {
   var request = event.request;
   if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
     return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
-      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*"]}]}}' };
+      body: request.method === 'HEAD' ? '' : '{"applinks":{"apps":[],"details":[{"appID":"8L99CFNK24.com.rillora.ios","paths":["/invite","/invite/*","/future-invite","/future-invite/*"]}]}}' };
   }
   var uri = request.uri;
   if (uri.endsWith('/')) {
@@ -786,11 +798,13 @@ export class RilloraStagingStack extends Stack {
       },
     });
     new s3deploy.BucketDeployment(this, "WebDeployment", {
+      memoryLimit: props.legacyContentEnabled ? 512 : 128,
       sources: [s3deploy.Source.asset(webAssetDirectory)],
       destinationBucket: webBucket,
       distribution,
       distributionPaths: ["/*"],
-      prune: true,
+      // Keep immutable chunks used by open tabs while the content client rolls out.
+      prune: !props.legacyContentEnabled,
     });
 
     new CfnOutput(this, "ApiEndpoint", { value: httpApi.apiEndpoint });

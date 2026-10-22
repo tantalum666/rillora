@@ -6,19 +6,22 @@ struct APIConfiguration: Equatable, Sendable {
     let nativeAuthentication: NativeAuthenticationConfiguration?
     let serviceMarketCode: String
     let customerAccessEnabled: Bool
+    let futureNoticesEnabled: Bool
 
     init(
         baseURL: URL,
         developmentPlannerID: String?,
         nativeAuthentication: NativeAuthenticationConfiguration? = nil,
         serviceMarketCode: String = "GLOBAL_US",
-        customerAccessEnabled: Bool = true
+        customerAccessEnabled: Bool = true,
+        futureNoticesEnabled: Bool = false
     ) {
         self.baseURL = baseURL
         self.developmentPlannerID = developmentPlannerID
         self.nativeAuthentication = nativeAuthentication
         self.serviceMarketCode = serviceMarketCode
         self.customerAccessEnabled = customerAccessEnabled
+        self.futureNoticesEnabled = futureNoticesEnabled && customerAccessEnabled
     }
 
     static func current(
@@ -70,7 +73,9 @@ struct APIConfiguration: Equatable, Sendable {
             developmentPlannerID: developmentPlannerID?.isEmpty == false ? developmentPlannerID : nil,
             nativeAuthentication: nativeAuthentication,
             serviceMarketCode: serviceMarketCode,
-            customerAccessEnabled: ["1", "true", "yes"].contains(configuredAccess?.lowercased() ?? "")
+            customerAccessEnabled: ["1", "true", "yes"].contains(configuredAccess?.lowercased() ?? ""),
+            futureNoticesEnabled: environment["RILLORA_FUTURE_NOTICES_ENABLED"].map { $0 == "true" }
+                ?? (bundle.object(forInfoDictionaryKey: "RilloraFutureNoticesEnabled") as? Bool == true)
         )
         #if !DEBUG
         try configuration.validateProduction()

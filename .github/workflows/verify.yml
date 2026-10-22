@@ -79,7 +79,7 @@ jobs:
           cache-dependency-path: apps/api/package-lock.json
       - name: Create isolated test databases
         run: |
-          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test continuity_apple_commerce_test continuity_apple_delivery_test continuity_apple_purchase_test continuity_apple_review_test continuity_production_commerce_test continuity_web_activation_test rillora_migration_atomicity_test rillora_recovery_history_test rillora_recovery_history_restore_test rillora_authority_test rillora_email_metadata_test rillora_mcp_test rillora_customer_mcp_test; do
+          for database in continuity_test continuity_content_test continuity_family_test continuity_matter_test continuity_email_verification_test continuity_commercial_sharing_test continuity_p1_repair_final_test continuity_sharing_test continuity_content_migration_test continuity_recovery_test continuity_recovery_restore_test rillora_review_access_test rillora_retention_test rillora_commerce_recovery_test rillora_recent_auth_test continuity_apple_commerce_test continuity_apple_delivery_test continuity_apple_purchase_test continuity_apple_review_test continuity_production_commerce_test continuity_web_activation_test rillora_migration_atomicity_test rillora_recovery_history_test rillora_recovery_history_restore_test rillora_authority_test rillora_email_metadata_test rillora_mcp_test rillora_customer_mcp_test continuity_future_notices_test continuity_legacy_content_v2_test; do
             createdb "$database"
             psql -d postgres -v ON_ERROR_STOP=1 -c "COMMENT ON DATABASE \"$database\" IS 'rillora-disposable-test:$database'"
           done
@@ -108,7 +108,7 @@ jobs:
         run: |
           npm ci
           npm run build
-          node --input-type=module -e "import { readdirSync } from 'node:fs'; if (readdirSync('dist/client/assets').some(name => name.startsWith('AiConnectionsPanel-'))) throw new Error('Default build must exclude optional AI entry');"
+          node --input-type=module -e "import { readdirSync } from 'node:fs'; if (readdirSync('dist/client/assets').some(name => /AiConnectionsPanel-|LegacyContent|LocalTranscription|legacy-transcribe|\\.wasm$/.test(name))) throw new Error('Default build must exclude optional AI and content assets');"
           web_tests=()
           for test_file in tests/*.test.mjs; do
             if [[ "$test_file" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=("$test_file"); fi

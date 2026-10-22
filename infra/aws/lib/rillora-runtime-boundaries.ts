@@ -55,6 +55,7 @@ export class RilloraRecoveryAttestationBroker extends Construct {
 }
 
 export class RilloraIdentityDeletionWorker extends Construct {
+  readonly task:ecs.FargateTaskDefinition;
   readonly service:ecs.FargateService;
   readonly logGroup:logs.LogGroup;
   constructor(scope:Construct,id:string,p:{environment:'production'|'staging';vpc:ec2.IVpc;cluster:ecs.ICluster;
@@ -68,6 +69,7 @@ export class RilloraIdentityDeletionWorker extends Construct {
     p.databaseNetwork.addIngressRule(network,ec2.Port.tcp(5432),'Dedicated identity deletion worker');
     const task=new ecs.FargateTaskDefinition(this,'Task',{cpu:256,memoryLimitMiB:512,
       runtimePlatform:{cpuArchitecture:ecs.CpuArchitecture.ARM64,operatingSystemFamily:ecs.OperatingSystemFamily.LINUX}});
+    this.task=task;
     const linux=new ecs.LinuxParameters(this,'Linux');linux.dropCapabilities(ecs.Capability.ALL);
     this.logGroup=new logs.LogGroup(this,'Logs',{retention:logs.RetentionDays.ONE_MONTH,removalPolicy:RemovalPolicy.RETAIN});
     task.addContainer('IdentityDeletion',{image:p.image,command:['node','dist/account-deletion-worker.js'],

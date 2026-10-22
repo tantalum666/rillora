@@ -1,0 +1,24 @@
+# Generates RilloraHealthNext.xcodeproj beside the untouched current project.
+name: RilloraHealthNext
+include:
+  - project.yml
+packages:
+  RilloraHeartRateKit:
+    path: NextVersionHealth
+targets:
+  Rillora:
+    dependencies:
+      - package: RilloraHeartRateKit
+    sources:
+      - path: NextVersionHealth/Configuration/en.lproj
+        buildPhase: resources
+      - path: NextVersionHealth/Configuration/zh-Hans.lproj
+        buildPhase: resources
+    info:
+      path: NextVersionHealth/Configuration/Info.plist
+      properties:
+        NSHealthShareUsageDescription: "Rillora reads your selected heart-rate records so you can review recent measurements on this device. Records are not uploaded, used to determine death or used to unlock information."
+    settings:
+      base:
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_HEALTHKIT_NEXT_VERSION"
+        CODE_SIGN_ENTITLEMENTS: NextVersionHealth/Configuration/RilloraNext.entitlements

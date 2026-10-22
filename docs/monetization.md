@@ -4,9 +4,33 @@ Role: canonical commercialization, packaging and subscription-lifecycle contract
 Authority scope: free/paid boundary, launch offer, future tier architecture, billing periods, trials, refunds and safe downgrade  
 Superseded by: later Owner decision recorded in `docs/decision-log.md`  
 Do not use for: proof of willingness to pay, legal/tax advice, current implementation, App Store approval or payment-provider selection  
-Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 LOCKED; APPLE DIFFERENTIATED; NEW MONTHLY RETIRED; FREE1 / FAMILY5 AND HISTORICAL RECEIPTS PRESERVED; ORDINARY SALES CLOSED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: FREE / SINGLE ANNUAL FAMILY; WEB88.99 / APPLE119.99 US LOCKED; FREE1 / FAMILY5 RETAINED; NEW VALUE PROPOSALS UNAPPROVED; RUNTIME STATUS IN HANDOFF
+Last updated: 2026-10-21 (Asia/Shanghai)
 
+
+## October21 retained direction and content options — no commercial change
+
+Owner accepts retaining the family action-pack direction and asks to record it while exploring further options. [Current research](paid-content-options-20261021.md) considers selected-file custody/delivery and original spoken instructions. These remain unimplemented Agent candidates; attachments already require a separately evidenced capability version. Recording, storage and per-person sharing have competitors, and neither market uniqueness nor annual demand is proved. No quota, retention duration, service guarantee, tier or price changes; existing baseline safety and retrieval rights remain.
+
+## October20 family walkthrough — annual value remains unproven
+
+[The fictional household walkthrough](family-action-pack-example-20261020.md) compares preparation and actual provider applications with current guides, recipient exports and Family maintenance. Those existing capabilities are not new premium value. Additional drafts/case coordination may be useful, but three straightforward matters do not establish sustained annual demand. Web88.99 totals266.97/444.95/889.90over3/5/10years under an explicitly constant-price arithmetic scenario, not a bill or forecast. A possible finite post-event service period is only a costing example; no retention, eligibility, purchased right, price or new service promise is approved.
+
+## October20 outcome-based options — research only, no development
+
+Owner explicitly asks to clarify real problems, differentiation and why users would pay before development. [Current options](paid-value-options-20261020.md) compare owner-intent-based recipient action materials/workflow, bounded source-to-draft import, and scoped family-assisted planning. The first is the Agent's preferred concept to evaluate, not an approved product or entitlement. Free regional services and existing competitor capabilities remain explicit alternatives. Annual willingness to pay, delivery costs and superiority over current guides/export are unproven; existing prices and rights stay intact.
+
+## October20 deeper competitor review — differentiation proposal
+
+Owner requests a second, detailed paid-feature review and a differentiated paid feature. [Research](competitor-paid-research-20261020.md) separates current plan evidence, older product generations and marketing-only claims. Family bundles remain a standard candidate; the proposed differentiator is [scenario-specific handoff-path checking](handoff-path-check-proposal-20261020.md), with explicit dependencies, gaps and change impact. This is an unimplemented recommendation, not a new entitlement or a claim of global exclusivity. Keep existing Free baseline, prices and purchased terms.
+
+Same-day clarification: Owner questions its value when official deceased-user requests already provide an alternative. Those applicable routes must be counted, with data scope and review conditions. Agent now treats path checking as a supporting candidate with unproven standalone paid value; a missing phone alone is not a paid problem. No implementation decision or Owner rejection is inferred.
+
+## October20 paid-value discussion — recommendation only
+
+Owner asks which additions could improve purchase motivation and whether the new future notice belongs in paid Family. [The proposal](family-value-proposal-20261020.md) recommends a complete Free1 notice experience, Family5 per planner and paid capabilities for two independent planners under one subscription, with an actionable handoff workflow and reliable optional notifications. These are Agent proposals; no new quota, second planner, capability version, paid promise or price has been approved or applied. The existing notice implementation remains default-off and unpriced.
+
+Runtime wording in the dated sections and older Executive Summary below describes those historical checkpoints. Ordinary Web activation is recorded in [October15 preflight](app-review-preflight-20261014.md) and current handoff; the old “ordinary sales closed/test only” statements are not a new instruction to close billing. This document retains commercial boundaries, while provider/runtime facts have their dated evidence elsewhere.
 
 ## October13 current consumer purchase presentation
 

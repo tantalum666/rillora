@@ -1,0 +1,419 @@
+{
+  "commit": "6491fe5c69b3518156d0cc9d368079567490f948",
+  "remoteTree": "6491fe5c69b3518156d0cc9d368079567490f948",
+  "remoteRead": "GitHub Git Trees API, complete recursive response",
+  "matchedFiles": 82,
+  "files": [
+    {
+      "path": ".github/workflows/verify.yml",
+      "gitBlobSha": "b1f4752eb449c8f7509b7678ead5d519e0a430b0",
+      "bytes": 7702
+    },
+    {
+      "path": "apps/api/migrations/0107_future_recipient_notices.sql",
+      "gitBlobSha": "138a87b9cbe0e451c7c3a1e18c92528371029641",
+      "bytes": 17900
+    },
+    {
+      "path": "apps/api/src/app.ts",
+      "gitBlobSha": "a337ede5b878537f73dec2dc1d9f973a8bcbe5a3",
+      "bytes": 15168
+    },
+    {
+      "path": "apps/api/src/future-notice-routes.ts",
+      "gitBlobSha": "dcacf71d7392ad4075daf90f40e48be98cd589ad",
+      "bytes": 16789
+    },
+    {
+      "path": "apps/api/src/recovery-journal.ts",
+      "gitBlobSha": "6c959f0fc782ddcf1ac4523929c4cc74f5ebb788",
+      "bytes": 9880
+    },
+    {
+      "path": "apps/api/src/recovery-replay.ts",
+      "gitBlobSha": "5968d8d6d83b6b846dcd9698e3c01ab819b98d2b",
+      "bytes": 13940
+    },
+    {
+      "path": "apps/api/src/server.ts",
+      "gitBlobSha": "af32d092bd611f2103d48339725e37061d6fc578",
+      "bytes": 5354
+    },
+    {
+      "path": "apps/api/tests/future-notice-ui-fixture.ts",
+      "gitBlobSha": "2a568a2141957666ecd5eb6f735f5407ab57de12",
+      "bytes": 2809
+    },
+    {
+      "path": "apps/api/tests/future-notices.integration.test.ts",
+      "gitBlobSha": "105251690fbf9c10822013dcb1239f59884298f1",
+      "bytes": 18601
+    },
+    {
+      "path": "apps/ios/Rillora.xcodeproj/project.pbxproj",
+      "gitBlobSha": "96f50792182d271383975225096b3bed41d1106b",
+      "bytes": 134618
+    },
+    {
+      "path": "apps/ios/Rillora/App/AppShellView.swift",
+      "gitBlobSha": "2d7c8ac0011ad9d9ad3cd9ba92e092c5c6abf98c",
+      "bytes": 16554
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIClient.swift",
+      "gitBlobSha": "1fdc70ca488a3e4baabeffb739028debbe277e00",
+      "bytes": 60684
+    },
+    {
+      "path": "apps/ios/Rillora/Core/API/APIConfiguration.swift",
+      "gitBlobSha": "4c48fd988182e533548045c70270463527c15365",
+      "bytes": 11343
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/FutureNoticeModels.swift",
+      "gitBlobSha": "b82bb69fdedf015b93d7df66f68fc2488a4bf393",
+      "bytes": 12743
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/SharingModels.swift",
+      "gitBlobSha": "016549164c6d98e2b3f6788285509f97ca79b4b8",
+      "bytes": 12591
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+      "gitBlobSha": "b1b197e6a421ea98871f628a252b556d40a4460c",
+      "bytes": 10022
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/ContactSharingView.swift",
+      "gitBlobSha": "6740ed92c91992f8adf0866707a03eda390e1003",
+      "bytes": 20688
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/FutureNoticeStores.swift",
+      "gitBlobSha": "f598aee4d6ceb8ee61e0fb73390c93470135e79a",
+      "bytes": 7537
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/FutureNoticeViews.swift",
+      "gitBlobSha": "3f7d83887e926f5400d7cb19f9c6f5eaf0833cdb",
+      "bytes": 11412
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/InvitationAcceptView.swift",
+      "gitBlobSha": "beb409424be8b8c415c5f9ed4909a6f696305776",
+      "bytes": 10958
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Contacts/SharedWithMeView.swift",
+      "gitBlobSha": "b0777cf531a21d951bab6a6f2978a65edac1b7cc",
+      "bytes": 11180
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Info.plist",
+      "gitBlobSha": "1576dc8637877bd36e43e11101a9ef1e37896cd0",
+      "bytes": 3716
+    },
+    {
+      "path": "apps/ios/Rillora/Resources/Localizable.xcstrings",
+      "gitBlobSha": "4a15be467a8703a294834e5e864dfead86ae3365",
+      "bytes": 489131
+    },
+    {
+      "path": "apps/ios/RilloraLayoutMatrixTests/FutureNoticeUITests.swift",
+      "gitBlobSha": "44786b91c8327b99093691d65873a379e915b0e9",
+      "bytes": 7304
+    },
+    {
+      "path": "apps/ios/RilloraTests/FutureNoticeTests.swift",
+      "gitBlobSha": "fb62dbe2a67e0f0b6b8fb22300fe1a728094a0ea",
+      "bytes": 12285
+    },
+    {
+      "path": "apps/ios/project.yml",
+      "gitBlobSha": "f7ad632948cd72267bd6f6e5a77e5a24ef3b93d4",
+      "bytes": 10262
+    },
+    {
+      "path": "apps/web/e2e/future-notices.spec.mjs",
+      "gitBlobSha": "51831dcf7059b243e992b2a351e7f133a258f9b3",
+      "bytes": 11787
+    },
+    {
+      "path": "apps/web/playwright.config.mjs",
+      "gitBlobSha": "6d066cb857a0a7c4e03abafaae04c0668d4c1f31",
+      "bytes": 1455
+    },
+    {
+      "path": "apps/web/src/App.jsx",
+      "gitBlobSha": "13bc576f52a1092ddb4d15aca83cc79c3ad194cc",
+      "bytes": 55530
+    },
+    {
+      "path": "apps/web/src/FutureInvitationPage.jsx",
+      "gitBlobSha": "54a8e0a5ed795478eb24a1c3485fcf341d765c6b",
+      "bytes": 8932
+    },
+    {
+      "path": "apps/web/src/FutureNoticePanels.jsx",
+      "gitBlobSha": "8a92d17f2dcda7b16bb2e728e048a72b09d84907",
+      "bytes": 10564
+    },
+    {
+      "path": "apps/web/src/InvitationQr.jsx",
+      "gitBlobSha": "360656ddafa9eab1ca801904e3b5932894348ea4",
+      "bytes": 831
+    },
+    {
+      "path": "apps/web/src/SharingPanels.jsx",
+      "gitBlobSha": "1797d271aa7547bee3c11f7b986ec68be45979e1",
+      "bytes": 27599
+    },
+    {
+      "path": "apps/web/src/api.js",
+      "gitBlobSha": "a900e7877f07b45d9151a3f030c582008e304beb",
+      "bytes": 27101
+    },
+    {
+      "path": "apps/web/src/future-notices.css",
+      "gitBlobSha": "df0f7b3fb7bd1eba56554422103189a9189c141d",
+      "bytes": 1561
+    },
+    {
+      "path": "apps/web/src/futureNoticeFeature.js",
+      "gitBlobSha": "dd5e061e6fe27bd4d35850bd8659cd267002f89a",
+      "bytes": 231
+    },
+    {
+      "path": "apps/web/src/futureNotices.js",
+      "gitBlobSha": "cddfd6f550aae0973b143de27a338dd09b451a55",
+      "bytes": 4217
+    },
+    {
+      "path": "apps/web/src/i18n/appCatalogs.js",
+      "gitBlobSha": "0d356f28ff052f35f48fda209daec1f6cce9d91d",
+      "bytes": 545
+    },
+    {
+      "path": "apps/web/src/i18n/messages/futureNotices.js",
+      "gitBlobSha": "adcf3baded419d5bbad7284d8eecda554a3d61a0",
+      "bytes": 5851
+    },
+    {
+      "path": "apps/web/tests/future-notices.test.mjs",
+      "gitBlobSha": "12e95ccc6490cfeb6ba0481c0cabc59efa6ee17e",
+      "bytes": 4546
+    },
+    {
+      "path": "apps/web/tests/production-router.test.mjs",
+      "gitBlobSha": "eebbe92b4ac0853279494a5e7e27117d5d17da3a",
+      "bytes": 3525
+    },
+    {
+      "path": "apps/web/worker/production-router.js",
+      "gitBlobSha": "b82d41d4d5773effcf2248a71d56c3114bedde22",
+      "bytes": 2457
+    },
+    {
+      "path": "collaboration/README.md",
+      "gitBlobSha": "f0049cebc275658092990a10c16919f9c51d5d35",
+      "bytes": 30188
+    },
+    {
+      "path": "collaboration/readable-manifest.json",
+      "gitBlobSha": "d5286bfa8083d7d7ce86eb01564b979cb9875899",
+      "bytes": 3109553
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/README.md",
+      "gitBlobSha": "3888825c0cbd62677d2e409936908523620d2829",
+      "bytes": 4589
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/api-expanded.log.txt",
+      "gitBlobSha": "faa1b95399e4ab0358ad6f001fb030c2dd408721",
+      "bytes": 236
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/api-final.log.txt",
+      "gitBlobSha": "153993200adf06445f1c4ee63486708c846c8bd3",
+      "bytes": 238
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/api-full.log.txt",
+      "gitBlobSha": "432feb1e186e1553b06088f3a1775e266a108f5d",
+      "bytes": 322
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/broker-tests.log.txt",
+      "gitBlobSha": "25c0c4e1980886e8d6e190fb95cbff435ac7536c",
+      "bytes": 104
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/browser-result-summary.json",
+      "gitBlobSha": "d6a9f2f14d7979f9109017dcd5fcefc886e9bd75",
+      "bytes": 409
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-inbox-en.png",
+      "gitBlobSha": "5f0d21dc30596fd3aa15cced604fa4802b8eba0a",
+      "bytes": 189403
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-inbox-zh-Hans.png",
+      "gitBlobSha": "a126a51d78da7ebd1a4306950a84e1f8718d8ae7",
+      "bytes": 192404
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-owner-en.png",
+      "gitBlobSha": "373454716cbb2ae8036a08b108738d2aa2594c34",
+      "bytes": 193474
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-owner-zh-Hans.png",
+      "gitBlobSha": "8c62322e2bca431c77236a2bf3514070ffa5bcdb",
+      "bytes": 205909
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-recipient-en.png",
+      "gitBlobSha": "65bb950e496f0affae929d9ef04aaf784c767987",
+      "bytes": 168496
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/future-native-recipient-zh-Hans.png",
+      "gitBlobSha": "e02a99604e8e2adc34c67b26c7cf9368b402d6b3",
+      "bytes": 173652
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/web-future-owner-en.png",
+      "gitBlobSha": "7c6913dfdd1658cba64b71e3eecd6a748bc06021",
+      "bytes": 148829
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/web-future-owner-zh-CN.png",
+      "gitBlobSha": "195b5abf8fa80995bf16ae698904b407e39f94a5",
+      "bytes": 51970
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/web-future-recipient-en.png",
+      "gitBlobSha": "d0d9a6745297ffbdb2f3668c9cfa61ded08fc20a",
+      "bytes": 54568
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/images/web-future-recipient-zh-CN.png",
+      "gitBlobSha": "7c92b076ffac2fe8cfee0a9eb257904ff592ce20",
+      "bytes": 40345
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/infra-full.log.txt",
+      "gitBlobSha": "85ea84fcee101a47634f460937b59cba48d3a734",
+      "bytes": 350
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/native-source-contracts.log.txt",
+      "gitBlobSha": "e405f300d79e96beef946ee9caaf7911b3e380c7",
+      "bytes": 110
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/native-ui-result.json",
+      "gitBlobSha": "3f8867467883664e17afea245ad937fd6de4a39e",
+      "bytes": 1083
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/native-unit-result.json",
+      "gitBlobSha": "d22d708e52ba3f2e4aaee37542a927bdd920973e",
+      "bytes": 10328
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/reading.json",
+      "gitBlobSha": "18a73f9b8aaa73b20506fdee7ecedfe3dcdb4865",
+      "bytes": 2012
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/release-isolation.json",
+      "gitBlobSha": "b1be30291f13395b0795ed56eebd70519db7b586",
+      "bytes": 721
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/scan-line-changes.json",
+      "gitBlobSha": "71d5f2b2eedd30213f4dc10457bdb007c6461e8b",
+      "bytes": 1215
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/source-scan-final.json",
+      "gitBlobSha": "98e494709c7131347c7e9d7e445575c3dfb57c43",
+      "bytes": 12464
+    },
+    {
+      "path": "collaboration/verification/future-notices-20261020/web-contract-final.log.txt",
+      "gitBlobSha": "9018ff6654b5edc5d54ea780ca44f07a4c2282a0",
+      "bytes": 1885
+    },
+    {
+      "path": "config/repository-scan-exceptions.json",
+      "gitBlobSha": "6adb802a8f1469cadd1d136dca1feb382a06ae80",
+      "bytes": 10621
+    },
+    {
+      "path": "docs/conditional-disclosure-vnext-20261019.md",
+      "gitBlobSha": "9f0a4e5e045f1039d77be077daf237b74dc3d343",
+      "bytes": 10750
+    },
+    {
+      "path": "docs/decision-log.md",
+      "gitBlobSha": "2ea409770ed09bf6e9070fb9d229a0115cb057d0",
+      "bytes": 557944
+    },
+    {
+      "path": "docs/future-recipient-notices-20261020.md",
+      "gitBlobSha": "c1b06df07c033b25bdc9fb9021cffda726458873",
+      "bytes": 6206
+    },
+    {
+      "path": "docs/handoff-history-20261020-before-future-notices.md",
+      "gitBlobSha": "77f5d28118cb92a727d4c1d679d62b229e7ba182",
+      "bytes": 2315
+    },
+    {
+      "path": "docs/handoff.md",
+      "gitBlobSha": "7ce0558f011f0e66dbc9136f511edfff19371229",
+      "bytes": 1696
+    },
+    {
+      "path": "docs/journey/PROJECT_JOURNEY.md",
+      "gitBlobSha": "f3831046e2e42acd8ccaa6657e46adcc6a410c42",
+      "bytes": 666258
+    },
+    {
+      "path": "docs/platform-contract.md",
+      "gitBlobSha": "79c9f7b9218ddc1788468caf8716037529cdd012",
+      "bytes": 38448
+    },
+    {
+      "path": "docs/product.md",
+      "gitBlobSha": "08e32a2aed49b2fa332c9cff2bcc65b461da08ae",
+      "bytes": 102230
+    },
+    {
+      "path": "docs/trusted-sharing.md",
+      "gitBlobSha": "30571596825fdc42a5303fa9915fea11bc620057",
+      "bytes": 17037
+    },
+    {
+      "path": "infra/aws/lib/rillora-staging-stack.ts",
+      "gitBlobSha": "a9d17fdd4a5133b1f0e683eaac0c5f7d1e654dac",
+      "bytes": 36982
+    },
+    {
+      "path": "infra/aws/recovery-journal-broker/handler.py",
+      "gitBlobSha": "730988943e7cf58951dc1c30ea9b8e86036bb6f6",
+      "bytes": 5099
+    },
+    {
+      "path": "infra/aws/recovery-journal-broker/test_handler.py",
+      "gitBlobSha": "86afac9c8a0b89e9aa3b299a8d8931e804ea6eb1",
+      "bytes": 5782
+    }
+  ],
+  "verifiedAt": "2026-10-20T11:38:55.914937+00:00"
+}

@@ -1,6 +1,14 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-20 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
+
+## October23 Web content release and bounded QA evidence
+
+[The release](web-content-development-20261022.md) preserves actual migration/API/Web readbacks, deployment failures and repairs, local voice/model and independent HealthKit library checks, plus a production synthetic account’s file/pack acceptance. [Archive49 and safe receipts](../collaboration/verification/web-content-20261022/README.md) append only this work; archives1–48 stay immutable. Current source and focused documents remain ordinary Git. The original Web artifacts exclude only pinned vendor model downloads and explicit reproducible caches; authentication, credentials, private provider/database/CFN state remain protected locally. New metadata and remote receipts follow frozen capture without resealing. Archive49 at63d3b2326 passed independent remote metadata, ciphertext and all584objects/1,177paths verification. Actual final CI and PR7 merge are read from GitHub, never inferred from push.
+
+## October20 HealthKit next-version preparation
+
+[The new preparation](healthkit-preparation-20261020.md) is isolated oncodex/healthkit-preparation-20261020frommain5e4d6d692. Only planning/copy documents and[the private Apple inquiry receipt](../collaboration/verification/healthkit-prep-20261020/README.md)are published: case103002496561, exact non-secret message, safe confirmation image, source/configuration hashes and reading record. No health data, credentials or personal form fields are copied. Current native/release files remain identical; no deployment or review-material change occurs. Regenerate the complete readable manifest after all receipts and verify actual CI.
 
 ## October19 platform and acquisition-budget research
 

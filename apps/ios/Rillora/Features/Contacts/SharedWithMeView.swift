@@ -5,17 +5,22 @@ struct SharedWithMeView: View {
     let service: any SharingServing
     var onOpenInvitation: (() -> Void)?
     @State private var access: SharedAccessStore
+    @State private var futureNotices: FutureNoticesInboxStore?
     private var data: SharedWithMeEnvelope? { access.data }
     private var error: String? { access.error }
     private var loading: Bool { access.isLoading }
     init(service: any SharingServing, onOpenInvitation: (() -> Void)? = nil) {
         self.service = service; self.onOpenInvitation = onOpenInvitation
         _access = State(initialValue: SharedAccessStore(service: service))
+        if let service = service as? any FutureNoticeServing, service.futureNoticesEnabled {
+            _futureNotices = State(initialValue: FutureNoticesInboxStore(service: service))
+        } else { _futureNotices = State(initialValue: nil) }
     }
     @Environment(\.scenePhase) private var phase
 
     var body: some View {
         RilloraList {
+            if let futureNotices { FutureNoticesInboxSection(store: futureNotices) }
             if let error {
                 Section { Label(error, systemImage: "exclamationmark.circle"); Button(String(localized: "Retry")) { Task { await load() } } }
             } else if let data {
@@ -54,15 +59,16 @@ struct SharedWithMeView: View {
         .toolbar { ToolbarItem(placement: .primaryAction) { Button { Task { await load() } } label: { Image(systemName: "arrow.clockwise") }.accessibilityLabel(String(localized: "Refresh shared items")).disabled(loading) } }
         .task { await load() }.refreshable { await load() }
         .task { await recheckVisibleAccess() }
-        .onChange(of: phase) { _, next in if next == .active { Task { await load() } } else { access.suspend() } }
+        .onChange(of: phase) { _, next in if next == .active { Task { await load() } } else { access.suspend(); futureNotices?.suspend() } }
+        .onDisappear { futureNotices?.suspend() }
         .accessibilityIdentifier("shared.inbox")
         .rilloraEntrance()
     }
-    @MainActor private func load() async { await access.refresh() }
+    @MainActor private func load() async { await access.refresh(); await futureNotices?.refresh() }
     @MainActor private func recheckVisibleAccess() async {
         while !Task.isCancelled {
             do { try await Task.sleep(for: .seconds(15)) } catch { return }
-            if phase == .active { await access.refresh(keepingVisible: true) }
+            if phase == .active { await access.refresh(keepingVisible: true); await futureNotices?.refresh() }
         }
     }
 

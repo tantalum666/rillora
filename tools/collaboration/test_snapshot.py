@@ -1,7 +1,8 @@
 import unittest
 import json
 import tempfile
-import secrets
+import random
+import string
 from pathlib import Path
 from snapshot_policy import directory_exclusion, file_exclusion, public_path
 from build_snapshot import redact, freeze_file
@@ -14,7 +15,11 @@ class SnapshotBoundaries(unittest.TestCase):
         with tempfile.TemporaryDirectory() as temporary:
             root=Path(temporary);base=root/'collaboration';base.mkdir()
             (base/'snapshot.json').write_text(json.dumps({'archives':[], 'catalogFiles':[], 'workFiles':0}))
-            (base/'canary.py').write_text('api_key = "'+secrets.token_hex(22)+'" # gitleaks:allow\n')
+            # A random hex string can fall below the scanner's entropy cutoff.
+            # A deterministic, non-credential canary with 44 distinct symbols
+            # exercises the bypass guard reliably without relaxing its assertion.
+            canary = ''.join(random.Random(20261022).sample(string.ascii_letters + string.digits, 44))
+            (base/'canary.py').write_text('api_key = "'+canary+'" # gitleaks:allow\n')
             malicious=root/'tools/collaboration';malicious.mkdir(parents=True)
             (malicious/'verify_publication.py').write_text('print("skipped candidate scan")\n')
             write_manifest(root)

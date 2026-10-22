@@ -1,4 +1,7 @@
 import SwiftUI
+#if RILLORA_HEALTHKIT_NEXT_VERSION
+import RilloraHeartRateKit
+#endif
 
 struct AuthenticatedProfileContent: View {
     let snapshot: OverviewSnapshot
@@ -100,7 +103,7 @@ struct AuthenticatedProfileContent: View {
                         detail: contact.relationshipLabel ?? String(localized: "Relationship not added"),
                         systemImage: contactIcon(for: contact),
                         badge: sharingConnections.first(where: { $0.personPublicId == contact.publicId })?.statusLabel
-                            ?? (sharingLoadFailed ? String(localized: "Connection unavailable") : sharingLoaded ? String(localized: "Not invited") : String(localized: "Checking connection…"))
+                            ?? (sharingLoadFailed ? String(localized: "Connection unavailable") : sharingLoaded ? noCurrentSharingLabel : String(localized: "Checking connection…"))
                     )
                 }
                 .buttonStyle(RilloraQuietButtonStyle())
@@ -118,6 +121,10 @@ struct AuthenticatedProfileContent: View {
         .rilloraProfileActionRows()
         .rilloraEntrance()
     }
+    private var noCurrentSharingLabel: String {
+        (sharingService as? any FutureNoticeServing)?.futureNoticesEnabled == true
+            ? String(localized: "No content shared now") : String(localized: "Not invited")
+    }
 
     @MainActor private func loadConnections() async {
         do {
@@ -132,6 +139,9 @@ struct AuthenticatedProfileContent: View {
 
     private var preparationSection: some View {
         Section {
+            #if RILLORA_HEALTHKIT_NEXT_VERSION
+            HeartRateEntryView()
+            #endif
             if let dataService = startHereService as? any AccountDataServing {
                 NavigationLink { AccountDataView(service: dataService, overviewStore: store, onDeletionRequested: authenticationStore.endSessionAfterDeletion) } label: {
                     ProfileTaskLabel(title: String(localized: "My data"), detail: String(localized: "Backups and saved copies"), systemImage: "externaldrive")

@@ -65,6 +65,28 @@ describe('Closed production client delivery', () => {
       expect(()=>verifyProductionClientArtifact(assetDirectory,false,true,true)).toThrow('access mode');
     } finally {rmSync(assetDirectory,{recursive:true});}
   });
+  it('isolates the optional file and speech surfaces from closed and ordinary client builds', () => {
+    const directory = fixture();
+    try {
+      const path = join(directory, 'production-build.json'), manifest = JSON.parse(readFileSync(path, 'utf8'));
+      manifest.customerAccess = 'live'; manifest.legacyContent = true;
+      writeFileSync(path, JSON.stringify(manifest));
+      expect(() => verifyProductionClientArtifact(directory, false, true)).toThrow('access mode');
+      expect(() => verifyProductionClientArtifact(directory, false, true, false, true)).not.toThrow();
+      const t = Template.fromStack(new RilloraProductionWebStack(new App(), 'ContentWebTest', {
+        env: { account: '111111111111', region: 'eu-central-1' }, certificateArn, assetDirectory: directory,
+        liveEnabled: true, legacyContentEnabled: true,
+      }));
+      const headers = Object.values(t.findResources('AWS::CloudFront::ResponseHeadersPolicy')) as any[];
+      const csp = headers[0].Properties.ResponseHeadersPolicyConfig.SecurityHeadersConfig.ContentSecurityPolicy.ContentSecurityPolicy;
+      expect(csp).toContain("media-src 'self' blob:"); expect(csp).toContain("worker-src 'self'");
+      expect(csp).not.toContain('unsafe-eval');
+      t.hasResourceProperties('AWS::Lambda::Function', { MemorySize: 512 });
+      manifest.localTranscription = true; writeFileSync(path, JSON.stringify(manifest));
+      expect(() => verifyProductionClientArtifact(directory, false, true, false, true, true)).toThrow('Speech model bytes');
+      expect(() => verifyProductionClientArtifact(directory, false, true, false, false, true)).toThrow('access mode');
+    } finally { rmSync(directory, { recursive: true }); }
+  });
   it('uses only private assets and the exact API; never creates or changes the database/runtime', () => {
     const assetDirectory = fixture();
     try {

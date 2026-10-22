@@ -143,7 +143,14 @@ struct AppShellView: View {
                 .preferredColorScheme(appearancePreference.colorScheme)
         }
         .sheet(item: $invitationSheet, onDismiss: { presentQueuedInvitation() }) { received in
-            NavigationStack { InvitationAcceptView(initialToken: received.token, service: sharingService, authenticationStore: authenticationStore, overviewStore: store) }
+            NavigationStack {
+                if received.isFuture, let token = received.token,
+                   let service = sharingService as? any FutureNoticeServing, service.futureNoticesEnabled {
+                    FutureNoticeInvitationView(token: token, service: service, authenticationStore: authenticationStore, overviewStore: store)
+                } else {
+                    InvitationAcceptView(initialToken: received.token, service: sharingService, authenticationStore: authenticationStore, overviewStore: store)
+                }
+            }
                 .presentationBackground(RilloraTheme.graphite)
                 .preferredColorScheme(appearancePreference.colorScheme)
         }
@@ -162,10 +169,10 @@ struct AppShellView: View {
             if value != nil { showsApplePurchase = false; queuedApplePurchase = false; firstUseDestination = nil; shouldPauseGuideOnDismiss = false; overviewMatter = nil; overviewShared = false; invitationSheet = nil; queuedInvitation = nil; peopleIntent = nil; selectedTab = .profile }
         }
         .onOpenURL { url in
-            if let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
+            openInvitationURL(url)
         }
         .onContinueUserActivity(NSUserActivityTypeBrowsingWeb) { activity in
-            if let url = activity.webpageURL, let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
+            if let url = activity.webpageURL { openInvitationURL(url) }
         }
         .onChange(of: authenticationStore.isWorking) { _, working in if !working { presentQueuedInvitation() } }
         .onChange(of: activePlannerID) { _, next in
@@ -179,6 +186,8 @@ struct AppShellView: View {
         .task {
             await store.loadIfNeeded()
             #if DEBUG
+            if let value = ProcessInfo.processInfo.environment["RILLORA_UI_TEST_FUTURE_INVITATION_URL"],
+               let url = URL(string: value) { openInvitationURL(url) }
             if let token = ProcessInfo.processInfo.environment["RILLORA_UI_TEST_INVITATION_TOKEN"],
                token.range(of: "^[A-Za-z0-9_-]{43}$", options: .regularExpression) != nil {
                 queueInvitation(token)
@@ -233,7 +242,12 @@ struct AppShellView: View {
     }
     private var resolvedAppearance: ColorScheme { appearancePreference.colorScheme ?? colorScheme }
     private var activePlannerID: String? { if case .loaded(let snapshot) = store.state { snapshot.session.plannerPublicId } else { nil } }
-    private func queueInvitation(_ token: String?) { queuedInvitation = ReceivedInvitation(token: token); presentQueuedInvitation() }
+    private func queueInvitation(_ token: String?, isFuture: Bool = false) { queuedInvitation = ReceivedInvitation(token: token, isFuture: isFuture); presentQueuedInvitation() }
+    private func openInvitationURL(_ url: URL) {
+        if let service = sharingService as? any FutureNoticeServing, service.futureNoticesEnabled,
+           let token = FutureNoticeLink.token(from: url.absoluteString) { queueInvitation(token, isFuture: true) }
+        else if let token = ReceivedInvitation.token(from: url.absoluteString) { queueInvitation(token) }
+    }
     private func presentQueuedInvitation() {
         if queuedInvitation == nil, queuedApplePurchase, invitationSheet == nil,
            firstUseDestination == nil, !contactSheetOpen, !authenticationStore.isWorking,

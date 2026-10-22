@@ -4,6 +4,7 @@ import { currentWebAnnualOffer } from "./productionBilling.js";
 import { ProductionBillingControls } from "./ProductionBillingControls.jsx";
 import { TestBillingControls } from "./TestBillingControls.jsx";
 import { SurfaceIcon } from "./SurfaceMotion.jsx";
+import { LEGACY_CONTENT_ENABLED } from './legacyContentFeature.js';
 import "./plan-access.css";
 
 export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheckout }) {
@@ -19,6 +20,9 @@ export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheck
       {commerce.familyFeatures.length > 0 && <ul className="commercial-feature-list">
         {["familyRecipients", "familyReviews", "familyCorrections"].map(key => <li key={key}>
           <CheckCircle size={20} weight="fill" aria-hidden="true" /><span>{t(`workspace.access.${key}`)}</span>
+        </li>)}
+        {LEGACY_CONTENT_ENABLED && ['packs', 'files', 'voice'].map(key => <li key={key}>
+          <CheckCircle size={20} weight="fill" aria-hidden="true"/><span>{t(`content.family.${key}`)}</span>
         </li>)}
       </ul>}
       <div className="family-plan-price">

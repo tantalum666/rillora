@@ -5,7 +5,11 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Shanghai)
+
+## October20 future arrangement notice parity
+
+The [next-version notice contract](future-recipient-notices-20261020.md) adds sender create/share/revoke and recipient verify/acknowledge/decline/leave on Web and native iOS. Both expose only arrangement metadata, no current content grants or conditional release. A recipient may use Web without installing the App. Build/runtime flags stay off in the current release; synthetic/local UI and API acceptance has passed and remains distinct from deployment, actual family delivery and Apple approval.
 
 ## October15 Web activation and scoped native closeout
 

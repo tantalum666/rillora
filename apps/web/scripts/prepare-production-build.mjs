@@ -4,11 +4,18 @@ import { createHash } from 'node:crypto';
 import { resolve, relative } from 'node:path';
 import { runInNewContext } from 'node:vm';
 import { buildCustomerDownload } from '../../../tools/mcp/build-customer-download.mjs';
+import { execFileSync } from 'node:child_process';
 
 const review = process.argv.includes('--review');
 const live = process.argv.includes('--live');
 if ((review && live) || process.argv.slice(2).some(value => !['--review','--live'].includes(value))) throw new Error('Unknown or conflicting production artifact mode');
 const root = resolve(live ? 'dist-production-live' : review ? 'dist-production-review' : 'dist-production');
+// Production Vite builds deliberately do not read ambient .env files.
+const environment = process.env;
+const legacyContent = environment.VITE_RILLORA_LEGACY_CONTENT === 'true';
+const localTranscription = environment.VITE_RILLORA_LOCAL_TRANSCRIPTION === 'true';
+if ((legacyContent && !live) || (localTranscription && !legacyContent)) throw new Error('Content features require the explicit live Web build');
+if (localTranscription) execFileSync(process.execPath, [resolve('scripts/prepare-local-transcription.mjs'), '--out', root], { stdio: 'inherit' });
 const connections = JSON.parse(await readFile('../../config/production-connections.json', 'utf8'));
 if (!['closed','live'].includes(connections.customerAccess) || (live && connections.customerAccess !== 'live')) throw new Error('Live publishing requires explicit production activation');
 await writeAppearanceBootstrap(root);
@@ -32,6 +39,7 @@ if (!files['index.html']) throw new Error('Missing production HTML');
 await writeFile(resolve(root, 'production-build.json'), JSON.stringify({
   version: 1, surface: 'production-client', customerAccess: live ? 'live' : 'closed',
   aiConnections: live,
+  legacyContent, localTranscription,
   ...(review ? { reviewAccess: 'identity-allowlist' } : {}),
   publicationCandidate: process.env.RILLORA_CLIENT_PUBLICATION_CANDIDATE === '1' || process.env.RILLORA_CLOSED_CLIENT_CANDIDATE === '1',
   webOrigin: connections.webOrigin, apiBaseURL: connections.apiBaseURL,

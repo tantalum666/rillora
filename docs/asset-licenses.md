@@ -183,3 +183,9 @@ then exported at768px with alpha for both clients. It removes the dark rectangle
 on light surfaces and retains the same visual concept. Original artwork remains.
 No additional third-party artwork/font/library licence is introduced; use remains
 subject to the applicable OpenAI terms, without an exclusivity claim.
+
+## 2026-10-22 — Optional Web on-device transcription
+
+The optional file/voice feature uses `@huggingface/transformers`4.3.1 (Apache-2.0), `Xenova/whisper-tiny` revision5332fcc35e32a33b86612b9a57a89be7906102b1 (ONNX conversion metadata Apache-2.0, original OpenAI Whisper weights/code MIT), and the pinned ONNX Runtime Web package1.31.0-dev.20260914-8d85527a0 (MIT and its upstream third-party notices). Original model/runtime bytes are checked against [the committed hash manifest](../config/local-transcription.json); no model weights or cache are committed toGit.
+
+The Web build distributes [the complete scoped notices](../apps/web/src/assets/local-speech-licenses.txt), linked from the explicit transcription control. Apache text is copied from the installed pinned Transformers package; Whisper MIT text comes from its official repository; ONNX Runtime LICENSE and ThirdPartyNotices come from commit8d85527a0. These notices apply to the optional Web feature only and do not rewrite existing native design credits or published legal agreements. Rillora's integration is separate code; upstream model quality and commercial outcomes are not warranted by a license.

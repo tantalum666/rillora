@@ -1,0 +1,22 @@
+.future-notice-heading,.future-notices-inbox h2,.future-notice-status,.future-notice-card p{display:flex;align-items:center;gap:10px}
+.future-notice-heading h2{margin:0;flex:1;font-size:1.2rem}
+.future-notice-heading .icon-button{flex:0 0 auto}
+.future-notice-panel{display:grid;gap:16px}
+.future-notice-panel>p{margin:0;line-height:1.65}
+.future-notice-panel form{display:grid;gap:16px}
+.future-notice-actions{display:flex;flex-wrap:wrap;gap:10px;align-items:center}
+.future-notice-actions button{min-height:44px}
+.future-notice-link{display:grid;gap:12px}
+.future-notice-address{width:100%;min-width:0;font:inherit;font-size:.8rem;padding:12px;border:1px solid var(--divider);border-radius:12px;background:transparent;color:var(--muted);box-sizing:border-box}
+.future-notice-status{color:var(--muted);font-weight:600}
+.future-notices-inbox{margin:20px 0;padding:18px 0;border-block:1px solid var(--divider)}
+.future-notices-inbox h2{font-size:1.1rem;margin:0 0 14px}
+.future-notice-card{padding:16px 0}
+.future-notice-card h3{margin:0;font-size:1rem}
+.future-notice-card p{align-items:flex-start;line-height:1.6}
+.future-notice-card svg{flex-shrink:0;margin-top:3px}
+.future-invitation{display:grid;gap:16px}
+.future-invitation .primary-button,.future-invitation .secondary-button{justify-content:center}
+.person-future{white-space:normal;min-height:44px}
+
+.person-row.has-future{flex-wrap:wrap;gap:0 16px}.has-future .person-main{flex-basis:calc(100% - 64px)}.has-future .person-future{margin:0 0 12px 70px;justify-content:flex-start;gap:7px;font-size:14px}

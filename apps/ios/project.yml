@@ -81,6 +81,7 @@ targets:
         RilloraPasskeyNativeSignInEnabled: $(RILLORA_PASSKEY_NATIVE_SIGN_IN_ENABLED)
         RilloraServiceMarketCode: $(RILLORA_SERVICE_MARKET_CODE)
         RilloraCustomerAccessEnabled: $(RILLORA_CUSTOMER_ACCESS_ENABLED)
+        RilloraFutureNoticesEnabled: false
         CFBundleURLTypes:
           - CFBundleTypeRole: Editor
             CFBundleURLName: rillora-sharing

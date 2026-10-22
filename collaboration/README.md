@@ -1,6 +1,12 @@
 # Rillora — Git / Dot 协作入口
 
-October20：[总清单与主分支整合已完成](../docs/git-integration-20261020.md)。26份遗漏已补齐，精确登记同步PR4与主整合[PR3](https://github.com/tantalum666/rillora/pull/3)均已合并；主合并6b757b885与通过CI203／浏览器14的提交文件树一致，24个远端分支均包含于main，开放PR为0。API580／浏览器66通过；[完成回执](verification/git-integration-20261020/completion.json)。当前本机使用main，旧分支记录保留，未部署或改变审核。新增回执仍必须连同完整清单一起核验。
+October23当前：[Web办理包／文件／原声发布](../docs/web-content-development-20261022.md)已完成两环境部署与独立合成账号的真实文件／私有办理包验收；临时权益／会话已撤销、维护模板恢复并拒绝QA命令。API53c904…／Web113+110文件匹配，源码1537b3f0d／Verify242与Web UX24通过。HealthKit只读模块为下一版本源码，Google报告已核实为正常别名。新增[本轮回执与archive49](verification/web-content-20261022/README.md)已在63d3b2326独立远端下载／解密核验584对象与1,177路径；最终检查／合并见PR7，旧归档不重做。当前唯一下一步以handoff为准。
+
+October20当前任务：[独立身后安排告知](../docs/future-recipient-notices-20261020.md)在codex/future-recipient-notices-20261020完成，源码6491fe5c6／CI207三任务通过，远端82文件一致，[回执](verification/future-notices-20261020/README.md)已保存。三端默认关闭、仅下一版本。HealthKit答复不再阻塞此项；本轮没有部署或修改在审构建。实现、测试、推送／CI与实际亲友送达分别记录，当前唯一下一步只看handoff。
+
+October20下一版本：[HealthKit准备与独立用途咨询](../docs/healthkit-preparation-20261020.md)已完成，Apple受理案例103002496561，尚无用途答复。分支codex/healthkit-preparation-20261020仅含方案、双语权限草稿和[安全回执](verification/healthkit-prep-20261020/README.md)，原生／发布配置未变；当前审核材料及旧进度工单不动。当前下一步只看handoff。
+
+October20：[总清单与主分支整合已完成](../docs/git-integration-20261020.md)。26份遗漏已补齐，精确登记同步PR4与主整合[PR3](https://github.com/tantalum666/rillora/pull/3)均已合并；主合并6b757b885与通过CI203／浏览器14的提交文件树一致，24个远端分支均包含于main，开放PR为0。API580／浏览器66通过；[完成回执](verification/git-integration-20261020/completion.json)。该整合检查点本机使用main，后续新功能以顶部及handoff分支为准，旧分支记录保留，未部署或改变审核。新增回执仍必须连同完整清单一起核验。
 
 October18营销复核：[SEO／GEO、MCP和平台矩阵](../docs/marketing/readiness-audit-20261018.md)及[四周获客计划](../docs/marketing/acquisition-plan-20261018.md)已准备，OpenAI简介限制／商店旧状态已纠正；客户MCP和实际增长不冒充完成。[新回执](verification/marketing-readiness-20261018/README.md)以小型可读文件直接Git保存，旧1—47不重封。当前下一步只看handoff。
 
@@ -106,7 +112,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-17 (Asia/Hong_Kong)
+Updated: 2026-10-23 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

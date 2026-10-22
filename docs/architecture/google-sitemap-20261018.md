@@ -1,7 +1,7 @@
 # Google 地图读取续修
 
 Status: DEPLOYED / GOOGLE BOTH LANGUAGE MAPS PROCESSED / 28 URLS DISCOVERED
-Last updated: 2026-10-18 (Asia/Hong_Kong)
+Last updated: 2026-10-22 (Asia/Hong_Kong)
 
 Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记录独立官网修复。生产应用、在审构建及MCP交付另看[正式接入](customer-mcp-20261018.md)。
 
@@ -22,3 +22,9 @@ Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记
 新索引在已验证的URL前缀属性中只提交一次。Google详情明确显示“已成功处理站点地图索引”，上次读取October18；索引自身的汇总计数仍为0。因索引详情没有展示子图回执，分别只提交一次英文与中文子图；随后两份详情都实际显示“已成功处理站点地图”，各发现14个网址、最后读取2026/10/18。两组互不重复，共28个语言规范网址。没有删除或重新提交旧平面地图，也没有因报告延迟再次部署。
 
 本轮关闭的是Google地图读取失败；发现网址不等于文章全部进入索引、获得排名或被AI引用。Bing此前Success／28网址／0错误证据沿用，不重复提交。实际浏览器回执、66文件线上校验及部署模板保存在本轮QA，收尾另存新增Git证据包。
+
+## 2026-10-22 重定向邮件核查
+
+Owner收到Google“网页会自动重定向”通知。实际读取域属性报告，3个示例仅为`http://www.rillora.xyz/`、`https://rillora.xyz/`、`http://rillora.xyz/`；均单次跳转到`https://www.rillora.xyz/`并200，没有循环或错误目标。HTTP www为301，根域两个入口是既有302。Search Console对正式HTTPS www首页明确显示“网址已收录到Google／网页已编入索引”。报告数据更新日为October16，不当作全站实时覆盖率。
+
+重新读取线上地图及其28个语言规范页面，均200、无跳转、无noindex且canonical精确指向自身。按[Google说明](https://support.google.com/webmasters/answer/7440203#page_with_redirect)，跳转入口本身不索引是预期，目标页面另行判断。因此保留现有统一入口，没有删除正确跳转、请求无意义的修正验证或重复提交地图；本次未发现需要发布的索引故障。未声明28篇全部已索引或已有排名。实际记录在`output/qa/rillora-web-content-20261022/provider-followup/`。

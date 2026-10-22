@@ -197,12 +197,13 @@ extension StartHerePreviewing {
     }
 }
 
-actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FamilyMaintenanceServing, AccountDataServing, AccountIdentityServing {
+actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEditing, OfficialSetupEditing, SimulationRunning, DisclosureRehearsing, RoleAssignmentEditing, StartHerePreviewing, CommerceServing, SharingServing, FutureNoticeServing, FamilyMaintenanceServing, AccountDataServing, AccountIdentityServing {
     private let configuration: APIConfiguration
     private let transport: any HTTPTransport
     private let sessionTokenStore: (any SessionTokenStore)?
     private let decoder: JSONDecoder
     private let encoder: JSONEncoder
+    nonisolated let futureNoticesEnabled: Bool
 
     init(
         configuration: APIConfiguration,
@@ -210,6 +211,7 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
         sessionTokenStore: (any SessionTokenStore)? = nil
     ) {
         self.configuration = configuration
+        self.futureNoticesEnabled = configuration.futureNoticesEnabled
         self.transport = transport
         self.sessionTokenStore = sessionTokenStore
         self.decoder = JSONDecoder()
@@ -903,6 +905,58 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
         let result: SharedWithMeEnvelope = try await get("sharing/shared-with-me")
         guard result.isValid else { throw RilloraAPIError.invalidPayload("Shared information exceeded its allowed detail level.") }
         return result
+    }
+
+    func fetchFutureNotice(personID: String) async throws -> FutureNotice? {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let result: FutureNoticeEnvelope<FutureNotice?> = try await get("future-notices/people/\(personID)")
+        return result.notice
+    }
+    func createFutureNotice(personID: String, email: String) async throws -> FutureNoticeMutation {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        struct Request: Encodable { let personPublicId: String; let email: String; let acknowledgedNoAccess = true }
+        return try await send(path: "future-notices", method: "POST", body: encoder.encode(Request(personPublicId: personID, email: email)))
+    }
+    func regenerateFutureNotice(publicID: String, version: Int) async throws -> FutureNoticeMutation {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        return try await send(path: "future-notices/\(publicID)/link", method: "POST", body: encoder.encode(["expectedVersion": version]))
+    }
+    func revokeFutureNotice(publicID: String, version: Int) async throws -> FutureNoticeMutation {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let response = try await perform(path: "future-notices/\(publicID)", method: "DELETE", additionalHeaders: ["If-Match": String(version)])
+        guard response.response.statusCode == 200 else { throw decodeServerError(from: response) }
+        return try decoder.decode(FutureNoticeMutation.self, from: response.data)
+    }
+    func resolveFutureNotice(token: String) async throws -> FutureNoticePreview {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let result: FutureNoticeEnvelope<FutureNoticePreview> = try await sendPublicRequest(path: "future-notices/invitations/resolve",
+            method: "POST", body: encoder.encode(["invitationToken": token]), authentication: .unauthenticated)
+        return result.notice
+    }
+    func reviewFutureNotice(token: String) async throws -> ReceivedFutureNotice {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let result: FutureNoticeEnvelope<ReceivedFutureNotice> = try await send(path: "future-notices/invitations/review",
+            method: "POST", body: encoder.encode(["invitationToken": token]))
+        return result.notice
+    }
+    func respondFutureNotice(token: String, action: String, version: Int) async throws -> FutureNoticeDecision {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        guard ["acknowledge", "decline"].contains(action) else { throw FutureNoticeError.invalidResponse }
+        struct Request: Encodable { let invitationToken: String; let action: String; let expectedVersion: Int }
+        let result: FutureNoticeDecisionEnvelope = try await send(path: "future-notices/invitations/respond", method: "POST",
+            body: encoder.encode(Request(invitationToken: token, action: action, expectedVersion: version)))
+        return result.result
+    }
+    func fetchReceivedFutureNotices() async throws -> [ReceivedFutureNotice] {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let result: FutureNoticeList = try await get("future-notices/received")
+        return result.notices
+    }
+    func leaveFutureNotice(publicID: String, version: Int) async throws {
+        guard futureNoticesEnabled else { throw FutureNoticeError.unavailable }
+        let response = try await perform(path: "future-notices/received/\(publicID)", method: "DELETE", additionalHeaders: ["If-Match": String(version)])
+        guard response.response.statusCode == 200 else { throw decodeServerError(from: response) }
+        _ = try decoder.decode(FutureNoticeLeaveResult.self, from: response.data)
     }
 
     private func get<Response: Decodable & Sendable>(_ path: String) async throws -> Response {

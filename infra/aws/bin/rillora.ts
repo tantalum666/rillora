@@ -9,6 +9,11 @@ import { RilloraPublicWebStack } from "../lib/rillora-public-web-stack.js";
 import { RilloraProductionWebStack } from "../lib/rillora-production-web-stack.js";
 
 const app = new App();
+const legacyFlag = (name: string) => {
+  const value = app.node.tryGetContext(name);
+  if (value !== undefined && ![true, false, 'true', 'false'].includes(value)) throw new Error(`${name} must be true or false`);
+  return value === true || value === 'true';
+};
 const desiredCountContext = app.node.tryGetContext("serviceDesiredCount");
 const desiredCount = Number(desiredCountContext ?? 0);
 if (!Number.isInteger(desiredCount) || desiredCount < 0 || desiredCount > 2) {
@@ -83,6 +88,8 @@ if (productionWebSelected) {
     reviewEnabled: review === true || review === 'true',
     liveEnabled: live === true || live === 'true',
     customerMcpEnabled: mcp === true || mcp === 'true',
+    legacyContentEnabled: legacyFlag('productionWebLegacyContentEnabled'),
+    localTranscriptionEnabled: legacyFlag('productionWebLocalTranscriptionEnabled'),
   });
 } else if (publicWebSelected) {
   new RilloraPublicWebStack(app, 'RilloraPublicWeb', {
@@ -110,6 +117,7 @@ if (productionWebSelected) {
     reviewPrepared:reviewFlag('productionReviewPrepared'),reviewEnabled:reviewFlag('productionReviewEnabled'),
     liveEnabled:reviewFlag('productionLiveEnabled'),stripeCheckoutEnabled:reviewFlag('productionStripeCheckoutEnabled'),
     customerMcpPrepared:reviewFlag('productionMcpPrepared'),customerMcpEnabled:reviewFlag('productionMcpEnabled'),
+    legacyContentPrepared:legacyFlag('productionLegacyContentPrepared'),legacyContentEnabled:legacyFlag('productionLegacyContentEnabled'),
     appleProductionPrepared:reviewFlag('productionApplePrepared'),appleProductionEnabled:reviewFlag('productionAppleEnabled'),
     appleReviewEnabled:reviewFlag('productionAppleReviewEnabled'),
     retentionEnabled:reviewFlag('productionRetentionEnabled'),
@@ -161,5 +169,7 @@ if (productionWebSelected) {
   emailVerificationEnabled,
   contentProtectionMode,
   contentMigrationEnabled,
+  legacyContentPrepared:legacyFlag('legacyContentPrepared'),legacyContentEnabled:legacyFlag('legacyContentEnabled'),
+  localTranscriptionEnabled:legacyFlag('localTranscriptionEnabled'),
   description: "Synthetic-only Rillora staging API and PostgreSQL in AWS Frankfurt",
 });

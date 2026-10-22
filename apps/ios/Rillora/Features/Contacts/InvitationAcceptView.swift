@@ -14,6 +14,8 @@ struct InvitationAcceptView: View {
     @State private var accepted = false
     @State private var verificationRequired = false
     @State private var authenticationRequired = false
+    @State private var futureToken: String?
+    @State private var showFuture = false
     @Environment(\.dismiss) private var dismiss
     @Environment(\.scenePhase) private var phase
     private var plannerID: String? { if case .loaded(let snapshot) = overviewStore.state { snapshot.session.plannerPublicId } else { nil } }
@@ -69,6 +71,10 @@ struct InvitationAcceptView: View {
                                     identifier: "invitation.link", required: true, axis: .vertical)
                         .textInputAutocapitalization(.never).autocorrectionDisabled()
                     Button(String(localized: "Continue with this link")) {
+                        if let futureService = service as? any FutureNoticeServing, futureService.futureNoticesEnabled,
+                           let value = FutureNoticeLink.token(from: link) {
+                            futureToken = value; showFuture = true; link = ""; error = nil; return
+                        }
                         guard let value = ReceivedInvitation.token(from: link) else { error = String(localized: "Paste the complete invitation link."); return }
                         Task { await resolve(value) }
                     }.buttonStyle(RilloraPrimaryActionButtonStyle()).disabled(working || link.isEmpty)
@@ -80,6 +86,11 @@ struct InvitationAcceptView: View {
             .navigationTitle(String(localized: "Received invitation")).navigationBarTitleDisplayMode(.inline)
             .toolbar { ToolbarItem(placement: .cancellationAction) { Button(String(localized: "Close")) { dismiss() }.disabled(working || authenticationStore.isWorking) } }
             .navigationDestination(isPresented: $showShared) { SharedWithMeView(service: service) }
+            .navigationDestination(isPresented: $showFuture) {
+                if let futureToken, let futureService = service as? any FutureNoticeServing, futureService.futureNoticesEnabled {
+                    FutureNoticeInvitationView(token: futureToken, service: futureService, authenticationStore: authenticationStore, overviewStore: overviewStore)
+                }
+            }
             .interactiveDismissDisabled(working || authenticationStore.isWorking)
             .task(id: plannerID) { accepted = false; verificationRequired = false; authenticationRequired = false; if let value = token ?? initialToken { await resolve(value) } }
             .onChange(of: showShared) { _, shown in if !shown, let token { Task { await resolve(token) } } }

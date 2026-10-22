@@ -1,0 +1,23 @@
+{
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:b56953f30713eaa0a540bc4dc30ed93050f178f0d7d3af2f7bec19529b8d9761",
+  "expiresAt": "2026-10-22T19:03:31Z",
+  "onlyMaintenanceAndBroker": true,
+  "unchangedResources": [
+    "API",
+    "Web",
+    "worker",
+    "IAM",
+    "database",
+    "network",
+    "prices",
+    "billing",
+    "Apple review"
+  ],
+  "brokerFiles": {
+    "handler.mjs": "bf3d4839294d55620abb84445079fb121b44dfc242b18a0039ae199247b9aa8c",
+    "core.mjs": "ab4be8df43d7e85b193506b3dbd0527eb46225ef24c60d83146c4a17239569c5",
+    "package.json": "2daa0ab02a1d45ed142ea2f0304f8fce17241ae8e705ffe3512801067fbc325b",
+    "production-migration.json": "30e3f9ac7766d4aeab4dd3ad112d51f56e3051d73ef6c7b99f22e068706a5651"
+  },
+  "implicitReferenceUpdates": "Unchanged broker role policy follows exact new Maintenance task revision; unchanged operator policy follows same broker ARN. No arbitrary role/command/network authority."
+}

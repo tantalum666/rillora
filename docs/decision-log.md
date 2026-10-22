@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3680,8 +3680,102 @@ local correction/tests and actual restoration remain separate evidence.
 
 - Result: PR4merges88ea0be25after all3checks; PR3merges6b757b885after Verify source203and browser14pass (API580/browser66). Fresh main tree equals validated ecd13a75a and contains all24remote tips, openPRcount0. The initial no-runtime-change scope is preserved; only two browser-harness files required correction.
 
+## 2026-10-20 — Begin next-version HealthKit preparation without changing the current submission
+
+- Status: OWNER-DIRECTED preparation and private Apple purpose consultation; no health collection or platform approval implied.
+- Owner says“开始吧，但是不要影响当前审核”after the proposed minimum-data, permission-copy and Apple purpose inquiry plan. This authorizes completing that concrete preparation and submitting the described separate technical question; it is not a new health-data authorization from an end user or a request to change the submitted app.
+- Work starts oncodex/healthkit-preparation-20261020frommain5e4d6d692. The plan uses heart-rate-only, read-only, local/manual first-slice verification;24hours/200samples is an Agent-selected technical test bound, not a medical or disclosure threshold.
+- The inquiry truthfully presents A optional safety prompts, B possible health-derived nonresponse/conditional access, and C independent death-evidence access. Apple accepts separate case103002496561. Existing review case103001356140is not amended; no Fall/SafetyKit entitlement or App ID capability is requested.
+- Current native source/entitlements/plists/project and release configurations remain byte-identical. No real health samples, contacts, model calls, deployment, TestFlight or new native verification. [Preparation and receipt](healthkit-preparation-20261020.md).
+
+## 2026-10-20 — Implement independent future-recipient notices for the next version
+
+- Status: OWNER-DIRECTED implementation and GitHub delivery; no current-release deployment.
+- Owner explicitly requests the work that does not depend on Apple's reply: designated family/friends know a digital-legacy arrangement exists while obtaining no contents during the planner's life. New work belongs to the next version and must not affect the current review.
+- Agent implements a separate notice/acknowledgement relationship, metadata-only public/private projections, verified-email and account binding, revoke/decline/leave/restore invalidation. It does not reuse Name-level grants or infer future disclosure authority from acknowledgement.
+- Manual link/QR/system sharing is the first delivery surface; no real family email is sent. Seven-day links, one-hour browser handoffs and100active notices are technical bounds selected for this reversible implementation, not approved death/nonresponse thresholds or commercial tier changes.
+- Existing explicit shares/downloaded copies remain separate; no retroactive secrecy claim, HealthKit use, automatic death inference, conditional release, new TestFlight or current AppStore edit. [Implementation and evidence](future-recipient-notices-20261020.md).
+
+- Implementation result: code6491fe5c6pushed oncodex/future-recipient-notices-20261020; Verify source207all3jobs passed,API590. Web202/browser74, native55unit/2UI/11source,infra68/broker6passed in isolated synthetic environments. Existing main/review/runtime remain unchanged. Four previously approved public Auth0ID spans moved line numbers only, with byte hashes unchanged; no new secret/rule exemption. Exact results are linked from the implementation contract.
+
+## 2026-10-20 — Discuss stronger Family value without silently changing entitlements
+
+- Status: OWNER QUESTION / AGENT RECOMMENDATIONS ONLY.
+- Owner asks what additions could improve willingness to buy and whether the new future notice should be part of paid Family. This does not select a new quota, second-planner entitlement, price or runtime switch.
+- The [proposal](family-value-proposal-20261020.md) suggests Free1 complete notice / Family5, a second independent planner, an actionable handoff workflow and reliable optional notifications. It preserves baseline security/export/revocation and receiver access, and separates actual notice code from unimplemented conditional delivery.
+- Current Web88.99/Apple119.99US, purchased terms, existing Free1/Family5 live sharing, current review and FanPass remain unchanged. No willingness-to-pay or competitor-runtime testing is claimed. Only public official pages and current project contracts were checked.
+
+## 2026-10-20 — Deepen paid-feature research and propose a specific differentiation mechanism
+
+- Status: OWNER-REQUESTED RESEARCH / AGENT PROPOSAL; no implementation, quota, price or runtime approval inferred.
+- Owner asks to research competitors' actual paid capabilities more carefully, identify adaptations and propose a paid feature not already offered by the market/competitors.
+- Public official material and rendered pricing are used; source/plan/currency/version ambiguities are recorded. No paid trial, purchase, private upload or outreach is undertaken. Family plans, future access, media messages, reminders, scores and unlock simulations have precedents and are not claimed unique.
+- Agent prioritizes [handoff-path checking](handoff-path-check-proposal-20261020.md): explicit cross-service dependencies, selected scenario/person, missing or circular paths, provenance/unknown states, changes invalidating earlier conclusions and concrete preparation steps. Professional dependency reviews already exist; a complete consumer self-service implementation was not documented in the reviewed set. This is bounded gap evidence, not proof of global originality.
+- This revises the preceding Agent recommendation to prioritize two-planner packaging; it does not supersede any locked commercial decision. No old internal disclosure rehearsal is relabeled as a new paid feature. Candidate analysis cannot trigger release, obtain third-party access, or expose sealed information to future recipients.
+- Current review, source implementation, Free1/Family5 live-sharing terms, prices, data, billing and FanPass remain untouched. [Research and source ledger](competitor-paid-research-20261020.md).
+
+## 2026-10-20 — Clarify official deceased-user requests and narrow the path-check recommendation
+
+- Status: OWNER CLARIFICATION QUESTION / AGENT RECOMMENDATION REVISION; no feature approval or rejection inferred.
+- Owner asks why a phone dependency matters if family can submit a death certificate to an official manual channel. Fresh Apple, Google and Microsoft guidance confirms such routes, with distinct evidence, regional rules, data scopes and review outcomes. Data disclosure is not automatically a right to continue using the original account.
+- The [candidate](handoff-path-check-proposal-20261020.md) must count applicable official routes; unavailable normal login is not a sufficient failure signal. Missing recorded conditions can be flagged for preparation, without guaranteeing approval or applying deceased-user procedures to incapacity/nonresponse.
+- Agent narrows the prior priority to a supporting planning candidate with unproven standalone paid value. Next comparison must show incremental outcomes over existing official guides/checklists before implementation. No code, entitlement, pricing, deployment or review change.
+
+## 2026-10-20 — Explain practical paid outcomes before developing new features
+
+- Status: LOCKED research-only scope; specific feature recommendation remains PROVISIONAL.
+- Owner explicitly asks for valuable paid functions addressing real problems and competitive differences, with a clear willingness-to-pay rationale before development. This supersedes any interpretation of earlier prototype suggestions as current implementation authorization.
+- [Current options](paid-value-options-20261020.md) prioritize comparing owner-intent-based recipient action materials and coordination, with bounded source-to-draft import as a supporting candidate; scoped family assistance remains segment-specific. Existing basic exports, guides, review tasks and safety cannot be resold under new names.
+- Public primary research supports problem hypotheses, while official free and paid competitors provide counterexamples. No global uniqueness, actual savings, conversion, annual demand or sustainable human-verification cost is claimed.
+- No new software, actual disclosure, real customer data processing, outreach, charging, entitlement, price, deployment, TestFlight or current-review change. Continue only to a reviewable plan; later delivery and genuine voluntary payment remain separate evidence.
+
+## 2026-10-20 — Walk through one fictional household and separate existing value from new service
+
+- Status: OWNER-REQUESTED EXPLANATION / NO DEVELOPMENT; commercial details remain provisional.
+- Owner asks for the complete preparation-to-provider-action flow and incremental value over current Rillora and free official routes, especially the annual fee.
+- [The case](family-action-pack-example-20261020.md) distinguishes current planning/exports/guides, default-off existence notices, proposed materials/case coordination, and unimplemented fact verification/content delivery. Each provider still performs its own review; Rillora cannot guarantee external scope, approval, cancellation or refunds.
+- Agent narrows the commercial inference: a simple three-matter household does not establish a strong annual purchase reason. Existing recipient export and content-before-closure guidance must not be sold again as new features. A finite event-service period is discussed only as a hypothetical costing requirement, not an approved entitlement.
+- Preserve all prices, purchased terms, ordinary runtime, App Review, real data and FanPass. No real application, user test, disclosure, software implementation or provider change occurred.
+
+## 2026-10-21 — Retain the action-pack direction and consider further useful paid outcomes
+
+- Status: OWNER ACCEPTS RETAINING THE ACTION-PACK DIRECTION; research continues, no development.
+- Owner says “这个可以，先记下，然后再仔细想想还有什么” after the concrete family walkthrough. Record the direction as accepted for retention. The preceding no-development instruction remains; no quota, annual-value proof, twelve-month service term, pricing or operational release is inferred.
+- Agent compares [selected-file custody/delivery and original spoken instructions](paid-content-options-20261021.md). Both are new research candidates only; previous deferred attachments and media ideas are not represented as novel technology.
+- Public competitors already offer uploads, exports, video notes and voice/transcription. Potential Rillora value must be demonstrated in exact content selection, actual retrieval, user-confirmed instructions and scoped delivery, not a claim of global uniqueness.
+- No user files/recordings, model calls, new product tests, provider mutations, billing, deployment, App Review or FanPass work. Existing baseline security, exit rights and the map-not-password boundary remain intact.
+
 ## 2026-10-22 — Node安全补丁与受限部署路径
 
 Owner明确要求“你帮我直接升级并部署吧，留下交接文档在github就行”，随后要求“优先在你云端操作，尽量不要花额度，要花再跟我说”。在明确说明仅本机部署／线上核验可能使用Codex额度后，Owner答复“可以”。因此先在云端准备Node22.23.4同主版本补丁及检查，再复用既有部署路径；这不授权新增付费资源、改身份／网络权限或发布未来功能。解释GitHub Actions分钟数且说明无法保证零额外费用后，Owner另明确“你跑吧，应该不用额外收费”，批准照常运行现有CI；不新增收费runner或构建服务。
 
 [安全升级规范](node-security-upgrade-20261022.md)保留解析行为、锁文件、schema106和已上线customer MCP；七个镜像使用方与独立Lambda运行时须分别记录状态。源码和测试不是线上修复证明；交接在实际镜像与Node版本核验前保持待部署。
+
+## 2026-10-22 — Start content and action-pack development with Web-first delivery
+
+- Status: OWNER AUTHORIZED implementation and Web deployment; iOS release deferred until the current review is complete.
+- Owner explicitly asks to develop the discussed features now: recipient action packs, selected important-file copies and original spoken instructions. This supersedes the prior research-only scope, without changing prices, existing purchased terms or real data.
+- Keep current native build/review materials and published contracts compatible. Integrate the already deployed Node22.23.4 source patch before building the new API; do not repeat that separate rollout.
+- [Implementation](web-content-development-20261022.md) will separate private preparation and explicit current sharing from unverified post-death release. No scan/image, inactivity, payment failure or health signal becomes automatic release evidence. Unconfigured operational corridors remain closed and accurately described.
+
+## 2026-10-22 — Proceed with next-version heart-rate reading after Apple's non-preapproval reply
+
+- Status: OWNER AUTHORIZED next-version source development; current App Review remains isolated.
+- Apple case103002496561 actually replied that concepts are not pre-approved and implementation feedback comes during review. This neither approves nor denies the three proposed use cases.
+- Owner explicitly directs continuing the agreed Apple Watch health-data reading direction. The earlier wait-for-concept-answer development gate is superseded. Start with the bounded, optional, foreground heart-rate reader in [the contract](healthkit-preparation-20261020.md), without health-derived access grants or unapproved reminder thresholds.
+- Separate next-version configuration and local package keep current entitlements, main project, binary, submission and provider capabilities unchanged. Individual system permission, device reading and future App Review remain independent evidence.
+- The Google redirect notification is separately investigated: its three examples are intentional aliases; the final homepage is indexed and all28 sitemap URLs return200 with matching canonical. No unnecessary redirect removal, re-submission or public deployment follows from this notification.
+
+## 2026-10-22 — Prepare an independent account for production content acceptance
+
+- Status: OWNER REQUESTED synthetic test account after confirming no other active Family test identity is available.
+- The existing personal Google identity correctly has no active Family creation entitlement. Owner says “暂无，你看看能不能弄个测试账号”; prepare a separate synthetic identity and narrowly scoped, expiring test grants, without charging, changing ordinary sale controls or repurposing the Apple App Review identity.
+- Use the existing Auth0 connection and signed credential store. Do not claim an example.test address is verified, fabricate an order/subscription, widen user access or bypass the fixed maintenance broker. Any required operator command must validate exact identity, test label, deadline and unchanged commercial configuration before use.
+- Production positive upload/download and pack-save acceptance remains pending until actual evidence; current source/build/static/API-health checks are retained.
+
+## 2026-10-23 — Complete the authorized Web release and retire temporary QA access
+
+- Status: IMPLEMENTATION OUTCOME / NO NEW COMMERCIAL OR REVIEW APPROVAL. Owner’s Web-first and independent-test-account instructions remain the authority.
+- Keep the three Web content capabilities at the existing Family price. The bounded file/recording limits and local-only transcription are implementation choices with explicit copy; no E2EE, unlimited storage, automatic death decision or verified post-death delivery claim is introduced.
+- Production-cookie and enforced-journal gaps were reproduced and repaired; neither CSRF protection for mutations nor recovery enforcement was disabled. The independent QA account used two expiring manual test grants, no fabricated payments or consent. Normal login followed Owner’s actual confirmation.
+- Actual synthetic file/private-pack acceptance passed. Test grants and sessions were revoked, the exact original maintenance/broker configuration was restored and the QA command was denied again. Synthetic samples are retained, not claimed deleted. Current native build/review, personal data, prices, sale controls and FanPass remain unchanged.

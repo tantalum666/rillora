@@ -5,7 +5,11 @@ Authority scope: Apple Watch / HealthKit capability, wearable-signal interpretat
 Superseded by: newer Apple platform rules, stricter applicable law, security evidence or explicit Owner decision  
 Do not use for: medical diagnosis, death certification, emergency response instructions or legal advice  
 Status: RESEARCH COMPLETE; NO MVP SCOPE EXPANSION  
-Last reviewed: 2026-10-19 (Asia/Shanghai)
+Last reviewed: 2026-10-20 (Asia/Shanghai)
+
+## 2026-10-20 — Owner启动下一版本准备
+
+Owner已明确开始接入准备与用途咨询，要求不影响现有审核；不再把“是否允许准备”作为待确认项。[当前准备合同](healthkit-preparation-20261020.md)仅选心率只读验证方向并保存双语用途草稿。Apple通过独立开发技术邮件受理案例103002496561，尚无用途答复；当前签名／HealthKit能力、数据采集与真实披露均未开启。后文原P0建议保留其历史范围，不构成对这次已授权准备工作的否决。
 
 ## 2026-10-19 — 心率读取与特殊权限申请复核
 

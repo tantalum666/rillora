@@ -1,0 +1,354 @@
+{
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 8414,
+    "counts": {
+      "passed": 55,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "artifacts": {
+    "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-20T09-30-56-164Z_pid19116_d165698e.log",
+    "xcresultPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/result-bundles/test_sim_2026-10-20T09-30-56-165Z_pid19116_1f59b149.xcresult",
+    "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-20T09-30-56-165Z_pid19116_c92904af.xctestproducts"
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": []
+  },
+  "testCases": [
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleReviewTransportUsesItsOwnRouteAndRejectsProductionAcknowledgement",
+      "status": "passed",
+      "durationMs": 12
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleSignInFeatureGateDefaultsClosed",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAppleSignInFeatureGateRequiresExplicitEnablement",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testAuthenticationFailureIsPreservedForTheUI",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCommerceContractRejectsClientGrantedAccessBoundary",
+      "status": "passed",
+      "durationMs": 15
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCommerceStatusAndPurchaseRouteUseServerAuthoritativeContracts",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreateAndArchiveMatterUseTheSharedMutationContract",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreateAndRevokeTrustedContactUseExplicitEvidenceContract",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreatePrintableStartHereRejectsRetainedServerCopyClaim",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testCreatePrintableStartHereValidatesHeadersAndSendsAcknowledgements",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testDisclosureRehearsalFailsClosedOnReleaseOrForbiddenPreviewFields",
+      "status": "passed",
+      "durationMs": 16
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testDisclosureRehearsalUsesVersionedSimulationOnlyMutations",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEmailVerificationKeepsTheNativeSessionAndSendsNoClientIdentityClaim",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEmailVerificationRejectsUnprovenProviderState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testEncryptedStartHerePreparationAndFinalizePreserveClientKeyBoundary",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchAndUpdateOfficialSetupUseSelfReportedContract",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchAndUpdatePlanMotivationUseLatestOptimisticVersion",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchOverviewUsesDevelopmentIdentityAndDecodesSharedContract",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testFetchOverviewUsesKeychainBackedBearerWhenDevelopmentIdentityIsDisabled",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testLegalLinksUseThePublicCustomDomain",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testLocalSessionPresenceUsesOnlyExplicitDevelopmentOrStoredBearerState",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testMatterVersionConflictIsPreservedForRecoveryUI",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeAuthenticationIntentKeepsEmailAndGoogleRoutesDistinct",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeGoogleRequiresBothOAuthClientIdentifiersBeforeEnablement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativePasskeyRequiresExplicitEnablement",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testNativeSessionExchangeCarriesTheExactAffirmativeLegalProof",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testOfficialSetupRejectsEvidenceThatIsNotSelfReported",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testOverviewLoadsThe51stMatterAndRejectsRepeatedCursors",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentFailsClosedOnAuthorityOrUnexpectedSecretField",
+      "status": "passed",
+      "durationMs": 6
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentListPreservesScopeAndNoAuthorityBoundary",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRoleAssignmentRequestsAreVersionedAndExplicitlyRecordOnly",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRunSimulationRejectsAnyOperativeResponse",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testRunSimulationSendsOneDistinctLifeEventAndDecodesSafeResult",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSensitiveActionRequestsFreshAuthenticationAndCarriesSignedIdentityProof",
+      "status": "passed",
+      "durationMs": 0
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSharingRolloutFallbackDoesNotSwallowAuthenticationFailure",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStartHereDecodesNoFilePreviewAndSendsEmptyJSONBody",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStartHereRejectsAResponseThatClaimsAnEncryptedPackage",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStoreKitSandboxTransactionRejectsEntitlementMutationBoundary",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testStoreKitSandboxTransactionUsesServerAuthoritativeFinishContract",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testSyntheticRecipientAcceptanceAndEnrollmentUseIsolatedMemorySession",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testUpdateMatterSendsOptimisticVersionAndExplicitNulls",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "APIClientTests",
+      "test": "testValidationReceiptCannotClaimChangedAccessBeforeAuthoritativeAcknowledgement",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ContactSharingStoreTests",
+      "test": "testAcceptedRecipientStopsShowingThePendingInvitationLink",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "ContactSharingStoreTests",
+      "test": "testRefreshKeepsCurrentLinkButDiscardsAnExternallyReplacedVersion",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testDecodingRejectsContentFieldsAndOverstatedPermissionsAtEveryBoundary",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testNativeRequestUsesNoGrantAndKeepsAnonymousResolutionFreeOfSessionHeaders",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testNoticeFeatureIsOffByDefaultAndCannotEnableInClosedClient",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testOldIdentityResponseCannotRestoreNoticeAfterAccountSwitch",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testOnlyExactTrustedFragmentInvitationIsAccepted",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testOwnerCreatesRotatesAndRevokesWithoutPersistingInvitationAfterSuspend",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "FutureNoticeTests",
+      "test": "testResponseDoesNotCreateReadAccessAndInboxClearsOnFailure",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testANameOnlyResponseWithPrivateDetailsFailsClosed",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testFailedRefreshDoesNotLeavePreviouslyGrantedContentVisible",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testLateResponseCannotRestoreDetailsAfterBackgroundInvalidation",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "SharedAccessStoreTests",
+      "test": "testPeriodicRefreshAvoidsFlickerButClearsRevokedOrUnavailableContent",
+      "status": "passed",
+      "durationMs": 1
+    }
+  ]
+}

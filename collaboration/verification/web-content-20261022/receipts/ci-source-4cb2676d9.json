@@ -1,0 +1,26 @@
+{
+  "head": "4cb2676d9b44a33336534d6e6c254e5c565e95c9",
+  "checkedAt": "2026-10-22T15:06:19.300039+00:00",
+  "runs": [
+    {
+      "id": 39799127855,
+      "name": "Verify source",
+      "number": 240,
+      "status": "completed",
+      "conclusion": "success"
+    },
+    {
+      "id": 39799128065,
+      "name": "Web UX browser regression",
+      "number": 23,
+      "status": "completed",
+      "conclusion": "success"
+    }
+  ],
+  "localTests": {
+    "content": 17,
+    "broker": 13,
+    "infra": 3
+  },
+  "boundary": "QA identity/bounded grants operation source verified; current application API remains53c904 and Web unchanged."
+}

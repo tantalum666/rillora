@@ -1,4 +1,7 @@
 import express, { type Express, type RequestHandler } from "express";
+import type { ContentContext } from './legacy-content/context.js';
+import { contentNoticeHandler, contentUploadHandlers, createContentRouter } from './legacy-content/routes.js';
+import { createFutureNoticeRouter, createPublicFutureNoticeRouter } from "./future-notice-routes.js";
 import type { McpIntegration } from './mcp/integration.js';
 import type { AppleProductionIntake } from './apple-production-intake.js';
 import { createAppleProductionNotificationHandler, createAppleProductionRouter } from './apple-production-routes.js';
@@ -9,7 +12,7 @@ import { authenticate, requireWorkspaceIdentity } from "./auth.js";
 import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
-import { checkContentKeys } from "./db.js";
+import { checkContentKeys, withAuthDatabase } from "./db.js";
 import { checkRecoveryJournal } from './recovery-journal.js';
 import { findForbiddenSecretField } from "./domain.js";
 import { ApiError, errorHandler, notFoundHandler } from "./errors.js";
@@ -58,6 +61,8 @@ import {
 } from "./storekit-sandbox-routes.js";
 
 export type AppDependencies = AuthDependencies & {
+  legacyContent?: ContentContext;
+  futureNoticesEnabled?: boolean;
   mcp?: McpIntegration;
   appleReviewIntake?: AppleProductionIntake;
   appleProductionIntake?: AppleProductionIntake;
@@ -78,6 +83,10 @@ export function createApp(
   config: AppConfig,
   dependencies: AppDependencies = {},
 ): Express {
+  if (dependencies.futureNoticesEnabled && (config.productionRuntimeClosed || config.productionReviewAccess)) {
+    throw new Error("Future notices cannot be enabled in a closed or review-only runtime");
+  }
+  if (dependencies.legacyContent && (config.productionRuntimeClosed || config.productionReviewAccess)) throw new Error('Content cannot be enabled in a closed or review-only runtime');
   const app = express();
   const emailVerifier = dependencies.emailIdentityVerifier
     ?? (config.emailVerification ? new Auth0EmailIdentityVerifier(config.emailVerification) : null);
@@ -96,6 +105,15 @@ export function createApp(
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
       await dependencies.mcp?.checkReady();
+      if (dependencies.legacyContent || dependencies.futureNoticesEnabled) {
+        // Production logins deliberately do not inherit schema privileges.
+        // Use the existing signed role transaction even for catalog metadata.
+        const ready = await withAuthDatabase(pool, async client => (await client.query(
+          "select to_regclass('app.legacy_content_assets') is not null as content, to_regclass('app.future_recipient_notices') is not null as notices",
+        )).rows[0]);
+        if (dependencies.legacyContent && !ready?.content) throw new Error('Content migration is unavailable');
+        if (dependencies.futureNoticesEnabled && !ready?.notices) throw new Error('Future notice migration is unavailable');
+      }
       if(config.nodeEnv==='production')await checkEmailMatchReadiness(pool,config);
       response.json({ status: "ready" });
     } catch {
@@ -190,6 +208,10 @@ export function createApp(
   // backup's own 2 MiB limit, which the handler enforces independently.
   const jsonTypes = ["application/json", "application/*+json"];
   const fileAuthentication = [preventCaching, authenticate(pool, config), requireWorkspaceIdentity];
+  if (dependencies.legacyContent) {
+    app.get(['/legacy-content/notice', '/api/legacy-content/notice'], contentNoticeHandler());
+    app.post(['/v1/legacy-content/assets', '/api/v1/legacy-content/assets'], ...fileAuthentication, ...contentUploadHandlers(dependencies.legacyContent));
+  }
   app.post(["/v1/account/map/import", "/api/v1/account/map/import"],
     ...fileAuthentication, express.json({ limit: mapBackupMaxBytes + 1024, strict: true, type: jsonTypes }));
   const encryptedPaths = ["/v1/exports/start-here/encrypted/:publicId/finalize", "/api/v1/exports/start-here/encrypted/:publicId/finalize"];
@@ -215,6 +237,11 @@ export function createApp(
   const publicSharing = createPublicSharingRouter(pool, config);
   app.use("/sharing", preventCaching, publicSharing);
   app.use("/api/sharing", preventCaching, publicSharing);
+  if (dependencies.futureNoticesEnabled) {
+    const futureNotices = createPublicFutureNoticeRouter(pool, config);
+    app.use("/future-notices", preventCaching, futureNotices);
+    app.use("/api/future-notices", preventCaching, futureNotices);
+  }
 
   if (config.allowSyntheticRecipientRehearsal) {
     const recipientRehearsalRouter = createRecipientRehearsalRouter(pool);
@@ -227,6 +254,7 @@ export function createApp(
   const plannerApi = express.Router();
   plannerApi.use(preventCaching, authenticate(pool, config));
   plannerApi.use(requireWorkspaceIdentity, rejectForbiddenSecretFields);
+  if (dependencies.legacyContent) plannerApi.use('/legacy-content', createContentRouter(dependencies.legacyContent));
   if (config.allowSyntheticRecipientRehearsal) {
     plannerApi.use(
       "/recipient-rehearsals",
@@ -236,6 +264,7 @@ export function createApp(
   plannerApi.use("/disclosure-rehearsals", createDisclosureRehearsalRouter(pool));
   plannerApi.use("/role-assignments", createRoleAssignmentRouter(pool));
   plannerApi.use("/sharing", createSharingRouter(pool, config, emailVerification));
+  if (dependencies.futureNoticesEnabled) plannerApi.use("/future-notices", createFutureNoticeRouter(pool, config, emailVerification));
   plannerApi.use("/maintenance", createFamilyMaintenanceRouter(pool, config));
   if (stripeExecutor?.providerEnvironment === 'production') {
     plannerApi.use('/commerce/stripe', createStripeProductionCommerceRouter(stripeExecutor, { checkoutEnabled: stripeCheckoutEnabled }, config));

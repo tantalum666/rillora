@@ -1,5 +1,6 @@
 import { createServer } from "node:http";
 import { createApp } from "./app.js";
+import { futureNoticesEnabled } from "./future-notice-routes.js";
 import { loadConfig } from "./config.js";
 import { createPool, sweepContentOrphans,withAuthDatabase } from "./db.js";
 import { deletionProcessor } from "./account-deletion.js";
@@ -12,6 +13,7 @@ import { createAppleProductionIntake, createAppleReviewIntake } from './apple-pr
 import { appleDeliveryMetrics } from './apple-production-metrics.js';
 import { startRetentionWorker } from './retention.js';
 import { mcpFromEnvironment } from './mcp/integration.js';
+import { contentFromEnvironment } from './legacy-content/runtime.js';
 
 const config = loadConfig();
 const pool = createPool(config);
@@ -22,7 +24,10 @@ const stripeExecutor = stripeProductionConfig ? new StripeCommerceExecutor(pool,
 const appleProductionIntake = config.appleProduction ? await createAppleProductionIntake(pool, config.appleProduction) : undefined;
 const appleReviewIntake = config.appleReview ? await createAppleReviewIntake(pool, config.appleReview) : undefined;
 const mcp = await mcpFromEnvironment(pool, config);
+const legacyContent = contentFromEnvironment(pool, config);
 const app = createApp(pool, config, { accountDeletionProcessor, transportReady: () => transportReady(),
+  ...(legacyContent ? { legacyContent } : {}),
+  futureNoticesEnabled: futureNoticesEnabled(),
   ...(mcp ? { mcp } : {}),
   ...(appleReviewIntake ? {appleReviewIntake} : {}),
   ...(appleProductionIntake ? { appleProductionIntake } : {}),

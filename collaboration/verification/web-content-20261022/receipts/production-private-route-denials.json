@@ -1,0 +1,17 @@
+[
+  {
+    "path": "/index.html",
+    "status": 404,
+    "expected": 404
+  },
+  {
+    "path": "/production-build.json",
+    "status": 404,
+    "expected": 404
+  },
+  {
+    "path": "/not-a-rillora-route",
+    "status": 404,
+    "expected": 404
+  }
+]

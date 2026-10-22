@@ -1,8 +1,12 @@
 # Account-bound invitations and directed sharing
 
 Status: SHARING CONTRACT RETAINED; ACTUAL NATIVE-TO-WEB SCOPE AND REVOCATION VERIFIED
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Last updated: 2026-10-20 (Asia/Shanghai)
 Authority: Owner explicitly requests A -> B/C invitations, authenticated acceptance and per-person/per-matter access.
+
+## October20 future notices — next-version implementation
+
+Owner directs the independent notice/acknowledgement slice. [Implementation contract](future-recipient-notices-20261020.md) defines anonymous minimal preview, fresh verified-email matching, account-bound acknowledgement/decline, sender revocation and recipient leave. This relationship grants no Matter access and leaves existing explicit shares unchanged. Web/iOS are implemented behind default-off flags; local bilingual UI/API acceptance has passed. The October19 design-only status below is historical for this slice; conditional disclosure remains unimplemented. No real notice has been sent or current review changed.
 
 ## October19 future recipient notice — design only
 

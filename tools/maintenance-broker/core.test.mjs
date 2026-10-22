@@ -64,6 +64,27 @@ test('staging accepts only its default reviewed migration',async()=>{
   assert.equal(f.writes[0].input.overrides,undefined);
   await assert.rejects(executeMaintenance({operation:'migrate',clientToken:'b'.repeat(32),command:'arbitrary'},fixture().call,staging));
 });
+test('content QA is closed by default and bound to one deployed identity, label and four-hour deadline',async()=>{
+ const now=Date.parse('2026-10-22T12:00:00Z'),subject='auth0|'+'a'.repeat(24);
+ const scope={subject,identitySha256:createHash('sha256').update('https://login.rillora.xyz\u001f'+subject).digest('hex'),
+  label:'Rillora Web Content QA 2026-10-22',expiresAt:new Date(now+3600_000).toISOString()};
+ const request=task(),container=request.overrides.containerOverrides[0];
+ container.command=['node','dist/configure-content-qa.js','prepare'];
+ const fields={RILLORA_CONTENT_QA_SUBJECT:'subject',RILLORA_CONTENT_QA_IDENTITY_SHA256:'identitySha256',RILLORA_CONTENT_QA_LABEL:'label',RILLORA_CONTENT_QA_EXPIRES_AT:'expiresAt'};
+ for(const [name,key] of Object.entries(fields))container.environment.push({name,value:scope[key]});
+ const settings={...config,productionRuntimeMode:'live',contentQaScope:scope};
+ const denied=fixture();await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},denied.call,{...config,productionRuntimeMode:'live'},()=>now),/deployed content QA scope/);assert.equal(denied.writes.length,0);
+ for(const mutate of [r=>r.overrides.containerOverrides[0].environment.find(e=>e.name==='RILLORA_CONTENT_QA_SUBJECT').value='auth0|'+'b'.repeat(24),
+  r=>r.overrides.containerOverrides[0].environment.find(e=>e.name==='RILLORA_CONTENT_QA_LABEL').value='Rillora App Review',
+  r=>r.overrides.containerOverrides[0].environment.find(e=>e.name==='RILLORA_CONTENT_QA_EXPIRES_AT').value=new Date(now+7200_000).toISOString(),
+  r=>r.overrides.containerOverrides[0].environment.push({name:'DATABASE_HOST',value:'arbitrary'})]){
+  const changed=structuredClone(request),bad=fixture();mutate(changed);await assert.rejects(executeMaintenance({operation:'task',run,runToken,request:changed},bad.call,settings,()=>now));assert.equal(bad.writes.length,0);
+ }
+ const good=fixture();await executeMaintenance({operation:'task',run,runToken,request},good.call,settings,()=>now);assert.equal(good.writes.length,1);
+ await assert.rejects(executeMaintenance({operation:'task',run,runToken,request},fixture().call,settings,()=>now+3600_001),/bounded content QA expiry/);
+ const cleanup=structuredClone(request);cleanup.overrides.containerOverrides[0].command[2]='revoke';
+ const done=fixture();await executeMaintenance({operation:'task',run,runToken,request:cleanup},done.call,settings,()=>now+5*3600_000);assert.equal(done.writes.length,1);
+});
 test('fixed billing operations retain the source scope, inspected-state precondition and explicit live gate',async()=>{
  for(const operation of ['inspect','activate','close-new-sales']){
   const request=task(),container=request.overrides.containerOverrides[0];
