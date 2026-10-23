@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Last updated: 2026-10-24 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3812,3 +3812,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - This supersedes the prior cloud-first execution and billing-restoration gate. Disable existing workflows before pushing, retain their definitions outside the executable directory, and run base-owned source/publication policy plus relevant test groups locally. Do not increase spending, use skip-ci markers, fabricate successful check statuses or register a persistent self-hosted runner.
 - Current PR9 is development source. Its isolated next iOS target keeps the review configuration and pinned dependencies unchanged. The earlier two Duo landscape UI failures and physical speech/health/protection gates remain open and block next-version release claims, not preservation of opt-in source. No product limits, real data, price, live switch or FanPass change is authorized by the merge itself.
 - Existing exact application checkpoints remain usable for unchanged code. Local execution, GitHub integration and deployment are separately recorded in [the integration review](git-integration-local-ci-20261023.md).
+
+## 2026-10-24 — Broaden the HealthKit direction; evaluate a lightweight Watch companion
+
+- Status: OWNER explicitly requests broader health-data consideration and asks whether watchOS should be built. This is not proof of implementation, personal health consent or Apple approval.
+- The current single-heart-rate slice is a technical checkpoint, not the final product scope. Read-only still means no HealthKit writes. The staged metric list and iPhone-first/Watch-later recommendation are Agent proposals in [the focused note](healthkit-multisignal-watchos-20261024.md), not a new price, threshold, Watch release or disclosure decision.
+- Synced health reads and basic forwarded notifications do not require a Watch app. A companion would add short intentional interactions, not unrestricted monitoring. Common-source gaps, limited authorization, unknown states and the health-purpose boundary remain material.
+- Current review, real data, platform capabilities, billing, toolchain defer and local-only verification policy remain unchanged. No repeated Apple preapproval request or personal sampling is started.

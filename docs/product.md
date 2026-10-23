@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Last updated: 2026-10-24 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-24 HealthKit多类读取与手表端讨论
+
+Owner指出健康数据不应只限心率，并询问watchOS适配。[当前建议](healthkit-multisignal-watchos-20261024.md)区分多类读取、独立提醒和手表交互；原心率仅是第一段技术实现。具体类型分批和watchOS方案仍为Agent建议，不将问题记成Watch立项或真实健康采集批准。所有扩展保留到下一版本，当前审核、收费、数据、平台用途与资料披露边界保持。
 
 ## 2026-10-23 Git整合与本机验证
 

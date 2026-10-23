@@ -1,8 +1,12 @@
 # 下一版本 HealthKit 接入准备
 
 Status: NEXT-VERSION APP INTEGRATED / PERSONAL HEALTH ACCESS NOT TESTED
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Last updated: 2026-10-24 (Asia/Hong_Kong)
 Preparation branch and baseline (historical): `codex/healthkit-preparation-20261020`, `5e4d6d6920e4d38b842f94f35832022057c1c2e8`
+
+## 2026-10-24 多类读取方向与watchOS取舍
+
+Owner明确希望覆盖更多健康数据，并询问是否开发手表端。[本轮复核与建议](healthkit-multisignal-watchos-20261024.md)将已实现的心率切片与下一阶段范围分开：建议先做心率／活动／可选睡眠及数据质量，再做独立提醒闭环，之后考虑轻量watchOS配套。普通已同步数据读取与基础通知不以Watch App为前提；具体数据分批和Watch立项不是本轮已实现／已分发的事实。写入集合、当前审核、个人健康数据和披露边界保持；不再把“仅心率”作为最终产品范围。
 
 ## 2026-10-23 组合原生开发检查点
 
@@ -32,7 +36,7 @@ Owner明确“开始吧，但是不要影响当前审核”，承接普通Health
 
 不将B隐藏在“健康助手”文案后，不推断本机处理或个人同意可豁免用途限制。普通HealthKit capability并非特殊资格申请；本次不申请实时跌倒／车祸entitlement。若Apple要求另一个私密渠道，沿本案移交，不公开用户资料或重复发送多个工单。
 
-## 最小数据与首个技术切片
+## 最小数据与首个技术切片（现有实现检查点）
 
 以下为Owner已授权进入下一版本实现的首个只读验证范围；当前在审App未启用：
 

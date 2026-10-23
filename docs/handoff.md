@@ -1,24 +1,20 @@
 # Rillora 当前交接
 
-Status: PR9 MERGED / LOCAL GATES PASS / CLOUD CI RETIRED / NOT DEPLOYED
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Status: MULTI-TYPE HEALTHKIT DIRECTION RESEARCHED / WATCH COMPANION RECOMMENDED / NO RUNTIME CHANGE
+Last updated: 2026-10-24 (Asia/Hong_Kong)
 
-## 当前任务
+## 当前任务与已完成
 
-Owner要求检查并合并GitHub待办，同时停止使用云端CI。[本轮整合](git-integration-local-ci-20261023.md)取代[旧账单门交接](handoff-history-20261023-before-local-ci.md)；后者仅为HISTORICAL，不再恢复预算或重跑云端。
+Owner要求健康数据范围不只心率，并询问是否做watchOS。[当前方案](healthkit-multisignal-watchos-20261024.md)已按最新Apple文档和实际源码复核：只读可涵盖多类；iPhone能读同步记录，基本通知可转到手表。建议先心率／活动／可选睡眠与清楚的数据状态，再独立提醒闭环，之后提供轻量手表回应。具体分批和Watch开发仍是建议，本轮没有开始代码或个人采样。
 
-## 已完成
+[前一轮Git交接](handoff-history-20261024-before-health-scope.md)转HISTORICAL。PR9已合并，main a985c3754包含最后元数据；当时32个远端分支头已包含、开放PR0，三项云端工作流停用、无新作业。本轮不重复Git整合、应用测试、部署或本人验证。
 
-PR9已从2e75d1742合并为main15068a9ce，文件树相同；开放PR0，32个远端分支头全部包含。活动源码、权限／文件边界、两端错误恢复与现有证据已复核；没有新合并阻塞。原审核5份配置／依赖pins与main保持。新原生／HealthKit／Duo能力只在独立下一版目标启用。
+## 证据边界与保留项
 
-三个GitHub工作流已逐一停用，源码定义移出执行目录；[本机检查](../tools/ci/README.md)保留可信base秘密扫描、完整可读清单和原测试组。source组132项通过，扫描32项既有登记／0未知。沿用ada1f5b32完整Web／API检查和78aaa5de1原生18项／编译结果，不冒充当次重跑。
+实际健康源码仍只有前台24小时／200条心率切片；合成测试与入口证据沿用原检查点。其他指标、个人基线、提醒、Watch App、真实系统健康／语音／硬件保护没有完成。心率缺失／活动减少／未回复不能充当死亡事实，健康及派生状态不进入资料解锁。Apple不给概念预审并非用途批准。
 
-## 证据边界
-
-七组内容修复、真实本机SQL／双语导出与5条浏览器路径沿用[既有完整性证据](content-completeness-review-20261023.md)。两项Duo横屏UI失败、真人麦克风／本机识别／健康／硬件保护仍未完成；机构材料装配、缺件／来源变化提示和真实身后交付未实现。源码入库不等于下一版可发布。
-
-当前审核、TestFlight、手机、生产、数据、价格、收费、FanPass和系统／Xcode升级暂缓保持。本轮无部署；未来长文字客户端必须先发布兼容API，再Web，最后下一版原生。
+两项Duo横屏UI失败、办理包材料装配等既有未完成项继续保留。当前审核、线上数据、收费、定价、FanPass、TestFlight和系统／Xcode升级暂缓保持。未来长文字客户端部署仍须兼容API先行。所有检查继续本机执行。
 
 ## 唯一下一步
 
-下一版本继续时，先定位并修复已有两项Duo横屏交互失败，在现有工具链内验证真实可操作性，再推进下一版发布门；不得用旋转尺寸或标题保持代替保存／返回／放弃的结果。升级仍暂缓，当前审核不变。[本轮完成回执](../collaboration/verification/git-local-ci-20261023/completion.json)已记录合并与无新云端作业，本机回到main；旧archive1–52不重做。
+后续开发先把下一版单类型reader扩为按用途／类型选择的健康读取接口，落实心率、活动与可选睡眠的数据状态、来源／重复处理和授权缺失测试；不以watchOS作为前置依赖，不在此过程中增加自动披露。手表配套的具体功能与分发按本轮建议另行推进，当前不改变审核包。
