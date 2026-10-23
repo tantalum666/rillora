@@ -19,8 +19,10 @@ Owner要求再看办理包、重要文件和原声是否完善。本轮交付是
 
 本轮修复尚未部署。原Web上线证据不包含新候选；下一版客户端的长文字上传要求先部署兼容API。机构材料自动装配、缺件／源资料变化提示尚未实现，当前是手工组织材料与进度。真人麦克风／本机识别／取消中断、硬件保护及真实身后核验交付不在通过范围。Duo既有两项横屏UI失败仍开放，没有重跑或归责Apple。
 
-继续codex/ios-content-healthkit-20261023及[PR9](https://github.com/tantalum666/rillora/pull/9)；源码、archive52及远端实际结果见[保存回执](../collaboration/verification/content-completeness-20261023/README.md)。旧1–51不重做。GitHub的Linux检查不包含原生UI，实际CI与各本机用例独立报告。
+继续codex/ios-content-healthkit-20261023及[PR9](https://github.com/tantalum666/rillora/pull/9)；源码、archive52及远端实际结果见[保存回执](../collaboration/verification/content-completeness-20261023/README.md)。源码c4d9930f4已推送，Verify source三任务及publication guard通过，archive52远端独立认证165对象／244路径通过。云端浏览器与最终回执提交CI读取对应原生记录，不预写状态。旧1–51不重做。GitHub的Linux检查不包含原生UI，实际CI与各本机用例独立报告。
 
 ## 唯一下一步
 
 在后续发布这批候选时，按兼容API→Web顺序切换并做线上定向回读；iOS继续留到下一版本，保持当前审核与升级暂缓安排。材料装配等产品增量列为尚缺能力，不以本轮修复冒充已交付。
+
+CI收尾补记：源码c4d9930f4的完整云端浏览器实际81通过／2项既有模型资格跳过；但依赖安装9分26秒、测试4分49秒后，任务触发15分钟总时限，整体标Cancelled而非通过。已仅将该任务总上限调整为20分钟，不删测试、不放松断言、不换依赖或权限。最终提交仍须读取真实工作流结果；本轮不升级本机或部署应用。

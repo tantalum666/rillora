@@ -1,0 +1,23 @@
+{
+  "recordedAt": "2026-10-23T13:39:33.454865+00:00",
+  "sourceCommit": "c4d9930f4c38cd3cb2ee7f9b58b978c0d9a57419",
+  "sourceRun": 39961974581,
+  "sourceJobs": {
+    "source": "success",
+    "api": "success",
+    "web-and-infrastructure": "success"
+  },
+  "guardRun": 39961970459,
+  "guardConclusion": "success",
+  "browserRun": 39961974554,
+  "browserStatusEvidence": "81 passed, 2 existing explicit skips; workflow cancelled at 15 minute job limit after slow dependency setup. See ci-browser-timeout receipt.",
+  "archive52": {
+    "objects": 165,
+    "paths": 244,
+    "encryptedBytes": 37987976,
+    "freshRemoteAuthentication": true
+  },
+  "rawArchiveNotResealed": true,
+  "deployed": false,
+  "finalMetadataCommit": "Docs/receipts/manifest plus bounded browser job timeout from 15 to 20 minutes; no application/test change. Exact final workflow outcome read after push."
+}

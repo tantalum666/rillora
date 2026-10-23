@@ -1,0 +1,22 @@
+{
+  "checkedAt": "2026-10-23T13:52:26.900633+00:00",
+  "run": 39961974554,
+  "job": 120441957895,
+  "head": "c4d9930f4c38cd3cb2ee7f9b58b978c0d9a57419",
+  "workflowConclusion": "cancelled",
+  "annotation": "The job has exceeded the maximum execution time of 15m0s",
+  "testOutcome": {
+    "passed": 81,
+    "skipped": 2,
+    "failed": 0,
+    "duration": "4.8m"
+  },
+  "installationDuration": "9m26s",
+  "rawJobLogSha256": "ae98f51068938b01fdcfa17170ccf1cf070a8de5d33da484ba856b2500728f27",
+  "artifact": {
+    "id": 12505189565,
+    "bytes": 17607321,
+    "sha256": "ecc6886d43a9bb52bf3627c34b60a548a6cdecbcbc70094c7b242d472a30e0ea"
+  },
+  "correction": "Bounded job timeout 15 to 20 minutes; tests, assertions, browsers, dependencies, permissions and billing unchanged. Exact next workflow outcome still needs reading."
+}

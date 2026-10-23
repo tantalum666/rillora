@@ -30,3 +30,7 @@ API首次边界用例对8MiB Buffer使用通用深比较而超时，换为逐字
 新增archive52只保存本轮QA原始结果、构建日志、浏览器回执、失败与成功的原生结果包、可保留截图及辅助脚本。可重建的依赖／DerivedData／构建缓存、个人认证或真实凭据排除；旧1–51不重封／重下。源码与安全摘要普通入Git，后续Git回执也普通追加，不递归封存。独立远端核验与最终CI按实际记录，继续同一[PR9](https://github.com/tantalum666/rillora/pull/9)。
 
 Archive52已完成本地认证解密与对象核验：244条路径、165个独立对象、37,987,976密文字节。后续远端回执直接追加为可读元数据，不重封归档。
+
+源码c4d9930f4已推送；[Verify source](https://github.com/tantalum666/rillora/actions/runs/39961974581)三任务及[publication guard](https://github.com/tantalum666/rillora/actions/runs/39961970459)均通过。Archive52已从GitHub独立下载，165对象／244路径与远端元数据全部一致，见[远端回执](remote-readback.json)。[云端浏览器回归](https://github.com/tantalum666/rillora/actions/runs/39961974554)与最后元数据提交的状态由GitHub原生记录证明，不预写未完成的结论。本轮仍未部署。
+
+CI收尾补记：源码c4d9930f4的完整云端浏览器实际81通过／2项既有模型资格跳过；但依赖安装9分26秒、测试4分49秒后，任务触发15分钟总时限，整体标Cancelled而非通过。已仅将该任务总上限调整为20分钟，不删测试、不放松断言、不换依赖或权限。最终提交仍须读取真实工作流结果；本轮不升级本机或部署应用。

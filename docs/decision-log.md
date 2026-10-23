@@ -3801,3 +3801,5 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Recheck action packs, selected files and original voice against current code and the accepted planning direction. Source/core acceptance is not full institutional-material assembly, true post-death delivery or proven annual value.
 - Seven implementation corrections preserve prices, allowances, authorization, current review and upgrade defer. A 64KiB upload envelope accommodates the existing 48KiB encrypted text body; no storage quota or sharing permission is widened. Compatible API deployment must precede the next client's longer uploads.
 - Saved-recording transcription stays on device and requires the actual Apple permission/support path; no ambient recording or health collection is added by validation. Provider-specific draft assembly, missing-material/source-change guidance, real system/media checks and prior Duo failures remain separate open work. This review does not approve or claim deployment.
+
+同轮CI修正：浏览器81项通过、2项既有显式跳过，但冷安装耗9m26s使15分钟任务总限到期。仅将既有Ubuntu浏览器任务总限改为20分钟，测试与断言、资源类型和权限不变；不表示产品失败被忽略，最终运行结果单独核对。
