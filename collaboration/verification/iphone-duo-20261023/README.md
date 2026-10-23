@@ -29,4 +29,6 @@ Updated: 2026-10-23 (Asia/Hong_Kong)
 
 继续同一[next-version PR9](https://github.com/tantalum666/rillora/pull/9)。提交、独立远端保存核验和GitHub CI按实际回执记录；CI不包含这两项本机旋转UI，绿色CI不能代替Duo验收。
 
-本轮archive51已完成本地认证解密：842路径／435对象／204,567,245密文字节。独立远端验证在push后记录；此后收尾／Git回执为普通可读元数据，不递归重封原件。
+本轮archive51已完成本地认证解密：842路径／435对象／204,567,245密文字节。已在源码8b352f454从GitHub独立下载并认证解密，435对象／842路径全部匹配[远端元数据](remote-readback.json)。首次下载遇到DNS解析失败，后续原路径重试成功；没有重新认证或重下载旧1–50。此后收尾／Git回执为普通可读元数据，不递归重封原件。
+
+源码8b352f454的[Verify source](https://github.com/tantalum666/rillora/actions/runs/39920987873)三任务及[Guard source publication](https://github.com/tantalum666/rillora/actions/runs/39920985313)均成功。后续回执提交不修改应用／测试代码，确切最终CI以PR原生记录为准；上述两项原生旋转失败仍开放。

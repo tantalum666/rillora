@@ -19,7 +19,7 @@ Owner要求下一版适配iPhone Duo，随后明确“稍等，我还是晚点�
 
 真正Duo模拟器和iOS27.1新系统栏／姿态验证需要以后升级。原内容模块与真实设备媒体／HealthKit边界沿用[原生合同](ios-content-development-20261023.md)，不由此次布局结果替代。合成API已停止，合成数据库保留。
 
-工作位于codex/ios-content-healthkit-20261023与[next-version PR9](https://github.com/tantalum666/rillora/pull/9)，本轮源码、失败证据、archive51和远端实际状态见[Git回执](../collaboration/verification/iphone-duo-20261023/README.md)。GitHub CI不运行上述原生旋转用例，须与本机失败分别报告。
+工作位于codex/ios-content-healthkit-20261023与[next-version PR9](https://github.com/tantalum666/rillora/pull/9)，本轮源码、失败证据、archive51和远端实际状态见[Git回执](../collaboration/verification/iphone-duo-20261023/README.md)。源码8b352f454已推送，Verify source三任务及publication guard通过；archive51独立远端下载／认证的435对象与842路径一致。后续只补回执元数据，最终CI读取PR实际记录。GitHub CI不运行上述原生旋转用例，须与本机失败分别报告。
 
 ## 唯一下一步
 
