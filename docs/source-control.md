@@ -6,7 +6,7 @@ Last updated: 2026-10-24 (Asia/Hong_Kong)
 
 [This implementation](health-checkin-watch-development-20261024.md) starts from `f017648cada6d39144a88aa12b5a42d470c40e5d` on `codex/health-checkin-watch-20261024`. Current source, bilingual resources and next-only project configuration are ordinary Git. [Safe receipts](../collaboration/verification/health-checkin-watch-20261024/README.md) and new archive53 preserve this task's successful and failed tests, result bundles, synthetic screenshots, actual paired-Simulator SDK evidence and unsigned Release simulator candidate; archives1–52 remain immutable. Credentials, real health data, machine-wide crash reports, DerivedData and dependency caches are excluded. The actual crash is represented by a sanitized stack summary.
 
-Only local tests and the reviewed exact-base publication/source guard run. Source preservation is not deployment or real-device acceptance; current review files, data, prices, billing, TestFlight and toolchain remain unchanged. Final remote SHA, PR and fresh archive verification are recorded in the linked receipts, followed by an explicit no-new-cloud-runs readback.
+Only local tests and the reviewed exact-base publication/source guard run. Source preservation is not deployment or real-device acceptance; current review files, data, prices, billing, TestFlight and toolchain remain unchanged. Source/archive commit `95ba3923614610ae5d41372b56d0bd71782d26cc` is published in [PR10](https://github.com/tantalum666/rillora/pull/10), open and conflict-free. Fresh remote archive53 verification matches508objects/751paths. The run total remains314 and this source head has0runs; final metadata changes do not rerun application tests.
 
 ## October23 local verification and reviewed main integration
 

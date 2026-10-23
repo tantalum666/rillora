@@ -51,3 +51,5 @@ Owner明确要求按[既定顺序](healthkit-multisignal-watchos-20261024.md)实
 - [通知转发与设备状态](https://developer.apple.com/documentation/watchos-apps/taking-advantage-of-notification-forwarding)
 
 接口可用不等于Apple用途批准、实际投递或医学有效。当前只实现本人记录查看和独立确认，不连接健康信号与遗产披露。
+
+Git交付：源码95ba39236已推[PR10](https://github.com/tantalum666/rillora/pull/10)，archive53远端独立下载认证508对象／751路径通过。云端运行总数仍314，本轮源码运行0；PR未合入main，后续补记仅文档／回执，不重跑未变化的应用检查。

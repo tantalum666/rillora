@@ -36,3 +36,9 @@ Last updated: 2026-10-24 (Asia/Hong_Kong)
 原始包含本轮成功／失败日志、完整xcresult、合成UI、实际SDK状态、隔离指纹、工具回执、收尾脚本及最终未签名Release模拟器App。机器级崩溃报告、个人健康、凭据、私有账号状态和可重建依赖／DerivedData不上传。合成本机服务已停止，两台模拟器关闭，未擦除合成数据库／容器。真实HealthKit、实体手表、长期通知／耗电、硬件保护、实际表盘安装及下一版商店材料仍需独立验收；既有Duo两项横屏失败仍开放。本轮不部署、不发TestFlight。
 
 本地归档结果：archive53保存751条路径／508个独立对象，密文71,447,368字节；本地认证解密通过。新目录和最后回执加入后再执行完整发布门，远端结果另记。
+
+## GitHub交付完成
+
+源码／归档提交`95ba3923614610ae5d41372b56d0bd71782d26cc`已推[PR10](https://github.com/tantalum666/rillora/pull/10)，PR开放且无合并冲突，尚未合入main。archive53从独立空LFS目录重新下载，508对象／751路径认证通过；旧归档没有重新下载。[远端回执](remote-readback.json)、[GitHub提交与无新云端运行](github-source-readback.json)、[完成状态](completion.json)为最终交付记录。云端总数仍314，本轮源码提交的运行数0。
+
+`closeout.json`与`publication-local.json`保留冻结前的有日期检查点，其“远端待完成”字段被本节及completion取代。最后补记仅文档与回执，源码检查沿用95ba39236的确切字节；再核验最后全量清单，不重复应用测试、构建、旧归档或部署。

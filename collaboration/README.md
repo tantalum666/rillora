@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October24当前：[六类健康、独立报平安与轻量Watch](../docs/health-checkin-watch-development-20261024.md)已完成下一版源码及本机验收，当前审核与线上不变。[本轮回执](verification/health-checkin-watch-20261024/README.md)分别记录纯模块、双语UI、系统适配、真实配对模拟器回执和原始失败；仅新增archive53，旧1–52不重做。云端CI继续停用；确切推送、PR及远端验证以该回执为准，当前唯一下一步仍看handoff。
+October24当前：[六类健康、独立报平安与轻量Watch](../docs/health-checkin-watch-development-20261024.md)已完成下一版源码及本机验收，当前审核与线上不变。[本轮回执](verification/health-checkin-watch-20261024/README.md)分别记录纯模块、双语UI、系统适配、真实配对模拟器回执和原始失败；仅新增archive53，旧1–52不重做。云端CI继续停用；源码95ba39236已推PR10，archive53远端认证508对象／751路径通过，云端运行仍314；PR开放未合入main。当前唯一下一步仍看handoff。
 
 October23最新：[Git整合／本机验证](../docs/git-integration-local-ci-20261023.md)按Owner明确指令停止云端CI，旧账单恢复门被取代；保留可信base秘密扫描、完整清单及相关本机测试。[当前本机入口](../tools/ci/README.md)与[本轮回执](verification/git-local-ci-20261023/README.md)供后续协作沿用。PR9已合并为main15068a9ce，32个远端分支头全包含、开放PR0；运行总数保持314，无新云端任务。[完成回执](verification/git-local-ci-20261023/completion.json)。下方云端CI描述均为有日期的既往检查点，不能据此重新启动工作流；当前唯一下一步只看handoff。
 
