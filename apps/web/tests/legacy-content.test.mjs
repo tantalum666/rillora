@@ -18,6 +18,15 @@ test('binary upload frames bounded UTF-8 metadata separately from the exact file
   assert.deepEqual(new Uint8Array(bytes.slice(4 + length)), data);
   assert.throws(() => fileUploadBody(new Blob([new Uint8Array(8388609)]), metadata));
 });
+test('complete Chinese metadata fits the bounded upload, while oversized saved text does not', async () => {
+  const metadata = { name: '合成原声', description: '中'.repeat(2000), transcript: '请先保留资料。'.repeat(1000), transcriptConfirmed: true, language: 'zh-CN' };
+  const input = { requestKey: ID, kind: 'voice', mediaType: 'audio/wav', metadata };
+  const wave = pcmWave(new Float32Array([0, 0.2, -0.2]));
+  const bytes = await fileUploadBody(wave, input).arrayBuffer(), length = new DataView(bytes).getUint32(0);
+  assert.ok(length > 4096 && length < 65536);
+  assert.deepEqual(JSON.parse(new TextDecoder().decode(bytes.slice(4, 4 + length))), input);
+  assert.throws(() => fileUploadBody(wave, { ...input, metadata: { ...metadata, transcript: '\u0000'.repeat(12000) } }), { code: 'legacy_content_too_large' });
+});
 test('new binary requests keep the current account and CSRF boundaries', async () => {
   let captured;
   const asset = { publicId: ID, kind: 'file', state: 'ready', mediaType: 'application/pdf', byteCount: 5, version: 1, name: 'copy.pdf', description: '', transcript: '', transcriptConfirmed: false };

@@ -1,0 +1,15 @@
+{
+  "recordedAt": "2026-10-23T06:39:23.708032+00:00",
+  "focusedSpecs": [
+    "docs/ios-content-development-20261023.md",
+    "docs/platform-contract.md",
+    "docs/healthkit-preparation-20261020.md",
+    "apps/ios/NextVersionContent/README.md",
+    "apps/ios/NextVersionHealth/README.md"
+  ],
+  "authority": "docs/product.md October23 section; docs/decision-log.md appended Owner development scope",
+  "handoff": "docs/handoff.md; previous state moved to HISTORICAL file",
+  "journey": "docs/journey/PROJECT_JOURNEY.md appended goal, attempts, changed judgment, result and remaining work",
+  "checks": "acceptance.json: 14 module, 15 current native latest relevant results, 8 isolation, TypeScript pass",
+  "boundary": "No deployment, real data, actual microphone/health collection, review change, signing or TestFlight. Git publication evidence follows frozen capture."
+}

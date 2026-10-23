@@ -5,7 +5,11 @@ Authority scope: Web/iOS responsibilities, shared state and first validation rel
 Superseded by: later explicit platform decision  
 Do not use for: final framework choice or visual tokens  
 Status: CORE PARITY CONTRACT ACTIVE; CURRENT RUNTIME AND RELEASE GATES IN HANDOFF
-Last updated: 2026-10-20 (Asia/Shanghai)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
+
+## October23 next-version native content parity
+
+[Native content development](ios-content-development-20261023.md) now implements the deployed file/voice/action-pack contract with system file import/export, versioned drafts and sharing, recipient progress and revocation. Fifteen current native cases have successful relevant results, including real loopback API/SQL and English/Chinese system-file byte round trips; fourteen pure module tests and eight isolation checks pass. The reviewed app remains separate. HealthKit is linked only in the next project and has no data path into content/network/recipient features. Personal system authorization, physical microphone/health sampling and release remain unverified; earlier Web and transaction evidence is not rerun.
 
 ## October20 future arrangement notice parity
 

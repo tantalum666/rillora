@@ -100,15 +100,12 @@ struct OverviewContent: View {
                     DevelopmentIdentityBanner()
                 }
 
-                OverviewHero(
-                    snapshot: snapshot,
-                    onReviewMatters: onReviewMatters,
-                    onOpenMatter: onOpenMatter,
-                    onAddFirstMatter: onAddFirstMatter
-                )
-
-                OverviewPeopleSection(contacts: snapshot.trustedContacts, service: sharingService,
-                    revision: sharingRevision, onInvite: onInviteSomeone, onOpenContact: onOpenContact)
+                #if RILLORA_DUO_NEXT_VERSION
+                RilloraAdaptivePair { mapSection } second: { peopleSection }
+                #else
+                mapSection
+                peopleSection
+                #endif
 
                 Button(action: onOpenShared) {
                     HStack(spacing: 14) {
@@ -139,6 +136,16 @@ struct OverviewContent: View {
         .background(RilloraTheme.canvas)
         .scrollIndicators(.hidden)
         .accessibilityIdentifier("overview.scroll")
+    }
+
+    private var mapSection: some View {
+        OverviewHero(snapshot: snapshot, onReviewMatters: onReviewMatters,
+            onOpenMatter: onOpenMatter, onAddFirstMatter: onAddFirstMatter)
+    }
+
+    private var peopleSection: some View {
+        OverviewPeopleSection(contacts: snapshot.trustedContacts, service: sharingService,
+            revision: sharingRevision, onInvite: onInviteSomeone, onOpenContact: onOpenContact)
     }
 }
 

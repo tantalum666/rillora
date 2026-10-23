@@ -5,9 +5,25 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-23 Git整合与本机验证
+
+Owner明确先检查GitHub工作，合适后合并，同时停止使用云端CI。[本轮整合](git-integration-local-ci-20261023.md)以本机检查和已有精确提交证据验收，取代账单恢复／提高云端预算的旧下一步。下一版源码合并不等于发布；既有审核、部署顺序、真机与Duo未完成项、收费和升级暂缓保持。
+
+## 2026-10-23 三项内容能力完整性复核
+
+Owner要求再看办理包、文件与原声是否完善。[本轮复核](content-completeness-review-20261023.md)确认核心准备／当前共享已实现，同时修复七组内容一致性、上传、本人取回和错误恢复问题。修复是下一版候选；机构申请材料装配、缺件／来源变化提示及真实身后交付没有因此完成。保持当前审核、线上、定价、真实数据、FanPass与升级暂缓；已有验收沿用，不把这次检查写成所有发布门通过。
+
+## 2026-10-23 下一版本Duo布局适配，开发环境升级延后
+
+Owner要求适配iPhone Duo并放在下一版本，随后明确晚点升级，取代刚才允许立即升级的安排。[适配合同](iphone-duo-adaptation-20261023.md)限定现有SDK可完成的容器布局、图片比例、窄工具栏与状态保持；真实Duo／iOS27.1系统栏和姿态验证留待以后升级。当前审核、TestFlight、线上、数据和定价保持；没有下载或安装新macOS／Xcode。
+
+## 2026-10-23 下一版本原生内容与HealthKit开发
+
+Owner明确继续补齐iOS办理包、文件和原声并接好HealthKit，先开发／测试，暂不发TestFlight。[本轮原生合同](ios-content-development-20261023.md)取代等待当前审核结果才开始开发的旧交接门。独立下一版工程复用既有API与已锁定依赖，当前主工程、在审构建、线上和定价不变。开发／合成模拟器结果与真实麦克风、个人健康授权、真机文件保护和后续分发分别取证。
 
 ## 2026-10-22 HealthKit进入下一版源码，保留当前审核
 
@@ -593,6 +609,8 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 办理包、重要文件与原声的完整性及缺口 | `docs/content-completeness-review-20261023.md` | 核心实现、七组候选修复、尚缺的材料装配与真实设备／身后交付证据分开 |
+| 下一版本iPhone Duo与可伸缩原生布局 | `docs/iphone-duo-adaptation-20261023.md` → `docs/ios-content-development-20261023.md` | 当前工具下的布局准备与未来Duo原生验证分开；环境升级按Owner暂缓 |
 | 下一版本HealthKit数据范围、权限说明、用途咨询与进入实现的条件 | `docs/healthkit-preparation-20261020.md` → `docs/apple-healthkit-inquiry-20261020.md` | 准备合同、已回复独立案例及下一版源码；不代表平台用途获批或已读取真实健康数据 |
 | 多信号异常确认、仅身后披露、失联条件与生前封存预告 | `docs/conditional-disclosure-vnext-20261019.md` | Owner需求与候选规则；未实现，时限／用途／证据／密钥门分别验证 |
 | 营销平台注册、逐平台运营／广告规则与200—500美元预算 | `docs/marketing/platform-playbook-20261019.md` → `docs/marketing/acquisition-budget-20261019.md` | 官方规则、建议、实际账号资格、分期支出和市场结果分别记录；计划不是投放授权 |

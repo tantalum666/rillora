@@ -1,0 +1,60 @@
+{
+  "checkedAt": "2026-10-23T13:22:20.241165+00:00",
+  "base": "cc9526be9ede04897f3cbc0449ab44335332c509",
+  "status": "SEVEN_FIX_GROUPS_VALIDATED_CANDIDATES_NOT_DEPLOYED",
+  "swiftModule": {
+    "passed": 18,
+    "initialPassed": 17,
+    "log": "swift-package-final.log",
+    "followup": "First recording preserves prepared text; only replacement clears it, both clear confirmation."
+  },
+  "nativeIntegration": {
+    "passed": 1,
+    "result": "native-new-integration.xcresult"
+  },
+  "nativeUI": {
+    "passed": 2,
+    "result": "native-completeness-ui-final.xcresult",
+    "scope": "bilingual owner publication file export through Save, and saved recording language/transcription controls; no microphone or Apple Speech authorization"
+  },
+  "releaseIsolationAndLocalization": {
+    "passed": 8
+  },
+  "webProtocol": {
+    "passed": 6
+  },
+  "apiRelevant": {
+    "latestDistinctPassed": 29,
+    "initialPassed": 28,
+    "initialFailed": 1,
+    "recheckedPassed": 1,
+    "failureCause": "8 MiB Buffer deep-object comparison exceeded timeout; exact Buffer.equals comparison passed without increasing timeout",
+    "logs": [
+      "api-tests.log",
+      "api-limit-recheck.log"
+    ]
+  },
+  "webBrowser": {
+    "passed": 5,
+    "report": "browser-final-results.json",
+    "browser": "existing Chrome with isolated Playwright context",
+    "BrowserSkill": "not available",
+    "identityOverlayConsoleInteraction": "passed; intentional API503 errors classified as expected; no unexpected page/console/network errors",
+    "viewports": [
+      "1440x1000",
+      "390x900",
+      "390x1000"
+    ],
+    "staleSavedRefreshMessage": "found during image inspection and corrected; final five-flow checkpoint passes"
+  },
+  "nativeInitialFailure": "The test looked for Cancel in a file-export toolbar which only exposed Save; actual Save and return to the app passed in both languages. Initial xcresult retained.",
+  "publication": "current source/guards/pins preserved; no cloud deployment, migration, billing, App Review, TestFlight, phone installation or OS/Xcode upgrade",
+  "remaining": [
+    "Provider-specific application draft assembly, required-material checks and source-change impact prompts are not implemented",
+    "Personal microphone/speech authorization/quality/interruption/cancel behavior and hardware data protection remain unverified",
+    "Verified post-death delivery remains unavailable",
+    "Duo rotation UI failures from previous workflow remain open; not rerun or reclassified"
+  ],
+  "cleanup": "Dedicated loopback API stopped; successful UI-created source records removed through API, failed-run synthetic records and simulator exports retained. No claim of complete cleanup.",
+  "nativeFollowupBuild": "Actual iOS simulator build passed after the narrow reset-policy correction. Earlier owner-export/saved-voice UI cases unchanged and not repeated."
+}

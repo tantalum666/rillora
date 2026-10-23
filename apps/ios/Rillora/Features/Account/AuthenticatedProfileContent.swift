@@ -1,4 +1,7 @@
 import SwiftUI
+#if RILLORA_CONTENT_NEXT_VERSION
+import RilloraContentKit
+#endif
 #if RILLORA_HEALTHKIT_NEXT_VERSION
 import RilloraHeartRateKit
 #endif
@@ -139,6 +142,20 @@ struct AuthenticatedProfileContent: View {
 
     private var preparationSection: some View {
         Section {
+            #if RILLORA_CONTENT_NEXT_VERSION
+            if let contentTransport = startHereService as? any ContentTransport {
+                ContentEntryView(transport: contentTransport, accountID: snapshot.session.plannerPublicId,
+                    contacts: snapshot.trustedContacts.filter { !$0.isRevoked }.map { ContentChoice(id: $0.publicId, title: $0.displayName) },
+                    matters: snapshot.matters.filter { $0.archivedAt == nil }.map { ContentChoice(id: $0.publicId, title: $0.title) },
+                    guides: OfficialProviderGuideCatalog.all.map { ContentChoice(id: $0.id, title: $0.name) },
+                    background: RilloraTheme.canvas, surface: RilloraTheme.surface,
+                    authenticationRequired: store.invalidateAuthentication) { id in
+                        if let guide = OfficialProviderGuideCatalog.all.first(where: { $0.id == id }) {
+                            OfficialProviderGuideDetailView(guide: guide)
+                        }
+                    }
+            }
+            #endif
             #if RILLORA_HEALTHKIT_NEXT_VERSION
             HeartRateEntryView()
             #endif

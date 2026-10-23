@@ -1,0 +1,18 @@
+{
+  "checkedAt": "2026-10-23T14:29:57.129815+00:00",
+  "head": "78aaa5de1fd01a9d727132f17fa5c088b949f7f9",
+  "runs": {
+    "source": 39968509086,
+    "browser": 39968509135,
+    "guard": 39968506331
+  },
+  "result": "jobs not started; account billing/spending restriction",
+  "providerAnnotation": "GitHub reports recent account payments failed or the spending limit needs adjustment.",
+  "evidence": "Actual authenticated GitHub run summary and all jobs with no executed steps. Not an application assertion failure.",
+  "previousSuccessfulHead": "ada1f5b325d796ae00ea8d3569c6705384df8503",
+  "previousBrowserRun": 39965263446,
+  "latestLocalNativeTests": 18,
+  "latestNativeBuild": "success",
+  "billingOrSpendingChanged": false,
+  "retriesWithoutAccountChange": false
+}

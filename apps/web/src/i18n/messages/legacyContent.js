@@ -1,4 +1,10 @@
 export const en = {
+  'content.savedRefresh': 'Saved. The list could not refresh; try refreshing it before making more changes.',
+  'content.error.textSize': 'This text is too large to save. Shorten the text or use fewer steps.',
+  'content.unavailableChoice': 'No longer available — choose another or remove this link',
+  'content.unavailableFile': 'A selected file is no longer available.',
+  'content.removeUnavailableFile': 'Remove this file from the pack',
+
   'content.family.packs': 'Prepare action packs with selected files and shared progress on the Web',
   'content.family.files': 'Keep selected file copies: 128 MB per account, up to 8 MB each',
   'content.family.voice': 'Record instructions up to 3 minutes each on the Web, with text you can check and edit',
@@ -63,6 +69,12 @@ export const en = {
   'content.error.session': 'Your sign-in changed or expired. Sign in again to continue.',
 };
 export const zhCN = {
+  'content.savedRefresh': '已保存，但列表刷新失败。请先刷新，再继续修改。',
+  'content.error.textSize': '这些文字超过保存上限，请缩短文字或减少步骤。',
+  'content.unavailableChoice': '已不可用，请重新选择或取消关联',
+  'content.unavailableFile': '原来选定的一份文件已不可用。',
+  'content.removeUnavailableFile': '从办理包移除这份文件',
+
   'content.family.packs': '在网页版准备亲友办理包，选择材料并协作记录办理进度',
   'content.family.files': '保存选定的文件副本：每账号 128 MB，每份最多 8 MB',
   'content.family.voice': '在网页版录制每段最多 3 分钟的交代，配上可核对、修改的文字',

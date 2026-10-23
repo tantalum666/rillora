@@ -1,8 +1,12 @@
 # 下一版本 HealthKit 接入准备
 
-Status: NEXT-VERSION IMPLEMENTATION AUTHORIZED / NO HEALTH COLLECTION ENABLED
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Status: NEXT-VERSION APP INTEGRATED / PERSONAL HEALTH ACCESS NOT TESTED
+Last updated: 2026-10-23 (Asia/Hong_Kong)
 Preparation branch and baseline (historical): `codex/healthkit-preparation-20261020`, `5e4d6d6920e4d38b842f94f35832022057c1c2e8`
+
+## 2026-10-23 组合原生开发检查点
+
+Owner要求继续接好下一版HealthKit与三项内容功能，先开发测试、不发TestFlight。[原生开发合同](ios-content-development-20261023.md)记录组合工程、现有依赖pin保留及中文／英文入口验收。健康模块没有新增网络、文件、内容模块或披露调用，原六项合成模型测试沿用October22结果；真实个人系统授权／采样没有发生。当前审核主工程、用途说明和entitlements保持原样，仅下一版工程有对应能力。后续不再把“等待审核结束才开发”当作活动门，但设备验收和分发仍分别处理。
 
 ## 2026-10-22 当前执行门
 

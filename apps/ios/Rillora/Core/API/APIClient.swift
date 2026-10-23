@@ -1,4 +1,7 @@
 import Foundation
+#if RILLORA_CONTENT_NEXT_VERSION
+import RilloraContentKit
+#endif
 
 protocol OverviewServing: Sendable {
     func hasLocalSession() async throws -> Bool
@@ -1158,6 +1161,43 @@ actor APIClient: OverviewServing, PlanEditing, MatterEditing, TrustedContactEdit
         )
     }
 }
+
+#if RILLORA_CONTENT_NEXT_VERSION
+extension APIClient: ContentTransport {
+    func sendContent(_ input: ContentRequest) async throws -> ContentHTTPResponse {
+        // Pin the credential before suspension, then reject a late response after
+        // logout/account replacement. ContentKit never receives the credential.
+        let token = try await sessionTokenStore?.read()
+        guard configuration.developmentPlannerID != nil || token != nil else { throw ContentError.authentication }
+        guard UUID(uuidString: input.accountID) != nil,
+              input.path == "legacy-content" || input.path.hasPrefix("legacy-content/"),
+              !input.path.contains(".."), ["GET", "POST", "PATCH", "DELETE"].contains(input.method) else { throw ContentError.invalidInput }
+        let parts = input.path.split(separator: "?", maxSplits: 1).map(String.init)
+        var url = URLComponents(url: configuration.baseURL.appendingPathComponent(parts[0]), resolvingAgainstBaseURL: false)
+        if parts.count == 2 { url?.percentEncodedQuery = parts[1] }
+        guard let url = url?.url else { throw ContentError.invalidInput }
+        var request = URLRequest(url: url)
+        request.httpMethod = input.method; request.httpBody = input.body
+        request.httpShouldHandleCookies = false
+        request.cachePolicy = .reloadIgnoringLocalCacheData
+        request.setValue("no-store", forHTTPHeaderField: "Cache-Control")
+        request.setValue("ios", forHTTPHeaderField: "x-rillora-client")
+        request.setValue(input.accountID, forHTTPHeaderField: "x-rillora-planner")
+        if input.body != nil { request.setValue(input.binary ? "application/octet-stream" : "application/json", forHTTPHeaderField: "Content-Type") }
+        if let planner = configuration.developmentPlannerID {
+            guard planner.lowercased() == input.accountID.lowercased() else { throw ContentError.accountChanged }
+            request.setValue(planner, forHTTPHeaderField: "x-dev-planner-id")
+        } else if let token { request.setValue("Bearer \(token)", forHTTPHeaderField: "Authorization") }
+        let response = try await transport.send(request)
+        try Task.checkCancellation()
+        guard try await sessionTokenStore?.read() == token else { throw ContentError.accountChanged }
+        if response.response.statusCode == 403 { _ = decodeServerError(from: response) }
+        return ContentHTTPResponse(status: response.response.statusCode, data: response.data,
+            mediaType: response.response.value(forHTTPHeaderField: "Content-Type"),
+            fileBytes: response.response.value(forHTTPHeaderField: "X-Rillora-File-Bytes").flatMap(Int.init))
+    }
+}
+#endif
 
 private enum APIRequestAuthentication: Sendable {
     case planner

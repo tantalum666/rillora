@@ -1,7 +1,9 @@
 # 下一版本心率只读模块
 
 Status: SOURCE AND SYNTHETIC CHECKS COMPLETE / NOT DISTRIBUTED
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
+
+October23：已在[组合下一版工程](../NextVersionContent/README.md)接入真实入口，中文／英文模拟器导航均通过；主审核工程仍不链接模块，未请求个人健康权限。`project.healthkit-next.yml`的资源组织同步修正为变体组，防止覆盖主中文资源或重复拷贝主Info.plist。以下October22独立库证据保留其日期，不能当成本轮真实设备采样。
 
 Owner已明确不再等待概念预审答复，继续读取Apple Watch同步到Apple Health的健康数据。Apple案例103002496561仅回复不提供概念预批准，未批准具体用途。权威范围见[接入合同](../../../docs/healthkit-preparation-20261020.md)。
 

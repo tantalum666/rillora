@@ -318,6 +318,21 @@ describe.sequential('Web content — real database, synthetic files and identiti
     await request(app).post(`/v1/legacy-content/packs/${saved.publicId}/revoke`).set(owner).send({}).expect(200);
     await request(app).get(`/v1/legacy-content/publications/${id}/state`).set(B).expect(404);
   });
+  it('accepts complete Chinese metadata at the file limit and still bounds the upload envelope', async () => {
+    await enable();
+    const bytes = Buffer.concat([pdf, Buffer.alloc(8 * 1024 * 1024 - pdf.length)]);
+    const metadata = { description: '中'.repeat(2000), transcript: '请先保留资料。'.repeat(1000), transcriptConfirmed: true, language: 'zh-CN' };
+    const input = payload(bytes, metadata);
+    expect(input.readUInt32BE(0)).toBeGreaterThan(4096);
+    const asset = (await upload(input).expect(201)).body.asset;
+    expect(asset.description).toBe(metadata.description); expect(asset.transcript).toBe(metadata.transcript);
+    const downloaded = (await request(app).get(`/v1/legacy-content/assets/${asset.publicId}/download`).set(owner).expect(200)).body as Buffer;
+    expect(Buffer.isBuffer(downloaded)).toBe(true);
+    expect(downloaded.equals(bytes)).toBe(true);
+    const oversize = Buffer.alloc(4 + 65537 + pdf.length); oversize.writeUInt32BE(65537);
+    await upload(oversize).expect(400);
+    expect((await overview()).assets).toHaveLength(1);
+  });
   it('paginates a recipient inbox across multiple owners without losing or repeating published packs', async () => {
     await enable(); await enable(C); const p = await person(), c = await person(C), expected = new Set<string>();
     for (let index = 0; index < 51; index++) {

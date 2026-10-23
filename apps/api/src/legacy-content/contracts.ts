@@ -9,6 +9,8 @@ export const contentLimits = Object.freeze({
   tasks: 30,
   packAssets: 20,
   voiceSeconds: 180,
+  // The encrypted metadata body allows 48 KiB; its upload envelope needs room too.
+  uploadMetadataBytes: 64 * 1024,
 });
 export const publicId = z.uuid().transform(value => value.toLowerCase());
 export const revision = z.number().int().positive();

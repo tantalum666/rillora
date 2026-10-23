@@ -4,6 +4,7 @@ import { useI18n } from './i18n/I18nProvider.jsx';
 import { LegacyPackEditor } from './LegacyPackEditor.jsx';
 import { LegacyAssetEditor, VoiceRecorder, saveContentDownload } from './LegacyFiles.jsx';
 import { LegacyPublication } from './LegacyPublication.jsx';
+import { contentAccessInvalid } from './legacyContent.js';
 import './legacy-content.css';
 
 export function contentError(error, t) {
@@ -11,6 +12,7 @@ export function contentError(error, t) {
     legacy_changed: 'changed', legacy_unavailable: 'unavailable', legacy_file_size: 'file', legacy_file_type: 'file', legacy_voice_format: 'file',
     legacy_storage_limit: 'quota', legacy_pack_limit: 'quota', legacy_contact_unavailable: 'contact', legacy_private_matter: 'private',
     legacy_prerequisites: 'prerequisites', legacy_microphone_unavailable: 'microphone', account_changed: 'session', authentication_required: 'session',
+    legacy_content_too_large: 'textSize',
   };
   if (error?.code === 'legacy_family_required') return t('content.family');
   if (error?.code === 'legacy_future_private') return t('content.futureBoundary');
@@ -29,7 +31,9 @@ export default function LegacyContentPanel({ apiClient, contacts, matters, onDir
   useEffect(() => { onBusyChange(busy || processing); return () => onBusyChange(false); }, [busy, processing, onBusyChange]);
   const load = useCallback(async () => {
     const call = ++generation.current;
-    try { const value = await client.overview(); if (call === generation.current && accountValid.current) { setData(value); setError(null); } }
+    try { const value = await client.overview(); if (call === generation.current && accountValid.current) {
+      setData(value); setError(null); setMessage(current => current === 'content.savedRefresh' ? 'content.saved' : current);
+    } }
     catch (failure) { if (call === generation.current) { setData(null); setError(failure); } }
   }, [client]);
   useEffect(() => {
@@ -48,8 +52,19 @@ export default function LegacyContentPanel({ apiClient, contacts, matters, onDir
     working.current = true; setBusy(true); setError(null); setMessage(''); const call = ++generation.current;
     try {
       const result = await action(); if (call !== generation.current || !accountValid.current) return false;
-      const next = await client.overview(); if (call !== generation.current || !accountValid.current) return false;
-      setData(next); if (close) { setSelected(null); dirtyChanged(false); } setMessage(success); return result ?? true;
+      // A confirmed write must not be retried as a new creation just because
+      // refreshing the list fails afterward.
+      let refreshed = true;
+      try {
+        const next = await client.overview(); if (call !== generation.current || !accountValid.current) return false;
+        setData(next);
+      } catch (failure) {
+        if (call !== generation.current || !accountValid.current) return false;
+        setData(null); setError(failure); refreshed = false;
+        if (contentAccessInvalid(failure)) { setSelected(null); dirtyChanged(false); return false; }
+      }
+      if (close) { setSelected(null); dirtyChanged(false); }
+      setMessage(refreshed ? success : 'content.savedRefresh'); return result ?? true;
     } catch (failure) { if (call === generation.current) setError(failure); return false; }
     finally { working.current = false; if (call === generation.current) setBusy(false); }
   }
@@ -62,7 +77,7 @@ export default function LegacyContentPanel({ apiClient, contacts, matters, onDir
   const writable = data?.canCreate && data.acceptedNotice;
   const back = () => { setSelected(null); dirtyChanged(false); setMessage(''); setError(null); };
   return <section className="legacy-content" aria-busy={busy}>
-    {error && <div className="drawer-alert" role="alert"><p>{contentError(error, t)}</p>{!dirty && <button className="text-button" disabled={busy || !accountValid.current} onClick={() => void load()}>{t('content.retry')}</button>}</div>}
+    {error && <div className="drawer-alert" role="alert"><p>{contentError(error, t)}</p>{!dirty && !selected?.publication && <button className="text-button" disabled={busy || !accountValid.current} onClick={() => void load()}>{t('content.retry')}</button>}</div>}
     {message && <p className="legacy-status" role="status">{t(message)}</p>}
     {!data && !error && <p role="status">{t('content.loading')}</p>}
     {data && <>

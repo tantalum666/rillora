@@ -1,0 +1,35 @@
+{
+  "mode": "continued-next-version-workflow",
+  "continuedFrom": "output/qa/rillora-web-content-20261022/reading.json",
+  "retainedFullBodyReadChain": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "inventory": "markdown-inventory.json",
+  "exclusions": [
+    "dependencies",
+    "build outputs",
+    "caches",
+    "output evidence",
+    "collaboration/evidence,catalog,archives generated copies"
+  ],
+  "currentBodyReads": [
+    "AGENTS.md full",
+    "docs/product.md current October22 sections and locked scope retained",
+    "docs/handoff.md full",
+    "docs/decision-log.md current final sections retained",
+    "docs/healthkit-preparation-20261020.md full",
+    "docs/web-content-development-20261022.md full retained",
+    "docs/platform-contract.md full across bounded reads",
+    "apps/ios/NextVersionHealth/README.md full",
+    "docs/source-control.md current plus retained body",
+    "collaboration/README.md current plus retained body"
+  ],
+  "changedInventoryBodies": "All 14 differences from the previous inventory were authored/read in the same retained workflow; no new full-reading claim. Latest Owner instruction supersedes waiting for review before development.",
+  "completedAt": "2026-10-23T05:33:31.609960+00:00",
+  "additionalAuthoredBodies": [
+    "docs/ios-content-development-20261023.md",
+    "apps/ios/NextVersionContent/README.md",
+    "docs/handoff-history-20261023-before-ios-content.md",
+    "collaboration/verification/ios-content-20261023/README.md",
+    "current sections in product,platform-contract,healthkit-preparation,decision-log,journey,source-control,handoff and collaboration README"
+  ],
+  "currentRecoveryCompletedAt": "2026-10-23T06:40:11.976895+00:00"
+}

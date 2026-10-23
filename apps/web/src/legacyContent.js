@@ -1,4 +1,12 @@
 const ids = /^[a-f0-9]{8}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{4}-[a-f0-9]{12}$/i;
+const uploadMetadataBytes = 64 * 1024, savedTextBytes = 48 * 1024;
+function textSize(value) {
+  if (new TextEncoder().encode(JSON.stringify(value)).length > savedTextBytes)
+    throw Object.assign(new Error('Content text too large'), { code: 'legacy_content_too_large' });
+}
+export function contentAccessInvalid(error) {
+  return error?.status === 401 || ['authentication_required', 'account_changed', 'legacy_unavailable', 'legacy_invalid_response'].includes(error?.code);
+}
 export const contentMediaTypes = ['application/pdf', 'image/jpeg', 'image/png', 'image/webp', 'audio/wav'];
 export const contentActions = ['preserve', 'request_data', 'cancel_subscription', 'close_account', 'memorialize', 'other'];
 export const contentStatuses = ['not_started', 'ready', 'submitted', 'needs_information', 'completed', 'stopped'];
@@ -55,7 +63,8 @@ function publication(result) {
 export function fileUploadBody(file, input) {
   if (!(file instanceof Blob) || file.size < 1 || file.size > 8388608) throw Object.assign(new Error('File too large'), { code: 'legacy_file_size' });
   const metadata = new TextEncoder().encode(JSON.stringify(input));
-  if (metadata.length > 4096) throw Object.assign(new Error('Description too long'), { code: 'legacy_content_too_large' });
+  if (input.metadata) textSize(input.metadata);
+  if (metadata.length > uploadMetadataBytes) throw Object.assign(new Error('Description too long'), { code: 'legacy_content_too_large' });
   const size = new ArrayBuffer(4); new DataView(size).setUint32(0, metadata.length);
   return new Blob([size, metadata, file], { type: 'application/octet-stream' });
 }
@@ -72,12 +81,12 @@ export function createLegacyClient(request) {
     consent: version => request('/legacy-content/consent', { method: 'POST', body: { version, accepted: true } }),
     upload: (file, input) => request('/legacy-content/assets', { method: 'POST', binary: true,
       headers: { 'Content-Type': 'application/octet-stream' }, body: fileUploadBody(file, input) }).then(value => ({ asset: validateContentAsset(value?.asset) })),
-    updateAsset: (value, metadata) => request(`/legacy-content/assets/${path(value.publicId)}`, { method: 'PATCH', body: { expectedVersion: value.version, metadata } }).then(result => ({ asset: validateContentAsset(result?.asset) })),
+    updateAsset: (value, metadata) => { textSize(metadata); return request(`/legacy-content/assets/${path(value.publicId)}`, { method: 'PATCH', body: { expectedVersion: value.version, metadata } }).then(result => ({ asset: validateContentAsset(result?.asset) })); },
     deleteAsset: asset => request(`/legacy-content/assets/${path(asset.publicId)}`, { method: 'DELETE' }),
     download: (asset, publicationId) => request(publicationId ? `/legacy-content/received/${path(publicationId)}/assets/${path(asset.publicId)}/download`
       : `/legacy-content/assets/${path(asset.publicId)}/download`, { responseKind: 'legacy-file', expectedFile: { bytes: asset.byteCount, mediaType: asset.mediaType } }),
-    savePack: (value, input) => request(value?.publicId ? `/legacy-content/packs/${path(value.publicId)}` : '/legacy-content/packs',
-      { method: value?.publicId ? 'PATCH' : 'POST', body: { ...input, ...(value?.publicId ? { expectedVersion: value.version } : {}) } }).then(result => ({ pack: validatePack(result?.pack) })),
+    savePack: (value, input) => { textSize(input.body); return request(value?.publicId ? `/legacy-content/packs/${path(value.publicId)}` : '/legacy-content/packs',
+      { method: value?.publicId ? 'PATCH' : 'POST', body: { ...input, ...(value?.publicId ? { expectedVersion: value.version } : {}) } }).then(result => ({ pack: validatePack(result?.pack) })); },
     publish: value => request(`/legacy-content/packs/${path(value.publicId)}/publish`, { method: 'POST', body: { expectedVersion: value.version, shareNow: true } }),
     revoke: value => request(`/legacy-content/packs/${path(value.publicId)}/revoke`, { method: 'POST', body: {} }),
     deletePack: value => request(`/legacy-content/packs/${path(value.publicId)}`, { method: 'DELETE' }),

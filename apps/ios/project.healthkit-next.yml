@@ -9,10 +9,20 @@ targets:
   Rillora:
     dependencies:
       - package: RilloraHeartRateKit
-    sources:
-      - path: NextVersionHealth/Configuration/en.lproj
+    sources:REPLACE:
+      - path: ../../config/provider-guides.json
         buildPhase: resources
-      - path: NextVersionHealth/Configuration/zh-Hans.lproj
+      - path: ../../config/disclosure-copy.json
+        buildPhase: resources
+      - path: Rillora
+        excludes:
+          - Resources/Info.plist
+      - path: StoreKit/Rillora.storekit
+        buildPhase: resources
+      - path: NextVersionHealth/Configuration
+        excludes:
+          - Info.plist
+          - RilloraNext.entitlements
         buildPhase: resources
     info:
       path: NextVersionHealth/Configuration/Info.plist

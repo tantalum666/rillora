@@ -3779,3 +3779,36 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Keep the three Web content capabilities at the existing Family price. The bounded file/recording limits and local-only transcription are implementation choices with explicit copy; no E2EE, unlimited storage, automatic death decision or verified post-death delivery claim is introduced.
 - Production-cookie and enforced-journal gaps were reproduced and repaired; neither CSRF protection for mutations nor recovery enforcement was disabled. The independent QA account used two expiring manual test grants, no fabricated payments or consent. Normal login followed Owner’s actual confirmation.
 - Actual synthetic file/private-pack acceptance passed. Test grants and sessions were revoked, the exact original maintenance/broker configuration was restored and the QA command was denied again. Synthetic samples are retained, not claimed deleted. Current native build/review, personal data, prices, sale controls and FanPass remain unchanged.
+
+## 2026-10-23 — Complete next-version native content without interrupting review
+
+- Status: OWNER AUTHORIZED DEVELOPMENT AND TESTING; TESTFLIGHT REMAINS DEFERRED.
+- Owner explicitly asks for native action packs, files, original voice and HealthKit integration now, followed by GitHub preservation. This supersedes waiting for the current review outcome before beginning development; it does not authorize a new store submission or real health collection.
+- The implementation uses an isolated next project and the existing API, reviewed dependency pins, native system file/media surfaces and explicitly on-device speech recognition. Default review source/configuration, live data, prices and FanPass are preserved.
+- Actual SQL restricts old publication when person/intention changes; native copy follows that fact. Current body/file edits retain frozen published copies until explicit replacement. No automatic death, health-driven disclosure or new commercial policy is introduced.
+- Synthetic native tests and source guards are complete as recorded in [the contract](ios-content-development-20261023.md); physical permissions, recording quality, health samples and data-protection hardware remain independent. No need for another general project authorization is inferred.
+
+## 2026-10-23 — Prepare next-version Duo layouts; defer the environment upgrade
+
+- Status: OWNER AUTHORIZED next-version adaptation; OS/Xcode upgrade DEFERRED by the latest instruction.
+- Owner asks for iPhone Duo support in the next version. The subsequent “晚点升级” supersedes the immediate upgrade permission. Only update availability and local prerequisites were inspected; no download, install, restart, toolchain switch or new cloud Mac runner was initiated.
+- Continue container-based layout and generic resize/state checks in the isolated next project. Keep standard system navigation, the complete selected logo, existing content semantics and privacy. Do not infer Duo compatibility from iPad/phone rotation, custom window dimensions or an old-SDK build.
+- Real Duo poses and iOS27.1 vertical system bars remain a later toolchain/device gate under [the adaptation contract](iphone-duo-adaptation-20261023.md). Current review, TestFlight, production, real data, prices and FanPass stay unchanged.
+
+## 2026-10-23 — Review completeness of the three content capabilities
+
+- Status: OWNER REQUESTED completeness review; bounded repairs under the existing next-version implementation scope.
+- Recheck action packs, selected files and original voice against current code and the accepted planning direction. Source/core acceptance is not full institutional-material assembly, true post-death delivery or proven annual value.
+- Seven implementation corrections preserve prices, allowances, authorization, current review and upgrade defer. A 64KiB upload envelope accommodates the existing 48KiB encrypted text body; no storage quota or sharing permission is widened. Compatible API deployment must precede the next client's longer uploads.
+- Saved-recording transcription stays on device and requires the actual Apple permission/support path; no ambient recording or health collection is added by validation. Provider-specific draft assembly, missing-material/source-change guidance, real system/media checks and prior Duo failures remain separate open work. This review does not approve or claim deployment.
+
+同轮CI修正：浏览器81项通过、2项既有显式跳过，但冷安装耗9m26s使15分钟任务总限到期。仅将既有Ubuntu浏览器任务总限改为20分钟，测试与断言、资源类型和权限不变；不表示产品失败被忽略，最终运行结果单独核对。
+
+同轮原生细化：仅替换已有录音才移除旧文字；首次录音保留用户预写草稿。所有新音频都取消文字确认，避免误配也避免误删，未新增商业或披露决定。
+
+## 2026-10-23 — Merge reviewed source using local checks; retire cloud CI
+
+- Status: OWNER EXPLICIT INSTRUCTION. Inspect pending GitHub work, repair actual blocking problems, merge acceptable source, and stop cloud CI consumption.
+- This supersedes the prior cloud-first execution and billing-restoration gate. Disable existing workflows before pushing, retain their definitions outside the executable directory, and run base-owned source/publication policy plus relevant test groups locally. Do not increase spending, use skip-ci markers, fabricate successful check statuses or register a persistent self-hosted runner.
+- Current PR9 is development source. Its isolated next iOS target keeps the review configuration and pinned dependencies unchanged. The earlier two Duo landscape UI failures and physical speech/health/protection gates remain open and block next-version release claims, not preservation of opt-in source. No product limits, real data, price, live switch or FanPass change is authorized by the merge itself.
+- Existing exact application checkpoints remain usable for unchanged code. Local execution, GitHub integration and deployment are separately recorded in [the integration review](git-integration-local-ci-20261023.md).

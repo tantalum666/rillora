@@ -1,0 +1,57 @@
+[0/1] Planning build
+Building for debugging...
+[0/4] Write sources
+[2/4] Write swift-version--58304C5D6DBC2206.txt
+[4/7] Compiling RilloraContentKit ContentModels.swift
+[5/7] Compiling RilloraContentKit ContentFileEditor.swift
+[6/7] Emitting module RilloraContentKit
+[7/9] Compiling RilloraContentKit ContentBinary.swift
+[8/9] Compiling RilloraContentKit ContentClient.swift
+[9/12] Compiling RilloraContentKitTests ContentContractTests.swift
+[10/12] Emitting module RilloraContentKitTests
+[10/12] Write Objects.LinkFileList
+[11/12] Linking RilloraContentKitPackageTests
+Build complete! (3.13s)
+Test Suite 'All tests' started at 2026-10-23 22:11:45.496.
+Test Suite 'All tests' passed at 2026-10-23 22:11:45.498.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Test uploadRejectsOversizeMetadataUnsupportedBytesAndVoiceDisguise() started.
+◇ Test failedRefreshDoesNotTurnConfirmedSaveIntoFailure() started.
+◇ Test explicitNullsMatchTheSharedAPISchema() started.
+◇ Test publicationDoesNotAcceptUnconfirmedTextOrDifferentFileVersions() started.
+◇ Test privateDraftIsTheDefaultAndCannotBePublished() started.
+◇ Test firstRecordingKeepsPreparedTextButRequiresCheckingItAgainstTheNewAudio() started.
+◇ Test authenticationFailureClearsCachedPrivateContent() started.
+◇ Test recordingReplacementRemovesOldTextAndConfirmationButKeepsItsTitle() started.
+◇ Test publishedFileUsesTheOwnerRouteOnlyForTheOwnerView() started.
+◇ Test selectedAccountAndVersionAreSentWithoutCredentials() started.
+◇ Test pcmWaveMatchesCanonicalServerFormatAndBounds() started.
+◇ Test circularDependenciesAndDanglingFileVersionsAreRejected() started.
+◇ Test uncertainPublicationAccessHidesButRevocationClearsCachedContent() started.
+◇ Test downloadsRequireMatchingLengthMediaAndMagic() started.
+◇ Test fullChineseDescriptionAndConfirmedTranscriptFitTheUpload() started.
+◇ Test clearedStoreRejectsLateReads() started.
+◇ Test recorderChunksAreNormalizedButRemoteDownloadsMustBeCanonical() started.
+◇ Test uploadFramingPreservesUTF8AndExactFileBytes() started.
+✔ Test firstRecordingKeepsPreparedTextButRequiresCheckingItAgainstTheNewAudio() passed after 0.001 seconds.
+✔ Test recordingReplacementRemovesOldTextAndConfirmationButKeepsItsTitle() passed after 0.001 seconds.
+✔ Test publishedFileUsesTheOwnerRouteOnlyForTheOwnerView() passed after 0.001 seconds.
+✔ Test explicitNullsMatchTheSharedAPISchema() passed after 0.001 seconds.
+✔ Test privateDraftIsTheDefaultAndCannotBePublished() passed after 0.001 seconds.
+✔ Test uploadFramingPreservesUTF8AndExactFileBytes() passed after 0.001 seconds.
+✔ Test publicationDoesNotAcceptUnconfirmedTextOrDifferentFileVersions() passed after 0.001 seconds.
+✔ Test recorderChunksAreNormalizedButRemoteDownloadsMustBeCanonical() passed after 0.001 seconds.
+✔ Test downloadsRequireMatchingLengthMediaAndMagic() passed after 0.001 seconds.
+✔ Test selectedAccountAndVersionAreSentWithoutCredentials() passed after 0.001 seconds.
+✔ Test circularDependenciesAndDanglingFileVersionsAreRejected() passed after 0.001 seconds.
+✔ Test uploadRejectsOversizeMetadataUnsupportedBytesAndVoiceDisguise() passed after 0.001 seconds.
+✔ Test fullChineseDescriptionAndConfirmedTranscriptFitTheUpload() passed after 0.001 seconds.
+✔ Test pcmWaveMatchesCanonicalServerFormatAndBounds() passed after 0.004 seconds.
+✔ Test failedRefreshDoesNotTurnConfirmedSaveIntoFailure() passed after 0.004 seconds.
+✔ Test authenticationFailureClearsCachedPrivateContent() passed after 0.004 seconds.
+✔ Test clearedStoreRejectsLateReads() passed after 0.004 seconds.
+✔ Test uncertainPublicationAccessHidesButRevocationClearsCachedContent() passed after 0.004 seconds.
+✔ Test run with 18 tests in 0 suites passed after 0.005 seconds.

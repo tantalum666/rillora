@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-10-23T07:47:56.324604+00:00",
+  "status": "SOURCE_PREPARED_NATIVE_DUO_AND_LANDSCAPE_INTERACTION_OPEN",
+  "sourceBase": "e94ef5ae2a0ebdd34d34b3ba040a0b75c5ffb3e7",
+  "branch": "codex/ios-content-healthkit-20261023",
+  "build": "passed, next project, installed Xcode26.6/iOS26.5 SDK, exact prior dependency pins",
+  "layoutTests": {
+    "passed": 3,
+    "lastRelevantResults": {
+      "columns_safe_areas_identity_accessibility": "content-keyboard-tests.xcresult",
+      "generic_overview_and_public_render": "layout-tests.xcresult",
+      "brand_narrow_proposal": "content-resize-tests.xcresult"
+    },
+    "notOneFreshFullRerun": true
+  },
+  "releaseIsolationAndLocaleTests": {
+    "passed": 8,
+    "command": "python3 -m unittest tools.release.test_native_content_next_version tools.release.test_healthkit_next_version"
+  },
+  "rotationUI": {
+    "passed": 0,
+    "failed": 2,
+    "languages": [
+      "en",
+      "zh-Hans"
+    ],
+    "observed": "Portrait-to-landscape dimensions and typed title persistence pass; saving control cannot be reached with automated scrolling. Screenshots contain black offset areas. Return-to-portrait/discard checks do not execute after the failure.",
+    "attempts": [
+      "original swipe",
+      "visible form swipe",
+      "keyboard Return then swipe",
+      "second existing iOS26.5 simulator",
+      "original unmodified ContentForm control"
+    ],
+    "originalFormControl": "Still fails with the original ContentViews.swift byte content; extra keyboard modifier reverted.",
+    "rootCause": "unresolved; do not attribute definitively to Apple or claim a product fix",
+    "finalTestsRetained": true,
+    "skippedOrWeakenedFailure": false
+  },
+  "brandInitialFailure": "Initial aspect assertion compared the transparent container ratio instead of the mark. Current test asserts actual frame bounds, captures whole mark for visual inspection; old failing bundle retained.",
+  "realDuo": "not tested, no Duo runtime or SDK27.1 installed",
+  "upgrades": "explicitly deferred by Owner; no download/install/restart/toolchain switch/new paid runner",
+  "cleanup": "loopback fixture stopped; synthetic database samples retained",
+  "preserved": [
+    "App Store build/review/materials",
+    "TestFlight",
+    "cloud deployment",
+    "prices/billing",
+    "real data",
+    "FanPass",
+    "HealthKit no-upload and background clearing"
+  ],
+  "oldNativeResults": "Prior 14 module/15 native checks retain their own receipts; not rerun or substituted for these new failures."
+}

@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { useI18n } from './i18n/I18nProvider.jsx';
-import { contentStatuses } from './legacyContent.js';
+import { contentAccessInvalid, contentStatuses } from './legacyContent.js';
 import { getOfficialProviderGuide } from './officialProviderGuides.js';
 import { ContentField } from './LegacyPackEditor.jsx';
 import { VoicePlayer, saveContentDownload } from './LegacyFiles.jsx';
@@ -22,7 +22,7 @@ export function LegacyPublication({ id, client, onError, onBack, onOpenGuide, on
   const { t, formatDate } = useI18n(); const [data, setData] = useState(null), [busy, setBusy] = useState(false);
   const [verified, setVerified] = useState(false);
   const generation = useRef(0), inFlight = useRef(false), dirty = useRef(new Set());
-  const revision = useRef(null);
+  const revision = useRef(null), refresh = useRef(null);
   const dirtyChanged = useRef((taskId, changed) => { changed ? dirty.current.add(taskId) : dirty.current.delete(taskId); onDirtyChange(dirty.current.size > 0); }).current;
   useEffect(() => { onBusyChange(busy); return () => onBusyChange(false); }, [busy, onBusyChange]);
   useEffect(() => {
@@ -33,25 +33,30 @@ export function LegacyPublication({ id, client, onError, onBack, onOpenGuide, on
       try {
         const state = await client.publicationState(id);
         if (revision.current === state.revision) {
-          if (call === generation.current && visible === visibleRequest && !document.hidden) setVerified(true);
+          if (call === generation.current && visible === visibleRequest && !document.hidden) { setVerified(true); onError(null); }
           return;
         }
         const result = await client.publication(id);
-        if (call === generation.current && visible === visibleRequest && !document.hidden) { revision.current = state.revision; setData(result.publication); setVerified(true); }
+        if (call === generation.current && visible === visibleRequest && !document.hidden) { revision.current = state.revision; setData(result.publication); setVerified(true); onError(null); }
       }
-      catch (error) { if (call === generation.current && visible === visibleRequest) { setData(null); setVerified(false); onError(error); } }
+      catch (error) { if (call === generation.current && visible === visibleRequest) {
+        if (contentAccessInvalid(error)) { setData(null); revision.current = null; }
+        setVerified(false); onError(error);
+      } }
       finally { inFlight.current = false; }
     }
+    refresh.current = load;
     void load(); const timer = setInterval(() => void load(), 15000);
     // Hide cached content until access is rechecked, while retaining unsaved
     // progress in memory. Account invalidation still unmounts the entire panel.
     const visibility = () => { if (document.hidden) { visibleRequest++; setVerified(false); } else void load(); };
     document.addEventListener('visibilitychange', visibility);
-    return () => { stopped = true; generation.current++; clearInterval(timer); document.removeEventListener('visibilitychange', visibility); onDirtyChange(false); };
+    return () => { stopped = true; generation.current++; refresh.current = null; clearInterval(timer); document.removeEventListener('visibilitychange', visibility); onDirtyChange(false); };
   }, [client, id, onError, onDirtyChange]);
   const download = asset => client.download(asset, data?.isOwner ? undefined : id);
   return <article className="legacy-publication"><button className="text-button legacy-no-print" disabled={busy} onClick={onBack}>{t('content.back')}</button>
-    {!data || !verified ? <p role="status">{t('content.loading')}</p> : null}
+    {!data || !verified ? <div><p role="status">{t('content.loading')}</p>
+      <button className="text-button" disabled={busy} onClick={() => void refresh.current?.()}>{t('content.retry')}</button></div> : null}
     {data && <div hidden={!verified}>
       <header><h2>{data.body.title}</h2>{data.ownerName && <p>{t('content.from', { name: data.ownerName })}</p>}<p className="legacy-muted">{formatDate(data.publishedAt)}</p></header>
       <p className="legacy-preserve-lines">{data.body.note}</p><p className="legacy-muted">{t('content.reported')}</p>
@@ -66,8 +71,20 @@ export function LegacyPublication({ id, client, onError, onBack, onOpenGuide, on
           <details className="task-details legacy-no-print"><summary>{t('content.progress')}</summary><ProgressEditor task={task} progress={progress} ready={ready} busy={busy} onDirty={dirtyChanged}
             onSave={async (input, version) => {
               if (inFlight.current) return null; inFlight.current = true; setBusy(true); const call = generation.current;
-              try { const result = await client.report(id, input, version); const refreshed = await client.publication(id);
-                if (call === generation.current) { setData(refreshed.publication); return result.progress; } return null;
+              try {
+                const result = await client.report(id, input, version);
+                if (call !== generation.current) return null;
+                setData(current => current ? { ...current, progress: [...current.progress.filter(item => item.taskId !== input.taskId), result.progress] } : current);
+                revision.current = null;
+                try {
+                  const refreshed = await client.publication(id);
+                  if (call === generation.current) setData(refreshed.publication);
+                } catch (error) {
+                  if (call !== generation.current) return null;
+                  if (contentAccessInvalid(error)) setData(null);
+                  setVerified(false); onError(error);
+                }
+                return call === generation.current ? result.progress : null;
               } catch (error) { if (call === generation.current) onError(error); return null; }
               finally { inFlight.current = false; if (call === generation.current) setBusy(false); }
             }}/></details>
