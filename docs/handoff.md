@@ -1,20 +1,22 @@
 # Rillora 当前交接
 
-Status: MULTI-TYPE HEALTHKIT DIRECTION RESEARCHED / WATCH COMPANION RECOMMENDED / NO RUNTIME CHANGE
+Status: NEXT-VERSION HEALTH / CHECK-IN / WATCH LOCAL ACCEPTANCE COMPLETE; GIT DELIVERY IN PROGRESS
 Last updated: 2026-10-24 (Asia/Hong_Kong)
 
 ## 当前任务与已完成
 
-Owner要求健康数据范围不只心率，并询问是否做watchOS。[当前方案](healthkit-multisignal-watchos-20261024.md)已按最新Apple文档和实际源码复核：只读可涵盖多类；iPhone能读同步记录，基本通知可转到手表。建议先心率／活动／可选睡眠与清楚的数据状态，再独立提醒闭环，之后提供轻量手表回应。具体分批和Watch开发仍是建议，本轮没有开始代码或个人采样。
+Owner要求按顺序完成iPhone多类健康读取及提醒确认、轻量watchOS，只用本机测试，下一版本发布，暂不TestFlight。[本轮实施](health-checkin-watch-development-20261024.md)已完成六类只读、独立报平安与可选通知、手机／手表最小消息、离线持久化及静态表盘入口。10项健康、23项确认／传输、13项定向源码检查，iPhone3项UI／4项系统、Watch4项UI通过；组合Release编译通过。实际配对模拟器SDK已验证在线回执与手机离线、手表重启、手机恢复后的确认，修复真实后台回调崩溃及通知竞争。
 
-[前一轮Git交接](handoff-history-20261024-before-health-scope.md)转HISTORICAL。PR9已合并，main a985c3754包含最后元数据；当时32个远端分支头已包含、开放PR0，三项云端工作流停用、无新作业。本轮不重复Git整合、应用测试、部署或本人验证。
+当前审核六份关键文件与base f017648ca逐字一致，三个Release可执行文件不含验收开关。独立合成本机服务在收尾停止；没有个人健康读取、真机安装、App Store资料改动、线上部署、收费／价格／FanPass变化、TestFlight或工具升级。云端CI继续停用；本轮使用可信base的本机检查。Git及完整保存状态见[交付回执](../collaboration/verification/health-checkin-watch-20261024/README.md)。
+
+[此前研究交接](handoff-history-20261024-before-health-implementation.md)转HISTORICAL，不再把“考虑是否开发Watch”当作当前门。
 
 ## 证据边界与保留项
 
-实际健康源码仍只有前台24小时／200条心率切片；合成测试与入口证据沿用原检查点。其他指标、个人基线、提醒、Watch App、真实系统健康／语音／硬件保护没有完成。心率缺失／活动减少／未回复不能充当死亡事实，健康及派生状态不进入资料解锁。Apple不给概念预审并非用途批准。
+模拟器的合成健康UI、系统通知队列、真实WCSession回执是三种证据，均不代替个人健康／实体手表、长期后台投递／耗电、硬件保护与表盘安装。健康模块不调用报平安或披露系统；没有个人基线、健康异常规则、死亡／失能核验或自动开放亲友资料。呼吸频率／HRV等不是本批范围。
 
-两项Duo横屏UI失败、办理包材料装配等既有未完成项继续保留。当前审核、线上数据、收费、定价、FanPass、TestFlight和系统／Xcode升级暂缓保持。未来长文字客户端部署仍须兼容API先行。所有检查继续本机执行。
+既有两项Duo横屏UI失败、真实语音及机构材料装配等未完成项保留，未重跑未变化的支付、Web/API或旧部署。当前审核继续独立进行。
 
 ## 唯一下一步
 
-后续开发先把下一版单类型reader扩为按用途／类型选择的健康读取接口，落实心率、活动与可选睡眠的数据状态、来源／重复处理和授权缺失测试；不以watchOS作为前置依赖，不在此过程中增加自动披露。手表配套的具体功能与分发按本轮建议另行推进，当前不改变审核包。
+完成本轮源码、完整证据与文档的GitHub发布及确切远端回读；先保持下一版候选状态，不进入TestFlight或当前审核切换。

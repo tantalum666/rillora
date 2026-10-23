@@ -31,7 +31,7 @@ Omitting `--group` runs only the mandatory publication gates. Available groups:
 | `api` | API typecheck, build and full tests against dedicated local test databases |
 | `web-and-infrastructure` | Web unit/internal/public/legal builds, optional-chunk exclusion, CDK, AI candidate, maintenance, retention and identity guards |
 | `browser` | Complete existing Playwright suite; dedicated synthetic browser context |
-| `native-modules` | Content and read-only health Swift modules; excludes physical device/UI acceptance |
+| `native-modules` | Content, read-only health and independent check-in Swift modules; excludes physical device/UI acceptance |
 
 Use repeated `--group` arguments for relevant groups. `--plan` prints the selected
 commands without executing them. Do not rerun unchanged, already-proven application

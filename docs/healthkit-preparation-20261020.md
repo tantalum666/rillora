@@ -1,10 +1,14 @@
 # 下一版本 HealthKit 接入准备
 
-Status: NEXT-VERSION APP INTEGRATED / PERSONAL HEALTH ACCESS NOT TESTED
+Status: NEXT-VERSION MULTI-TYPE SOURCE AND LOCAL ACCEPTANCE / PERSONAL HEALTH ACCESS NOT TESTED
 Last updated: 2026-10-24 (Asia/Hong_Kong)
 Preparation branch and baseline (historical): `codex/healthkit-preparation-20261020`, `5e4d6d6920e4d38b842f94f35832022057c1c2e8`
 
-## 2026-10-24 多类读取方向与watchOS取舍
+## 2026-10-24 多类读取与独立提醒实现
+
+Owner随后明确按顺序开发，现已完成六类前台只读、独立本人确认／本机提醒和轻量Watch配套，详情以[实施合同与结果](health-checkin-watch-development-20261024.md)为准。10项健康模型、23项确认／消息、双语模拟器UI、系统适配和实际配对模拟器SDK回执分别留证。健康值不输入提醒或遗产放行；个人健康、真实手表／后台投递及未来商店材料仍待发布前验证。当前审核的六份关键文件不变，没有部署、TestFlight或工具升级。下方单心率范围及“尚未实现”均属于注明日期的早期检查点。
+
+## 2026-10-24 多类读取方向与watchOS取舍（HISTORICAL，实施状态已由上节取代）
 
 Owner明确希望覆盖更多健康数据，并询问是否开发手表端。[本轮复核与建议](healthkit-multisignal-watchos-20261024.md)将已实现的心率切片与下一阶段范围分开：建议先做心率／活动／可选睡眠及数据质量，再做独立提醒闭环，之后考虑轻量watchOS配套。普通已同步数据读取与基础通知不以Watch App为前提；具体数据分批和Watch立项不是本轮已实现／已分发的事实。写入集合、当前审核、个人健康数据和披露边界保持；不再把“仅心率”作为最终产品范围。
 
@@ -12,7 +16,7 @@ Owner明确希望覆盖更多健康数据，并询问是否开发手表端。[�
 
 Owner要求继续接好下一版HealthKit与三项内容功能，先开发测试、不发TestFlight。[原生开发合同](ios-content-development-20261023.md)记录组合工程、现有依赖pin保留及中文／英文入口验收。健康模块没有新增网络、文件、内容模块或披露调用，原六项合成模型测试沿用October22结果；真实个人系统授权／采样没有发生。当前审核主工程、用途说明和entitlements保持原样，仅下一版工程有对应能力。后续不再把“等待审核结束才开发”当作活动门，但设备验收和分发仍分别处理。
 
-## 2026-10-22 当前执行门
+## 2026-10-22 首个执行门（HISTORICAL）
 
 已实际读取Apple回信：不提供概念预批准，未对A／B／C作出适配结论。Owner明确不再等预审，继续读取Apple Watch同步的健康数据。现在进入以下最小心率只读切片的下一版源码与合成测试；旧文中的“先等用途答复才实现”被本节取代。当前审核、已上传构建及门户签名能力保持，下一版代码不因此自动分发或取得审核批准。
 
@@ -36,7 +40,7 @@ Owner明确“开始吧，但是不要影响当前审核”，承接普通Health
 
 不将B隐藏在“健康助手”文案后，不推断本机处理或个人同意可豁免用途限制。普通HealthKit capability并非特殊资格申请；本次不申请实时跌倒／车祸entitlement。若Apple要求另一个私密渠道，沿本案移交，不公开用户资料或重复发送多个工单。
 
-## 最小数据与首个技术切片（现有实现检查点）
+## 最小数据与首个技术切片（HISTORICAL）
 
 以下为Owner已授权进入下一版本实现的首个只读验证范围；当前在审App未启用：
 
@@ -53,7 +57,7 @@ Owner明确“开始吧，但是不要影响当前审核”，承接普通Health
 
 24小时／200条是Agent对技术验证的可逆范围选择；不是Owner批准的提醒时间、医学安全期或披露条件。持续异常识别和个人基线尚未实现。
 
-## 授权与读取的工程合同
+## 首个切片的授权与读取合同（HISTORICAL；当前类型范围以上节为准）
 
 1. 先调用`HKHealthStore.isHealthDataAvailable()`检查设备能力。
 2. 用户主动选择开启后，才请求心率的只读权限。未来代码按标准HealthKit capability和用途说明配置；本次不修改现有签名／权限文件。

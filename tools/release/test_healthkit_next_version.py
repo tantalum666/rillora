@@ -14,7 +14,7 @@ class NextVersionHealthTests(unittest.TestCase):
                      'Rillora.xcodeproj/project.pbxproj']:
             self.assertNotRegex((IOS / file).read_text(), r'RilloraHeartRateKit|NSHealth|com.apple.developer.healthkit')
         profile = (IOS / 'Rillora/Features/Account/AuthenticatedProfileContent.swift').read_text()
-        self.assertRegex(profile, r'#if RILLORA_HEALTHKIT_NEXT_VERSION\s+HeartRateEntryView\(\)\s+#endif')
+        self.assertRegex(profile, r'#if RILLORA_HEALTHKIT_NEXT_VERSION\s+HealthEntryView\(\)\s+#endif')
 
     def test_next_capability_adds_only_healthkit_to_existing_entitlements(self):
         current = plistlib.loads((IOS / 'Rillora/Rillora.entitlements').read_bytes())

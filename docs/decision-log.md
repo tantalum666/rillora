@@ -3819,3 +3819,11 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - The current single-heart-rate slice is a technical checkpoint, not the final product scope. Read-only still means no HealthKit writes. The staged metric list and iPhone-first/Watch-later recommendation are Agent proposals in [the focused note](healthkit-multisignal-watchos-20261024.md), not a new price, threshold, Watch release or disclosure decision.
 - Synced health reads and basic forwarded notifications do not require a Watch app. A companion would add short intentional interactions, not unrestricted monitoring. Common-source gaps, limited authorization, unknown states and the health-purpose boundary remain material.
 - Current review, real data, platform capabilities, billing, toolchain defer and local-only verification policy remain unchanged. No repeated Apple preapproval request or personal sampling is started.
+
+## 2026-10-24 — Implement iPhone health reads and check-ins, then the Watch companion
+
+- Status: OWNER EXPLICIT IMPLEMENTATION ORDER. Begin the approved sequence, use local tests, keep all changes for the next version, preserve current review and defer TestFlight; push completed work to GitHub.
+- This supersedes the earlier watchOS-recommendation-only gate. Read six first-stage types with no HealthKit writes. Check-ins are independently enabled user actions, not health-derived disclosure decisions. Technical reminder cadence/outbox expiry choices do not set medical or inheritance conditions.
+- Use isolated next targets/packages, account-bound minimum Watch messages, secure device-only state and explicit pending/acknowledged status. No raw health serialization to the Watch, server, content system or analytics. Real-device evidence stays separate under [the implementation contract](health-checkin-watch-development-20261024.md).
+
+同轮实施细化：独立提醒采用本人选择的24小时／3天／7天、每次手机接收后重新计时，默认关闭；传输有效期24小时仅用于拒绝陈旧命令，不产生医疗／遗产后果。Watch静态入口只导航，主动确认才产生操作；实际回执不等于通知家人或核验健康。新增只在下一版合并的延迟通知语言目录，保护当前审核原语言文件；真实SDK回调及通知串行修复不改变产品权限。
