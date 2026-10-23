@@ -1,0 +1,20 @@
+{
+  "focusedSpecs": [
+    "docs/git-integration-local-ci-20261023.md",
+    "tools/ci/README.md",
+    "docs/source-control.md",
+    "docs/content-completeness-review-20261023.md"
+  ],
+  "authority": [
+    "AGENTS.md",
+    "docs/product.md"
+  ],
+  "decisionAppended": "docs/decision-log.md / 2026-10-23 — Merge reviewed source using local checks; retire cloud CI",
+  "journeyAppended": "docs/journey/PROJECT_JOURNEY.md / 2026-10-23 — Git整合与停止云端CI",
+  "handoff": "docs/handoff.md",
+  "decisionReason": "Latest explicit Owner replaces cloud-first/billing gate with local verification and reviewed merge",
+  "sourceTests": 132,
+  "applicationTests": "Inherited exact green application checkpoints; unchanged suites not rerun",
+  "newChecks": "Local runner five boundary tests, complete source/tool group, trusted-base scanners, review isolation hashes, local Playwright config loading",
+  "pending": "exact branch push and expected-head merge readback"
+}

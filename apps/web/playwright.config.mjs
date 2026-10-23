@@ -4,7 +4,8 @@ export default defineConfig({
   forbidOnly: Boolean(process.env.CI), retries: 0,
   reporter: [['list'], ['html', { outputFolder: 'browser-report', open: 'never' }], ['json', { outputFile: 'browser-results/results.json' }]],
   outputDir: 'browser-results/artifacts',
-  use: { browserName: 'chromium', screenshot: 'on', trace: 'retain-on-failure', reducedMotion: 'reduce',
+  use: { browserName: 'chromium', channel: process.env.RILLORA_TEST_BROWSER_CHANNEL || undefined,
+    screenshot: 'on', trace: 'retain-on-failure', reducedMotion: 'reduce',
     launchOptions: { args: ['--use-fake-device-for-media-stream', '--use-fake-ui-for-media-stream'] } },
   webServer: [
     { command: 'npm run build && npx vite preview --host 127.0.0.1 --port 4174 --outDir dist/client', url: 'http://127.0.0.1:4174', reuseExistingServer: !process.env.CI },

@@ -1,0 +1,81 @@
+{
+  "checkedAt": "2026-10-23T15:38:47.491748+00:00",
+  "base": "466b130029f76a0a3be6dcaa18415d4129e4359f",
+  "candidate": "11ccef3b81d62b9661b4b3d3a96a4ef2fe09af4c",
+  "openPullRequests": [
+    9
+  ],
+  "unmergedRemoteBranches": [
+    "codex/ios-content-healthkit-20261023"
+  ],
+  "providerReviews": 0,
+  "providerInlineComments": 0,
+  "providerIssueComments": 0,
+  "runtimeFilesReviewed": [
+    "apps/api/src/legacy-content/contracts.ts",
+    "apps/api/src/legacy-content/routes.ts",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentBinary.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentClient.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentFileEditor.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentFiles.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentModels.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentPackEditor.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentPublicationView.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentStore.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentText.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentViews.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentVoice.swift",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/Resources/en.lproj/Localizable.strings",
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/Resources/zh-Hans.lproj/Localizable.strings",
+    "apps/ios/Rillora/Core/API/APIClient.swift",
+    "apps/ios/Rillora/Core/Design/RilloraAdaptivePair.swift",
+    "apps/ios/Rillora/Core/Design/RilloraBrand.swift",
+    "apps/ios/Rillora/Features/Account/AuthenticatedProfileContent.swift",
+    "apps/ios/Rillora/Features/Overview/OverviewView.swift",
+    "apps/ios/Rillora/Features/Overview/PublicHomeView.swift",
+    "apps/ios/project.healthkit-next.yml",
+    "apps/ios/project.next.yml",
+    "apps/web/src/LegacyContentPanel.jsx",
+    "apps/web/src/LegacyPackEditor.jsx",
+    "apps/web/src/LegacyPublication.jsx",
+    "apps/web/src/i18n/messages/legacyContent.js",
+    "apps/web/src/legacyContent.js",
+    "tools/release/prepare_next_ios.py"
+  ],
+  "blockingMergeFindings": [],
+  "sourceOnlyMergeAssessment": "Acceptable opt-in next-version source; release gates stay open",
+  "inheritedEvidence": {
+    "webApiInfrastructure": {
+      "commit": "ada1f5b325d796ae00ea8d3569c6705384df8503",
+      "sameRuntimeTreeThrough": "11ccef3b81d62b9661b4b3d3a96a4ef2fe09af4c",
+      "sourceRun": 39965263413,
+      "guardRun": 39965257514,
+      "browserRun": 39965263446,
+      "browserPassed": 81,
+      "browserExplicitExistingSkips": 2
+    },
+    "nativeFinal": {
+      "commit": "78aaa5de1fd01a9d727132f17fa5c088b949f7f9",
+      "modulePassed": 18,
+      "buildPassed": true
+    }
+  },
+  "localSourceTests": 132,
+  "remoteWorkflowStates": {
+    "verify.yml": "disabled_manually",
+    "web-ux-browser.yml": "disabled_manually",
+    "source-publication-guard.yml": "disabled_manually"
+  },
+  "openReleaseGates": [
+    "Two earlier Duo landscape UI cases remain failed; not rerun or reclassified",
+    "Personal microphone, on-device speech, HealthKit and hardware file-protection evidence",
+    "Compatible API before longer-upload Web/native clients"
+  ],
+  "nonActions": [
+    "No deployment",
+    "No TestFlight or device installation",
+    "No pricing/billing/data/FanPass change",
+    "No OS or Xcode upgrade",
+    "No budget/payment change"
+  ]
+}

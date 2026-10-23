@@ -1,28 +1,24 @@
 # Rillora 当前交接
 
-Status: CONTENT FIXES LOCALLY VALIDATED / CURRENT CLOUD CI BLOCKED BY GITHUB ACCOUNT / NOT DEPLOYED
+Status: PR9 REVIEWED / LOCAL GATES PASS / CLOUD CI STOPPED / MERGE IN PROGRESS
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求再看办理包、重要文件和原声是否完善。本轮交付是当前实现与原方案的复核、具体缺陷修复、定向验证及Git保存；[当前报告](content-completeness-review-20261023.md)列出真实范围。[Duo交接](handoff-history-20261023-before-content-review.md)转为HISTORICAL，其升级暂缓和未通过项仍有效。
+Owner要求检查并合并GitHub待办，同时停止使用云端CI。[本轮整合](git-integration-local-ci-20261023.md)取代[旧账单门交接](handoff-history-20261023-before-local-ci.md)；后者仅为HISTORICAL，不再恢复预算或重跑云端。
 
 ## 已完成
 
-七组候选修复覆盖新录音与旧文字确认、已存原声的转写／语言／取消入口、中文长文字上传封装、本人读取已共享文件，以及Web确认保存后的刷新故障、亲友临时断网／进度版本、失效文件／人／事项关联。上传封装64KiB，已保存正文仍48KiB；文件8MiB、账户128MiB及100份额度、收费不变。
+当前只有PR9与其下一版分支未入main，其他远端分支均已包含。活动源码、权限／文件边界、两端错误恢复与现有证据已复核；没有新合并阻塞。原审核5份配置／依赖pins与main保持。新原生／HealthKit／Duo能力只在独立下一版目标启用。
 
-18项Swift、6项Web协议、29项API最后相关结果、8项隔离／语言检查、新原生真实API／SQL1项和中英文UI2项通过；最后5条Chrome浏览器路径通过。本人原生导出实际保存，接收人和本人读取字节匹配。API深比较超时与原生系统按钮误定位的失败保留，修正工具／断言方法后通过，没有隐藏失败或放松权限。
+三个GitHub工作流已逐一停用，源码定义移出执行目录；[本机检查](../tools/ci/README.md)保留可信base秘密扫描、完整可读清单和原测试组。source组132项通过，扫描32项既有登记／0未知。沿用ada1f5b32完整Web／API检查和78aaa5de1原生18项／编译结果，不冒充当次重跑。
 
-5份原审核工程／权限／依赖pins不变；无云端部署、迁移、个人权限变更、真实数据、定价、收费、FanPass、TestFlight或手机更新。macOS／Xcode升级保持暂缓。合成API停止，失败测试记录及模拟器合成导出保留。
+## 证据边界
 
-## 证据边界与Git
+七组内容修复、真实本机SQL／双语导出与5条浏览器路径沿用[既有完整性证据](content-completeness-review-20261023.md)。两项Duo横屏UI失败、真人麦克风／本机识别／健康／硬件保护仍未完成；机构材料装配、缺件／来源变化提示和真实身后交付未实现。源码入库不等于下一版可发布。
 
-本轮修复尚未部署。原Web上线证据不包含新候选；下一版客户端的长文字上传要求先部署兼容API。机构材料自动装配、缺件／源资料变化提示尚未实现，当前是手工组织材料与进度。真人麦克风／本机识别／取消中断、硬件保护及真实身后核验交付不在通过范围。Duo既有两项横屏UI失败仍开放，没有重跑或归责Apple。
-
-继续codex/ios-content-healthkit-20261023及[PR9](https://github.com/tantalum666/rillora/pull/9)；源码、archive52及远端实际结果见[保存回执](../collaboration/verification/content-completeness-20261023/README.md)。源码c4d9930f4已推送，Verify source三任务及publication guard通过，archive52远端独立认证165对象／244路径通过。云端浏览器与最终回执提交CI读取对应原生记录，不预写状态。旧1–51不重做。GitHub的Linux检查不包含原生UI，实际CI与各本机用例独立报告。
+当前审核、TestFlight、手机、生产、数据、价格、收费、FanPass和系统／Xcode升级暂缓保持。本轮无部署；未来长文字客户端必须先发布兼容API，再Web，最后下一版原生。
 
 ## 唯一下一步
 
-先恢复GitHub账户的账单／消费预算可用状态，再运行并核对最终提交的CI。78aaa5de1的各作业在启动前被该账户门拦截，未执行测试，不能算绿色；未改付款方式或提高上限。ada1f5b32的完整检查已通过，最新原生首次录音保护有18项本机测试及iOS编译证明。
-
-之后发布仍按兼容API→Web，iOS留到下一版本；当前审核、工具升级暂缓、真实数据和收费保持。材料装配等产品增量及Duo既有问题仍是独立未完成项。本轮复核／修复源码和证据均已推Git，云端门如实保留。
+将已核验候选推入PR9，按确切head SHA完成合并，读回main与所有远端分支包含关系，并确认没有启动新的云端作业。[本轮保存包](../collaboration/verification/git-local-ci-20261023/README.md)记录后续结果；旧archive1–52不重做。

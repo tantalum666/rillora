@@ -83,4 +83,6 @@ Git／Dot协作先看 `collaboration/README.md` 和 `docs/source-control.md`。�
 
 当次 QA 记录列明修改的规范、更新或无需追加决策的理由、交接／旅程位置和验证结果。若工作被打断，先保存当前状态及未完成项；最终回复不得宣称文档已同步而文件尚未写入。
 
-Git发布若新增或修改`collaboration/`可读材料，必须在最后一份回执写完后，用`tools/collaboration/verify_publication.py --write-manifest --scan`重建并核验完整清单，再一同提交。仅扫描应用源码或单个新增证据目录不能替代覆盖、字节哈希和全量可读扫描；后续又改了回执就重新核验。GitHub push成功不等于CI成功，收尾须读取对应提交的实际检查结果；失败必须修复或如实记录，不用`skip ci`掩盖未通过的发布检查。
+Git发布若新增或修改`collaboration/`可读材料，必须在最后一份回执写完后，用`tools/collaboration/verify_publication.py --write-manifest --scan`重建并核验完整清单，再一同提交。仅扫描应用源码或单个新增证据目录不能替代覆盖、字节哈希和全量可读扫描；后续又改了回执就重新核验。
+
+Owner于2026-10-23明确停止使用云端CI，改用[本机验证](tools/ci/README.md)。不得为消除旧账单失败而重启GitHub Actions、增加预算或安装常驻自托管runner。保留主分支可信扫描策略、完整可读清单、相关测试与失败记录；采用确切base SHA运行本机发布门。已有未变化的检查可按原提交沿用，不能伪称当次重跑。GitHub push成功不等于验证成功；收尾保存本机检查范围和结果、读取确切远端提交／合并，并确认没有新云端作业。旧CI的成功／失败保留历史事实，不用`skip ci`或伪造检查状态掩盖失败。

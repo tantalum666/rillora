@@ -2,6 +2,12 @@
 
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
+## October23 local verification and reviewed main integration
+
+Owner explicitly requests reviewing/merging pending GitHub work and stopping cloud CI. This supersedes the previous cloud-first/billing-recovery gate. Use [local verification](../tools/ci/README.md) and [the merge review](git-integration-local-ci-20261023.md). Source and readable-publication policy, complete coverage/hash checks, secret scan and relevant tests remain required; execution moves to the local machine. No new GitHub Actions runs, budget increase or persistent self-hosted runner is part of this task.
+
+Three existing workflows were disabled in GitHub before another push. Their exact definitions are preserved outside the active workflow directory under `tools/ci/cloud-reference/*.disabled`. The local runner always checks candidate source with the explicitly reviewed immutable base scanner and exception authority before executing selected candidate tests. Read back the final remote merge and absence of newly queued/running cloud jobs. Inherited application tests must name their exact checkpoint; local success is not a green cloud run.
+
 ## October23 next-version native content
 
 [Native development](ios-content-development-20261023.md) is isolated oncodex/ios-content-healthkit-20261023frommain466b13002. Native source, bilingual resources, generator and checks are ordinary Git. [New safe receipts and archive50](../collaboration/verification/ios-content-20261023/README.md) preserve actual build/test logs, synthetic system-file/UI captures and full result bundles, including earlier failures. DerivedData, dependency caches, private credentials and provider state remain excluded. Archives1–49 are unchanged; only the new archive is independently downloaded and authenticated. Source/archiveb17d76f32is published in[PR9](https://github.com/tantalum666/rillora/pull/9); a fresh empty-LFS download verifies all425objects/792paths. Final candidate CI is read from the PR record after the final metadata commit.
@@ -26,7 +32,7 @@ Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 [Completed repair and integration](git-integration-20261020.md) resolves26 omitted readable verification files and merges[PR3](https://github.com/tantalum666/rillora/pull/3)after the independent exact-registry PR4. Main merge6b757b885matches the validated candidate tree and contains all24remote branch tips. API580and browser66pass; no open PR remains. Prior branch-specific merge notes below remain historical; main is now the consolidated source baseline.
 
-After the last readable receipt is written, run `python3 tools/collaboration/verify_publication.py --write-manifest --scan --report output/qa/<task>/publication.json`, stage the resulting manifest with the files, and read back the actual checks for the submitted commit. Source scanning and scanning only the new evidence folder cannot replace this complete coverage/hash/secret check. A later receipt edit invalidates its old manifest hash and requires regeneration. Keep all guards enabled and avoid CI-skipping commits for unresolved failures.
+After the last readable receipt is written, run `python3 tools/collaboration/verify_publication.py --write-manifest --scan --report output/qa/<task>/publication.json`, stage every referenced file with the resulting manifest, run the base-owned local publication gate, and read back the submitted commit (cloud checks are retired under the current October23 policy). Source scanning and scanning only the new evidence folder cannot replace this complete coverage/hash/secret check. A later receipt edit invalidates its old manifest hash and requires regeneration. Keep all guards enabled and avoid CI-skipping commits for unresolved failures.
 
 ## October19 marketing mail aliases
 
@@ -307,7 +313,7 @@ preparation excludes the generated collaboration tree because it has its own
 complete file manifest, redaction and secret scan; encrypted bytes are verified
 cryptographically, not misleadingly described as readable secret-scanned text.
 
-[Verify source](../.github/workflows/verify.yml) checks main/codex pushes and PRs.
+The historical [Verify source](../tools/ci/cloud-reference/verify.yml.disabled) checked main/codex pushes and PRs before October23. Its checks now run through [the local entry](../tools/ci/README.md).
 It checks source/publication guards, disposable PostgreSQL tests, Web/legal packaging,
 infrastructure and health probes. Actions and scanner downloads are pinned. Checkout
 keeps LFS pointers by default; no large archive download or archive decryption key is

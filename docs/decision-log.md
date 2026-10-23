@@ -3805,3 +3805,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 同轮CI修正：浏览器81项通过、2项既有显式跳过，但冷安装耗9m26s使15分钟任务总限到期。仅将既有Ubuntu浏览器任务总限改为20分钟，测试与断言、资源类型和权限不变；不表示产品失败被忽略，最终运行结果单独核对。
 
 同轮原生细化：仅替换已有录音才移除旧文字；首次录音保留用户预写草稿。所有新音频都取消文字确认，避免误配也避免误删，未新增商业或披露决定。
+
+## 2026-10-23 — Merge reviewed source using local checks; retire cloud CI
+
+- Status: OWNER EXPLICIT INSTRUCTION. Inspect pending GitHub work, repair actual blocking problems, merge acceptable source, and stop cloud CI consumption.
+- This supersedes the prior cloud-first execution and billing-restoration gate. Disable existing workflows before pushing, retain their definitions outside the executable directory, and run base-owned source/publication policy plus relevant test groups locally. Do not increase spending, use skip-ci markers, fabricate successful check statuses or register a persistent self-hosted runner.
+- Current PR9 is development source. Its isolated next iOS target keeps the review configuration and pinned dependencies unchanged. The earlier two Duo landscape UI failures and physical speech/health/protection gates remain open and block next-version release claims, not preservation of opt-in source. No product limits, real data, price, live switch or FanPass change is authorized by the merge itself.
+- Existing exact application checkpoints remain usable for unchanged code. Local execution, GitHub integration and deployment are separately recorded in [the integration review](git-integration-local-ci-20261023.md).

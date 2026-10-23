@@ -1,0 +1,144 @@
+{
+  "version": 1,
+  "groups": {
+    "source": [
+      {
+        "name": "Test tools/release",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/release -p 'test_*.py'"
+      },
+      {
+        "name": "Test tools/godaddy",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/godaddy -p 'test_*.py'"
+      },
+      {
+        "name": "Test tools/auth0",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/auth0 -p 'test_*.py'"
+      },
+      {
+        "name": "Test tools/collaboration",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/collaboration -p 'test_*.py'"
+      },
+      {
+        "name": "Test tools/security",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/security -p 'test_*.py'"
+      },
+      {
+        "name": "Test infra/aws/recovery-journal-broker",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s infra/aws/recovery-journal-broker -p 'test_*.py'"
+      },
+      {
+        "name": "Test tools/ci",
+        "cwd": ".",
+        "command": "python3 -m unittest discover -s tools/ci -p 'test_*.py'"
+      }
+    ],
+    "api": [
+      {
+        "name": "npm run typecheck && npm run build && npm test",
+        "cwd": "apps/api",
+        "command": "npm run typecheck && npm run build && npm test",
+        "env": {}
+      }
+    ],
+    "web-and-infrastructure": [
+      {
+        "name": "Verify Web source and internal build",
+        "cwd": "apps/web",
+        "command": "npm run build\nnode --input-type=module -e \"import { readdirSync } from 'node:fs'; if (readdirSync('dist/client/assets').some(name => /AiConnectionsPanel-|LegacyContent|LocalTranscription|legacy-transcribe|\\\\.wasm$/.test(name))) throw new Error('Default build must exclude optional AI and content assets');\"\nweb_tests=()\nfor test_file in tests/*.test.mjs; do\n  if [[ \"$test_file\" != tests/legal-sites-worker.test.mjs ]]; then web_tests+=(\"$test_file\"); fi\ndone\nnode --test \"${web_tests[@]}\"",
+        "env": {}
+      },
+      {
+        "name": "Build public information artifact without account or API entry",
+        "cwd": "apps/web",
+        "command": "npm run build:public\nRILLORA_TEST_PUBLIC_BUILD=1 node --test tests/public-seo.test.mjs",
+        "env": {}
+      },
+      {
+        "name": "Verify legal packaging fixture (not a publication artifact)",
+        "cwd": "apps/web",
+        "command": "npx vite build --mode legal\nnode scripts/prepare-legal-sites-build.mjs\nnode --test tests/legal-sites-worker.test.mjs",
+        "env": {}
+      },
+      {
+        "name": "Verify infrastructure without AWS credentials",
+        "cwd": "infra/aws",
+        "command": "npm run typecheck && npm test",
+        "env": {}
+      },
+      {
+        "name": "Verify bounded legacy snapshot retirement",
+        "cwd": "tools/snapshot-retention",
+        "command": "npm test",
+        "env": {}
+      },
+      {
+        "name": "Build closed-client fixture (not publishable)",
+        "cwd": "apps/web",
+        "command": "npm run build:production-closed",
+        "env": {
+          "VITE_LEGAL_OPERATOR_NAME": "Unpublished CI fixture",
+          "VITE_LEGAL_OPERATOR_COUNTRY": "Fixture",
+          "VITE_LEGAL_SERVICE_ADDRESS": "Unpublished fixture address",
+          "VITE_LEGAL_SUPPORT_EMAIL": "support@example.test",
+          "VITE_LEGAL_PRIVACY_EMAIL": "privacy@example.test",
+          "VITE_LEGAL_SECURITY_EMAIL": "security@example.test"
+        }
+      },
+      {
+        "name": "Verify public health checker",
+        "cwd": ".",
+        "command": "node --test tools/ops/health-check.test.mjs",
+        "env": {}
+      },
+      {
+        "name": "Verify AI client package generation without credentials or installation",
+        "cwd": ".",
+        "command": "node --test tools/mcp/client-packages.test.mjs",
+        "env": {}
+      },
+      {
+        "name": "Verify isolated AI candidate without provider credentials",
+        "cwd": "infra/ai-candidate",
+        "command": "npm run typecheck\nnpm test\nnpm run build",
+        "env": {}
+      },
+      {
+        "name": "Verify constrained maintenance broker",
+        "cwd": ".",
+        "command": "node --check tools/maintenance-broker/handler.mjs && node --test tools/maintenance-broker/core.test.mjs",
+        "env": {}
+      },
+      {
+        "name": "Verify restricted review identity action",
+        "cwd": ".",
+        "command": "node --test infra/auth0/hosted-consent/production-review-action.test.cjs",
+        "env": {}
+      }
+    ],
+    "browser": [
+      {
+        "name": "Full synthetic Web browser suite",
+        "cwd": "apps/web",
+        "command": "npm run test:browser"
+      }
+    ],
+    "native-modules": [
+      {
+        "name": "Content module",
+        "cwd": ".",
+        "command": "swift test --package-path apps/ios/NextVersionContent"
+      },
+      {
+        "name": "Health read-only module",
+        "cwd": ".",
+        "command": "swift test --package-path apps/ios/NextVersionHealth"
+      }
+    ]
+  }
+}
