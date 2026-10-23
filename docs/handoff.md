@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: PR9 REVIEWED / LOCAL GATES PASS / CLOUD CI STOPPED / MERGE IN PROGRESS
+Status: PR9 MERGED / LOCAL GATES PASS / CLOUD CI RETIRED / NOT DEPLOYED
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 ## 当前任务
@@ -9,7 +9,7 @@ Owner要求检查并合并GitHub待办，同时停止使用云端CI。[本轮整
 
 ## 已完成
 
-当前只有PR9与其下一版分支未入main，其他远端分支均已包含。活动源码、权限／文件边界、两端错误恢复与现有证据已复核；没有新合并阻塞。原审核5份配置／依赖pins与main保持。新原生／HealthKit／Duo能力只在独立下一版目标启用。
+PR9已从2e75d1742合并为main15068a9ce，文件树相同；开放PR0，32个远端分支头全部包含。活动源码、权限／文件边界、两端错误恢复与现有证据已复核；没有新合并阻塞。原审核5份配置／依赖pins与main保持。新原生／HealthKit／Duo能力只在独立下一版目标启用。
 
 三个GitHub工作流已逐一停用，源码定义移出执行目录；[本机检查](../tools/ci/README.md)保留可信base秘密扫描、完整可读清单和原测试组。source组132项通过，扫描32项既有登记／0未知。沿用ada1f5b32完整Web／API检查和78aaa5de1原生18项／编译结果，不冒充当次重跑。
 
@@ -21,4 +21,4 @@ Owner要求检查并合并GitHub待办，同时停止使用云端CI。[本轮整
 
 ## 唯一下一步
 
-将已核验候选推入PR9，按确切head SHA完成合并，读回main与所有远端分支包含关系，并确认没有启动新的云端作业。[本轮保存包](../collaboration/verification/git-local-ci-20261023/README.md)记录后续结果；旧archive1–52不重做。
+下一版本继续时，先定位并修复已有两项Duo横屏交互失败，在现有工具链内验证真实可操作性，再推进下一版发布门；不得用旋转尺寸或标题保持代替保存／返回／放弃的结果。升级仍暂缓，当前审核不变。[本轮完成回执](../collaboration/verification/git-local-ci-20261023/completion.json)已记录合并与无新云端作业，本机回到main；旧archive1–52不重做。

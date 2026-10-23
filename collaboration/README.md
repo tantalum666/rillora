@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October23最新：[Git整合／本机验证](../docs/git-integration-local-ci-20261023.md)按Owner明确指令停止云端CI，旧账单恢复门被取代；保留可信base秘密扫描、完整清单及相关本机测试。[当前本机入口](../tools/ci/README.md)与[本轮回执](verification/git-local-ci-20261023/README.md)供后续协作沿用。下方云端CI描述均为有日期的既往检查点，不能据此重新启动工作流；当前唯一下一步只看handoff。
+October23最新：[Git整合／本机验证](../docs/git-integration-local-ci-20261023.md)按Owner明确指令停止云端CI，旧账单恢复门被取代；保留可信base秘密扫描、完整清单及相关本机测试。[当前本机入口](../tools/ci/README.md)与[本轮回执](verification/git-local-ci-20261023/README.md)供后续协作沿用。PR9已合并为main15068a9ce，32个远端分支头全包含、开放PR0；运行总数保持314，无新云端任务。[完成回执](verification/git-local-ci-20261023/completion.json)。下方云端CI描述均为有日期的既往检查点，不能据此重新启动工作流；当前唯一下一步只看handoff。
 
 October23当前：[下一版本原生内容](../docs/ios-content-development-20261023.md)已补齐办理包、文件、原声及独立HealthKit入口，完成14项模块／15项原生用例相关结果／8项隔离检查；当前审核工程和线上保持。源码与[本轮原始证据](verification/ios-content-20261023/README.md)使用新增archive50，旧1–49不重做。源码b17d76f32和[PR9](https://github.com/tantalum666/rillora/pull/9)已发布；archive50独立远端解密核验425对象／792路径通过。当前唯一下一步只看handoff；最终候选CI按PR原生记录核对。
 

@@ -1,6 +1,6 @@
 # GitHub整合与本机检查
 
-Status: REVIEWED / LOCAL GATES PASS / CLOUD WORKFLOWS DISABLED / MERGE READBACK PENDING
+Status: MERGED / LOCAL GATES PASS / CLOUD CI RETIRED / NOT DEPLOYED
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 Owner要求检查GitHub工作、合适后合并，并停止使用云端CI。此指令取代旧交接中的“恢复账单／消费上限后重跑CI”。当前审核、线上服务、数据、价格、收费、FanPass和系统升级暂缓保持。
@@ -28,3 +28,5 @@ Owner要求检查GitHub工作、合适后合并，并停止使用云端CI。此�
 ## 后续发布边界
 
 本轮只整合源码与检查执行方式。发布修复仍须兼容API先行，再Web；iOS继续下一版、暂不TestFlight。环境升级与两项横屏失败不因云端停用而跳过。后续流程不要为清除旧红色图标提高GitHub预算或恢复Actions；按实际变化选择本机验证并保存确切提交证据。
+
+完成回读：PR9以确切候选2e75d1742合并到main15068a9ce，文件树完全一致；开放PR为0，32个远端分支头全部包含。推送／合并后云端运行总数仍314，最新仍是旧11ccef3b8，候选没有新运行，排队／运行／等待均0。见[完成回执](../collaboration/verification/git-local-ci-20261023/completion.json)。本机已切回main；后续仅保存本段完成元数据，不改产品实现。

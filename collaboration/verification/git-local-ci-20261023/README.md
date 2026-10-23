@@ -1,6 +1,6 @@
 # Git review and local verification — 2026-10-23
 
-Status: REVIEWED / LOCAL SOURCE GATES PASS / CLOUD WORKFLOWS DISABLED / MERGE READBACK PENDING
+Status: MERGED / LOCAL SOURCE GATES PASS / CLOUD CI RETIRED / NOT DEPLOYED
 
 Authority: [integration review](../../../docs/git-integration-local-ci-20261023.md).
 This continues the existing next-version workflow and full-body reading chain.
@@ -20,3 +20,5 @@ normal Git preserves it directly. No archive53 is needed, and archives1–52 rem
 immutable. Dependency/build caches, credentials, browser session state and actual
 provider records are excluded. Source merge, local checks, inherited cloud checks,
 deployment and next-version physical/Duo acceptance remain separate facts.
+
+完成回读：PR9以确切候选2e75d1742合并到main15068a9ce，文件树完全一致；开放PR为0，32个远端分支头全部包含。推送／合并后云端运行总数仍314，最新仍是旧11ccef3b8，候选没有新运行，排队／运行／等待均0。见[完成回执](completion.json)。本机已切回main；后续仅保存本段完成元数据，不改产品实现。
