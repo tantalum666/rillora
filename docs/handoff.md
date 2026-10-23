@@ -21,7 +21,7 @@ Owner要求继续补齐下一版iOS办理包、文件、原声并接好HealthKit
 
 真实麦克风录音、Apple本机识别授权／质量、个人HealthKit授权与手机／手表读数、真机数据保护尚未验证。模拟器不能返回真实文件保护类，旧不适用断言已明确归档，未取消源码complete保护。原HealthKit6项合成测试沿用October22，本轮补组合工程与中英文入口，不重复购买／恢复／退款或已部署Web验收。
 
-源码基线main466b13002，工作分支codex/ios-content-healthkit-20261023。完整阅读沿用上一工作流正文链，变化文件与原生规范已补读；当前记录在output/qa/rillora-ios-content-20261023。源码、安全摘要及新增原始证据保存状态以[本轮Git回执](../collaboration/verification/ios-content-20261023/README.md)和实际GitHub检查为准，旧archives1–49不重封、不重下。
+源码基线main466b13002，工作分支codex/ios-content-healthkit-20261023。完整阅读沿用上一工作流正文链，变化文件与原生规范已补读；当前记录在output/qa/rillora-ios-content-20261023。源码b17d76f32和archive50已推送至[PR9](https://github.com/tantalum666/rillora/pull/9)，新归档已完成独立远端下载／解密及425对象／792路径核验。最终候选CI以PR原生记录为准，不由push推断通过。源码、安全摘要及新增原始证据保存状态以[本轮Git回执](../collaboration/verification/ios-content-20261023/README.md)和实际GitHub检查为准，旧archives1–49不重封、不重下。
 
 ## 唯一下一步
 

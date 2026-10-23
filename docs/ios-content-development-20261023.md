@@ -41,3 +41,5 @@ Owner明确继续补齐原生三项内容功能并接好HealthKit，先开发和
 模拟器不提供真机数据保护类；因此原错误的硬件保护断言单独标为HISTORICAL，当前用例只证明备份排除和清理，源码仍请求complete保护。个人HealthKit授权、真实手机／手表读数、麦克风和本机识别、硬件保护及后续分发均不在本轮通过声明中。原HealthKit库的6项合成测试沿用October22检查点；本轮只补组合工程和入口／隔离验证。
 
 当前主project.yml／Info.plist／entitlements／Xcode项目的字节指纹一致；无Apple后台、线上API/Web、数据、价格、收费或FanPass修改，无新TestFlight／归档上传。专用本机夹具已停止，合成数据库和模拟器文件保留为QA资料，不称已删除。GitHub结果以本轮回执和实际PR记录为准。
+
+源码及原始证据已推至b17d76f32／[PR9](https://github.com/tantalum666/rillora/pull/9)。新增archive50的425对象／792路径已从独立空LFS目录远端下载、解密并逐字核验；旧1–49不重做。最后元数据提交的实际CI仍以PR原生检查为准，不预写自引用提交号。

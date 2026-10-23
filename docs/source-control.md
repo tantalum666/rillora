@@ -4,7 +4,7 @@ Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 ## October23 next-version native content
 
-[Native development](ios-content-development-20261023.md) is isolated oncodex/ios-content-healthkit-20261023frommain466b13002. Native source, bilingual resources, generator and checks are ordinary Git. [New safe receipts and archive50](../collaboration/verification/ios-content-20261023/README.md) preserve actual build/test logs, synthetic system-file/UI captures and full result bundles, including earlier failures. DerivedData, dependency caches, private credentials and provider state remain excluded. Archives1–49 are unchanged; only the new archive is independently downloaded and authenticated. Final GitHub CI and PR records must be read after push.
+[Native development](ios-content-development-20261023.md) is isolated oncodex/ios-content-healthkit-20261023frommain466b13002. Native source, bilingual resources, generator and checks are ordinary Git. [New safe receipts and archive50](../collaboration/verification/ios-content-20261023/README.md) preserve actual build/test logs, synthetic system-file/UI captures and full result bundles, including earlier failures. DerivedData, dependency caches, private credentials and provider state remain excluded. Archives1–49 are unchanged; only the new archive is independently downloaded and authenticated. Source/archiveb17d76f32is published in[PR9](https://github.com/tantalum666/rillora/pull/9); a fresh empty-LFS download verifies all425objects/792paths. Final candidate CI is read from the PR record after the final metadata commit.
 
 ## October23 Web content release and bounded QA evidence
 
