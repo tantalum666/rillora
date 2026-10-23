@@ -34,7 +34,7 @@ targets:
         NSSpeechRecognitionUsageDescription: "With your permission, supported on-device speech recognition creates a text draft for you to review. Recordings are not sent to a speech-recognition server."
     settings:
       base:
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_CONTENT_NEXT_VERSION RILLORA_HEALTHKIT_NEXT_VERSION"
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_CONTENT_NEXT_VERSION RILLORA_HEALTHKIT_NEXT_VERSION RILLORA_DUO_NEXT_VERSION"
         CODE_SIGN_ENTITLEMENTS: NextVersionHealth/Configuration/RilloraNext.entitlements
   RilloraNextTests:
     type: bundle.unit-test

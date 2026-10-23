@@ -1,0 +1,37 @@
+{
+  "capturedFrom": "2026-10-23T07:51:12.257200+00:00",
+  "capturedThrough": "2026-10-23T07:51:27.251018+00:00",
+  "workFiles": 842,
+  "uniqueRawObjects": 435,
+  "workBytes": 391688603,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-051.tar.zst.age",
+      "sha256": "57d5f393af30472edee1b613bf65e693f40138112156f821c6e5cb37af256184",
+      "bytes": 204567245,
+      "plainBytes": 213356863,
+      "uniqueObjects": 435
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/iphone-duo-20261023/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-050",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": ".local/rillora-content-rollout-20261022",
+      "reason": "private live infrastructure snapshots; safe diffs and state receipts are included instead"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Only this next-version resize QA, original failed/passed build logs, complete result bundles, synthetic UI images, source-isolation and dependency-pin receipts, local helpers. DerivedData and dependency caches are excluded; no distributable archive is created.",
+  "boundary": "No private account credentials, database backups or authentication captures. Current App Review, prices, billing and FanPass preserved. Current source and selected safe receipts are ordinary Git."
+}

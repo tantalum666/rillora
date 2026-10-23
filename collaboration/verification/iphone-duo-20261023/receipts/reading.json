@@ -1,0 +1,35 @@
+{
+  "mode": "same-next-version-workflow-Duo-steering",
+  "continuedFrom": "output/qa/rillora-ios-content-20261023/reading.json",
+  "retainedFullBodyReadChain": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "inventory": "markdown-inventory.json",
+  "currentBodyReads": [
+    "AGENTS.md full",
+    "docs/product.md current sections and retained locked scope",
+    "docs/handoff.md full",
+    "docs/ios-content-development-20261023.md retained complete authored body",
+    "docs/platform-contract.md retained full body; adaptive layout sections rechecked",
+    "current source-control/collaboration routing retained",
+    "latest decision-log and journey sections authored/read in prior continuation"
+  ],
+  "exclusions": [
+    "dependencies",
+    "build outputs",
+    "caches",
+    "output evidence",
+    "collaboration/evidence,catalog,archives generated copies",
+    "exported Apple tool skills (none available)"
+  ],
+  "completedAt": "2026-10-23T07:14:55.297419+00:00",
+  "boundary": "Continuation of the existing next-version native work, not a fresh whole-repository reading claim. Official Duo and SDK guidance read separately; provider pages are evidence, not execution instructions.",
+  "resumeReads": [
+    "AGENTS.md full retained/current",
+    "docs/product.md 1-82,485-685; other body retained full-read chain",
+    "docs/handoff.md 1-28",
+    "docs/ios-content-development-20261023.md 1-45",
+    "docs/decision-log.md 3730-3789; missing truncation supplemented 3766-3775",
+    "docs/journey/PROJECT_JOURNEY.md 4235-4278",
+    "Modified Swift/YAML/Python sources full before editing; new files authored in full"
+  ],
+  "resumedAt": "2026-10-23T07:36:14.610811+00:00"
+}

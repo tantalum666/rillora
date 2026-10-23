@@ -1,0 +1,15 @@
+{
+  "writtenAt": "2026-10-23T07:50:36.614871+00:00",
+  "focusedSpecs": [
+    "docs/iphone-duo-adaptation-20261023.md",
+    "docs/ios-content-development-20261023.md"
+  ],
+  "productRouting": "docs/product.md",
+  "decision": "docs/decision-log.md appended October23 Duo/upgrade defer",
+  "journey": "docs/journey/PROJECT_JOURNEY.md appended October23 actual outcome",
+  "handoff": "docs/handoff.md",
+  "historicalHandoff": "docs/handoff-history-20261023-before-duo.md",
+  "verification": "acceptance.json distinguishes 3 passing layout cases, 8 passing guards and 2 still failing rotation UI cases; source preparation is not full Duo acceptance",
+  "git": "next-version PR9, no merge/distribution; full readable manifest and exact GitHub checks follow",
+  "upgrade": "Owner latest defer supersedes prior immediate-upgrade permission; no upgrade executed"
+}

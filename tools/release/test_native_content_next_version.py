@@ -16,7 +16,8 @@ class NativeContentNextTests(unittest.TestCase):
     def test_current_review_target_has_no_new_packages_or_permissions(self):
         for name in ['project.yml', 'Rillora/Resources/Info.plist', 'Rillora/Rillora.entitlements',
                      'Rillora.xcodeproj/project.pbxproj']:
-            self.assertNotRegex((IOS / name).read_text(), r'RilloraContentKit|NSMicrophoneUsageDescription|NSSpeechRecognitionUsageDescription|RILLORA_CONTENT_NEXT_VERSION')
+            self.assertNotRegex((IOS / name).read_text(), r'RilloraContentKit|NSMicrophoneUsageDescription|NSSpeechRecognitionUsageDescription|RILLORA_CONTENT_NEXT_VERSION|RILLORA_DUO_NEXT_VERSION')
+        self.assertIn('RILLORA_DUO_NEXT_VERSION', (IOS / 'project.next.yml').read_text())
         self.assertIn('#if RILLORA_CONTENT_NEXT_VERSION', (IOS / 'Rillora/Core/API/APIClient.swift').read_text())
         self.assertIn('#if RILLORA_CONTENT_NEXT_VERSION', (IOS / 'Rillora/Features/Account/AuthenticatedProfileContent.swift').read_text())
 

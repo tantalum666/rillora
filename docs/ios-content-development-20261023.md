@@ -43,3 +43,5 @@ Owner明确继续补齐原生三项内容功能并接好HealthKit，先开发和
 当前主project.yml／Info.plist／entitlements／Xcode项目的字节指纹一致；无Apple后台、线上API/Web、数据、价格、收费或FanPass修改，无新TestFlight／归档上传。专用本机夹具已停止，合成数据库和模拟器文件保留为QA资料，不称已删除。GitHub结果以本轮回执和实际PR记录为准。
 
 源码及原始证据已推至b17d76f32／[PR9](https://github.com/tantalum666/rillora/pull/9)。新增archive50的425对象／792路径已从独立空LFS目录远端下载、解密并逐字核验；旧1–49不重做。最后元数据提交的实际CI仍以PR原生检查为准，不预写自引用提交号。
+
+同日Owner要求下一版本适配iPhone Duo；[后续布局合同](iphone-duo-adaptation-20261023.md)继续此独立工程。原生内容的上述结果保留原日期，新布局及环境升级延后各自记录，不重跑原内容全套或改当前审核。

@@ -87,9 +87,13 @@ struct SignedOutOverviewView: View {
             }
             .padding(.horizontal, 24).padding(.top, 28)
             Image("PublicHomeHero")
+                #if RILLORA_DUO_NEXT_VERSION
+                .resizable().scaledToFit()
+                #else
                 .resizable().scaledToFill()
                 .frame(height: dynamicTypeSize.isAccessibilitySize ? 220 : 250)
                 .clipped()
+                #endif
                 .mask(LinearGradient(stops: [
                     .init(color: .clear, location: 0), .init(color: .black, location: 0.1),
                     .init(color: .black, location: 0.86), .init(color: .clear, location: 1)

@@ -3787,3 +3787,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - The implementation uses an isolated next project and the existing API, reviewed dependency pins, native system file/media surfaces and explicitly on-device speech recognition. Default review source/configuration, live data, prices and FanPass are preserved.
 - Actual SQL restricts old publication when person/intention changes; native copy follows that fact. Current body/file edits retain frozen published copies until explicit replacement. No automatic death, health-driven disclosure or new commercial policy is introduced.
 - Synthetic native tests and source guards are complete as recorded in [the contract](ios-content-development-20261023.md); physical permissions, recording quality, health samples and data-protection hardware remain independent. No need for another general project authorization is inferred.
+
+## 2026-10-23 — Prepare next-version Duo layouts; defer the environment upgrade
+
+- Status: OWNER AUTHORIZED next-version adaptation; OS/Xcode upgrade DEFERRED by the latest instruction.
+- Owner asks for iPhone Duo support in the next version. The subsequent “晚点升级” supersedes the immediate upgrade permission. Only update availability and local prerequisites were inspected; no download, install, restart, toolchain switch or new cloud Mac runner was initiated.
+- Continue container-based layout and generic resize/state checks in the isolated next project. Keep standard system navigation, the complete selected logo, existing content semantics and privacy. Do not infer Duo compatibility from iPad/phone rotation, custom window dimensions or an old-SDK build.
+- Real Duo poses and iOS27.1 vertical system bars remain a later toolchain/device gate under [the adaptation contract](iphone-duo-adaptation-20261023.md). Current review, TestFlight, production, real data, prices and FanPass stay unchanged.
