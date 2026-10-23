@@ -179,6 +179,7 @@ struct ContentWorkspaceView<Guide: View>: View {
                 }
                 if let id = pack.publicationId {
                     NavigationLink(ContentText.get("viewPublished")) { ContentPublicationView(client: store.client, id: id, guides: guides, guide: guide) }
+                        .accessibilityIdentifier("content.published.\(pack.id)")
                     Button(ContentText.get("revoke"), role: .destructive) { Task { _ = await store.perform { try await store.client.revoke(pack) } } }
                 }
                 if pack.intent == .current {

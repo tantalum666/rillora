@@ -38,6 +38,7 @@ struct ContentPublicationView<Guide: View>: View {
                         Text(asset.description)
                         if asset.transcriptConfirmed, !asset.transcript.isEmpty { Text(asset.transcript) }
                         Button(ContentText.get("download")) { download(asset, play: false) }.disabled(downloading || store.working)
+                            .accessibilityIdentifier("content.publication-download.\(asset.id)")
                         if asset.kind == .voice {
                             Button(ContentText.get(voice.playing ? "stopPlayback" : "play")) {
                                 if voice.playing { voice.stopPlayback() } else { download(asset, play: true) }
@@ -82,12 +83,12 @@ struct ContentPublicationView<Guide: View>: View {
         .privacySensitive()
     }
     private func download(_ asset: ContentAsset, play: Bool) {
-        guard store.verified else { return }
+        guard store.verified, let publication = store.value else { return }
         downloading = true
         downloadTask = Task {
             defer { downloading = false }
             do {
-                let data = try await store.client.download(asset, publication: store.id)
+                let data = try await store.client.download(asset, from: publication)
                 guard !Task.isCancelled, scenePhase == .active, store.verified else { return }
                 if play { voice.play(data) }
                 else { export = .init(document: .init(bytes: data), name: asset.downloadName, type: UTType(mimeType: asset.mediaType) ?? .data); exportPresented = true }

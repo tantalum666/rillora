@@ -1,6 +1,6 @@
 # 下一版本 iOS：办理包、文件、原声与 HealthKit
 
-Status: SOURCE AND SYNTHETIC NATIVE ACCEPTANCE COMPLETE / NOT DISTRIBUTED
+Status: CORE IMPLEMENTED / COMPLETENESS FIXES VALIDATED / DEVICE GATES OPEN / NOT DISTRIBUTED
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 Owner明确继续补齐原生三项内容功能并接好HealthKit，先开发和测试、不影响当前审核、暂不发TestFlight，完成推GitHub。该指令取代上一交接中“先核实审核结果再开始原生集成”的开发等待门；分发仍保持关闭。
@@ -45,3 +45,5 @@ Owner明确继续补齐原生三项内容功能并接好HealthKit，先开发和
 源码及原始证据已推至b17d76f32／[PR9](https://github.com/tantalum666/rillora/pull/9)。新增archive50的425对象／792路径已从独立空LFS目录远端下载、解密并逐字核验；旧1–49不重做。最后元数据提交的实际CI仍以PR原生检查为准，不预写自引用提交号。
 
 同日Owner要求下一版本适配iPhone Duo；[后续布局合同](iphone-duo-adaptation-20261023.md)继续此独立工程。原生内容的上述结果保留原日期，新布局及环境升级延后各自记录，不重跑原内容全套或改当前审核。
+
+October23后续[完整性复核](content-completeness-review-20261023.md)发现并补修原声／长文字／本人取回路径，新增三项原生用例通过；旧原生回执保留其独立范围。转写真实授权与质量、硬件保护和Duo横屏问题仍开放，不能把本文件原先“core complete”的检查点当作全产品已经完善。长文字下一版客户端要求先发布兼容API，本轮未部署。

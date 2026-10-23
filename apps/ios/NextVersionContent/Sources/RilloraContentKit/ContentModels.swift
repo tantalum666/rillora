@@ -4,6 +4,8 @@ enum ContentLimits {
     static let fileBytes = 8 * 1024 * 1024
     static let voiceSeconds = 180
     static let jsonBytes = 16 * 1024 * 1024
+    static let savedTextBytes = 48 * 1024
+    static let uploadMetadataBytes = 64 * 1024
 }
 
 public struct ContentChoice: Identifiable, Sendable, Equatable {
@@ -27,6 +29,10 @@ struct ContentMetadata: Codable, Sendable, Equatable {
     var transcript = ""
     var transcriptConfirmed = false
     var language = "en-US"
+    mutating func beginNewRecording() {
+        transcript = ""
+        transcriptConfirmed = false
+    }
 }
 
 struct ContentAsset: Codable, Identifiable, Sendable, Equatable {
@@ -187,6 +193,7 @@ enum ContentValidation {
         try text(value.transcript, max: 12000)
         guard !value.name.unicodeScalars.contains(where: { $0.value < 32 || $0.value == 127 || $0 == "/" || $0 == "\\" }),
               ["en-US", "zh-CN"].contains(value.language) else { throw ContentError.invalidInput }
+        guard try JSONEncoder().encode(value).count <= ContentLimits.savedTextBytes else { throw ContentError.tooLarge }
     }
     static func asset(_ value: ContentAsset) throws {
         try id(value.id); try metadata(value.metadata)
@@ -217,6 +224,7 @@ enum ContentValidation {
             active.remove(id); visited.insert(id)
         }
         for task in value.tasks { try visit(task.id) }
+        guard try JSONEncoder().encode(value).count <= ContentLimits.savedTextBytes else { throw ContentError.tooLarge }
     }
     static func pack(_ value: ContentPack) throws {
         try id(value.id); try body(value.body)

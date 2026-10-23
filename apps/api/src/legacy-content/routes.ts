@@ -22,12 +22,12 @@ export function contentUploadHandlers(context: ContentContext): RequestHandler[]
   };
   const rate = rateLimit({ windowMs: 60000, limit: 10, keyGenerator: request => request.auth.plannerId,
     standardHeaders: 'draft-7', legacyHeaders: false, message: { error: { code: 'legacy_upload_busy', message: 'Try uploading again in a minute.' } } });
-  return [requireCsrf, rate, capacity, express.raw({ type: 'application/octet-stream', limit: contentLimits.fileBytes + 4100 }), asyncHandler(async (request, response) => {
+  return [requireCsrf, rate, capacity, express.raw({ type: 'application/octet-stream', limit: contentLimits.fileBytes + contentLimits.uploadMetadataBytes + 4 }), asyncHandler(async (request, response) => {
     const body = request.body;
     if (!Buffer.isBuffer(body) || body.length < 5) throw new ApiError(400, 'legacy_upload_invalid', 'Choose a supported file.');
     try {
       const metadataBytes = body.readUInt32BE(0);
-      if (metadataBytes < 2 || metadataBytes > 4096 || body.length <= metadataBytes + 4) throw new ApiError(400, 'legacy_upload_invalid', 'Choose a supported file.');
+      if (metadataBytes < 2 || metadataBytes > contentLimits.uploadMetadataBytes || body.length <= metadataBytes + 4) throw new ApiError(400, 'legacy_upload_invalid', 'Choose a supported file.');
       let raw: unknown;
       try { raw = JSON.parse(new TextDecoder('utf-8', { fatal: true }).decode(body.subarray(4, 4 + metadataBytes))); }
       catch { throw new ApiError(400, 'legacy_upload_invalid', 'The upload description is invalid.'); }

@@ -97,6 +97,9 @@ struct ContentClient: Sendable {
         guard previous.map({ result.pack.id == $0.id && result.pack.version == $0.version + 1 }) ?? (result.pack.version == 1) else { throw ContentError.invalidResponse }
         return result.pack
     }
+    func download(_ asset: ContentAsset, from publication: ContentPublication) async throws -> Data {
+        try await download(asset, publication: publication.isOwner ? nil : publication.publicId)
+    }
     func publish(_ pack: ContentPack) async throws {
         try ContentValidation.pack(pack)
         guard pack.intent == .current, pack.personPublicId != nil else { throw ContentError.server("legacy_future_private") }

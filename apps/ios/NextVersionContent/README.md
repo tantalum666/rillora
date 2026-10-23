@@ -1,6 +1,6 @@
 # Rillora next-version native content
 
-Status: IMPLEMENTED / SYNTHETIC NATIVE ACCEPTANCE PASSED / NOT DISTRIBUTED
+Status: CORE IMPLEMENTED / COMPLETENESS FIXES VALIDATED / DEVICE GATES OPEN / NOT DISTRIBUTED
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 This package implements the existing Web content API in native SwiftUI. The current review target does not link it. The [implementation contract](../../../docs/ios-content-development-20261023.md) is authoritative; current pricing, live accounts and post-death release policy are unchanged.
@@ -28,3 +28,5 @@ python3 -m unittest tools.release.test_native_content_next_version tools.release
 The generator copies the existing reviewed remote Package.resolved pins into the generated next project; build with `-onlyUsePackageVersionsFromResolvedFile`. Xcode's `RilloraNext` scheme runs/tests only against the dedicated loopback fixture, which can be started from `apps/api` with `node --import tsx tests/native-content-ui-fixture.ts`. The fixture verifies a fixed local disposable database, uses synthetic accounts and in-memory encryption/storage adapters, and has no cloud configuration or real payment. It must never be exposed publicly.
 
 Native tests: `NextVersionTests` covers the actual host transport, file I/O and real local API/SQL flow; `NextVersionUITests` covers both languages, actual system file export/import byte round trips, voice entry, HealthKit entry, recipient progress and revocation. Raw test results and earlier failures are retained in the dated QA record. No real microphone recording, speech-system authorization, personal HealthKit permission/sampling, signing, device installation, archive upload or TestFlight is claimed by these tests.
+
+The [completeness follow-up](../../../docs/content-completeness-review-20261023.md) repairs recording/text replacement, saved-recording controls, longer valid UTF-8 uploads and owner publication downloads. Deploy the compatible 64 KiB upload-envelope API before releasing that client; encrypted text remains bounded to 48 KiB. Personal speech authorization/quality and the earlier Duo rotation failures remain open.

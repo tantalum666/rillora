@@ -22,7 +22,7 @@ enum ContentBinary {
         guard (kind == .voice) == (mime == "audio/wav") else { throw ContentError.unsupportedFile }
         struct Header: Encodable { let requestKey: String; let kind: ContentKind; let mediaType: String; let metadata: ContentMetadata }
         let header = try JSONEncoder().encode(Header(requestKey: requestKey, kind: kind, mediaType: mime, metadata: metadata))
-        guard header.count <= 4096 else { throw ContentError.tooLarge }
+        guard header.count <= ContentLimits.uploadMetadataBytes else { throw ContentError.tooLarge }
         var length = UInt32(header.count).bigEndian
         var result = withUnsafeBytes(of: &length) { Data($0) }
         result.append(header); result.append(bytes)

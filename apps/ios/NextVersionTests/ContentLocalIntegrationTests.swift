@@ -5,6 +5,33 @@ import XCTest
 
 final class ContentLocalIntegrationTests: XCTestCase {
     private let base = URL(string: "http://127.0.0.1:4397")!
+    func testLongChineseUploadAndOwnerPublishedRetrieval() async throws {
+        let (data, _) = try await URLSession.shared.data(from: base.appendingPathComponent("qa/content-fixture"))
+        let fixture = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])
+        XCTAssertEqual(fixture["fixture"] as? String, "native-content-v1")
+        XCTAssertEqual(fixture["syntheticOnly"] as? Bool, true)
+        let owner = try client(XCTUnwrap(fixture["owner"] as? String))
+        let recipient = try client(XCTUnwrap(fixture["recipient"] as? String))
+        let overview = try await owner.overview()
+        try await owner.consent(version: overview.notice.version)
+        let bytes = try PCMRecording.wave(samples: [0, 1, -1, 0])
+        let text = String(repeating: "请先保留资料。", count: 1000)
+        let voice = try await owner.upload(bytes, key: UUID().uuidString.lowercased(), kind: .voice,
+            metadata: .init(name: "较长中文的合成原声", description: String(repeating: "中", count: 2000),
+                transcript: text, transcriptConfirmed: true, language: "zh-CN"))
+        let body = ContentBody(title: "Owner retrieval synthetic pack", assetPublicIds: [voice.id], assetVersions: [voice.id: voice.version])
+        let pack = try await owner.save(.init(personPublicId: XCTUnwrap(fixture["person"] as? String), intent: .current, body: body), previous: nil)
+        try await owner.publish(pack)
+        let updated = try await owner.overview()
+        let id = try XCTUnwrap(updated.packs.first { $0.id == pack.id }?.publicationId)
+        let ownView = try await owner.publication(id), received = try await recipient.publication(id)
+        XCTAssertTrue(ownView.isOwner); XCTAssertFalse(received.isOwner)
+        XCTAssertEqual(received.assets.first?.transcript, text)
+        let ownBytes = try await owner.download(voice, from: ownView)
+        let receivedBytes = try await recipient.download(voice, from: received)
+        XCTAssertEqual(ownBytes, bytes); XCTAssertEqual(receivedBytes, bytes)
+        try await owner.remove(id: pack.id, asset: false); try await owner.remove(id: voice.id, asset: true)
+    }
     func testNativeFileVoicePackRecipientProgressRevocationAndExpiredRetrieval() async throws {
         let (data, _) = try await URLSession.shared.data(from: base.appendingPathComponent("qa/content-fixture"))
         let fixture = try XCTUnwrap(JSONSerialization.jsonObject(with: data) as? [String: Any])

@@ -9,6 +9,10 @@ Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-10-23 三项内容能力完整性复核
+
+Owner要求再看办理包、文件与原声是否完善。[本轮复核](content-completeness-review-20261023.md)确认核心准备／当前共享已实现，同时修复七组内容一致性、上传、本人取回和错误恢复问题。修复是下一版候选；机构申请材料装配、缺件／来源变化提示及真实身后交付没有因此完成。保持当前审核、线上、定价、真实数据、FanPass与升级暂缓；已有验收沿用，不把这次检查写成所有发布门通过。
+
 ## 2026-10-23 下一版本Duo布局适配，开发环境升级延后
 
 Owner要求适配iPhone Duo并放在下一版本，随后明确晚点升级，取代刚才允许立即升级的安排。[适配合同](iphone-duo-adaptation-20261023.md)限定现有SDK可完成的容器布局、图片比例、窄工具栏与状态保持；真实Duo／iOS27.1系统栏和姿态验证留待以后升级。当前审核、TestFlight、线上、数据和定价保持；没有下载或安装新macOS／Xcode。
@@ -601,6 +605,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 
 | Task | Read next | Role |
 | --- | --- | --- |
+| 办理包、重要文件与原声的完整性及缺口 | `docs/content-completeness-review-20261023.md` | 核心实现、七组候选修复、尚缺的材料装配与真实设备／身后交付证据分开 |
 | 下一版本iPhone Duo与可伸缩原生布局 | `docs/iphone-duo-adaptation-20261023.md` → `docs/ios-content-development-20261023.md` | 当前工具下的布局准备与未来Duo原生验证分开；环境升级按Owner暂缓 |
 | 下一版本HealthKit数据范围、权限说明、用途咨询与进入实现的条件 | `docs/healthkit-preparation-20261020.md` → `docs/apple-healthkit-inquiry-20261020.md` | 准备合同、已回复独立案例及下一版源码；不代表平台用途获批或已读取真实健康数据 |
 | 多信号异常确认、仅身后披露、失联条件与生前封存预告 | `docs/conditional-disclosure-vnext-20261019.md` | Owner需求与候选规则；未实现，时限／用途／证据／密钥门分别验证 |

@@ -3794,3 +3794,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner asks for iPhone Duo support in the next version. The subsequent “晚点升级” supersedes the immediate upgrade permission. Only update availability and local prerequisites were inspected; no download, install, restart, toolchain switch or new cloud Mac runner was initiated.
 - Continue container-based layout and generic resize/state checks in the isolated next project. Keep standard system navigation, the complete selected logo, existing content semantics and privacy. Do not infer Duo compatibility from iPad/phone rotation, custom window dimensions or an old-SDK build.
 - Real Duo poses and iOS27.1 vertical system bars remain a later toolchain/device gate under [the adaptation contract](iphone-duo-adaptation-20261023.md). Current review, TestFlight, production, real data, prices and FanPass stay unchanged.
+
+## 2026-10-23 — Review completeness of the three content capabilities
+
+- Status: OWNER REQUESTED completeness review; bounded repairs under the existing next-version implementation scope.
+- Recheck action packs, selected files and original voice against current code and the accepted planning direction. Source/core acceptance is not full institutional-material assembly, true post-death delivery or proven annual value.
+- Seven implementation corrections preserve prices, allowances, authorization, current review and upgrade defer. A 64KiB upload envelope accommodates the existing 48KiB encrypted text body; no storage quota or sharing permission is widened. Compatible API deployment must precede the next client's longer uploads.
+- Saved-recording transcription stays on device and requires the actual Apple permission/support path; no ambient recording or health collection is added by validation. Provider-specific draft assembly, missing-material/source-change guidance, real system/media checks and prior Duo failures remain separate open work. This review does not approve or claim deployment.

@@ -78,6 +78,7 @@ struct ContentFileEditor: View {
             if old.transcript != new.transcript { metadata.transcriptConfirmed = false }
         }
         .onChange(of: voice.bytes) { _, value in if value != nil { dirty = true } }
+        .onChange(of: metadata.language) { _, _ in voice.discardTranscriptDraft() }
         .onChange(of: scenePhase) { _, phase in if phase == .background {
             voice.interrupted(); operationTask?.cancel(); export = nil; exportPresented = false
         } }
@@ -117,7 +118,10 @@ struct ContentFileEditor: View {
                     Text("\(voice.seconds) / 180 " + ContentText.get("seconds"))
                     Button(ContentText.get("stopRecording")) { voice.finish() }.accessibilityIdentifier("content.stop-recording")
                 } else {
-                    Button(ContentText.get(voice.bytes == nil ? "startRecording" : "recordAgain")) { operationTask = Task { await voice.start() } }
+                    Button(ContentText.get(voice.bytes == nil ? "startRecording" : "recordAgain")) {
+                        metadata.beginNewRecording()
+                        operationTask = Task { await voice.start() }
+                    }
                         .disabled(blocked || attempt != nil).accessibilityIdentifier("content.start-recording")
                 }
             }
@@ -133,14 +137,38 @@ struct ContentFileEditor: View {
                 } }
                 else { voice.play() }
             }.disabled(blocked || (asset == nil && voice.bytes == nil))
-            if asset == nil, voice.bytes != nil {
-                Button(ContentText.get("transcribe")) { operationTask = Task { await voice.transcribe(language: metadata.language) } }.disabled(blocked || attempt != nil)
+            if store.canCreate {
+                Picker(ContentText.get("recordingLanguage"), selection: $metadata.language) {
+                    Text(ContentText.get("mandarin")).tag("zh-CN")
+                    Text(ContentText.get("english")).tag("en-US")
+                }.disabled(blocked || attempt != nil).accessibilityIdentifier("content.recording-language")
+            }
+            if store.canCreate, asset != nil || voice.bytes != nil {
+                Button(ContentText.get("transcribe")) { transcribe() }
+                    .disabled(blocked || attempt != nil).accessibilityIdentifier("content.transcribe")
+                if voice.transcribing {
+                    Button(ContentText.get("cancelTranscription")) { voice.cancelSpeech() }
+                        .accessibilityIdentifier("content.cancel-transcription")
+                }
                 if let draft = voice.transcriptDraft {
                     Text(draft)
                     Button(ContentText.get("useDraft")) { metadata.transcript = draft; metadata.transcriptConfirmed = false }.disabled(attempt != nil)
                 }
             }
             Text(ContentText.get("voiceLimit")).foregroundStyle(.secondary)
+        }
+    }
+    private func transcribe() {
+        busy = true
+        operationTask = Task {
+            defer { busy = false }
+            do {
+                let recording: Data?
+                if let asset { recording = try await store.client.download(asset) }
+                else { recording = voice.bytes }
+                guard !Task.isCancelled, scenePhase == .active else { return }
+                await voice.transcribe(recording, language: metadata.language)
+            } catch { if !Task.isCancelled { localError = ContentText.error(error) } }
         }
     }
     private func save() async {

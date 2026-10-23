@@ -107,9 +107,11 @@ final class ContentVoice: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelega
             self.stopPlayback()
         }
     }
-    func transcribe(language: String) async {
-        guard !transcribing, let bytes else { return }
+    func transcribe(_ recording: Data? = nil, language: String) async {
+        guard !transcribing, let bytes = recording ?? bytes else { return }
         stopPlayback(); message = nil; transcriptDraft = nil
+        do { _ = try PCMRecording.samples(from: bytes) }
+        catch { message = ContentText.error(error); return }
         guard let recognizer = SFSpeechRecognizer(locale: Locale(identifier: language)), recognizer.supportsOnDeviceRecognition else {
             message = ContentText.get("speechUnavailable"); return
         }
@@ -145,6 +147,10 @@ final class ContentVoice: NSObject, AVAudioRecorderDelegate, AVAudioPlayerDelega
         generation += 1
         speechTask?.cancel(); speechTask = nil; recognizer = nil
         speechTimer?.cancel(); speechTimer = nil; transcribing = false; files.remove()
+    }
+    func discardTranscriptDraft() {
+        cancelSpeech()
+        transcriptDraft = nil
     }
     func interrupted() {
         if phase == .recording { finish(); message = ContentText.get("recordingInterrupted") }

@@ -26,6 +26,7 @@ enum ContentText {
             case "legacy_storage_limit", "legacy_pack_limit": return get("allowance")
             case "legacy_content_family_required", "legacy_family_required": return get("familyRequired")
             case "legacy_upload_busy": return get("uploadBusy")
+            case "legacy_content_too_large": return get("tooLarge")
             case "legacy_content_missing", "legacy_not_found", "legacy_unavailable", "not_found": return get("unavailable")
             case "legacy_read_only": return get("writesClosed")
             case "reauthentication_required": return get("recentAuthentication")

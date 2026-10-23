@@ -58,9 +58,41 @@ actor QueueTransport: ContentTransport {
 }
 @Test func uploadRejectsOversizeMetadataUnsupportedBytesAndVoiceDisguise() throws {
     #expect(throws: ContentError.unsupportedFile) { try ContentBinary.mediaType(Data("<svg>".utf8)) }
-    #expect(throws: ContentError.tooLarge) { try ContentBinary.upload(Data("%PDF-1.7".utf8), requestKey: fileID, kind: .file, metadata: .init(name: "File", description: String(repeating: "中", count: 2000))) }
+    #expect(throws: ContentError.tooLarge) { try ContentBinary.upload(Data("%PDF-1.7".utf8), requestKey: fileID, kind: .file, metadata: .init(name: "File", transcript: String(repeating: "\u{0000}", count: 12000))) }
     #expect(throws: ContentError.unsupportedFile) { try ContentBinary.upload(Data("%PDF-1.7".utf8), requestKey: fileID, kind: .voice, metadata: .init(name: "Voice")) }
     #expect(throws: ContentError.invalidInput) { try ContentValidation.metadata(.init(name: "../private")) }
+}
+
+@Test func fullChineseDescriptionAndConfirmedTranscriptFitTheUpload() throws {
+    let metadata = ContentMetadata(name: "合成原声", description: String(repeating: "中", count: 2000),
+        transcript: String(repeating: "请先保留资料。", count: 1000), transcriptConfirmed: true, language: "zh-CN")
+    let wave = try PCMRecording.wave(samples: [0, 100, -100])
+    let bytes = try ContentBinary.upload(wave, requestKey: fileID, kind: .voice, metadata: metadata)
+    let length = [UInt8](bytes.prefix(4)).reduce(0) { ($0 << 8) | Int($1) }
+    #expect(length > 4096); #expect(length < ContentLimits.uploadMetadataBytes)
+    let header = try #require(JSONSerialization.jsonObject(with: bytes.subdata(in: 4..<4+length)) as? [String: Any])
+    #expect((header["metadata"] as? [String: Any])?["transcript"] as? String == metadata.transcript)
+    #expect(bytes.suffix(wave.count) == wave)
+}
+
+@Test func recordingReplacementRemovesOldTextAndConfirmationButKeepsItsTitle() {
+    var metadata = ContentMetadata(name: "For my family", description: "Read alongside the plan", transcript: "Previous recording", transcriptConfirmed: true, language: "zh-CN")
+    metadata.beginNewRecording()
+    #expect(metadata.transcript.isEmpty); #expect(!metadata.transcriptConfirmed)
+    #expect(metadata.name == "For my family"); #expect(metadata.description == "Read alongside the plan"); #expect(metadata.language == "zh-CN")
+}
+
+@Test func publishedFileUsesTheOwnerRouteOnlyForTheOwnerView() async throws {
+    let asset = fixtureAsset(), bytes = Data("%PDF-1.7".utf8)
+    for isOwner in [true, false] {
+        let value = ContentPublication(publicId: packID, body: .init(title: "Synthetic"), isOwner: isOwner,
+            ownerName: nil, publishedAt: "2026-10-23T00:00:00Z", assets: [asset], progress: [])
+        let transport = QueueTransport([.init(status: 200, data: bytes, mediaType: "application/pdf", fileBytes: bytes.count)])
+        let client = ContentClient(transport: transport, accountID: ownerID)
+        #expect(try await client.download(asset, from: value) == bytes)
+        let expected = isOwner ? "legacy-content/assets/\(fileID)/download" : "legacy-content/received/\(packID)/assets/\(fileID)/download"
+        #expect(await transport.recorded().first?.path == expected)
+    }
 }
 @Test func pcmWaveMatchesCanonicalServerFormatAndBounds() throws {
     let samples: [Int16] = [.min, -1, 0, 1, .max]
