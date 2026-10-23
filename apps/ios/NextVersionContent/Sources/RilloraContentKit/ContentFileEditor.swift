@@ -119,7 +119,7 @@ struct ContentFileEditor: View {
                     Button(ContentText.get("stopRecording")) { voice.finish() }.accessibilityIdentifier("content.stop-recording")
                 } else {
                     Button(ContentText.get(voice.bytes == nil ? "startRecording" : "recordAgain")) {
-                        metadata.beginNewRecording()
+                        metadata.beginNewRecording(replacing: voice.bytes != nil)
                         operationTask = Task { await voice.start() }
                     }
                         .disabled(blocked || attempt != nil).accessibilityIdentifier("content.start-recording")

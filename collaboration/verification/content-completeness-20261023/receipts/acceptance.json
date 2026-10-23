@@ -3,8 +3,10 @@
   "base": "cc9526be9ede04897f3cbc0449ab44335332c509",
   "status": "SEVEN_FIX_GROUPS_VALIDATED_CANDIDATES_NOT_DEPLOYED",
   "swiftModule": {
-    "passed": 17,
-    "log": "swift-package.log"
+    "passed": 18,
+    "initialPassed": 17,
+    "log": "swift-package-final.log",
+    "followup": "First recording preserves prepared text; only replacement clears it, both clear confirmation."
   },
   "nativeIntegration": {
     "passed": 1,
@@ -53,5 +55,6 @@
     "Verified post-death delivery remains unavailable",
     "Duo rotation UI failures from previous workflow remain open; not rerun or reclassified"
   ],
-  "cleanup": "Dedicated loopback API stopped; successful UI-created source records removed through API, failed-run synthetic records and simulator exports retained. No claim of complete cleanup."
+  "cleanup": "Dedicated loopback API stopped; successful UI-created source records removed through API, failed-run synthetic records and simulator exports retained. No claim of complete cleanup.",
+  "nativeFollowupBuild": "Actual iOS simulator build passed after the narrow reset-policy correction. Earlier owner-export/saved-voice UI cases unchanged and not repeated."
 }

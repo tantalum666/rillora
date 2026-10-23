@@ -19,5 +19,11 @@
   },
   "rawArchiveNotResealed": true,
   "deployed": false,
-  "finalMetadataCommit": "Docs/receipts/manifest plus bounded browser job timeout from 15 to 20 minutes; no application/test change. Exact final workflow outcome read after push."
+  "finalMetadataCommit": "Docs/receipts/manifest plus bounded browser job timeout from 15 to 20 minutes; no application/test change. Exact final workflow outcome read after push.",
+  "subsequentBrowserRun": {
+    "id": 39965263446,
+    "conclusion": "success",
+    "head": "ada1f5b325d796ae00ea8d3569c6705384df8503"
+  },
+  "nativeFinalFollowup": "First-recording draft preservation; 18 module tests and native build pass. Exact latest CI read after push."
 }

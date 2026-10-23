@@ -29,8 +29,8 @@ struct ContentMetadata: Codable, Sendable, Equatable {
     var transcript = ""
     var transcriptConfirmed = false
     var language = "en-US"
-    mutating func beginNewRecording() {
-        transcript = ""
+    mutating func beginNewRecording(replacing: Bool) {
+        if replacing { transcript = "" }
         transcriptConfirmed = false
     }
 }

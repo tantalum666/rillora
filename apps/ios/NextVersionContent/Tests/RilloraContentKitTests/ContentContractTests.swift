@@ -77,9 +77,16 @@ actor QueueTransport: ContentTransport {
 
 @Test func recordingReplacementRemovesOldTextAndConfirmationButKeepsItsTitle() {
     var metadata = ContentMetadata(name: "For my family", description: "Read alongside the plan", transcript: "Previous recording", transcriptConfirmed: true, language: "zh-CN")
-    metadata.beginNewRecording()
+    metadata.beginNewRecording(replacing: true)
     #expect(metadata.transcript.isEmpty); #expect(!metadata.transcriptConfirmed)
     #expect(metadata.name == "For my family"); #expect(metadata.description == "Read alongside the plan"); #expect(metadata.language == "zh-CN")
+}
+
+@Test func firstRecordingKeepsPreparedTextButRequiresCheckingItAgainstTheNewAudio() {
+    var metadata = ContentMetadata(name: "Prepared script", transcript: "Words prepared before recording", transcriptConfirmed: true)
+    metadata.beginNewRecording(replacing: false)
+    #expect(metadata.transcript == "Words prepared before recording")
+    #expect(!metadata.transcriptConfirmed)
 }
 
 @Test func publishedFileUsesTheOwnerRouteOnlyForTheOwnerView() async throws {

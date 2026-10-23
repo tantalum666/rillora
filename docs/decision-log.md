@@ -3803,3 +3803,5 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Saved-recording transcription stays on device and requires the actual Apple permission/support path; no ambient recording or health collection is added by validation. Provider-specific draft assembly, missing-material/source-change guidance, real system/media checks and prior Duo failures remain separate open work. This review does not approve or claim deployment.
 
 同轮CI修正：浏览器81项通过、2项既有显式跳过，但冷安装耗9m26s使15分钟任务总限到期。仅将既有Ubuntu浏览器任务总限改为20分钟，测试与断言、资源类型和权限不变；不表示产品失败被忽略，最终运行结果单独核对。
+
+同轮原生细化：仅替换已有录音才移除旧文字；首次录音保留用户预写草稿。所有新音频都取消文字确认，避免误配也避免误删，未新增商业或披露决定。
