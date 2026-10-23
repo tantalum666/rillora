@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-23 下一版本原生内容与HealthKit开发
+
+Owner明确继续补齐iOS办理包、文件和原声并接好HealthKit，先开发／测试，暂不发TestFlight。[本轮原生合同](ios-content-development-20261023.md)取代等待当前审核结果才开始开发的旧交接门。独立下一版工程复用既有API与已锁定依赖，当前主工程、在审构建、线上和定价不变。开发／合成模拟器结果与真实麦克风、个人健康授权、真机文件保护和后续分发分别取证。
 
 ## 2026-10-22 HealthKit进入下一版源码，保留当前审核
 

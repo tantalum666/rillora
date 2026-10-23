@@ -1,30 +1,28 @@
 # Rillora 当前交接
 
-Status: WEB DELIVERED / REMOTE EVIDENCE VERIFIED / IOS NEXT VERSION
+Status: NEXT IOS SOURCE AND SYNTHETIC TESTS COMPLETE / NOT DISTRIBUTED
 Last updated: 2026-10-23 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求开发亲友办理包、重要文件副本与本人原声，先发布Web；iOS保持当前审核，下一版再部署。随后要求按Apple不预审的实际回信继续心率读取源码，并核查Google重定向邮件；个人账号无有效Family时，又明确要求建立独立测试账号。[实施合同](web-content-development-20261022.md)记录当前范围。
+Owner要求继续补齐下一版iOS办理包、文件、原声并接好HealthKit，先开发测试，不影响当前审核，暂不发TestFlight，完成推GitHub。[本轮合同](ios-content-development-20261023.md)取代“先核实审核结果才开始开发”的旧门；[上一Web交接](handoff-history-20261023-before-ios-content.md)保留为HISTORICAL。
 
 ## 已完成
 
-两边schema108迁移及API／worker部署完成，原Preview68张／生产71张表指纹保持，私有S3版本／加密与独立清理权限核验通过。最终应用API53c904…（d67238b9e）、worker／维护9fb560…；所有Web阶段完成，正式113／Preview110份文件经HTTPS逐字匹配，价格、收费、原数据和FanPass保持。
+独立RilloraNext工程与RilloraContentKit已实现原生文件选择／有界读取／版本编辑／导出／删除，三分钟PCM录音／播放／可选本机转写／单独确认文字，以及办理包编辑、步骤依赖、资料版本、现在共享／撤销、接收人进度。使用同一既有API，Bearer和账号在请求前固定，退出后的迟到结果拒绝。HealthKit仅在下一版链接，主动只读心率、不上传／不导出／不触发披露。
 
-真实浏览器发现GET误用CSRF保护，修复后普通Cookie读取200，写入仍拒绝缺令牌请求。专用QA发放第一次被恢复日志COMMIT保护正确回滚，随后接入既有签名发布，18项专项通过；未关闭保护。1537b3f0d的GitHub实际Verify242／Web UX24通过，API626／infra72。旧成功与失败证据均保留，不重跑旧付款／原生／Node升级。
+14项纯模块测试、当前15项原生用例的最后相关结果、8项隔离／资源检查及API夹具类型检查通过。两种语言实际完成系统文件导出→重新选取导入→API字节一致；真实本地API／SQL覆盖上传幂等、冻结版本、未确认文字不交付、前置步骤、进度、换安排撤销、再次明确共享／撤销和权益到期取回。原生UI写入进度后经API读回，撤销后的界面和辅助功能树均关闭。证据逐项有日期，不伪称最后一个命令重跑全部用例。
 
-独立账号rillora-web-content-20261022@example.test已创建，密码加密保存、邮箱未虚假标记验证，也未发邮件。Owner确认当次条款后在独立IAB正常登录。限定四小时的两项manual_override测试权益生效后，正式合成PDF上传201、中文名称版本2、下载逐字一致及真实文件匿名401；两步私有办理包保存201、依赖／文件版本导出与整页刷新均通过。两项权益及会话已撤销，旧会话401；原生产维护模板／参数完整恢复，QA命令实际重新被固定白名单拒绝。测试账号及1文件／1私有包保留，未宣称已删除；没有订单、订阅、扣款或接收人发布。
+修正独立工程重复Info.plist、权限资源覆盖主中文资源、进度区域标识遮蔽子控件、撤销后旧辅助功能节点残留。开发过程初始解析的新依赖已回到当前项目的确切pins；后续原生验收使用原pins。数据库原有规则会在更换亲友或披露安排时撤销旧共享，文案／断言已按此校正，未改变服务端规则。
 
-Apple明确不提供概念预批准，未对用途A／B／C批准或否决。[下一版只读心率模块](../apps/ios/NextVersionHealth/README.md)完成6项合成测试、双架构iOS库编译和3项隔离检查；未读取真实健康数据，无死亡判断、提醒或资料放行。未构建／安装／分发新App，当前审核材料保持。
+原主工程／Info.plist／entitlements／Xcode项目指纹一致；没有云端部署、Apple后台修改、签名门户改动、归档上传、TestFlight或真机安装。价格、收费、原数据和FanPass保持。本机合成API已停止，合成数据库及模拟器文件保留为QA样本。
 
-Google报告的三个例子是正常HTTP／根域别名，单次跳到HTTPS www；正式首页实际已索引，28个规范地图网址200、自指canonical、无noindex。未删除正常跳转、重提地图或修改www。
+## 证据边界与Git
 
-## 证据边界
+真实麦克风录音、Apple本机识别授权／质量、个人HealthKit授权与手机／手表读数、真机数据保护尚未验证。模拟器不能返回真实文件保护类，旧不适用断言已明确归档，未取消源码complete保护。原HealthKit6项合成测试沿用October22，本轮补组合工程与中英文入口，不重复购买／恢复／退款或已部署Web验收。
 
-原声录制和本地模型推理有此前合成浏览器证据，本次未录取真人声音；生产正向验收限定独立账号的文件与私有办理包，没有重复真实接收人共享、购买／退款或真机验收。iOS三项新功能的App集成、真实HealthKit个人授权／设备读取和后续分发尚未完成。
-
-源码及原始证据已按[本轮Git回执](../collaboration/verification/web-content-20261022/README.md)推送。archive49在63d3b2326已完成独立远端下载、解密与584对象／1,177路径核验；完整可读清单与扫描同步执行。最后候选检查及合并状态以[PR7](https://github.com/tantalum666/rillora/pull/7)的GitHub记录为准。工作目录仍为原仓库，功能分支codex/web-legacy-content-20261022供追溯；完整阅读链、临时操作与保护状态在output/qa/rillora-web-content-20261022，私有凭据／CFN状态不进可读Git。没有重新申请同一许可或重复已完成部署。
+源码基线main466b13002，工作分支codex/ios-content-healthkit-20261023。完整阅读沿用上一工作流正文链，变化文件与原生规范已补读；当前记录在output/qa/rillora-ios-content-20261023。源码、安全摘要及新增原始证据保存状态以[本轮Git回执](../collaboration/verification/ios-content-20261023/README.md)和实际GitHub检查为准，旧archives1–49不重封、不重下。
 
 ## 唯一下一步
 
-按既定审核隔离安排，先核实原审核结果，再进入下一版iOS三项内容功能集成与真实HealthKit个人授权／设备验收；未经对应阶段验证不分发新App。当前生产Web已交付，本轮Git最终结果由PR7原生记录证明，不把后续iOS工作写成已完成。
+按Owner后续分发安排进入下一版真实设备权限与媒体／健康读取验收，再准备更新发布；当前不要求Owner重新登录、不启动真机测试，也不发TestFlight。本轮Git提交／CI只核对新增结果，不重复已完成部署。

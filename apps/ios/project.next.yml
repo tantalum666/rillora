@@ -1,0 +1,86 @@
+# Development/test-only next version. Never replaces the current review project.
+name: RilloraNext
+include:
+  - project.yml
+packages:
+  RilloraContentKit:
+    path: NextVersionContent
+  RilloraHeartRateKit:
+    path: NextVersionHealth
+targets:
+  Rillora:
+    dependencies:
+      - package: RilloraContentKit
+      - package: RilloraHeartRateKit
+    sources:REPLACE:
+      - path: ../../config/provider-guides.json
+        buildPhase: resources
+      - path: ../../config/disclosure-copy.json
+        buildPhase: resources
+      - path: Rillora
+        excludes:
+          - Resources/Info.plist
+      - path: StoreKit/Rillora.storekit
+        buildPhase: resources
+      - path: NextVersionContent/Configuration
+        excludes:
+          - Info.plist
+        buildPhase: resources
+    info:
+      path: NextVersionContent/Configuration/Info.plist
+      properties:
+        NSHealthShareUsageDescription: "Rillora reads selected heart-rate records for you to review on this device. Records are not uploaded and do not determine death or unlock information."
+        NSMicrophoneUsageDescription: "Record the instructions you choose to keep in your Rillora plan. Recording starts only when you tap the record button."
+        NSSpeechRecognitionUsageDescription: "With your permission, supported on-device speech recognition creates a text draft for you to review. Recordings are not sent to a speech-recognition server."
+    settings:
+      base:
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_CONTENT_NEXT_VERSION RILLORA_HEALTHKIT_NEXT_VERSION"
+        CODE_SIGN_ENTITLEMENTS: NextVersionHealth/Configuration/RilloraNext.entitlements
+  RilloraNextTests:
+    type: bundle.unit-test
+    platform: iOS
+    sources:
+      - path: NextVersionTests
+    dependencies:
+      - target: Rillora
+      - package: RilloraContentKit
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.next-tests
+        GENERATE_INFOPLIST_FILE: true
+  RilloraNextUITests:
+    type: bundle.ui-testing
+    platform: iOS
+    sources:
+      - path: NextVersionUITests
+    dependencies:
+      - target: Rillora
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.next-ui-tests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: Rillora
+schemes:
+  RilloraNext:
+    build:
+      targets:
+        Rillora: all
+        RilloraNextTests: [test]
+        RilloraNextUITests: [test]
+    run:
+      config: Debug
+      environmentVariables:
+        RILLORA_API_BASE_URL: "http://127.0.0.1:4397/v1"
+        RILLORA_DEV_PLANNER_ID: "11111111-1111-4111-8111-111111111111"
+        RILLORA_CUSTOMER_ACCESS_ENABLED: "true"
+        RILLORA_UI_TEST_FORCE_SIGNED_OUT: "1"
+    test:
+      config: Debug
+      environmentVariables:
+        RILLORA_API_BASE_URL: "http://127.0.0.1:4397/v1"
+        RILLORA_DEV_PLANNER_ID: "11111111-1111-4111-8111-111111111111"
+        RILLORA_CUSTOMER_ACCESS_ENABLED: "true"
+        RILLORA_UI_TEST_FORCE_SIGNED_OUT: "1"
+      targets:
+        - RilloraNextTests
+        - RilloraNextUITests

@@ -1,0 +1,105 @@
+{
+  "checkedAt": "2026-10-23T06:37:27.015686+00:00",
+  "nativeCases": {
+    "RilloraNextTests.ContentAdapterTests/testBoundedNativeFileReadPreservesChineseDocumentAndRejectsOversize": {
+      "status": "passed",
+      "durationSeconds": 0.033,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testContentRequestsPinBearerAndAccountWithoutCookies": {
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testLateResponseAfterLogoutIsRejected": {
+      "status": "passed",
+      "durationSeconds": 0.003,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testMissingSessionDoesNotSendARequest": {
+      "status": "passed",
+      "durationSeconds": 0.001,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentLocalIntegrationTests/testNativeFileVoicePackRecipientProgressRevocationAndExpiredRetrieval": {
+      "status": "passed",
+      "durationSeconds": 0.887,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-20-30-239Z_pid71612_9261337d.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testLeavingDuringPermissionCannotStartALateRecording": {
+      "status": "passed",
+      "durationSeconds": 0.141,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testMicrophoneDenialKeepsNoAudioOrRecorder": {
+      "status": "passed",
+      "durationSeconds": 0.003,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextUITests.ContentNextUITests/testChineseContentAndHealthEntry": {
+      "status": "passed",
+      "durationSeconds": 39.94,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextUITests.ContentNextUITests/testEnglishContentAndHealthEntry": {
+      "status": "passed",
+      "durationSeconds": 40.352,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testTemporaryAudioIsExcludedFromBackupAndRemoved": {
+      "status": "passed",
+      "durationSeconds": 0.004,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-25-15-510Z_pid71612_5d2e254c.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testApplePCMWriterNormalizesIntoTheSharedUploadFormat": {
+      "status": "passed",
+      "durationSeconds": 0.054,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-10-31-631Z_pid71612_ae8d8339.log"
+    },
+    "RilloraNextUITests.ContentNextUITests/testChineseFilesVoiceAndSystemPickers": {
+      "status": "passed",
+      "durationSeconds": 48.351,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-25-15-510Z_pid71612_5d2e254c.log"
+    },
+    "RilloraNextUITests.ContentNextUITests/testEnglishFilesVoiceAndSystemPickers": {
+      "status": "passed",
+      "durationSeconds": 52.349,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-20-30-239Z_pid71612_9261337d.log"
+    },
+    "RilloraNextUITests.ContentNextUITests/testRecipientProgressAndRevocation": {
+      "status": "passed",
+      "durationSeconds": 35.851,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-25-15-510Z_pid71612_5d2e254c.log"
+    },
+    "RilloraNextTests.ContentAdapterTests/testCancelledDocumentReadDoesNotReturnPrivateBytes": {
+      "status": "passed",
+      "durationSeconds": 0.055,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T06-25-15-510Z_pid71612_5d2e254c.log"
+    }
+  },
+  "nativePassed": 15,
+  "nativeEvidenceMode": "Latest relevant result per current case; earlier failures remain in the raw results. Not one monolithic final rerun.",
+  "retiredAssertion": {
+    "RilloraNextTests.ContentAdapterTests/testTemporaryAudioIsProtectedExcludedFromBackupAndRemoved": {
+      "status": "failed",
+      "durationSeconds": 0.068,
+      "source": "output/qa/rillora-ios-content-20261023/build-test-logs/test_sim_2026-10-23T05-56-53-106Z_pid71612_e5e5a330.log"
+    }
+  },
+  "retiredReason": "The old test incorrectly asserted a hardware protection class on Simulator. Current test verifies backup exclusion and cleanup; hardware protection remains unverified. No production protection setting was removed.",
+  "contentPackageTests": 14,
+  "releaseIsolationTests": 8,
+  "apiFixtureTypecheck": "passed",
+  "currentReviewSourceUnchanged": {
+    "apps/ios/project.yml": true,
+    "apps/ios/Rillora/Resources/Info.plist": true,
+    "apps/ios/Rillora/Rillora.entitlements": true,
+    "apps/ios/Rillora.xcodeproj/project.pbxproj": true
+  },
+  "remoteDependencyPinsMatchCurrentProject": true,
+  "realMicrophoneCaptured": false,
+  "personalHealthDataRead": false,
+  "appStoreOrTestFlightChanged": false,
+  "deploymentPerformed": false,
+  "loopbackFixtureStopped": true
+}

@@ -3779,3 +3779,11 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Keep the three Web content capabilities at the existing Family price. The bounded file/recording limits and local-only transcription are implementation choices with explicit copy; no E2EE, unlimited storage, automatic death decision or verified post-death delivery claim is introduced.
 - Production-cookie and enforced-journal gaps were reproduced and repaired; neither CSRF protection for mutations nor recovery enforcement was disabled. The independent QA account used two expiring manual test grants, no fabricated payments or consent. Normal login followed Owner’s actual confirmation.
 - Actual synthetic file/private-pack acceptance passed. Test grants and sessions were revoked, the exact original maintenance/broker configuration was restored and the QA command was denied again. Synthetic samples are retained, not claimed deleted. Current native build/review, personal data, prices, sale controls and FanPass remain unchanged.
+
+## 2026-10-23 — Complete next-version native content without interrupting review
+
+- Status: OWNER AUTHORIZED DEVELOPMENT AND TESTING; TESTFLIGHT REMAINS DEFERRED.
+- Owner explicitly asks for native action packs, files, original voice and HealthKit integration now, followed by GitHub preservation. This supersedes waiting for the current review outcome before beginning development; it does not authorize a new store submission or real health collection.
+- The implementation uses an isolated next project and the existing API, reviewed dependency pins, native system file/media surfaces and explicitly on-device speech recognition. Default review source/configuration, live data, prices and FanPass are preserved.
+- Actual SQL restricts old publication when person/intention changes; native copy follows that fact. Current body/file edits retain frozen published copies until explicit replacement. No automatic death, health-driven disclosure or new commercial policy is introduced.
+- Synthetic native tests and source guards are complete as recorded in [the contract](ios-content-development-20261023.md); physical permissions, recording quality, health samples and data-protection hardware remain independent. No need for another general project authorization is inferred.
