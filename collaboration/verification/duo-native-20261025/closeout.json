@@ -7,7 +7,8 @@
     "docs/iphone-duo-adaptation-20261023.md",
     "docs/app-review-followup-20261019.md",
     "docs/source-control.md",
-    "collaboration/README.md"
+    "collaboration/README.md",
+    "docs/health-checkin-watch-development-20261024.md"
   ],
   "decisions": "docs/decision-log.md appended Owner upgrade/delegation and evidence-method decisions; no new commercial policy",
   "handoff": "docs/handoff.md; old handoff archived HISTORICAL",
@@ -25,7 +26,18 @@
     "nativeDuo": "directbilingualmatrix complete; not automaticSuitepass",
     "sixReviewFilesUnchanged": true
   },
-  "publication": "newarchive54 planned; exact-base gate/push/remote authentication recorded separately after capture",
+  "publication": {
+    "sourceCommit": "dfe3583e31a54b2b20f428b5e1496846c81e1332",
+    "localGate": true,
+    "exactBinaryDiffMatches": true,
+    "remoteNewArchiveVerified": true,
+    "paths": 2834,
+    "objects": 1793,
+    "pullRequest": 10,
+    "merged": false,
+    "sourceCloudRuns": 0,
+    "metadataOnlyFollowup": "last receipts and full manifest; no application retest"
+  },
   "unchanged": [
     "currentAppReview14",
     "production",
@@ -40,5 +52,6 @@
     "Apple response/review result",
     "physicalDuo and prior physical-health/Watch/voice/protection release gates"
   ],
-  "failuresRetained": "all-xcresult-outcomes.json and raw bundles; no original failure suppressed or relabelled"
+  "failuresRetained": "all-xcresult-outcomes.json and raw bundles; no original failure suppressed or relabelled",
+  "updatedAt": "2026-10-25T09:21:19.106868+00:00"
 }

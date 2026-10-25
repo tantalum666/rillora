@@ -1,0 +1,63 @@
+{
+  "startedAt": "2026-10-25T09:15:41.668553+00:00",
+  "head": "9d0b29e63d9974717958e0b683cec1d21ff70b23",
+  "trackedDiffSha256": "86f19239511725f9449306dadb029a3897930f3217ec76f0687bc92519d979c5",
+  "planSha256": "94cd2cf15ebe75d8e27875f3625d66394f202fefc6059252c014f5d286373bc6",
+  "runnerSha256": "292f62b7ca2b8722a0ff431fbb756fee96958fb046f0b3a433686ef62cd71557",
+  "trustedBase": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "groups": [],
+  "execution": "local",
+  "steps": [
+    {
+      "name": "Verify pinned scanner",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.021,
+      "log": "00.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Prepare trusted policy repository",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.076,
+      "log": "01.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Read immutable base policy",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.038,
+      "log": "02.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Prepare candidate without executing it",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.359,
+      "log": "03.log",
+      "logSha256": "a360a32ef34a20c74e2513eac5fd4aa8f204c4761288ea32fde4900062a65a3b"
+    },
+    {
+      "name": "Scan source with base exception authority",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.593,
+      "log": "04.log",
+      "logSha256": "ebdf6a39d220749ae4b32ead25870b3c293edc006f51e109db2e0c9ec7ae2e7e"
+    },
+    {
+      "name": "Verify complete readable publication",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 47.529,
+      "log": "05.log",
+      "logSha256": "5049620d88851c961b51eadccdaedf554b6bf10bd2945c12e47b184ffd238fb3"
+    }
+  ],
+  "boundary": "Selected groups only; no cloud run, deployment, device acceptance or release claim.",
+  "passed": true,
+  "finishedAt": "2026-10-25T09:16:36.649190+00:00"
+}

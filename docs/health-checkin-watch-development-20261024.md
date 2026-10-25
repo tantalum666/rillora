@@ -1,9 +1,11 @@
 # 下一版多类健康读取、报平安与watchOS开发
 
 Status: SOURCE AND LOCAL ACCEPTANCE COMPLETE / NOT DISTRIBUTED / CURRENT REVIEW UNCHANGED
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Last updated: 2026-10-25 (Asia/Hong_Kong)
 
 Owner明确要求按[既定顺序](healthkit-multisignal-watchos-20261024.md)实现iPhone多类健康读取和提醒确认，再做轻量watchOS配套，完成后推GitHub；只用本机测试，不影响当前审核，暂不TestFlight。分支`codex/health-checkin-watch-20261024`从`f017648ca`开始。沿用已有全文阅读链，只补本轮变化文件及官方API证据；不重新做已完成部署、购买、身份验证或Duo失败用例。
+
+October25接续：Owner已升级Xcode，[Duo本机验收](iphone-duo-validation-20261025.md)完成新SDK构建、原两项普通旋转回归及实际Duo双语原生操作；旧“升级暂缓／Duo横屏失败”不再是活动门。下方健康／Watch测试仍是October24原检查点，本轮未重跑。PR10继续保存下一版，当前审核与TestFlight保持。
 
 ## 实施合同
 
@@ -39,7 +41,7 @@ Owner明确要求按[既定顺序](healthkit-multisignal-watchos-20261024.md)实
 
 ## 尚未证明的发布事项
 
-这次完成的是源码与本机验收。个人健康系统授权／真实样本、真实iPhone与Watch无线同步、后台长时间通知投递／耗电、硬件保护、表盘实际安装体验和下一版商店材料仍是独立发布证据。没有声称模拟器替代它们。个人基线、健康异常触发、呼吸频率／HRV、死亡或失能核验／亲友披露没有在本轮实现。既有两项Duo横屏UI问题、内容模块真实语音和机构材料装配继续保留；当前审核、线上服务、TestFlight及系统升级不变。
+这次完成的是源码与本机验收。个人健康系统授权／真实样本、真实iPhone与Watch无线同步、后台长时间通知投递／耗电、硬件保护、表盘实际安装体验和下一版商店材料仍是独立发布证据。没有声称模拟器替代它们。个人基线、健康异常触发、呼吸频率／HRV、死亡或失能核验／亲友披露没有在本轮实现。旧两项普通旋转问题已由October25修正并验收，Duo实际模拟器矩阵也已另行完成；实体Duo、内容模块真实语音和机构材料装配仍分别保留。当前审核、线上服务和TestFlight不变；本文件中未升级工具的说法描述October24健康实施检查点。
 
 ## 官方实现依据
 

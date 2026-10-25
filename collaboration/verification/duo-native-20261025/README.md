@@ -1,9 +1,9 @@
 # October25 Duo本机验收与Apple跟进
 
-Status: LOCAL ACCEPTANCE COMPLETE / PUBLICATION READBACK PENDING
+Status: LOCAL ACCEPTANCE COMPLETE / SOURCE AND ARCHIVE PUBLISHED / REMOTE VERIFIED
 Date: 2026-10-25 (Asia/Hong_Kong)
 
-当前合同见[下一版Duo验收](../../../docs/iphone-duo-validation-20261025.md)。本轮只追加archive54；旧1–53不可变。分支`codex/health-checkin-watch-20261024`继续[PR10](https://github.com/tantalum666/rillora/pull/10)，archive54已本机认证2,834路径／1,793对象，密文227,149,556字节；[保留回执](preservation-receipt.json)。准确远端提交和本机发布门结果在最后回执中另记。
+当前合同见[下一版Duo验收](../../../docs/iphone-duo-validation-20261025.md)。本轮只追加archive54；旧1–53不可变。分支`codex/health-checkin-watch-20261024`继续[PR10](https://github.com/tantalum666/rillora/pull/10)，archive54已本机认证2,834路径／1,793对象，密文227,149,556字节；[保留回执](preservation-receipt.json)。源码／归档已推送为`dfe3583e31a54b2b20f428b5e1496846c81e1332`。[确切候选匹配](source-commit-verification.json)、[本机发布门](local-publication-source/result.json)、[独立远端认证](remote-readback.json)及[PR／云端作业回读](github-source-readback.json)分别可查；PR10开放未合并，源码0云端运行。
 
 ## 已完成的证据
 

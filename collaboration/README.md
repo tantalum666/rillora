@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-October25当前：[Duo新版SDK与实际双语验收](../docs/iphone-duo-validation-20261025.md)已完成，本轮另在Apple原工单103001356140追问审核，官方确认收件；三项仍等待审核。原普通旋转2项通过，实际Duo采用原生操作／截图／API回读，失败探针保留而不冒称通过。[本轮archive54及回执](verification/duo-native-20261025/README.md)只追加新工作；旧1–53不重封／重下。当前审核、线上、真实数据、价格／收费和TestFlight不变，云端CI停用。唯一下一步只看handoff。
+October25当前：[Duo新版SDK与实际双语验收](../docs/iphone-duo-validation-20261025.md)已完成，本轮另在Apple原工单103001356140追问审核，官方确认收件；三项仍等待审核。原普通旋转2项通过，实际Duo采用原生操作／截图／API回读，失败探针保留而不冒称通过。[本轮archive54及回执](verification/duo-native-20261025/README.md)只追加新工作；源码dfe3583e3／PR10已发布，archive54独立远端认证1,793对象／2,834路径通过，源码云端作业0，PR未合并。旧1–53不重封／重下。当前审核、线上、真实数据、价格／收费和TestFlight不变，云端CI停用。唯一下一步只看handoff。
 
 October24历史检查点：[六类健康、独立报平安与轻量Watch](../docs/health-checkin-watch-development-20261024.md)已完成下一版源码及本机验收，当前审核与线上不变。[本轮回执](verification/health-checkin-watch-20261024/README.md)分别记录纯模块、双语UI、系统适配、真实配对模拟器回执和原始失败；仅新增archive53，旧1–52不重做。云端CI继续停用；源码95ba39236已推PR10，archive53远端认证508对象／751路径通过，云端运行仍314；PR开放未合入main。当前唯一下一步仍看handoff。
 
