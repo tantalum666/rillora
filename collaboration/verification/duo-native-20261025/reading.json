@@ -1,0 +1,27 @@
+{
+  "mode": "continuation of existing Duo next-version and existing Apple review-status workflows",
+  "continuedFrom": "output/qa/rillora-health-checkin-watch-20261024/reading.json",
+  "retainedFullBodyReadChain": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "bodyReadRanges": {
+    "AGENTS.md": "full current",
+    "docs/product.md": "currenttaskparagraph + locked509-684 refreshed; prior fullreadchain retained",
+    "docs/handoff.md": "full current rewritten and reviewed",
+    "docs/iphone-duo-adaptation-20261023.md": "full including historical scope",
+    "docs/app-review-followup-20261019.md": "full current",
+    "docs/source-control.md": "currenttop + localgateinstruction; historical chainretained",
+    "collaboration/README.md": "currenttop; retained full historical reading",
+    "docs/decision-log.md": "latest65lines refreshed",
+    "docs/journey/PROJECT_JOURNEY.md": "latest48lines plus newOctober25entry",
+    "official Apple app-resizability and device-interaction SKILL.md": "full; app-resizability references being independently reviewed before changes",
+    "docs/iphone-duo-validation-20261025.md": "full current written and reviewed",
+    "apps/ios/NextVersionDuoUITests/README.md": "full current",
+    "tools/ci/README.md": "full current",
+    "output/qa/rillora-duo-review-20261025/pattern-review.md": "full including initial/final scoped checks; no newdelegation"
+  },
+  "exclusions": [
+    "dependency/cache/build and output generated evidence",
+    "generated collaboration/evidence, catalog and archives",
+    "no repeat old implementation/tests/deployments"
+  ],
+  "at": "2026-10-25T09:12:47.334709+00:00"
+}

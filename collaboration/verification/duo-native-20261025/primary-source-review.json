@@ -1,0 +1,33 @@
+{
+  "at": "2026-10-25T08:52:20.209602+00:00",
+  "reviewer": "primary agent; no new delegation after Owner preference",
+  "base": "9d0b29e63d9974717958e0b683cec1d21ff70b23",
+  "scope": [
+    "ContentPackEditor stable AX identifier",
+    "ordinary rotation gesture coordinate and awaited dismissal corrections",
+    "isolated Duo UI target and live native pose checkpoint tests"
+  ],
+  "findings": [
+    "No product state, authorization, validation, sharing, billing or HealthKit data change",
+    "Duo model check exists only in explicitly opt-in UI test, not product layout",
+    "The new suite is separate from unattended RilloraNext tests and cloud CI",
+    "Run-specific phase acknowledgements do not replace retained-title, Save, discard, picker-cancel and return assertions",
+    "Current six review files unchanged; ordinary test retains exact already-passed bytes"
+  ],
+  "limitations": [
+    "Native screenshots and actual pose controls prove simulator rendering only",
+    "XCTest missing-animation notification delays are preserved as environment failures, not hidden",
+    "Current review approval, physical Duo, personal health and production rollout are not inferred"
+  ],
+  "targetedSourceCheck": {
+    "command": "python3 -m unittest tools.release.test_native_content_next_version -v",
+    "passed": 5,
+    "failed": 0,
+    "log": "next-isolation-final.log"
+  },
+  "finalActiveScope": [
+    "ContentPackEditor stable AX identifier",
+    "existing bilingual ordinary rotation gestures and awaited discard return"
+  ],
+  "experimentalDuoTarget": "withdrawn from activeproject; source and raw failures preserved as reference; final actualDuo acceptance is directnative"
+}

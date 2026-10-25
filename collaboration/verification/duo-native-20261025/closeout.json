@@ -1,0 +1,44 @@
+{
+  "at": "2026-10-25T09:13:20.908082+00:00",
+  "scope": "Duo continuation and one Apple same-case review follow-up",
+  "specificationsUpdated": [
+    "docs/product.md",
+    "docs/iphone-duo-validation-20261025.md",
+    "docs/iphone-duo-adaptation-20261023.md",
+    "docs/app-review-followup-20261019.md",
+    "docs/source-control.md",
+    "collaboration/README.md"
+  ],
+  "decisions": "docs/decision-log.md appended Owner upgrade/delegation and evidence-method decisions; no new commercial policy",
+  "handoff": "docs/handoff.md; old handoff archived HISTORICAL",
+  "journey": "docs/journey/PROJECT_JOURNEY.md October25entry",
+  "activeSource": [
+    "apps/ios/NextVersionContent/Sources/RilloraContentKit/ContentPackEditor.swift",
+    "apps/ios/NextVersionUITests/ResizableContentUITests.swift"
+  ],
+  "localValidation": {
+    "DebugBuild": true,
+    "ReleaseBuild": true,
+    "ordinaryRotationPassed": 2,
+    "ordinaryRotationFailed": 0,
+    "targetedIsolationPassed": 5,
+    "nativeDuo": "directbilingualmatrix complete; not automaticSuitepass",
+    "sixReviewFilesUnchanged": true
+  },
+  "publication": "newarchive54 planned; exact-base gate/push/remote authentication recorded separately after capture",
+  "unchanged": [
+    "currentAppReview14",
+    "production",
+    "personaldata",
+    "prices",
+    "billing",
+    "FanPass",
+    "TestFlight",
+    "cloudCIretired"
+  ],
+  "remaining": [
+    "Apple response/review result",
+    "physicalDuo and prior physical-health/Watch/voice/protection release gates"
+  ],
+  "failuresRetained": "all-xcresult-outcomes.json and raw bundles; no original failure suppressed or relabelled"
+}

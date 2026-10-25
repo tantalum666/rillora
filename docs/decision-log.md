@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Last updated: 2026-10-25 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3827,3 +3827,20 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Use isolated next targets/packages, account-bound minimum Watch messages, secure device-only state and explicit pending/acknowledged status. No raw health serialization to the Watch, server, content system or analytics. Real-device evidence stays separate under [the implementation contract](health-checkin-watch-development-20261024.md).
 
 同轮实施细化：独立提醒采用本人选择的24小时／3天／7天、每次手机接收后重新计时，默认关闭；传输有效期24小时仅用于拒绝陈旧命令，不产生医疗／遗产后果。Watch静态入口只导航，主动确认才产生操作；实际回执不等于通知家人或核验健康。新增只在下一版合并的延迟通知语言目录，保护当前审核原语言文件；真实SDK回调及通知串行修复不改变产品权限。
+
+## 2026-10-25 — Resume Duo after Owner's Xcode upgrade; follow the existing review case
+
+- Owner confirms Xcode is upgraded and explicitly requests Duo continuation. This supersedes the prior upgrade defer, not current App Review or TestFlight isolation. Use installed Xcode27.1 and only necessary official simulator assets; local validation and existing data/prices/FanPass boundaries remain.
+- Owner explicitly requests an Apple review-status email/case. The existing103001356140is open, so send one factual follow-up in that case after reading the real unchanged October15 submission. Request queue/blocker/missing-info/next-step details; do not withdraw/resubmit, claim a cause or fabricate urgency.
+- Owner completed the actual new Xcode/Apple SDK agreement prompt. No repeat project permission or Apple authentication was requested. SDK installation, runtime download, real Duo acceptance and Apple support receipt are separate facts.
+
+## 2026-10-25 — Default to one agent; ask before any necessary delegation
+
+- Owner explicitly asks to minimize sub-agent calls. Future work is performed by the main agent by default; even for audit or an actually necessary delegation, explain the purpose and reason and ask Owner before invoking it.
+- This supersedes automatic delegation suggestions in vendor skills for this project. The two already used read-only/controlled UI reviews retain their dated evidence; no further sub-agent work is dispatched for the current Duo task.
+
+## 2026-10-25 — Separate direct Duo acceptance from unreliable automation probes
+
+- Implementation outcome under the existing Duo authorization; no new product, commercial or distribution decision. Keep the current SwiftUI layout and privacy behavior because direct native interactions succeed.
+- Preserve the ordinary bilingual rotation regression and its final2/0/0result. The experimental hybrid Duo target cannot reliably dispatch/report all post-fold keyboard interactions; its failed results and source remain historical evidence, and the experimental target is withdrawn from active project configuration rather than presented as a passing or skipped regression.
+- Complete the actual Duo matrix through Device Hub native actions, screenshots/AX and the dedicated loopback API readback. Record direct acceptance separately from automated tests. No broad release/physical-device guarantee follows. Current App Review, TestFlight, production data, pricing and FanPass remain unchanged.

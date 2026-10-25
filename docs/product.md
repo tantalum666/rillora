@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Last updated: 2026-10-25 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-25 已升级Xcode，恢复Duo并跟进审核
+
+Owner已完成Xcode升级并要求继续Duo，取代October23“晚点升级”的活动门。只继续下一版适配与本机验证，当前审核不动。Owner另明确授权Apple审核进度询问，已在[原案例](app-review-followup-20261019.md)内追问，不新建重复案例或重提版本。[本轮实际Duo双语验收](iphone-duo-validation-20261025.md)已完成：SDK构建、原两项普通旋转回归和实际三姿态／输入／返回分别有证据；仍为下一版本机候选，未分发或改审核。
 
 ## 2026-10-24 授权按顺序实现健康读取、提醒和手表配套
 
@@ -618,7 +622,7 @@ Owner于2026-09-09明确：“本项目全部默认授权与确认”。当前�
 | Task | Read next | Role |
 | --- | --- | --- |
 | 办理包、重要文件与原声的完整性及缺口 | `docs/content-completeness-review-20261023.md` | 核心实现、七组候选修复、尚缺的材料装配与真实设备／身后交付证据分开 |
-| 下一版本iPhone Duo与可伸缩原生布局 | `docs/iphone-duo-adaptation-20261023.md` → `docs/ios-content-development-20261023.md` | 当前工具下的布局准备与未来Duo原生验证分开；环境升级按Owner暂缓 |
+| 下一版本iPhone Duo与可伸缩原生布局 | `docs/iphone-duo-adaptation-20261023.md` → `docs/ios-content-development-20261023.md` | 既有布局与实际Duo验收分开；October25已恢复新版Xcode工作 |
 | 下一版本HealthKit数据范围、权限说明、用途咨询与进入实现的条件 | `docs/healthkit-preparation-20261020.md` → `docs/apple-healthkit-inquiry-20261020.md` | 准备合同、已回复独立案例及下一版源码；不代表平台用途获批或已读取真实健康数据 |
 | 多信号异常确认、仅身后披露、失联条件与生前封存预告 | `docs/conditional-disclosure-vnext-20261019.md` | Owner需求与候选规则；未实现，时限／用途／证据／密钥门分别验证 |
 | 营销平台注册、逐平台运营／广告规则与200—500美元预算 | `docs/marketing/platform-playbook-20261019.md` → `docs/marketing/acquisition-budget-20261019.md` | 官方规则、建议、实际账号资格、分期支出和市场结果分别记录；计划不是投放授权 |

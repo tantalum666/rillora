@@ -1,6 +1,12 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Last updated: 2026-10-25 (Asia/Hong_Kong)
+
+## October25 Duo native acceptance and existing Apple support case
+
+[This continuation](iphone-duo-validation-20261025.md) retains the existing next branch/PR10 and current App Review isolation. Corrected ordinary rotation tests pass2/0/0; real iOS27.1 Duo acceptance is separately evidenced by direct Device Hub interactions, bilingual screenshots/AX and loopback API counts. Experimental automated probe failures remain raw evidence and their temporary target is withdrawn, not marked passed. Only two final active Swift files change.
+
+[New receipts and archive54](../collaboration/verification/duo-native-20261025/README.md) preserve this work, the unsigned simulator candidate and same-case Apple follow-up. Old1–53 are not resealed or downloaded. Official vendor runtime staging, DerivedData, private UI and reproducible test products are excluded; the installed official runtime remains. Run the exact-main-base local publication gate and verify only the new remote archive; no cloud CI, deployment or TestFlight. Final source/head/readback appears in the receipt rather than being inferred from upload.
 
 ## October24 isolated health, check-in and Watch development
 

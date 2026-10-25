@@ -31,6 +31,8 @@ final class ResizableContentUITests: XCTestCase {
         XCTAssertTrue(create.waitForExistence(timeout: 10)); create.tap()
         let title = app.textFields["content.packTitle"]
         XCTAssertTrue(title.waitForExistence(timeout: 5))
+        let editor = app.collectionViews["content.pack-editor"]
+        XCTAssertTrue(editor.waitForExistence(timeout: 5))
         let value = zh ? "窗口变化后保留的合成办理包" : "Synthetic draft retained across window changes"
         title.tap(); title.typeText(value)
 
@@ -43,39 +45,48 @@ final class ResizableContentUITests: XCTestCase {
         let keyboardDismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: app.keyboards.firstMatch)
         XCTAssertEqual(XCTWaiter.wait(for: [keyboardDismissed], timeout: 5), .completed)
         let save = element(app, "content.save-pack")
-        reveal(save, app: app)
+        reveal(save, app: app, within: editor)
         XCTAssertTrue(save.isEnabled && save.isHittable)
         capture(app, "content-draft-landscape-" + language)
 
         XCUIDevice.shared.orientation = .portrait
         let narrow = XCTNSPredicateExpectation(predicate: NSPredicate { _, _ in app.frame.width < app.frame.height }, object: app)
         XCTAssertEqual(XCTWaiter.wait(for: [narrow], timeout: 8), .completed)
-        for _ in 0..<8 { if title.isHittable { break }; app.swipeDown() }
+        reveal(title, app: app, within: editor, towardsTop: true)
         XCTAssertEqual(title.value as? String, value)
         capture(app, "content-draft-portrait-" + language)
         app.buttons[zh ? "关闭" : "Close"].firstMatch.tap()
-        XCTAssertTrue(app.buttons[zh ? "放弃未保存的修改" : "Discard unsaved changes"].waitForExistence(timeout: 3))
-        // Do not save or publish this deliberately unsaved synthetic draft.
+        let discard = app.buttons[zh ? "放弃未保存的修改" : "Discard unsaved changes"]
+        XCTAssertTrue(discard.waitForExistence(timeout: 3))
+        // This is the deliberately unsaved synthetic draft, not a stored user pack.
+        discard.tap()
+        let dismissed = XCTNSPredicateExpectation(predicate: NSPredicate(format: "exists == false"), object: editor)
+        XCTAssertEqual(XCTWaiter.wait(for: [dismissed], timeout: 5), .completed)
+        XCTAssertTrue(element(app, "content.new-pack").waitForExistence(timeout: 5))
+        XCTAssertFalse(title.exists)
+        capture(app, "content-draft-discarded-" + language)
     }
 
     private func element(_ app: XCUIApplication, _ id: String) -> XCUIElement {
         app.descendants(matching: .any).matching(identifier: id).firstMatch
     }
-    private func reveal(_ item: XCUIElement, app: XCUIApplication) {
+    private func reveal(_ item: XCUIElement, app: XCUIApplication, within editor: XCUIElement? = nil, towardsTop: Bool = false) {
         for _ in 0..<10 {
             if item.exists && item.isHittable { return }
-            if !app.keyboards.firstMatch.exists { app.swipeUp(); continue }
-            // A center-screen swipe hits the keyboard in a short landscape window.
-            // Drag the visible form area, like a user scrolling above the keyboard.
-            let region = app.collectionViews.allElementsBoundByIndex.last(where: { $0.isHittable }) ?? app
+            // Scroll the presented editor in both keyboard states, not its obscured workspace.
+            if let editor { XCTAssertTrue(editor.exists, "The editor scroll anchor must remain present") }
+            let region = editor ?? (app.collectionViews.allElementsBoundByIndex.last(where: { $0.isHittable }) ?? app)
             let frame = region.frame.intersection(app.frame)
             let navigationBottom = app.navigationBars.allElementsBoundByIndex.last?.frame.maxY ?? frame.minY
             let top = max(frame.minY, navigationBottom) + 12
             let bottom = min(frame.maxY, app.keyboards.firstMatch.exists ? app.keyboards.firstMatch.frame.minY : frame.maxY) - 12
             XCTAssertGreaterThan(bottom, top)
-            let origin = app.coordinate(withNormalizedOffset: .zero)
-            origin.withOffset(CGVector(dx: frame.midX, dy: bottom))
-                .press(forDuration: 0.1, thenDragTo: origin.withOffset(CGVector(dx: frame.midX, dy: top)))
+            // XCUI frames are screen-space; coordinate offsets are relative to this region.
+            let origin = region.coordinate(withNormalizedOffset: .zero)
+            let x = frame.midX - region.frame.minX
+            let high = origin.withOffset(CGVector(dx: x, dy: top - region.frame.minY))
+            let low = origin.withOffset(CGVector(dx: x, dy: bottom - region.frame.minY))
+            (towardsTop ? high : low).press(forDuration: 0.1, thenDragTo: towardsTop ? low : high)
         }
         capture(app, "unreachable-" + item.identifier)
         let tree = XCTAttachment(string: app.debugDescription); tree.lifetime = .keepAlways; add(tree)

@@ -1,0 +1,65 @@
+{
+  "capturedFrom": "2026-10-25T09:14:05.378154+00:00",
+  "capturedThrough": "2026-10-25T09:14:19.924410+00:00",
+  "workFiles": 2834,
+  "uniqueRawObjects": 1793,
+  "workBytes": 348110778,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-054.tar.zst.age",
+      "sha256": "0320e730a337ebb01c584aba45f9df7e08708e19fd7c3d337436ff0231df2ac2",
+      "bytes": 227149556,
+      "plainBytes": 256181393,
+      "uniqueObjects": 1793
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/duo-native-20261025/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-053",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only the final unsigned simulator app and sanitized crash summary are selected"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/derived-data",
+      "reason": "reproducible_xcode_cache"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/apple-skills",
+      "reason": "duplicate/private cache or reproducible vendor skill export"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/private-ui",
+      "reason": "duplicate/private cache or reproducible vendor skill export"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/download-probe-direct.part",
+      "reason": "reproducible Apple vendor binary probe"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/download-probe-resolved.part",
+      "reason": "reproducible Apple vendor binary probe"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/download-probe-default.part",
+      "reason": "reproducible Apple vendor binary probe"
+    },
+    {
+      "path": "output/qa/rillora-duo-review-20261025/download-probe-alternate.part",
+      "reason": "reproducible Apple vendor binary probe"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Only this Duo continuation QA, original failed/passed logs and results, synthetic screenshots, actual pose/readback evidence, Apple same-case follow-up receipt, source/configuration hashes, setup/download integrity receipts, local helpers and final unsigned simulator candidate. DerivedData, vendor runtime/probes/decoding data, vendor skill exports and dependency caches are excluded. No distributable IPA is created.",
+  "boundary": "No private account credentials, database backups or authentication captures. Current App Review, prices, billing and FanPass preserved. Current source and selected safe receipts are ordinary Git."
+}

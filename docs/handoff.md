@@ -1,22 +1,20 @@
 # Rillora 当前交接
 
-Status: NEXT-VERSION HEALTH / CHECK-IN / WATCH SOURCE, LOCAL ACCEPTANCE AND GIT DELIVERY COMPLETE; NOT DISTRIBUTED
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Status: DUO NEXT-VERSION LOCAL ACCEPTANCE COMPLETE / APPLE SAME-CASE FOLLOW-UP RECEIVED / GIT DELIVERY IN PROGRESS
+Last updated: 2026-10-25 (Asia/Hong_Kong)
 
 ## 当前任务与已完成
 
-Owner要求按顺序完成iPhone多类健康读取及提醒确认、轻量watchOS，只用本机测试，下一版本发布，暂不TestFlight。[本轮实施](health-checkin-watch-development-20261024.md)已完成六类只读、独立报平安与可选通知、手机／手表最小消息、离线持久化及静态表盘入口。10项健康、23项确认／传输、13项定向源码检查，iPhone3项UI／4项系统、Watch4项UI通过；组合Release编译通过。实际配对模拟器SDK已验证在线回执与手机离线、手表重启、手机恢复后的确认，修复真实后台回调崩溃及通知竞争。
+Owner升级Xcode后要求完成Duo并追问审核。本轮Xcode27.1／官方iOS27.1运行时已可用，下一版Debug／Release构建通过；原中英文两项旋转回归已修正并通过。官方Duo模拟器真实三姿态、纵向栏、窄／宽布局、双语草稿保留、键盘上方保存可达、实际放弃与文件选择器取消返回均由主代理直接操作完成。最后本机API回读办理包／文件／收到的办理包均0，六份当前审核文件未变。[完整证据边界](iphone-duo-validation-20261025.md)。不可靠的临时混合XCTest探针及失败原件保留为参考，未加入常规套件、跳过或写成通过。
 
-当前审核六份关键文件与base f017648ca逐字一致，三个Release可执行文件不含验收开关。独立合成本机服务在收尾停止；没有个人健康读取、真机安装、App Store资料改动、线上部署、收费／价格／FanPass变化、TestFlight或工具升级。云端CI继续停用；本轮使用可信base的本机检查。源码95ba39236已推[PR10](https://github.com/tantalum666/rillora/pull/10)，开放且无冲突；archive53远端新下载508对象／751路径认证通过，云端总数314未增长。完整保存状态见[交付回执](../collaboration/verification/health-checkin-watch-20261024/README.md)。
+Apple实际刷新后，October15 09:49提交的1.0(14)、年订阅和群组仍全部等待审核。原案例103001356140未结，本次已在原案追问队列、阻塞原因、缺失资料及下一步，Apple确认收件；原因／时间／结果仍未知。[跟进记录](app-review-followup-20261019.md)。没有重复开单或重提审核。
 
-[此前研究交接](handoff-history-20261024-before-health-implementation.md)转HISTORICAL，不再把“考虑是否开发Watch”当作当前门。
+下一版继续PR10与`codex/health-checkin-watch-20261024`。既有健康／确认／Watch的9d0b29e63证据沿用，未重跑支付、健康或旧部署。[旧交接](handoff-history-20261025-before-duo-resume.md)为HISTORICAL。本轮只新增archive54和[交付记录](../collaboration/verification/duo-native-20261025/README.md)，最终远端回读完成后补准确提交。
 
-## 证据边界与保留项
+## 证据边界与阻塞
 
-模拟器的合成健康UI、系统通知队列、真实WCSession回执是三种证据，均不代替个人健康／实体手表、长期后台投递／耗电、硬件保护与表盘安装。健康模块不调用报平安或披露系统；没有个人基线、健康异常规则、死亡／失能核验或自动开放亲友资料。呼吸频率／HRV等不是本批范围。
-
-既有两项Duo横屏UI失败、真实语音及机构材料装配等未完成项保留，未重跑未变化的支付、Web/API或旧部署。当前审核继续独立进行。
+当前审核、线上、真实数据、价格／收费、FanPass与TestFlight不变。只用本机验证，云端CI停用。Owner要求默认主代理执行；以后任何子代理，包括审计或必要委派，也先说明并询问。实体Duo、个人健康／实体Watch、后台长时投递／电池、真实语音和硬件保护不由本轮模拟器证明；机构材料装配与真实身后交付仍为独立范围。
 
 ## 唯一下一步
 
-下一版本集成验收先从已记录的两项Duo横屏交互失败继续，复用已有失败证据定向修复；本批健康／确认／Watch源码交付已完成，不重复其已过检查，不进入当前审核或TestFlight切换。
+完成本轮安全归档、确切main基线的本机发布门及PR10远端回读；之后按Apple原案例或原审核提交的实际回复处理，不主动重复申请或分发下一版。
