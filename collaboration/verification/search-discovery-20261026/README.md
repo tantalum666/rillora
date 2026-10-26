@@ -1,0 +1,13 @@
+# Public SEO/GEO and27 discovered URLs - October26
+
+Current result: [website improvements are deployed](../../../docs/marketing/search-discovery-20261026.md); actual indexing remains a separate provider outcome. Only the existing public website static package changed. This dated evidence is not an instruction to repeat deployment or authentication.
+
+- [Complete URL matrix](url-matrix.csv), [diagnosis](diagnosis-summary.json), [Google list](google-27.json), [visible list](google-27-visible.txt) and [report image](google-27.png).
+- [Google crawl overview](crawl-overview-visible.txt), [www host](crawl-www-visible.txt), [old favicon404](crawl-404-visible.txt), [direct HTTP](before-http.json) and [content/link inventory](before-content-audit.json).
+- [Candidate metadata/fragment checks](candidate-seo-audit.json), [final19+7checks](tests-final.json), [source/build log](tests-final.log), [browser log](browser-final.log), [all browser output](browser.zip). Initial three-column visuals/checks remain in [initial-table-qa.zip](initial-table-qa.zip); only hashed assets were staged before correction, not HTML.
+- [Build manifest](public-build.json), [exact public bundle](public-artifact.zip), [asset stage](assets-verified.json), [final deployment](pages-verified.json), [66file HTTPS readback](pages-http.json), [live browser flow](live-browser.json) and [live template image](live-template.png).
+- [Provider results](provider-results.json): Google [updated live test](google-updated-live.txt) passed, but [priority request retry failed](google-request-retry-error.txt); Bing [English](bing-en-requested.txt) and [Chinese](bing-zh-requested.txt) show Indexing requested. Its [Live URL error](bing-live-error.txt) is not counted as a successful crawl.
+- [Bing AI baseline](bing-ai-visible.txt) covers sampled Microsoft Copilots/Partners activity only, not all-AI visibility.
+- [Reading continuity](reading.json), [session renewal](session-renewal.json), [preservation scope](preservation-plan.json), [closeout](closeout.json) and [bookkeeping error/repair](bookkeeping-error.json).
+
+Ordinary Git artifacts contain only public website material and synthetic local checks. No private account data, credentials, auth URLs/codes, cookies, raw provider configuration or private logs are included. Verification scripts use .reference.txt so historical evidence is not mistaken for active implementation. Existing encrypted archives are unchanged. Generated CDK dependencies and reproducible caches are excluded. Final trusted-base publication logs and exact remote readback are saved under output/qa/rillora-seo-geo-20261026. No cloud CI, Apple build, payment test or review action was performed.

@@ -1,7 +1,7 @@
 import { PUBLIC_ORIGIN, PUBLIC_LOCALES, publicPath } from '../src/publicSeo.js';
 import { publicArticles } from '../src/publicArticles.js';
 
-export function publicStructuredData(path, locale, t, { title, description, logoURL }) {
+export function publicStructuredData(path, locale, t, { title, description, logoURL, imageURL }) {
   const url = PUBLIC_ORIGIN + publicPath(path, locale);
   const page = { '@type': path === '/learn' ? 'CollectionPage' : 'WebPage', '@id': `${url}#page`,
     url, name: title, description, inLanguage: locale, isPartOf: { '@id': `${PUBLIC_ORIGIN}/#website` } };
@@ -19,6 +19,7 @@ export function publicStructuredData(path, locale, t, { title, description, logo
       description, inLanguage: locale, mainEntityOfPage: { '@id': `${url}#page` },
       author: { '@id': `${PUBLIC_ORIGIN}/#organization` }, publisher: { '@id': `${PUBLIC_ORIGIN}/#organization` },
       datePublished: article.published, dateModified: article.modified,
+      ...(imageURL ? { image: imageURL } : {}),
       ...(article.sources ? { citation: article.sources.map(source => source.urls[locale]) } : {}),
     });
     graph.push({ '@type': 'BreadcrumbList', '@id': `${url}#breadcrumb`, itemListElement: [

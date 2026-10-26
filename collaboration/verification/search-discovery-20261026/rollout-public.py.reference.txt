@@ -1,0 +1,80 @@
+"""Two-phase static website update; never selects an application or review stack."""
+from pathlib import Path
+import copy,datetime,hashlib,json,os,subprocess,sys,zipfile
+ROOT=Path(__file__).resolve().parents[3]; QA=Path(__file__).resolve().parent
+PRIVATE=ROOT/'.local-secrets/seo-20261026'; ART=ROOT/'apps/web/dist-public'; STACK='RilloraPublicWeb'; REGION='eu-central-1'; DEP='PublicDeploymentCustomResource947B276F'
+def read(p):return json.loads(p.read_text())
+def save(p,d):p.write_text(json.dumps(d,indent=2)+'\n')
+def aws(args,profile='rillora-cdk-deploy',env=None):
+ cmd=['aws',*args,'--region',REGION,'--output','json']
+ if profile:cmd+=['--profile',profile]
+ r=subprocess.run(cmd,capture_output=True,text=True,env=env)
+ if r.returncode:
+  (PRIVATE/'operation-error.txt').write_text(r.stderr);raise RuntimeError('AWS failed; private error saved')
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+def template():
+ v=aws(['cloudformation','get-template','--stack-name',STACK,'--template-stage','Original'])['TemplateBody'];return json.loads(v) if isinstance(v,str) else v
+def get_stack():return aws(['cloudformation','describe-stacks','--stack-name',STACK])['Stacks'][0]
+def initial():
+ v=read(PRIVATE/'public-template-before.json')['TemplateBody'];return json.loads(v) if isinstance(v,str) else v
+def outputs():return read(PRIVATE/'public-stack-before.json')['Stacks'][0]['Outputs']
+def bucket():return next(x['OutputValue'] for x in outputs() if x['OutputKey']=='BucketName')
+def get_object(key,target):
+ target.parent.mkdir(parents=True,exist_ok=True);aws(['s3api','get-object','--bucket',bucket(),'--key',key,str(target)],'rillora-operator');return target.read_bytes()
+def sha(data):return hashlib.sha256(data).hexdigest()
+def verify_local():
+ marker=read(ART/'public-build.json')
+ for p,digest in marker['files'].items():assert sha((ART/p).read_bytes())==digest,p
+ assert len(marker['pages'])==28 and marker['accountsEnabled']==False and marker['apiEnabled']==False
+ return marker
+marker=verify_local();action=sys.argv[1]
+if action in ['prepare-assets','prepare-assets-refresh']:
+ prior=read(PRIVATE/'initial-public-template-stage.json') if action=='prepare-assets-refresh' else initial()
+ assert template()==prior and get_stack()['StackStatus']=='UPDATE_COMPLETE'
+ save(PRIVATE/'assets-before-template.json',prior)
+ get_object('public-build.json',PRIVATE/'public-build-before.json')
+ old=read(PRIVATE/'public-build-before.json');save(QA/'old-public-build.json',old)
+ resource=aws(['cloudformation','describe-stack-resource','--stack-name',STACK,'--logical-resource-id',DEP])['StackResourceDetail'];save(PRIVATE/'deployment-before.json',resource)
+ assets=read(QA/'cdk.out/RilloraPublicWeb.assets.json')['files'];asset=next(v for v in assets.values() if v.get('displayName')=='PublicDeployment/Asset1')
+ dest=next(iter(asset['destinations'].values()));source=QA/'cdk.out'/asset['source']['path'];assert read(source/'public-build.json')==marker
+ zip_path=PRIVATE/'public-candidate.zip'
+ with zipfile.ZipFile(zip_path,'w',zipfile.ZIP_DEFLATED) as z:
+  for p in sorted(source.rglob('*')):
+   if p.is_file():z.write(p,p.relative_to(source).as_posix())
+ with zipfile.ZipFile(zip_path) as z:
+  assert set(z.namelist())==set(marker['files'])|{'public-build.json'}
+  for p,digest in marker['files'].items():assert sha(z.read(p))==digest
+ creds=aws(['sts','assume-role','--role-arn',dest['assumeRoleArn'].replace('${AWS::Partition}','aws'),'--role-session-name','rillora-public-seo-20261026','--duration-seconds','900'],'rillora-operator')['Credentials']
+ env=os.environ.copy();env.pop('AWS_PROFILE',None);env.pop('AWS_DEFAULT_PROFILE',None);env.update(AWS_ACCESS_KEY_ID=creds['AccessKeyId'],AWS_SECRET_ACCESS_KEY=creds['SecretAccessKey'],AWS_SESSION_TOKEN=creds['SessionToken'])
+ oldprops=initial()['Resources'][DEP]['Properties'];aws(['s3api','head-object','--bucket',oldprops['SourceBucketNames'][0],'--key',oldprops['SourceObjectKeys'][0]],None,env)
+ aws(['s3api','put-object','--bucket',dest['bucketName'],'--key',dest['objectKey'],'--body',str(zip_path)],None,env);creds.clear();env.clear()
+ ref=aws(['cloudformation','create-change-set','--stack-name',STACK,'--change-set-name','rillora-seo-20261026-assets-'+dest['objectKey'][:8],'--change-set-type','UPDATE','--template-body','file://'+str(PRIVATE/'public-template-stage.json'),'--capabilities','CAPABILITY_IAM'])
+ save(PRIVATE/'assets-reference.json',ref);save(QA/'prepared.json',{'candidateFiles':len(marker['files']),'oldRollbackZipAvailable':True,'onlyStack':STACK,'newResources':False,'templateChange':'public artifact and temporary assets-only upload filter'})
+ print('Static asset stage prepared; existing HTML not changed')
+elif action in ['execute-assets','execute-pages']:
+ phase=action.split('-')[1]
+ expected=read(PRIVATE/'assets-before-template.json') if phase=='assets' else read(PRIVATE/'public-template-stage.json')
+ assert template()==expected
+ if phase=='pages':assert read(QA/'assets-verified.json')['passed']
+ ref=read(PRIVATE/(phase+'-reference.json'));cs=aws(['cloudformation','describe-change-set','--stack-name',STACK,'--change-set-name',ref['Id']])
+ assert cs['Status']=='CREATE_COMPLETE' and cs['ExecutionStatus']=='AVAILABLE'
+ changes=[v['ResourceChange'] for v in cs['Changes']];assert len(changes)==1 and changes[0]['LogicalResourceId']==DEP and changes[0]['Action']=='Modify' and changes[0]['Replacement'] in ['False','Conditional']
+ assert changes[0]['Details'] and all(d['Target']['Attribute']=='Properties' and d['Target']['Name'] in ['SourceObjectKeys','Exclude','Include'] for d in changes[0]['Details'])
+ save(QA/(phase+'-change-review.json'),{'approvedScope':'public static upload only','changes':changes,'currentReviewUnaffected':True})
+ aws(['cloudformation','execute-change-set','--stack-name',STACK,'--change-set-name',ref['Id']]);save(QA/(phase+'-started.json'),{'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'executionAccepted':True,'completionVerified':False});print(phase+' update started')
+elif action=='status':
+ s=get_stack();print(json.dumps({'status':s['StackStatus'],'lastUpdated':str(s.get('LastUpdatedTime'))}))
+elif action in ['check-assets','check-pages']:
+ phase=action.split('-')[1];s=get_stack();assert s['StackStatus']=='UPDATE_COMPLETE' and s['Outputs']==outputs()
+ assert template()==read(PRIVATE/('public-template-stage.json' if phase=='assets' else 'public-template-final.json'))
+ current=aws(['cloudformation','describe-stack-resource','--stack-name',STACK,'--logical-resource-id',DEP])['StackResourceDetail']
+ assert current['PhysicalResourceId']==read(PRIVATE/'deployment-before.json')['PhysicalResourceId']
+ data=get_object('public-build.json',PRIVATE/(phase+'-marker.json'))
+ assert json.loads(data)==(read(PRIVATE/'public-build-before.json') if phase=='assets' else marker)
+ result=subprocess.run(['node',str(QA/'verify-static.mjs'),phase],cwd=ROOT,capture_output=True,text=True);(QA/(phase+'-http.log')).write_text(result.stdout+result.stderr);assert result.returncode==0,result.stderr
+ save(QA/(phase+'-verified.json'),{'passed':True,'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'templateMatches':True,'outputsUnchanged':True,'uploadResourceIdentityUnchanged':True,'markerMatches':True,'http':read(QA/(phase+'-http.json'))['summary']});print(phase+' deployment and content verified')
+elif action=='prepare-pages':
+ assert read(QA/'assets-verified.json')['passed'];assert template()==read(PRIVATE/'public-template-stage.json')
+ ref=aws(['cloudformation','create-change-set','--stack-name',STACK,'--change-set-name','rillora-seo-20261026-pages','--change-set-type','UPDATE','--template-body','file://'+str(PRIVATE/'public-template-final.json'),'--capabilities','CAPABILITY_IAM'])
+ save(PRIVATE/'pages-reference.json',ref);print('Full static page switch prepared')
+else:raise SystemExit('Unknown action')

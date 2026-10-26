@@ -1,0 +1,52 @@
+{
+  "at": "2026-10-26T03:05:35.461660+00:00",
+  "finalSourceChecks": {
+    "passed": 19,
+    "failed": 0,
+    "skipped": 0
+  },
+  "finalChromeChecks": {
+    "passed": 7,
+    "failed": 0,
+    "skipped": 0,
+    "viewports": [
+      390,
+      1440
+    ],
+    "languages": [
+      "en",
+      "zh-CN"
+    ],
+    "noJavaScriptAll28Pages": true
+  },
+  "sourceFiles": {
+    "apps/web/e2e/public-discovery.spec.mjs": "8003cdd26d1c0430b1cfc5666291d2a8adae23554a8b1ba38d0a0fd8e9ca0eba",
+    "apps/web/scripts/prerender-public.mjs": "fd2dc32bafe5ef785d660d0993a96ed41c226db33071da7dcb1c7753006e8c2a",
+    "apps/web/scripts/public-structured-data.mjs": "410aadf7773d982ae723aedb420b566343ef8f1becbcc794a70727cdd84aed65",
+    "apps/web/src/i18n/messages/publicDiscovery.js": "ab7f07f03a07adb5d07c2329a4f25efe8dd6fdadcac7bfc5b9fc3a97bb16f942",
+    "apps/web/src/i18n/messages/publicLearning.js": "fe0cccd2079211959cce5d5fa99fb33f9b7b213b46f84d6465ac89863d62257f",
+    "apps/web/src/landing/LearningPage.jsx": "34bc5b2fde1e79cec3127ec892cb66af44b3683663b145980070303d364ccc10",
+    "apps/web/src/landing/ProductPages.jsx": "ca14a3b20baad360d5a25b9b2198b7ed15bbad59ea719cbfa5dadd5e186f71aa",
+    "apps/web/src/landing/learning.css": "c8b223e17fcb7a9730f7ecf4e8f62f016df7100b1d092198a5b6f8ad27aa5f3d",
+    "apps/web/src/publicArticles.js": "0c8ffcb100ce311e7fbccf3191ea104c4606781245247b0c876d89fac7f2f8b1",
+    "apps/web/src/publicSeo.js": "8d8f8055c7fa367711d6f6ffc443ad9cef8403992cabc5eb6f6e8e6ab2863560",
+    "apps/web/tests/public-seo.test.mjs": "808f6c609fce42d649dcf02d97e36d6444a22363e167f630ddaf24315aba8c6d",
+    "apps/web/src/i18n/messages/publicPractical.js": "8ad7c60270247636d07a2f289c7a63d05927691454386d3ba8e16bec5f546002",
+    "apps/web/src/landing/RelatedResources.jsx": "5917973c894666cfc8cb9ea484f24c8a880de477de59f48abcae53ad5d6b52ac"
+  },
+  "artifactMarkerSha256": "d880ffe3bca311295c2dfde4596637c462ae8e2dc02c59bf9a2cc7e0d333050b",
+  "initialCandidateRetainedAt": "initial-table-qa",
+  "visualCorrection": "Two-column comparison, all cells fit mobile container; initial three-column candidate was never published as HTML",
+  "unchangedAreas": [
+    "apps/api",
+    "apps/ios-prototype",
+    "config",
+    "infra"
+  ],
+  "notTested": [
+    "actual Google indexing",
+    "AI citation",
+    "real-customer conversion",
+    "unchanged payment or native flows"
+  ]
+}

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-25 (Asia/Hong_Kong)
+Last updated: 2026-10-26 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3844,3 +3844,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Implementation outcome under the existing Duo authorization; no new product, commercial or distribution decision. Keep the current SwiftUI layout and privacy behavior because direct native interactions succeed.
 - Preserve the ordinary bilingual rotation regression and its final2/0/0result. The experimental hybrid Duo target cannot reliably dispatch/report all post-fold keyboard interactions; its failed results and source remain historical evidence, and the experimental target is withdrawn from active project configuration rather than presented as a passing or skipped regression.
 - Complete the actual Duo matrix through Device Hub native actions, screenshots/AX and the dedicated loopback API readback. Record direct acceptance separately from automated tests. No broad release/physical-device guarantee follows. Current App Review, TestFlight, production data, pricing and FanPass remain unchanged.
+
+## 2026-10-26 — Investigate discovered URLs and continue public SEO/GEO
+
+- Owner explicitly requests checking all27 discovered/unindexed URLs, directly repairing evidenced problems, advancing SEO/GEO and pushing GitHub while preserving current App Review. This supersedes the wait-for-Apple-only active task.
+- Reuse existing website/deployment authorization, correct metadata and useful bilingual content; preserve the rejected primary-navigation promotion, current prices/data/billing/FanPass, MCP authorization and TestFlight pause. Use local checks and no sub-agent delegation.
+- Google scheduling reasons are not inferred from generic guidance; distinguish technical access, original published content, provider submission, actual indexing, AI citation and acquired customers. No new ad spend, mass submissions, guaranteed rankings or medical/legal product capability follows.

@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-25 (Asia/Hong_Kong)
+Last updated: 2026-10-26 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-26 继续公开SEO／GEO与待索引网址诊断
+
+Owner明确继续逐项检查27个已发现未索引的网址，直接修复可确认问题并推进SEO／GEO，完成后推Git，当前审核不变。[本轮实施](marketing/search-discovery-20261026.md)限定独立官网内容、链接及准确发现信息；不把页面可访问、提交成功或目录收录写成Google索引、AI推荐或获客。原主导航限制、价格、真实数据、收费、FanPass、TestFlight及本机验证纪律保持。
 
 ## 2026-10-25 已升级Xcode，恢复Duo并跟进审核
 

@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October26当前：[27条发现待索引与SEO／GEO推进](../docs/marketing/search-discovery-20261026.md)已完成官网改进和发布，19源码／构建、7浏览器检查及66文件线上核验通过。Bing两语言请求已收件，Google实时检查通过但手动请求因验证码／提交服务未成；不冒称已索引。[完整安全交付](verification/search-discovery-20261026/README.md)普通Git保存公开产物、矩阵和回执，无新加密归档、云端CI或审核变更。唯一下一步见handoff。
+
 October26：[Google 401邮件诊断](../docs/marketing/google-indexing-401-20261026.md)确认唯一地址是受保护MCP接口，由第三方目录被发现；匿名401正确，公开发现200，官网和地图28规范页面200／无noindex。[安全回执](verification/google-401-20261026/README.md)保存当前请求与Google原报告；27条发现待索引单独保留，没有改源码、认证、索引配置、部署或审核。
 
 October25晚间实读／October26归档：[Google搜索初始数据](../docs/marketing/google-search-baseline-20261025.md)已读取实际报告，2次首页展示／0点击，可见品牌词1次。中英文清单尚未收录，中文Google实时抓取与索引许可通过；旧汇总仍为October16数据。[小型安全回执](verification/google-search-20261025/README.md)直接Git保存，无新归档、无索引重提、部署或广告；不能当成SEO获客或AI推荐。当前唯一下一步仍见handoff。
