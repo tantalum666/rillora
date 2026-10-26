@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-26T03:53:22.332945+00:00",
+  "reason": "Existing generic log ignore rule omitted three copied logs from first source commit",
+  "repair": "Identical log bytes saved as .log.txt with tracked references; no ignore policy change",
+  "codeCommit": "f95309137",
+  "files": [
+    {
+      "file": "tests-final.log.txt",
+      "sha256": "ee09b3c76d1709c8844f849973dec845ea97aa4d822d05a74e1dbc7c3efb0d41"
+    },
+    {
+      "file": "browser-final.log.txt",
+      "sha256": "37df8f653dde9ebea9a67ae464eaf6cea35c5a0080b932df4287b0ac59bc6987"
+    },
+    {
+      "file": "build-final.log.txt",
+      "sha256": "ee6b0b3fb3b6a2bba4c087f8ff06223e7abfebe840fdfbf36b5d6249f1d2f01f"
+    }
+  ],
+  "applicationCodeChanged": false,
+  "testsRerun": false,
+  "deploymentRepeated": false
+}
