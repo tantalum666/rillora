@@ -1,0 +1,37 @@
+{
+  "mode": "Continuation of the existing Google SEO diagnostic workflow; no engineering implementation changes",
+  "retainedFullBodyReadChain": "collaboration/verification/ai-implementation-20261015/reading.json",
+  "previousRecovery": "collaboration/verification/google-search-20261025/reading.json",
+  "bodyReadRanges": {
+    "AGENTS.md": "1-88 full current",
+    "docs/product.md": "1-241 and 509-684; current task, locked rules and Authority Map; truncated output supplemented by 155-241 and 620-684",
+    "docs/handoff.md": "1-24 full current",
+    "docs/architecture/google-sitemap-20261018.md": "1-34 full current",
+    "docs/marketing/google-search-baseline-20261025.md": "1-41 full current",
+    "docs/architecture/customer-mcp-20261018.md": "full current",
+    "docs/decision-log.md": "latest current entries 3810-3846",
+    "docs/journey/PROJECT_JOURNEY.md": "4320-4350, current top date",
+    "docs/source-control.md": "1-42 current plus retained history",
+    "collaboration/README.md": "current1-12 plus retained history",
+    "tools/ci/README.md": "full current"
+  },
+  "exclusions": [
+    "dependencies/cache/build artifacts",
+    "generated output and collaboration evidence/catalog/archives",
+    "no repeat of old authentication, application tests, deployment or acceptance"
+  ],
+  "completedAt": "2026-10-26T00:51:04.263012+00:00",
+  "fileHashes": {
+    "AGENTS.md": "5d3a7913714ed9d7cbe8eb98a56cee6c0dbf34eca9260087bd2e0061a2e8fecd",
+    "docs/product.md": "fb0dd11eb0ca315e6791f188e443a470fe00dce549ef49f91ff8501e072bb960",
+    "docs/handoff.md": "3d5016672be94e84f3366142793e002208c8be111d170e863b9c8ba39fb8017e",
+    "docs/architecture/google-sitemap-20261018.md": "dd586c5cd3675aa6fcc752d6100bd1efc701b9a0285c97482d97213369fd7313",
+    "docs/marketing/google-search-baseline-20261025.md": "53a4aa4960e697ba15e69880b3521d25741c8c2ca6497f61c399ce29bca92bda",
+    "docs/architecture/customer-mcp-20261018.md": "a8e7d100682d1810dc04ad1b8dd7bdc7b385d5a19e15ae62d5e93a8a2a025af6",
+    "docs/decision-log.md": "6694496622477fa7612c4f138ed0d1e6a972bf12399fcba2f42c7fb0c2b4bfe0",
+    "docs/journey/PROJECT_JOURNEY.md": "5a26a4254b062d3aaad8adc7df58d13530344597dc9eae5c2245f1bd9a51ae59",
+    "docs/source-control.md": "319b5f5217b1b9e4dc2b842c9d27d190e3fbbc2494eb775902fa1ef4e95cf88c",
+    "collaboration/README.md": "7ed563b478b7345faf275832a3e27ed23d79a723e8c7985c9fc18c86654ffbe9",
+    "tools/ci/README.md": "9e99643f42d68832a0d651d9ea9096281af260cc2d63aaf7d0909c68fb956437"
+  }
+}

@@ -1,6 +1,6 @@
 # Rillora 当前交接
 
-Status: DUO NEXT-VERSION LOCAL ACCEPTANCE COMPLETE / APPLE SAME-CASE FOLLOW-UP RECEIVED / SOURCE AND ARCHIVE PUBLISHED / REMOTE VERIFIED
+Status: GOOGLE 401 DIAGNOSED AS PROTECTED MCP / PUBLIC PAGES AVAILABLE / PRIOR NEXT-VERSION ACCEPTANCE AND APPLE FOLLOW-UP RETAINED
 Last updated: 2026-10-26 (Asia/Hong_Kong)
 
 ## 当前任务与已完成
@@ -14,6 +14,8 @@ October25核对时，Apple实际刷新后，October15 09:49提交的1.0(14)、�
 ## Google搜索一次性实读
 
 Owner随后要求查看搜索展示邮件。October25实际报告为2次展示／0点击，只有首页获展示；可见查询仅品牌词1次。中英文清单的单网址检查未收录，中文实时抓取与索引许可通过；旧总表仍为October16数据。[完整初始数据](marketing/google-search-baseline-20261025.md)已记录。本轮只有读取、一次实时诊断与文档保存，没有新的索引申请、部署或投放；不能据此宣称SEO获客或AI推荐。未产生新Owner决定，原审核下一步保持。
+
+October26新401邮件已查清：[唯一地址是受保护MCP接口](marketing/google-indexing-401-20261026.md)，Google通过第三方目录发现它；当前缺少Authorization的401正确，公开发现200。官网及地图28规范页面全部200、无noindex；没有改代码或索引配置。当前总表更新到October19，27条发现待索引是独立SEO事项，不能由这次诊断称为已收录。旧Google观察保留日期，审核下一步不变。
 
 ## 证据边界与阻塞
 

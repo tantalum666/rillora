@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October26：[Google 401邮件诊断](../docs/marketing/google-indexing-401-20261026.md)确认唯一地址是受保护MCP接口，由第三方目录被发现；匿名401正确，公开发现200，官网和地图28规范页面200／无noindex。[安全回执](verification/google-401-20261026/README.md)保存当前请求与Google原报告；27条发现待索引单独保留，没有改源码、认证、索引配置、部署或审核。
+
 October25晚间实读／October26归档：[Google搜索初始数据](../docs/marketing/google-search-baseline-20261025.md)已读取实际报告，2次首页展示／0点击，可见品牌词1次。中英文清单尚未收录，中文Google实时抓取与索引许可通过；旧汇总仍为October16数据。[小型安全回执](verification/google-search-20261025/README.md)直接Git保存，无新归档、无索引重提、部署或广告；不能当成SEO获客或AI推荐。当前唯一下一步仍见handoff。
 
 October25当前：[Duo新版SDK与实际双语验收](../docs/iphone-duo-validation-20261025.md)已完成，本轮另在Apple原工单103001356140追问审核，官方确认收件；三项仍等待审核。原普通旋转2项通过，实际Duo采用原生操作／截图／API回读，失败探针保留而不冒称通过。[本轮archive54及回执](verification/duo-native-20261025/README.md)只追加新工作；源码dfe3583e3／PR10已发布，archive54独立远端认证1,793对象／2,834路径通过，源码云端作业0，PR未合并。旧1–53不重封／重下。当前审核、线上、真实数据、价格／收费和TestFlight不变，云端CI停用。唯一下一步只看handoff。
