@@ -32,10 +32,6 @@ struct ApplePurchaseSection: View {
                     Text(String(localized: "App Store price is unavailable. Pull down to try again."))
                         .font(.footnote).foregroundStyle(RilloraTheme.muted)
                 }
-                if purchase.environment == .sandbox {
-                    Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
-                        .font(.footnote).foregroundStyle(RilloraTheme.muted)
-                }
                 if let subscription {
                     Label(String(localized: "Subscribed"), systemImage: "checkmark.circle.fill")
                         .font(.subheadline).foregroundStyle(RilloraTheme.sage)

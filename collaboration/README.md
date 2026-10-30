@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October30当前：[Apple实际拒审修复](../docs/app-review-remediation-20261030.md)已续专用审核购买资格、部署提前7天告警并完成本机验证；本地15从原14基线独立准备，下一版功能不混入。Owner明确先不重新提交，Apple仍14／Rejected，未上传或TestFlight。[本轮回执与archive55](verification/app-rejection-20261030/README.md)保留修复、失败及边界，旧1–54不重复。唯一下一步以handoff为准。
+
 October26当前：[27条发现待索引与SEO／GEO推进](../docs/marketing/search-discovery-20261026.md)已完成官网改进和发布，19源码／构建、7浏览器检查及66文件线上核验通过。Bing两语言请求已收件，Google实时检查通过但手动请求因验证码／提交服务未成；不冒称已索引。[完整安全交付](verification/search-discovery-20261026/README.md)普通Git保存公开产物、矩阵和回执，无新加密归档、云端CI或审核变更。唯一下一步见handoff。
 
 October26：[Google 401邮件诊断](../docs/marketing/google-indexing-401-20261026.md)确认唯一地址是受保护MCP接口，由第三方目录被发现；匿名401正确，公开发现200，官网和地图28规范页面200／无noindex。[安全回执](verification/google-401-20261026/README.md)保存当前请求与Google原报告；27条发现待索引单独保留，没有改源码、认证、索引配置、部署或审核。

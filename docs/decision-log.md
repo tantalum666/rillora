@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-26 (Asia/Hong_Kong)
+Last updated: 2026-10-30 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -3850,3 +3850,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests checking all27 discovered/unindexed URLs, directly repairing evidenced problems, advancing SEO/GEO and pushing GitHub while preserving current App Review. This supersedes the wait-for-Apple-only active task.
 - Reuse existing website/deployment authorization, correct metadata and useful bilingual content; preserve the rejected primary-navigation promotion, current prices/data/billing/FanPass, MCP authorization and TestFlight pause. Use local checks and no sub-agent delegation.
 - Google scheduling reasons are not inferred from generic guidance; distinguish technical access, original published content, provider submission, actual indexing, AI citation and acquired customers. No new ad spend, mass submissions, guaranteed rankings or medical/legal product capability follows.
+
+## 2026-10-30 — Repair the actual App Store rejection; hold resubmission
+
+- Owner explicitly requests reading and fixing the actual Apple2.2/2.1(b) rejection. This supersedes preserving a still-waiting review state; it does not approve bundling next-version HealthKit/Watch/Duo/content into the replacement.
+- The two screenshots and actual cloud/database state establish a configured reviewer deadline that expired before review. Renew only the existing dedicated synthetic reviewer and the original runtime deadline within the31-day guard, preserve all other users/prices/sale controls/data, and add a7-day advance check to the existing monitor. Removing ordinary paywall test framing does not change payment environments or verification.
+- Owner explicitly confirms acceptance of the new Apple Developer Program License Agreement; visible history recordsOctober30acceptance. Owner then says “先别重新提交”. Keep the locally prepared1.0(15)unuploaded and do not send a review reply or resubmit until the Owner resumes that step. TestFlight and physical-test pauses remain.
+- Initial local failures and repairs are retained;46native,24operations/infrastructure and11static checks are scoped evidence, not a new live Sandbox purchase or an approval guarantee. [Full contract](app-review-remediation-20261030.md).

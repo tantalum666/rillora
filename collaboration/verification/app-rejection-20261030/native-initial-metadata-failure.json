@@ -1,0 +1,7 @@
+{
+  "archiveCommandExit": 0,
+  "expectedBuild": "15",
+  "actualBuild": "1",
+  "cause": "Original source Info.plist fixes CFBundleVersion at 1; command-line version did not replace the literal.",
+  "repair": "Candidate-only metadata uses CURRENT_PROJECT_VERSION; no binary patch or published upload."
+}

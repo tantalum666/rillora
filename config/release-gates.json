@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-15",
+  "updatedAt": "2026-10-30",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -311,9 +311,10 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/app-review-remediation-20261030.md"
       ],
-      "next": "Apple accepted submission6537a10c-38f2-425e-8b8e-c76e5fa730b1atHong Kong2026-10-15 09:49. App1.0(14),FamilyannualandgroupallWaitingforReview. DedicatedreviewerWeb/nativeandroundtrippassed;Ownercancelledfurtherphysicaltesting. No monthlyproductorTestFlight. AwaitAppleoutcome;manualreleaseandpost-releaseProductionverificationremain."
+      "next": "Apple rejected1.0(14)onOctober30under2.2/2.1(b). Dedicated reviewer/runtime expiry and advance monitoring are repaired. Isolated local1.0(15)is signed but not uploaded. Owner explicitly holds resubmission; await that instruction and recheck aligned unexpired windows before submitting. Current14/manualrelease/TestFlight unchanged."
     },
     {
       "id": "physical-device",

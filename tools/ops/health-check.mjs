@@ -45,6 +45,19 @@ export function validateConfig(config){
     for(const [key,value]of Object.entries(target.headers))if(!['strict-transport-security','content-security-policy','cache-control','x-content-type-options'].includes(key)||typeof value!=='string'||value.length>100)throw new Error('Invalid expected header');
     ids.add(target.id);
   }
+  if(config.deadlines!==undefined){
+    if(!Array.isArray(config.deadlines)||config.deadlines.length>4)throw new Error('Invalid configured deadlines');
+    for(const deadline of config.deadlines){
+      const at=Date.parse(deadline?.expiresAt??'');
+      if(!deadline||typeof deadline!=='object'||Array.isArray(deadline)
+        ||Object.keys(deadline).some(k=>!['id','expiresAt','warningDays'].includes(k))
+        ||typeof deadline.id!=='string'||!/^[a-z][a-z0-9-]{1,60}$/.test(deadline.id)||ids.has(deadline.id)
+        ||typeof deadline.expiresAt!=='string'||!/^\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}Z$/.test(deadline.expiresAt)
+        ||!Number.isFinite(at)||new Date(at).toISOString()!==deadline.expiresAt.replace('Z','.000Z')
+        ||!Number.isInteger(deadline.warningDays)||deadline.warningDays<1||deadline.warningDays>31)throw new Error('Invalid configured deadline');
+      ids.add(deadline.id);
+    }
+  }
   return config;
 }
 
@@ -95,5 +108,11 @@ export async function runHealthChecks(config,{transport=requestMetadata,now=()=>
       return{id:target.id,ok:false,httpStatus:null,certificateDaysRemaining:null,latencyMs:Math.max(0,now()-begin),issues:[safeCodes.has(error?.code)?error.code:'NETWORK_ERROR']};
     }
   }));
-  return{schemaVersion:1,environment:config.environment,checkedAt:new Date(started).toISOString(),ok:checks.every(c=>c.ok),failed:checks.filter(c=>!c.ok).length,checks,scope:'public-metadata-only',responseBodiesStored:false};
+  for(const deadline of config.deadlines??[]){
+    const remaining=Date.parse(deadline.expiresAt)-now();
+    const issues=remaining<=0?['configured_deadline_expired']
+      :remaining<=deadline.warningDays*86400000?['configured_deadline_expiring']:[];
+    checks.push({id:deadline.id,ok:!issues.length,deadlineDaysRemaining:Math.ceil(remaining/86400000),issues});
+  }
+  return{schemaVersion:1,environment:config.environment,checkedAt:new Date(started).toISOString(),ok:checks.every(c=>c.ok),failed:checks.filter(c=>!c.ok).length,checks,scope:config.deadlines?.length?'public-metadata-and-configured-deadlines':'public-metadata-only',responseBodiesStored:false};
 }

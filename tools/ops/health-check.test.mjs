@@ -55,3 +55,29 @@ test('missing certificate evidence is unknown, not a healthy default',async()=>{
   const report=await runHealthChecks(config,{now,transport:async()=>({status:401,headers:{'cache-control':'no-store'}})});
   assert.equal(report.ok,false);assert.equal(report.checks[0].certificateDaysRemaining,null);
 });
+
+test('review deadline warns a week before expiry and remains failed after expiry',async()=>{
+  const deadlines=[{id:'apple-review-purchase-window',expiresAt:'2026-11-29T12:00:00Z',warningDays:7}];
+  const transport=async()=>({status:401,headers:{'cache-control':'no-store'},certificateExpiresAt:'2027-12-11T00:00:00Z'});
+  for(const [time,issue,days] of [
+    ['2026-11-22T11:59:59Z',null,8],
+    ['2026-11-22T12:00:00Z','configured_deadline_expiring',7],
+    ['2026-11-29T12:00:00Z','configured_deadline_expired',0],
+    ['2026-11-30T12:00:00Z','configured_deadline_expired',-1],
+  ]){
+    const report=await runHealthChecks({...config,deadlines},{transport,now:()=>Date.parse(time)});
+    const deadline=report.checks.find(c=>c.id===deadlines[0].id);
+    assert.equal(report.ok,issue===null);assert.equal(report.failed,issue?1:0);
+    assert.equal(deadline.deadlineDaysRemaining,days);assert.deepEqual(deadline.issues,issue?[issue]:[]);
+    assert.equal(report.responseBodiesStored,false);
+  }
+});
+
+test('deadline configuration rejects ambiguous dates, unexpected data and duplicate target ids',()=>{
+  const valid={id:'apple-review-purchase-window',expiresAt:'2026-11-29T12:00:00Z',warningDays:7};
+  for(const patch of [{expiresAt:'2026-02-31T12:00:00Z'},{expiresAt:'2026-11-29'},{warningDays:0},{warningDays:32},{warningDays:1.5},{id:'private-denial'},{email:'private@example.test'}]){
+    assert.throws(()=>validateConfig({...config,deadlines:[{...valid,...patch}]}));
+  }
+  for(const deadlines of [null,{},[valid,valid],Array(5).fill(valid)])assert.throws(()=>validateConfig({...config,deadlines}));
+  assert.doesNotThrow(()=>validateConfig({...config,deadlines:[]}));
+});

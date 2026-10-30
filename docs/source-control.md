@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-25 (Asia/Hong_Kong)
+Last updated: 2026-10-30 (Asia/Shanghai)
+
+## October30 App Review rejection remediation
+
+[Current remediation](app-review-remediation-20261030.md) preserves source on the existing collaboration branch and isolates local1.0(15)from the original14native baseline; next-version features are excluded. [New safe receipts and archive55](../collaboration/verification/app-rejection-20261030/README.md) preserve exact patch/source metadata, failed/passed local tests, original Apple screenshots, scoped cloud readbacks and local signed artifacts. Earlier1–54remain immutable. Credentials/private cloud state are excluded, no cloudCIor sub-agent is started, and local/Git evidence does not authorize resubmission: Owner explicitly holds it. Final exact-base gate and immutable remote verification are recorded separately.
 
 ## October25 Duo native acceptance and existing Apple support case
 

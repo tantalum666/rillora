@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-26 (Asia/Hong_Kong)
+Last updated: 2026-10-30 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-30 修复Apple实际拒审，Owner暂不重新提交
+
+Owner要求阅读2.2／2.1(b)拒审意见并直接修复，随后明确“先别重新提交”。[本轮修复](app-review-remediation-20261030.md)允许既有范围内购买资格续期、普通套餐呈现与提前预警，保留价格／销售开关／真实数据／FanPass。1.0(15)仅本地准备，下一版HealthKit／Watch／Duo及内容继续隔离；原“等待审核”已被实际Rejected取代，禁止上传或提审完成声明。
 
 ## 2026-10-26 继续公开SEO／GEO与待索引网址诊断
 

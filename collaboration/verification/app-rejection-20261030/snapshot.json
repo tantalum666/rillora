@@ -1,0 +1,61 @@
+{
+  "capturedFrom": "2026-10-30T11:09:56.519124+00:00",
+  "capturedThrough": "2026-10-30T11:10:00.129023+00:00",
+  "workFiles": 674,
+  "uniqueRawObjects": 482,
+  "workBytes": 126638791,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-055.tar.zst.age",
+      "sha256": "e8d6529149819d21b24999d69d6245451146a3951d9e815b70c4c84eab2bf2a4",
+      "bytes": 34208163,
+      "plainBytes": 84887400,
+      "uniqueObjects": 482
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/app-rejection-20261030/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-054",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/cdk-operations",
+      "reason": "duplicate capture/publication cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/derived-release",
+      "reason": "reproducible_xcode_cache"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/derived-tests",
+      "reason": "reproducible_xcode_cache"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/derived-preview",
+      "reason": "reproducible_xcode_cache"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/developer-license-accepted.png",
+      "reason": "personal authentication screen; never published even encrypted"
+    },
+    {
+      "path": "output/qa/rillora-app-rejection-20261030/developer-license-prompt.png",
+      "reason": "personal authentication screen; never published even encrypted"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Only this rejection-remediation QA, original failed/passed logs/results, Apple-supplied paywall screenshots, synthetic iPad captures, isolated original14 source with bounded patch, local signed archives and final15 IPA. DerivedData, private provider/authentication state and dependency caches are excluded. IPA is local only and not uploaded.",
+  "boundary": "No private account credentials, database backups or authentication captures. Current Apple14 remains Rejected; Owner holds resubmission. Prices, billing and FanPass preserved. Current source and selected safe receipts are ordinary Git."
+}

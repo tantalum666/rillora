@@ -1,9 +1,13 @@
 # Apple 提审复核与 Web 正式开放 — 2026-10-14—15
 
-Status: REVIEWER VERIFIED / WEB LIVE / PHYSICAL CHECKS STOPPED BY OWNER / APPLE WAITING FOR REVIEW
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Status: HISTORICAL PREFLIGHT RETAINED / APPLE REJECTED14 / REMEDIATION AND HOLD RECORDED
+Last updated: 2026-10-30 (Asia/Shanghai)
 
 Owner先明确暂缓Auth0外层文案，要求严格复核Apple提审资料并推进其余上线工作；October15进一步明确“真机不用验证了”。后者终止余下真机验证，不再把未订阅真机或VoiceOver听觉检查列为本轮待办，也不把取消写成通过。真机法律往返已有Owner明确确认：返回后原账号与原事项都在。没有新TestFlight分发、真钱交易、账号删除或原机安装。
+
+## October30 actual rejection supersedes the waiting status
+
+Apple returned2.2and2.1(b)for1.0(14). [Current fix and limits](app-review-remediation-20261030.md) records expired reviewer access, the completed scoped renewal/monitor deployment, localbuild15and Owner's explicit resubmission hold. Previous dedicated-login/material evidence remains datedOctober14–15; it did not prove that the purchase window would still be valid on review day. No new submission or approval is implied.
 
 ## October19状态与支持查询
 

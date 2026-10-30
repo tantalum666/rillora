@@ -84,7 +84,10 @@ final class CommerceStore {
         case "family": String(localized: "Family")
         default: planCode
         }
-        return status?.validationOnly == true ? L10n.format("%1$@ · Test access", label) : label
+        // StoreKit's environment changes transaction verification, not the
+        // customer-facing plan name. Technical labels belong to diagnostics.
+        return storeKitTestEnvironment.isEnabled && status?.validationOnly == true
+            ? L10n.format("%1$@ · Test access", label) : label
     }
 
     var purchaseIsAvailable: Bool {

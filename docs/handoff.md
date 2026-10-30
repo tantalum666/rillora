@@ -1,22 +1,24 @@
 # Rillora 当前交接
 
-Status: PUBLIC SEO/GEO LIVE / ALL27 DIAGNOSTICS COMPLETE / BING REQUESTS ACCEPTED / GOOGLE PRIORITY REQUEST BLOCKED
-Last updated: 2026-10-26 (Asia/Hong_Kong)
+Status: APP REVIEW REJECTION REMEDIATED / LOCAL BUILD15 READY / OWNER HOLDS RESUBMISSION
+Last updated: 2026-10-30 (Asia/Shanghai)
 
 ## 当前任务
 
-Owner要求继续检查27个已发现未索引的网址，直接修复并推进SEO／GEO，保持当前Apple审核，完成后推Git。[本轮聚焦记录](marketing/search-discovery-20261026.md)取代仅等待审核的活动门；[上一交接](handoff-history-20261026-before-search-discovery.md)为HISTORICAL。
+Owner要求直接修复Apple拒审，最新明确“先别重新提交”。[本轮合同](app-review-remediation-20261030.md)是当前入口；[原SEO交接](handoff-history-20261030-before-app-rejection.md)为HISTORICAL。继续保留真机验证停止、TestFlight暂停、本机CI和不调用子代理的要求。
 
 ## 已完成
 
-27条完整清单及Google主机抓取统计已保存，未发现公开技术阻断，Google调度原因未知。已发布双语六字段清单、工具对照、具体问答、12条正文相关链接及准确元数据，原五项主导航保持。最终19项源码／构建及7项本机Chrome矩阵通过；手机三列表格改为两列，初版正文未上线。既有www静态栈仅上传包改变，最终模板、原输出／资源身份及66份线上文件匹配；正式中文产品→清单→锚点通过，无应用错误。AWS实际过期CLI复用原浏览器会话恢复，无需Owner重新登录。
+完整阅读2.2／2.1(b)意见及两张原图；确认审核账号登记和API资格在October27到期，而Apple于October30审核。只续具名合成审核账号到November29 20:00；价格、市场、销售开关、其他账号与内容不变。原模板单参数更新完成，API1/1健康、镜像／其他环境一致。既有监控新增提前7天预警，真实15项检查通过，原订阅者保持。新Developer Program协议按Owner确认接受并回读成功。
 
-Google新版英文清单实时抓取／索引许可通过；手动优先申请遇到reCAPTCHA连接／提交错误，正常重试一次仍无成功回执。Bing中英文各提交一次，均读回Indexing requested；独立实时检查工具报错，未称通过。Bing AI样本报告引用0，只作发布前基线。没有重提地图、绕过验证码或声称27页已收录。源码与[安全交付](../collaboration/verification/search-discovery-20261026/README.md)保存在当前协作分支，最终Git回读位于本轮QA。
+普通套餐页去掉测试横幅／测试套餐后缀，保持购买安全条件。45项购买／恢复逻辑、1项实际本地StoreKit SDK、12项健康检查、12项基础设施、11项UI／双语静态检查通过；英文可购买／中文不可购买iPad合成画面分别验证。首次中文环境断言、SDK夹具弹窗顺序和初始build1元数据失败保留并修正。
+
+本地1.0(15)从原14的精确原生基线加有限补丁独立构建，Release归档及App Store签名IPA通过；无下一版HealthKit／Watch／Duo／内容功能，无本地StoreKit文件。Apple仍选14、Rejected、手动发布；未上传15、发送回复、重新提审或分发。源码、证据与新增archive55保存到[本轮交付](../collaboration/verification/app-rejection-20261030/README.md)，确切Git回读另列。
 
 ## 证据边界
 
-当前审核、原生／下一版Duo与Watch候选、真实数据、定价／收费、FanPass和TestFlight保持。云端CI停用，不调用子代理。原Apple案例与审核尚未在本轮重查；旧付费、授权、Duo等证据沿用。
+当前没有新真实审核账号登录、App Store Sandbox服务器购买或真钱交易；本地SDK不替代这些结果。iPad模拟器为27.0，未安装审核员27.2。到期告警已实际部署／运行，没有重发通知投递演练。无Apple通过保证，不恢复Owner已停止的真机门；FanPass和原定价／实际数据保持。
 
 ## 唯一下一步
 
-Google验证码／提交服务恢复后，补交这两份已更新清单的优先索引请求并读回提供方结果；不要重做本轮部署、测试、Bing提交或已通过的登录。
+等待Owner决定恢复提交。收到指示后先核对具名审核登记、API和告警期限一致且未进入7天预警，再复用本地15候选继续；不要重复本轮修复、部署、测试、协议接受或旧索引提交。
