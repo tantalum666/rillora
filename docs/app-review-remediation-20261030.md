@@ -1,9 +1,13 @@
 # App Store 拒审修复 — 2026-10-30
 
-Status: BACKEND REMEDIATED / LOCAL BUILD15 READY / OWNER HOLDS RESUBMISSION
-Last updated: 2026-10-30 (Asia/Shanghai)
+Status: REPAIRS IMPLEMENTED / LOCAL BUILD15 PREPARED / SANDBOX ACCEPTANCE OPEN / OWNER HOLDS RESUBMISSION
+Last updated: 2026-10-31 (Asia/Shanghai)
 
 Owner要求仔细阅读Apple拒审意见并直接修复，随后完成AWS和Apple本人登录、确认接受新的Developer Program协议；最新明确“先别重新提交”。本轮完成修复、已授权后台更新、本机验证与Git保存。新构建仅留本机，没有上传、重新提审或分发TestFlight。真机验证继续沿用Owner停止的决定。
+
+## October31进一步复核
+
+[全部链接复核](app-review-link-recheck-20261031.md)明确：以下内容证明修复交付，不证明2.1／2.2已验收闭环。当前候选真实Sandbox、过期订阅审核场景及最终资料仍缺证据，不能只凭续期、移除横幅和本地SDK通过就重新提交。Owner暂停仍保持；以下October30具体结果不改写为新运行。
 
 ## Apple实际指出的问题
 

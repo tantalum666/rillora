@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-30 (Asia/Shanghai)
+Last updated: 2026-10-31 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-10-31 逐条复核Apple消息与全部链接
+
+Owner要求重新查看完整拒审并打开所有引用链接。[本轮复核](app-review-link-recheck-20261031.md)确认16处／15个目标全部阅读，明确真实Sandbox、过期订阅demo与最终审核说明的证据缺口。October30修复交付不等于2.1／2.2完整验收；重提、TestFlight和真机暂停继续保持，不把本轮只读检查升级为新部署或提交授权。
 
 ## 2026-10-30 修复Apple实际拒审，Owner暂不重新提交
 

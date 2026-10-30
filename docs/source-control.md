@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-30 (Asia/Shanghai)
+Last updated: 2026-10-31 (Asia/Shanghai)
+
+## October31 Apple message-link recheck
+
+[The full link review](app-review-link-recheck-20261031.md) adds small nonsecret reading receipts, provider status cells, the original message and unsent notes/reply drafts. [Readable evidence](../collaboration/verification/app-review-links-20261031/README.md) is ordinary Git; no new native artifact or encrypted archive is necessary. Keep archive55 and prior validation immutable. Private survey target, account pages, banking details and authentication state are excluded. Run only the exact-base publication/scan checks needed for the new documents, not the unchanged application suites; resubmission and TestFlight remain held.
 
 ## October30 App Review rejection remediation
 

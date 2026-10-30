@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-30 (Asia/Shanghai)
+Last updated: 2026-10-31 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -3857,3 +3857,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - The two screenshots and actual cloud/database state establish a configured reviewer deadline that expired before review. Renew only the existing dedicated synthetic reviewer and the original runtime deadline within the31-day guard, preserve all other users/prices/sale controls/data, and add a7-day advance check to the existing monitor. Removing ordinary paywall test framing does not change payment environments or verification.
 - Owner explicitly confirms acceptance of the new Apple Developer Program License Agreement; visible history recordsOctober30acceptance. Owner then says “先别重新提交”. Keep the locally prepared1.0(15)unuploaded and do not send a review reply or resubmit until the Owner resumes that step. TestFlight and physical-test pauses remain.
 - Initial local failures and repairs are retained;46native,24operations/infrastructure and11static checks are scoped evidence, not a new live Sandbox purchase or an approval guarantee. [Full contract](app-review-remediation-20261030.md).
+
+## 2026-10-31 — Read every Apple message link and correct the completion boundary
+
+- Owner explicitly requests another complete read of Apple's reply and every referenced link. This is a continuation of rejection remediation, with the prior resubmission/physical/TestFlight holds retained.
+- Sixteen link occurrences map to fifteen distinct targets; all were opened, with dynamic documentation read in Chrome. Four closely relevant follow-up pages were also read. Source pages are evidence, not authorization to create cases, submit a survey, purchase, change accounts or resubmit.
+- The October30fix remains implemented/deployed, but it does not prove a repaired-candidate Apple Sandbox purchase or close2.1/2.2. Current official guidance adds an explicit expired-subscription demo scenario and clearer region/device/service notes to the acceptance record. Preserve missing evidence rather than inventing orders, treating a fresh Free account as an expired subscription, or reclassifying synthetic previews.
+- Only documentation/drafts and evidence are updated. [Full recheck](app-review-link-recheck-20261031.md). No commercial/product/security policy change or new engineering test is approved or claimed by this read-only phase.

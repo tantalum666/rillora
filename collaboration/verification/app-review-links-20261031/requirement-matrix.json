@@ -1,0 +1,68 @@
+{
+  "checkedAt": "2026-10-30T17:18:11.501300+00:00",
+  "rows": [
+    {
+      "id": "guideline2.2",
+      "required": "Complete usable functionality",
+      "status": "repair implemented; current real purchase acceptance open",
+      "evidence": "October30source/cloud receipts, not only visual banner removal"
+    },
+    {
+      "id": "guideline2.1b",
+      "required": "Visible functional configured IAPs",
+      "status": "catalog/configuration checked; real end-to-end purchase open"
+    },
+    {
+      "id": "sandbox",
+      "required": "Apple real product and server Sandbox test",
+      "status": "not newly performed; local StoreKitTest is separate"
+    },
+    {
+      "id": "agreements",
+      "required": "Active agreements, bank and tax information",
+      "status": "read back active/available/in use today"
+    },
+    {
+      "id": "identifiers-signing",
+      "required": "Correct explicit bundle and product IDs, valid profile",
+      "status": "source/provider ID matches and savedarchive15profile inspected; no remote revocation check"
+    },
+    {
+      "id": "storefronts",
+      "required": "Document restrictions",
+      "status": "USA/HKGconfirmed; explicit wording prepared locally"
+    },
+    {
+      "id": "retired-monthly",
+      "required": "Explain unavailable configured IAP",
+      "status": "0sale territories and no new purchase; annual IAP notes already explain; version draft made explicit"
+    },
+    {
+      "id": "expired-demo",
+      "required": "Expired subscription demo scenario for auto renewables",
+      "status": "not established by existing evidence; needs exact account scenario verification"
+    },
+    {
+      "id": "device-acceptance",
+      "required": "Actual supported device and compatibility evidence",
+      "status": "new physical validation not performed; Owner stop remains;27.0simulatornot27.2physical"
+    },
+    {
+      "id": "review-image",
+      "required": "Relevant review screenshot",
+      "status": "existing screenshot present and described as physical14; final replacement alignment remains"
+    },
+    {
+      "id": "support-survey",
+      "required": "Optional support and feedback routes",
+      "status": "opened; no messages or survey submitted"
+    }
+  ],
+  "cloudChanges": 0,
+  "appCodeChanges": 0,
+  "testRuns": 0,
+  "upload": false,
+  "resubmission": false,
+  "testFlight": false,
+  "subagents": false
+}
