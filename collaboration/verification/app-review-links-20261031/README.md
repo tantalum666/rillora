@@ -13,3 +13,5 @@ Date: 2026-10-31 (Asia/Shanghai)
 - [正文阅读续接范围](reading.json)和[收尾范围](closeout.json)说明当前工作与保留证据。
 
 这些小型非秘密材料直接入普通Git，不创建新加密归档，不重复下载／认证旧55。精确调查URL留在本机保护目录；账号页面、凭据及完整金融资料排除。当前不做真机、TestFlight或重新提交，不改数据／价格／FanPass。最后回执后重建完整可读清单，并用原确切main基线做本机发布检查；无业务套件重跑、云端CI或子代理。
+
+本轮资料已推送为[b999e55f3](https://github.com/tantalum666/rillora/commit/b999e55f326e61de23af776f2a18ebf16a077e3e)，其diff与[通过的本机发布门](local-publication/result.json)[精确对应](source-commit-verification.json)。[全量可读扫描](publication-scan.json)及[27条新增链接](markdown-links.json)通过。[GitHub回读](github-readback.json)确认PR10开放未合并、当前提交PR作业0、全部运行仍314。最终回执只增加普通Git元数据，不重跑业务测试、不改变已暂停的提审。
