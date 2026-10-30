@@ -1,6 +1,6 @@
 # October30 App Store拒审修复
 
-Status: BACKEND DEPLOYED / LOCAL15 READY / RESUBMISSION HELD / SOURCE PUBLICATION IN PROGRESS
+Status: BACKEND DEPLOYED / LOCAL15 READY / SOURCE AND ARCHIVE REMOTELY VERIFIED / RESUBMISSION HELD
 Date: 2026-10-30 (Asia/Shanghai)
 
 [当前合同](../../../docs/app-review-remediation-20261030.md)及[唯一下一步](../../../docs/handoff.md)记录Owner“先别重新提交”。本轮保存到现有协作分支，原14仍Rejected，15仅本地签名；没有上传、重新提审、TestFlight或新真钱交易。
@@ -33,3 +33,9 @@ Date: 2026-10-30 (Asia/Shanghai)
 [新增archive55](snapshot.json)保留本次674路径／482对象／34,208,163密文字节，包括原始失败、本地源码／候选及最终IPA；[本机认证](archive-verification.json)通过。旧1–54不重封、不重下。[保存回执](preservation-receipt.json)与[阅读范围](reading.json)分别记录可读材料、排除项和正文阅读沿用链。AWS秘密、维护能力、登录屏和私人提供方响应排除；SourcePackages／DerivedData／CDK中间产物为可重建缓存。
 
 最后一份回执后必须重建全量可读清单并用确切main基线执行本机发布门；远端提交、archive55独立新下载认证和无新云端作业另行读回。Git保存与本地候选不代替Apple批准，当前不合并／部署下一版新功能。
+
+## 最终Git回读
+
+源码与archive55已推送为[4acf1cae3](https://github.com/tantalum666/rillora/commit/4acf1cae3bdf9d9444fa60fd94249c207c02940e)，其完整二进制diff与通过的[可信基线发布门](local-publication/result.json)[逐字对应](source-commit-verification.json)。[独立远端下载认证](remote-readback.json)通过482对象／674路径，仅下载新增55。[PR10](github-source-readback.json)开放未合并；[Actions回读](github-cloud-jobs-readback.json)仍314次，最新为October23旧运行，当前提交PR运行0。最后回执为普通Git元数据，不重封归档、不重复业务验证。
+
+[48条新增／修改链接](markdown-links.json)全部进入Git索引；[清理](cleanup.json)只关闭本次模拟器，无真机／个人账号更改。[首次可读扫描问题](publication-scan-first-failure.json)是API源码名后的文件校验和被误识别；改为明确path/sha256记录后，[全量13,474文件扫描](publication-scan-result.json)通过，未加扫描例外或关规则。后续回执写入后再次重建完整清单，最终状态以Git历史和本轮QA为准。
