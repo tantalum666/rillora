@@ -25,3 +25,7 @@ Status: WEB PREFLIGHT VERIFIED / PHONE PAUSED BY OWNER / APPLE PURCHASE NOT ATTE
 原archive1–55、本机工程检查和已完成部署不重做。当前没有应用实现改动，仅运行准确基线的本机发布／扫描／清单及Markdown链接核对。新增归档本地认证与独立远端读回分别记录，GitHub保存不代表Apple验收。没有云端CI、子代理、提审或TestFlight。
 
 [archive56清单](snapshot.json)已封存23路径／23对象，共7,259,503密文字节；[本地认证](archive-verification.json)通过。后续回执作为普通Git元数据追加，不重新封存本次或历史归档。
+
+## GitHub读回
+
+本轮记录与归档已推送为[93543ccfc](https://github.com/tantalum666/rillora/commit/93543ccfc7de6a178fa31b94c29e12975b9e8e9c)，完整diff与[通过的本机发布门](local-publication/result.json)[逐字对应](source-commit-verification.json)。[新增56的独立远端下载认证](remote-readback.json)通过23对象／23路径；旧归档未下载。[GitHub回读](github-source-readback.json)确认PR10开放未合并，说明已同步，Actions仍314次且最新为October23旧运行。最后回执只作普通Git追加，不重新封存或重复业务验收。
