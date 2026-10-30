@@ -1,24 +1,22 @@
 # Rillora 当前交接
 
-Status: REPAIRS PRESERVED / ALL APPLE MESSAGE LINKS READ / SANDBOX ACCEPTANCE GAP OPEN / RESUBMISSION HELD
+Status: WEB PREFLIGHT VERIFIED / BUILD15 INSTALLED / PHONE PAUSED BY OWNER / RESUBMISSION HELD
 Last updated: 2026-10-31 (Asia/Shanghai)
 
 ## 当前任务
 
-Owner要求再次逐条查看Apple回复并打开所有链接。[本轮完整复核](app-review-link-recheck-20261031.md)是当前入口；[上一交接](handoff-history-20261031-before-link-recheck.md)为HISTORICAL。“先别重新提交”、停止真机验证、TestFlight暂停、本机CI和单代理要求保持。
+Owner开始[完整链接复核](app-review-link-recheck-20261031.md)列出的剩余工作，随后明确先断开iPhone。按[当前补验合同](app-review-sandbox-acceptance-20261031.md)暂停全部手机／镜像操作、设备探测及主动重连，独立Web与保存继续；最终重新提交／TestFlight仍暂停。[上一交接](handoff-history-20261031-before-sandbox-acceptance.md)为HISTORICAL。
 
 ## 已完成
 
-原消息16处链接／15个不同目标全部打开，动态Sandbox／StoreKit文档使用Chrome完整阅读；另读App Review Help、TN3186、兼容设备和完整资料四页。付费／免费协议有效、银行可用、两税表使用中；年付ID／群组／语言／USA与HKG范围核对，月付地区0。现有15归档的明确Bundle ID、未过期Profile及无本地.storekit另作只读检查。
+原15归档做开发签名导出，UUID／Info与商店候选一致；原iPhone27.2已原位安装15、读回和启动成功，未卸载或清空数据。原AWS会话有效，专用审核登记及目录只读复核通过，资格至November29 12:00Z，未重新部署／续期。
 
-October30已完成的具名审核续期、API和提前7天监控部署、81项相关本机检查、隔离签名15以及archive55远端认证沿用，不重复。源码4acf1cae3及最终交接38f1935cc已在PR10，开放未合并。App Store仍14／Rejected、年订阅和群组可供审核；15未上传，未回复或重新提交。
+Owner恢复Auth0管理登录并明确同意合成审核账号Web条款；同一受保护密码在独立正式Web登录成功，返回原合成事项。只读服务器报价为USD119.99／HKD888，均sandbox；当前Free、无订阅及待处理购买。原生四次密码错误有提供方记录，输入路径原因未查清；未重置密码或变更身份配置。临时剪贴板已清空、会话内凭据引用已清除。原测试、部署和archive55沿用。[本轮安全回执](../collaboration/verification/app-review-acceptance-20261031/README.md)记录当前证据；Git推送及归档读回以同目录最终回执为准。
 
-## 复核后明确的缺口
+## 证据边界
 
-2.2要求功能可用，去掉测试文字不能单独算解决。当前候选没有新的真实Apple Sandbox商品／购买／服务器权益／恢复闭环；本地SDK和合成UI不替代它。官方完整资料指引的已过期订阅demo场景也尚未有具名证据。旧App Notes缺少明确地区限制、设备／OS和外部服务清单；已补本地未发送草稿。IAP现有图注明来自实体14，最终候选说明／截图仍需对齐。
-
-真机27.2／实体iPad结果没有取得，Owner停止真机验证不能记成通过。本轮没有应用源码／部署／交易／协议变化，没有重跑测试或重封旧归档。逐链接清单、资料矩阵及草稿见[保存入口](../collaboration/verification/app-review-links-20261031/README.md)。
+Web成功和服务器报价不等于原生登录／Apple购买通过；购买尝试0、无新退款或到期结果。只用具名合成审核账号，不迁移个人交易、不伪造Family或过期订阅。手机暂停前的可见输入只是未提交的非秘密短文本；恢复时先关闭显示密码或重开登录。Owner为诊断临时关闭的前台调度不是永久偏好。当前不上传／提审、发送审核回复或发TestFlight，价格、原数据及FanPass保持。
 
 ## 唯一下一步
 
-保持重提暂停；待Owner恢复相关验收范围后，先补当前候选的真实Sandbox与过期订阅审核场景，按实际结果更新说明／截图并检查资格期限，再进入上传／重提。不得只因本地15已签名就直接重新提交，也不要重做已完成的后台修复。
+待Owner恢复手机连接后，先定位专用审核账号的原生输入／登录失败，再完成当前15的真实Sandbox购买、权益、恢复及真实过期场景。已完成Web／配置／安装不重复；已恢复的Auth0管理会话只有实际过期才再登录。最终材料按新增事实更新，重新提交及TestFlight仍保持暂停。

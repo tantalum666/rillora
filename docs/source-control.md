@@ -2,6 +2,10 @@
 
 Last updated: 2026-10-31 (Asia/Shanghai)
 
+## October31 current-candidate acceptance checkpoint
+
+[The current acceptance](app-review-sandbox-acceptance-20261031.md) reuses the15archive for a development-signed in-place install, verifies the dedicated review account through real Web login and authenticated server Sandbox quotes, and preserves the unresolved native sign-in. Owner then disconnects the phone: no further device or mirroring operations occur. [Safe evidence](../collaboration/verification/app-review-acceptance-20261031/README.md) is readable Git; the new development IPA is encrypted-only in the new archive56. Extracted duplicate app files, raw device/provider/authentication data, whole-desktop screenshots and credentials stay out of the publication. Old1–55are not resealed or downloaded. Run exact-base publication checks and independently read the new remote archive; this is not an Apple transaction or resubmission result. No app implementation changes or repeated engineering suites are part of this checkpoint.
+
 ## October31 Apple message-link recheck
 
 [The full link review](app-review-link-recheck-20261031.md) adds small nonsecret reading receipts, provider status cells, the original message and unsent notes/reply drafts. [Readable evidence](../collaboration/verification/app-review-links-20261031/README.md) is ordinary Git; no new native artifact or encrypted archive is necessary. Keep archive55 and prior validation immutable. Private survey target, account pages, banking details and authentication state are excluded. Run only the exact-base publication/scan checks needed for the new documents, not the unchanged application suites; resubmission and TestFlight remain held.

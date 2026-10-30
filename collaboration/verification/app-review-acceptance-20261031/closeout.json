@@ -1,0 +1,64 @@
+{
+  "recordedAt": "2026-10-30T19:00:28.449753+00:00",
+  "status": "partial acceptance; independent checkpoint preserved before phone resume",
+  "sourceHeadBeforeWork": "3a3ac54cdc0ae4966db8e7197a67e7ea60b801c6",
+  "trustedBase": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "applicationImplementationChanged": false,
+  "focusedSpecs": [
+    "docs/app-review-sandbox-acceptance-20261031.md",
+    "docs/product.md",
+    "docs/source-control.md",
+    "config/release-gates.json"
+  ],
+  "decisionReason": "Owner resumes narrow real acceptance then pauses phone; append both explicit scope decisions. No product/pricing/security-policy change.",
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "historicalHandoff": "docs/handoff-history-20261031-before-sandbox-acceptance.md",
+  "newEvidence": [
+    "in-place development15install/readback",
+    "reviewer catalog unchanged",
+    "same-password production Web success",
+    "USA/HKG authenticated server Sandbox quote",
+    "four native fp events; unresolved input/sign-in"
+  ],
+  "inheritedChecks": {
+    "commit": "4acf1cae3bdf9d9444fa60fd94249c207c02940e",
+    "nativeCommerceLogicTests": 45,
+    "localStoreKitSdkTests": 1,
+    "monitorTests": 12,
+    "infrastructureTests": 12,
+    "staticChecks": 11,
+    "rerun": false,
+    "archive55RemoteProofCommit": "38f1935cc7a48aef63915964c03f953fa5282bc1"
+  },
+  "pending": [
+    "native dedicated reviewer sign-in",
+    "actual current-candidate Apple Sandbox purchase/entitlement/restore",
+    "real expired-subscription demo scenario",
+    "final review notes and screenshot alignment"
+  ],
+  "holds": [
+    "phone and mirroring until Owner resumes",
+    "App Store resubmission",
+    "TestFlight"
+  ],
+  "noNew": [
+    "Apple transactions",
+    "password reset",
+    "runtime deployment",
+    "price or billing-switch change",
+    "FanPass changes",
+    "cloud CI",
+    "subagent"
+  ],
+  "publicationValidation": "exact-base publication gate, complete readable manifest and secret scan, focused Markdown links; results recorded separately",
+  "excluded": [
+    "credentials",
+    "authenticated browser state",
+    "private provider and database response bodies",
+    "actual device identifiers as readable data",
+    "whole-desktop screenshots",
+    "extracted duplicate development app",
+    "old archives1-55"
+  ]
+}

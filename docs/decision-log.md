@@ -3864,3 +3864,15 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Sixteen link occurrences map to fifteen distinct targets; all were opened, with dynamic documentation read in Chrome. Four closely relevant follow-up pages were also read. Source pages are evidence, not authorization to create cases, submit a survey, purchase, change accounts or resubmit.
 - The October30fix remains implemented/deployed, but it does not prove a repaired-candidate Apple Sandbox purchase or close2.1/2.2. Current official guidance adds an explicit expired-subscription demo scenario and clearer region/device/service notes to the acceptance record. Preserve missing evidence rather than inventing orders, treating a fresh Free account as an expired subscription, or reclassifying synthetic previews.
 - Only documentation/drafts and evidence are updated. [Full recheck](app-review-link-recheck-20261031.md). No commercial/product/security policy change or new engineering test is approved or claimed by this read-only phase.
+
+## 2026-10-31 — Start the remaining real Sandbox acceptance work
+
+- Owner says “开始这些工作吧” after the full-message/link recheck. Resume the physical steps necessary for the current candidate's actual Sandbox purchase/restore, expired-subscription review scenario and material alignment. This supersedes the old blanket physical-test stop only for this scope; it does not resume unrelated acceptance or final App Review submission/TestFlight.
+- Reuse the exact15archive for a development-signed direct installation. Preserve existing app data, normal Apple accounts, approved prices, historical receipts and FanPass. Do not fabricate expired subscriptions or transfer the owner's purchase ownership to the reviewer.
+- Owner connected/unlocked the original phone, completed Mac mirroring authentication and temporarily disabled Stage Manager to repair the tool's thumbnail-coordinate mismatch. These are observed platform actions, not completion of billing acceptance.
+
+## 2026-10-31 — Pause the phone while preserving independent acceptance results
+
+- Owner says “iphone我先断连一下”. Stop phone/mirroring input, captures, device probes and automatic reconnection immediately; continue independent Web verification and Git preservation. Do not request reconnection until Owner resumes it.
+- The dedicated review account's explicit Web legal consent and restored Auth0 administrator session remain recorded. Reuse completed validation; only a genuinely expired session requires renewed login. Clear temporary credential references at closeout without resetting the valid account password.
+- Current candidate15 is installed, authenticated Web login and server Sandbox quotes are evidenced, but native login and Apple purchase/restore/expiry remain incomplete. Keep final resubmission and TestFlight held; do not change pricing, real records, sales settings or FanPass.

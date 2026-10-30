@@ -1,0 +1,57 @@
+{
+  "capturedFrom": "2026-10-30T19:01:23.335690+00:00",
+  "capturedThrough": "2026-10-30T19:01:23.694252+00:00",
+  "workFiles": 23,
+  "uniqueRawObjects": 23,
+  "workBytes": 7312611,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-056.tar.zst.age",
+      "sha256": "cb523df03dd7f2a2ac4648a2a90d9cdf17d03d04a4a3ff6997ad0f6a86b5d994",
+      "bytes": 7259503,
+      "plainBytes": 7312611,
+      "uniqueObjects": 23
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/app-review-acceptance-20261031/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-055",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected"
+    },
+    {
+      "path": "output/qa/rillora-app-review-acceptance-20261031/preservation-plan.json",
+      "reason": "derived selection receipt regenerated after file capture plan"
+    },
+    {
+      "path": "output/release/rillora-app-review-acceptance-20261031/development-app",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/release/rillora-app-review-acceptance-20261031/development-export/Packaging.log",
+      "reason": "duplicate export metadata; exact IPA plus safe export receipt retained"
+    },
+    {
+      "path": "output/release/rillora-app-review-acceptance-20261031/development-export/ExportOptions.plist",
+      "reason": "duplicate export metadata; exact IPA plus safe export receipt retained"
+    },
+    {
+      "path": "output/release/rillora-app-review-acceptance-20261031/development-export/DistributionSummary.plist",
+      "reason": "duplicate export metadata; exact IPA plus safe export receipt retained"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Only current acceptance safe QA receipts, bounded operational helpers, synthetic reviewer Web captures and the exact development-signed15IPA. The embedded device-bound provisioning profile is encrypted-only; standalone identifiers/provider/authentication state are excluded. Extracted app/export duplicates are not archived again.",
+  "boundary": "No private credentials, database backups, full provider logs or personal authentication captures. Owner pauses phone/mirroring and holds resubmission/TestFlight. Purchase attempts0. Web success/server quote is not native Apple billing acceptance. Old archives1-55unchanged; selected safe receipts are ordinary Git."
+}
