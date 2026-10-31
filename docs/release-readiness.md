@@ -1,13 +1,29 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB LIVE; APPLE WAITING FOR REVIEW; REMAINING PHYSICAL TESTS CANCELLED BY OWNER
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Status: WEB LIVE / APPLE14 REJECTED / RELEASE PRODUCT AUDIT AND CANDIDATE ACCEPTANCE IN PROGRESS / RESUBMISSION HELD
+Last updated: 2026-10-31 (Asia/Shanghai)
 
+## October31当前发布状态
 
-Apple最终回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight，尚未获批或公开上架。
+Apple在October30拒绝1.0(14)，涉及2.2及2.1(b)，不能再使用下方“等待审核”的历史结论。购买资格过期和普通页面测试呈现已在[原修复](app-review-remediation-20261030.md)处理；15已直装并读回，专用审核Web登录及服务器报价有[独立证据](app-review-sandbox-acceptance-20261031.md)，原生审核登录和真实Apple购买／恢复／到期仍未完成。
 
-## October15当前发布状态
+Owner现已恢复镜像，要求完成当前验收后[彻查正式产品完整性](release-product-audit-20261031.md)。本轮已确认并修复候选中的Web付款环境选择、不可用状态反馈、官网测试阶段文案及原生无对应操作的未来功能提示；本机回归与后续部署分别记录，不能把源码修复说成线上完成。最终重新提审和TestFlight仍暂停。
+
+| 当前项 | 准确状态与剩余工作 |
+| --- | --- |
+| 正式Web与官网 | 原功能已开放，Web年费USD88.99保持；本轮修正尚待完成发布与线上读回，当前不扩大收费范围。 |
+| 原生审核替代候选 | 16已开发签名原位安装、设备读回；与15只差移除无对应操作的安全管理预告，原支付逻辑与下一版隔离保持。受保护审核密码读取等待本人验证而超时，镜像随后重新锁定；不重置有效密码或使用明文备份绕过。 |
+| Apple实际购买闭环 | 审核登记有效至November29 12:00Z，价格USD119.99／HKD888；服务器报价和旧版本购买不能替代当前修复后的完整验证，未订阅不能冒充过期订阅。 |
+| 审核材料与提交 | 原14仍Rejected；最终候选、有效审核账号、实际验收结果及截图／说明需一致。当前不上传、重提或发送未完成的回复草稿。 |
+| 下一版内容、HealthKit、Watch、Duo | 与审核替代候选隔离；各自已实现、本机通过与真实设备／分发缺口仍按聚焦合同保留，不把未分发能力写成当前iOS功能。 |
+| 其他既有证据 | 数据／权限／恢复、旧支付及共享结果沿用原时间与提交。Owner保留的删除账号不做不可撤销删除，不虚构删除通过。 |
+
+唯一执行下一步以[当前交接](handoff.md)为准。下面各段均为带日期的历史记录，不再是当前发布门。
+
+## HISTORICAL — October15发布检查点
+
+当时Apple回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight；该排队状态已被October30实际拒审取代。
 
 [本轮复核](app-review-preflight-20261014.md)：40c76496f／CI153及两份静态部署通过，117文件匹配；旧身份令牌窗口关闭、正式Action与Web新购已开启，USD88.99和关闭自动计税不变。专用审核账号Web／原生登录与合成资料跨端读写完成，Apple双语权益与审核说明已保存。Owner明确停止余下真机检查，未验证项不冒称通过。Apple普通新购继续等待独立发布后验证；Auth0外壳为Owner暂缓。
 
@@ -43,9 +59,9 @@ Owner本轮暂后手机本人验证，独立Web检查已完成。两处实际问
 
 本机部署工具两处兼容问题另修于042f4e100，CI127三任务通过；archive33已在d33e0b31f独立远端解密核验；发布测试样本稳定性修正5adf61570／CI129三任务通过，当前剩余发布步骤见handoff。GitHub当前私有仓库页面明确不强制保护规则，不能把CI通过写成服务器强制检查已启用。此前付款与Apple证据继续保留原日期；下方October10技术版本是历史检查点。
 
-## Current remaining launch inventory — updated October13
+## HISTORICAL remaining launch inventory — October13
 
-上方October13集中收尾及下表是当前状态。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
+上方October13集中收尾及下表是当时检查点，已由本文件顶部October31状态与当前handoff取代。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
 
 October10的[付款与完整双语交付](payment-recheck-20261009.md)更新了下列实际证据，不重开旧工作。Web/原生Free1与Family5、WebUSD88.99年付和Apple美国USD119.99保持。
 

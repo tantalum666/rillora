@@ -284,7 +284,8 @@ export function createApp(
     createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool),config));
   plannerApi.use("/commerce", createCommerceRouter(pool,
-    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])]),
+    stripeExecutor?.providerEnvironment ?? null));
   plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
   if (dependencies.mcp) plannerApi.use('/account/ai-connections', dependencies.mcp.connections);
   plannerApi.use("/account", createAccountDataRouter(pool, config));

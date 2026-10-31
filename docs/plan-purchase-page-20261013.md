@@ -1,7 +1,9 @@
 # 套餐与权限：家庭版权益、年价与一个订阅操作
 
-Status: BOTH WEB CLIENTS DEPLOYED / SOURCE CI PASSED / REAL ACCOUNT BILINGUAL UI VERIFIED / NO TESTFLIGHT
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: SINGLE-ACTION CONTRACT ACTIVE / OCTOBER31 DISPLAY REPAIR LOCALLY VERIFIED / NO TESTFLIGHT
+Last updated: 2026-10-31 (Asia/Shanghai)
+
+October31补充：[正式产品复查](release-product-audit-20261031.md)保留以下权益、价格和单按钮合同。October15普通Web已开售；本轮修正测试环境／审核资格混用、普通套餐测试后缀和缺失状态反馈，尚未部署。只有实际Stripe测试环境中的有效验收身份显示不扣款说明，不能仅凭Apple审核资格选择测试UI。以下October13关闭开关、CI和部署结果保留原日期，不作为当前状态。
 
 ## 当前合同
 

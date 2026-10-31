@@ -1,11 +1,13 @@
 # 当前候选真实 Sandbox 补验 — 2026-10-31
 
-Status: WEB PREFLIGHT VERIFIED / BUILD15 DIRECT INSTALLED / PHONE PAUSED BY OWNER / RESUBMISSION HELD
+Status: BUILD15 WEB PREFLIGHT RETAINED / CONTINUED UNDER RELEASE PRODUCT AUDIT / RESUBMISSION HELD
 Last updated: 2026-10-31 (Asia/Shanghai)
 
 Owner在完整链接复核后明确“开始这些工作吧”，恢复本次候选购买、恢复、过期订阅审核场景及材料对齐所需的验收。此前停止所有真机验证的状态在这个有限范围被取代；无关已过验收不重开。最终重新提审和TestFlight暂停仍保持。
 
 Owner随后明确“iphone我先断连一下”。立即暂停手机、镜像、设备探测和主动重连，仅完成独立Web核验与成果保存。恢复前不再次要求连接；这不是取消剩余购买验收，也不是已通过。
+
+后续Owner已明确“解锁好了，你接着做”，并要求全面复查正式产品；上述临时断连已解除。当前活动范围、16直装及实际认证阻塞见[正式产品复查](release-product-audit-20261031.md)。本页保持15检查点的原始事实，不把后续新构建或未完成交易倒填为15的成功结果。
 
 ## 已完成的准备
 
@@ -35,4 +37,4 @@ Auth0管理会话实际过期后由Owner恢复。专用审核账号存在、未�
 
 [安全回执](../collaboration/verification/app-review-acceptance-20261031/README.md)分别保存安装、Web登录对照、提供方事件摘要、实际报价和未完成项。新开发签名IPA仅作加密保存，设备标识／配置不进入可读Git；私人身份、认证、完整日志、全桌面截图及历史明文备份不纳入交付。旧archive55、October30工程测试及已完成部署沿用，没有本轮重跑声明。
 
-待Owner恢复手机后，只继续原生专用审核登录、当前候选的真实Sandbox购买／权益／恢复、真实过期审核场景及最终材料对齐。当前购买尝试0，无新订单、退款或到期结果；未上传候选、发送审核回复、重新提交或分发TestFlight。
+此检查点收尾时等待Owner恢复手机；该门现已由上方新指令取代。只继续原生专用审核登录、当前候选的真实Sandbox购买／权益／恢复、真实过期审核场景及最终材料对齐。该检查点购买尝试0，无新订单、退款或到期结果；未上传候选、发送审核回复、重新提交或分发TestFlight。

@@ -1,0 +1,23 @@
+{
+  "at": "2026-10-30T21:00:34.392887+00:00",
+  "scope": "Explicit named localhost disposable integration databases only",
+  "databases": [
+    {
+      "database": "continuity_production_commerce_test",
+      "preservedAs": "continuity_production_commerce_test_draft_20261031",
+      "oldChecksum": "edbb0d61fe823fed6252a7db66e2b279c37e2fd6a47d26a01589c844baf37686",
+      "freshEmptyDatabaseCreated": true,
+      "oldChecksumEdited": false,
+      "connectionsTerminated": false
+    },
+    {
+      "database": "continuity_apple_review_test",
+      "preservedAs": "continuity_apple_review_test_draft_20261031",
+      "oldChecksum": "edbb0d61fe823fed6252a7db66e2b279c37e2fd6a47d26a01589c844baf37686",
+      "freshEmptyDatabaseCreated": true,
+      "oldChecksumEdited": false,
+      "connectionsTerminated": false
+    }
+  ],
+  "productionChanged": false
+}

@@ -45,9 +45,10 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "The unchanged protected API/schema remains; October15 completes the existing Web admission/catalog/static cutover after fresh old-token denial evidence. Both frontend stacks preserve all other resources/parameters,117HTTPS files match40c76496f/CI153. No new API or DB deployment."
+      "next": "Retain prior production deployment and schema evidence; October31 anonymous ready endpoint is200. New API image45bd2d47 uses pinnedNode22.23.4 and runs asnode, but is not deployed; current infrastructure readback waits for actual AWS MFA. No database migration or sales-setting change."
     },
     {
       "id": "production-identity",
@@ -97,13 +98,14 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Four old Preview issuers remain disabled and twoM2Mrequests still403after the measured deadline. Current source-matching production consent Action is deployed with unchanged otherAction/order and mandatory native current consent. Dedicated reviewer Web/native login and original Google phone login succeed. Owner-deferred Auth0 outer-shell cosmetics remain unresolved but are not this identity safety gate."
+      "next": "Prior production identity/token-isolation evidence is retained. October31 dedicated reviewer succeeds through Web with the protected existing password; native password submissions failed and remain an explicit physical/App Review gate. Do not reset a valid password or claim native login passed. Auth0 outer-shell cosmetics remain Owner-deferred."
     },
     {
       "id": "production-billing",
-      "status": "verified",
+      "status": "in_progress",
       "required": true,
       "title": "Ordinary customer purchase lifecycle",
       "evidence": [
@@ -127,9 +129,10 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Original Web route/market opened after fresh provider readiness and catalog fingerprint;USD88.99annual,disabledautomaticTax,existing signed callback/test-refund evidence retained. No new self-payment or customer revenue claim. Two Apple Production routes stay independently closed; Apple lifecycle is separately gated."
+      "next": "October15 Web opening and prior signed StripeTEST/refund evidence remain. October31 fixes provider-environment versus Apple-review-account routing, purchase availability and failure feedback:29API/23focusedWeb/27browser checks pass with synthetic providers. API-first deployment and current Rillora Live provider readback await actual AWS/Stripe authentication. No new payment or price/tax/sales change."
     },
     {
       "id": "merchant-market",
@@ -147,7 +150,7 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Rillora Live account/product/price readiness passes. Owner removed tax strategy as the opening prerequisite; explicit disabled tax automation retained without invented tax exemption. Only the existing GLOBAL_US Web route is opened, with no new regions or Apple availability."
+      "next": "Retain the existing Rillora merchant/catalog readiness verified at the October15opening checkpoint. Current provider-only recheck awaits actual Stripe sign-in under the separate in-progress billing gate; do not claim a fresh provider read. Owner tax defer, disabled automaticTax, existing GLOBAL_US Web scope and independent Apple gates remain unchanged."
     },
     {
       "id": "apple-transactions",
@@ -183,9 +186,10 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Retain actualHKD888Sandboxpurchase/restore and native14evidence. Dedicated reviewer remains enrolled throughOctober27. Apple prereleaseProduction401is not a presubmission blocker. After approval configure streamlined purchasing, manually release, then verify Productionauthorization/notifications/reconciliation before enabling two new-sale routes. No generic401fallback."
+      "next": "October30 renewed only the dedicated reviewer through2026-11-29T12:00Z; October31 server quotesUSD119.99/HKD888areSandbox. Retain earlier actualHKD888purchase/restore with original dates. Current16native reviewer login, actual purchase/entitlement/restore and an actually expired-subscription demo remain incomplete. PrereleaseProduction401is not a presubmission blocker; new-sale routes stay independently closed until the existing post-release verification sequence."
     },
     {
       "id": "operations",
@@ -206,9 +210,10 @@
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Fourteen public targets retain existing schedules and recipients; production session probes now require401 and reject503. Four new Production StoreKit worker alarms supplement Sandbox/retention alarms, all readOKwith exact existing SNS actions. The updated cloud checker returnsoktrue/failed0; previous notification/silence drills retain their original date, not rerun."
+      "next": "Retain existing public/runtime/worker alarms and prior delivery/silence drills. October30 deployed the7-day reviewer-expiry warning; actual monitor15checks passed. No new alert-delivery drill or current private cloud configuration claim is made during October31 expired AWS session."
     },
     {
       "id": "backup-retention",
@@ -277,9 +282,10 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Retain schema103/security/recovery evidence. October15fresh verification closes the expired86400+300second Preview token window;fourissuersstaydisabled/two403. No auth/certification bypass. GitHub private-plan enforced checks remain unavailable; current source CI153passes."
+      "next": "Retain schema103/security/recovery and old-token denial evidence at their dated checkpoints. October31 uses exact-main-base f017648cada6d39144a88aa12b5a42d470c40e5d local publication policy, no cloudCI or bypass. Current candidate scans are separately recorded; source scan is not a new penetration test or current provider authentication proof."
     },
     {
       "id": "apple-submission",
@@ -315,13 +321,14 @@
         "docs/app-review-remediation-20261030.md",
         "docs/app-review-link-recheck-20261031.md",
         "docs/app-review-sandbox-acceptance-20261031.md",
-        "collaboration/verification/app-review-acceptance-20261031/README.md"
+        "collaboration/verification/app-review-acceptance-20261031/README.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Owner still holds resubmission/TestFlight. October31candidate15direct install and dedicated-reviewer Web login/server Sandbox quotes are verified; native sign-in and actual Apple purchase/entitlement/restore/expired-subscription scenario remain incomplete. Owner then disconnects the phone: stop phone/mirroring and automatic reconnect until resumed. Align final notes/screenshots only with completed evidence; do not repeat October30deployments."
+      "next": "Owner holds final resubmission/TestFlight. Apple14is rejected; current code/product audit fixes still require candidate, deployment and actual acceptance evidence. Dedicated-reviewer Web login/server Sandbox quotes do not close native purchase/entitlement/restore/expired-subscription requirements. Align final notes/screenshots only with completed results; retain older unchanged checks instead of claiming reruns."
     },
     {
       "id": "physical-device",
-      "status": "owner_deferred",
+      "status": "in_progress",
       "required": true,
       "title": "Physical-device acceptance",
       "evidence": [
@@ -341,13 +348,14 @@
         "docs/app-store-preflight-20261013.md",
         "docs/app-review-preflight-20261014.md",
         "docs/app-review-sandbox-acceptance-20261031.md",
-        "collaboration/verification/app-review-acceptance-20261031/README.md"
+        "collaboration/verification/app-review-acceptance-20261031/README.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "October31Owner resumed only current-candidate purchase/restore/expiry acceptance, then temporarily disconnected the phone. Candidate15was installed in place and read back on iOS27.2. Native dedicated-reviewer sign-in remains unresolved; no Apple transaction initiated. Pause all phone/mirroring/probes and automatic reconnection until Owner resumes. Preserve older successful device/data evidence; cancelled unrelated October15checks are not reopened."
+      "next": "Owner resumed the phone;1.0(16)is now development-signed and installed in place, exact device readback verified, no uninstall. Current mirror relocked at Mac user authentication and protected reviewer credential read timed out awaiting user presence. No new native login/Apple purchase result. Continue only outstanding current-candidate acceptance, no TestFlight or repeated unrelated tests."
     },
     {
       "id": "public-surface",
-      "status": "verified",
+      "status": "in_progress",
       "required": true,
       "title": "Public product and support entry",
       "evidence": [
@@ -377,9 +385,10 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "October15production App/public website deployed from40c76496f/CI153;onlyoneexistingstaticassetperstack,allotherresources/parametersunchanged.117HTTPShashesmatchandactualZH/ENpricing/entryreadbackpasses. CustomerAccesslive now matches actual ordinary Web admission/new-sales state."
+      "next": "Current live website FAQ still contained iOS testing-stage wording. Corrected bilingual candidate66files/28pages and App113files/Preview110files are built and locally checked, not deployed. Existing features and endpoint flags are preserved. Publish compatible API first, then static assets before HTML, and verify actual HTTPS bytes/UI before closing this gate."
     },
     {
       "id": "review-remediation",

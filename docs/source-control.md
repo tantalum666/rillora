@@ -2,7 +2,13 @@
 
 Last updated: 2026-10-31 (Asia/Shanghai)
 
-## October31 current-candidate acceptance checkpoint
+## October31 release-product audit and local repair checkpoint
+
+[The release-product audit](release-product-audit-20261031.md) repairs Web payment-environment/account-state confusion, missing failure feedback, obsolete public testing copy, a native roadmap footer and stale active release status. Build16is signed, exported and installed in place; API/App/Preview/WWW artifacts are prepared but not deployed. Actual native Sandbox acceptance and provider/cloud readbacks remain blocked by observed authentication. Final resubmission/TestFlight remain held.
+
+[Safe receipts and new archive57](../collaboration/verification/release-product-audit-20261031/README.md) preserve local failures/passes, synthetic/local and public screenshots, exact candidate16source/artifacts and three static publication bundles. Personal legal publication values and device-bound profiles stay encrypted-only; credentials, raw device/provider/auth state, reproducible speech models, VM disks and caches stay excluded. Existing1–56remain immutable. Exact-base local publication and fresh new-archive remote verification are recorded separately; Git保存不等于已部署或已通过真实购买。
+
+## HISTORICAL — October31 build15 acceptance checkpoint
 
 [The current acceptance](app-review-sandbox-acceptance-20261031.md) reuses the15archive for a development-signed in-place install, verifies the dedicated review account through real Web login and authenticated server Sandbox quotes, and preserves the unresolved native sign-in. Owner then disconnects the phone: no further device or mirroring operations occur. [Safe evidence](../collaboration/verification/app-review-acceptance-20261031/README.md) is readable Git; the new development IPA is encrypted-only in the new archive56. Extracted duplicate app files, raw device/provider/authentication data, whole-desktop screenshots and credentials stay out of the publication. Old1–55are not resealed or downloaded. Run exact-base publication checks and independently read the new remote archive; this is not an Apple transaction or resubmission result. No app implementation changes or repeated engineering suites are part of this checkpoint.
 

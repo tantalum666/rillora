@@ -1,5 +1,5 @@
 import { recordSubscriptionObservation, persistReconciliation } from './commerce-subscription-ledger.js';
-import { assertNoForeignPurchase, assertFamilyPriceReady } from './commerce-purchase-conflicts.js';
+import { assertNoForeignPurchase, assertFamilyPriceReady, isTestCommerceAccount } from './commerce-purchase-conflicts.js';
 import { createHash } from "node:crypto";
 import type { PoolClient } from "pg";
 import { executionSnapshotPriceId, stripeExecutionEnvironment, type StripeExecutionConfig } from "./stripe-execution-config.js";
@@ -384,7 +384,7 @@ export class StripeCommerceExecutor {
     return counts;
   }
 
-  async loadProductionStatus(plannerId: string): Promise<unknown> {
+  async loadProductionStatus(plannerId: string, checkoutEnabled = false): Promise<unknown> {
     if (this.providerEnvironment !== "production") throw new Error("Production billing status requires a production executor");
     return withCommercePlannerDatabase(this.pool, plannerId, async client => {
       const subscription = await client.query<{ state: string; current_period_ends_at: Date | null; cancel_at_period_end: boolean; renewal_is_possible: boolean | null }>(
@@ -397,7 +397,11 @@ export class StripeCommerceExecutor {
         exists(select 1 from app.commerce_orders where planner_id=app.current_planner_id()
           and provider_code='stripe' and provider_environment='production' and status in ('created','pending','paid_pending_reconciliation')) as checkout_pending`);
       const row = subscription.rows[0];
+      const accountAllowed = checkoutEnabled
+        && (await client.query('select app.commerce_planner_can_purchase() as allowed')).rows[0]?.allowed === true
+        && !(await isTestCommerceAccount(client));
       return { contractVersion: 'commerce-stripe-production-v1', testOnly: false,
+        checkoutAvailability: !checkoutEnabled ? 'unavailable' : accountAllowed ? 'available' : 'account_unavailable',
         canManage: flags.rows[0]?.can_manage === true, checkoutPending: flags.rows[0]?.checkout_pending === true,
         subscription: row ? { state: row.state, currentPeriodEndsAt: row.current_period_ends_at?.toISOString() ?? null,
           cancelAtPeriodEnd: row.cancel_at_period_end, renewalIsPossible: row.renewal_is_possible } : null };

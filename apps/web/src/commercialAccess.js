@@ -35,6 +35,7 @@ export function normalizeCommercialStatus(payload) {
     && hasExactBoundaries(payload.boundaries)
     && typeof payload.billingOpen === "boolean"
     && typeof payload.currentAccess?.planCode === "string"
+    && [undefined, null, 'test', 'production'].includes(payload.webBillingEnvironment)
     && Array.isArray(payload.plans)
     && Array.isArray(payload.offers)
     && payload.offers.every(isSafeOffer);
@@ -47,8 +48,9 @@ export function normalizeCommercialStatus(payload) {
     available: true,
     billingOpen: payload.billingOpen,
     validationOnly: payload.validationOnly === true,
+    webBillingEnvironment: payload.webBillingEnvironment ?? null,
     serviceMarketCode: payload.serviceMarketCode,
-    currentAccessLabel: planLabel(payload.currentAccess.planCode) + (payload.validationOnly === true ? " · Test access" : ""),
+    currentAccessLabel: planLabel(payload.currentAccess.planCode),
     currentAccess: payload.currentAccess,
     freeFeatures: Object.freeze(featuresFor(freePlan, "included")),
     familyFeatures: Object.freeze((familyPlan?.capabilities ?? [])
@@ -81,6 +83,7 @@ export function unavailableCommercialStatus() {
     available: false,
     billingOpen: false,
     validationOnly: false,
+    webBillingEnvironment: null,
     serviceMarketCode: null,
     currentAccessLabel: "Unavailable",
     currentAccess: null,
@@ -173,7 +176,7 @@ export function commercialPlanLabel(commerce, t) {
   const code = commerce.currentAccess?.planCode;
   if (!["free", "family"].includes(code)) return commerce.currentAccessLabel;
   const plan = t(`workspace.plan.${code}`);
-  return commerce.validationOnly ? t("workspace.plan.testAccess", { plan }) : plan;
+  return plan;
 }
 
 const billingStates = new Set(["active", "cancel_at_period_end", "grace", "past_due", "expired_read_only", "refunded", "revoked", "previewing"]);

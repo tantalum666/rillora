@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+October31当前：[正式产品复查与16直装](../docs/release-product-audit-20261031.md)已修Web付款环境／资格混用、不可用反馈、官网测试阶段文案及原生无操作预告；本机相关检查通过，16签名原位安装读回。API／三套Web产物已准备但未部署；实际AWS／Stripe／Mac认证阻塞和原生Sandbox未完成明确保留，重提／TestFlight暂停。[本轮安全证据及archive57](verification/release-product-audit-20261031/README.md)追加保存，旧1–56不重做。以下15手机暂停是历史检查点，已由Owner恢复指令取代；唯一下一步见handoff。
+
 October31当前补验：[候选15直装与审核Web对照](../docs/app-review-sandbox-acceptance-20261031.md)完成原机安装读回、同一受保护密码的Web登录及USD119.99／HKD888服务器测试报价；原生登录仍待定位，没有发起Apple购买。Owner先断开手机，真机／镜像暂停；重提／TestFlight保持。[安全回执及新增archive56](verification/app-review-acceptance-20261031/README.md)保存当前结果和开发签名产物，旧1–55不重做，最终远端认证另记。唯一下一步只看handoff。
 
 October31前一检查点：[Apple原消息和全部链接复核](../docs/app-review-link-recheck-20261031.md)已读16处／15目标及4个跟读页面；实际协议／商品配置与签名候选只读核对完成。明确真实Sandbox、过期订阅demo及最终材料缺口，旧修复不冒称审核闭环。[新可读回执／未发送草稿](verification/app-review-links-20261031/README.md)普通Git保存，旧archive55不重封；当时重提／真机／TestFlight暂停保持，后续手机范围以上节和handoff为准。

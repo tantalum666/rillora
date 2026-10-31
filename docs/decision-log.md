@@ -3876,3 +3876,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner says “iphone我先断连一下”. Stop phone/mirroring input, captures, device probes and automatic reconnection immediately; continue independent Web verification and Git preservation. Do not request reconnection until Owner resumes it.
 - The dedicated review account's explicit Web legal consent and restored Auth0 administrator session remain recorded. Reuse completed validation; only a genuinely expired session requires renewed login. Clear temporary credential references at closeout without resetting the valid account password.
 - Current candidate15 is installed, authenticated Web login and server Sandbox quotes are evidenced, but native login and Apple purchase/restore/expiry remain incomplete. Keep final resubmission and TestFlight held; do not change pricing, real records, sales settings or FanPass.
+
+## 2026-10-31 — Resume acceptance and inspect the complete release product
+
+- Owner confirms the mirror is unlocked and explicitly resumes unfinished acceptance. This supersedes the temporary phone-disconnection pause, not final resubmission or TestFlight holds.
+- Owner identifies the unacceptable testing text in Apple's submitted14screenshot and requests a thorough project-wide product-readiness review after the current work, with fixes. Inspect user-visible copy, real task completion, ordinary-account/payment behavior, runtime/release configuration and current/next-version isolation; cosmetic removal alone cannot prove readiness.
+- Reuse completed install/Web/provider evidence and perform only new or changed-path checks. Keep original prices, real data, transaction ownership and FanPass. No sub-agent or cloud CI; no fabricated successful payment, expired subscription or completed feature.
