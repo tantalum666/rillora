@@ -23,7 +23,7 @@ Last updated: 2026-11-01 (Asia/Shanghai)
 
 两个旧本机测试库的0108草稿原样改名保留，新空夹具验证；没有改应用迁移或生产校验记录。原始失败保留。AWS会话实际过期后Owner完成一次MFA，新CLI已自动复用，主体／账户一致，没有重复本人验证。Apple管理会话已恢复。钥匙串测试密码一次选区回读出现在私有工具输出，已告知Owner；值未写入项目文件／Git，显示、详情和临时引用已清理。独立构建VM已停止。
 
-证据：output/qa/rillora-native17-install-20261101/，安全入口[本轮回执](../collaboration/verification/native17-install-20261101/README.md)。当前新增代码／回执正在Git收尾；旧1–58不重封／重下，无云端CI或子代理。此前源码b628c1805和元数据23a7c012d已在PR10。
+证据：output/qa/rillora-native17-install-20261101/，安全入口[本轮回执](../collaboration/verification/native17-install-20261101/README.md)。源码／archive59已推到PR10的7b6c3deb923555106e45463d5979a6fa55e5ee5f，精确diff匹配本机发布门；新增归档独立远端下载认证412对象／728路径通过。旧1–58不重封／重下，云端作业仍314／最新October23，没有子代理。最后元数据普通Git保存，不重复业务测试。
 
 ## 唯一下一步
 

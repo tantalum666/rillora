@@ -17,3 +17,5 @@ Last updated: 2026-11-01 (Asia/Shanghai)
 原始身份／设备／提供方私人响应、未归因请求ID、数据库备份、VM磁盘和依赖／构建缓存不上传。一次钥匙串选区回读意外包含测试密码，已告知Owner；值不在项目或Git中，密码显示及临时引用已清理。
 
 最终回执写完后重建全量可读清单，使用精确main base运行本机发布门；新archive只独立下载核验一次。Git保存不代表取消／到期或App Store重提已完成；无云端CI、子代理或TestFlight。
+
+源码／archive59提交`7b6c3deb923555106e45463d5979a6fa55e5ee5f`已推到PR10，开放未合并。[独立远端验证](remote-readback.json)认证412对象／728路径，未重下旧档。[源码发布证明](source-publication-proof.json)记录精确base、diff及无新云端作业；最后只保存元数据，不重新部署或购买。

@@ -52,3 +52,5 @@ Apple管理登录只在实际过期后由Owner恢复。AWS首次检查有效，�
 已请求Owner仅在该独立Sandbox账户的Manage页面关闭Rillora自动续期，再由Agent核对取消后本期权益及实际到期。此项是新的生命周期步骤，不重做购买／恢复，不清除购买历史。以[Apple官方取消测试步骤](https://developer.apple.com/documentation/storekit/testing-disabling-auto-renew)和[沙盒续期规则](https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-account-settings/)为依据；不能把未订阅或登记期限结束冒充Apple订阅到期。
 
 证据目录：`output/qa/rillora-native17-install-20261101/`；安全入口为[本轮回执](../collaboration/verification/native17-install-20261101/README.md)。原archive58及17签名产物不重封／重下；本轮源码、测试、维护工具与新回执单独保存。私有身份／提供方原始数据、凭据和机器缓存不入Git；没有云端CI或子代理。
+
+源码／archive59已推送`7b6c3deb923555106e45463d5979a6fa55e5ee5f`，PR10仍开放未合并。新增归档从GitHub独立下载后412对象／728路径全部认证通过，精确源码diff与本机发布门一致；云端作业仍314，最新October23。最后回执普通Git保存，不重封归档或重跑已完成的业务测试。
