@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-November1当前：[Apple购买归属与等待修复](../docs/apple-owner-latency-20261101.md)通过本机44项购买协调与9项语言检查，另19项同轮未变化原生证据沿用。隔离17-r2签名准备好，手机断开、尚未安装；实际新交易仍未通过。前轮两API／三Web已部署并保留价格、数据和开关。[安全结果与archive58](verification/apple-owner-latency-20261101/README.md)保存新增工作，旧1–57不重做；不使用云端CI、子代理、TestFlight或重提。下方October31准备状态是历史检查点，唯一下一步以handoff为准。
+November1最新：[17真实购买／恢复与独立账本](../docs/apple-purchase-acceptance-20261101.md)已通过，同一原HKD888订单完成／验签／权益核对。仅修正独立tester的地区，不重建订单；新双语错误文案9项、只读诊断20项通过。普通API／Web和收费保持，仅维护检查工具更新。当前新门是取消续期／真正到期，Owner不重做购买恢复，重提／TestFlight仍暂停。[本轮安全回执](verification/native17-install-20261101/README.md)将本轮新增工作独立保存，旧1–58不重做。
+
+November1此前检查点：[Apple购买归属与等待修复](../docs/apple-owner-latency-20261101.md)通过本机44项购买协调与9项语言检查，另19项同轮未变化原生证据沿用。隔离17-r2随后已在原机安装／读回／启动；Owner确认待处理检查不再弹Apple密码，实际新交易及耗时仍未通过。见[新增安装回执](verification/native17-install-20261101/README.md)。前轮两API／三Web已部署并保留价格、数据和开关。[安全结果与archive58](verification/apple-owner-latency-20261101/README.md)保存新增工作，旧1–57不重做；不使用云端CI、子代理、TestFlight或重提。下方October31准备状态是历史检查点，唯一下一步以handoff为准。
 
 October31当前：[正式产品复查与16直装](../docs/release-product-audit-20261031.md)已修Web付款环境／资格混用、不可用反馈、官网测试阶段文案及原生无操作预告；本机相关检查通过，16签名原位安装读回。API／三套Web产物已准备但未部署；实际AWS／Stripe／Mac认证阻塞和原生Sandbox未完成明确保留，重提／TestFlight暂停。[本轮安全证据及archive57](verification/release-product-audit-20261031/README.md)追加保存，旧1–56不重做。以下15手机暂停是历史检查点，已由Owner恢复指令取代；唯一下一步见handoff。
 

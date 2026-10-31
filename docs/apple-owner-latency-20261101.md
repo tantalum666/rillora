@@ -1,9 +1,11 @@
 # Apple 购买归属与等待修复
 
-Status: LOCAL FIXES VERIFIED / ISOLATED17 PREPARED / PHYSICAL ACCEPTANCE PENDING
+Status: PURCHASE/RESTORE VERIFIED / SEE FOLLOW-UP ACCEPTANCE / RESUBMISSION HELD
 Last updated: 2026-11-01 (Asia/Shanghai)
 
 Owner在原生16手动点击购买／检查待处理购买，Apple要求验证eason账户，约30–60秒后Rillora提示使用原购买账号；随后询问测试方法与取消绑定的风险。本任务继续原购买验收，不恢复最终提审或TestFlight。手机由Owner操作，不使用镜像输入；不迁移旧交易、不清除购买历史、不补造家庭版权益。
+
+后续真实购买、恢复和同一原订单的验签／金额／权益核对已通过，见[最终验收合同](apple-purchase-acceptance-20261101.md)。以下前期诊断保留原检查点，不再把购买列为当前未完成；取消／实际到期仍独立。
 
 ## 身份与已证实的原因
 
@@ -45,7 +47,13 @@ Apple账户负责商店购买，Rillora账户负责应用内的订阅权益。�
 
 安装17后，Owner仅在iPhone的开发者Sandbox账户位置使用独立测试身份，Rillora继续使用专用审核账号；无需更换iCloud或普通商店主账号。先核对界面币种与系统Sandbox，再完成购买、一次恢复及后台权益读回。原个人购买另按原Rillora账号恢复，不用于给审核账号转权益。若既有tester实际不可用，再按Apple页面准备新tester，不从旧文档推断当前可用。
 
-设备检查目前为断开，17尚未安装。最终重提／TestFlight继续暂停。Git保存及签名候选不替代尚缺的手机交易、实际耗时、权益与到期闭环。
+Owner随后确认连接／解锁，设备查询实际成功读到旧16。复用同一最终r2的IPA哈希及签名，17已原位安装、设备读回1.0(17)，启动成功；没有卸载、重建、重复业务测试或改动订阅。第一次启动命令把设备参数放到App参数之后，被CLI拒绝（exit64，未启动）；改正参数顺序后exit0，原失败另存，不写成产品运行故障。
+
+Owner实际检查一次待处理购买，确认当前为Rillora App Review、返回“Apple暂未返回匹配购买结果”且没有再次弹Apple密码。耗时未给出，不宣称具体速度改善；也不是成功付款。新[安装及人工回执](../collaboration/verification/native17-install-20261101/README.md)保留这些分开的证据，真实新交易／权益／恢复／到期仍未完成。
+
+Owner已使用既有Tester3登录独立Sandbox，17实际显示USD119.99；点击订阅未出现Apple系统确认页，中文为“暂时无法完成此操作，请重试”。AWS会话仍有效；同时间段日志出现409业务冲突、回应17–27毫秒，但原隐私日志没有路由／具体码，不能精确归因或把服务器时间当手机耗时。已确认中文未单独映射购买错误，等待临时英文提示定位真实原因；原订单保持，不盲目重试。
+
+钥匙串密码显示已收起、详情关闭、临时文本引用清理。一次工具回读的选区块意外包含测试密码，已告知Owner；值未写入项目文件／Git。没有重置密码、创建账号、改iCloud／媒体与购买主账号或清空历史。新Web验证标签当前未登录，没有新的后台交易查询结果；最终重提／TestFlight继续暂停。
 
 ## Git保存
 

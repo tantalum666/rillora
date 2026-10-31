@@ -2,13 +2,19 @@
 
 Last updated: 2026-11-01 (Asia/Shanghai)
 
+## November1 physical purchase, restore and immutable-order verification
+
+[Current acceptance](apple-purchase-acceptance-20261101.md) installs the already-preserved17candidate in place, verifies the same originalHKD888order with signed applied receipt/active subscription, and retains the Owner's successful purchase/restore. Only the tester's storefront was aligned; no old order or ownership was rewritten. New native error copy is source-only; the bounded operator inspection is deployed only in the existing maintenance task, with normal API/Web/workers and permission templates unchanged.
+
+[New safe receipts](../collaboration/verification/native17-install-20261101/README.md) preserve the exact local failures/passes, original/final diagnostic image inputs, scoped cloud readbacks and nonsecret financial outcomes. Raw provider/auth/device data, credentials, unrelated request IDs and derived test/build caches stay excluded. Old archives1–58and the signed17artifact are immutable; capture only this new work and independently verify its new archive. Git/receipt publication is not a claim that cancellation/expiry/refund or resubmission has completed.
+
 ## November1 ownership repair and completed cloud rollout
 
-[Current repair](apple-owner-latency-20261101.md) preserves transaction ownership while removing redundant Apple authentication from pending checks and checking foreign/expired history before a new charge. Isolated17-r2is signed locally; the phone is disconnected, so no install or new successful payment is claimed. The preceding October31API and three Web deployments are complete, with price/data/sale controls unchanged.
+[Current repair](apple-owner-latency-20261101.md) preserves transaction ownership while removing redundant Apple authentication from pending checks and checking foreign/expired history before a new charge. Isolated17-r2is signed and subsequently installed/read back/launched on the original phone; Owner confirms pending-check status without another Apple password prompt. New successful payment and actual latency remain unverified. The preceding October31API and three Web deployments are complete, with price/data/sale controls unchanged.
 
 [Readable receipts and new archive58](../collaboration/verification/apple-owner-latency-20261101/README.md) preserve1,164paths/663objects/45,379,030encrypted bytes, locally authenticated. They include original failing/passing native tests, both unpublished17candidate artifacts and prior rollout evidence. Credentials, raw private provider/device/authentication material and caches are excluded; old1–57are unchanged. Exact-base local publication and fresh new-archive remote verification follow separately; resubmission/TestFlight remain held.
 
-Source/archive`b628c18051824515a806a987badfaf9463bb7765`is pushed in PR10, still open/unmerged. Fresh remote verification authenticated all663objects/1,164paths from archive58; previous archives were not downloaded. Complete readable tracking is checked in final metadata, including one ignored safe localization log explicitly added to the index. Actions total remains314/latestOctober23. Final receipts do not imply phone installation or a completed purchase.
+Source/archive`b628c18051824515a806a987badfaf9463bb7765`is pushed in PR10, still open/unmerged. Fresh remote verification authenticated all663objects/1,164paths from archive58; previous archives were not downloaded. Complete readable tracking is checked in final metadata, including one ignored safe localization log explicitly added to the index. Actions total remains314/latestOctober23. Those source/archive receipts do not themselves prove device installation or payment; the later [17installation/manual-status receipt](../collaboration/verification/native17-install-20261101/README.md) separately records the installed version and no repeated password prompt, with actual purchase still pending.
 
 ## HISTORICAL — October31 release-product audit and local repair checkpoint
 
@@ -658,3 +664,5 @@ Archive30was freshly downloaded and decrypted at remote99c2537f4ba59aae112127ddf
 源码与材料fda980549已推送到codex/ai-discovery-vnext-20261015，CI179的source、api、web-and-infrastructure三项全部成功；GitHub读回复核报告、ASO草稿和插件生成器，与本地逐字一致。后续只保存此回执，不部署或重复验收。
 
 October30 Git回执：源码／archive55为`4acf1cae3bdf9d9444fa60fd94249c207c02940e`；新增归档独立远端认证482对象／674路径通过。PR10仍开放未合并，Actions总数314且该源码无PR云端作业。最后回执普通Git保存，不重封或重跑已完成业务验证；Owner重提暂停保持。
+
+本轮archive59已本地认证：728路径／412对象／953,549密文字节。只保留新增原件和明确安全摘要，旧1–58未重封／重下；config.ts的两处PEM头为既有校验字面量，原件与已跟踪字节完全一致，未新增扫描例外。实际凭据与原始私人提供方响应保持排除。新归档的远端认证与最终发布回执随后单独记录。

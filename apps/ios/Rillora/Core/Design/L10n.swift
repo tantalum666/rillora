@@ -32,9 +32,20 @@ enum L10n {
         return language.hasPrefix("zh")
     }
 
-    /// English keeps the existing server explanation; Chinese maps only trusted
-    /// machine codes and falls back safely, never using arbitrary text as a key.
+    private static let purchaseErrorKeys = [
+        "purchase_terms_changed": "The price or subscription terms changed. Refresh the price and check any pending purchase.",
+        "purchase_account_changed": "Your account changed. Review the purchase again.",
+        "apple_purchase_in_progress": "Check your pending Apple purchase before starting another.",
+        "apple_purchase_owner_conflict": "Use the Rillora account originally used for this purchase.",
+        "checkout_finished": "This purchase has finished. Refresh your access.",
+    ]
+
+    /// Purchase conflicts use actionable catalog copy in both languages. Other
+    /// English errors retain their contract; Chinese never treats server text as a key.
     static func serverError(status: Int, code: String, message: String, bundle: Bundle = .main) -> String {
+        if let key = purchaseErrorKeys[code] {
+            return bundle.localizedString(forKey: key, value: key, table: "Localizable")
+        }
         guard isSimplifiedChinese(bundle: bundle) else { return message }
         let key: String
         switch code {

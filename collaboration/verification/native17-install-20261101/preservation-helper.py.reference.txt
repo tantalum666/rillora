@@ -1,0 +1,79 @@
+"""Append only this release's work; do not recapture archives 1-58."""
+from pathlib import Path
+import datetime,json,os,re,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).parent
+DEST=ROOT/'collaboration/verification/native17-install-20261101'
+ARCHIVE=ROOT/'collaboration/archives/raw-work-059.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+
+excluded=[{'path':'archives001-058','reason':'immutable prior work; not resealed or downloaded'},
+          {'path':'.local-secrets','reason':'credentials, personal auth state, actual private provider bodies and maintenance capabilities'},
+          {'path':'DerivedData, dependency caches, machine-wide crash reports','reason':'reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected'}]
+selected=[]
+for base in [QA]:
+    for parent,dirs,names in os.walk(base):
+        parent=Path(parent)
+        for name in list(dirs):
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+            if parent==QA and (name.startswith('pre-') or name.startswith('final-publication')):reason='derived trusted policy/candidate scan materialization; result receipts retained separately'
+            if name in ['publication','private-ui','readable-staging','development-extracted','pre-build-publication','pre-test-publication','final-test-publication','final-test-publication-corrected','availability-fixture-publication'] or name.startswith(('local-publication','final-local-publication')):reason='duplicate publication/extracted app cache or personal authentication'
+            if base != QA and name=='speech':reason='fixed vendor model/runtime downloads, reproducible from source manifest and recorded deployed SHA256'
+            if reason or path.is_symlink():dirs.remove(name);excluded.append({'path':rel,'reason':reason or 'symlink'})
+        for name in names:
+            path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+            if name in ['preservation-plan.json']:reason='derived selection receipt regenerated after file capture plan'
+            if name=='post-request-summary.json':reason='unattributed raw request identifiers; safe aggregate retained'
+            if name=='archive-seal.log':reason='capture-time output; final readable receipt follows without resealing'
+            if name=='preserve-acceptance-work.py':reason='capturing helper is preserved separately as a readable reference after capture'
+            if reason or path.is_symlink():excluded.append({'path':rel,'reason':reason or 'symlink'})
+            else:selected.append((rel,path))
+plan={'files':len(selected),'bytes':sum(p.stat().st_size for _,p in selected),'excluded':excluded,
+      'paths':[r for r,_ in selected],'archive':ARCHIVE.relative_to(ROOT).as_posix()}
+(QA/'preservation-plan.json').write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n')
+if '--seal' not in sys.argv:
+    print(json.dumps({k:v for k,v in plan.items() if k!='paths' and k!='excluded'}));sys.exit()
+assert (QA/'closeout.json').exists(),'Write truthful final evidence before capture'
+assert not ARCHIVE.exists(),'Never overwrite an existing archive'
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True);DEST.mkdir(parents=True,exist_ok=True)
+patterns=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b',
+          rb'\b(?:sk_live_|rk_live_|sk_test_)[A-Za-z0-9]{20,}\b',rb'\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b']
+objects={};records=[];marker_reviews=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for rel,path in sorted(selected):
+    frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+    checked=data
+    if rel in {
+        'output/qa/rillora-native17-install-20261101/operator-image-context/src/config.ts',
+        'output/qa/rillora-native17-install-20261101/operator-ledger-image-context/src/config.ts',
+    }:
+        canonical=subprocess.check_output(['git','show','HEAD:apps/api/src/config.ts'],cwd=ROOT)
+        marker=b'!parsed.APPLE_IAP_PRIVATE_KEY.includes("-----BEGIN PRIVATE KEY-----")'
+        assert data==canonical and data.count(marker)==1, 'Format-marker classification must match immutable tracked source'
+        # Classify only this exact validation literal in the scan copy. The
+        # encrypted original remains byte-for-byte intact; no scanner policy changes.
+        checked=data.replace(marker,b'!parsed.APPLE_IAP_PRIVATE_KEY.includes("PUBLIC_PEM_FORMAT_MARKER")')
+        marker_reviews.append({'path':rel,'sha256':digest,'source':'HEAD:apps/api/src/config.ts',
+            'reason':'Exact tracked validation literal, not private key material; only scan copy classified'})
+    assert not any(re.search(pattern,checked) for pattern in patterns),'Credential pattern requires exclusion review: '+rel
+    blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]})
+    blob['paths'].append(rel)
+    records.append({'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()})
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip()
+archive=snapshot.seal_chunk(59,list(objects.values()),recipient)
+catalog=DEST/'catalog.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),
+         'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(r['bytes'] for r in records),
+         'archives':[archive],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'excluded':excluded,'credentialPatternMatches':0,'publicFormatMarkerReviews':marker_reviews,
+         'selection':'This workflow install/manual/provider-result receipts, original failed/passed API and native checks, result bundles, both immutable maintenance-image input snapshots, build/publish/deployment/verification helpers and safe cloud summaries. Previous native17 signed artifacts remain in archive58. Final receipts follow capture.',
+         'boundary':'No credentials, private authentication/device/provider bodies, database backups, VM disks, dependency/build caches or prior archive download. Actual Sandbox purchase and restore are verified; cancellation/expiry and final resubmission remain separate. Old1-58unchanged.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-product-audit-archive-') as temporary:
+    stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+    for name in [archive['path'],*summary['catalogFiles']]:
+        target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+    result=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'locallyVerified':result['passed']}))

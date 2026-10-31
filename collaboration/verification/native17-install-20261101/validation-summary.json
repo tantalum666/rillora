@@ -1,0 +1,25 @@
+{
+  "at": "2026-10-31T20:38:38.375578+00:00",
+  "apiTypecheckPassed": true,
+  "finalApiCasesPassed": 20,
+  "nativeLocalizationCasesPassed": 9,
+  "newApiBehavior": "operator read-only metadata only",
+  "initialFixtureFailure": {
+    "suitesFailedBeforeTests": 2,
+    "casesSkipped": 20,
+    "reason": "old local0108draft checksum"
+  },
+  "ledgerExtensionInitialFailure": {
+    "casesFailed": 9,
+    "casesPassed": 11,
+    "typecheck": "nullable test access",
+    "sql": "UUID/text comparison"
+  },
+  "fixes": "Read correct UUID types and guard optional test row; full20cases and typecheck pass",
+  "ordinaryApiImageUnchanged": true,
+  "native17BinaryUnchangedByTheseSourceFixes": true,
+  "nativeStaticLocalizationChecksPassed": 9,
+  "finalLedgerDiagnosticApiCasesPassed": 20,
+  "finalLedgerDiagnosticTypecheckPassed": true,
+  "knownPurchaseErrorCopyBothLanguages": true
+}

@@ -7,6 +7,7 @@ import { withCommercePlannerDatabase, type DatabasePool } from '../src/db.js';
 import { ApplePurchasePreflight } from '../src/apple-purchase-preflight.js';
 import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 import { assertNoForeignPurchase } from '../src/commerce-purchase-conflicts.js';
+import { inspectAppleReviewPurchases } from '../src/apple-review-purchase-diagnostics.js';
 
 const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_purchase_test', 'continuity_apple_purchase_test');
 let pool:DatabasePool, purchases:ApplePurchasePreflight, plannerId:string, plannerPublicId:string;
@@ -69,6 +70,39 @@ describe('ordinary Apple purchase preflight with a local, synthetic catalog',()=
     await pool.query("update app.commerce_market_policies set sales_enabled=true where service_market_code='GLOBAL_US'");
     await pool.query('update app.commerce_runtime_policy set production_entitlements_enabled=false');
     await expect(purchases.quote(plannerId,selection)).rejects.toMatchObject({code:'apple_purchase_unavailable'});
+  });
+  it('inspects only enrolled Sandbox attempts without exposing tokens or changing their state',async()=>{
+    const prepared=await input(),order=await purchases.prepare(prepared);
+    await purchases.transition({plannerId,orderReference:order.orderReference,action:'start'});
+    await pool.query("insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '1 day','Synthetic inspection fixture')",[plannerId]);
+    const client=await pool.connect();
+    const inspect=async(ids=[plannerId])=>{
+      await client.query('begin isolation level repeatable read read only');
+      try{return await inspectAppleReviewPurchases(client,ids);}
+      finally{await client.query('rollback');}
+    };
+    try{
+      expect(await inspect()).toEqual([]); // A Production purchase is never an inspection result.
+      await pool.query("update app.commerce_orders set provider_environment='sandbox' where public_id=$1",[order.orderReference]);
+      const before=(await pool.query('select to_jsonb(s) as row from app.commerce_apple_purchase_sessions s')).rows;
+      const rows=await inspect();
+      expect(rows).toHaveLength(1);
+      expect(rows[0]).toMatchObject({order_reference:order.orderReference,state:'started',amount_minor:'9999',currency_code:'USD',
+        storefront_country_code:'USA',consent_version:applePurchaseTerms.version,has_original_transaction:false,
+        receipt_price_milliunits:null,subscription_state:null,last_event_status:null});
+      expect(JSON.stringify(rows)).not.toMatch(/app_account_token|client_nonce|identity_digest|subject|email|signed_transaction/);
+      expect(await inspect(['999999999'])).toEqual([]);
+      expect((await pool.query('select to_jsonb(s) as row from app.commerce_apple_purchase_sessions s')).rows).toEqual(before);
+      await pool.query("update app.commerce_apple_purchase_sessions set state='completed'");
+      expect((await inspect())[0]).toMatchObject({state:'completed',receipt_price_milliunits:null});
+      await pool.query("update app.commerce_apple_purchase_sessions set state='closed',created_at=now()-interval '8 days',updated_at=now()-interval '8 days'");
+      expect(await inspect()).toEqual([]);
+      await pool.query("update app.commerce_apple_purchase_sessions set state='started'");
+      expect((await inspect())[0]?.state).toBe('started'); // Unresolved attempts do not disappear with age.
+      await pool.query('delete from app.commerce_validation_accounts where planner_id=$1',[plannerId]);
+      expect(await inspect()).toEqual([]); // A caller-supplied ID cannot bypass enrollment.
+      await expect(inspect(['not-a-planner'])).rejects.toThrow('Invalid bounded');
+    }finally{client.release();}
   });
   it('requires the exact current quote and a separate unchecked-to-accepted subscription proof',async()=>{
     const prepared=await input();

@@ -51,6 +51,7 @@ describe('bounded Apple release configuration in an isolated database', () => {
   it('inspects without writes and refuses stale state before preparing any product', async () => {
     const original = await configureProductionApple(client, 'inspect');
     expect(original.before).toEqual(original.after);
+    expect(original.reviewPurchases).toEqual([]);
     await expect(configureProductionApple(client, 'prepare', { expected: '0'.repeat(64) })).rejects.toThrow('changed after inspection');
     expect((await configureProductionApple(client, 'inspect')).after.sha256).toBe(original.after.sha256);
   });
