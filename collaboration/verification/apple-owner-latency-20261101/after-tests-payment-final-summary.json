@@ -1,0 +1,283 @@
+{
+  "summary": {
+    "status": "SUCCEEDED",
+    "durationMs": 62395,
+    "counts": {
+      "passed": 44,
+      "failed": 0,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": []
+  },
+  "testCases": [
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeBeforeServerReceiptReturnsCannotFinishForTheNewSession",
+      "status": "passed",
+      "durationMs": 41
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeDuringAppRefreshDiscardsResultAndPreventsDuplicatePrompts",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testAccountChangeDuringPreparationCannotOpenAnotherOwnersPaymentSheet",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testButtonCannotAcceptAQuoteThatChangedBeforeItsTaskStarts",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testCanceledAppAuthenticationStaysQuietAndCanBeRetried",
+      "status": "passed",
+      "durationMs": 21
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testCatalogPriceRemainsVisibleWhenServerDisallowsNewPurchase",
+      "status": "passed",
+      "durationMs": 7
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedApplePriceAfterPreparationClosesOldOrderWithoutReceiptIntake",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedPriceRequiresAnotherPurchaseButtonTap",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testChangedQuoteReturnsTheNewPriceForFreshConsent",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testCleanSandboxHistoryClearsConflictAndReusesTheExistingOrderNonce",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testExpiredForeignHistoryDoesNotForceSyncOrAllowAnotherAccountToRepurchase",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testForeignOwnerAndSandboxNeverReachProductionReceiptIntake",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testForeignReceiptReturnedByPurchaseIsExplainedWithoutFinishingOrCancelingIt",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testHistoryOutageIsNotPresentedAsHavingNoPurchases",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testInconsistentFinishResponseIsRejectedEvenByInjectedService",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testMissingAccountTokenIsUnknownOwnershipNotAnotherNamedAccount",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testMissingAppReceiptIsRefreshedOnlyAfterExplicitRestore",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testMissingHistoryUsesExplicitSyncThenServerVerification",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOlderCatalogResponseCannotReplaceNewerDisplayedQuote",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOldOwnedPurchaseReadbackCannotReplaceNewAccountPendingState",
+      "status": "passed",
+      "durationMs": 8
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOnlyCommittedServerStateCanFinishThenRestoreRetries",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOpeningPageAndMissingDisplayedQuoteCannotPurchase",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOwnedExistingPurchaseReconcilesWithoutOpeningAnotherPaymentSheet",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testOwnedVerifiedHistoryRestoresWithoutForcingSystemAuthentication",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPartialHistoryIsNotReportedAsCompletelyRestored",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPendingAndCanceledOutcomesArePreservedWithoutFinishing",
+      "status": "passed",
+      "durationMs": 3
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPendingCheckDoesNotRefreshAnUnknownAppReceipt",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPendingCheckNeverForcesAuthenticationOrLoadsHistoricalStatus",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPendingCheckRecoversServerOwnedUnfinishedTransactionBeforeConsideringForeignCurrentHistory",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPurchaseChecksForeignExpiredHistoryBeforeCreatingOrChargingANewOrder",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testPurchaseUsesServerIntentTokenAndRestoreRecoversThatOwnedTokenWithoutANewOrder",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testRestoreProcessesOwnedCurrentPurchaseAlongsideUnrelatedAccountHistory",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testRestoresHistoricalMonthlyFromSignedStorefrontAfterCountryChange",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testReviewBuildRejectsAProductionTransactionAndUnknownAppReceiptCannotPurchase",
+      "status": "passed",
+      "durationMs": 4
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testReviewPurchaseUsesSandboxContractAndNeverFinishesOnProductionAcknowledgement",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testServerOwnershipConflictRemainsVisibleWithoutFinishingOrCancelingOrder",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testStoreKitPriceMismatchCannotShowOrStartAnOffer",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testStoreKitReceivesTheExactDisplayedMoneyAndCurrency",
+      "status": "passed",
+      "durationMs": 2
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testUnavailableHistoryCannotOpenANewPaymentSheet",
+      "status": "passed",
+      "durationMs": 27
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testUnfinishedForeignPurchaseIsNotSubmittedFinishedOrRepurchased",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testUnverifiedPendingHistoryDoesNotClaimNoPurchaseOrForceSync",
+      "status": "passed",
+      "durationMs": 1
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testUnverifiedRefreshedAppCannotReachPurchaseOrReceiptIntake",
+      "status": "passed",
+      "durationMs": 1
+    }
+  ]
+}

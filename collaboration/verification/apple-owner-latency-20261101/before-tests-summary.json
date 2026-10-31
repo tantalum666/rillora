@@ -1,0 +1,105 @@
+{
+  "summary": {
+    "status": "FAILED",
+    "durationMs": 65865,
+    "counts": {
+      "passed": 0,
+      "failed": 3,
+      "skipped": 0
+    },
+    "target": "simulator"
+  },
+  "diagnostics": {
+    "warnings": [],
+    "errors": [],
+    "testFailures": [
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testForeignReceiptReturnedByPurchaseIsExplainedWithoutFinishingOrCancelingIt",
+        "message": "XCTAssertTrue failed",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:46"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testForeignReceiptReturnedByPurchaseIsExplainedWithoutFinishingOrCancelingIt()",
+        "message": "XCTAssertTrue failed"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:29"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:30"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:31"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+        "message": "XCTAssertTrue failed",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:32"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet()",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet()",
+        "message": "XCTAssertTrue failed"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:15"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain",
+        "message": "XCTAssertEqual failed: (\"3\") is not equal to (\"1\")",
+        "location": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift:16"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain()",
+        "message": "XCTAssertEqual failed: (\"1\") is not equal to (\"0\")"
+      },
+      {
+        "suite": "ApplePurchaseCoordinatorTests",
+        "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain()",
+        "message": "XCTAssertEqual failed: (\"3\") is not equal to (\"1\")"
+      }
+    ]
+  },
+  "testCases": [
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testForeignReceiptReturnedByPurchaseIsExplainedWithoutFinishingOrCancelingIt",
+      "status": "failed",
+      "durationMs": 295
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testKnownForeignCurrentPurchaseCannotCreateAnotherOrderOrOpenPaymentSheet",
+      "status": "failed",
+      "durationMs": 5
+    },
+    {
+      "suite": "ApplePurchaseCoordinatorTests",
+      "test": "testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain",
+      "status": "failed",
+      "durationMs": 7
+    }
+  ]
+}

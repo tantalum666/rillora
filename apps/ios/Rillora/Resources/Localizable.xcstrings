@@ -2104,6 +2104,23 @@
         }
       }
     },
+    "Apple could not confirm which Rillora account owns this purchase. Contact support before subscribing again.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple could not confirm which Rillora account owns this purchase. Contact support before subscribing again."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "暂时无法确认这笔 Apple 购买属于哪个 Rillora 账号。请先联系支持团队，避免重复订阅。"
+          }
+        }
+      }
+    },
     "Apple could not verify a purchase. It has not changed your access.": {
       "extractionState": "manual",
       "localizations": {
@@ -2151,6 +2168,23 @@
           "stringUnit": {
             "state": "translated",
             "value": "Apple 未返回有效的授权码。"
+          }
+        }
+      }
+    },
+    "Apple has not returned a matching purchase yet. Check again shortly; do not start another purchase.": {
+      "extractionState": "manual",
+      "localizations": {
+        "en": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple has not returned a matching purchase yet. Check again shortly; do not start another purchase."
+          }
+        },
+        "zh-Hans": {
+          "stringUnit": {
+            "state": "translated",
+            "value": "Apple 暂未返回与当前账号匹配的购买结果。请稍后再检查，先不要重复购买。"
           }
         }
       }
@@ -17921,13 +17955,13 @@
         "en": {
           "stringUnit": {
             "state": "translated",
-            "value": "Use the Rillora account originally used for this purchase."
+            "value": "This Apple purchase is linked to another Rillora account. Use the Rillora account originally used for this purchase."
           }
         },
         "zh-Hans": {
           "stringUnit": {
             "state": "translated",
-            "value": "请使用最初进行此购买的 Rillora 账号。"
+            "value": "这笔 Apple 购买关联的是另一个 Rillora 账号。请登录当时购买时使用的 Rillora 账号。"
           }
         }
       }

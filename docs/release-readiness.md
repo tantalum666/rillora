@@ -2,9 +2,17 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: WEB LIVE / APPLE14 REJECTED / RELEASE PRODUCT AUDIT AND CANDIDATE ACCEPTANCE IN PROGRESS / RESUBMISSION HELD
-Last updated: 2026-10-31 (Asia/Shanghai)
+Last updated: 2026-11-01 (Asia/Shanghai)
 
-## October31当前发布状态
+## November1当前发布状态
+
+[购买归属修复](apple-owner-latency-20261101.md)已完成本机44项购买协调测试和9项语言检查；另19项同轮未变化检查沿用。17从16隔离源码准备，手机断开、尚未安装。Owner在16进入购买操作并报告归属错误；审核Web实际读到started意图，尚无本次成功交易／权益／恢复／到期证据。保留原交易归属，复用已有独立Sandbox tester的元数据线索，实际凭据／历史仍待验证。普通AppleID不被硬编码，不能为测试放宽签名或跨账号权益。
+
+两API／三套Web已部署、Stripe只读状态已核对；不重复部署。当前下一步是手机连接后直装17并由Owner完成独立Sandbox购买验收，最终提审／TestFlight继续暂停。下面October31安装16和初始登录状态为当时检查点。
+
+## HISTORICAL — October31发布状态
+
+本日后续：Owner恢复认证后，本轮两API与三套Web修正已实际部署并核对，StripeLive状态／价格／回调已只读复核，真实审核Web和官网双语UI已确认。原生16不重装；Owner现接管手动登录、Sandbox购买和一次恢复。当前仍没有新的原生购买成功结果，最终提审／TestFlight暂停；详细状态只看[当前交接](handoff.md)。下表中较早“待部署／认证”按这条实际结果更新理解。
 
 Apple在October30拒绝1.0(14)，涉及2.2及2.1(b)，不能再使用下方“等待审核”的历史结论。购买资格过期和普通页面测试呈现已在[原修复](app-review-remediation-20261030.md)处理；15已直装并读回，专用审核Web登录及服务器报价有[独立证据](app-review-sandbox-acceptance-20261031.md)，原生审核登录和真实Apple购买／恢复／到期仍未完成。
 
@@ -12,8 +20,8 @@ Owner现已恢复镜像，要求完成当前验收后[彻查正式产品完整�
 
 | 当前项 | 准确状态与剩余工作 |
 | --- | --- |
-| 正式Web与官网 | 原功能已开放，Web年费USD88.99保持；本轮修正尚待完成发布与线上读回，当前不扩大收费范围。 |
-| 原生审核替代候选 | 16已开发签名原位安装、设备读回；与15只差移除无对应操作的安全管理预告，原支付逻辑与下一版隔离保持。受保护审核密码读取等待本人验证而超时，镜像随后重新锁定；不重置有效密码或使用明文备份绕过。 |
+| 正式Web与官网 | 本轮修正已部署；正式Web、Preview和官网的变化文件／发布记录及真实双语UI已核对，WebUSD88.99和原收费范围保持。 |
+| 原生审核替代候选 | 16已开发签名原位安装、设备读回；与15只差移除无对应操作的安全管理预告，原支付逻辑与下一版隔离保持。受保护读取已由Owner完成，原密码在正式Web成功；Owner现接管原生登录／Sandbox购买，Agent停止镜像输入。 |
 | Apple实际购买闭环 | 审核登记有效至November29 12:00Z，价格USD119.99／HKD888；服务器报价和旧版本购买不能替代当前修复后的完整验证，未订阅不能冒充过期订阅。 |
 | 审核材料与提交 | 原14仍Rejected；最终候选、有效审核账号、实际验收结果及截图／说明需一致。当前不上传、重提或发送未完成的回复草稿。 |
 | 下一版内容、HealthKit、Watch、Duo | 与审核替代候选隔离；各自已实现、本机通过与真实设备／分发缺口仍按聚焦合同保留，不把未分发能力写成当前iOS功能。 |

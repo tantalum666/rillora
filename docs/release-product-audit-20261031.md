@@ -1,9 +1,21 @@
 # 正式产品完整性复查 — 2026-10-31
 
-Status: LOCAL REPAIRS VERIFIED / BUILD16 INSTALLED / CLOUD AND ACTUAL SANDBOX ACCEPTANCE BLOCKED BY AUTHENTICATION / RESUBMISSION HELD
-Last updated: 2026-10-31 (Asia/Shanghai)
+Status: API AND WEB REPAIRS DEPLOYED / REAL WEB AND STRIPE READBACK VERIFIED / MANUAL NATIVE ACCEPTANCE PENDING / RESUBMISSION HELD
+Last updated: 2026-11-01 (Asia/Shanghai)
 
 Owner已解锁镜像并要求继续上一轮，随后彻查整个项目是否是真实可发布的产品，直接修复测试呈现及未完成产品问题。这恢复当前候选必要的真机操作，取代上一轮临时断连；最终重新提审与TestFlight暂停仍有效。当前价格、真实内容、既有交易和FanPass保持。
+
+## November1接续：真实购买发现归属与等待问题
+
+Owner已手动进入16的购买流程，报告Apple验证后等待30–60秒，再出现原Rillora账号提示。[修复合同](apple-owner-latency-20261101.md)记录客户端问题、保留的服务器归属边界、44项最终购买协调检查及隔离17候选。审核Web实际读取到started意图，不能记作成功支付；仍缺当前手机交易／权益／恢复／到期和实际耗时结果。17尚未安装，设备当前断开。
+
+原October31云端部署与Stripe只读核验保持，无新API／Web发布。台前调度已恢复原on；已清理已知临时密码引用，系统剪贴板已不是该密码，因此没有覆盖用户的新内容。镜像输入保持停止。以下章节保留原复查时点的发现／证据；其中初始未部署、等待认证和未提交原生密码的描述已被本节及October31部署结果取代，不再是活动下一步。
+
+## October31后续实际部署与手动接续
+
+Owner恢复AWS、Stripe及Mac验证后，已将原冻结修正依次部署到PreviewAPI／Web、正式API／Web及官网；两套任务均healthy、镜像匹配、服务1/1，就绪及私有路由保护正常。所有参数保持，正式维护Lambda／IAM动态引用模板未改变且资源身份相同。289个候选文件有48个变化文件新HTTP验证及241个未变哈希沿用，三份实际S3发布记录匹配。真实审核Web及官网的中英文新文案已实看；Stripe真实账户收款／提现／资料提交为true，年价active／USD8899／year，正式18事件回调启用，本周没有事件，不宣称新投递验收。下面较早“未部署／待认证”段落保留本地检查点含义，由本节取代。
+
+原生16未重装。审核密码在正式Web再一次成功；手机粘贴通路仍不稳定，Owner已批准系统pbcopy并选择自己手动操作。Agent已停止镜像点击／输入，当前是正确审核邮箱的密码页；尚无本轮原生登录／购买／恢复／到期通过结果。临时台前调度原值on、当前off，手动验收后恢复；临时凭据／剪贴板在使用或暂停后清理。当前新增证据在output/qa/rillora-release-rollout-20261031/，最终Git保存待本次接续收尾；Apple重提／TestFlight仍暂停。
 
 ## 顺序与范围
 

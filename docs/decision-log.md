@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-31 (Asia/Shanghai)
+Last updated: 2026-11-01 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -3882,3 +3882,28 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner confirms the mirror is unlocked and explicitly resumes unfinished acceptance. This supersedes the temporary phone-disconnection pause, not final resubmission or TestFlight holds.
 - Owner identifies the unacceptable testing text in Apple's submitted14screenshot and requests a thorough project-wide product-readiness review after the current work, with fixes. Inspect user-visible copy, real task completion, ordinary-account/payment behavior, runtime/release configuration and current/next-version isolation; cosmetic removal alone cannot prove readiness.
 - Reuse completed install/Web/provider evidence and perform only new or changed-path checks. Keep original prices, real data, transaction ownership and FanPass. No sub-agent or cloud CI; no fabricated successful payment, expired subscription or completed feature.
+
+
+## 2026-10-31 — Resume existing authentication and deploy verified repairs
+
+- Owner explicitly requests reopening AWS, Stripe and Mac authentication, then deployment and actual purchase acceptance; final resubmission and TestFlight remain held. Existing frozen artifacts and completed tests are reused, not rebuilt.
+- Owner confirms AWS login and asks whether mirroring is needed now. Cloud deployment and Stripe readback proceed without mirroring; this does not cancel the remaining native acceptance. Protected reviewer credential access is deferred until needed to avoid another premature user-presence timeout.
+- Only existing Rillora account/permissions are resumed. Keep data, prices, sales flags, transaction ownership and FanPass unchanged. Stripe Live inspection stays read-only; real acceptance means provider Sandbox, not manufactured Live self-payments.
+
+
+## 2026-10-31 — Explicit system clipboard fallback and manual phone takeover
+
+- After documented clipboard/mirroring failures, Owner explicitly selects the built-in macOS pbcopy method for the existing protected synthetic reviewer password, solely for the intended Rillora login, with cleanup and no plaintext file/chat output. This is a bounded input-method authorization, not permission to change passwords or general OS security.
+- Owner then says mirroring is too slow and chooses manual operation. Stop agent mirroring clicks/input; provide concrete login, matching-price/Sandbox purchase and single-restore steps. Native outcomes remain unverified until actual results are received and checked. Restore the temporary Stage Manager setting and clear credential references at completion/pause.
+
+
+## 2026-10-31 — Owner requests the dedicated review login directly
+
+- Owner explicitly asks to receive the account and password directly in this chat for manual Rillora login. This narrowly supersedes the earlier clipboard-only/no-chat handling for this existing synthetic reviewer credential.
+- Return only that reviewer username/password to the Owner. Do not include Apple/AWS/Stripe credentials, change the password, or write secret values into project documents, QA receipts, Git or public material. Mirroring input remains stopped; native acceptance is still unverified.
+
+## 2026-11-01 — Keep purchase ownership while repairing repeated authentication
+
+- Owner reports30–60second Apple authentication/pending-check delay followed by the original-Rillora-account warning, and asks how to test without weakening security. No email-specific Apple binding is a product rule: preserve signed transaction/token/original-transaction ownership; do not transfer the old subscription or grant synthetic entitlement.
+- Repair the pending/restore distinction, surface foreign/unknown ownership, and inspect known expired ownership before opening another payment sheet. Retain durable started/pending intents and existing nonce recovery; no forced timeout/cancellation of an uncertain Apple payment.
+- Prepare isolated17from16for the existing direct-install/manual-phone workflow. Retain existing prices/data/sales flags/FanPass and final resubmission/TestFlight hold. Prefer the already documented purpose-limited Sandbox tester before creating another; metadata is not current provider login/history verification. [Contract](apple-owner-latency-20261101.md).

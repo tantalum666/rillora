@@ -1,8 +1,14 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-31 (Asia/Shanghai)
+Last updated: 2026-11-01 (Asia/Shanghai)
 
-## October31 release-product audit and local repair checkpoint
+## November1 ownership repair and completed cloud rollout
+
+[Current repair](apple-owner-latency-20261101.md) preserves transaction ownership while removing redundant Apple authentication from pending checks and checking foreign/expired history before a new charge. Isolated17-r2is signed locally; the phone is disconnected, so no install or new successful payment is claimed. The preceding October31API and three Web deployments are complete, with price/data/sale controls unchanged.
+
+[Readable receipts and new archive58](../collaboration/verification/apple-owner-latency-20261101/README.md) preserve1,164paths/663objects/45,379,030encrypted bytes, locally authenticated. They include original failing/passing native tests, both unpublished17candidate artifacts and prior rollout evidence. Credentials, raw private provider/device/authentication material and caches are excluded; old1–57are unchanged. Exact-base local publication and fresh new-archive remote verification follow separately; resubmission/TestFlight remain held.
+
+## HISTORICAL — October31 release-product audit and local repair checkpoint
 
 [The release-product audit](release-product-audit-20261031.md) repairs Web payment-environment/account-state confusion, missing failure feedback, obsolete public testing copy, a native roadmap footer and stale active release status. Build16is signed, exported and installed in place; API/App/Preview/WWW artifacts are prepared but not deployed. Actual native Sandbox acceptance and provider/cloud readbacks remain blocked by observed authentication. Final resubmission/TestFlight remain held.
 

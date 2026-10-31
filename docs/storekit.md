@@ -4,10 +4,14 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: REVIEW REJECTION REMEDIATED; LOCAL15 READY; OWNER HOLDS RESUBMISSION
-Last updated: 2026-10-30 (Asia/Shanghai)
+Status: OWNERSHIP AND PENDING FLOW FIX VERIFIED LOCALLY; ISOLATED17 PREPARED; OWNER HOLDS RESUBMISSION
+Last updated: 2026-11-01 (Asia/Shanghai)
 
-## October30 rejection remediation — current
+## November1 purchase ownership and pending-check repair — current
+
+[Current repair](apple-owner-latency-20261101.md) keeps server transaction/account binding and exact money/environment validation. Pending checks read current/unfinished transactions without forced synchronization or full status queries. Known foreign history, including expired subscriptions, is checked before another payment sheet; owned receipts reconcile without a second order, and account-switch late replies cannot overwrite the new session.44coordinator cases pass;19unchanged StoreKit/CommerceStore cases retain this workflow's passing evidence;9localization checks pass. Isolated17is prepared from16, with device installation and actual Sandbox acceptance still pending. No ownership transfer, historical clearing, server redeployment, price change, TestFlight or review resubmission.
+
+## HISTORICAL — October30 rejection remediation
 
 Apple rejected1.0(14)under2.2and2.1(b). The submitted screenshots already loadUSD119.99but cannot purchase: both dedicated-reviewer enrollment and API review expiry endedOctober27, before reviewOctober30. [Current remediation](app-review-remediation-20261030.md) renews only that reviewer and the runtime deadline throughNovember29 12:00Z, deploys7-day advance monitoring, and removes normal-page test framing without changing signature, money, ownership or finish guards. All other catalog/sales/data controls remain unchanged. Local1.0(15)is prepared from the exact14native baseline; Owner says do not resubmit. No new upload/TestFlight or actual App Store purchase is claimed. The dated sections below remain historical checkpoints.
 

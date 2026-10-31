@@ -1,32 +1,28 @@
 # Rillora 当前交接
 
-Status: LOCAL REPAIRS VERIFIED / BUILD16 INSTALLED / AWS AND STRIPE AUTHENTICATION PENDING / NATIVE ACCEPTANCE OPEN / RESUBMISSION HELD
-Last updated: 2026-10-31 (Asia/Shanghai)
+Status: API AND WEB DEPLOYED / NATIVE OWNERSHIP FIX VERIFIED LOCALLY / ISOLATED17 PREPARED / PHYSICAL ACCEPTANCE PENDING
+Last updated: 2026-11-01 (Asia/Shanghai)
 
 ## 当前任务
 
-Owner已解锁镜像，要求先续接当前候选真实验收，再彻查整个项目是否为可正式发布的产品并直接修复。[当前合同](release-product-audit-20261031.md)取代手机暂断；[上一交接](handoff-history-20261031-before-release-product-audit.md)为HISTORICAL。重提与TestFlight仍暂停，不改价格、真实数据、交易归属或FanPass，不用云端CI／子代理。
+Owner在原生16购买／检查待处理购买时收到Apple认证，等待30–60秒后出现原Rillora账号提示，要求修复并说明测试与安全边界。[当前合同](apple-owner-latency-20261101.md)保留原交易归属，修复多余同步和付款前核对。Owner手动操作手机，Agent不做镜像输入。旧手动接续已移入[HISTORICAL记录](handoff-history-20261101-before-owner-fix.md)。最终提审／TestFlight保持暂停。
 
 ## 已完成
 
-沿用a7c7ea639／archive56的专用审核Web同密码登录及USD119.99／HKD888服务器Sandbox报价，不重复验证。恢复镜像后，非秘密长文本／符号输入可见部分吻合；诊断输入已清空、密码隐藏，没有提交新密码或Apple购买。随后16只在15隔离源码上移除无对应操作的安全管理预告，签名与两个导出通过，原配对iPhone／iOS27.2原位安装读回1.0(16)，没有卸载。
+- October31两API／三套Web修正已实际部署：镜像45bd2d47、两服务healthy，参数／资源身份保持；48变化文件HTTP取回，241未变哈希沿用。正式审核Web及官网双语实看，Stripe原RilloraLive状态／USD8899年价／18事件回调只读核对。无新真钱交易，FanPass未动。
+- 待处理检查不再强制Apple同步或查询完整订阅历史；新购前核对当前、未完成及过期历史，避免开另一账号的支付单；原nonce可恢复，账号切换迟到响应受保护。服务器签名、金额、原交易归属、finish及既有数据不改。
+- 原代码3项红测保留；最终44项购买协调测试、9项语言检查通过。同轮19项StoreKit SDK／CommerceStore结果沿用，63个不同原生用例有通过证据，不冒称最终整套重跑。
+- 隔离17从16复制，仅三个运行Swift文件、三个语言键及测试改变；无下一版HealthKit／Watch／Duo／内容。第一份17中间包与最终r2分开保存，尚未安装或上传。
+- 审核Web实际读到一笔started意图和一个归属token；不是成功支付。找到既有Keychain「Rillora StoreKit Sandbox Tester 3」元数据，尚未读取密码或验证当前Apple状态。原购买不迁移、历史不删除、权益不伪造。
 
-已修Web把Apple审核账号资格误作Stripe测试环境、普通套餐测试后缀、404静默失败和新购状态不清楚；既有购买限制未放宽。实际官网旧iOS测试文案及提前暗示公开App入口已改；当前发布总表、付款合同与过期审核日期已纠正。[完整覆盖／报告](release-product-audit-20261031.md)区分当前、下一版、DEBUG及真实限制。
+## 证据边界与阻塞
 
-本机23项Web聚焦、29项API边界、27项浏览器均通过；最后新增的只读可购买／停售断言单独1项通过、16项未选执行。Web完整首轮217／220通过，法律产物目标修正后该组8项通过，合计212非法律＋8法律均有证据，未重跑整套。原API迁移失败是两个本机库的提交前0108草稿，旧库重命名保留后新建空夹具库；生产回执与源码吻合，迁移源码和线上未动。所有失败保留。
+原手机目前断开，已告知Owner连接并解锁即可原位直装，不需要镜像。实际新交易、恢复、权益、到期及手机等待时间仍未完成，不能把本机检查或旧HKD888交易当作本次通过。
 
-正式App113文件、Preview110文件、官网66文件／28页、API镜像45bd2d47均已冻结；API为ARM64／node用户／Node22.23.4。官网候选中英文实际打开并截图；正常公开APIready200、未认证MCP401、两份授权发现200。新镜像／静态修正没有部署。隔离构建VM已经停止，其他项目环境未启动。原45购买逻辑＋1本地StoreKit SDK及其他未变验证沿用原提交，不重跑。
+App Store Connect账号管理实际authResult=FAILED且只显示加载画面，没有可操作登录表单；未创建或更改tester。优先核对已有独立tester，不要求改iCloud／主商店账号。台前调度已恢复on；已知临时密码引用已清理，剪贴板已不是该密码，未覆盖用户新内容。
 
-## 阻塞及边界
-
-受保护审核密码读取需要Secure Enclave本人验证，本轮等待超时；镜像随后再次显示Mac验证页。已通过异步问题说明，不用旧明文备份绕过。等Owner回复后再唤起必要读取，仅放会话内存。原生审核登录原因、当前16真实Sandbox购买／权益／恢复／实际过期仍未完成。
-
-AWS实际过期；原密码已复用，Chrome仍停MFA，CLI等待已经超时。Owner完成网页验证后新发CLI登录并复用现有恢复会话，不重复索取已完成认证。Stripe插件未经认证、原CLI无可用密钥，Chrome仍停密码页；只要求原Rillora登录，不涉及FanPass。两项异步问题已挂起，认证恢复前不声称当前云配置／提供方回读或部署完成。
-
-源码／产物26b68e066已推到PR10（开放、未合并），精确diff与固定base本机发布门一致；archive57独立远端新下载认证528对象／665路径通过，云端作业总数仍314、最新仍October23。最后回执普通Git保存，不重封归档或重跑业务测试。
-
-原生替代包无HealthKit／Watch／Duo／下一版内容；未上传Apple、重提、发送回复或发TestFlight。预检明确未通过五项活动发布门，native包形状无问题不等于产品可发布。614文件是源码盘点，45条文案逐类追踪不是全库逐行／渗透测试。新归档与Git精确回执在[保存入口](../collaboration/verification/release-product-audit-20261031/README.md)记录，旧1–56不重做。
+本轮证据：output/qa/rillora-apple-owner-latency-20261031/及原部署output/qa/rillora-release-rollout-20261031/。Git最终保存接续进行；旧archives1–57不重封或重下，无子代理或云端CI。
 
 ## 唯一下一步
 
-恢复实际被阻断的既有认证后，优先续接16专用审核原生登录和真实Sandbox闭环；AWS可用时复用冻结产物按API先于Web、静态资源先于HTML部署并读回，Stripe只核对当前Rillora Live配置。已有结果沿用，不重新提审或发TestFlight。
+手机连接后安装已准备的最终17，Owner用独立Apple Sandbox身份与原专用Rillora审核账号完成购买／一次恢复，Agent核对服务器交易与权益并补实际到期场景；保留已完成云端／本机证据，不重复认证、部署或重提。若已有tester实际失效，再准备新tester，不把历史元数据当可用性证明。

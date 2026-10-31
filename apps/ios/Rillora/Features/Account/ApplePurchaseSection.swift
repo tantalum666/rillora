@@ -52,7 +52,7 @@ struct ApplePurchaseSection: View {
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(RilloraPrimaryActionButtonStyle())
-                    .disabled(purchase.busy || displayedQuote == nil)
+                    .disabled(purchase.busy || displayedQuote == nil || purchase.purchaseBlockedByAccount)
                     .accessibilityIdentifier("apple-purchase.subscribe")
                     if displayedQuote == nil, purchase.catalogProduct != nil, !purchase.isLoadingQuote {
                         Text(String(localized: "Purchases are temporarily unavailable. Pull down to try again."))
@@ -69,7 +69,10 @@ struct ApplePurchaseSection: View {
             }
             .padding(.vertical, 8)
             Button {
-                Task { await purchase.restore() }
+                Task {
+                    if purchase.pending == nil { await purchase.restore() }
+                    else { await purchase.checkPendingPurchase() }
+                }
             } label: {
                 Label(purchase.pending == nil ? String(localized: "Restore purchases") : String(localized: "Check pending purchase"), systemImage: "arrow.clockwise")
             }

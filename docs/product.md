@@ -5,9 +5,17 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-10-31 (Asia/Shanghai)
+Last updated: 2026-11-01 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-11-01 购买归属与等待修复
+
+Owner在原生16报告购买／待处理检查先要求Apple验证、等待后提示原Rillora账号，要求修复并明确测试方法。[本轮合同](apple-owner-latency-20261101.md)保留签名交易与原账号归属，移除待处理检查的强制同步，并在新付款前处理现有／过期外账号历史。隔离17只本机准备；待手机连接后直装、Owner手动Sandbox验收。两API和三套Web的October31部署已完成，原价格／数据／收费／FanPass保持；不重提或TestFlight。
+
+## 2026-10-31 完成Web修正部署，原生转本人手动验收
+
+Owner恢复AWS／Stripe／Mac验证后，本轮两API与三套Web修正已实际部署并核对，原生仍为已安装16。Owner随后明确自己手动操作手机，Agent停止镜像点击／输入；仅按Owner指定的系统pbcopy准备原审核凭据并提供步骤。价格、数据、收费及FanPass保持；当前尚无新的原生购买结果，重提／TestFlight继续暂停。[当前接续](handoff.md)与[结果合同](release-product-audit-20261031.md)分别记录已部署和待验收，不以工具输入问题推断密码失效。
 
 ## 2026-10-31 恢复真机并彻查正式产品完整性
 

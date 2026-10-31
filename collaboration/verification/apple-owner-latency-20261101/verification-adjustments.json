@@ -1,0 +1,24 @@
+{
+  "at": "2026-10-31T07:39:35.120080+00:00",
+  "initialFailures": [
+    {
+      "step": "ECS readback",
+      "cause": "CloudFormation deployment role does not grant ECS DescribeServices",
+      "correction": "Use existing rillora-operator read profile, as in the prior read-services helper. No IAM policy or permission changed."
+    },
+    {
+      "step": "Preview readiness probe",
+      "observed": "/api/health/ready returned404 while private API remained401 and task healthy",
+      "cause": "Preview retains the /api prefix; readiness is exposed at the existing direct API endpoint /health/ready. Production has a different router.",
+      "priorEvidence": "October22probe-api.mjs used a direct API request but wrote a logical App path in its result.",
+      "correction": "Resolve current ApiEndpoint from the captured stack, probe /health/ready there and record the actual requested URL. No application route changed."
+    },
+    {
+      "step": "CloudFormation change-set review",
+      "cause": "Initial helper rejected Custom::CDKBucketDeployment Conditional classification and two unchanged production dependency resources",
+      "review": "Static updates are limited to direct SourceObjectKeys changes and preserve physical IDs. The production Lambda Environment and IAM PolicyDocument templates are byte-identical; only existing serviceName/functionARN references are marked dynamic, with no replacement. Final resource identities are checked.",
+      "permissionOrDataScopeExpanded": false
+    }
+  ],
+  "productionRuntimeUntouched": true
+}
