@@ -21,7 +21,7 @@ Owner在原生16购买／检查待处理购买时收到Apple认证，等待30–
 
 App Store Connect账号管理实际authResult=FAILED且只显示加载画面，没有可操作登录表单；未创建或更改tester。优先核对已有独立tester，不要求改iCloud／主商店账号。台前调度已恢复on；已知临时密码引用已清理，剪贴板已不是该密码，未覆盖用户新内容。
 
-本轮证据：output/qa/rillora-apple-owner-latency-20261031/及原部署output/qa/rillora-release-rollout-20261031/。Git最终保存接续进行；旧archives1–57不重封或重下，无子代理或云端CI。
+本轮证据：output/qa/rillora-apple-owner-latency-20261031/及原部署output/qa/rillora-release-rollout-20261031/。源码／archive58已推到PR10的b628c18051824515a806a987badfaf9463bb7765，新增归档从GitHub独立下载认证663对象／1,164路径通过；旧archives1–57不重封或重下。最终元数据普通Git保存，无子代理或云端CI；Actions总数仍314、最新October23。
 
 ## 唯一下一步
 

@@ -47,6 +47,10 @@ Apple账户负责商店购买，Rillora账户负责应用内的订阅权益。�
 
 设备检查目前为断开，17尚未安装。最终重提／TestFlight继续暂停。Git保存及签名候选不替代尚缺的手机交易、实际耗时、权益与到期闭环。
 
+## Git保存
+
+源码／归档提交`b628c18051824515a806a987badfaf9463bb7765`已推到[PR10](https://github.com/tantalum666/rillora/pull/10)，仍开放未合并。确切main base本机发布门通过，commit的完整二进制diff与门检记录一致。archive58独立从GitHub下载后663对象／1,164路径认证通过，旧1–57不重下。一个安全语言检查日志最初受Git忽略规则影响漏入索引，最终回执显式补入并核对全部清单路径受跟踪；扫描规则与例外未改。云端作业总数314、最新October23，不宣称云端CI成功。
+
 ## 官方依据
 
 - [AppStore.sync](https://developer.apple.com/documentation/storekit/appstore/sync%28%29)：强制同步会要求用户认证，应由明确用户动作触发。

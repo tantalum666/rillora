@@ -8,6 +8,8 @@ Last updated: 2026-11-01 (Asia/Shanghai)
 
 [Readable receipts and new archive58](../collaboration/verification/apple-owner-latency-20261101/README.md) preserve1,164paths/663objects/45,379,030encrypted bytes, locally authenticated. They include original failing/passing native tests, both unpublished17candidate artifacts and prior rollout evidence. Credentials, raw private provider/device/authentication material and caches are excluded; old1–57are unchanged. Exact-base local publication and fresh new-archive remote verification follow separately; resubmission/TestFlight remain held.
 
+Source/archive`b628c18051824515a806a987badfaf9463bb7765`is pushed in PR10, still open/unmerged. Fresh remote verification authenticated all663objects/1,164paths from archive58; previous archives were not downloaded. Complete readable tracking is checked in final metadata, including one ignored safe localization log explicitly added to the index. Actions total remains314/latestOctober23. Final receipts do not imply phone installation or a completed purchase.
+
 ## HISTORICAL — October31 release-product audit and local repair checkpoint
 
 [The release-product audit](release-product-audit-20261031.md) repairs Web payment-environment/account-state confusion, missing failure feedback, obsolete public testing copy, a native roadmap footer and stale active release status. Build16is signed, exported and installed in place; API/App/Preview/WWW artifacts are prepared but not deployed. Actual native Sandbox acceptance and provider/cloud readbacks remain blocked by observed authentication. Final resubmission/TestFlight remain held.
