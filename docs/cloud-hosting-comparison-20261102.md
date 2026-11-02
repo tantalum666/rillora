@@ -8,6 +8,8 @@ Owner认为保留现有AWS架构后每月60–80美元仍偏高，先询问Cloud
 
 ## 判断
 
+November2后续的[六组合决策比较](hosting-six-pair-decision-20261102.md)进一步收敛本报告：按三档明确负载核算Oracle／CF／Cloud Run分别配Neon／Supabase，补齐实际法兰克福单价、Supabase最小PITR配置、Neon网络套餐差异与全部后台／S3版本依赖。当前首个验证候选收敛为Cloud Run＋Neon，其他路线按实际增长条件评估；这是Agent建议，取代下方旧的并列候选优先级，不是已选择供应商。旧$20–30完整费用只保留为待验证目标，不能在未核对网络／权限成本时视为报价。
+
 Cloudflare和OCI都有可能显著降低当前低流量阶段的现金费用，但路线不同：Cloudflare适合把API和任务改为按请求／事件执行；OCI虚拟机更容易保留完整Node与PostgreSQL进程，但自行管理数据库会增加升级、备份、恢复和故障处理工作。仅把官网搬到Cloudflare省不了当前大头：本次AWS账单的静态分发、存储和API请求费用合计很少，真正需要替换的是全天运行的计算／数据库和额外指标。
 
 补充比较后，按需托管候选为Google Cloud Run或Cloudflare Workers加托管PostgreSQL；若优先低固定现金费用，则比较Hetzner小实例和OCI。Azure Container Apps可行，但不因微软品牌或试用赠金推断整体比AWS便宜。先保持PostgreSQL权限与事务机制，不为追求D1免费额度重写现有安全基础。最终选择取决于完整API兼容性、工作负载实测、7天恢复要求和可获得的账户／区域资源，不以宣传额度判定可上线。

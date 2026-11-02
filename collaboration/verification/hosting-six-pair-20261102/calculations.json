@@ -1,0 +1,278 @@
+{
+  "as_of": "2026-11-02",
+  "currency": "USD",
+  "hours_per_month": 730,
+  "evidence_kind": "published-price arithmetic with hypothetical usage; NOT measured capacity or full invoice",
+  "matched_scope": "one production API + one PostgreSQL project + 7-day PITR + modeled API/DB egress",
+  "exclusions": [
+    "S3 file storage, versions, source-side egress, operations and separate backups",
+    "KMS/key vault, protected workload identity, independent recovery journal, mandatory audit logs",
+    "diagnostic logs, alerts, scheduler, durable queue, separate privileged worker execution",
+    "private endpoints, fixed egress/NAT/IP routing, regional execution guarantees, paid SLA",
+    "Auth0, Resend, payment fees, taxes, labor and temporary parallel migration resources",
+    "OCI throughput/HA/availability proof; container registry; capacity outside modeled allocations"
+  ],
+  "common_controls": "Retain existing Auth0, roles/RLS, KMS, S3 versions, deletion isolation and journal. No downgrade approved.",
+  "scenarios": [
+    {
+      "assumptions": {
+        "name": "initial",
+        "requests": 100000,
+        "background_requests": 1000,
+        "cpu_ms": 10,
+        "wall_ms": 200,
+        "effective_concurrency": 1,
+        "app_gib": 3,
+        "neon_cu_hours": 100,
+        "neon_storage_gb_month": 1,
+        "history_gb_month": 1,
+        "database_egress_gb": 5,
+        "supabase_compute": "Small",
+        "supabase_disk_gb": 8,
+        "oci_count": 1,
+        "oci_ocpu_each": 1,
+        "oci_ram_gb_each": 4
+      },
+      "applications": {
+        "Cloudflare": {
+          "worker_requests_and_cpu": 5.0,
+          "subtotal": 5.0
+        },
+        "Google": {
+          "allocated_cpu_after_shared_free_credit": 0.0,
+          "allocated_memory_after_shared_free_credit": 0.0,
+          "request_fee": 0.0,
+          "internet_egress": 0.36,
+          "modeled_same_origin_proxy": 0.0,
+          "subtotal": 0.36
+        },
+        "Oracle": {
+          "a1_compute": 11.68,
+          "balanced_boot_disks": 2.125,
+          "internet_egress_below_ten_tb": 0.0,
+          "subtotal": 13.805
+        }
+      },
+      "databases": {
+        "Neon Launch": {
+          "compute": 10.6,
+          "data_storage": 0.35,
+          "seven_day_history": 0.2,
+          "database_egress": 0.0,
+          "subtotal": 11.15
+        },
+        "Neon Scale": {
+          "compute": 22.2,
+          "data_storage": 0.35,
+          "seven_day_history": 0.2,
+          "database_egress": 0.0,
+          "subtotal": 22.75
+        },
+        "Supabase": {
+          "organization_pro": 25.0,
+          "compute_after_one_org_credit": 5.038,
+          "seven_day_pitr": 100.01,
+          "provisioned_disk": 0.0,
+          "database_egress": 0.0,
+          "subtotal": 130.048
+        }
+      },
+      "six_combinations": {
+        "Cloudflare + Neon Launch": 16.15,
+        "Cloudflare + Supabase": 135.048,
+        "Google + Neon Launch": 11.51,
+        "Google + Supabase": 130.408,
+        "Oracle + Neon Launch": 24.955,
+        "Oracle + Supabase": 143.853
+      },
+      "neon_scale_combinations_before_fixed_egress_or_private_network": {
+        "Cloudflare + Neon Scale": 27.75,
+        "Google + Neon Scale": 23.11,
+        "Oracle + Neon Scale": 36.555
+      },
+      "google_application_concurrency_sensitivity": {
+        "1": 0.36,
+        "5": 0.36,
+        "10": 0.36
+      }
+    },
+    {
+      "assumptions": {
+        "name": "growing",
+        "requests": 10000000,
+        "background_requests": 10000,
+        "cpu_ms": 10,
+        "wall_ms": 200,
+        "effective_concurrency": 5,
+        "app_gib": 200,
+        "neon_cu_hours": 730,
+        "neon_storage_gb_month": 20,
+        "history_gb_month": 10,
+        "database_egress_gb": 200,
+        "supabase_compute": "Medium",
+        "supabase_disk_gb": 20,
+        "oci_count": 1,
+        "oci_ocpu_each": 2,
+        "oci_ram_gb_each": 8
+      },
+      "applications": {
+        "Cloudflare": {
+          "worker_requests_and_cpu": 6.407,
+          "subtotal": 6.407
+        },
+        "Google": {
+          "allocated_cpu_after_shared_free_credit": 12.0096,
+          "allocated_memory_after_shared_free_credit": 0.0,
+          "request_fee": 3.204,
+          "internet_egress": 24.0,
+          "modeled_same_origin_proxy": 5.0,
+          "subtotal": 44.2136
+        },
+        "Oracle": {
+          "a1_compute": 23.36,
+          "balanced_boot_disks": 2.125,
+          "internet_egress_below_ten_tb": 0.0,
+          "subtotal": 25.485
+        }
+      },
+      "databases": {
+        "Neon Launch": {
+          "compute": 77.38,
+          "data_storage": 7.0,
+          "seven_day_history": 2.0,
+          "database_egress": 0.0,
+          "subtotal": 86.38
+        },
+        "Neon Scale": {
+          "compute": 162.06,
+          "data_storage": 7.0,
+          "seven_day_history": 2.0,
+          "database_egress": 0.0,
+          "subtotal": 171.06
+        },
+        "Supabase": {
+          "organization_pro": 25.0,
+          "compute_after_one_org_credit": 50.006,
+          "seven_day_pitr": 100.01,
+          "provisioned_disk": 1.5,
+          "database_egress": 0.0,
+          "subtotal": 176.516
+        }
+      },
+      "six_combinations": {
+        "Cloudflare + Neon Launch": 92.787,
+        "Cloudflare + Supabase": 182.923,
+        "Google + Neon Launch": 130.5936,
+        "Google + Supabase": 220.7296,
+        "Oracle + Neon Launch": 111.865,
+        "Oracle + Supabase": 202.001
+      },
+      "neon_scale_combinations_before_fixed_egress_or_private_network": {
+        "Cloudflare + Neon Scale": 177.467,
+        "Google + Neon Scale": 215.2736,
+        "Oracle + Neon Scale": 196.545
+      },
+      "google_application_concurrency_sensitivity": {
+        "1": 112.0361,
+        "5": 44.2136,
+        "10": 36.1496
+      }
+    },
+    {
+      "assumptions": {
+        "name": "sustained",
+        "requests": 100000000,
+        "background_requests": 100000,
+        "cpu_ms": 10,
+        "wall_ms": 200,
+        "effective_concurrency": 8,
+        "app_gib": 2000,
+        "neon_cu_hours": 2920,
+        "neon_storage_gb_month": 100,
+        "history_gb_month": 70,
+        "database_egress_gb": 1000,
+        "supabase_compute": "XL",
+        "supabase_disk_gb": 100,
+        "oci_count": 2,
+        "oci_ocpu_each": 2,
+        "oci_ram_gb_each": 8
+      },
+      "applications": {
+        "Cloudflare": {
+          "worker_requests_and_cpu": 51.47,
+          "subtotal": 51.47
+        },
+        "Google": {
+          "allocated_cpu_after_shared_free_credit": 98.496,
+          "allocated_memory_after_shared_free_credit": 4.455,
+          "request_fee": 39.24,
+          "internet_egress": 230.24,
+          "modeled_same_origin_proxy": 33.4,
+          "subtotal": 405.831
+        },
+        "Oracle": {
+          "a1_compute": 46.72,
+          "balanced_boot_disks": 4.25,
+          "internet_egress_below_ten_tb": 0.0,
+          "subtotal": 50.97
+        }
+      },
+      "databases": {
+        "Neon Launch": {
+          "compute": 309.52,
+          "data_storage": 35.0,
+          "seven_day_history": 14.0,
+          "database_egress": 50.0,
+          "subtotal": 408.52
+        },
+        "Neon Scale": {
+          "compute": 648.24,
+          "data_storage": 35.0,
+          "seven_day_history": 14.0,
+          "database_egress": 50.0,
+          "subtotal": 747.24
+        },
+        "Supabase": {
+          "organization_pro": 25.0,
+          "compute_after_one_org_credit": 200.021,
+          "seven_day_pitr": 100.01,
+          "provisioned_disk": 11.5,
+          "database_egress": 67.5,
+          "subtotal": 404.031
+        }
+      },
+      "six_combinations": {
+        "Cloudflare + Neon Launch": 459.99,
+        "Cloudflare + Supabase": 455.501,
+        "Google + Neon Launch": 814.351,
+        "Google + Supabase": 809.862,
+        "Oracle + Neon Launch": 459.49,
+        "Oracle + Supabase": 455.001
+      },
+      "neon_scale_combinations_before_fixed_egress_or_private_network": {
+        "Cloudflare + Neon Scale": 798.71,
+        "Google + Neon Scale": 1153.071,
+        "Oracle + Neon Scale": 798.21
+      },
+      "google_application_concurrency_sensitivity": {
+        "1": 1148.181,
+        "5": 469.461,
+        "10": 384.621
+      }
+    }
+  ],
+  "sensitivities": {
+    "initial_neon_025_cu_always_on_730h_launch": 19.895,
+    "initial_neon_025_cu_always_on_730h_scale": 41.065,
+    "google_one_always_on_vcpu_half_gib_instance_billing": 54.6984,
+    "verified_oci_free_compute_and_boot_discount_if_all_modeled_resources_qualify": {
+      "initial": 13.805,
+      "growing": 25.485,
+      "sustained": 50.97
+    },
+    "worker_100m_100ms_cpu_excluding_background": 231.4,
+    "supabase_sustained_vs_neon_launch_db_difference": 4.489,
+    "supabase_sustained_vs_neon_scale_db_difference": 343.209,
+    "neon_write_history_500_gb_month_growth_db": 184.38
+  }
+}

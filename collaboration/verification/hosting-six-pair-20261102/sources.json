@@ -1,0 +1,132 @@
+{
+  "readOn": "2026-11-02",
+  "timezone": "Asia/Hong_Kong",
+  "sourceKind": "official primary documentation and rendered public pricing",
+  "sources": [
+    {
+      "topic": "Neon paid compute/storage/egress/security",
+      "url": "https://neon.com/docs/introduction/plans",
+      "finding": "Launch .106 and Scale .222 per CU-hour; 500 GB public transfer included; IP Allow and private networking only Scale; no paid monthly minimum"
+    },
+    {
+      "topic": "Neon history",
+      "url": "https://neon.com/docs/postgres/backup-restore/history-window",
+      "finding": "Paid default 1 day; Launch maximum 7; retained WAL .20/GB-month separate from data"
+    },
+    {
+      "topic": "Supabase compute",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/compute",
+      "finding": "Small .0206/h, Medium .0822/h, XL .2877/h, one $10 organization credit"
+    },
+    {
+      "topic": "Supabase PITR",
+      "url": "https://supabase.com/docs/guides/platform/backups",
+      "finding": "Requires Small or larger; 7-day PITR .137/h; daily backup retention is distinct"
+    },
+    {
+      "topic": "Supabase PITR spend cap",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/point-in-time-recovery",
+      "finding": "Official one-project example approximately $130/month; PITR outside normal spend cap"
+    },
+    {
+      "topic": "Supabase disk",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/disk-size",
+      "finding": "8 GB provisioned gp3 included; additional .125/GB-month; provisioned rather than logical size"
+    },
+    {
+      "topic": "Supabase egress",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/egress",
+      "finding": "250 GB uncached allowance shared by services; overage .09/GB"
+    },
+    {
+      "topic": "Supabase network",
+      "url": "https://supabase.com/docs/guides/platform/network-restrictions",
+      "finding": "Each project can restrict DB/pooler source IPs; does not cover HTTPS APIs"
+    },
+    {
+      "topic": "Cloudflare Workers",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "finding": "$5 monthly; 10M requests and 30M CPUms; excess .30/M requests and .02/M CPUms; published 15M*7ms example $8"
+    },
+    {
+      "topic": "Cloudflare Logs export",
+      "url": "https://developers.cloudflare.com/logs/logpush/pricing/",
+      "finding": "Workers Trace exports include10M requests, overage .05/M delivered requests"
+    },
+    {
+      "topic": "Cloudflare December logs",
+      "url": "https://developers.cloudflare.com/observability/pricing/",
+      "finding": "Announced December1 pricing; keep future rules separate from current event pricing"
+    },
+    {
+      "topic": "Pages subdomain",
+      "url": "https://developers.cloudflare.com/pages/configuration/custom-domains/",
+      "finding": "External DNS CNAME supports a subdomain; apex requires Cloudflare zone"
+    },
+    {
+      "topic": "Cloudflare runtime geography",
+      "url": "https://developers.cloudflare.com/data-localization/how-to/workers/",
+      "finding": "Regional Services controls hostname execution but not Cron/Queues; code/secrets still globally deployed"
+    },
+    {
+      "topic": "Cloudflare geography plan",
+      "url": "https://developers.cloudflare.com/data-localization/regional-services/",
+      "finding": "Enterprise add-on; ordinary $5 Workers price is not a regional-execution guarantee"
+    },
+    {
+      "topic": "R2 S3 differences",
+      "url": "https://developers.cloudflare.com/r2/api/s3/api/",
+      "finding": "No drop-in equivalence for current version-aware S3 deletion flow"
+    },
+    {
+      "topic": "Cloud Run rates",
+      "url": "https://cloud.google.com/run/pricing",
+      "finding": "Frankfurt selected in browser; request CPU .0000336/sec, memory .0000035/GiB-sec, request .40/M; instance .0000216 and .0000024"
+    },
+    {
+      "topic": "Cloud Run billing modes",
+      "url": "https://docs.cloud.google.com/run/docs/configuring/billing-settings",
+      "finding": "Evaluate instance billing for continuous workload before migrating platforms"
+    },
+    {
+      "topic": "Google network",
+      "url": "https://cloud.google.com/vpc/network-pricing",
+      "finding": "Frankfurt EU/US/Asia except Korea/Indonesia first1024GiB .12 then .11 to10TiB; no Iowa1GiB allowance"
+    },
+    {
+      "topic": "Cloud Run regions",
+      "url": "https://docs.cloud.google.com/run/docs/locations",
+      "finding": "Frankfurt Tier2; native domain mapping unavailable there"
+    },
+    {
+      "topic": "Cloud Run container",
+      "url": "https://docs.cloud.google.com/run/docs/container-contract",
+      "finding": "Current ARM64 image needs linux/amd64 build; runtime assumptions need verification"
+    },
+    {
+      "topic": "Oracle A1",
+      "url": "https://www.oracle.com/cloud/compute/arm/",
+      "finding": ".01/OCPU-hour plus .0015/GB RAM-hour"
+    },
+    {
+      "topic": "Oracle prices",
+      "url": "https://www.oracle.com/cloud/price-list/",
+      "finding": "Current rendered USD block storage .0255 and VPU .0017; paid-tenancy allowance wording distinct from free guide"
+    },
+    {
+      "topic": "Oracle free",
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+      "finding": "Free main guide1500 OCPUh/9000GBh; capacity and idle-reclaim constraints; no actual account verified"
+    },
+    {
+      "topic": "Oracle egress",
+      "url": "https://www.oracle.com/cloud/networking/virtual-cloud-network/pricing/",
+      "finding": "First10TB public outbound/month included"
+    },
+    {
+      "topic": "AWS KMS",
+      "url": "https://aws.amazon.com/kms/pricing/",
+      "finding": "Keys and request types separately billed; symmetric free-request allowance not all asymmetric operations"
+    }
+  ]
+}

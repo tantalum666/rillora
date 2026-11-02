@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November2最新：[六组合比较](../docs/hosting-six-pair-decision-20261102.md)已完成官方区域价格、三档可复算预算和源码适配核对。Agent建议先验Cloud Run＋Neon，Supabase7天PITR最小约130美元、Neon网络套餐与CF地域差异单列；没有选择或部署。[本轮公开资料](verification/hosting-six-pair-20261102/README.md)普通Git保存，原数据／价格／审核保持，无新云端作业。
+
 November2范围扩充：[托管比较](../docs/cloud-hosting-comparison-20261102.md)已纳入Google／微软和Hetzner／DO／Akamai／Railway／Render，记录当前价格与7天恢复等额外费用；继续是研究，未选择或迁移。[安全资料](verification/hosting-comparison-20261102/README.md)只新增公开来源／价格事实，无新云端作业或旧归档重做。
 
 November2后续：[CF／Oracle托管比较](../docs/cloud-hosting-comparison-20261102.md)回应Owner仍嫌旧AWS预算过高；最新免费／付费额度、完整费用遗漏和当前PG／worker约束已分开记录。[来源与算术](verification/hosting-comparison-20261102/README.md)普通Git保存，尚未选provider、开通付费或迁移，原成本止损仍未部署。

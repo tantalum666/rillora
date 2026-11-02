@@ -4,6 +4,8 @@ Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 ## November2 broader provider research
 
+The later [six-pair decision report](hosting-six-pair-decision-20261102.md) narrows the comparison to Oracle/Cloudflare/Google with Neon/Supabase. Its [safe evidence](../collaboration/verification/hosting-six-pair-20261102/README.md) contains public regional prices and an explicit Decimal model. This is documentation and arithmetic only; no new sealed archive, app suite, provider resource or cloud CI. The same exact-base local publication policy applies after the final receipt and complete manifest.
+
 [The same comparison](cloud-hosting-comparison-20261102.md) now includesGoogle,Azure,Hetzner,DigitalOcean,Akamai,RailwayandRender. Only current official-source findings, partial-price scope and safe rendered-price receipts are added to the existing[research package](../collaboration/verification/hosting-comparison-20261102/README.md). No runtime, archive or engineering test changes occur; regenerate the full manifest and exact-base local publication after these final updates.
 
 ## November2 lower-cost provider comparison

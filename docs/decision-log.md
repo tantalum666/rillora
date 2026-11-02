@@ -3925,3 +3925,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 
 - Owner explicitly adds Microsoft/Azure, other cost-effective providers and Google to the same comparison. Keep this as research; no provider or paid tier has been selected.
 - Compare like-for-like API, PostgreSQL, background tasks, keys, recovery and network costs, with current list prices rather than credits or obsolete SKU prices. No migration, cloud CI, resubmission or TestFlight follows from widening the shortlist.
+
+## 2026-11-02 — Narrow the economic review to six hosting combinations
+
+- Owner explicitly requests Oracle, Cloudflare and Google paired with Neon or Supabase, considering later growth and overall value. This deepens the research scope; it does not select a provider, approve a new monthly budget or authorize a weaker security/recovery topology.
+- [The focused comparison](hosting-six-pair-decision-20261102.md) records current regional prices and explicit workload assumptions. Agent recommends Cloud Run plus Neon as the first compatibility candidate; this supersedes only the previous broad, equally ranked research shortlist, not an Owner migration decision.
+- Keep seven-day PITR and the current roles, encryption, independent deletion/recovery authority and regional requirements. Launch/public-TLS subtotals cannot establish equivalence to private RDS. Preserve production, data, prices, FanPass and final review/TestFlight holds; no cloud CI or subagent.
