@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November2最新：[真实费用诊断](../docs/aws-cost-review-20261102.md)确认10月资源费120.63减额度83＝应付37.63美元、当前额度0；两个集群额外性能指标和无通知预算已查明，降本仍为具体方案而非已部署。Owner到期／Free与同一原订单expired_read_only后台证明一致，不重买／恢复；手动取消与退款未冒领通过。[安全摘要](verification/cost-review-20261102/README.md)普通Git保存，旧1–59归档不重做，重提／TestFlight和云端CI保持暂停。
+
 November1最新：[17真实购买／恢复与独立账本](../docs/apple-purchase-acceptance-20261101.md)已通过，同一原HKD888订单完成／验签／权益核对。仅修正独立tester的地区，不重建订单；新双语错误文案9项、只读诊断20项通过。普通API／Web和收费保持，仅维护检查工具更新。当前新门是取消续期／真正到期，Owner不重做购买恢复，重提／TestFlight仍暂停。[本轮安全回执](verification/native17-install-20261101/README.md)将本轮新增工作独立保存，旧1–58不重做。
 
 November1此前检查点：[Apple购买归属与等待修复](../docs/apple-owner-latency-20261101.md)通过本机44项购买协调与9项语言检查，另19项同轮未变化原生证据沿用。隔离17-r2随后已在原机安装／读回／启动；Owner确认待处理检查不再弹Apple密码，实际新交易及耗时仍未通过。见[新增安装回执](verification/native17-install-20261101/README.md)。前轮两API／三Web已部署并保留价格、数据和开关。[安全结果与archive58](verification/apple-owner-latency-20261101/README.md)保存新增工作，旧1–57不重做；不使用云端CI、子代理、TestFlight或重提。下方October31准备状态是历史检查点，唯一下一步以handoff为准。
@@ -138,7 +140,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-23 (Asia/Hong_Kong)
+Updated: 2026-11-02 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

@@ -1,11 +1,15 @@
 # Apple 真机购买与恢复验收 — 2026-11-01
 
-Status: SANDBOX PURCHASE AND RESTORE VERIFIED / CANCELLATION AND EXPIRY PENDING / RESUBMISSION HELD
-Last updated: 2026-11-01 (Asia/Shanghai)
+Status: SANDBOX PURCHASE RESTORE AND NATURAL EXPIRY VERIFIED / MANUAL CANCELLATION NOT OBSERVED / RESUBMISSION HELD
+Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 本轮继续[购买归属与等待修复](apple-owner-latency-20261101.md)。Owner已恢复手机连接并手动完成购买和恢复；Agent没有操作镜像、重装用户数据或降低交易归属校验。先不发TestFlight、不重新提审，价格、普通收费开关、真实数据与FanPass保持。
 
-## 已完成的真实结果
+## November2真实到期补验
+
+Owner报告Apple已到期、Rillora个人中心显示Free。一次新受限只读任务匹配同一原HKD888订单，仍为completed／paid_reconciled，订阅expired_read_only，本期截止November1 15:04:08香港时间；最后事件applied、签名验证true、无错误，目录前后相同。真实自然到期已通过，没有重买、恢复、改历史或人工降级。Owner没有报告手动取消续期，不能把自然到期标成手动取消通过；本轮无退款结果。见[新安全回执](../collaboration/verification/cost-review-20261102/expiry-ledger.json)。
+
+## November1已完成的真实结果
 
 | 项目 | 实际证据 |
 | --- | --- |
@@ -47,9 +51,9 @@ Last updated: 2026-11-01 (Asia/Shanghai)
 
 Apple管理登录只在实际过期后由Owner恢复。AWS首次检查有效，最后对账时实际过期；原密码复用后Owner完成一次MFA。旧CLI等待已超时，随后自动复用新的浏览器会话，CLI成功且账户／主体一致，没有要求Owner重复MFA。没有创建新权限或永久密钥。
 
-## 剩余验收与保存
+## 原取消请求与当前保存边界
 
-已请求Owner仅在该独立Sandbox账户的Manage页面关闭Rillora自动续期，再由Agent核对取消后本期权益及实际到期。此项是新的生命周期步骤，不重做购买／恢复，不清除购买历史。以[Apple官方取消测试步骤](https://developer.apple.com/documentation/storekit/testing-disabling-auto-renew)和[沙盒续期规则](https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-account-settings/)为依据；不能把未订阅或登记期限结束冒充Apple订阅到期。
+November1曾请求Owner关闭独立Sandbox自动续期；November2Owner打开时已经自然到期，上节已补后台到期证明。手动取消未观察，不把旧请求重新当作必须再买一次的当前任务。购买／恢复不重复，不清除购买历史。以[Apple官方取消测试步骤](https://developer.apple.com/documentation/storekit/testing-disabling-auto-renew)和[沙盒续期规则](https://developer.apple.com/help/app-store-connect/test-in-app-purchases/manage-sandbox-apple-account-settings/)为依据；不能把未订阅或登记期限结束冒充Apple订阅到期。
 
 证据目录：`output/qa/rillora-native17-install-20261101/`；安全入口为[本轮回执](../collaboration/verification/native17-install-20261101/README.md)。原archive58及17签名产物不重封／重下；本轮源码、测试、维护工具与新回执单独保存。私有身份／提供方原始数据、凭据和机器缓存不入Git；没有云端CI或子代理。
 

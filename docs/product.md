@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-11-01 (Asia/Shanghai)
+Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-11-02 AWS成本诊断与真实到期
+
+Owner报告10月AWS账单37.63美元并要求降本方案。[实际账单诊断](aws-cost-review-20261102.md)确认资源费120.63、额度抵扣83、当前额度0；主要成本为双环境数据库／常驻容器／IPv4及额外容器性能指标，原25美元预算没有通知。当前仅提出分阶段收敛方案，未停服务、迁移数据或买承诺折扣；既有最低成本方向不等于一个新的预算金额已获批准。同轮Owner的Apple到期／Rillora Free与受限后台expired_read_only一致，真实自然到期通过；不冒称手动取消或退款通过，最终重提／TestFlight仍暂停。
 
 ## 2026-11-01 购买归属与等待修复
 

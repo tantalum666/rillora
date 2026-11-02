@@ -1,0 +1,17 @@
+{
+  "scope": "Read-only diagnosis and cost-reduction proposal; real Sandbox expiry continuation",
+  "sourceHead": "904254e7fa488f43ae958acf7ad1ae9b9e31a994",
+  "backendInspection": "same existing bounded inspect command and final maintenance image, one fresh task exited 0",
+  "costRead": "two paginated-page cost explorer requests, complete at one page each; nominal query cost USD0.02",
+  "providerFailures": [
+    "AWS connector unavailable",
+    "CLI session expired; Owner MFA completed once",
+    "unsupported login --no-browser rejected before authentication",
+    "deploy role logs:DescribeLogGroups denied; existing operator read succeeded without IAM changes"
+  ],
+  "rawProviderData": "protected locally, excluded from Git",
+  "cloudChanges": [],
+  "newEngineeringTests": [],
+  "keptEvidence": "purchase/restore and prior application tests inherited unchanged",
+  "proposalsAreNotExecuted": true
+}

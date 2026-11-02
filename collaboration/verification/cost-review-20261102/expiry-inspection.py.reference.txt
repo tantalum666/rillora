@@ -1,0 +1,73 @@
+from pathlib import Path
+import json,os,subprocess,datetime,secrets,uuid,sys
+ROOT=Path(__file__).resolve().parents[3]
+QA=Path(__file__).parent
+PRIVATE=ROOT/'.local-secrets/rillora-cost-review-20261102'
+ORIGINAL=ROOT/'output/qa/rillora-native17-install-20261101'
+STATE=PRIVATE/'expiry-inspection-run.json'
+os.umask(0o077)
+def read(path):return json.loads(path.read_text())
+def save(path,value):
+    path.write_text(json.dumps(value,indent=2)+'\n')
+    if PRIVATE in path.parents:path.chmod(0o600)
+def aws(args,profile='rillora-operator',timeout=45):
+    result=subprocess.run(['aws',*args,'--region','eu-central-1','--profile',profile,'--output','json'],capture_output=True,text=True,timeout=timeout)
+    if result.returncode:
+        (PRIVATE/'expiry-inspection-last-error.txt').write_text(result.stderr)
+        raise RuntimeError('Protected AWS error saved')
+    return json.loads(result.stdout) if result.stdout.strip() else {}
+
+assert read(ORIGINAL/'ledger-change-status.json')['verified']
+stack=aws(['cloudformation','describe-stacks','--stack-name','RilloraProduction'],'rillora-cdk-deploy')['Stacks'][0]
+assert stack['StackStatus']=='UPDATE_COMPLETE'
+out={x['OutputKey']:x['OutputValue'] for x in stack['Outputs']}
+mode=sys.argv[1];assert mode in ['run','collect']
+if mode=='run':
+    assert not STATE.exists(), 'Inspect the existing invocation before retrying it'
+    run=secrets.token_hex(8);token=uuid.uuid4().hex
+    request={'cluster':out['ClusterName'],'taskDefinition':out['MigrationTaskDefinitionArn'],'launchType':'FARGATE','clientToken':token,
+        'networkConfiguration':{'awsvpcConfiguration':{'subnets':out['MaintenanceSubnetIds'].split(','),'securityGroups':[out['MigrationSecurityGroupId']],'assignPublicIp':'ENABLED'}},
+        'overrides':{'containerOverrides':[{'name':'Maintenance','command':['node','dist/configure-production-apple.js','inspect'],
+            'environment':[{'name':'RECOVERY_RUN','value':run}]}]}}
+    payload={'operation':'task','run':run,'runToken':secrets.token_urlsafe(32),'request':request}
+    state={'requestedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'payload':payload,'taskArn':None}
+    save(STATE,state);path=PRIVATE/'expiry-inspection-payload.json';save(path,payload)
+    invocation=aws(['lambda','invoke','--function-name',out['MaintenanceBrokerFunctionName'],'--cli-binary-format','raw-in-base64-out',
+        '--payload','fileb://'+str(path),str(PRIVATE/'expiry-inspection-invoke-result.json')])
+    save(PRIVATE/'expiry-inspection-invocation-metadata.json',invocation)
+    assert 'FunctionError' not in invocation,'Inspect the recorded failed/ambiguous invocation; do not create a second run'
+    response=read(PRIVATE/'expiry-inspection-invoke-result.json')
+    assert not response.get('failures') and len(response.get('tasks',[]))==1
+    state['taskArn']=response['tasks'][0]['taskArn'];save(STATE,state)
+    save(QA/'expiry-inspection-started.json',{'at':state['requestedAt'],'started':True,'command':'configure-production-apple inspect','databaseWrites':False})
+    print(json.dumps({'started':True,'readOnly':True}))
+else:
+    state=read(STATE);assert state['taskArn']
+    raw=aws(['ecs','describe-tasks','--cluster',out['ClusterName'],'--tasks',state['taskArn']]);save(PRIVATE/'expiry-inspection-task.json',raw)
+    assert not raw.get('failures') and len(raw['tasks'])==1
+    task=raw['tasks'][0];container=task['containers'][0]
+    expected=read(ORIGINAL/'operator-ledger-image-publication.json')['imageUri'].split('@')[1]
+    result={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'status':task['lastStatus'],'exitCode':container.get('exitCode'),
+        'imageMatches':container.get('imageDigest')==expected,'readOnly':True}
+    if task['lastStatus']=='STOPPED':
+        stream='migration/Maintenance/'+state['taskArn'].rsplit('/',1)[1]
+        logs=aws(['logs','get-log-events','--log-group-name',out['MaintenanceLogGroup'],'--log-stream-name',stream,'--start-from-head'])
+        save(PRIVATE/'expiry-inspection-logs.json',logs)
+        assert container.get('exitCode')==0 and result['imageMatches'],'Inspection did not complete successfully'
+        messages=[]
+        for event in logs['events']:
+            try:messages.append(json.loads(event['message']))
+            except (ValueError,TypeError):pass
+        matching=[x for x in messages if x.get('operation')=='inspect' and 'reviewPurchases' in x]
+        assert len(matching)==1
+        report=matching[0];save(PRIVATE/'expiry-inspection-report.json',report)
+        assert report['before']==report['after'] and not report['marketSalesChanged'] and not report['userContentChanged'] and not report['historicalPaymentsChanged']
+        reference=read(ROOT/'.local-secrets/apple-owner-latency-20261031/reviewer-pending.json')['purchase']['orderReference']
+        matches=[x for x in report['reviewPurchases'] if x['order_reference']==reference]
+        result.update(catalogUnchanged=True,matchedExpectedReviewOrder=len(matches)==1,reviewAttempts=len(report['reviewPurchases']))
+        assert len(matches)==1,'Expected review attempt was not uniquely visible; do not infer its amount'
+        order={k:v for k,v in matches[0].items() if k!='order_reference'}
+        order.update(matchedKnownSyntheticReviewerOrder=True,expectedCurrency='HKD',expectedAnnualAmount='888.00',ownerReportedPurchaseSuccess=True,ownerReportedAppleExpired=True,ownerReportedRilloraFree=True,manualCancellationNotObserved=True)
+        save(QA/'post-expiry-ledger.json',order)
+        result['ledgerSnapshot']=order
+    save(QA/'expiry-inspection-result.json',result);print(json.dumps(result))

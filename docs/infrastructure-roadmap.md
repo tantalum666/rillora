@@ -7,6 +7,10 @@ Do not use for: claiming production readiness, creating paid resources, storing 
 Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA/CLOSED API VERIFIED; CUSTOMER RELEASE CLOSED
 Last updated: 2026-09-25 (Asia/Hong_Kong)
 
+## November2 cost-control diagnosis
+
+[Current invoice and resource evidence](aws-cost-review-20261102.md) supersedes the dated credit, current-hosting and cost estimates below: ordinary production and Preview are running, October gross usage120.63USD was reduced to37.63USDby83USDcredits, and available credits now equal0. The existing budget has no notifications. Performance-metric reduction and on-demand Preview are concrete proposals only; no production data/runtime has been stopped or migrated. Continue from the current handoff, not the historical phase0 entry.
+
 ## September24 identity/mail/public increment
 
 Keep Auth0 Free after Owner's cost/cleanup question: current quota is 25,000 MAU;

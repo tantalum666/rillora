@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-01 (Asia/Shanghai)
+Last updated: 2026-11-02 (Asia/Hong_Kong)
+
+## November2 cost diagnosis and actual expiry
+
+[The cost report](aws-cost-review-20261102.md) reconciles the realOctoberinvoice and identifies optional container metrics, always-on Preview and missing budget notifications. These are recommendations, not a deployment. One new bounded read-only maintenance task verifies the original paid Sandbox order is expired_read_only; no repeat purchase/restore. [Safe summaries](../collaboration/verification/cost-review-20261102/README.md) are small ordinary Git JSON/Markdown; raw mail/payment/account/resource/auth material stays protected locally. Archives1–59are unchanged. Run only the exact-base publication and document/data checks for this report; inherited app tests are not rerun and no cloud CI is started.
 
 ## November1 physical purchase, restore and immutable-order verification
 

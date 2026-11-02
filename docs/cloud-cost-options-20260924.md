@@ -6,6 +6,10 @@ Status: RESEARCHED; KEEP ON-DEMAND; NO COMMITMENTS PURCHASED
 
 Last updated: 2026-09-24 (Asia/Hong_Kong)
 
+## November2 superseding actual-cost evidence
+
+This September24 comparison is historical. [The November2 invoice review](aws-cost-review-20261102.md) observesOctoberusage120.63USD,83USDcredits,37.63USDnet and zero remaining promotional credit; the old111.95USD balance and32.85USD initial-core estimate below are not current. Four always-on tasks/two databases and Container Insights add costs not represented by that minimal core. No reserved capacity was purchased; the new reduction sequence is proposed, not deployed. Historical product-price wording below does not change the current price authority.
+
 ## Recommendation
 
 Keep RDS/Fargate on demand while production architecture and baseline use settle.
