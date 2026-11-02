@@ -14,6 +14,7 @@ Owner认为保留AWS架构后60–80美元/月仍贵，要求比较Cloudflare／
 - OCI免费主文档1500OCPU/9000GB小时与价目表付费租户3000/18000小时分别记录；未确认实际账户／区域容量。A1不计免费额度的1OCPU4GB算力11.68美元/月，不含盘和运维，不能当完整托管PG报价。
 - 新增Azure／Google按需容器、Hetzner、DO、Akamai、Railway和Render比较：云端免费计算不含数据库；Hetzner采用June15新价且库存未验；Render7天PITR需25美元Pro工作区，不能拿13美元组合当满足当前要求的总价。
 - 当前API为Node／Express／Postgres并有AWS密钥、独立日志／对象依赖；数据库权限和事务不能直接换D1。worker30秒轮询需改成按需，才可获得数据库休眠节省。已存在CF＋Neon合成MCP候选，旧证据可复用，未重跑。
+- Owner询问自管维护负担；报告已区分应用自管、数据库托管和全部自管。推荐用托管PG作基准，VM仅跑API作为折中；这不是新的provider／预算决定，未承诺全天值守或固定工时。
 - Apple真实购买／恢复和November2自然到期后台核对保持通过：同一HKD888订单expired_read_only，期末November1 15:04:08香港时间，事件applied且验签正常；Owner手机为Free。手动取消／退款未观察，不重买或恢复。
 
 ## 证据边界

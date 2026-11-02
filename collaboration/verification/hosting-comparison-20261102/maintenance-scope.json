@@ -1,0 +1,17 @@
+{
+  "readOn": "2026-11-02",
+  "question": "Self-managed maintenance burden",
+  "sources": [
+    "https://www.postgresql.org/docs/current/continuous-archiving.html",
+    "https://www.postgresql.org/support/versioning/",
+    "docs/solo-operations-and-portability.md"
+  ],
+  "recommendation": "Compare managed PostgreSQL baseline with VM-for-app-only before fully self-managing database",
+  "ownerSelectedProvider": false,
+  "newBudgetApproved": false,
+  "workloadHoursMeasured": false,
+  "alwaysOnAgentPromise": false,
+  "implementationChanges": false,
+  "newEngineeringTests": [],
+  "decisionLogAppend": "Not required: explanatory tradeoff, no new approved/rejected implementation or commercial decision"
+}
