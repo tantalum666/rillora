@@ -1,28 +1,27 @@
 # Rillora 当前交接
 
-Status: SIX-COMBINATION COST REVIEW COMPLETE / NO MIGRATION SELECTED / NATURAL SANDBOX EXPIRY VERIFIED / RESUBMISSION HELD
-Last updated: 2026-11-02 (Asia/Hong_Kong)
+Status: CF-NEON SCOPED RUNTIME VALIDATED / PROBE RETIRED / COMPLETE COST QUOTE OPEN / NO REAL DATA MIGRATION
+Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求仔细比较Oracle／Cloudflare／Google分别配Neon或Supabase，考虑长期用户增长。[六组合报告](hosting-six-pair-decision-20261102.md)现为当前入口；[广泛比较](cloud-hosting-comparison-20261102.md)与[真实AWS账单](aws-cost-review-20261102.md)保留。[上一交接](handoff-history-20261102-before-six-pair-comparison.md)已标HISTORICAL。研究不等于选供应商、批准付费或完成迁移；生产、价格、真实资料、历史购买归属、FanPass及重提／TestFlight暂停保持。
+Owner选择先验证CF＋Neon，优先合法适用免费量，现有安全保障不降低、先不迁移真实数据、不影响审核并推Git。[当前报告](architecture/cf-neon-validation-20261102.md)为入口，取代Agent先验Cloud Run的执行建议。[前一交接](handoff-history-20261102-before-cf-neon-validation.md)为HISTORICAL。价格、真实记录、历史购买归属、FanPass及重提／TestFlight暂停保持。
 
 ## 已完成
 
-- 三档明确假设下的六组合核心账单已可复算，Google价格实际选择法兰克福读回；Oracle按正常A1／Balanced盘价格计，不预支未核实免费额度。所有数值是组件算术，不是同等吞吐或完整账单承诺。
-- 当前Agent首个验证建议收敛为Cloud Run＋Neon；Cloudflare适合公开前端及后续轻CPU高请求API，Oracle适合固定持续算力／出口。没有Owner最终托管决定。
-- 同样7天PITR，Supabase需要至少Small，Pro＋计算减抵扣＋恢复约130.05美元/月起；Neon按CU／数据／WAL计量。Neon IP白名单／私网属于Scale，不能用Launch低价冒充私有RDS同等保护；长期持续大规格或高WAL时Supabase可能反超。
-- 源码核对补齐Stripe／Apple重试、保留、删除证明、内容孤儿及独立删除worker，不只一条30秒轮询；S3当前需要版本感知删除，不能直接换R2端点。KMS、工作负载身份、独立恢复日志、地域和监测必须纳入完整方案。
-- 沿用本日原RDS聚合指标：CPU小时桶平均约4.5%、连接2–3，逻辑库大小／代表性CPU／WAL及跨云性能未测。未重新查真实数据或扩大SQL权限。
-- 10月AWS资源费120.63减额度83＝应付37.63，当前额度0；双数据库、四常驻任务、126额外容器指标、25美元预算零通知已查明，成本止损仍未部署。
-- 原17-r2真实HKD888购买／恢复以及November2自然到期核对保持通过，同一订单expired_read_only、已验签事件正常；Owner手机Free。手动取消／退款未观察，新双语购买错误文案留待集中候选，不重复购买／恢复／安装。
+- 独立infra/hosting-validation打包完整API模块，在真实workerd和Cloudflare Free完成HTTP权限／响应头、Stripe合成签名、Apple根证书／非法JWS拒绝，以及4KiB／8MiB真实内容加密路径。修复仅在验证包：Apple导入时随机数、Pino错误入口、公开证书模块打包；apps、config、AWS实现和原生未改。
+- 云端共8次固定调用；实际Hyperdrive→Neon只读事务验证低权限登录及无签名authority拒绝，DB内部墙钟3373ms／771ms。它不是完整已登录业务、真实KMS、有效Apple链／OCSP或新购买验收。
+- Workers／Neon都仍Free，没有升级或复制真实数据。验证URL和preview均已关闭，外部404，临时DATABASE绑定已解除；原Hyperdrive／Neon和旧MCP保留。Nonce过期并从编排内存释放，不冒称已擦除提供方历史秘密。
+- 核对实际法兰克福AWS价格，PrivateLink为0.012/endpoint/AZ小时；Neon指南当前列8个法兰克福服务，不能预先按一项计。保守三执行单元模型小计168.59美元/月，另有地域报价Q等；单项目若获官方确认只需一个服务，同一模型才为107.27。不是最低价、已购买配置或性能保证，完整总额仍unknown。
+- 免费Workers／HTTPS／Hyperdrive／Neon及基本日志已实际使用。Owner确认个人自筹、未注册公司、未获Startup赠金；Cloudflare申请只推进到Contact步骤，未连接账户／支付方式／接受协议／提交。最高10k赠金未获批，不计长期费用。[两份供应商问题草稿](architecture/cf-neon-provider-inquiry-20261102.md)未发送。
+- 原17-r2真实HKD888购买／恢复和November2自然到期证明沿用；旧MCP OAuth／撤销与105迁移证据沿用。手动取消／退款未冒领，新本轮不是App发布验证。
 
 ## 证据边界
 
-[本轮安全回执](../collaboration/verification/hosting-six-pair-20261102/README.md)包含25项官方来源、公开选区价格、纯算术脚本和完整假设。五项算术校验通过，文档／全量可读清单／确切base本机发布检查分别记录。没有新应用测试、生产迁移、开账户、付费、切DNS、子代理或云端CI；旧archives1–59未重做。
+[可读回执](../collaboration/verification/cf-neon-validation-20261102/README.md)保存真实云端返回、原始失败／通过日志、公开价格、可复算模型和关闭截图。应用测试／旧归档不重跑，无子代理或云端CI。生成依赖、runtime类型和可复现bundle缓存不当源码提交，锁文件／构建配方／已测digest保留。
 
-先前20–30美元完整月费只是待验证目标，新增网络／权限需求可能使它不成立；不为凑低价删除现有保护。六组合核心小计未含全部密钥／日志／对象／任务／私网费用，实际用量和操作维护仍需核算。数据库引擎保留PostgreSQL，候选未验证完整可上线。
+Cloudflare管理MCP后续出现传输故障，后台已有会话正常，清理由UI完成；这不是重新登录门。AWS额外只读清单请求实际过期，今天账单／源码足以继续本轮，因此未要求新MFA或扩展SQL权限。没有108新目标迁移、私网部署、付费7天恢复、全业务验收或完整生产等价性证明。现有AWS账单／成本止损仍未改变，不能把免费候选当现有账单已经下降。
 
 ## 唯一下一步
 
-按六组合报告准备有界、仅合成资料的Cloud Run＋Neon代表性兼容性与成本验证：取得合适的只读逻辑容量，测CPU／等待、DB活跃／WAL和出口，核验原角色／恢复／独立任务／身份与网络地域；再形成准确配置和完整报价后决定是否迁移。当前未选provider／预算，不自动创建六套常驻环境或搬真实数据。已知AWS可选指标和预算通知缺口仍需作为止损处理，不能因研究完成而记为已解决；不重提或发TestFlight。
+先取得供应商对成本与保护条件的确认：Cloudflare个人项目资格／地域能力及赠金覆盖，Neon单项目PrivateLink服务数量。具体询问已准备；外发需Owner明确发送指示，Neon官方表单的联系资料／新条款仍独立。确认经济性成立后才继续新空目标的完整私网／KMS／7天恢复和认证业务验收，不先买套餐或迁真实资料。不重提或发TestFlight。

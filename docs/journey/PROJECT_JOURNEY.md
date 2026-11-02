@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-11-02 (Asia/Hong_Kong)
+Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -4448,3 +4448,7 @@ October25 Git完成回读：源码／archive54提交dfe3583e31a54b2b20f428b5e149
 ## 2026-11-02 — 六组合完整核价与增长取舍
 
 目标：Owner要求Oracle／Cloudflare／Google分别搭配Neon／Supabase，仔细考虑当前和增长后的性价比。尝试：读取官方价格，实际在Google公开页选择法兰克福、Oracle表选择美元；核对7天PITR、数据库IP限制、后台循环、S3版本删除和KMS依赖，生成三档可复算输入及六组合小计。判断变化：Supabase至少Small＋PITR约130美元起，Neon Launch不能冒充私网保护；Cloud Run当前源码迁移较直接，但增长后出口和实例活跃会增费；Oracle真实免费资格、持续负载和VM维护必须另算。结果：[聚焦报告](../hosting-six-pair-decision-20261102.md)收敛首验Cloud Run＋Neon的Agent建议，并保留CF／Oracle和持续大规格Supabase的反超条件；五项算术校验通过，不是性能测试。未完成：逻辑容量、代表性CPU／活跃时间／WAL／网络、完整安全拓扑与实际全账单，Owner未选provider或预算；未迁移、部署、开户、付费、变更数据／定价／审核、用子代理或云端CI。原AWS止损仍未部署，旧真实支付证据沿用。
+
+## 2026-11-03 — CF＋Neon真实隔离验证、免费边界与完整核价
+
+目标：Owner选择CF＋Neon，要求尽量用免费资源，原保护不降、不迁真实数据、不影响审核并推Git。尝试：复用有效CF／Neon连接，读取现有Free／Hyperdrive设置，独立打包原API；修正Apple导入时随机数、Pino浏览器入口和公开根证书模块，在真实workerd及独立Free Worker做8次固定请求。判断变化：能运行不等于完整可迁；AWS法兰克福PrivateLink实际0.012/小时，Neon当前指南列8个地区服务，严格保护的账单远多于组件起步价。结果：HTTP、合成SDK／8MiB加密及Neon只读权限有新实证；探针URL关闭／绑定解除，生产／价格／审核不动。完整费用模型保留168.59已知项＋未报价Q，一项endpoint仅作107.27敏感性，均非最低价或承诺；Owner确认个人自筹未注册、未获赠金，申请／询问未提交。未完成：供应商条件／价格确认、完整私网／KMS／7天恢复／已登录业务；没有付费升级、真实迁移、云端CI、子代理或旧付款重验。

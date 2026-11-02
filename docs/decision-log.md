@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-02 (Asia/Hong_Kong)
+Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3931,3 +3931,14 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests Oracle, Cloudflare and Google paired with Neon or Supabase, considering later growth and overall value. This deepens the research scope; it does not select a provider, approve a new monthly budget or authorize a weaker security/recovery topology.
 - [The focused comparison](hosting-six-pair-decision-20261102.md) records current regional prices and explicit workload assumptions. Agent recommends Cloud Run plus Neon as the first compatibility candidate; this supersedes only the previous broad, equally ranked research shortlist, not an Owner migration decision.
 - Keep seven-day PITR and the current roles, encryption, independent deletion/recovery authority and regional requirements. Launch/public-TLS subtotals cannot establish equivalence to private RDS. Preserve production, data, prices, FanPass and final review/TestFlight holds; no cloud CI or subagent.
+
+## 2026-11-02 — Owner selects Cloudflare plus Neon for isolated validation
+
+- Owner explicitly selects CF plus Neon for the next validation, superseding the Agent's prior Cloud Run-first recommendation. Determine the complete recurring cost and required migration work; prioritize useful legitimate free allowances and benefit eligibility.
+- Use synthetic data only. Preserve all existing security controls, current production/review, prices and real data; no production migration, TestFlight, cloud CI or subagent. Publish the scoped results to GitHub.
+- Free-tier limitations must remain visible; neither a six-hour restore window, public database, same-process master key nor omitted independent recovery/deletion authority can substitute for the current production safeguards. No paid Enterprise plan, financing fact or incorporation status is inferred.
+
+## 2026-11-03 — Record the CF/Neon validation boundary and grant facts
+
+- Owner confirms Rillora is a self-funded individual project, not incorporated, and has not previously received Cloudflare Startup credits. Do not invent incorporation/funding or count unawarded credits as a recurring budget.
+- The scoped free runtime results do not approve production migration, a paid plan or weaker protection. Provider inquiry drafts remain unsent; no new external-message authorization is inferred from research completion. The current report preserves the private-network, key, deletion, recovery and regional questions and keeps the complete quote unknown.

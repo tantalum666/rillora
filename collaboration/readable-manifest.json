@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 40314,
-      "sha256": "9664593f2e11946fa82f309c0c7ae9ce77e2a6e02fc7aac61790c131eb8988e4"
+      "bytes": 40868,
+      "sha256": "d58ea350fe431a440c59296571de8eb9d76aa15055689dcb30fb6244754fd65d"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -47741,6 +47741,156 @@
       "sha256": "388843eaad0706184b9ed8375399e30aac5d9ef4d5231133e6dc33fa32d35ee2"
     },
     {
+      "path": "collaboration/verification/cf-neon-validation-20261102/README.md",
+      "bytes": 2764,
+      "sha256": "86a95e1b839d85fe8c7a0f8794e3c87154980c767850e0587e6ff51852c99169"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/artifact.json",
+      "bytes": 656,
+      "sha256": "d996877732540be0fa40eeb8feb481b61538531b05f6d86fb4b8dc11191307fd"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/aws-frankfurt-price-evidence.json",
+      "bytes": 9827,
+      "sha256": "4293bf75df048e8b991ffa00163d997fc4a31c7127dbda6a70a92921afae4330"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/closure.json",
+      "bytes": 641,
+      "sha256": "8ae20044196ceffde4f0635511aa579f1b71dffcbb9766d98474c51e27cac88a"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/edge-assertions.json",
+      "bytes": 793,
+      "sha256": "dc2d36c49f588615f1229c99947d71305b21a7b4a5be270507a0e9fc85b44ba6"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/edge-results.json",
+      "bytes": 5236,
+      "sha256": "97e5039ccbe9ef6ad4de92430e113513140695771731e0e510d554a7fc87370f"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-2.log.reference.txt",
+      "bytes": 673,
+      "sha256": "c53c68d80e207b1469a16591380b699d09610fa1fc934509a3180fb58bc968e7"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-3.log.reference.txt",
+      "bytes": 673,
+      "sha256": "20cf977b04456ff89e1b0aa2482fdc3615dfc9268a29e3b4206d5cd49180a555"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-4.log.reference.txt",
+      "bytes": 673,
+      "sha256": "1282343078a44b2ecf93be24aac23e234201a7e877744329e6708cb47211c571"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-5.log.reference.txt",
+      "bytes": 673,
+      "sha256": "5e46aac3d61c51a8c58f345462325888399b6d5a9227c891704a3a1f873587c3"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-6.log.reference.txt",
+      "bytes": 673,
+      "sha256": "a3211409df15a86e2f6031e26e6f3921a5f1e0c324aa355baeb03632cbc5e7ff"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/build-fresh-root.log.reference.txt",
+      "bytes": 910,
+      "sha256": "7b1b671c72d2b945aea46ec4eafdfc02de5b8cd5746be420af241069aac9c838"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/typecheck-2.log.reference.txt",
+      "bytes": 62,
+      "sha256": "5a5042eb0f2630a55034c283b796fdb23bb1f6fe4f1b639124dfbc17b5458dba"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/types.log.reference.txt",
+      "bytes": 1205,
+      "sha256": "e1330b3ff733ee88d29522e0078742c0d5d0be1bac16167c0b70c37037a739b2"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-all-1.log.reference.txt",
+      "bytes": 696,
+      "sha256": "c6298a2e57bad37984b102aca326978429e725a44efb82b16c061fa5b7eb6ef8"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-all-2.log.reference.txt",
+      "bytes": 1170,
+      "sha256": "626a5f8e8c33123f32f19e299ea93fbf02cb6e8256f7893b0a3e229aa6e371b8"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-all-3.log.reference.txt",
+      "bytes": 1526,
+      "sha256": "e397c99403c0bb9c79c7e353498e844852679046681928a7883f7aa6795fd2c8"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-1.log.reference.txt",
+      "bytes": 919,
+      "sha256": "48cf1095e7d03f2c71aa3404adbd7b7fc88d6774b176eb837af4a2eb7c595b16"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-2.log.reference.txt",
+      "bytes": 958,
+      "sha256": "3b60e8fc368e95f400754e853d60b0a8398519c02523efd9b44ce82a20c7533a"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-3.log.reference.txt",
+      "bytes": 1147,
+      "sha256": "4bdccf12417fa0911a47a7d804242402f79b99c0fbbf406ccb9995afe22c40a2"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-4.log.reference.txt",
+      "bytes": 3619,
+      "sha256": "0741deff7855baea22121eee1f5f41c9923a0843c6100ab07f785f24ea8e8f64"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-5.log.reference.txt",
+      "bytes": 262,
+      "sha256": "ce9ef726cc311f4d95637f77e5fb9270a387220ad1a0284f0b801780d693634f"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-6.log.reference.txt",
+      "bytes": 433,
+      "sha256": "0e6b4704479b43c9bcc78bac51f56648a7056fd8d6927e5e62d0aa75c9cbf805"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/logs/workerd-http-7.log.reference.txt",
+      "bytes": 841,
+      "sha256": "ba70136283682263251d704d059e9848640f9fe55bf01bf6137ce3f95bfd8c19"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/monthly-model.json",
+      "bytes": 3292,
+      "sha256": "f9d58408e89b2fb63ac42f3280dd6f80fdec4aea058923e71c7c87482ff967b7"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/provider-state.json",
+      "bytes": 1128,
+      "sha256": "e74f37b4d6421cb9cd0c70eedc27e4e44f2568600ddfdb7abd768d464fec73de"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/sources.json",
+      "bytes": 3915,
+      "sha256": "bc926b914f86bd1374b0b030ed8479babd7672b4bb91dc40807e881910d697e6"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/validation.json",
+      "bytes": 851,
+      "sha256": "7ad0821381ce388bf8e5e9200c1137f1be9bdd86ec21adba88c28eae603c245c"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/worker-binding-removed.png",
+      "bytes": 11483,
+      "sha256": "2c9606751784706c4dc2f74a64d9643125a7c80cc1a04bff09d63ddd1a45d8e8"
+    },
+    {
+      "path": "collaboration/verification/cf-neon-validation-20261102/worker-urls-disabled.png",
+      "bytes": 38473,
+      "sha256": "c3c5f3dd67ee7f83851ac7b438b8e03d9a85aeae70dc650c0d9acaa33b6334a4"
+    },
+    {
       "path": "collaboration/verification/chinese-copy-20261005/README.md",
       "bytes": 1850,
       "sha256": "0b9c09e2ef29d5e1320860d04919136c96968225ce817c5c16db985ddac04799"
@@ -68246,6 +68396,6 @@
       "sha256": "95309aaae9ce87a385b0093acb52f5da35851dca26b422107e63b41dc0ed64ae"
     }
   ],
-  "fileCount": 13649,
-  "totalBytes": 408867116
+  "fileCount": 13679,
+  "totalBytes": 408963842
 }

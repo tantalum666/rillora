@@ -1,8 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-02 (Asia/Hong_Kong)
+Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 ## November2 broader provider research
+
+November2–3 adds the Owner-selected [CF/Neon validation](architecture/cf-neon-validation-20261102.md): isolated source/lockfiles under infra/hosting-validation, safe live results, normalized failure/pass logs and cropped retirement screenshots in the [evidence package](../collaboration/verification/cf-neon-validation-20261102/README.md). No apps/config/AWS implementation changes, real-data migration or review deployment. Generated dependencies/runtime types/reproducible bundle caches stay excluded; their recipe and exact tested digest are retained. This small safe increment needs no new encrypted archive or replay of old suites. Rebuild the full manifest after the last receipt and use the unchanged exact main base for local publication; no cloud CI.
 
 The later [six-pair decision report](hosting-six-pair-decision-20261102.md) narrows the comparison to Oracle/Cloudflare/Google with Neon/Supabase. Its [safe evidence](../collaboration/verification/hosting-six-pair-20261102/README.md) contains public regional prices and an explicit Decimal model. This is documentation and arithmetic only; no new sealed archive, app suite, provider resource or cloud CI. The same exact-base local publication policy applies after the final receipt and complete manifest.
 

@@ -1,0 +1,43 @@
+
+> rillora-hosting-validation@0.1.0 types
+> wrangler types
+
+
+ ⛅️ wrangler 4.156.1
+────────────────────
+Generating project types...
+
+interface __BaseEnv_Env {
+	DATABASE: Hyperdrive;
+	VALIDATION_MODE: "synthetic-only";
+	VALIDATION_EXPIRES_AT: "1970-01-01T00:00:00Z";
+	PROBE_SECRET: string;
+}
+declare namespace Cloudflare {
+	interface GlobalProps {
+		mainModule: typeof import("./worker");
+	}
+	interface Env extends __BaseEnv_Env {}
+}
+interface Env extends __BaseEnv_Env {}
+type StringifyValues<EnvType extends Record<string, unknown>> = {
+	[Binding in keyof EnvType]: EnvType[Binding] extends string ? EnvType[Binding] : string;
+};
+declare namespace NodeJS {
+	interface ProcessEnv extends StringifyValues<Pick<Cloudflare.Env, "VALIDATION_MODE" | "VALIDATION_EXPIRES_AT" | "PROBE_SECRET">> {}
+}
+declare module "*.pem" {
+	const value: string;
+	export default value;
+}
+Generating runtime types...
+
+Runtime types generated.
+
+
+✨ Types written to worker-configuration.d.ts
+
+📖 Read about runtime types
+https://developers.cloudflare.com/workers/languages/typescript/#generate-types
+📣 Remember to rerun 'wrangler types' after you change your wrangler.jsonc file.
+

@@ -1,0 +1,17 @@
+
+> rillora-hosting-validation@0.1.0 build
+> node prepare-root.mjs && wrangler deploy --dry-run --minify --outdir dist && node stage-assets.mjs
+
+{"publicRootPrepared":true,"source":"tracked API DER certificate"}
+
+ ⛅️ wrangler 4.156.1
+────────────────────
+Total Upload: 2778.05 KiB / gzip: 763.43 KiB
+Your Worker has access to the following bindings:
+Binding                                                           Resource                  
+env.DATABASE (4f27cc101d784395aaa249c92e3bad18)                   Hyperdrive Config         
+env.VALIDATION_MODE ("synthetic-only")                            Environment Variable      
+env.VALIDATION_EXPIRES_AT ("1970-01-01T00:00:00Z")                Environment Variable      
+
+--dry-run: exiting now.
+{"stagedPublicCertificate":"c008d06ea1d6b5bd4a608c06dbe96d7ed45c4a47-apple-root-g3.pem","pinnedDerSha256Verified":true}

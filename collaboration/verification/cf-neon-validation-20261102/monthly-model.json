@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-02",
+  "currency": "USD",
+  "monthHours": 730,
+  "scope": "one conservative post-cutover production hosting design; NOT the lowest possible architecture or capacity proof",
+  "assumptions": {
+    "monthlyApiRequests": 100000,
+    "workersCpuMsPerRequest": 10,
+    "neonCUs": 0.25,
+    "neonActiveHours": 730,
+    "dataGbMonth": 5,
+    "retainedWalGbMonth": 5,
+    "restoreDays": 7,
+    "privateTransferEachProviderGb": 10,
+    "privateEndpointServices": 8,
+    "privateEndpointAvailabilityZones": 1,
+    "endpointCountBasis": "Current Neon private-networking guide lists eight eu-central-1 services and instructs adding all. A project-specific subset is not verified.",
+    "separateAwsExecutionUnits": [
+      "private connector with no application authority",
+      "bounded KMS/provider gateway",
+      "independent identity deletion worker"
+    ],
+    "executionUnit": "ARM .25 vCPU / .5 GiB / one public IPv4, no inbound public application listener",
+    "secrets": "13 existing functional categories plus 2 new connector/operational records; planning inventory, not a fresh AWS count",
+    "s3PublicEgress": "assumed within unused account-wide 100 GB/month allowance; excess adds actual source-side egress",
+    "reserveLines": "monitoring/journal/drill values are budget allowances, not provider flat-price packages"
+  },
+  "components": {
+    "workers_paid_budget": 5.0,
+    "neon_scale_025_cu_always_on": 40.515,
+    "neon_data_5_gb_month": 1.75,
+    "neon_7_day_history_5_gb_month": 1.0,
+    "aws_privatelink_eight_services_one_frankfurt_az": 70.08,
+    "private_transfer_10_gb_each_provider": 0.2,
+    "private_connector": 11.940975,
+    "bounded_key_provider_gateway": 11.940975,
+    "isolated_identity_deletion_worker": 11.940975,
+    "two_billable_kms_key_versions": 2.0,
+    "kms_200k_symmetric_requests_after_20k_allowance": 0.54,
+    "fifteen_separate_secret_records": 6.0,
+    "ten_thousand_secret_api_calls": 0.05,
+    "s3_versions_backups_logs_total_22_gb_month": 0.539,
+    "s3_ten_thousand_writes_hundred_thousand_reads": 0.097,
+    "monitoring_budget_allowance": 3.0,
+    "journal_queue_lambda_budget_allowance": 1.0,
+    "isolated_restore_drill_budget_allowance": 1.0
+  },
+  "pricedSubtotal": 168.593925,
+  "regionalProcessingAndMetadataControlsQuoteUsd": null,
+  "completeTotal": null,
+  "totalFormula": "168.593925 + Q_region + usage beyond stated assumptions + tax and any existing non-hosting services",
+  "actualNewPaidResourcesThisValidation": false,
+  "unimplementedOptimizationSensitivity": {
+    "subtotal_if_neon_confirms_one_service_is_sufficient": 107.273925,
+    "neon_100_cu_hours_instead_of_182_5_saving": 18.315,
+    "one_always_on_unit_removed_with_verified_on_demand_replacement_gross_saving_before_new_usage": 11.940975
+  },
+  "notProven": [
+    "equal protection for this undeployed architecture",
+    "complete authenticated API acceptance",
+    "private connectivity",
+    "paid seven-day restore",
+    "regional guarantee",
+    "actual CPU sizing or monthly demand"
+  ],
+  "transition": "Existing AWS continues to bill until an authorized, verified cutover and resource retirement; no present savings claimed.",
+  "credits": "No Startup credit is awarded or subtracted. Time-limited credits do not define long-term cost."
+}

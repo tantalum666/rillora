@@ -2,11 +2,13 @@
 
 Status: RESEARCH COMPLETE / RECOMMENDATION ONLY / NO PROVIDER SELECTED OR DEPLOYED
 
-Last updated: 2026-11-02 (Asia/Hong_Kong)
+Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 Owner要求仔细比较Oracle、Cloudflare、Google分别搭配Neon或Supabase，考虑后续增长和最高性价比。本报告收敛[上一轮广泛比较](cloud-hosting-comparison-20261102.md)的候选排序；旧报告保留其他供应商资料。这不是迁移、开通付费或改变恢复／网络保护的批准。当前生产、价格、真实资料、FanPass、原生17及重提／TestFlight暂停均保持。
 
 ## 建议
+
+后续Owner已选择先验证CF＋Neon。[November2–3实际验证](architecture/cf-neon-validation-20261102.md)取代本节的执行顺序，记录真实Workers／Neon结果、严格保护下的完整费用分类和报价缺口。下表继续是明确排除额外保护／网络的组件比较，不能直接当作迁移总账单。
 
 **当前先验证Google Cloud Run＋Neon；Cloudflare适合公开前端，并作为高请求量时的API候选；Oracle保留为持续负载或实际取得免费额度后的固定算力候选。当前不为省钱把数据库迁到Supabase。** 这是结合当前Node服务、单人维护、低流量和7天任意时点恢复作出的Agent建议，Owner尚未选供应商。
 

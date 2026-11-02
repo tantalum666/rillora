@@ -1,0 +1,32 @@
+{
+  "checkedOn": "2026-11-02",
+  "cloudflarePlan": "Workers Free",
+  "neonPlan": "free_v3",
+  "neonRegion": "aws-eu-central-1",
+  "neonPgVersion": 16,
+  "neonCuRange": [
+    0.25,
+    0.25
+  ],
+  "neonHistorySeconds": 21600,
+  "neonPublicConnectionsBlocked": false,
+  "syntheticOnly": true,
+  "hyperdriveOriginCertificateVerification": "verify-full",
+  "hyperdriveQueryCacheEnabled": false,
+  "hyperdriveOriginConnectionLimit": 5,
+  "newNeonProject": false,
+  "cfBillingApi": "OAuth does not cover the subscription endpoint; browser used without a new owner sign-in",
+  "cfMcpLaterFailure": "transport failure; not a provider authentication rejection",
+  "awsExtraRead": "session expired; reused same-day receipts and source instead of requesting redundant MFA",
+  "lastDashboardObservation": {
+    "invocations": 8,
+    "errors": 0,
+    "cpuTimeCardMs": 12,
+    "cpuAggregationNotInterpreted": true
+  },
+  "oldEvidenceInherited": [
+    "October17 scoped MCP authentication/revocation and105migration",
+    "November1 purchase/restore andNovember2 natural expiry"
+  ],
+  "newPurchaseOrAuthenticatedBusinessFlowClaimed": false
+}

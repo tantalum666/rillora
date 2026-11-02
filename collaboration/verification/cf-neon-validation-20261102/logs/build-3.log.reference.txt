@@ -1,0 +1,15 @@
+
+> rillora-hosting-validation@0.1.0 build
+> wrangler deploy --dry-run --minify --outdir dist
+
+
+ ⛅️ wrangler 4.156.1
+────────────────────
+Total Upload: 2762.80 KiB / gzip: 762.17 KiB
+Your Worker has access to the following bindings:
+Binding                                                           Resource                  
+env.DATABASE (4f27cc101d784395aaa249c92e3bad18)                   Hyperdrive Config         
+env.VALIDATION_MODE ("synthetic-only")                            Environment Variable      
+env.VALIDATION_EXPIRES_AT ("1970-01-01T00:00:00Z")                Environment Variable      
+
+--dry-run: exiting now.
