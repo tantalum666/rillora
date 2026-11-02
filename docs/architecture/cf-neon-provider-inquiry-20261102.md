@@ -1,7 +1,9 @@
 # Cloudflare eligibility and regional-controls inquiry — prepared, not sent
 
-Status: DRAFT / NO MESSAGE SENT / NO PLAN CHANGE AUTHORIZED
+Status: DRAFT HELD AT OWNER REQUEST / NO MESSAGE SENT / NO PLAN CHANGE AUTHORIZED
 Last updated: 2026-11-03 (Asia/Hong_Kong)
+
+Owner明确选择“先保留草稿”。Cloudflare询问不发送；Neon草稿也未获发送指示，保持未提交。此决定不撤销已完成的隔离验证和Git保存，不代表接受未知报价或批准迁移。
 
 Recipient: startups@cloudflare.com
 Purpose: obtain an accurate eligibility answer and a quote/credit-coverage answer before treating the CF＋Neon candidate as a production budget.

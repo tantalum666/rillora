@@ -13,7 +13,7 @@ Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 后续Owner明确选择先验证Cloudflare＋Neon，优先利用适用免费量、现有保护不降、先不迁移真实数据、不影响审核并推Git。[当前验证合同](architecture/cf-neon-validation-20261102.md)取代下述Agent先验Cloud Run的建议；是隔离验证范围，不是最终生产切换或企业套餐批准。
 
-November3结果：限定本机／云端运行通过，临时入口与数据库绑定已回收。完整迁移保护与供应商报价未闭合，不按免费候选给生产定价。Owner另确认个人自筹、未注册公司、未获Startup赠金；正式申请与外发询问未完成，不计入长期预算。
+November3结果：限定本机／云端运行通过，临时入口与数据库绑定已回收。完整迁移保护与供应商报价未闭合，不按免费候选给生产定价。Owner另确认个人自筹、未注册公司、未获Startup赠金，并选择先保留Cloudflare询问草稿；不外发，正式申请未提交，赠金不计入长期预算。
 
 Owner要求对Oracle／Cloudflare／Google分别搭配Neon／Supabase再作细致比较并考虑增长。[六组合报告](hosting-six-pair-decision-20261102.md)保存公开单价、三档假设、恢复／网络差异和源码适配边界；Agent建议首验Cloud Run＋Neon，套餐服从原保护要求，长期再按实际CPU／出口／数据库活跃量调整。没有新的供应商、预算或降低保护决定；生产、价格、真实数据及审核保持。
 
