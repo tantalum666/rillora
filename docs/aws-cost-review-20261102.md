@@ -6,6 +6,10 @@ Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 Owner报告10月应付US$37.63，要求解释未正式上架阶段的支出并提出解决办法。本轮读取真实AWS邮件、Cost Explorer、账号额度、预算、两个集群／数据库、指标和告警；没有停止服务、迁移资料、修改收费或购买承诺折扣。Apple重提和TestFlight继续暂停。
 
+## 同日后续：Owner要求更低成本路线
+
+Owner认为60–80美元仍偏高，要求比较CF和Oracle。[最新托管比较](cloud-hosting-comparison-20261102.md)明确该区间只是维持旧AWS架构的估计，不是产品最低成本；新增Workers＋按需PG与OCI候选，未选择provider、付款或实际迁移。以下账单事实保持，三项AWS收敛仍未部署。
+
 ## 已核实的费用
 
 11月2日AWS账单邮件指向2026年10月。Cost Explorer的完整单页月度结果为estimated=false：

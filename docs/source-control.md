@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-02 (Asia/Hong_Kong)
 
+## November2 lower-cost provider comparison
+
+[Cloudflare/Oracle comparison](cloud-hosting-comparison-20261102.md) adds current primary-source research and explicit arithmetic examples, without selecting or deploying a provider. [Small safe receipts](../collaboration/verification/hosting-comparison-20261102/README.md) contain source links, assumptions and static review scope only. Reuse prior invoice/expiry and application evidence; no new sealed archive or engineering suite is warranted. Full manifest and exact-base local publication remain required.
+
 ## November2 cost diagnosis and actual expiry
 
 [The cost report](aws-cost-review-20261102.md) reconciles the realOctoberinvoice and identifies optional container metrics, always-on Preview and missing budget notifications. These are recommendations, not a deployment. One new bounded read-only maintenance task verifies the original paid Sandbox order is expired_read_only; no repeat purchase/restore. [Safe summaries](../collaboration/verification/cost-review-20261102/README.md) are small ordinary Git JSON/Markdown; raw mail/payment/account/resource/auth material stays protected locally. Archives1–59are unchanged. Run only the exact-base publication and document/data checks for this report; inherited app tests are not rerun and no cloud CI is started.

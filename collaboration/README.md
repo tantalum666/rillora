@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November2后续：[CF／Oracle托管比较](../docs/cloud-hosting-comparison-20261102.md)回应Owner仍嫌旧AWS预算过高；最新免费／付费额度、完整费用遗漏和当前PG／worker约束已分开记录。[来源与算术](verification/hosting-comparison-20261102/README.md)普通Git保存，尚未选provider、开通付费或迁移，原成本止损仍未部署。
+
 November2最新：[真实费用诊断](../docs/aws-cost-review-20261102.md)确认10月资源费120.63减额度83＝应付37.63美元、当前额度0；两个集群额外性能指标和无通知预算已查明，降本仍为具体方案而非已部署。Owner到期／Free与同一原订单expired_read_only后台证明一致，不重买／恢复；手动取消与退款未冒领通过。[安全摘要](verification/cost-review-20261102/README.md)普通Git保存，旧1–59归档不重做，重提／TestFlight和云端CI保持暂停。
 
 November1最新：[17真实购买／恢复与独立账本](../docs/apple-purchase-acceptance-20261101.md)已通过，同一原HKD888订单完成／验签／权益核对。仅修正独立tester的地区，不重建订单；新双语错误文案9项、只读诊断20项通过。普通API／Web和收费保持，仅维护检查工具更新。当前新门是取消续期／真正到期，Owner不重做购买恢复，重提／TestFlight仍暂停。[本轮安全回执](verification/native17-install-20261101/README.md)将本轮新增工作独立保存，旧1–58不重做。

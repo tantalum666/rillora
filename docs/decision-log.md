@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-01 (Asia/Shanghai)
+Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3914,3 +3914,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Extend only the existing bounded operator inspect command with read-only Sandbox order/receipt metadata, outside the catalog fingerprint. No arbitrary SQL endpoint, ordinary Production financial records, token payloads, permission-template expansion or runtime API rollout. A same-order completed/paid_reconciled record, matching verified receipt and active subscription now provide independent evidence.
 - Keep the10-minute recent-identity gate. Known purchase conflicts receive accurate catalog copy in both languages; this source-only presentation repair joins the next grouped native candidate, not another immediate phone/TestFlight update.
 - Actual cancellation, expiry and refund remain distinct from successful purchase/restoration. Ask the Owner for the new manual Sandbox cancellation step, preserve history, and verify later provider state rather than treating a Free account as expired. Final resubmission/TestFlight hold remains.
+
+## 2026-11-02 — Compare lower-cost hosting before treating the AWS estimate as acceptable
+
+- Owner says the60–80USD/monthAWS-consolidation estimate is still expensive and asks aboutCloudflare/Oracle. That estimate is not an accepted budget or the product's minimum operating cost.
+- Evaluate current official allowances and full provider/operations costs. Workers plus managed on-demandPostgres is an Agent preference, OCI a comparison candidate; no provider selection, new account/paid tier or real-data migration is inferred from this question.
+- Preserve the current data/security/recovery contract, prices, real records, FanPass and final resubmission/TestFlight hold. [Comparison](cloud-hosting-comparison-20261102.md).
