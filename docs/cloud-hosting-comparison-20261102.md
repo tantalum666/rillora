@@ -1,16 +1,60 @@
-# Cloudflare、Oracle Cloud与Rillora低成本托管
+# Rillora低成本云服务比较：Cloudflare、Oracle、Google、Azure及其他平台
 
 Status: RESEARCH AND SOURCE FIT REVIEW / PROVIDER NOT SELECTED / NO MIGRATION OR PURCHASE
 
 Last updated: 2026-11-02 (Asia/Hong_Kong)
 
-Owner认为保留现有AWS架构后每月60–80美元仍偏高，询问Cloudflare和Oracle Cloud。该区间只是[现有资源收敛估计](aws-cost-review-20261102.md)，不是Rillora最低运行成本或Owner已接受的预算。本轮比较最新官方价格、免费限制和活动源码依赖，不开新付费套餐、不迁移真实数据、不改变在审／待重提版本。目标区间仍为Agent建议。
+Owner认为保留现有AWS架构后每月60–80美元仍偏高，先询问Cloudflare和Oracle Cloud，随后要求补充微软、其他高性价比平台及Google。该区间只是[现有资源收敛估计](aws-cost-review-20261102.md)，不是Rillora最低运行成本或Owner已接受的预算。本轮比较最新官方价格、免费限制和活动源码依赖，不开新付费套餐、不迁移真实数据、不改变在审／待重提版本。目标区间仍为Agent建议。
 
 ## 判断
 
 Cloudflare和OCI都有可能显著降低当前低流量阶段的现金费用，但路线不同：Cloudflare适合把API和任务改为按请求／事件执行；OCI虚拟机更容易保留完整Node与PostgreSQL进程，但自行管理数据库会增加升级、备份、恢复和故障处理工作。仅把官网搬到Cloudflare省不了当前大头：本次AWS账单的静态分发、存储和API请求费用合计很少，真正需要替换的是全天运行的计算／数据库和额外指标。
 
-当前优先候选是Cloudflare Workers加按需托管PostgreSQL；OCI小实例作为保留现有运行方式的备选。先保持PostgreSQL权限与事务机制，不为追求D1免费额度重写现有安全基础。最终选择取决于完整API兼容性、工作负载实测、7天恢复要求和可获得的账户／区域资源，不以宣传额度判定可上线。
+补充比较后，按需托管候选为Google Cloud Run或Cloudflare Workers加托管PostgreSQL；若优先低固定现金费用，则比较Hetzner小实例和OCI。Azure Container Apps可行，但不因微软品牌或试用赠金推断整体比AWS便宜。先保持PostgreSQL权限与事务机制，不为追求D1免费额度重写现有安全基础。最终选择取决于完整API兼容性、工作负载实测、7天恢复要求和可获得的账户／区域资源，不以宣传额度判定可上线。
+
+## Google和微软：选对产品比换品牌重要
+
+Google Cloud Run的请求计费服务有每月200万请求、180,000vCPU秒和360,000GiB秒免费额度，按billing account共享、以Tier1价格折算抵扣；地区和计费模式会影响实际金额。实例计费／Jobs的240,000／450,000额度是另一模式，不能拼到同一服务预算。HTTP服务可以min0，数据库、镜像仓库、出站网络、日志、密钥和定时任务仍须单列。
+
+Cloud Run法兰克福europe-west3属于Tier2价格，而且不在其原生Domain Mapping支持地区列表；正式保留域名时需评估现有边缘代理或其他入口，不能遗漏额外负载均衡／网络费用。也不能为了免费Tier1任意改动数据区域。
+
+对当前Express／NodeAPI，Cloud Run通常能保留比Workers更多的常规Node运行方式，这是静态适配判断，不是部署通过。现有AWS镜像为ARM64，Cloud Run当前要求linux/amd64，需本机构建相应镜像；还需调整端口／TLS平台交界、AWS依赖和后台执行方式。30秒轮询不能直接放在请求结束后可能不分配CPU的服务里；Jobs应处理一批后退出，常驻worker pools不自动缩到零。Cloud SQL不能当作Cloud Run免费额度内附送的数据库，便宜shared-core实例也没有SLA。本轮以同一个按需PG方案比较Cloud Run与Workers，避免把不同数据库恢复能力当作算力价格差。
+
+Azure Container Apps的Consumption也有每月200万外部HTTP请求、180,000vCPU秒和360,000GiB秒免费量，按subscription汇总；min0没有计算使用费，保留最少副本则仍可能产生idle费用。Private Endpoints／某些网络及维护选项、镜像仓库、日志、数据库等另计；不用AKS或专用集群作为小型NodeAPI的默认起点。Azure PostgreSQL按计算、存储和配置收费，区域／SKU未选，本轮不把网页默认B1ms示例当法兰克福总报价。
+
+对Rillora，Google Cloud Run应与Workers并列进入小型等价验证；Azure是合理备选，有微软生态或实际优惠资格时再加分。Microsoft/Azure学生／创业优惠与Google新客赠金均只作现金缓冲，资格和允许用途需核实，不计入长期成本，也没有开通任何订阅。
+
+## 其他平台的可比参考
+
+下表为2026年11月2日官方目录／浏览器读回的美元参考项，**不是相同保障的整套Rillora总价**。每个供应商的CPU代际、共享方式、地区及库存不同；未做性能排名。
+
+| 平台／产品 | 已核实价格参考 | 对当前项目的取舍 |
+| --- | --- | --- |
+| Hetzner欧洲CX23 | 2vCPU／4GB／40GB，US$6.49/月，不含IPv4和税 | 低固定费用值得优先看；数据库自行维护，实际库存未确认。 |
+| Hetzner欧洲CAX11 | 2Arm／4GB／40GB，US$6.99/月，不含IPv4和税 | 与当前ARM应用方向接近；仍需独立权限／备份，不是托管PG。 |
+| DigitalOcean Basic Regular | 2GiB／1vCPU／50GiB为US$12；4GiB／2vCPU／80GiB为US$24 | 常规VM路线，文档和资源配置明确；数据库、补丁和恢复由我们管理。 |
+| AWS Lightsail Linux套装 | 官方2GB／2vCPU／60GB套装US$12/月 | 同一AWS里也有便宜VM路线，但数据库自行维护；不能把当前Fargate/RDS账单当所有AWS产品的价格。 |
+| Akamai/Linode Shared CPU | 2GB／1CPU／50GB为US$12；4GB／2CPU／80GB为US$24 | 与DO同一类比较；地区可能有价差，不拿最小1GB宣传价当完整服务。 |
+| Railway | Hobby最低US$5、Pro最低US$20，最低消费抵用实际用量 | 容器部署方便；CPU、内存、卷和出站按量，不能理解为5美元无限应用／数据库。 |
+| Render | Web512MB为US$7；PG256MB为US$6，PG1GB为US$19；Pro工作区US$25另加compute | 部署与托管PG方便，但7天PITR需要Pro以上，因此13美元起步不是当前恢复要求下的完整价格。 |
+
+Hetzner已于2026年6月15日调价，CX23旧4.99美元、CAX11旧5.49美元不用于当前预算。自动备份额外按服务器价格20%，共7个日备份槽；附加Volumes不包含在这些镜像备份中，也不等价于Postgres任意时点恢复。Hetzner和DO都不会因为只关机就停止VM计费；不能照搬RDS暂时停止的操作来省钱。
+
+Railway用量单价为RAM10美元／GB月、CPU20美元／vCPU月、卷0.15美元／GB月、出站0.05美元／GB。应按所有服务合计实际资源计算；Hobby使用8美元资源时总额是8美元，不是5＋8美元。完整数据库恢复和隔离任务能力需单独核验。
+
+Render的当前动态页面已实际打开：最小Web＋256MBPG为7＋6＝13美元；加满足7天PITR的Pro工作区后为38美元；若选择1GBPG和一个独立512MBworker，则7＋19＋7＋25＝58美元，仍未含额外存储、密钥及网络。这些只是不同资源组合的算术，不断言256MB足以运行当前迁移和支付业务。低预算情况下，Render应按便利程度比较，不按13美元宣传价判为最便宜。
+
+Vultr也在检索范围内，但本轮官方价格页返回403，因此未编造实时价或把它放入有确价的排序。OVHcloud／Scaleway等可留后续，当前已有足够候选，不为了平台数量无限扩展研究。
+
+## 收敛后的候选顺序
+
+1. **少维护、低流量按需运行：Google Cloud Run＋托管PG，与Cloudflare Workers＋托管PG做同等范围验证。** Google保留常规Node更直接，Cloudflare已有合成候选和较低基础费用；完整兼容与账单未实测。
+2. **优先最低固定现金费用：Hetzner小VM＋明确的PG备份／恢复与权限方案。** 目标可以比原AWS60–80美元低很多，但增加自行运维工作；库存与符合当前区域要求的方案先核实。
+3. **部署体验优先：Railway；Render依实际7天恢复／worker配置计算后决定。** 两者不是无上限固定5／13美元。
+4. **微软生态／实际优惠有优势：Azure Container Apps。** 不是简单把AWS全部组件逐项换成Azure同类产品。
+5. **OCI、DO、Akamai为VM备选。** 在同样内存、存储、恢复与权限要求下比较，不把试用额度当长期报价。
+
+没有依据宣称一个平台在所有规模和地区都最便宜。也未把公开免费CPU量当作当前真实应用测得的零账单。保留已发现的AWS止损工作；新的供应商研究不停止现有账单。
 
 ## Cloudflare最新价格与适用范围
 
@@ -65,11 +109,20 @@ Neon当前价格页（October31更新）给Free每项目1GB、100 CU小时及空
 
 ## 建议下一步与完成边界
 
-先对现有CF合成候选做完整API的最小兼容性与费用验证：登录／会话、一个受RLS保护的读写、一次非扣款的签名验真、文件流与独立任务／恢复日志适配。只运行新增相关用例；原真实购买、恢复、到期和原生安装证据保留。若Worker适配过大或破坏现有控制，再比较OCI实例的完整运维成本。
+优先对既有CF合成候选与Google Cloud Run候选作相同完整API边界的最小兼容性和费用比较：登录／会话、一个受RLS保护的读写、一次非扣款的签名验真、文件流与独立任务／恢复日志适配。只运行新增相关用例；原真实购买、恢复、到期和原生安装证据保留。若按需托管适配过大，再比较Hetzner／OCI实例的完整运维成本。
 
 这一步形成可以评估的完整账单和迁移差异后，再决定具体托管。AWS已查明的额外指标与无通知预算仍是独立的止损项，研究替代平台不把旧账单费用自动暂停。当前没有创建Oracle账号、升级Cloudflare／Neon、移动真实数据库、切换DNS、改变价格或重提Apple。
 
-官方来源：
+新增官方来源：
+
+- [Google Cloud Run价格](https://cloud.google.com/run/pricing)、[地区与域名支持](https://docs.cloud.google.com/run/docs/locations)、[容器约束](https://docs.cloud.google.com/run/docs/container-contract)、[Cloud SQL说明](https://docs.cloud.google.com/sql/docs/postgres/faq)。
+- [Azure Container Apps计费](https://learn.microsoft.com/en-us/azure/container-apps/billing)、[PostgreSQL规格](https://learn.microsoft.com/azure/postgresql/compute-storage/concepts-compute)、[学生优惠资格](https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0170p)。
+- [Hetzner当前调价表](https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/)、[账单规则](https://docs.hetzner.com/cloud/billing/faq/)、[备份范围](https://docs.hetzner.com/cloud/servers/backups-snapshots/overview/)。
+- [Lightsail价格](https://aws.amazon.com/lightsail/pricing/)、[Lightsail具体规格](https://docs.aws.amazon.com/lightsail/latest/userguide/baseline-cpu-performance.html)。
+- [DigitalOcean目录](https://www.digitalocean.com/pricing/droplets)、[DO关机计费](https://docs.digitalocean.com/products/droplets/details/pricing/)、[Akamai目录](https://www.akamai.com/cloud/pricing/cpu)。
+- [Railway价格](https://railway.com/pricing)、[按量规则](https://docs.railway.com/pricing)、[Render动态价格](https://render.com/pricing)、[Render恢复窗口](https://render.com/docs/postgresql-backups)。
+
+原CF／OCI来源：
 
 - [Workers价格与静态资源](https://developers.cloudflare.com/workers/platform/pricing/)、[Node兼容性](https://developers.cloudflare.com/workers/runtime-apis/nodejs/)、[兼容日期／HTTP支持](https://developers.cloudflare.com/workers/configuration/compatibility-flags/)。
 - [R2价格](https://developers.cloudflare.com/r2/pricing/)、[D1价格](https://developers.cloudflare.com/d1/platform/pricing/)、[D1 SQLite语义](https://developers.cloudflare.com/d1/best-practices/query-d1/)、[Hyperdrive](https://developers.cloudflare.com/hyperdrive/)、[Containers磁盘行为](https://developers.cloudflare.com/containers/faq/)。

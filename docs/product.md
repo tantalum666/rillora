@@ -9,6 +9,10 @@ Last updated: 2026-11-02 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-11-02 扩大云服务比较范围
+
+Owner进一步要求比较微软、其他性价比平台及Google。[同一研究报告](cloud-hosting-comparison-20261102.md)加入Azure／Cloud Run按需容器和Hetzner／DO／Akamai／Railway／Render；区分免费CPU量、VM目录价、托管数据库恢复能力和实际整套费用。候选顺序为按需托管与低价VM两条路线，不因新增平台名称自动确定迁移或开通优惠。当前线上／数据／价格／审核保持。
+
 ## 2026-11-02 比较更低成本托管
 
 Owner认为原AWS收敛后60–80美元仍贵，要求研究Cloudflare／Oracle。[当前比较](cloud-hosting-comparison-20261102.md)将旧架构优化与更换计费方式分开，优先候选保留PostgreSQL并按需运行。免费额度、算术样例、已存在合成MCP与完整生产迁移各自取证；没有选择供应商、批准新预算或改变当前法兰克福数据／密钥边界。

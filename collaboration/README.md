@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November2范围扩充：[托管比较](../docs/cloud-hosting-comparison-20261102.md)已纳入Google／微软和Hetzner／DO／Akamai／Railway／Render，记录当前价格与7天恢复等额外费用；继续是研究，未选择或迁移。[安全资料](verification/hosting-comparison-20261102/README.md)只新增公开来源／价格事实，无新云端作业或旧归档重做。
+
 November2后续：[CF／Oracle托管比较](../docs/cloud-hosting-comparison-20261102.md)回应Owner仍嫌旧AWS预算过高；最新免费／付费额度、完整费用遗漏和当前PG／worker约束已分开记录。[来源与算术](verification/hosting-comparison-20261102/README.md)普通Git保存，尚未选provider、开通付费或迁移，原成本止损仍未部署。
 
 November2最新：[真实费用诊断](../docs/aws-cost-review-20261102.md)确认10月资源费120.63减额度83＝应付37.63美元、当前额度0；两个集群额外性能指标和无通知预算已查明，降本仍为具体方案而非已部署。Owner到期／Free与同一原订单expired_read_only后台证明一致，不重买／恢复；手动取消与退款未冒领通过。[安全摘要](verification/cost-review-20261102/README.md)普通Git保存，旧1–59归档不重做，重提／TestFlight和云端CI保持暂停。

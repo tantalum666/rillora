@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-02 (Asia/Hong_Kong)
 
+## November2 broader provider research
+
+[The same comparison](cloud-hosting-comparison-20261102.md) now includesGoogle,Azure,Hetzner,DigitalOcean,Akamai,RailwayandRender. Only current official-source findings, partial-price scope and safe rendered-price receipts are added to the existing[research package](../collaboration/verification/hosting-comparison-20261102/README.md). No runtime, archive or engineering test changes occur; regenerate the full manifest and exact-base local publication after these final updates.
+
 ## November2 lower-cost provider comparison
 
 [Cloudflare/Oracle comparison](cloud-hosting-comparison-20261102.md) adds current primary-source research and explicit arithmetic examples, without selecting or deploying a provider. [Small safe receipts](../collaboration/verification/hosting-comparison-20261102/README.md) contain source links, assumptions and static review scope only. Reuse prior invoice/expiry and application evidence; no new sealed archive or engineering suite is warranted. Full manifest and exact-base local publication remain required.

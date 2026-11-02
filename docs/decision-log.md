@@ -3920,3 +3920,8 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner says the60–80USD/monthAWS-consolidation estimate is still expensive and asks aboutCloudflare/Oracle. That estimate is not an accepted budget or the product's minimum operating cost.
 - Evaluate current official allowances and full provider/operations costs. Workers plus managed on-demandPostgres is an Agent preference, OCI a comparison candidate; no provider selection, new account/paid tier or real-data migration is inferred from this question.
 - Preserve the current data/security/recovery contract, prices, real records, FanPass and final resubmission/TestFlight hold. [Comparison](cloud-hosting-comparison-20261102.md).
+
+## 2026-11-02 — Include Azure, Google and other hosting alternatives
+
+- Owner explicitly adds Microsoft/Azure, other cost-effective providers and Google to the same comparison. Keep this as research; no provider or paid tier has been selected.
+- Compare like-for-like API, PostgreSQL, background tasks, keys, recovery and network costs, with current list prices rather than credits or obsolete SKU prices. No migration, cloud CI, resubmission or TestFlight follows from widening the shortlist.

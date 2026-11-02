@@ -1,0 +1,107 @@
+{
+  "readOn": "2026-11-02",
+  "sources": [
+    {
+      "topic": "google-run",
+      "url": "https://cloud.google.com/run/pricing",
+      "finding": "Request-based and instance-based grants must not be mixed"
+    },
+    {
+      "topic": "google-runtime",
+      "url": "https://docs.cloud.google.com/run/docs/container-contract",
+      "finding": "Linuxamd64 image required; request CPU, jobs and worker pools differ"
+    },
+    {
+      "topic": "google-sql",
+      "url": "https://docs.cloud.google.com/sql/docs/postgres/faq",
+      "finding": "Small shared-core SQL instances not covered by SLA; CloudRun grants do not provide a database"
+    },
+    {
+      "topic": "azure-container",
+      "url": "https://learn.microsoft.com/en-us/azure/container-apps/billing",
+      "finding": "Consumption min0 grant; private/network options and other resources may add fees"
+    },
+    {
+      "topic": "azure-postgres",
+      "url": "https://learn.microsoft.com/azure/postgresql/compute-storage/concepts-compute",
+      "finding": "Compute/storage tiers and backup retention separately configured; no region-specific quote asserted"
+    },
+    {
+      "topic": "azure-students",
+      "url": "https://azure.microsoft.com/en-us/pricing/offers/ms-azr-0170p",
+      "finding": "100USD conditional eligibility; not permanent hosting cost or confirmed commercial qualification"
+    },
+    {
+      "topic": "hetzner-price",
+      "url": "https://docs.hetzner.com/general/infrastructure-and-availability/price-adjustment/",
+      "finding": "June15prices replace old advertised small-server prices; Europequoted netexIPv4"
+    },
+    {
+      "topic": "hetzner-billing",
+      "url": "https://docs.hetzner.com/cloud/billing/faq/",
+      "finding": "Backup20percent, primary IP separate, shutdown does not end server billing"
+    },
+    {
+      "topic": "hetzner-backups",
+      "url": "https://docs.hetzner.com/cloud/servers/backups-snapshots/overview/",
+      "finding": "Seven daily disk backups are not database PITR; attached volumes excluded"
+    },
+    {
+      "topic": "digitalocean",
+      "url": "https://www.digitalocean.com/pricing/droplets",
+      "finding": "BasicRegular2GiB12USD,4GiB24USD"
+    },
+    {
+      "topic": "digitalocean-billing",
+      "url": "https://docs.digitalocean.com/products/droplets/details/pricing/",
+      "finding": "Powered-off Droplets remain billed; v5 catalog separate"
+    },
+    {
+      "topic": "akamai",
+      "url": "https://www.akamai.com/cloud/pricing/cpu",
+      "finding": "SharedCPU2GB12USD,4GB24USD; geographic price variations"
+    },
+    {
+      "topic": "railway",
+      "url": "https://railway.com/pricing",
+      "finding": "5/20minimumusage incl credits; not fee plus duplicated included usage"
+    },
+    {
+      "topic": "railway-units",
+      "url": "https://docs.railway.com/pricing",
+      "finding": "Memory/CPU/volume/egress meters; not unlimited flat5USD"
+    },
+    {
+      "topic": "render-prices",
+      "url": "https://render.com/pricing",
+      "finding": "Dynamic page read through browser, current resource and workspace prices"
+    },
+    {
+      "topic": "render-recovery",
+      "url": "https://render.com/docs/postgresql-backups",
+      "finding": "PITR3daysHobby/7daysProplus"
+    },
+    {
+      "topic": "google-region-domain",
+      "url": "https://docs.cloud.google.com/run/docs/locations",
+      "finding": "FrankfurtTier2and not in native domain-mapping region list; account for edge/routing cost"
+    },
+    {
+      "topic": "lightsail",
+      "url": "https://aws.amazon.com/lightsail/pricing/",
+      "finding": "AWS also offers VM bundles; not equivalent to managedRDS/Fargate deployment"
+    },
+    {
+      "topic": "lightsail-spec",
+      "url": "https://docs.aws.amazon.com/lightsail/latest/userguide/baseline-cpu-performance.html",
+      "finding": "Linux12USD bundle has2GB,2vCPU,60GB; compute baseline still bounded"
+    }
+  ],
+  "azureTool": "Official documentation router search and full fetch; pricing discovery only, no SKU assumption or account access",
+  "limitations": [
+    "Vultr public pricing fetch403; not assigned a current price",
+    "CloudSQL pricing fetch timed out; no made-up regional monthly quote",
+    "Hetzner account inventory unverified",
+    "No provider workloads deployed or benchmarked"
+  ]
+}
