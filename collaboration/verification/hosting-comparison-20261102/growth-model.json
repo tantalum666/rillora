@@ -1,0 +1,67 @@
+{
+  "currency": "USD",
+  "priceDate": "2026-11-02",
+  "cloudflareWorkers": {
+    "baseUSD": "5",
+    "includedRequests": 10000000,
+    "includedCpuMilliseconds": 30000000,
+    "requestOveragePerMillionUSD": ".30",
+    "cpuOveragePerMillionMillisecondsUSD": ".02",
+    "scenarios": [
+      {
+        "requestsPerMonth": 1000000,
+        "cpu10msUSD": "5.00",
+        "cpu100msUSD": "6.40"
+      },
+      {
+        "requestsPerMonth": 10000000,
+        "cpu10msUSD": "6.40",
+        "cpu100msUSD": "24.40"
+      },
+      {
+        "requestsPerMonth": 100000000,
+        "cpu10msUSD": "51.40",
+        "cpu100msUSD": "231.40"
+      }
+    ],
+    "billableWorkerInvocationsPerApiCallAssumption": 1
+  },
+  "neonFree": {
+    "computeAllowanceCUHours": 100,
+    "minimumExampleCU": ".25",
+    "activeHoursAtExampleSize": 400,
+    "alwaysOn730HoursCUHours": "182.5",
+    "storageGB": 1,
+    "restoreWindowHoursMaximum": 6,
+    "restoreChangedDataGBMaximum": 1
+  },
+  "neonLaunchComputeExamples": [
+    {
+      "cu": "0.25",
+      "hours": 730,
+      "computeOnlyUSD": "19.35"
+    },
+    {
+      "cu": "1",
+      "hours": 730,
+      "computeOnlyUSD": "77.38"
+    },
+    {
+      "cu": "4",
+      "hours": 730,
+      "computeOnlyUSD": "309.52"
+    }
+  ],
+  "exclusions": [
+    "database for Workers table",
+    "Auth0/email/object storage",
+    "backup history and snapshots",
+    "network and logs",
+    "keys and remaining AWS dependencies",
+    "tax and human operations",
+    "KV Queues Durable Objects and Workflow usage beyond their own allowances"
+  ],
+  "notMeasuredRilloraRequestCpu": true,
+  "notAFullBillOrCapacityTest": true,
+  "noEquivalentCapacityComparisonWithOracle": true
+}

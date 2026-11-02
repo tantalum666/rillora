@@ -14,6 +14,7 @@ Owner认为保留AWS架构后60–80美元/月仍贵，要求比较Cloudflare／
 - OCI免费主文档1500OCPU/9000GB小时与价目表付费租户3000/18000小时分别记录；未确认实际账户／区域容量。A1不计免费额度的1OCPU4GB算力11.68美元/月，不含盘和运维，不能当完整托管PG报价。
 - 新增Azure／Google按需容器、Hetzner、DO、Akamai、Railway和Render比较：云端免费计算不含数据库；Hetzner采用June15新价且库存未验；Render7天PITR需25美元Pro工作区，不能拿13美元组合当满足当前要求的总价。
 - 当前API为Node／Express／Postgres并有AWS密钥、独立日志／对象依赖；数据库权限和事务不能直接换D1。worker30秒轮询需改成按需，才可获得数据库休眠节省。已存在CF＋Neon合成MCP候选，旧证据可复用，未重跑。
+- Owner继续询问增长后的性价比与免费PG；报告新增按负载形态的比较、Workers纯算术场景、Neon100CU小时的休眠约束及Supabase日备份／PITR区别。当前RDS只读24小时桶CPU约4.5%、连接2–3，逻辑库大小未测；不据低CPU承诺免费额度足够，PG引擎继续保留。
 - Owner询问自管维护负担；报告已区分应用自管、数据库托管和全部自管。推荐用托管PG作基准，VM仅跑API作为折中；这不是新的provider／预算决定，未承诺全天值守或固定工时。
 - Apple真实购买／恢复和November2自然到期后台核对保持通过：同一HKD888订单expired_read_only，期末November1 15:04:08香港时间，事件applied且验签正常；Owner手机为Free。手动取消／退款未观察，不重买或恢复。
 
@@ -25,4 +26,4 @@ Agent建议把Cloud Run＋按需PG与Workers＋按需PG并列比较，最低固�
 
 ## 唯一下一步
 
-先比较Cloud Run与既有CF合成候选的完整API最小兼容性／全部费用，保留PostgreSQL安全模型；以Hetzner／OCI自管路线作固定成本对照，待比较后再选托管。成本止损的额外指标／预算通知缺口仍需实施，不能因研究迁移而标成已解决。现有生产和真实数据保持，最终审核材料另行对齐，不发TestFlight或重提。
+先补适当的只读逻辑容量与代表性请求CPU／数据库活跃时间，再比较Cloud Run与既有CF合成候选的完整API最小兼容性／全部费用，保留PostgreSQL安全模型；以Hetzner／OCI自管路线作固定成本对照，待比较后再选托管。成本止损的额外指标／预算通知缺口仍需实施，不能因研究迁移而标成已解决。现有生产和真实数据保持，最终审核材料另行对齐，不发TestFlight或重提。

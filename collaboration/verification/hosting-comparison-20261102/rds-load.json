@@ -1,0 +1,33 @@
+{
+  "at": "2026-11-02T05:03:53.735523+00:00",
+  "windowStart": "2026-11-01T05:03:53.735523+00:00",
+  "hours": 24,
+  "scope": "production RDS native aggregate metrics only",
+  "metrics": {
+    "FreeStorageSpace": {
+      "samples": 24,
+      "min": 18307928064.0,
+      "max": 18308300800.0,
+      "hourlyMean": 18308228033.42222,
+      "unit": "Bytes"
+    },
+    "CPUUtilization": {
+      "samples": 24,
+      "min": 3.7523920459272815,
+      "max": 7.8291400425985085,
+      "hourlyMean": 4.496259087757547,
+      "unit": "Percent"
+    },
+    "DatabaseConnections": {
+      "samples": 24,
+      "min": 2.0,
+      "max": 3.0,
+      "hourlyMean": 2.345138888888889,
+      "unit": "Count"
+    }
+  },
+  "logicalDatabaseSizeMeasured": false,
+  "registeredUsersRead": false,
+  "userContentRead": false,
+  "configurationChanged": false
+}
