@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-03 (Asia/Hong_Kong)
 
+## November3 five-provider complete hosting decision
+
+[The complete model and recommendation](architecture/five-provider-hosting-decision-20261103.md) covers retained disks, credentials/keys, private networking and restricted egress, separate journal/MCP state, backups, TLS renewal and restore drills. [Safe evidence](../collaboration/verification/five-provider-decision-20261103/README.md) contains only public rate extracts, a 13-check Decimal model and scope receipts. No app/provider/runtime changes, new sealed archive or repeated business tests. Rebuild the full readable manifest after the last receipt, then run the exact-base local publication gate and verify pushed head plus unchanged Actions. No cloud CI or subagents.
+
 ## November3 Vercel and comparison-method correction
 
 [The Vercel/method review](architecture/vercel-cost-method-20261103.md) separates required protection from chosen topology, current loops from an adapted target, and scoped examples from a full quote. [Safe source/arithmetic evidence](../collaboration/verification/vercel-method-20261103/README.md) records native Pro PrivateLink, uncertain base pricing and current payload/cron constraints. Documentation and a seven-check numerical illustration only; no app/runtime/provider changes, new archive or replay of business tests. Use complete readable publication and the same exact trusted base locally, then read back the pushed head; no cloud CI.

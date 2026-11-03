@@ -9,6 +9,10 @@ Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-11-03 五家完整托管预算与明确推荐
+
+Owner要求对AWS／CF／Oracle／Google／Vercel按不降保障的完整路线重新比较。[本轮报告](architecture/five-provider-hosting-decision-20261103.md)纳入双环境、后台、网络出口、全部凭据／密钥、恢复与证书费用，明确推荐先AWS阶段A约73.35美元，再验证有界worker目标65.71。Oracle付费A2自管约46.07，但新增DB运维／安全适配；Google及CF／Vercel混合路线均写清保留的AWS账单。全部是指定负载规划与Agent建议，不是已部署节省、Owner新预算或新平台安全验收；真实迁移、审核／TestFlight及供应商外发保持。旧组件／VPN案例不再作为完整平台排序依据。
+
 ## 2026-11-03 Vercel与比较方法纠正
 
 Owner要求检查Vercel并质疑“为何所有候选更贵”。[本轮复核](architecture/vercel-cost-method-20261103.md)确认此前只算核心组件与固定昂贵跨云路径都不足以判断完整迁移价值；保护结果、当前实现和目标改造分别比较。Vercel Pro原生PrivateLink已存在，不能默认套Enterprise或VPN／固定IP／辅助服务器全套费用。普通认证TLS连接也不自动等价于现有私网，本轮未批准或修改网络保护。尚未选最低成本平台，当前线上／审核／数据／收费保持，供应商外发仍暂存。

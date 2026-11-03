@@ -1,0 +1,205 @@
+{
+  "checkedAt": "2026-11-03",
+  "kind": "public source/control scope only",
+  "sources": [
+    {
+      "url": "https://aws.amazon.com/blogs/security/access-aws-using-a-google-cloud-platform-native-workload-identity/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/certificate-manager/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/cloud-map/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/cloudfront/pricing/pay-as-you-go/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/cloudwatch/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/eventbridge/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://aws.amazon.com/rds/postgresql/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/artifact-registry/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/nat/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/products/observability/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/run/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/scheduler/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/sql/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://cloud.google.com/tasks/pricing",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/AmazonRDS/latest/UserGuide/USER_StopInstance.html",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.aws.amazon.com/acm/latest/userguide/acm-exportable-certificates.html",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.cloud.google.com/run/docs/configuring/vpc-direct-vpc",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.cloud.google.com/sql/docs/postgres/backup-recovery/restore",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/Block/Tasks/creatingavolume.htm",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/Compute/References/computeshapes.htm",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/Object/Concepts/objectstorageoverview.htm",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en-us/iaas/Content/Object/Tasks/usingversioning.htm",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://docs.oracle.com/en/database/other-databases/nosql-database/25.1/nsdev/transactions-nosql-database.html",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://firebase.google.com/docs/hosting/manage-cache",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://vercel.com/docs/plans/hobby",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://vercel.com/docs/plans/pro-plan",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://www.oracle.com/cloud/cloud-native/container-registry/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://www.oracle.com/cloud/networking/virtual-cloud-network/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://www.oracle.com/cloud/postgresql/pricing/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://www.oracle.com/cloud/price-list/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    },
+    {
+      "url": "https://www.oracle.com/security/cloud-security/key-management/",
+      "role": "official price/control documentation; not evidence of live Rillora configuration"
+    }
+  ],
+  "rate_extractions": [
+    "AmazonRDS-prices.json",
+    "AmazonCloudWatch-prices.json",
+    "AmazonDynamoDB-prices.json",
+    "AmazonStates-prices.json",
+    "AmazonApiGateway-prices.json",
+    "cloudsql-selected-public-rows.txt",
+    "oracle-selected-public-rows.txt"
+  ],
+  "active_source_review": [
+    "infra/aws/lib/rillora-production-runtime.ts",
+    "infra/aws/lib/apple-certificate-egress.ts",
+    "infra/aws/lib/rillora-production-stack.ts",
+    "infra/aws/lib/rillora-staging-stack.ts",
+    "infra/aws/lib/rillora-customer-mcp.ts",
+    "infra/aws/recovery-journal-broker/handler.py",
+    "apps/api/src/server.ts",
+    "apps/api/src/account-deletion-worker.ts",
+    "apps/api/src/identity-deletion-proof.ts",
+    "apps/api/src/legacy-content/routes.ts",
+    "apps/api/src/legacy-content/assets.ts"
+  ],
+  "cost_coverage": [
+    "public static and edge",
+    "authenticated API",
+    "separate deletion execution",
+    "background retries",
+    "private database compute",
+    "retained production and preview disks",
+    "native backup and WAL",
+    "private content and versions",
+    "independent recovery archives",
+    "journal and MCP consistency",
+    "KMS versions and operations",
+    "separate secret records and reads",
+    "TLS renewal",
+    "public gateway and DNS",
+    "outbound firewall/NAT/IPv4/egress",
+    "metrics/logs/alarms",
+    "registry",
+    "monthly isolated restore drill",
+    "provider basic support"
+  ],
+  "primary_corrections": [
+    "OCI block minimum 50GB",
+    "No fourth free NoSQL table",
+    "40GB DB backup additional to80GB private objects/archives",
+    "Google all-traffic required to preserve public egress restrictions",
+    "journal restore35days and ordinary TTL90days; active holds no TTL",
+    "retain all Secrets Manager credentials; no unproven SSM migration saving"
+  ],
+  "unqualified": [
+    "CF whole-core private/regional/key route quote",
+    "Vercel Advanced Networking base and exact connection scope",
+    "target capacity and real workload billing",
+    "OCI Frankfurt A2 availability and account quotas",
+    "all new runtime/security/restore equivalence"
+  ],
+  "common_unchanged_costs_excluded_from_cloud_bill": [
+    "domain renewal",
+    "Apple Developer membership",
+    "transaction processing fees",
+    "tax",
+    "human labor"
+  ],
+  "permissions_and_runtime_unchanged": true,
+  "external_messages_sent": false,
+  "subagents_used": false,
+  "cloud_ci_used": false,
+  "reused_evidence": "November2 actual invoice and inventory; prior CF probe, MCP and real payment evidence not repeated",
+  "new_tests": "13 Decimal/scope checks; no application or security acceptance"
+}

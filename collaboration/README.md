@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-November3当前：[Vercel与成本比较方法纠正](../docs/architecture/vercel-cost-method-20261103.md)明确不能从昂贵跨云案例推导所有平台比AWS贵。确认Pro原生PrivateLink、可选StaticIPs和Enterprise网络不同，普通TLS方案未被批准替代现有私网；七项示例算术通过，完整价格／目标安全实证仍缺。[安全来源和模型](verification/vercel-method-20261103/README.md)普通Git保存，没有新资源、运行改动、外发、云端CI或子代理。
+November3当前：[五家完整托管预算与推荐](../docs/architecture/five-provider-hosting-decision-20261103.md)完成同口径全运行费用、保护控制及改造清单，推荐先AWS收敛。Oracle现金更低但自管；CF／Vercel明确仅公开层混合账单，Google保留AWS安全服务的成本亦计入。13项算术／边界校验通过，[安全模型与来源](verification/five-provider-decision-20261103/README.md)普通Git保存。没有部署、真实迁移、外发、子代理或云端CI；旧价格／审核保持。
+
+November3前一检查点：[Vercel与成本比较方法纠正](../docs/architecture/vercel-cost-method-20261103.md)明确不能从昂贵跨云案例推导所有平台比AWS贵。确认Pro原生PrivateLink、可选StaticIPs和Enterprise网络不同，普通TLS方案未被批准替代现有私网；七项示例算术通过，完整价格／目标安全实证仍缺。[安全来源和模型](verification/vercel-method-20261103/README.md)普通Git保存，没有新资源、运行改动、外发、云端CI或子代理。
 
 November3前一检查点：[Oracle／Google＋Neon专项复核](../docs/architecture/oci-google-neon-cost-review-20261103.md)核对AWS侧Neon私网、两端VPN／IPv4、Google实际Frankfurt区域和Oracle美元价格。12项算术／边界检查通过，不是网络连通或生产保护验收；旧低价组件优先建议已撤回，单链路／HA示例均非全包或最低价。[本轮安全资料](verification/oci-google-neon-20261103/README.md)普通Git保存；没有部署、真实数据迁移、付费、外发询问、云端CI或子代理。
 

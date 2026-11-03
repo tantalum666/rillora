@@ -4,8 +4,12 @@ Role: staged hosting, domain, runtime, data, cost-control and migration contract
 Authority scope: zero-revenue public hosting, future production resources, cost triggers and provider migration  
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
-Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA/CLOSED API VERIFIED; CUSTOMER RELEASE CLOSED
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Status: HOSTING COST REVIEW ACTIVE; CURRENT PRODUCTION UNCHANGED
+Last updated: 2026-11-03 (Asia/Hong_Kong)
+
+## November3 full hosting comparison
+
+[The five-provider decision](architecture/five-provider-hosting-decision-20261103.md) is the current cost-design reference: matched environments and complete running costs, with security invariants separated from implementation. Recommend AWS optional-metrics/Preview control first, then validate bounded isolated deletion; Oracle is the lower-cash self-managed alternative. CF/Vercel public-only hybrids include the retained AWS bill. Public unit rates and workload budgets are not invoices, validated capacity or approved migration. No live change, real-data move, supplier message or review/TestFlight action occurred. The dated implementation statements below remain historical.
 
 ## November2 cost-control diagnosis
 
