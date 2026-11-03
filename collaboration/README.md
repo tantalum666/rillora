@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-November3当前：[Oracle／Google＋Neon专项复核](../docs/architecture/oci-google-neon-cost-review-20261103.md)核对AWS侧Neon私网、两端VPN／IPv4、Google实际Frankfurt区域和Oracle美元价格。12项算术／边界检查通过，不是网络连通或生产保护验收；旧低价组件优先建议已撤回，单链路／HA示例均非全包或最低价。[本轮安全资料](verification/oci-google-neon-20261103/README.md)普通Git保存；没有部署、真实数据迁移、付费、外发询问、云端CI或子代理。
+November3当前：[Vercel与成本比较方法纠正](../docs/architecture/vercel-cost-method-20261103.md)明确不能从昂贵跨云案例推导所有平台比AWS贵。确认Pro原生PrivateLink、可选StaticIPs和Enterprise网络不同，普通TLS方案未被批准替代现有私网；七项示例算术通过，完整价格／目标安全实证仍缺。[安全来源和模型](verification/vercel-method-20261103/README.md)普通Git保存，没有新资源、运行改动、外发、云端CI或子代理。
+
+November3前一检查点：[Oracle／Google＋Neon专项复核](../docs/architecture/oci-google-neon-cost-review-20261103.md)核对AWS侧Neon私网、两端VPN／IPv4、Google实际Frankfurt区域和Oracle美元价格。12项算术／边界检查通过，不是网络连通或生产保护验收；旧低价组件优先建议已撤回，单链路／HA示例均非全包或最低价。[本轮安全资料](verification/oci-google-neon-20261103/README.md)普通Git保存；没有部署、真实数据迁移、付费、外发询问、云端CI或子代理。
 
 November3前一检查点：[CF＋Neon隔离验证](../docs/architecture/cf-neon-validation-20261102.md)已完成限定运行检查：真实Worker8次调用、SDK／8MiB加密和Neon只读权限结果保留，临时URL与数据库绑定已关闭。完整生产迁移仍有私网／地域／恢复及报价缺口；免费赠金未获批、不计长期月费。[源码与安全回执](verification/cf-neon-validation-20261102/README.md)普通Git保存，生产／真实数据／价格／审核保持，旧归档和旧付款不重做，未用云端CI或子代理。
 

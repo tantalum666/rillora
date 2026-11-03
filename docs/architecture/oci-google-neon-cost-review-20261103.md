@@ -7,6 +7,8 @@ Owner要求重新仔细核对甲骨文＋Neon和Google＋Neon，避免CF比较�
 
 ## 结论与对旧建议的修正
 
+后续Owner要求检查Vercel及比较误区。[方法纠正](vercel-cost-method-20261103.md)明确：本报告仅核价所列托管VPN路径，尚未完成最低成本合格架构的比较，不能据此认定其他平台整体更贵或迁移无价值。下表数值／来源与未验证范围保持；原生连接、按需任务及不同保护实现须先评估再定价，不重复叠加所有可选网络产品。
+
 **不能再把Google＋Neon约11.51美元、Oracle＋Neon约24.96美元的旧组件小计作为Rillora生产迁移建议。** 它们使用较便宜的Neon Launch和已改造的按需运行假设，没有证明当前私有数据库边界能低成本保留。旧数字仍保留其历史和范围，但“先验Cloud Run＋Neon”的低成本优先判断由本轮取代。
 
 Neon当前新项目只部署在AWS，Azure已停止新建；其官方私网方案是AWS PrivateLink，要求同AWS区域的接入客户端和Scale组织资格。没有查到可直接接入Google VPC或Oracle VCN的原生Neon私网产品。因此，换应用主机不会自动去掉AWS侧费用。Google／Oracle的网络文档支持跨云VPN，但这不是Neon对这条组合路径的端到端支持／可用性承诺。

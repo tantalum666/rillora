@@ -1,0 +1,68 @@
+{
+  "date": "2026-11-03",
+  "currency": "USD",
+  "scope": "Counterexample to treating a costly VPN topology as the cost of every provider. Core illustration only, not approved deployment or security equivalence.",
+  "assumptions": {
+    "oneNewIndependentProTeamDeployingSeat": true,
+    "functionRegion": "fra1",
+    "requestsPerMonth": 100000,
+    "activeCpuSecondsPerRequest": ".01",
+    "lifetimeSecondsPerRequest": ".2",
+    "allocatedMemoryGB": 2,
+    "overlappingRequestsAssumed": 1,
+    "additionalBuildLoggingQueueTrafficUsage": "not measured, excluded, not assumed free",
+    "databaseDataGbMonth": 5,
+    "databaseHistoryGbMonth": 5,
+    "databaseActiveCuHours": 100,
+    "databaseNetwork": "Public endpoint with verified TLS and authenticated roles; no IP allowlist on Launch; differs from current private database control",
+    "onDemandBackgroundRefactor": "required, not implemented"
+  },
+  "functionMeteredBeforeCredit": {
+    "cpu": "0.05111111111111111111111111112",
+    "memory": "0.1688888888888888888888888889",
+    "invocations": "0.060",
+    "sum": "0.2800000000000000000000000000"
+  },
+  "coreDisplayUsd": {
+    "vercelPlatform": "20.00",
+    "neonLaunch100CuHours": "13.35",
+    "combinedCoreOnly": "33.35",
+    "combinedCoreIfNeonAlways025Cu": "42.10"
+  },
+  "completeRilloraMonthlyTotalUsd": null,
+  "nativePrivateLink": {
+    "availableOn": [
+      "Pro",
+      "Enterprise"
+    ],
+    "advancedNetworkingBaseFeeUsd": null,
+    "firstConnection": "included with Advanced Networking, not proven free with base Pro",
+    "additionalConnectionMonthlyUsd": "30",
+    "transferUsdPerGB": ".04",
+    "connectionCountAndBillingScope": "unconfirmed for exact Neon project and separated app/deletion identities",
+    "formula": "Pro + AdvancedNetworkingBase + 30*max(connections-1,0) + 0.04*transferGB + Neon + other actual usage",
+    "doNotAutomaticallyAdd": [
+      "Static IPs add-on",
+      "AWS raw endpoint charges",
+      "site-to-site VPN",
+      "three always-on helper servers"
+    ]
+  },
+  "limits": {
+    "vercelFunctionPayloadMB": "4.5",
+    "currentRilloraFileMiB": 8,
+    "proCronMinimumSeconds": 60,
+    "currentAppleRetrySeconds": 30
+  },
+  "checks": {
+    "cpu_and_memory_are_distinct": true,
+    "pro_invocations_have_no_assumed_free_million": true,
+    "metered_function_example": true,
+    "credit_not_double_charged": true,
+    "credit_not_cash_or_database_credit": true,
+    "current_loop_sensitivity": true,
+    "scale_storage_history_case": true
+  },
+  "actualDeployment": false,
+  "actualCharge": false
+}

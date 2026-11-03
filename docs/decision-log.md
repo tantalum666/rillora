@@ -3953,3 +3953,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests careful comparison of Oracle plus Neon and Google plus Neon after the CF cost mismatch. This resumes research beyond the held supplier inquiry; it does not authorize sending that inquiry, buying resources, migrating data or changing the current security/review boundary.
 - Preserve matched environment/workload assumptions and distinguish public unit prices, a chosen network topology, free eligibility, partial sums and complete production cost. Do not call managed multi-tunnel HA a minimum requirement, assume three permanently running helper units, or silently substitute public database access.
 - The Agent withdraws the earlier Cloud Run plus Neon low-cost priority based on incomplete component prices. The new report records AWS-only Neon private networking, actual Frankfurt VPN/IPv4 rates and unresolved end-to-end support. No replacement provider or monthly budget is approved.
+
+## 2026-11-03 — Review Vercel and correct architecture-selection bias
+
+- Owner asks to investigate Vercel and whether the repeated higher-than-AWS conclusions reflect a misconception. Recheck provider-native capabilities and the method, not just add another expensive reference topology.
+- The Agent acknowledges that partial component prices and one conservative managed-VPN topology cannot establish the cheapest acceptable deployment or prove all migrations uneconomic. Compare protection outcomes, current code and adapted target code separately; do not turn role isolation into a fixed always-on server count.
+- Current official Vercel sources establish Pro PrivateLink distinct from Enterprise Secure Compute, optional static IP charges, and bounded runtime/payload constraints. Advanced Networking base cost and exact connection scope remain unknown. No new budget, provider selection, paid integration, public-database policy change or weaker security is authorized; existing supplier-message hold persists.

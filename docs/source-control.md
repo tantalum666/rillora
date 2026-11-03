@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-03 (Asia/Hong_Kong)
 
+## November3 Vercel and comparison-method correction
+
+[The Vercel/method review](architecture/vercel-cost-method-20261103.md) separates required protection from chosen topology, current loops from an adapted target, and scoped examples from a full quote. [Safe source/arithmetic evidence](../collaboration/verification/vercel-method-20261103/README.md) records native Pro PrivateLink, uncertain base pricing and current payload/cron constraints. Documentation and a seven-check numerical illustration only; no app/runtime/provider changes, new archive or replay of business tests. Use complete readable publication and the same exact trusted base locally, then read back the pushed head; no cloud CI.
+
 ## November3 Oracle/Google plus Neon recheck
 
 [The focused comparison](architecture/oci-google-neon-cost-review-20261103.md) corrects the older component-price recommendation and records matched assumptions, regional VPN/IPv4 prices and incomplete full-cost boundaries. [Safe evidence](../collaboration/verification/oci-google-neon-20261103/README.md) includes a reproducible Decimal model, primary-source references, selected public SKU fields and a cropped public-price table. No provider configuration, application source, data, review state or old archive changes. Only document/arithmetic and the exact-base local publication checks run; no application-suite replay, subagent or cloud CI. Rebuild the full manifest after the final evidence file and verify the exact remote head.

@@ -9,6 +9,10 @@ Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-11-03 Vercel与比较方法纠正
+
+Owner要求检查Vercel并质疑“为何所有候选更贵”。[本轮复核](architecture/vercel-cost-method-20261103.md)确认此前只算核心组件与固定昂贵跨云路径都不足以判断完整迁移价值；保护结果、当前实现和目标改造分别比较。Vercel Pro原生PrivateLink已存在，不能默认套Enterprise或VPN／固定IP／辅助服务器全套费用。普通认证TLS连接也不自动等价于现有私网，本轮未批准或修改网络保护。尚未选最低成本平台，当前线上／审核／数据／收费保持，供应商外发仍暂存。
+
 ## 2026-11-03 复核Oracle／Google＋Neon，纠正低价组件推论
 
 Owner要求仔细重新核对两组合，避免CF比较中的成本遗漏。[专项复核](architecture/oci-google-neon-cost-review-20261103.md)确认Neon新项目／私网仍是AWS侧能力，托管跨云路径有VPN、IPv4与端点费用；分别记录单链路和高可用示例，不冒充最低或完整月费。Agent撤回基于旧组件价的Cloud Run＋Neon优先建议；尚未选择新的供应商或降低保护。生产／审核／价格／真实数据保持，外发询问继续暂存。
