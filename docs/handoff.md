@@ -1,29 +1,25 @@
 # Rillora 当前交接
 
-Status: CF-NEON SCOPED RUNTIME VALIDATED / PROBE RETIRED / COMPLETE COST QUOTE OPEN / NO REAL DATA MIGRATION
+Status: OCI-GOOGLE-NEON COST RECHECK COMPLETE / PRIOR LOW-COST PRIORITY WITHDRAWN / NO MIGRATION
 Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner选择先验证CF＋Neon，优先合法适用免费量，现有安全保障不降低、先不迁移真实数据、不影响审核并推Git。[当前报告](architecture/cf-neon-validation-20261102.md)为入口，取代Agent先验Cloud Run的执行建议。[前一交接](handoff-history-20261102-before-cf-neon-validation.md)为HISTORICAL。价格、真实记录、历史购买归属、FanPass及重提／TestFlight暂停保持。
+Owner要求仔细重查Oracle＋Neon与Google＋Neon，不重复CF的组件价比较错误。[专项报告](architecture/oci-google-neon-cost-review-20261103.md)是当前入口，[前一交接](handoff-history-20261103-before-oci-google-neon.md)为HISTORICAL。保持原安全保障、真实数据、价格、购买归属、FanPass、重提／TestFlight暂停；Cloudflare询问按Owner指示留稿，Neon询问未发。
 
 ## 已完成
 
-- 独立infra/hosting-validation打包完整API模块，在真实workerd和Cloudflare Free完成HTTP权限／响应头、Stripe合成签名、Apple根证书／非法JWS拒绝，以及4KiB／8MiB真实内容加密路径。修复仅在验证包：Apple导入时随机数、Pino错误入口、公开证书模块打包；apps、config、AWS实现和原生未改。
-- 云端共8次固定调用；实际Hyperdrive→Neon只读事务验证低权限登录及无签名authority拒绝，DB内部墙钟3373ms／771ms。它不是完整已登录业务、真实KMS、有效Apple链／OCSP或新购买验收。
-- Workers／Neon都仍Free，没有升级或复制真实数据。验证URL和preview均已关闭，外部404，临时DATABASE绑定已解除；原Hyperdrive／Neon和旧MCP保留。Nonce过期并从编排内存释放，不冒称已擦除提供方历史秘密。
-- 核对实际法兰克福AWS价格，PrivateLink为0.012/endpoint/AZ小时；Neon指南当前列8个法兰克福服务，不能预先按一项计。保守三执行单元模型小计168.59美元/月，另有地域报价Q等；单项目若获官方确认只需一个服务，同一模型才为107.27。不是最低价、已购买配置或性能保证，完整总额仍unknown。
-- 免费Workers／HTTPS／Hyperdrive／Neon及基本日志已实际使用。Owner确认个人自筹、未注册公司、未获Startup赠金；Cloudflare申请只推进到Contact步骤，未连接账户／支付方式／接受协议／提交。最高10k赠金未获批，不计长期费用。[两份供应商问题草稿](architecture/cf-neon-provider-inquiry-20261102.md)未发送。
-- 原17-r2真实HKD888购买／恢复和November2自然到期证明沿用；旧MCP OAuth／撤销与105迁移证据沿用。手动取消／退款未冒领，新本轮不是App发布验证。
+- 官方Neon文档确认新项目在AWS，Private Networking为同AWS区域的PrivateLink／Scale组织能力；没有Google／OCI原生Neon私网入口的证据。通用跨云VPN可达性不冒充Neon端到端支持或原保护等价。
+- 重新读Oracle美元价目、Google实际选择Frankfurt后的VPN／Cloud Run表，以及AWS公开区域SKU。GoogleVPN为0.06/隧道小时，AWS普通VPN0.05/连接小时，AWS两个公网IPv4另计；没有漏把美国默认0.05当GoogleFrankfurt单价。
+- 同一0.25CU全天／5GB数据／5GB历史、7天恢复规划下，数据库＋所列托管网络固定费为OCI单路径157.15、Google单路径200.95；Google四隧道HA对照376.15。均不是完整月费、最低可能价、已购配置或整个应用SLA。单项目一端点敏感性／自管隧道均未验证，费用缺项保持null。
+- Oracle小规格计算／启动盘13.81与Google普通持续服务54.70分别保留规格／免费条件；Google两服务不能重复扣免费额。Worker pools／按需任务等更便宜运行形态不被保守例子排除，也不冒称已经适配。当前轮询源码说明不能直接把原代码的CPU／Neon活跃时长按0计。
+- 12项十进制算术与范围校验通过；迁移清单包括DNS／SNI、短期身份、独立密钥／删除／日志、正式入口、流量、对象版本和恢复。撤回旧六组合报告的Cloud Run＋Neon低成本优先建议，旧组件数字保留为HISTORICAL。
+- 旧CF实际8次请求／探针回收、MCP、原17-r2真实HKD888购买／恢复／自然到期证据沿用；没有重复验证或改线上。
 
 ## 证据边界
 
-[可读回执](../collaboration/verification/cf-neon-validation-20261102/README.md)保存真实云端返回、原始失败／通过日志、公开价格、可复算模型和关闭截图。应用测试／旧归档不重跑，无子代理或云端CI。生成依赖、runtime类型和可复现bundle缓存不当源码提交，锁文件／构建配方／已测digest保留。
-
-Cloudflare管理MCP后续出现传输故障，后台已有会话正常，清理由UI完成；这不是重新登录门。AWS额外只读清单请求实际过期，今天账单／源码足以继续本轮，因此未要求新MFA或扩展SQL权限。没有108新目标迁移、私网部署、付费7天恢复、全业务验收或完整生产等价性证明。现有AWS账单／成本止损仍未改变，不能把免费候选当现有账单已经下降。
-
-Owner随后询问为何比AWS贵，已在报告澄清：37.63历史净账单、十几美元组件样例与168.59单环境规划不能直接横比。跨云私网＋三常驻单元约占后者62.8%；该拓扑未达到降本目标，不作为迁移推荐。安全能力与实现方式分别评估，不能把三个常驻单元说成保持安全的唯一方式；本轮仅解释／复算，没有新工程验证或配置变更。
+[安全资料](../collaboration/verification/oci-google-neon-20261103/README.md)保存公开SKU、Google选区截图、来源和可复算模型。当前只有研究／算术结果，没有新的VPN、Neon迁移、真实KMS、完整认证业务、恢复演练、容量测试或节省证明。没有新资源、付费、外发消息、子代理或云端CI；原AWS账单继续发生。完整清单和确切base本机发布检查后保存精确远端读回，不把Git成功当生产验收。
 
 ## 唯一下一步
 
-供应商核对暂存：Owner于November3明确选择“先保留草稿”，不发送Cloudflare询问，Neon草稿也保持未提交。当前验证结果和未知报价边界已保存；后续恢复该项时，先确认Cloudflare个人项目资格／地域能力／赠金覆盖，以及Neon单项目PrivateLink服务数量，再重算总价。确认经济性成立后才继续新空目标的完整私网／KMS／7天恢复和认证业务验收，不先买套餐或迁真实资料。不重提或发TestFlight。
+后续降本设计先选定一个不引入昂贵跨云固定连接费、又能保留原保护的拓扑，再决定单一合成候选验证；优先比较原AWS按需收敛与应用／数据库同云的方式，Neon不作为不可更换的锁定条件。此为Agent基于新证据的建议，不是Owner已选择新provider或批准购买。当前不推进上述托管VPN迁移，不恢复暂存的供应商外发，不重提或发TestFlight。

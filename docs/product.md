@@ -9,6 +9,10 @@ Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-11-03 复核Oracle／Google＋Neon，纠正低价组件推论
+
+Owner要求仔细重新核对两组合，避免CF比较中的成本遗漏。[专项复核](architecture/oci-google-neon-cost-review-20261103.md)确认Neon新项目／私网仍是AWS侧能力，托管跨云路径有VPN、IPv4与端点费用；分别记录单链路和高可用示例，不冒充最低或完整月费。Agent撤回基于旧组件价的Cloud Run＋Neon优先建议；尚未选择新的供应商或降低保护。生产／审核／价格／真实数据保持，外发询问继续暂存。
+
 ## 2026-11-02 六组合经济性收敛
 
 后续Owner明确选择先验证Cloudflare＋Neon，优先利用适用免费量、现有保护不降、先不迁移真实数据、不影响审核并推Git。[当前验证合同](architecture/cf-neon-validation-20261102.md)取代下述Agent先验Cloud Run的建议；是隔离验证范围，不是最终生产切换或企业套餐批准。

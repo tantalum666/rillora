@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-03 (Asia/Hong_Kong)
 
+## November3 Oracle/Google plus Neon recheck
+
+[The focused comparison](architecture/oci-google-neon-cost-review-20261103.md) corrects the older component-price recommendation and records matched assumptions, regional VPN/IPv4 prices and incomplete full-cost boundaries. [Safe evidence](../collaboration/verification/oci-google-neon-20261103/README.md) includes a reproducible Decimal model, primary-source references, selected public SKU fields and a cropped public-price table. No provider configuration, application source, data, review state or old archive changes. Only document/arithmetic and the exact-base local publication checks run; no application-suite replay, subagent or cloud CI. Rebuild the full manifest after the final evidence file and verify the exact remote head.
+
 ## November2 broader provider research
 
 November2–3 adds the Owner-selected [CF/Neon validation](architecture/cf-neon-validation-20261102.md): isolated source/lockfiles under infra/hosting-validation, safe live results, normalized failure/pass logs and cropped retirement screenshots in the [evidence package](../collaboration/verification/cf-neon-validation-20261102/README.md). No apps/config/AWS implementation changes, real-data migration or review deployment. Generated dependencies/runtime types/reproducible bundle caches stay excluded; their recipe and exact tested digest are retained. This small safe increment needs no new encrypted archive or replay of old suites. Rebuild the full manifest after the last receipt and use the unchanged exact main base for local publication; no cloud CI.

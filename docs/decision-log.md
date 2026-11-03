@@ -3947,3 +3947,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 
 - Owner explicitly selects “先保留草稿” after reviewing the prepared Cloudflare inquiry destination and purpose. Do not send that message or infer Startup application submission. The separate Neon inquiry remains unsent.
 - Preserve the completed synthetic validation and Git publication. The missing provider quote remains unknown; this choice does not authorize a paid plan, production migration or weaker security. Resume external contact only after a later explicit send instruction.
+
+## 2026-11-03 — Recheck Oracle/Google plus Neon before another hosting recommendation
+
+- Owner explicitly requests careful comparison of Oracle plus Neon and Google plus Neon after the CF cost mismatch. This resumes research beyond the held supplier inquiry; it does not authorize sending that inquiry, buying resources, migrating data or changing the current security/review boundary.
+- Preserve matched environment/workload assumptions and distinguish public unit prices, a chosen network topology, free eligibility, partial sums and complete production cost. Do not call managed multi-tunnel HA a minimum requirement, assume three permanently running helper units, or silently substitute public database access.
+- The Agent withdraws the earlier Cloud Run plus Neon low-cost priority based on incomplete component prices. The new report records AWS-only Neon private networking, actual Frankfurt VPN/IPv4 rates and unresolved end-to-end support. No replacement provider or monthly budget is approved.

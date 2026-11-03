@@ -1,16 +1,18 @@
 # Rillora 六种托管组合：当前成本、增长成本与迁移取舍
 
-Status: RESEARCH COMPLETE / RECOMMENDATION ONLY / NO PROVIDER SELECTED OR DEPLOYED
+Status: HISTORICAL COMPONENT COMPARISON / LOW-COST PRIORITY SUPERSEDED / NO MIGRATION
 
 Last updated: 2026-11-03 (Asia/Hong_Kong)
 
 Owner要求仔细比较Oracle、Cloudflare、Google分别搭配Neon或Supabase，考虑后续增长和最高性价比。本报告收敛[上一轮广泛比较](cloud-hosting-comparison-20261102.md)的候选排序；旧报告保留其他供应商资料。这不是迁移、开通付费或改变恢复／网络保护的批准。当前生产、价格、真实资料、FanPass、原生17及重提／TestFlight暂停均保持。
 
-## 建议
+## November2历史建议，已由November3复核取代
+
+[Oracle／Google＋Neon专项复核](architecture/oci-google-neon-cost-review-20261103.md)进一步确认两者不能原生接入Neon私网，跨云固定费及后台常驻条件改变了低成本判断。下述11.51／24.96等组件样例不能用作生产迁移推荐；原“先验Cloud Run＋Neon”的优先建议不再有效。当前任务与一个下一步只看[handoff](handoff.md)。
 
 后续Owner已选择先验证CF＋Neon。[November2–3实际验证](architecture/cf-neon-validation-20261102.md)取代本节的执行顺序，记录真实Workers／Neon结果、严格保护下的完整费用分类和报价缺口。下表继续是明确排除额外保护／网络的组件比较，不能直接当作迁移总账单。
 
-**当前先验证Google Cloud Run＋Neon；Cloudflare适合公开前端，并作为高请求量时的API候选；Oracle保留为持续负载或实际取得免费额度后的固定算力候选。当前不为省钱把数据库迁到Supabase。** 这是结合当前Node服务、单人维护、低流量和7天任意时点恢复作出的Agent建议，Owner尚未选供应商。
+**当时建议先验证Google Cloud Run＋Neon；Cloudflare适合公开前端，并作为高请求量时的API候选；Oracle保留为持续负载或实际取得免费额度后的固定算力候选。当时不建议为省钱把数据库迁到Supabase。** 这是November2结合当前Node服务、单人维护、低流量和7天任意时点恢复作出的Agent建议，现已由上方后续证据取代，不是Owner已批准的供应商决定。
 
 Neon的具体套餐必须跟网络要求一起选：Launch没有IP白名单和私网；需要这些能力时按Scale和相应网络费用报价。便宜的Launch公开TLS连接只是一种待评估拓扑，不能直接冒充当前私有RDS的同等保护。原保护未验证等价之前，不移动真实资料。
 
@@ -114,8 +116,8 @@ Google法兰克福向EU／北美／香港的假设出口，前1,024GiB为$0.12/G
 3. **费用触发复核，而不是人数触发搬迁。** 月账单中计算、数据库CU小时、保留WAL、出口或日志任一项成为大头，连续观察代表性负载，再比较候选。Cloud Run先比较并发／请求和实例计费；Neon先看总CU小时与唤醒来源；Oracle先验峰值和运维。
 4. **只在净节省足够时迁移。** 用“迁移与验收投入÷每月净节省”看回收期，同时计入维护差异。每月省$4不能支持一轮数据库迁移；多节省几百美元时才更有理由做等价性能／恢复验证。不虚构固定维护工时、用户规模或事故概率。
 
-## 当前结论和唯一下一步
+## November2历史候选顺序（非活动下一步）
 
-数据库目前选Neon作为第一验证对象，套餐由原网络边界决定；应用先验证Cloud Run的完整Node路径。若实测表明Workers完整兼容、地域方案成立且长期节省足够，再采用Workers；若稳定CPU或大出口成为主要费用、OCI资源和运维可用，则Oracle有机会更划算。Supabase留作持续较大数据库／高WAL写入且完整费用更低时的候选，不在首发阶段为未使用的全家桶付费。
+当时将Neon作为第一验证对象，套餐由原网络边界决定，并建议先验证Cloud Run的完整Node路径。随后Owner选定CF隔离验证，November3又明确复核Oracle／Google组合；当前不再依据此旧排序推进迁移。Supabase持续负载等候选分析仍仅是有日期的研究，未成为产品或供应商决定。
 
-下一步是一个有界、仅合成资料的代表性兼容性与成本验证计划：安全获取逻辑库聚合容量，测请求CPU／等待、DB活跃时间、WAL与出口；核对分离角色／事务池／支付验签／文件流／独立删除和恢复重放、工作负载身份／地域及冷启动。沿用未变化的真实购买／恢复／到期证据，不重跑整套验收，不创建六套常驻云环境。研究本身没有授权或完成新资源购买、迁移或部署。
+当时拟定的代表性兼容性与成本检查清单包括逻辑库聚合容量、请求CPU／等待、DB活跃时间、WAL与出口，以及分离角色／事务池／支付验签／文件流／独立删除和恢复重放、工作负载身份／地域及冷启动。未完成项仍不得冒领；已由后续验证覆盖的检查按精确证据沿用。研究本身没有授权或完成新资源购买、迁移或部署，不创建六套常驻云环境。
