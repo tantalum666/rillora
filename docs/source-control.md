@@ -710,3 +710,5 @@ October30 Git回执：源码／archive55为`4acf1cae3bdf9d9444fa60fd94249c207c02
 本轮archive59已本地认证：728路径／412对象／953,549密文字节。只保留新增原件和明确安全摘要，旧1–58未重封／重下；config.ts的两处PEM头为既有校验字面量，原件与已跟踪字节完全一致，未新增扫描例外。实际凭据与原始私人提供方响应保持排除。新归档的远端认证与最终发布回执随后单独记录。
 
 archive59已在7b6c3deb923555106e45463d5979a6fa55e5ee5f推送PR10；GitHub独立新下载认证412对象／728路径通过。确切diff与本机发布门一致，Actions仍314／最新October23。最终元数据不重封归档，也不重跑应用验证或交易。
+
+November5 review follow-through: source/artifacts `82560587e39affaf68499bcabcb6b9d97768f1d4` are pushed in open PR10. Fresh independent remote LFS storage authenticated both new archives60–61,927objects/1,806paths; previous1–59were not downloaded. The exact source diff matches the corrected local publication gate. Root release project and scanner exceptions are unchanged after isolating the UI host. Actions remain314/latestOctober23, queued/running0. Final metadata is ordinary Git, without recapture or another application test/deployment cycle.

@@ -19,3 +19,5 @@ archive60本地认证完成：1,752路径／883原件／72,607,692密文字节�
 最后发布门曾因新增UI测试目标使两个已批准的公开Auth0客户端ID声明行号变化而拒绝。已将UI测试移到[独立生成器](../../../tools/release/prepare_purchase_ui.py)，普通审核project.yml／pbxproj／scheme及扫描例外文件恢复原字节，未关闭规则或添加例外。新工程实际构建并运行1项交互检查通过；CLI输出、Info.plist路径和重复资源的原始生成／构建失败也保留。详情见[工程隔离](ui-project-separation.json)。
 
 新增archive61只保存这段后续工程验证及初次发布门失败，不重封60。两档合计1,806路径／927原件；61为143,067密文字节，[跟进目录](catalog-followup.json)与[独立认证](archive-followup-verification.json)均已保存。两个构建错误发生在生成结果包之前，对应原始构建日志和结构化错误已保留，不伪造xcresult。
+
+源码与两份新档已在`82560587e39affaf68499bcabcb6b9d97768f1d4`推送原PR10；PR开放未合并，说明已按最终实现重写。[精确本机门](source-publication-proof.json)匹配提交diff；[独立远端读回](remote-readback.json)从全新LFS目录认证927原件／1,806路径，未下载旧档。[云端状态](cloud-actions-readback.json)总数仍314、最新October23历史失败，queued／running0，当前源码云端任务0。最终元数据普通Git保存，不重封或重复产品验证。
