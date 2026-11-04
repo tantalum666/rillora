@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-11-04 (Asia/Hong_Kong)
+Last updated: 2026-11-05 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-11-05 审核复核与订阅按钮交互修复
+
+Owner要求继续修复审核问题并防止审核资格再次过期，随后指出手机套餐页反复禁用和误跳条款。[本轮结果](app-review-readiness-20261104.md)记录两条可复现缺陷、本机74项购买／双语与6项真实UI点击回归、独立18-r2候选，以及同一审核身份DB／API／监控有界续至December4。价格、签名、账号归属、收费和下一版隔离保持；不添加购买确认框。17的既有真实购买／恢复／自然到期沿用，不要求重买；手机尚未装18，最终素材／构建匹配与Owner重提暂停仍是独立状态。
 
 ## 2026-11-04 可选Kiro验证暂缓
 

@@ -2,9 +2,15 @@
 
 Role: current launch scope, remaining work and release evidence contract  
 Status: WEB LIVE / APPLE14 REJECTED / RELEASE PRODUCT AUDIT AND CANDIDATE ACCEPTANCE IN PROGRESS / RESUBMISSION HELD
-Last updated: 2026-11-01 (Asia/Shanghai)
+Last updated: 2026-11-05 (Asia/Hong_Kong)
 
-## November1当前发布状态
+## November5当前发布状态
+
+[本轮复核与交互修复](app-review-readiness-20261104.md)优先解决Owner最新手机反馈：交易核对不再反复清空报价，灰色订阅区域不再误开法律链接；74项购买／状态／双语及6项iPad／iPhone点击检查通过，18-r2仅本机签名候选。手机现有17实际购买／恢复和November2自然到期保持有效证据，旧“待验自然到期”与重买下一步不再适用。
+
+专用审核身份购买资格已续到2026-12-04T12:00Z，DB／API／监控一致，提前14天告警与安静跟进已设置。Auth0现有账号无封禁，密码未改；生产数据／价格／收费保持。Apple仍选14且Rejected，旧审核图和备注未自动更新；本轮不上传、重提或TestFlight。唯一下一步见[交接](handoff.md)：补最终18页面稳定性读回，再对应最终素材／构建，不重复已经完成的交易。
+
+## HISTORICAL — November1发布状态
 
 最新[真机验收](apple-purchase-acceptance-20261101.md)已完成购买、恢复及独立账本读回：同一原HKD888订单paid_reconciled，签名验证／事件处理通过，订阅active。原待处理订单与独立Sandbox的US地区不匹配已对齐至香港；没有清账或转移原购买。新的双语错误文案在源码通过9项、只读检查通过20项；尚未为文字单独重装手机。取消续期／实际到期及最终候选材料仍未完成，不能写成所有付款场景或发布门通过。以下本日早先“尚无本次成功交易”的描述是此前检查点，由本段结果取代。
 

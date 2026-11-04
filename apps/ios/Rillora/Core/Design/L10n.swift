@@ -37,6 +37,7 @@ enum L10n {
         "purchase_account_changed": "Your account changed. Review the purchase again.",
         "apple_purchase_in_progress": "Check your pending Apple purchase before starting another.",
         "apple_purchase_owner_conflict": "Use the Rillora account originally used for this purchase.",
+        "apple_review_not_enrolled": "Apple purchases are not available for this account. Contact support for help.",
         "checkout_finished": "This purchase has finished. Refresh your access.",
     ]
 

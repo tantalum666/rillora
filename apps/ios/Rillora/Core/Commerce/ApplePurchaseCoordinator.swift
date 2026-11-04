@@ -333,6 +333,14 @@ final class ApplePurchaseCoordinator {
             purchaseBlockedByAccount = false
             message = String(localized: "Your Apple purchase status is up to date.")
             await onReconciled?()
+            // A background receipt can complete an order while no button task is
+            // running. Refresh that state directly, without invalidating the price.
+            guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+            if let state = try? await service.pendingApplePurchase(environment: environment) {
+                guard generation == revision, owner == self.owner, !Task.isCancelled else { return }
+                try rememberOwnedTokens(state.appAccountTokens)
+                pending = state.purchase
+            }
         } catch RilloraAPIError.server(_, "apple_purchase_owner_conflict", _, _) {
             if generation == revision {
                 purchaseBlockedByAccount = true

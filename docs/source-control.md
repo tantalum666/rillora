@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-04 (Asia/Hong_Kong)
+Last updated: 2026-11-05 (Asia/Hong_Kong)
+
+## November5 App Review interaction repair and bounded reviewer renewal
+
+[The focused report](app-review-readiness-20261104.md) separates shipping-source fixes, 74 native checks, six actual UI interactions, the isolated18-r2 artifacts and the already-completed17real purchase/restore/expiry. [New safe evidence](../collaboration/verification/app-review-readiness-20261104/README.md) includes the reproduced failures, current bounded DB/API/monitor deadline, source isolation and unsent review-note draft. Only this workflow is captured in new archives60–61; old1–59remain immutable. Raw account/auth/device/provider material and maintenance capabilities remain local-only; exact signed artifacts and local test results are encrypted-only. No real-device installation, App Store upload, resubmission, TestFlight, cloud CI or subagent is claimed. Run the complete readable-manifest and exact-base publication checks after the last receipt, then independently verify only the new remote archive.
 
 ## November4 private account follow-through
 

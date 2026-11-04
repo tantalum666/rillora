@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-02",
+  "updatedAt": "2026-11-05",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -46,9 +46,10 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/app-review-preflight-20261014.md",
-        "docs/release-product-audit-20261031.md"
+        "docs/release-product-audit-20261031.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "October31API45bd2d47and Web rollout verified at the retained checkpoint; November2both environments have available private databases and two running services each. No new deployment or database/sales change in the cost review. The prior AWS authentication/deployment pending text is superseded."
+      "next": "Retain October31 API/Web and November4 worker evidence. November4 only the existing dedicated Apple review expiry parameter was updated; API image, secrets, roles and all other environment values match. Production/Operations stacks UPDATE_COMPLETE, API1/1healthy. Data, prices and sales remain unchanged."
     },
     {
       "id": "production-identity",
@@ -99,9 +100,10 @@
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
         "docs/app-review-preflight-20261014.md",
-        "docs/release-product-audit-20261031.md"
+        "docs/release-product-audit-20261031.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Prior production identity/token-isolation evidence retained. The dedicated reviewer subsequently signed into physical17and completed verified Sandbox purchase/restore; the old October31native password failure is historical. Do not reset existing credentials. Auth0 outer-shell cosmetics remain Owner-deferred."
+      "next": "Retain physical17 dedicated-reviewer sign-in and existing legal/token-isolation evidence. November4 Auth0 account exists and has no blocks; deployed production terms Action has no obsolete review-expiry gate. No password reset or new credential proof. Auth0 outer-shell cosmetics remain deferred."
     },
     {
       "id": "production-billing",
@@ -191,9 +193,10 @@
         "docs/apple-owner-latency-20261101.md",
         "collaboration/verification/native17-install-20261101/README.md",
         "docs/apple-purchase-acceptance-20261101.md",
-        "collaboration/verification/cost-review-20261102/expiry-ledger.json"
+        "collaboration/verification/cost-review-20261102/expiry-ledger.json",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "November1physical17purchase/restore and matching signedHKD888order retained. November2Owner confirms Appleexpired/RilloraFree; fresh read-only ledger matches expired_read_only with period end2026-11-01T07:04:08Z, applied signed event and no error. Natural expiry verified; manual cancellation and refund not observed. No repeat purchase/restore, TestFlight or resubmission."
+      "next": "Retain physical17 purchase/restore and November2 same-order natural expiry (Apple expired, Rillora Free, signed applied ledger). No repeated purchase/restore or new refund/manual-cancellation claim. November5 new UI/refresh fixes pass74native tests and6UIinteractions; these do not replace final18device readback."
     },
     {
       "id": "operations",
@@ -216,9 +219,10 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/release-product-audit-20261031.md",
-        "docs/aws-cost-review-20261102.md"
+        "docs/aws-cost-review-20261102.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Retain existing public/runtime/worker alarms and dated delivery/silence drills. October30deployed7-day reviewer-expiry warning;15monitor checks passed. October31AWS restored and both API task/readiness plus unchanged deployment parameters verified. No new alert-delivery drill is claimed. November2all22existing metric alarms areOK, but the separate25USDbudget has zero notifications. Cost notification delivery is not verified; fix that gap without discarding the existing operational-alert evidence."
+      "next": "November4 fixed existing cost alerts/optional metrics per dated report. Dedicated reviewer DB/API/monitor now match2026-12-04T12:00Z, original31-daycap retained, existing15minprobe warns14daysahead, aggregate ok/failed0.12health tests pass. Quiet daily local follow-up created; existing cloud monitor independent. No new alert-delivery drill or permanent-availability claim."
     },
     {
       "id": "backup-retention",
@@ -329,9 +333,10 @@
         "collaboration/verification/app-review-acceptance-20261031/README.md",
         "docs/release-product-audit-20261031.md",
         "docs/apple-owner-latency-20261101.md",
-        "docs/apple-purchase-acceptance-20261101.md"
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Apple14remains rejected; Owner holds resubmission/TestFlight. Current17physical purchase/restore and same-order signed ledger retained; natural expiry now matches Apple/Rillora UI and backend. Still align expired reviewer presentation, final grouped candidate, screenshots/notes and uploaded build. Sandbox evidence is not public Apple sale activation."
+      "next": "Apple14remains Rejected and selected; Owner holds resubmission/TestFlight. Current paid/free agreements active; annual Ready for Review and USA/HKGonly. IAPreview image/notes stilldescribe14. Exact18-r2 local candidate prepared; final device interaction and matching review image/notes/build remain. Draft notes explicitly include regions, services, device evidence and expired-reviewer path."
     },
     {
       "id": "physical-device",
@@ -359,9 +364,10 @@
         "docs/release-product-audit-20261031.md",
         "docs/apple-owner-latency-20261101.md",
         "collaboration/verification/native17-install-20261101/README.md",
-        "docs/apple-purchase-acceptance-20261101.md"
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Final17-r2installed in place/read back/launched on original iPhone16ProMax/iOS27.2. Owner confirms review account, pending check without repeated Apple password, then actual Sandbox purchase and one restore up to date. No repeat purchase/restore. New bilingual error-copy fixes pass9tests but are source-only for next grouped candidate. Current request is only the new Sandbox cancel-renewal/expiry scenario."
+      "next": "Last installed proof is17-r2 on original iPhone16ProMax/iOS27.2. Owner supplied a screenshot instead of reconnecting and reported flicker/wrong policy hit. Fixed shipping code passes74unit and6iPad/iPhoneUIchecks in localfixtures;18-r2not yet installed. Next only verify18page stability/hit behavior, without repeating purchase/restore/expiry. No actual iPadOS27.2proof."
     },
     {
       "id": "public-surface",
@@ -402,7 +408,7 @@
     },
     {
       "id": "review-remediation",
-      "status": "verified",
+      "status": "in_progress",
       "required": true,
       "title": "Owner-supplied Dot review remediation",
       "evidence": [
@@ -413,9 +419,10 @@
         "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
         "docs/apple-owner-latency-20261101.md",
         "collaboration/verification/native17-install-20261101/README.md",
-        "docs/apple-purchase-acceptance-20261101.md"
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "October31API/Web/WWWfixes remain deployed with unchanged prices/data/sales settings. November1owner/pending17repair installed; physical purchase/restore and independent same-order ledger pass after aligning tester region to originalHKG. Final bilingual purchase-error copy passes9tests, bounded read-only diagnostics20. Only maintenance images6aade49a/83bb73e1changed, not ordinary API/workers/Web or permission templates."
+      "next": "Prior API/Web repairs remain deployed. New November5 native defects are locally fixed: receipt reconciliation no longer clears/reloads the quote; pending state still updates; Form links have independent hit targets.74nativechecks and6UItests pass.18-r2source/signing preparation does not mean installed/uploaded/reviewed; final candidate phone readback and matching materials remain."
     }
   ],
   "retainedEvidence": [

@@ -86,11 +86,19 @@ struct ApplePurchaseSection: View {
     }
 
     @ViewBuilder private var policyLinks: some View {
+        // Automatic Form link styles can make the entire containing row tappable,
+        // including the disabled Subscribe area. Each policy owns only its label.
         Link(String(localized: "Terms"), destination: RilloraLegalURLs.subscriptions)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.terms")
         Link(String(localized: "Privacy"), destination: RilloraLegalURLs.privacy)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.privacy")
         Link(String(localized: "Refunds"), destination: RilloraLegalURLs.refunds)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.refunds")
     }
 }

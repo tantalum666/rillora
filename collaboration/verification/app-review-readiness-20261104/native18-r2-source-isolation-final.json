@@ -1,0 +1,39 @@
+{
+  "preparedAt": "2026-11-04T15:55:44.009963+00:00",
+  "baseCandidate": "1.0(17)-r2",
+  "candidate": "1.0(18)-r2",
+  "baselineCommit": "b628c18051824515a806a987badfaf9463bb7765",
+  "sourceFiles": 198,
+  "changedPaths": [
+    "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+    "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+    "apps/ios/Rillora/Core/Design/L10n.swift",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift",
+    "apps/ios/RilloraTests/LocalizationTests.swift"
+  ],
+  "localizationKeys": [
+    "Apple purchases are not available for this account. Contact support for help.",
+    "Check your pending Apple purchase before starting another.",
+    "The price or subscription terms changed. Refresh the price and check any pending purchase.",
+    "This purchase has finished. Refresh your access.",
+    "Your account changed. Review the purchase again."
+  ],
+  "changedSha256": {
+    "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift": "e5deca44c1e9545d958e32696698c7f2a5e4a2d75a4a632e68473d7a0b2d2f2c",
+    "apps/ios/Rillora/Core/Commerce/CommerceStore.swift": "21fd5c5fc78b35a1a2453bc4a36ebdbcb8c38e765f0e5347163e995fd0acdc9c",
+    "apps/ios/Rillora/Core/Design/L10n.swift": "57fa56fb1b767910082e2fec43016b2e1f0ffbdc3c77348ba86bab73d06f4af8",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift": "0b20f1ee1847e157c2a176fb6e55859c32b2b221ddaeb445db866efb2c86b41f",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings": "084a088a26a245771d55e8b679b06d347b028cc295c790d0b0d95b39d3439a53",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift": "7c2d0a06f02285ae2696795d479350b911cf524b9fd0f508b5498a0a4414a652",
+    "apps/ios/RilloraTests/LocalizationTests.swift": "afde58fca4a0e29f7a94d5b0b650d8bae56b8c9f26a92ad5cd759772d87a1d09"
+  },
+  "nextVersionFeaturesAdded": false,
+  "paymentSDKAndOwnershipPriceChecksUnchanged": true,
+  "reconciliationAndHitTestingChanged": true,
+  "runtimeConfigurationChanged": false,
+  "uploaded": false,
+  "installed": false,
+  "submitted": false
+}

@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-04 (Asia/Hong_Kong)
+Last updated: 2026-11-05 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3992,3 +3992,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner asks to investigate the provider verification notice, then explicitly says to defer it if nonessential. Current application, infrastructure and deployment-tool source has no Kiro dependency; the existing cloud identity/account and Builder profile remain accessible in the bounded checks.
 - Defer the optional tool verification. Do not submit the prepared support form, create an identity, accept a new Kiro agreement, connect repositories, buy a plan or change credentials/MFA/cloud resources. The request stays unsent; only Agent-created inspection tabs close.
 - This is a priority decision, not proof that the provider flag is cleared or that every possible security event has been ruled out. Resume only for an actual need for Kiro or new evidence affecting necessary services. Existing Activate review and release constraints remain separate. Private notice/session/form material is not published to the public repository.
+
+## 2026-11-05 — Repair real subscription interactions and preserve bounded review access
+
+- Owner resumes App Review readiness, asks that dedicated review access/services remain usable, then supplies actual17phone evidence of repeated Subscribe disabling and legal-link activation. This new defect takes priority over declaring review readiness. Owner offers a screenshot instead of connecting the phone; do not infer that18is installed or ask for another purchase.
+- Reproduce and fix the transaction-to-quote reload chain and automatic Form link hit targets. Keep fresh pre-payment amount/currency/terms evaluation, account ownership, signed server acknowledgement and session-reset boundaries; no extra consent dialog or simulated public functionality is added.
+- Maintain only the existing dedicated reviewer within the existing31-day cap, updating DB/API/monitor together and warning14days ahead. Quiet follow-up does not authorize unlimited identities, relaxed protections, new sales or a claim of permanent availability.
+- Continue the explicit no-resubmission/no-TestFlight hold. Existing17purchase/restore and natural expiry are retained as dated evidence, while exact18device interaction, matching review materials and final submission remain separate. Local74checks and6UItests are not a new Apple purchase or approval.

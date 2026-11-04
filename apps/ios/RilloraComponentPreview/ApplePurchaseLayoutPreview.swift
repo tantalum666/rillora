@@ -3,10 +3,22 @@ import SwiftUI
 /// Preview target only. There is no API client, Apple SDK purchase or live identity.
 struct ApplePurchaseLayoutPreview: View {
     @State private var context = ApplePurchasePreviewContext(currency: .selected)
+    @State private var openedPolicy = "none"
+    private let capturesLinks = ProcessInfo.processInfo.environment["RILLORA_PREVIEW_CAPTURE_LINKS"] == "1"
     var body: some View {
         PlanAccessView(store: context.commerce, appAccountToken: context.owner)
         .task {
             await context.commerce.start(appAccountToken: context.owner)
+        }
+        .environment(\.openURL, OpenURLAction { url in
+            guard capturesLinks else { return .systemAction }
+            openedPolicy = url.path
+            return .handled
+        })
+        .safeAreaInset(edge: .bottom) {
+            if capturesLinks {
+                Text(openedPolicy).accessibilityIdentifier("preview.opened-policy")
+            }
         }
     }
 }

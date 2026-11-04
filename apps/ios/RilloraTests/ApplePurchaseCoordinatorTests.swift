@@ -3,6 +3,81 @@ import XCTest
 
 @MainActor
 final class ApplePurchaseCoordinatorTests: XCTestCase {
+    func testBackgroundReceiptRefreshesPendingStateWithoutReloadingTheQuote() async throws {
+        let owner = UUID()
+        let service = ApplePurchaseServiceSpy(owner: owner, environment: .sandbox)
+        await service.seedPending(token: owner)
+        let client = ApplePurchaseClientSpy(owner: owner, environment: .sandbox, observesUpdates: true)
+        let store = CommerceStore(service: service, storefrontProvider: ApplePurchaseStorefrontFixture(),
+            storeKitClient: client, serviceMarketCode: "GLOBAL_US", storeKitProductionEnabled: true)
+        let start = Task { await store.start(appAccountToken: owner) }
+        defer { start.cancel() }
+        let purchase = try XCTUnwrap(store.applePurchase)
+        for _ in 0..<2000 {
+            if purchase.quote != nil, purchase.pending != nil, !purchase.busy { break }
+            await Task.yield()
+        }
+        XCTAssertNotNil(purchase.quote)
+        XCTAssertNotNil(purchase.pending)
+        let quote = purchase.quote
+        await client.emit(.verified(evidence(owner: owner, environment: "Sandbox", id: 401)))
+        for _ in 0..<2000 {
+            if await service.statusReads >= 2, purchase.pending == nil { break }
+            await Task.yield()
+        }
+        XCTAssertNil(purchase.pending, "A reconciled background transaction must clear the stale pending UI")
+        XCTAssertEqual(purchase.quote, quote)
+        let quoteReads = await service.quoteReads
+        let finishes = await client.finishes
+        XCTAssertEqual(quoteReads, 1)
+        XCTAssertEqual(finishes, [401])
+        await client.endUpdates()
+        await start.value
+    }
+
+    func testTransactionReconciliationRefreshesAccessWithoutReloadingTheDisplayedQuote() async throws {
+        let owner = UUID()
+        let service = ApplePurchaseServiceSpy(owner: owner, environment: .sandbox)
+        let client = ApplePurchaseClientSpy(owner: owner, environment: .sandbox)
+        let store = CommerceStore(service: service, storefrontProvider: ApplePurchaseStorefrontFixture(),
+            storeKitClient: client, serviceMarketCode: "GLOBAL_US", storeKitProductionEnabled: true)
+        await store.start(appAccountToken: owner)
+        let purchase = try XCTUnwrap(store.applePurchase)
+        let quote = try XCTUnwrap(purchase.quote)
+        let initialQuoteReads = await service.quoteReads
+        let initialStatusReads = await service.statusReads
+
+        // Several historical renewal transactions can arrive together after restoring.
+        // Reconciliation must update access, without clearing/re-fetching the price each time.
+        for id in UInt64(201)...203 {
+            await client.setHistory(evidence(owner: owner, environment: "Sandbox", id: id))
+            await purchase.restore(synchronize: false)
+            XCTAssertEqual(purchase.quote, quote)
+        }
+        let quoteReads = await service.quoteReads
+        let statusReads = await service.statusReads
+        let finishes = await client.finishes
+        XCTAssertEqual(quoteReads, initialQuoteReads)
+        XCTAssertEqual(statusReads, initialStatusReads + 3)
+        XCTAssertEqual(finishes, [201, 202, 203])
+
+        // Deliberate refresh still re-evaluates the quote.
+        await store.refresh()
+        let refreshedReads = await service.quoteReads
+        XCTAssertEqual(refreshedReads, initialQuoteReads + 1)
+
+        // Retaining the displayed quote must not waive the fresh check before payment.
+        await client.setHistory(nil)
+        await client.setAmount(119_990)
+        await service.setAmount(119_990)
+        await purchase.purchase(accepting: quote)
+        let preparations = await service.preparations
+        let purchases = await client.purchases
+        XCTAssertEqual(preparations, 0)
+        XCTAssertEqual(purchases, 0)
+        XCTAssertNotEqual(purchase.quote, quote)
+    }
+
     func testKnownForeignCurrentPurchaseDoesNotPromptOrReadHistoricalStatusAgain() async {
         let f = await fixture(environment: .sandbox)
         await f.client.setHistory(evidence(owner: UUID(), environment: "Sandbox"))
@@ -667,11 +742,30 @@ final class ApplePurchaseCoordinatorTests: XCTestCase {
     }
 }
 
-private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
+private actor ApplePurchaseServiceSpy: CommerceServing {
     let owner: UUID
     var purchaseToken: UUID?
     func usePurchaseToken(_ value: UUID) { purchaseToken = value }
     var amount = 99_990
+    var quoteReads = 0, statusReads = 0
+    func fetchCommerceStatus(serviceMarketCode: String) async throws -> CommerceStatus {
+        statusReads += 1
+        return CommerceStatus(contractVersion: "commerce-status-v1", billingOpen: false,
+            serviceMarketCode: serviceMarketCode, marketPolicyVersion: 1,
+            currentAccess: .init(planCode: "free", planVersion: 1, subscription: nil, managementDestination: "none"),
+            entitlements: [], plans: [], offers: [], boundaries: boundaries)
+    }
+    func resolvePurchaseRoute(request: CommercePurchaseRouteRequest) async throws -> CommercePurchaseRouteResponse {
+        CommercePurchaseRouteResponse(contractVersion: "commerce-purchase-route-v1", purchaseRoute: "none",
+            reason: "fixture", policy: nil, activeSubscription: nil, managementDestination: "none",
+            requiresFreshEvaluation: true, boundaries: boundaries)
+    }
+    private var boundaries: CommerceBoundaries {
+        CommerceBoundaries(serverAuthoritative: true, providerCallbackGrantsAccess: false,
+            clientPurchaseResultGrantsAccess: false, billingStateCanTriggerClaim: false,
+            billingStateCanTriggerDisclosure: false, storefrontPersistedToCustomerProfile: false,
+            oneActiveRenewalProviderPerHouseholdPlan: true)
+    }
     let environment: ApplePurchaseEnvironment
     var submittedEnvironments: [ApplePurchaseEnvironment] = []
     var wrongReceiptEnvironment = false
@@ -715,6 +809,7 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
         continuation?.resume(returning: intent()); continuation = nil
     }
     func fetchAppleQuote(serviceMarket: String, storefront: String, environment: ApplePurchaseEnvironment) async throws -> AppleQuoteResponse {
+        quoteReads += 1
         if rejectQuotes { throw RilloraAPIError.invalidResponse }
         return AppleQuoteResponse(contractVersion: "commerce-apple-purchase-v1", quote: ApplePurchaseQuote(bindingCode: "fixture",
             priceCode: "family_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
@@ -768,6 +863,10 @@ private actor ApplePurchaseServiceSpy: ApplePurchaseServing {
 }
 
 private actor ApplePurchaseClientSpy: StoreKitPurchasing {
+    nonisolated private let updates: AsyncStream<StoreKitTransactionUpdate>?
+    private let updateContinuation: AsyncStream<StoreKitTransactionUpdate>.Continuation?
+    func emit(_ update: StoreKitTransactionUpdate) { updateContinuation?.yield(update) }
+    func endUpdates() { updateContinuation?.finish() }
     var suppliedAccountToken: UUID?
     var appEnvironment: ApplePurchaseEnvironment?
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { appEnvironment }
@@ -815,7 +914,13 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
     func pauseNextCatalog() { pauseCatalog = true }
     func resumeCatalog() { catalogContinuation?.resume(); catalogContinuation = nil }
     func setHistoryAfterSync(_ value: StoreKitTransactionEvidence) { historyAfterSync = value }
-    init(owner: UUID, environment: ApplePurchaseEnvironment?) { self.owner = owner; self.appEnvironment = environment }
+    init(owner: UUID, environment: ApplePurchaseEnvironment?, observesUpdates: Bool = false) {
+        self.owner = owner; self.appEnvironment = environment
+        if observesUpdates {
+            let pipe = AsyncStream<StoreKitTransactionUpdate>.makeStream()
+            updates = pipe.stream; updateContinuation = pipe.continuation
+        } else { updates = nil; updateContinuation = nil }
+    }
     func setAmount(_ value: Int) { amount = value }
     func setHistory(_ value: StoreKitTransactionEvidence?) { history = value }
     func setOutcome(_ value: StoreKitPurchaseOutcome) { nextOutcome = value }
@@ -847,7 +952,9 @@ private actor ApplePurchaseClientSpy: StoreKitPurchasing {
         if let nextOutcome { return nextOutcome }
         let value = evidence(owner: appAccountToken, environment: appEnvironment?.rawValue ?? "Unknown"); history = value; return .verified(value)
     }
-    nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> { AsyncStream { $0.finish() } }
+    nonisolated func transactionUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitTransactionUpdate> {
+        updates ?? AsyncStream { $0.finish() }
+    }
     nonisolated func subscriptionStatusUpdates(identifiers: Set<String>) -> AsyncStream<StoreKitSubscriptionStatusSnapshot> { AsyncStream { $0.finish() } }
     func finish(transactionID: UInt64) async { finishes.append(transactionID) }
     func sync() async throws { syncs += 1; if let historyAfterSync { history = historyAfterSync } }

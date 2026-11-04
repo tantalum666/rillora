@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November5当前：[审核复核和购买按钮修复](../docs/app-review-readiness-20261104.md)已完成本机74项原生／6项UI回归，准备隔离18-r2。两条缺陷分别为交易后重复报价重载与Form法律链接整行点击范围；不放宽付款验证。原专用资格有界续到December4，DB／API／监控匹配；原17交易证据沿用。[本轮安全回执](verification/app-review-readiness-20261104/README.md)与新增archive60–61分层保存，旧1–59不重做。手机安装及最终素材仍待对应；不上传、重提、TestFlight、云CI或子代理，唯一下一步只看handoff。
+
 November4当前：Owner要求继续账户活动与申请，[公开准备参考](../docs/aws-activate-preparation-20261104.md)已更新，新增[非财务清理回执](verification/aws-account-maintenance-20261104/README.md)。本仓库公开，实际财务结果、联系人和申请回执仅保留在受保护本机QA，不用公开旧余额代替当前状态。临时资源已清理，应用／数据／价格／收费／审核保持；无云CI或子代理。唯一下一步见handoff，不重复此前活动。
 
 同轮后续：全球申请实际指向香港地区表，使用申请人的个人LinkedIn即可，不要求Rillora公司Page。公开只保留一般地区规则和表单边界；填好的申请、本人资料及最终回执保持私密。前一“没有个人LinkedIn”的解释已纠正，人工受理邮件草稿未发送且已作废；网站步骤已完成，后续供应商结果依私密记录续接，不重复申请。

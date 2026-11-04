@@ -66,6 +66,19 @@ final class LocalizationTests: XCTestCase {
             "The price or subscription terms changed. Refresh the price and check any pending purchase.")
     }
 
+    func testReviewAccessRejectionDoesNotExposeInternalTestingCopy() throws {
+        let error = RilloraAPIError.server(status: 403, code: "apple_review_not_enrolled",
+            message: "This account is not enrolled for Apple purchase testing.", requestID: nil)
+        XCTAssertFalse(error.isAuthenticationRequired)
+        XCTAssertFalse(error.isReauthenticationRequired)
+        XCTAssertEqual(L10n.serverError(status: 403, code: "apple_review_not_enrolled",
+            message: "This account is not enrolled for Apple purchase testing.", bundle: try resourceBundle("en")),
+            "Apple purchases are not available for this account. Contact support for help.")
+        XCTAssertEqual(L10n.serverError(status: 403, code: "apple_review_not_enrolled",
+            message: "PRIVATE SERVER TEXT", bundle: try resourceBundle("zh-Hans")),
+            "当前账号无法使用 Apple 购买。请联系支持获取帮助。")
+    }
+
     func testFormattedPrivateValueIsNotAKeyOrFormatString() throws {
         let bundle = try resourceBundle("zh-Hans")
         let title = "Name %@ %lld 100% 私人内容"

@@ -53,7 +53,11 @@ final class CommerceStore {
         self.applePurchase = storeKitProductionEnabled && !storeKitTestEnvironment.isEnabled
             ? ApplePurchaseCoordinator(service: service, client: storeKitClient, storefront: storefrontProvider, serviceMarket: serviceMarketCode)
             : nil
-        self.applePurchase?.onReconciled = { [weak self] in await self?.refresh() }
+        self.applePurchase?.onReconciled = { [weak self] in
+            // Transaction updates change access, not the displayed catalog. Reloading
+            // the quote here repeatedly disables Subscribe while a history batch drains.
+            await self?.refresh(storefrontCountryCode: nil, refreshQuote: false)
+        }
     }
 
     func purchaseIntents() -> AsyncStream<String> {
@@ -521,7 +525,7 @@ final class CommerceStore {
         }
     }
 
-    private func refresh(storefrontCountryCode override: String?) async {
+    private func refresh(storefrontCountryCode override: String?, refreshQuote: Bool = true) async {
         refreshRevision += 1
         let revision = refreshRevision
         isLoading = true
@@ -551,6 +555,7 @@ final class CommerceStore {
                 return
             }
 
+            let storefrontChanged = storefrontCountryCode != countryCode
             storefrontCountryCode = countryCode
             let route = try await service.resolvePurchaseRoute(
                 request: .iOS(
@@ -561,7 +566,9 @@ final class CommerceStore {
             guard revision == refreshRevision, !Task.isCancelled else { return }
             purchaseRoute = route
             isLoading = false
-            await applePurchase?.refreshQuote()
+            if refreshQuote || storefrontChanged {
+                await applePurchase?.refreshQuote()
+            }
         } catch is CancellationError {
             if revision == refreshRevision { isLoading = false }
         } catch {
