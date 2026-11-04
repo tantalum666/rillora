@@ -3977,3 +3977,12 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests executing the previously researched EC2/Bedrock activities and applying to Activate Founders. This supersedes the earlier draft-only scope for this AWS task; the held Cloudflare inquiry is still not authorized for sending.
 - Use existing account/session and accurate, independently confirmed applicant facts. Builder account terms and specific Google identity sharing were confirmed at action time. Do not infer a final programme agreement, application receipt, award or bill refund from that confirmation.
 - The repository is public. Preserve only general programme references and nonfinancial resource cleanup in Git; actual balances, applicant information and authenticated receipts remain in protected local QA because of the provider disclosure terms. No changed product/security/price/review decision, new ongoing paid capacity, cloud CI or subagent follows.
+
+## 2026-11-04 — Use the actual Hong Kong website route and the applicant's personal profile
+
+- Owner confirms the remaining project facts and reuse of the existing AWS contact address for this application. Keep the private values and approvals in protected QA, not public Git.
+- The actual global form directs Hong Kong applicants to the regional form. Follow the real region and current regional terms rather than assuming the global headline amount applies. Preserve the unincorporated, self-funded status.
+- Owner clarifies that a personal LinkedIn exists; the form asks for that profile under Your Info, not a company Page. Correct the earlier interpretation, reuse the actual profile and continue on the website. The proposed manual email was never authorized or sent and is superseded; no new social account or personal-profile edit follows.
+- Final programme agreement remains distinct from prior Builder consent. Prepare all known fields first, then use the specific action-time confirmation required by the UI tool. A valid form is not a submission, award or billing result.
+
+- Subsequent explicit Owner confirmation accepts the four named final regional terms and authorizes the prepared website submission. Execute once with marketing unchecked; preserve the provider response privately. No new paid support, other incubation programme, public endorsement or award claim is authorized.
