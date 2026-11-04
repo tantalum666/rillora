@@ -1,7 +1,7 @@
 # 五家托管方案：完整运行预算、保护映射与推荐
 
 Status: RESEARCH COMPLETE / AWS OPTIMIZATION RECOMMENDED / NO DEPLOYMENT OR MIGRATION
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong; Apple scope addendum, November3 cost model unchanged)
 
 Owner要求按正确方法重新比较AWS、Cloudflare、Oracle、Google和Vercel，保障不降低、列全月费与改造并给明确推荐。本轮延续成本调查；没有迁移真实数据、改当前审核、发TestFlight、创建付费资源或发送暂存的供应商询问。
 
@@ -139,3 +139,11 @@ Google选保留CloudFront入口，而不是Firebase Hosting代理私有API：Fir
 明确排序为：**当前先AWS阶段A → 验证AWS有界worker → 按实测再决定是否值得做Oracle隔离候选**。Google列为托管替代备选；CF保留公开层价值；Vercel目前不增加。无需等待未发出的供应商询问才能确定这个当前建议，亦不把建议写成Owner已批准的新预算。
 
 下一步只准备AWS阶段A的可回滚变更与本机／合成验证，先读回当前配置并确认业务告警依赖；本轮不变更线上。真实数据迁移、审核／TestFlight及供应商外发继续保持原限制。完成模型不等于批准或完成新平台迁移。
+
+## November4补充：Apple云服务的适用范围
+
+Owner询问Apple是否也有云服务。当前官方资料确认三种不同用途：iCloud／iCloud+面向个人文件和设备同步；CloudKit面向App的记录、资源、同步与共享；Xcode Cloud用于构建／测试／交付。CloudKit提供CloudKit JS与Web Services，不能误写成只能用于iPhone；它也不是可直接上传现有Node容器、部署PostgreSQL和长期后台的通用计算平台。[iCloud](https://www.apple.com/hk/icloud/)、[CloudKit](https://developer.apple.com/icloud/cloudkit/)、[CloudKit JS](https://developer.apple.com/documentation/cloudkitjs)、[Xcode Cloud](https://developer.apple.com/xcode-cloud/)。
+
+CloudKit私人数据库依赖用户自己的iCloud身份，数据计入用户个人配额；公共数据库按App容器配额管理，服务器到服务器密钥可用于公共数据库。公共／私人是服务模型，不能把“公共”名称直接当作无需权限保护。官方产品页列最高1PB公共数据能力，本轮没有取得适用于Rillora全运行范围的免费保证或超额报价，因此不据此推出整套免费，也不拿iCloud+个人套餐代替服务器费用。[容器与配额](https://developer.apple.com/documentation/cloudkit/ckcontainer)、[Web Services身份](https://developer.apple.com/library/archive/documentation/DataManagement/Conceptual/CloudKitWebServicesReference/SettingUpWebServices.html)。
+
+对Rillora的判断：可以研究Apple设备间的可选偏好同步或用户主动保存的备份，但现有Web／邮箱及Google身份、亲友权限、支付回调、独立后台、PostgreSQL RLS和恢复日志不能原样迁入CloudKit。采用它须重新设计存储／身份映射和验收，仍有外部业务服务器费用；当前不把它推荐为整体降本替代。私人iCloud备份也不能直接等同身后自动披露或服务器可替用户解锁。Xcode Cloud是云CI，Owner当前本机验证决定保持。没有新平台开通、运行测试、应用改造或审核变更；原五家费用及下一步不变。

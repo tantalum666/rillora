@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -4470,3 +4470,7 @@ October25 Git完成回读：源码／archive54提交dfe3583e31a54b2b20f428b5e149
 ## 2026-11-03 — 五家完整运行预算与明确降本方向
 
 目标：Owner要求五家按正确方法比较，保护不降，完整月费／改造／明确推荐，真实迁移和审核不动。尝试：延续全文阅读，核对当前控制／后台／文件源码、November2发票与库存，读取各云Frankfurt／USD公开价，建立13项十进制及范围校验的整套模型。判断变化：不强行把Neon装进每家，也不把私网等同昂贵跨云VPN；Google全流量出站限制仍需NAT，Oracle50GB数据盘下限和免费NoSQL最多三张必须计入，数据库原生备份不能挤占文件档案预算。结果：AWS阶段A73.35／目标65.71、Oracle付费A2自管46.07（E4回退62.06）、Google86.11共享SQL／116.61专用SQL、CF公开层混合65.71、Vercel公开层混合85.71美元/月，明确建议先AWS收敛，Oracle的19.64月差额需对照维护与重构。未完成：真实工作负载／目标容量、各改造及恢复故障实证、新平台实际配额／报价；全部方案未部署、未实现节省。AWS会话实际过期但研究沿用已有库存，不重复索取MFA。没有真实数据移动、价格／收费／审核变更、外发、子代理、云端CI或旧业务重测。
+
+## 2026-11-04 — Apple云服务适用范围补查
+
+目标：回答Owner是否也能考虑Apple云服务。尝试：阅读Apple官方iCloud、CloudKit、CloudKit JS、容器配额、Web Services和Xcode Cloud资料。判断变化：CloudKit确有Web支持，但个人存储、应用数据同步与通用服务器托管是不同服务；不能把最高公共容量或个人套餐当整套免费后端。结果：结论追加原托管报告，保留AWS收敛建议；私人iCloud身份／配额、现有支付后台／PG权限／恢复需要重构的边界明确。未完成：没有新的CloudKit实施／价格承诺／安全等价验收；未开通、迁移、部署、改审核或用云CI。没有新Owner决定，decision-log无需追加批准条目。
