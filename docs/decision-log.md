@@ -3986,3 +3986,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Final programme agreement remains distinct from prior Builder consent. Prepare all known fields first, then use the specific action-time confirmation required by the UI tool. A valid form is not a submission, award or billing result.
 
 - Subsequent explicit Owner confirmation accepts the four named final regional terms and authorizes the prepared website submission. Execute once with marketing unchecked; preserve the provider response privately. No new paid support, other incubation programme, public endorsement or award claim is authorized.
+
+## 2026-11-04 — Defer optional Kiro verification after bounded scope checks
+
+- Owner asks to investigate the provider verification notice, then explicitly says to defer it if nonessential. Current application, infrastructure and deployment-tool source has no Kiro dependency; the existing cloud identity/account and Builder profile remain accessible in the bounded checks.
+- Defer the optional tool verification. Do not submit the prepared support form, create an identity, accept a new Kiro agreement, connect repositories, buy a plan or change credentials/MFA/cloud resources. The request stays unsent; only Agent-created inspection tabs close.
+- This is a priority decision, not proof that the provider flag is cleared or that every possible security event has been ruled out. Resume only for an actual need for Kiro or new evidence affecting necessary services. Existing Activate review and release constraints remain separate. Private notice/session/form material is not published to the public repository.

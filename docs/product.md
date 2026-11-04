@@ -9,6 +9,10 @@ Last updated: 2026-11-04 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
+## 2026-11-04 可选Kiro验证暂缓
+
+Owner要求核对AWS／Kiro提醒，随后明确非必要就暂缓。[限定核查与决定](aws-builder-kiro-notice-20261104.md)区分云资源身份、Builder资料可用性与Kiro工具限制；当前运行和发布不依赖Kiro，支持草稿不提交，不为它新建身份／付费计划或改变部署。具体原因和解除状态仍未获服务方证明，实际通知和私人核对记录不进公开Git。
+
 ## 2026-11-04 AWS账户活动与申请续接
 
 Owner随后要求执行此前准备的账户活动和创业申请，取代上一检查点的仅准备范围。可公开的一般条件见[申请参考](aws-activate-preparation-20261104.md)；账户财务结果、本人确认和申请进度保存在本机受保护记录，公开Git只保存[非财务资源清理回执](../collaboration/verification/aws-account-maintenance-20261104/README.md)。活动完成、余额、提交和获批分别取证；不得因获赠金而取消成本约束。当前应用、真实数据、价格／收费、审核／TestFlight与FanPass保持。
