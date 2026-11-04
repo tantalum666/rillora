@@ -1,0 +1,41 @@
+"""Use temporary ECR auth only in memory through the local Docker Engine API."""
+import base64,http.client,json,os,socket,subprocess,sys,urllib.parse
+from pathlib import Path
+OUT=Path(__file__).parent
+REGISTRY='133857166372.dkr.ecr.eu-central-1.amazonaws.com'
+REPOSITORY=REGISTRY+'/cdk-hnb659fds-container-assets-133857166372-eu-central-1'
+action,reference=sys.argv[1:]
+assert action in ['pull','push'] and reference.startswith(REPOSITORY)
+def command(args,env=None):
+ p=subprocess.run(args,capture_output=True,text=True,env=env)
+ if p.returncode:raise RuntimeError(p.stderr.strip())
+ return p.stdout.strip()
+identity=json.loads(command(['aws','sts','get-caller-identity','--profile','rillora-operator','--region','eu-central-1']))
+assert identity['Account']=='133857166372'
+credentials=json.loads(command(['aws','sts','assume-role','--role-arn','arn:aws:iam::133857166372:role/cdk-hnb659fds-image-publishing-role-133857166372-eu-central-1','--role-session-name','rillora-worker-tls','--duration-seconds','900','--profile','rillora-cdk-session']))['Credentials']
+env={k:v for k,v in os.environ.items() if not k.startswith('AWS_')}
+env.update(AWS_ACCESS_KEY_ID=credentials['AccessKeyId'],AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'],AWS_SESSION_TOKEN=credentials['SessionToken'])
+password=command(['aws','ecr','get-login-password','--region','eu-central-1'],env)
+authorization=base64.urlsafe_b64encode(json.dumps({'username':'AWS','password':password,'serveraddress':REGISTRY}).encode()).decode()
+env.clear();credentials.clear();password=None
+class DockerConnection(http.client.HTTPConnection):
+ def connect(self):
+  self.sock=socket.socket(socket.AF_UNIX,socket.SOCK_STREAM)
+  self.sock.settimeout(300);self.sock.connect(str(Path.home()/'.colima/rillora-build/docker.sock'))
+connection=DockerConnection('localhost')
+if action=='pull':
+ path='/v1.45/images/create?'+urllib.parse.urlencode({'fromImage':reference})
+else:
+ repository,tag=reference.rsplit(':',1)
+ assert repository==REPOSITORY and tag.startswith('worker-tls-20261104-')
+ path='/v1.45/images/'+urllib.parse.quote(repository,safe='')+'/push?'+urllib.parse.urlencode({'tag':tag})
+connection.request('POST',path,headers={'X-Registry-Auth':authorization});authorization=None
+response=connection.getresponse();assert response.status==200,response.status
+statuses=[]
+while line:=response.readline():
+ entry=json.loads(line)
+ if entry.get('error'):raise RuntimeError(entry['error'])
+ if entry.get('aux') or entry.get('status') in ['Downloaded newer image for '+reference,'Image is up to date for '+reference]:statuses.append(entry)
+connection.close()
+(OUT/('registry-'+action+'.json')).write_text(json.dumps({'reference':reference,'completed':True,'statuses':statuses},indent=2)+'\n')
+print(json.dumps({'action':action,'completed':True,'statuses':statuses}))

@@ -1,0 +1,28 @@
+import json,subprocess,datetime
+from pathlib import Path
+OUT=Path(__file__).parent
+queries=[];labels={}
+def metric(label,namespace,name,dimensions,stat):
+    ident='m'+str(len(queries));labels[ident]=label
+    queries.append({'Id':ident,'MetricStat':{'Metric':{'Namespace':namespace,'MetricName':name,'Dimensions':[{'Name':k,'Value':v} for k,v in dimensions.items()]},'Period':900,'Stat':stat},'ReturnData':True})
+for stack,environment in [('RilloraProduction','production'),('RilloraStaging','preview')]:
+    cluster=json.loads((OUT/(stack+'-cluster-current.json')).read_text())['clusters'][0]['clusterName']
+    services=json.loads((OUT/(stack+'-services-current.json')).read_text())['services']
+    for s in services:
+        role='worker' if 'IdentityWorker' in s['serviceName'] else 'api'
+        for name in ['CPUUtilization','MemoryUtilization']:
+            for stat in ['Average','Maximum']:
+                metric(environment+'.'+role+'.'+name+'.'+stat,'AWS/ECS',name,{'ClusterName':cluster,'ServiceName':s['serviceName']},stat)
+    db=json.loads((OUT/(stack+'-database-current.json')).read_text())['DBInstances'][0]['DBInstanceIdentifier']
+    for name,stat in [('CPUUtilization','Average'),('CPUUtilization','Maximum'),('DatabaseConnections','Maximum'),('FreeableMemory','Minimum'),('FreeStorageSpace','Minimum'),('CPUCreditBalance','Minimum'),('CPUSurplusCreditsCharged','Sum'),('DiskQueueDepth','Maximum')]:
+        metric(environment+'.db.'+name+'.'+stat,'AWS/RDS',name,{'DBInstanceIdentifier':db},stat)
+now=datetime.datetime.now(datetime.timezone.utc);start=now-datetime.timedelta(days=7)
+(OUT/'utilization-query.json').write_text(json.dumps(queries))
+result=json.loads(subprocess.check_output(['aws','cloudwatch','get-metric-data','--metric-data-queries',json.dumps(queries),'--start-time',start.isoformat(),'--end-time',now.isoformat(),'--profile','rillora-operator','--region','eu-central-1','--output','json'],text=True))
+(OUT/'utilization-private.json').write_text(json.dumps(result,indent=2)+'\n')
+summary={'start':start.isoformat(),'end':now.isoformat(),'periodSeconds':900,'metrics':{}}
+for r in result['MetricDataResults']:
+    values=r.get('Values',[]);name=labels[r['Id']]
+    summary['metrics'][name]={'status':r['StatusCode'],'samples':len(values),'minimum':min(values) if values else None,'maximum':max(values) if values else None,'mean':sum(values)/len(values) if values else None,'sum':sum(values) if name.endswith('.Sum') else None}
+(OUT/'utilization-summary.json').write_text(json.dumps(summary,indent=2)+'\n')
+print(json.dumps(summary,indent=2))

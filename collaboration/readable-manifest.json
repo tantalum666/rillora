@@ -2,8 +2,8 @@
   "files": [
     {
       "path": "collaboration/README.md",
-      "bytes": 42501,
-      "sha256": "4294a80c2ad0f266771cc92601e65c7e9c052ffea2269eed974f537fe12d0450"
+      "bytes": 43127,
+      "sha256": "b2f6a054e961116fd5ff67bdf8359822cfc689c9f5f77e44cbe98e0bc0e3b133"
     },
     {
       "path": "collaboration/catalog/files-001.json",
@@ -47701,6 +47701,191 @@
       "sha256": "2c353a349c5f5cec51acfa083dab5c286e4e89a209fa75aad7870b756109093a"
     },
     {
+      "path": "collaboration/verification/aws-optimization-20261104/README.md",
+      "bytes": 5009,
+      "sha256": "254595aca0091432ff3d24ca4468fa4553ddcdc90132c6fb83f617d7a0d3f7cd"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/account-deletion-worker.js.diff.txt",
+      "bytes": 715,
+      "sha256": "fc14f9ac495f8ad822b572124484f02d3a0ba2bfe2e1259abfccdf1c2fa8baa8"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/account-deletion-worker.js.reference.txt",
+      "bytes": 4033,
+      "sha256": "077d78caa38e5f51f1feedc11e6e064aeaae686ad581b41871e3f13e9d49fbf0"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/api-tls-tests-v2.log.txt",
+      "bytes": 238,
+      "sha256": "3f03fbc187bd30a84733e198102095fffabcb91001dd936afbbe02c555ef12b6"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/api-tls-tests.log.txt",
+      "bytes": 2964,
+      "sha256": "3c86e65f082dfeeb1326df48ee2ab0f3bda0379ef09e1451b12e5a3da7e2563f"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/cluster-tests.log.txt",
+      "bytes": 238,
+      "sha256": "8930e0bc09d0c1175839aad3298b3cf631f431f98f7ed57bb0e132dc4550f54b"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/cost-controls-verification.json",
+      "bytes": 1337,
+      "sha256": "42aae950de5470ff48e26d44bcc77237b9c49c2e5b9aa1f8e787325b7feb02a6"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/db.js.diff.txt",
+      "bytes": 1157,
+      "sha256": "142291ce37ed13d8c9f3ef83560f5a4fc83e5f717865341ddddab525b2a5f713"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/db.js.reference.txt",
+      "bytes": 10092,
+      "sha256": "8b75afc154730db88fc9489ef5795696437792c21204832b9e805708a2d2b5af"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/deployments.json",
+      "bytes": 1779,
+      "sha256": "24d93e6ffdda06254b2bbc2a76bca73e2867e2cefbdfba7ea8252b1a3a813724"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/early-worker-memory.json",
+      "bytes": 531,
+      "sha256": "d27ba04be44de957b261dcb45b3293cdd62e9ad79834488114cafcd7171d1d4e"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/free-benefits.json",
+      "bytes": 4017,
+      "sha256": "1d3e197b2e4e37caa2e9e53e9b091012a5c05f57b2d55f4b9c7c4b2d889a49ce"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/gateway-utilization-summary.json",
+      "bytes": 1335,
+      "sha256": "c5dd0520941bd29f89ebcd2d26675142494c4709b53d09d91f64a757ac1657e7"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/growth-model.json",
+      "bytes": 5278,
+      "sha256": "fa5fc4576dcf555c43fbb9dcc925a1df08fe0e664408f88b1c421229008ed24b"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/growth-rds-prices.json",
+      "bytes": 1154,
+      "sha256": "ac4568a3988c6e6f39062e02ad800aeba7e083ae3ccc4d8272f2379192b6f0ce"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/inventory.py.reference.txt",
+      "bytes": 4087,
+      "sha256": "ffbc8b128e86cf7c75856b8856915e5e985381b71c1cbaf6138964dc4f3ca6d9"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/notification-mail-check.json",
+      "bytes": 231,
+      "sha256": "fa4f19daad7c337b59f0eff3b43da8b88980f759ec005a8f7096c12b8e8eec0b"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/november-cost-daily.json",
+      "bytes": 11782,
+      "sha256": "e50c067737b6fb769917d9aad3b575e28669a03925a1fc22c33601feea1831f2"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/p1-regression-isolated.log.txt",
+      "bytes": 237,
+      "sha256": "f35043dddd36bcaaff0d3dd0219b9dbc9544e46174440a87aa656bac4e0399f2"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/p1-regression.log.txt",
+      "bytes": 955,
+      "sha256": "77d70c0764654ea9db00ba9f48aa63f8384059022fe9af0f3e792faa4afa488c"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/prepare-cluster-change.py.reference.txt",
+      "bytes": 3764,
+      "sha256": "7ba164a5f3328a0eb49833a684cfdc2bae26f46a457029b6c45c6df58621fccf"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/prepare-worker-change.py.reference.txt",
+      "bytes": 3516,
+      "sha256": "48c219beb4b96e3908dc293aa45fa510159721c2db6950c6ae4e9891c1696701"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/production-dependency-verification.json",
+      "bytes": 95,
+      "sha256": "d8f94f1ee1ace99e7eddf661ee25ba7ec82e6fc22f39c914a3b92b7992860a6c"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/public-health-after.json",
+      "bytes": 22,
+      "sha256": "51ec7471cfa12d497c5de51c014c2b4f5c9ca7e7e773e985f5c406372466ea42"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/read-utilization.py.reference.txt",
+      "bytes": 2581,
+      "sha256": "c5c3136f80e5c5f1203d46071022c8fddee0bd0a965131684d5a3655d5ddc150"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/registry-image.py.reference.txt",
+      "bytes": 2822,
+      "sha256": "2f3b5669199f344c502370fa52ecfd961b5d24205264ec8af56c60d7780e34e1"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/scope-and-validation.json",
+      "bytes": 1146,
+      "sha256": "0b9efaf40b9f6ba22854a5f03d4d253ab5cde15fc47912c61cfb1b311434ce0e"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-after.json",
+      "bytes": 1354,
+      "sha256": "fe08457539d09f8894cc441eaef4b42445260c287399f8e6de767081f0e7d41f"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-before.json",
+      "bytes": 1370,
+      "sha256": "cf0ca5665d5ff0652afd53203a55ca25ff8b4d2b95b3b5c63dc0c820fb6551d4"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-churn-runtime.mjs.reference.txt",
+      "bytes": 1375,
+      "sha256": "22bb749e96d16b93612949a933038376da42e0af3a7b685ac3e7b8fd4dfd5c0f"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-churn.mjs.reference.txt",
+      "bytes": 1373,
+      "sha256": "cac9f7e443eeff0e3290671c2e5372b5189c57abf5bc1b5fec17ad6671ec3f32"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-linux-after.json",
+      "bytes": 1360,
+      "sha256": "1d5fb890e11ee18596b0b20883c07b87ab042439de589489d3dfa2fb5a5da135"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/tls-linux-before.json",
+      "bytes": 1367,
+      "sha256": "0569a63ef6fc81a8927ce286ff77cf151913ead0cb6bb62142247b7c14d52d40"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/utilization-summary.json",
+      "bytes": 7180,
+      "sha256": "da4b32a7dbab1ee4d5372157af43ebd77cfc04c964fee19057fa8fb57ece77a6"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/verify-worker-change.py.reference.txt",
+      "bytes": 3965,
+      "sha256": "22769ff34f79ff327808096b411b1a27bb7e1fde9c494d494187ce4ee4925812"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/worker-image-verification.json",
+      "bytes": 254,
+      "sha256": "3fa6c0328abd2d5207f5debbfa87db0c236f1344aef2c47298a222837f610c40"
+    },
+    {
+      "path": "collaboration/verification/aws-optimization-20261104/worker-image.json",
+      "bytes": 772,
+      "sha256": "5319b68eba04f15b4e67861ad2e3ca49d24d8c25352eb0be32d5baa5028c4f0a"
+    },
+    {
       "path": "collaboration/verification/billing-opening-status-20261013/README.md",
       "bytes": 1522,
       "sha256": "47412427a706865ddcecca9435ea5b861c0ea442211a0acb897199913654913e"
@@ -68501,6 +68686,6 @@
       "sha256": "95309aaae9ce87a385b0093acb52f5da35851dca26b422107e63b41dc0ed64ae"
     }
   ],
-  "fileCount": 13700,
-  "totalBytes": 409099678
+  "fileCount": 13737,
+  "totalBytes": 409191789
 }

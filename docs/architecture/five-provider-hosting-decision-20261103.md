@@ -3,6 +3,8 @@
 Status: RESEARCH COMPLETE / AWS OPTIMIZATION RECOMMENDED / NO DEPLOYMENT OR MIGRATION
 Last updated: 2026-11-04 (Asia/Hong_Kong; Apple scope addendum, November3 cost model unchanged)
 
+November4后续AWS执行见[当前优化报告](../aws-optimization-20261104.md)：部分费用控制与独立后台修复已经部署，Preview按需及有界worker尚未完成。下文“未部署”指本报告November3比较检查点，不覆盖后续执行；原费用模型仍是条件目标。
+
 Owner要求按正确方法重新比较AWS、Cloudflare、Oracle、Google和Vercel，保障不降低、列全月费与改造并给明确推荐。本轮延续成本调查；没有迁移真实数据、改当前审核、发TestFlight、创建付费资源或发送暂存的供应商询问。
 
 **推荐：当前保留AWS私有托管核心，先做可选监控及按需Preview收敛；第二阶段再验证独立删除任务按需化。继续使用已经适合免费静态托管的Cloudflare公开页面，不为节省很小的前端费用重构整个产品。** 这不是说AWS永远最便宜：本轮现金最低的可设计路线是Oracle付费A2＋自管PostgreSQL，但其新增维护与安全适配成本，目前不足以被约20美元/月的差价抵偿。

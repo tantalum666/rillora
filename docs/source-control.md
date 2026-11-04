@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong)
+
+## November4 AWS controls, worker memory repair and growth plan
+
+[The current execution report](aws-optimization-20261104.md) records actual cluster metric reduction, original-recipient budget/anomaly controls, free standard recommendations, and the isolated worker TLS memory repair in both environments. [Safe evidence](../collaboration/verification/aws-optimization-20261104/README.md) preserves sanitized cloud readbacks, failed/passed local checks, exact two-file overlay hashes/diffs, Linux memory results, current free allowances and full growth budgets. The immutable worker image remains in the existing ECR repository; its source and small reproducible overlay are preserved, without re-archiving dependency layers or old artifacts. Raw provider templates/configuration, credentials, mail/account data, synthetic certificate keys and temporary databases remain local-only. Preview sleep, grant awards and long-term savings are not claimed. Rebuild the full readable manifest, use exact-base local publication, read back the pushed head and confirm no new cloud CI.
 
 ## November3 five-provider complete hosting decision
 

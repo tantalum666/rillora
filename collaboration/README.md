@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-November3当前：[五家完整托管预算与推荐](../docs/architecture/five-provider-hosting-decision-20261103.md)完成同口径全运行费用、保护控制及改造清单，推荐先AWS收敛。Oracle现金更低但自管；CF／Vercel明确仅公开层混合账单，Google保留AWS安全服务的成本亦计入。13项算术／边界校验通过，[安全模型与来源](verification/five-provider-decision-20261103/README.md)普通Git保存。没有部署、真实迁移、外发、子代理或云端CI；旧价格／审核保持。
+November4当前：[AWS优化与增长规划](../docs/aws-optimization-20261104.md)已落地两集群额外指标关闭、原收件人费用／异常通知及免费Compute Optimizer；新发现的TLS上下文内存增长已修复并只部署两独立worker，API／数据／权限／价格／审核保持。实际Linux600次重连前后、30项API／28项infra／4项控制边界／6项算术及云端读回分别保存于[安全证据](verification/aws-optimization-20261104/README.md)。Preview按需、有界worker、40美元活动与Activate仍是未完成项；没有云CI、子代理或新赠金到账声明。
+
+November3前一检查点：[五家完整托管预算与推荐](../docs/architecture/five-provider-hosting-decision-20261103.md)完成同口径全运行费用、保护控制及改造清单，推荐先AWS收敛。Oracle现金更低但自管；CF／Vercel明确仅公开层混合账单，Google保留AWS安全服务的成本亦计入。13项算术／边界校验通过，[安全模型与来源](verification/five-provider-decision-20261103/README.md)普通Git保存。没有部署、真实迁移、外发、子代理或云端CI；旧价格／审核保持。
 
 November3前一检查点：[Vercel与成本比较方法纠正](../docs/architecture/vercel-cost-method-20261103.md)明确不能从昂贵跨云案例推导所有平台比AWS贵。确认Pro原生PrivateLink、可选StaticIPs和Enterprise网络不同，普通TLS方案未被批准替代现有私网；七项示例算术通过，完整价格／目标安全实证仍缺。[安全来源和模型](verification/vercel-method-20261103/README.md)普通Git保存，没有新资源、运行改动、外发、云端CI或子代理。
 

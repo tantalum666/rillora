@@ -4,8 +4,14 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: OCT10 API21/SCHEMA0094 EVIDENCE RETAINED; SECURITY0095–0103 LOCALLY VERIFIED; NOT DEPLOYED
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Status: ACTIVE BACKEND CONTRACT; CURRENT DEPLOYMENT STATE IN HANDOFF; DATED EVIDENCE BELOW
+Last updated: 2026-11-04 (Asia/Hong_Kong)
+
+## November4 bounded database TLS memory repair
+
+[Current AWS optimization](aws-optimization-20261104.md) identified repeated native TLS context allocation while the isolated worker recycled idle database connections. Each pool now reuses one `SecureContext` built from its existing pinned CA bundle; chain/hostname verification stays enabled and separate configurations retain separate trust. The worker keeps idle connections for60seconds, beyond its30second poll, and bounds connect time to5seconds. No business data or user authorization is cached by this change.
+
+The actual frozen Linux image's600-reconnect benchmark grew84.3→584.2MiB before and90.5→94.5MiB after.16TLS/config/proof checks and14isolated local business cases pass. Only the two compiled modules were overlaid onto the existing worker image; Previewrevision4andproductionrevision10are deployed, with API images, DB/schema, roles, credentials, commands and resources unchanged. Ordinary API source gains the same helper improvement at its next normal release; this increment did not replace that service. Early metrics are recorded separately from long-term acceptance. The older candidate/not-deployed statements below are historical checkpoints.
 
 ## October11 audit remediation candidate
 

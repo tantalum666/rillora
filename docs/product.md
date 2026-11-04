@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-11-04 AWS优化、增长规划与免费权益
+
+Owner要求优化当前AWS并规划增长／核实免费权益。[本轮执行合同](aws-optimization-20261104.md)记录两环境额外性能指标关闭、原收件人费用提醒／异常门槛修正及免费Compute Optimizer启用；另从实际内存走势定位TLS证书上下文重复分配，独立后台修复已在两环境部署。原API／数据／权限／价格／收费／审核保持；当前Preview仍常开，73.35／65.71只是后续改造目标。两项20美元活动与Activate Founders属于未领取／未获批机会，未申请新套餐或赠金。增长按实际负载触发，完整预算不是用户容量证明。
 
 ## 2026-11-03 五家完整托管预算与明确推荐
 

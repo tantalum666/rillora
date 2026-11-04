@@ -1,0 +1,20 @@
+{
+  "at": "2026-11-04T03:13:38.687568+00:00",
+  "metric": "AWS/ECS MemoryUtilization;60-second averages after five-minute rollout warmup",
+  "results": {
+    "production": {
+      "samples": 4,
+      "minimumPercent": 9.1796875,
+      "maximumPercent": 9.1796875,
+      "meanPercent": 9.1796875,
+      "longTermPassed": false
+    },
+    "preview": {
+      "samples": 28,
+      "minimumPercent": 9.928385416666666,
+      "maximumPercent": 10.15625,
+      "meanPercent": 10.000465029761903,
+      "longTermPassed": false
+    }
+  }
+}

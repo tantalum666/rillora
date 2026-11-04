@@ -1,0 +1,31 @@
+import json,copy,hashlib,os,subprocess,sys
+from pathlib import Path
+OUT=Path(__file__).parent;stack=sys.argv[1]
+assert stack in ['RilloraStaging','RilloraProduction']
+def cli(args,profile='rillora-cdk-deploy',env=None):
+ command=['aws',*args,'--region','eu-central-1','--output','json','--no-cli-pager']
+ if env is None:command+=['--profile',profile]
+ r=subprocess.run(command,capture_output=True,text=True,env=env)
+ if r.returncode:raise RuntimeError(r.stderr.strip())
+ return json.loads(r.stdout) if r.stdout.strip() else {}
+before=cli(['cloudformation','get-template','--stack-name',stack,'--template-stage','Original'])['TemplateBody']
+assert before==json.loads((OUT/(stack+'-metrics-only.template.json')).read_text()),'Unexpected live template drift'
+candidate=json.loads((OUT/'worker-candidate.json').read_text())
+after=copy.deepcopy(before)
+items=[(k,v) for k,v in after['Resources'].items() if v['Type']=='AWS::ECS::TaskDefinition' and any(c['Name']=='IdentityDeletion' for c in v['Properties']['ContainerDefinitions'])]
+assert len(items)==1
+logical,definition=items[0];containers=definition['Properties']['ContainerDefinitions'];assert len(containers)==1 and containers[0]['Image']==candidate['base']
+containers[0]['Image']=candidate['immutableImage']
+back=copy.deepcopy(after);back['Resources'][logical]['Properties']['ContainerDefinitions'][0]['Image']=candidate['base'];assert back==before
+text=json.dumps(after,separators=(',',':'));digest=hashlib.sha256(text.encode()).hexdigest();path=OUT/(stack+'-worker-only.template.json');path.write_text(text);os.chmod(path,0o600)
+toolkit=json.loads((OUT/'CDKToolkit-stack.json').read_text())['Stacks'][0];outputs={v['OutputKey']:v['OutputValue'] for v in toolkit['Outputs']}
+credentials=cli(['sts','assume-role','--role-arn','arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1','--role-session-name','rillora-worker-template','--duration-seconds','900'],profile='rillora-cdk-session')['Credentials']
+env={k:v for k,v in os.environ.items() if not k.startswith('AWS_')};env.update(AWS_ACCESS_KEY_ID=credentials['AccessKeyId'],AWS_SECRET_ACCESS_KEY=credentials['SecretAccessKey'],AWS_SESSION_TOKEN=credentials['SessionToken'])
+key='rillora-cost-optimization/20261104/'+stack+'-worker-'+digest+'.json'
+cli(['s3api','put-object','--bucket',outputs['BucketName'],'--key',key,'--body',str(path),'--server-side-encryption','AES256'],env=env);credentials.clear();env.clear()
+current=cli(['cloudformation','describe-stacks','--stack-name',stack])['Stacks'][0];assert current['StackStatus']=='UPDATE_COMPLETE'
+parameters=[{'ParameterKey':p['ParameterKey'],'UsePreviousValue':True} for p in current.get('Parameters',[])]
+name='rillora-worker-tls-20261104-'+stack.lower()
+result=cli(['cloudformation','create-change-set','--stack-name',stack,'--change-set-name',name,'--change-set-type','UPDATE','--template-url','https://'+outputs['BucketDomainName']+'/'+key,'--parameters',json.dumps(parameters),'--capabilities','CAPABILITY_NAMED_IAM','--role-arn',current['RoleARN'],'--description','Only replace isolated deletion worker image with verified TLS context reuse; unchanged API, DB, roles and billing'])
+receipt={'stack':stack,'changeSet':name,'changedResource':logical,'templateSha256':digest,'baseImage':candidate['base'],'newImage':candidate['immutableImage'],'result':result,'executed':False}
+(OUT/(stack+'-worker-change.json')).write_text(json.dumps(receipt,indent=2)+'\n');print({k:v for k,v in receipt.items() if k!='result'})

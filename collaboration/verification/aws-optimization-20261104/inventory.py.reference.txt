@@ -1,0 +1,47 @@
+import json,os,subprocess,concurrent.futures,datetime
+from pathlib import Path
+
+OUT=Path(__file__).parent
+os.chmod(OUT,0o700)
+
+def aws(name,service,operation,arguments=(),profile='rillora-cdk-deploy',region='eu-central-1'):
+    command=['aws',service,operation,*arguments,'--profile',profile,'--region',region,'--output','json','--no-cli-pager']
+    p=subprocess.run(command,capture_output=True,text=True)
+    result=json.loads(p.stdout) if p.returncode==0 and p.stdout.strip() else {'error':p.stderr.strip(),'exitCode':p.returncode}
+    path=OUT/(name+'.json');path.write_text(json.dumps(result,ensure_ascii=False,indent=2)+'\n');os.chmod(path,0o600)
+    return result
+
+identity=aws('identity','sts','get-caller-identity')
+assert identity.get('Account')=='133857166372'
+names=['RilloraProduction','RilloraStaging','RilloraOperations','RilloraProductionPreflight','CDKToolkit']
+stacks={};resources={}
+with concurrent.futures.ThreadPoolExecutor(max_workers=4) as pool:
+    calls={pool.submit(aws,n+'-stack','cloudformation','describe-stacks',['--stack-name',n]):(n,'stack') for n in names}
+    calls.update({pool.submit(aws,n+'-resources','cloudformation','list-stack-resources',['--stack-name',n]):(n,'resources') for n in names})
+    for f in concurrent.futures.as_completed(calls):
+        n,k=calls[f];result=f.result();(stacks if k=='stack' else resources)[n]=result
+for n in ['RilloraProduction','RilloraStaging']:
+    aws(n+'-template','cloudformation','get-template',['--stack-name',n,'--template-stage','Original'])
+    by_type={}
+    for r in resources[n].get('StackResourceSummaries',[]):by_type.setdefault(r['ResourceType'],[]).append(r['PhysicalResourceId'])
+    cluster=by_type['AWS::ECS::Cluster'][0]
+    aws(n+'-cluster','ecs','describe-clusters',['--clusters',cluster,'--include','SETTINGS','STATISTICS','TAGS'])
+    aws(n+'-services','ecs','describe-services',['--cluster',cluster,'--services',*by_type.get('AWS::ECS::Service',[])])
+    aws(n+'-database','rds','describe-db-instances',['--db-instance-identifier',by_type['AWS::RDS::DBInstance'][0]])
+aws('alarms','cloudwatch','describe-alarms',profile='rillora-operator')
+aws('budget','budgets','describe-budget',['--account-id',identity['Account'],'--budget-name','Rillora-Staging-Monthly-25'],region='us-east-1')
+aws('budget-notifications','budgets','describe-notifications-for-budget',['--account-id',identity['Account'],'--budget-name','Rillora-Staging-Monthly-25'],region='us-east-1')
+aws('free-plan','freetier','get-account-plan-state',profile='rillora-production-preflight',region='us-east-1')
+aws('free-usage','freetier','get-free-tier-usage',region='us-east-1')
+aws('compute-optimizer-enrollment','compute-optimizer','get-enrollment-status')
+aws('anomaly-monitors','ce','get-anomaly-monitors',region='us-east-1')
+summary={'at':datetime.datetime.now(datetime.timezone.utc).isoformat(),'stacks':{},'readOnly':True}
+for n in names:
+    s=stacks[n].get('Stacks',[{}])[0]
+    summary['stacks'][n]={'status':s.get('StackStatus'),'resources':len(resources[n].get('StackResourceSummaries',[])),'error':stacks[n].get('error')}
+for n in ['RilloraProduction','RilloraStaging']:
+    c=json.loads((OUT/(n+'-cluster.json')).read_text());ss=json.loads((OUT/(n+'-services.json')).read_text());db=json.loads((OUT/(n+'-database.json')).read_text())
+    summary[n]={'clusterSettings':[x.get('settings') for x in c.get('clusters',[])],'services':[{'name':s['serviceName'],'desired':s['desiredCount'],'running':s['runningCount'],'pending':s['pendingCount']} for s in ss.get('services',[])],'database':[{'id':x['DBInstanceIdentifier'],'status':x['DBInstanceStatus'],'class':x['DBInstanceClass'],'public':x['PubliclyAccessible'],'backupDays':x['BackupRetentionPeriod']} for x in db.get('DBInstances',[])]}
+summary['errors']={p.name:json.loads(p.read_text())['error'] for p in OUT.glob('*.json') if isinstance(json.loads(p.read_text()),dict) and 'error' in json.loads(p.read_text())}
+(OUT/'inventory-summary.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps(summary,ensure_ascii=False,indent=2))

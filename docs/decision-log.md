@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3965,3 +3965,9 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests complete monthly costs and renovation scope for AWS, Cloudflare, Oracle, Google and Vercel, plus a clear recommendation. No real-data migration or current-review disturbance follows from this research task; held supplier inquiries remain unsent.
 - [The full model](architecture/five-provider-hosting-decision-20261103.md) replaces partial-component or one expensive VPN example as the current recommendation basis. Agent recommends AWS Stage A then separately validated bounded deletion jobs; Oracle paid self-managed PostgreSQL is the lower-cash but higher-maintenance alternative. This is an Agent recommendation, not an Owner-approved new provider or spending cap.
 - Preserve private DB and provider-enforced outbound restrictions, existing encryption and separate credentials, seven-day database recovery, 35-day journal recovery and non-reviving MCP state. Do not spend unverified SSM savings, count a fourth free Oracle table, or skip stopped storage and certificate renewal. Hybrid totals must retain the AWS bill; unquoted whole-core options remain unqualified.
+
+## 2026-11-04 — Optimize current AWS, plan growth and verify legitimate benefits
+
+- Owner requests current AWS optimization, a growth plan and available free benefits. Necessary reversible maintenance continues under the existing project authorization; no real-data migration, review/TestFlight action, price/sales change, FanPass operation, cloud CI or subagent follows.
+- [The execution report](aws-optimization-20261104.md) records actual optional-metric reduction and notification repairs, free standard Compute Optimizer enrollment, and an independently reproduced worker TLS memory problem repaired without increasing task size. Only isolated worker images are replaced; ordinary API/data/security controls retain their deployed scope.
+- Keep planning separate from results: Preview is still online, bounded worker execution is not implemented,73.35/65.71USD are future conditional targets, and growth scenarios are not tested user capacity. Unclaimed EC2/Bedrock activity rewards and Activate opportunities are not awarded credits. No new provider, spending commitment, startup registration/funding fact or application submission is approved or inferred.

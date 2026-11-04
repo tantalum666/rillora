@@ -293,7 +293,7 @@ export class RilloraStagingStack extends Stack {
 
     const cluster = new ecs.Cluster(this, "Cluster", {
       vpc,
-      containerInsightsV2: ecs.ContainerInsights.ENABLED,
+      containerInsightsV2: ecs.ContainerInsights.DISABLED,
     });
     const namespace = new servicediscovery.PrivateDnsNamespace(this, "Namespace", {
       vpc,

@@ -1,0 +1,65 @@
+{
+  "mode": "shared",
+  "node": "v22.23.4",
+  "openssl": "3.6.3",
+  "connections": 600,
+  "certificateVerified": true,
+  "samples": [
+    {
+      "connections": 0,
+      "rss": 20957440,
+      "heapTotal": 8716288,
+      "heapUsed": 5252304,
+      "external": 2526720,
+      "arrayBuffers": 348452
+    },
+    {
+      "connections": 100,
+      "rss": 25922824,
+      "heapTotal": 14958592,
+      "heapUsed": 6914064,
+      "external": 2386527,
+      "arrayBuffers": 190444
+    },
+    {
+      "connections": 200,
+      "rss": 28413288,
+      "heapTotal": 15482880,
+      "heapUsed": 7593576,
+      "external": 2396597,
+      "arrayBuffers": 193404
+    },
+    {
+      "connections": 300,
+      "rss": 30838192,
+      "heapTotal": 16007168,
+      "heapUsed": 7987224,
+      "external": 2396597,
+      "arrayBuffers": 193404
+    },
+    {
+      "connections": 400,
+      "rss": 32017936,
+      "heapTotal": 16531456,
+      "heapUsed": 8492520,
+      "external": 2392569,
+      "arrayBuffers": 192220
+    },
+    {
+      "connections": 500,
+      "rss": 32870000,
+      "heapTotal": 17055744,
+      "heapUsed": 8976648,
+      "external": 2390555,
+      "arrayBuffers": 191628
+    },
+    {
+      "connections": 600,
+      "rss": 33525456,
+      "heapTotal": 17580032,
+      "heapUsed": 9448992,
+      "external": 2386529,
+      "arrayBuffers": 190446
+    }
+  ]
+}

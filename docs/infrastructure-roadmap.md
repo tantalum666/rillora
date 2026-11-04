@@ -5,7 +5,11 @@ Authority scope: zero-revenue public hosting, future production resources, cost 
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
 Status: HOSTING COST REVIEW ACTIVE; CURRENT PRODUCTION UNCHANGED
-Last updated: 2026-11-03 (Asia/Hong_Kong)
+Last updated: 2026-11-04 (Asia/Hong_Kong)
+
+## November4 AWS optimization execution and growth
+
+[The current AWS report](aws-optimization-20261104.md) records actual optional-metric reduction, notification/anomaly repairs, free standard recommendations and a deployed isolated-worker TLS memory fix. Preview sleep and bounded worker execution remain planned; the earlier73.35/65.71USD targets are not current realized bills. Scale by measured latency/CPU/memory/connections and recovery needs, with shared rate limits and background coordination before multiple API replicas. Existing Free Tier usage is verified; two20USDactivities andActivate are unawarded opportunities. No new paid plan, migration, review action or cloud CI follows.
 
 ## November3 full hosting comparison
 
