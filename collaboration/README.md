@@ -1,6 +1,8 @@
 # Rillora — Git / Dot 协作入口
 
-November4当前：[AWS优化与增长规划](../docs/aws-optimization-20261104.md)已落地两集群额外指标关闭、原收件人费用／异常通知及免费Compute Optimizer；新发现的TLS上下文内存增长已修复并只部署两独立worker，API／数据／权限／价格／审核保持。实际Linux600次重连前后、30项API／28项infra／4项控制边界／6项算术及云端读回分别保存于[安全证据](verification/aws-optimization-20261104/README.md)。Preview按需、有界worker、40美元活动与Activate仍是未完成项；没有云CI、子代理或新赠金到账声明。
+November4当前：Owner要求继续账户活动与申请，[公开准备参考](../docs/aws-activate-preparation-20261104.md)已更新，新增[非财务清理回执](verification/aws-account-maintenance-20261104/README.md)。本仓库公开，实际财务结果、联系人和申请回执仅保留在受保护本机QA，不用公开旧余额代替当前状态。临时资源已清理，应用／数据／价格／收费／审核保持；无云CI或子代理。唯一下一步见handoff，不重复此前活动。
+
+November4前一检查点：[AWS优化与增长规划](../docs/aws-optimization-20261104.md)已落地两集群额外指标关闭、原收件人费用／异常通知及免费Compute Optimizer；新发现的TLS上下文内存增长已修复并只部署两独立worker，API／数据／权限／价格／审核保持。实际Linux600次重连前后、30项API／28项infra／4项控制边界／6项算术及云端读回分别保存于[安全证据](verification/aws-optimization-20261104/README.md)。Preview按需和有界worker仍未实现；账户活动已由上方后续工作取代，本段不是当前财务结果。
 
 November3前一检查点：[五家完整托管预算与推荐](../docs/architecture/five-provider-hosting-decision-20261103.md)完成同口径全运行费用、保护控制及改造清单，推荐先AWS收敛。Oracle现金更低但自管；CF／Vercel明确仅公开层混合账单，Google保留AWS安全服务的成本亦计入。13项算术／边界校验通过，[安全模型与来源](verification/five-provider-decision-20261103/README.md)普通Git保存。没有部署、真实迁移、外发、子代理或云端CI；旧价格／审核保持。
 
