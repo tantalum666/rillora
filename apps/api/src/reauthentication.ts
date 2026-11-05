@@ -1,4 +1,4 @@
-import { createHash, randomBytes } from 'node:crypto';
+import { createHash, randomBytes, timingSafeEqual } from 'node:crypto';
 import { Router, type Request } from 'express';
 import { readSecurityCookie, securityCookieName, usesSecureCookies } from './security-cookies.js';
 import * as oidc from 'openid-client';
@@ -14,6 +14,8 @@ import type { PoolClient } from 'pg';
 import { reviewAccessOpen } from './production-review-access.js';
 import { admitAuthenticationTransaction, authenticationBusy } from './auth-transaction-budget.js';
 import { sealSessionDeletionProof } from './identity-deletion-proof.js';
+import { rememberVerifiedNetwork, sessionContextForRequest, type SessionContext, type StoredSessionContext } from './session-context.js';
+import type { SessionSecurity } from './session-security.js';
 
 const digest = (value: string) => createHash('sha256').update(value).digest();
 const opaque = () => randomBytes(32).toString('base64url');
@@ -25,14 +27,25 @@ export type ReauthenticationTransaction = {
 };
 
 async function refreshSession(client: PoolClient, config: AppConfig, publicId: string,
-  identity: ExternalIdentity, tokenHash?: Buffer): Promise<void> {
+  identity: ExternalIdentity, context: SessionContext | null, identityStatusChecked: boolean, tokenHash?: Buffer): Promise<void> {
   if (!reviewAccessOpen(config) || !authenticationIsRecent(identity.authenticatedAt)) throw invalid();
+  const previous = (await client.query<StoredSessionContext>(`select context_version,client_context_hash,network_context_hashes
+    from app.auth_sessions where public_id=$1 for update`, [publicId])).rows[0];
+  if (!previous) throw invalid();
+  let networks: Buffer | null = null;
+  if (previous.context_version === 1) {
+    if (!context || !previous.client_context_hash || previous.client_context_hash.length !== 32
+      || !timingSafeEqual(previous.client_context_hash, context.clientHash)) throw invalid();
+    networks = rememberVerifiedNetwork(previous.network_context_hashes, context.networkHash);
+  } else if (previous.context_version !== 0) throw invalid();
   const deletionProof=await sealSessionDeletionProof(config,identity,publicId);
   const result = await client.query(`update app.auth_sessions s
-    set authenticated_at=$2, authentication_methods=$3::text[],deletion_identity_proof=$11::jsonb
+    set authenticated_at=$2, authentication_methods=$3::text[],deletion_identity_proof=$11::jsonb,last_seen_at=now(),
+      network_context_hashes=$12,
+      identity_checked_at=case when s.context_version=1 and $13 then now() else s.identity_checked_at end
     from app.legal_acceptances a, app.planners p
     where s.public_id=$1 and s.revoked_at is null and s.expires_at>now()
-      and (s.last_seen_at is null or s.last_seen_at>now()-make_interval(mins=>$4))
+      and (s.last_seen_at is null or s.last_seen_at>now()-make_interval(mins=>coalesce(s.idle_timeout_minutes,$4)))
       and p.id=s.planner_id and p.status='active'
       and a.id=s.legal_acceptance_id and a.planner_id=s.planner_id
       and a.identity_reference_sha256=$5
@@ -43,14 +56,15 @@ async function refreshSession(client: PoolClient, config: AppConfig, publicId: s
     config.sessionIdleMinutes, digest(`${identity.issuer}\u001f${identity.subject}`),
     currentLegalContract.termsVersion, currentLegalContract.privacyVersion,
     Buffer.from(currentLegalContract.bundleSha256,'hex'), tokenHash ?? null,
-    config.productionReviewAccess?.identityDigests ?? null,deletionProof?JSON.stringify(deletionProof):null]);
+    config.productionReviewAccess?.identityDigests ?? null,deletionProof?JSON.stringify(deletionProof):null,networks,identityStatusChecked]);
   if (result.rowCount !== 1) throw invalid();
 }
 
 export function createReauthenticationRouter(pool: DatabasePool, config: AppConfig,
-  provider: IdentityProvider | null, nativeVerifier: NativeIdentityVerifier | null): Router {
+  provider: IdentityProvider | null, nativeVerifier: NativeIdentityVerifier | null, sessionSecurity?: SessionSecurity): Router {
   const router = Router();
-  router.post('/reauthenticate', authenticate(pool, config), requireCsrf, asyncHandler(async (request, response) => {
+  const confirmationAuth = authenticate(pool, config, { ...(sessionSecurity ? { sessionSecurity } : {}), purpose: 'identity-confirmation' });
+  router.post('/reauthenticate', confirmationAuth, requireCsrf, asyncHandler(async (request, response) => {
     z.object({}).strict().parse(request.body);
     if (!provider || !config.oidc || request.auth.mode !== 'session') throw invalid();
     const cookieToken=opaque(), pollToken=opaque();
@@ -78,7 +92,7 @@ export function createReauthenticationRouter(pool: DatabasePool, config: AppConf
     // The poll capability is separate from the HTTP-only OAuth/PKCE transaction cookie.
     response.status(201).json({authorizationUrl:url.href,pollToken,expiresIn:config.authTransactionTtlSeconds});
   }));
-  router.post('/reauthentication-status', authenticate(pool,config), requireCsrf, asyncHandler(async(request,response)=>{
+  router.post('/reauthentication-status', confirmationAuth, requireCsrf, asyncHandler(async(request,response)=>{
     const input=z.object({pollToken:z.string().regex(/^[A-Za-z0-9_-]{43}$/)}).strict().parse(request.body);
     const row=await withAuthDatabase(pool,async client=>(await client.query(
       `select reauth_completed_at,reauth_failed_at from app.auth_transactions where reauth_poll_hash=$1
@@ -87,12 +101,19 @@ export function createReauthenticationRouter(pool: DatabasePool, config: AppConf
     if (!row) throw invalid();
     response.json({completed:Boolean(row.reauth_completed_at),failed:Boolean(row.reauth_failed_at)});
   }));
-  router.post('/native/reauthenticate',authenticate(pool,config),requireCsrf,asyncHandler(async(request,response)=>{
+  router.post('/native/reauthenticate',confirmationAuth,requireCsrf,asyncHandler(async(request,response)=>{
     if (!nativeVerifier || request.auth.mode!=='bearer' || !request.auth.sessionPublicId) throw invalid();
     const input=z.object({accessToken:z.string().min(80).max(16384),idToken:z.string().min(80).max(16384)}).strict().parse(request.body);
     let identity:ExternalIdentity;
     try { identity=await nativeVerifier.verifyAccessToken(input.accessToken,input.idToken); } catch { throw invalid(); }
-    await withAuthDatabase(pool,client=>refreshSession(client,config,request.auth.sessionPublicId!,identity));
+    if (config.trustedUserSessions?.enabled) {
+      if (!sessionSecurity) throw invalid();
+      await sessionSecurity.verifyNewIdentity(identity);
+    }
+    const token = request.get('authorization')!.slice(7);
+    const context = sessionContextForRequest(request, token, 'native_bearer', config.trustedUserSessions?.edgeProofSha256);
+    await withAuthDatabase(pool,client=>refreshSession(client,config,request.auth.sessionPublicId!,identity,
+      context,config.trustedUserSessions?.enabled === true));
     response.json({authenticated:true});
   }));
   return router;
@@ -104,13 +125,19 @@ export async function failReauthentication(pool: DatabasePool, transaction: Reau
 }
 
 export async function completeReauthentication(pool: DatabasePool, config: AppConfig,
-  transaction: ReauthenticationTransaction, identity: ExternalIdentity, request: Request): Promise<void> {
+  transaction: ReauthenticationTransaction, identity: ExternalIdentity, request: Request, sessionSecurity?: SessionSecurity): Promise<void> {
   if (!transaction.reauth_session_public_id || !authenticationIsRecent(identity.authenticatedAt)
     || identity.authenticatedAt!.getTime()<transaction.created_at.getTime()-5_000) throw invalid();
   const cookie=readSecurityCookie(request.get('cookie'),securityCookieName(config,sessionCookieName));
   if (!cookie || !/^[A-Za-z0-9_-]{43,128}$/.test(cookie)) throw invalid();
+  if (config.trustedUserSessions?.enabled) {
+    if (!sessionSecurity) throw invalid();
+    await sessionSecurity.verifyNewIdentity(identity);
+  }
+  const context = sessionContextForRequest(request, cookie, 'browser_cookie', config.trustedUserSessions?.edgeProofSha256);
   await withAuthDatabase(pool,async client=>{
-    await refreshSession(client,config,transaction.reauth_session_public_id!,identity,digest(cookie));
+    await refreshSession(client,config,transaction.reauth_session_public_id!,identity,context,
+      config.trustedUserSessions?.enabled === true,digest(cookie));
     await client.query(`update app.auth_transactions set reauth_completed_at=now()
       where token_hash=$1 and consumed_at is not null and expires_at>now()`,[transaction.token_hash]);
   });

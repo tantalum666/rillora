@@ -1,6 +1,6 @@
 import { RilloraBrand } from "./RilloraBrand.jsx";
 import { useEffect } from "react";
-import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+import { LegalDocumentPage } from "./CurrentLegalDocumentPage.jsx";
 import { publicRoutes, resolvePublicView } from "./publicRoutes.js";
 import "./public-experience.css";
 import { useI18n } from "./i18n/I18nProvider.jsx";

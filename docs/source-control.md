@@ -1,10 +1,16 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+## November6用户会话与审核再复核
+
+[长期用户会话](longer-user-sessions-20261106.md)已完成两环境110、可信边缘和30天／7天策略启用。[审核再复核](app-review-recheck-20261106.md)另修复审核入口的身份核验器传递遗漏，39项检查及两模块266b79fb部署回读通过。原生18复用原归档，已通过Apple校验及上传、处理为未分配测试组的候选；草稿18保存后刷新遇到实际登录失效，材料最终回读仍分开记录。没有重提、TestFlight分发或新购买。
+
+仅新增归档63（100路径／97对象）与64（87路径／77对象），均本机认证通过；旧1–62未重封。来源证明、认证／提供方原始资料、维护能力和私有发布包保留本机。代码、非秘密回执、既有62远端回执正常入Git；最后完成全量可读清单、确切base发布门及新63／64独立远端核验。配置文件只调整空行保留原有已批准PEM格式标记位置，编译字节与已部署镜像一致，没有添加扫描例外或改策略。
 
 ## November5同账号再次订阅修复
 
-[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。新维护镜像仅叠加诊断和109，普通API／worker／价格／收费不变。现推进独立的用户长期会话需求，尚未部署；重提／TestFlight暂停继续。
+[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。该检查点只改变维护镜像和109；后续长期会话及审核入口更新见November6记录，不能把它们混成同次部署。重提／TestFlight暂停继续。
 
 ## November5 in-place device delivery
 

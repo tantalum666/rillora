@@ -34,4 +34,4 @@ Owner在已原位安装的1.0(18)购买后仍见Free，恢复返回“Your purch
 
 [安全回执](../collaboration/verification/apple-resubscription-20261105/README.md)分开保存本机、维护镜像、数据库迁移、权限、实际订单和Owner反馈。原始设备／认证／云端账户／维护能力和本机数据库只留私密目录；普通可读清单和新原件归档追加，不重封旧档。云端CI与子代理未使用。
 
-Owner随后要求延长Rillora App／Web用户登录并保留网络等安全条件；已明确不是AWS等管理后台会话。该新任务尚未修改线上会话时限，按当前交接继续，不能把付款修复当长期会话已部署。
+Owner随后要求延长Rillora App／Web用户登录并保留网络等安全条件；已明确不是AWS等管理后台会话。该新任务已在November6按[独立会话合同](longer-user-sessions-20261106.md)部署并回读；不将109付款修复与110会话部署混为同一次验证。

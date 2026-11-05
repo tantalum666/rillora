@@ -1,6 +1,6 @@
 # Digital Legacy Ongoing Project Journey
 
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 ## 记录范围
 
@@ -4519,3 +4519,17 @@ October25 Git完成回读：源码／archive54提交dfe3583e31a54b2b20f428b5e149
 - 判断变化：既有首购、恢复、自然到期不能替代到期后再次购买。新增109仅允许同原商务账号的完整已开始意图，跨账号和错误金额等仍拒绝。67本机集成、类型／build及权限检查通过。
 - 结果：两维护定义最小更新后，先Preview迁移及五项权限，再正式迁移及六项权限。Owner一次恢复后已订阅；原新订单paid_reconciled、HKD888签名收据、active/applied及目录一致。旧数据／价格／收费、原生18和FanPass保持。
 - 未完成：本轮Git回执与归档收尾，随后推进Owner明确的App/Web长期会话。当前时限未改；不动管理会话，不重新购买或提审／TestFlight。[详细记录](../apple-resubscription-repair-20261105.md)。
+
+## 2026-11-06 — Bounded user login and review follow-up
+
+Goal: reduce repeated App/Web sign-in with contextual protection. Attempts: reuse read-only identity status, authenticate edge metadata, retain bounded hashed network context and fixed session deadlines. SQL typing/column privileges and a missing bundled browser failed first and were corrected; installed Chrome was reused. Judgment change: network confirmation must work before the first private map loads, so its Web prompt belongs outside the authenticated-only branch. Confirmation rereads data without replaying a mutation. The storage notice is independently versioned so unchanged agreements and receipts are preserved.
+
+Result:51API checks plus35final incremental checks,38infra plus19increment,34Web contracts,9Chrome synthetic journeys and8legal-artifact checks pass. Both environments have schema110, authority probes, healthy API/edge rollout and enabled30-day/7-day policy readback. Web changes reused existing speech bytes;18live legal resources and both rendered languages pass. No new native package, purchase replay or TestFlight followed.
+
+Outstanding: complete evidence/Git preservation; a new real-user session and natural30-day duration were not observed. Owner subsequently requests another strict review check. The live store still associates Rejected14; internal testing is manual. The exact18archive passed Apple validation, which is a packaging result, not App Review approval. Reviewer status and final submission materials remain a separate active task.
+
+## 2026-11-06 — Strict App Review follow-up
+
+Goal: verify actual review readiness after the session deployment. Attempts: reread the real14rejection and store draft, confirm internal distribution is manual, validate/upload exact18with Xcode, inspect the dedicated reviewer and signed purchase state, and produce a current layout reference. Judgment change: a second authentication guard can cross the four-hour identity-check deadline and lacked its shared verifier; reproduce old503then corrected200and deploy a two-module patch after39checks. A past expiry timestamp also does not mean the latest Sandbox renewal has stopped.
+
+Result:18is processed/unassigned, both APIs healthy on266b79fbwith30-day/7-day settings preserved, and Auth0reviewer remains unblocked with no password change. One screenshot-only XCTest passes on matching UI source; ineffective simulator-plugin taps were not reported as product passes. Remaining: Apple browser auth actually fails on draft reload; exact save readback, note/image writes and final expired-demo status stay open. Source/QA/Git saving continues without a new purchase, fake email proof, resubmission, TestFlight, cloud CI or subagent.

@@ -5,13 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
 
 ## 2026-11-05 再次订阅闭环及用户登录保持
 
-[同账号再次订阅修复](apple-resubscription-repair-20261105.md)已按Preview／正式顺序部署109；Owner恢复后已订阅，同一新订单／签名收据／active权益独立读回一致。原价格、归属及安全边界保持，不重提或TestFlight。Owner随后明确要延长Rillora App／Web用户登录，并要求网络／IP变化等安全条件；管理后台会话不在范围。长期会话仍待实现，不能把延长时限本身当作安全验证或改成无期限凭据。
+[同账号再次订阅修复](apple-resubscription-repair-20261105.md)已按Preview／正式顺序部署109；Owner恢复后已订阅，同一新订单／签名收据／active权益独立读回一致。原价格、归属及安全边界保持，不重提或TestFlight。Owner随后明确要延长Rillora App／Web用户登录，并要求网络／IP变化等安全条件；管理后台会话不在范围。[长期用户会话](longer-user-sessions-20261106.md)现已完成两环境部署及配置／权限／运行回读：新可信登录30天绝对／7天闲置，陌生网络同账号确认，保留敏感操作和撤销；旧会话不延长，未宣称已真实自然经过30天。Owner随后要求再次复核Apple拒审与当前候选，继续保持不重提、不分发TestFlight。
 
 ## 2026-11-05 审核复核与订阅按钮交互修复
 

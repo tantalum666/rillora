@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -4015,3 +4015,17 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 
 - Owner asks for longer or persistent login with network/IP safety conditions and explicitly selects Rillora App/Web users, not provider management sessions.
 - Agent proposes a bounded30-dayabsolute/7-dayidle ordinary session with same-account verification for unfamiliar network/client context and separately retained sensitive-action checks. This is an implementation direction, not a deployed result or approval to use paid Auth0 features, static administrator keys, guessed IP headers, endless credentials or revived revoked sessions.
+
+## 2026-11-06 — Deploy bounded customer sessions and resume App Review recheck
+
+- Implement the Owner-requested longer Rillora user login with30-dayabsolute/7-dayidle limits only for freshly verified, context-bound new sessions. Preserve legacy expiry, hash-only storage, same-account confirmation, sensitive-action proof and revocation. Network metadata requires an environment-specific CloudFront origin proof; the API holds only its verifier. No paid Auth0 feature or permanent provider credential is added.
+- Keep the accepted c983dc26 registration/subscription source immutable. Version the informational Cookie Notice independently and route current Cookie pages to it, with identical Chinese/English scope. The old acceptance digest is not the new notice digest.
+- Preview110 and authority checks precede production110; context-aware API and edge deploy with issuance off, old instances drain, then issuance is enabled. Both environments and exact Web/notice bytes are read back. Rollback below context-aware code must first revoke long sessions.
+- Configuration and tests are not a new real-user login or natural30-day observation. Native18and actual109repurchase/restore evidence stay unchanged. Owner then requests a careful App Review recheck; reconcile the live portal, exact candidate, reviewer state and materials while preserving no resubmission/TestFlight.
+
+## 2026-11-06 — Exact18review preparation and honest remaining gates
+
+- Owner requests another careful App Review check. Reuse exact18-r2; its Apple validation and upload are preparation, not approval or submission. Confirm manual internal distribution and keep18unassigned to testers. Selecting/saving18in the version draft must still be independently re-read.
+- Repair the newly found reviewer-guard identity-check boundary with the shared service; deterministic old503/new200regression and39checks pass. Deploy only the two changed API modules, preserving existing long-session policy, schema, catalog and data.
+- Use a source-matched simulator layout reference with explicit provenance, separate from actual18device transaction evidence. Do not claim entire test-host binary/catalog identity or a fresh purchase.
+- Signed Sandbox renewal is still observed; historical expiry cannot be reported as current expiry. Keep the final expired-demo check open without fake entitlement changes or another purchase. Apple portal authentication actually fails during save readback; preserve its handoff and finish independent work. No resubmission/TestFlight follows.

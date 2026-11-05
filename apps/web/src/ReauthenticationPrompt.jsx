@@ -26,7 +26,11 @@ export function ReauthenticationPrompt({ apiClient }) {
       queueMicrotask(() => { if (previousFocus?.isConnected) previousFocus.focus({ preventScroll: true }); });
     };
   }, [Boolean(phase)]);
-  function close() { run.current?.abort(); run.current = null; setPhase(null); setMessageKey(''); }
+  function close() {
+    run.current?.abort(); run.current = null; setPhase(null); setMessageKey('');
+    // Refresh reads only. Never replay the payment/export/edit that was held.
+    if (phase === 'complete') window.dispatchEvent(new Event('rillora:identity-confirmed'));
+  }
   async function signIn() {
     // Open during the click, before any network await; the work page stays mounted.
     const popup = window.open('about:blank', '_blank', 'popup,width=520,height=760');

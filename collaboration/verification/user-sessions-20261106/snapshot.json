@@ -1,0 +1,58 @@
+{
+  "capturedFrom": "2026-11-05T19:29:54.090924+00:00",
+  "capturedThrough": "2026-11-05T19:29:54.261711+00:00",
+  "workFiles": 100,
+  "uniqueRawObjects": 97,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-063.tar.zst.age",
+      "sha256": "08c3ff8e923d03a59360c6b9ad1eb00195e4e1a8d3d9e9a7f0848264ef10d555",
+      "bytes": 374715,
+      "plainBytes": 632989,
+      "uniqueObjects": 97
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/user-sessions-20261106/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-062",
+      "reason": "immutable previous work; no recapture or repeated download"
+    },
+    {
+      "path": ".local-secrets and QA/private",
+      "reason": "raw device/auth/provider state, credentials, cloud capabilities and disposable local database"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/api-overlay",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/publication",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/private",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/maintenance-overlay",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/archive-seal.log",
+      "reason": "capture bookkeeping or private provider response"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/preserve-session-work.py",
+      "reason": "capture bookkeeping or private provider response"
+    },
+    {
+      "path": "output/qa/rillora-long-sessions-20261105/preservation-plan.json",
+      "reason": "capture bookkeeping or private provider response"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "boundary": "Bounded Rillora user-session source/tests, failed and passing local results, selected same-origin deployment evidence, operational helpers and public browser captures. Raw private provider/auth bodies, origin proof, build packages containing operator facts and maintenance capabilities are excluded. No new purchase, native distribution, TestFlight or resubmission. Old1-62unchanged."
+}

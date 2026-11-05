@@ -7,6 +7,7 @@ import { CfnOutput, Duration, RemovalPolicy, Stack, Tags, type StackProps,
   aws_cloudfront_origins as origins, aws_certificatemanager as acm, aws_iam as iam } from 'aws-cdk-lib';
 import type { Construct } from 'constructs';
 import { readVerifiedClientArtifact } from './client-artifact-files.js';
+import { userSessionOriginHeaders } from './rillora-user-sessions.js';
 
 const root = resolve(dirname(fileURLToPath(import.meta.url)), '../../..');
 const contractBytes = readFileSync(resolve(root, 'config/production-connections.json'));
@@ -70,6 +71,7 @@ export class RilloraProductionWebStack extends Stack {
     });
     const association = [{ eventType: cloudfront.FunctionEventType.VIEWER_REQUEST, function: router }];
     const apiOrigin = new origins.HttpOrigin(productionConnections.originApiDomain, {
+      customHeaders: userSessionOriginHeaders(this),
       protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
       originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2], readTimeout: Duration.seconds(30),
     });

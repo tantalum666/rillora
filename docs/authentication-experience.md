@@ -5,7 +5,11 @@ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appear
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
 Status: HOSTED SIGN-IN OBSERVED; WEB ACCOUNT CHOICE/REAUTH VERIFIED; SIGNUP GUIDANCE APPLIED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+## November6 bounded user login continuity
+
+Owner selects Rillora App/Web user sessions. The [current session contract](longer-user-sessions-20261106.md) adds opt-in 30-day absolute/7-day idle sessions with authenticated-edge network context, same-account confirmation, current identity-status checks and unchanged sensitive-action requirements. Ordinary new login still requests explicit account choice. Reauthentication preserves the original token and absolute deadline; it does not submit a held action. Existing and unverifiable-context sessions keep the earlier short policy. Deployment progress and real-user evidence remain distinct in the linked record.
 
 ## October5 explicit account choice on ordinary Web entry
 

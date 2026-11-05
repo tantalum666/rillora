@@ -1,6 +1,10 @@
 # Rillora — Git / Dot 协作入口
 
-November5最新：[同账号再次订阅修复](../docs/apple-resubscription-repair-20261105.md)已部署109至Preview／正式，并经五／六项权限探针及实际同单账本验证；Owner在18恢复后已订阅。67本机集成／类型／build通过，价格／归属／收费／数据保持，[安全回执与新增62](verification/apple-resubscription-20261105/README.md)分开保存。下一工作是Owner明确的Rillora用户长期会话，当前时限尚未改；不动管理会话，不重提／TestFlight，唯一下一步见handoff。
+November6当前：[用户登录保持](../docs/longer-user-sessions-20261106.md)已在两环境启用30天／7天策略并完成可信边缘、身份状态和运行回读；[审核再复核](../docs/app-review-recheck-20261106.md)修复额外身份核验器遗漏，39项检查和两模块API更新通过。18已通过Apple校验并上传为未分配测试组的候选；草稿18保存后的重新读取遇到实际Apple登录失效，备注／审核参考图尚未保存，不能宣称全部提审条件闭合。最新Sandbox仍有签名自动续订，最终过期账号状态另核对；不重提或TestFlight。
+
+新增[会话证据／归档63](verification/user-sessions-20261106/README.md)及[复核证据／归档64](verification/app-review-recheck-20261106/README.md)分别封存并认证，原1–62不重封。根snapshot仍代表初次完整快照，各追加包有独立snapshot／catalog／验证回执；完整可读清单覆盖全部追加材料。当前唯一下一步见[handoff](../docs/handoff.md)，不重跑已完成迁移／购买／上传。
+
+November5检查点：[同账号再次订阅修复](../docs/apple-resubscription-repair-20261105.md)已部署109至Preview／正式，并经五／六项权限探针及实际同单账本验证；Owner在18恢复后已订阅。67本机集成／类型／build通过，价格／归属／收费／数据保持，[安全回执与新增62](verification/apple-resubscription-20261105/README.md)分开保存。随后用户长期会话的实现与部署见November6记录；不动管理会话，不重提／TestFlight。
 
 November5后续：Owner要求直接装手机，已复用原18-r2并在原iPhone从17原位升级到18、独立读回、启动成功。[交付记录](../docs/native18-device-install-20261105.md)与[安全回执](verification/native18-install-20261105/README.md)只新增元数据；旧IPA／测试／归档不重做，本人页面结果仍待反馈。不重提或发TestFlight，唯一下一步见handoff。
 

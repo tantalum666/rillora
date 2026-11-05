@@ -5,7 +5,11 @@ Authority scope: API, PostgreSQL model, runtime security controls and production
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
 Status: ACTIVE BACKEND CONTRACT; CURRENT DEPLOYMENT STATE IN HANDOFF; DATED EVIDENCE BELOW
-Last updated: 2026-11-04 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+## November6 user-session security and continuity
+
+[Migration110 and the session service](longer-user-sessions-20261106.md) add bounded context-aware sessions, narrowly granted session columns and periodic current identity checks. Existing session, legal, CSRF, account and commerce ownership boundaries remain. Preview and production110 migrations plus existing authority probes pass; staged API/edge activation is recorded separately. Only the named authentication modules are overlaid on the current API image; the separately deployed November4 worker TLS optimization remains its own checkpoint, not a claim that every current source module ships in this overlay.
 
 ## November4 bounded database TLS memory repair
 

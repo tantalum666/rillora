@@ -5,7 +5,13 @@ Authority scope: Web Privacy Policy, Terms of Service, required factual inputs a
 Superseded by: applicable law, platform requirements, approved operator details and reviewed final legal text  
 Do not use for: personal legal advice, proof of global compliance, or permission to publish  
 Status: COMPLETE CHINESE/ENGLISH TEXT PUBLISHED AND BROWSER VERIFIED
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+## November6 independently versioned storage notice
+
+Cookie Notice is now cookies-2026-11-06-1, describing verified 30-day/7-day-idle sessions, the shorter fallback, bounded hashed network/client context, revocation and sensitive-action checks in both languages. All current Cookie routes select CurrentLegalDocumentPage. Accepted Terms/Privacy/subscription bodies and the c983dc26 registration bundle stay byte-identical; that immutable acceptance digest is not described as the new Cookie Notice digest. No advertising, new consent checkbox or top-of-page notice box is added.
+
+The existing legal.rillora.xyz Pages project deployed0514114a-9460-4337-9fff-15a56fc3d2bf successfully. All18resource hashes and actual isolated Chrome390px/1440px Cookie→Terms interactions pass, with no overflow or application console errors. [Current contract and rollout](longer-user-sessions-20261106.md). Earlier seven-document digest statements below describe the previously accepted release bundle.
 
 ## October13 publication-shell notice removal
 

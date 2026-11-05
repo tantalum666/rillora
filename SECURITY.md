@@ -1,6 +1,12 @@
 # Digital Legacy Repository Threat Model
 
-Last updated: 2026-10-11 (remaining five boundaries locally verified; online unchanged)
+Last updated: 2026-11-06 (bounded user sessions; exact rollout state in the linked record)
+
+## Current user-session boundary
+
+[User login continuity](docs/longer-user-sessions-20261106.md) keeps opaque credentials hash-only and revocable, with a 30-day absolute/7-day idle cap for newly verified contexts. Legacy sessions retain the short policy. Only this environment's authenticated CloudFront origin may supply network signals; per-session HMAC values cover client family and up to five explicitly confirmed networks. IP and client-family signals supplement credential, CSRF, identity and recent-authentication checks; they are not cryptographic device binding. Provider blocking/deletion/password reset is checked at sign-in and within a four-hour usage window, with failures denying access without destroying a recoverable session. Same-account reauthentication cannot extend absolute expiry or replay sensitive actions.
+
+After long sessions are issued, rollback to an API that does not understand context_version=1 requires revoking those sessions first. Disabling new issuance alone intentionally retains enforcement on existing long sessions. Existing production services and schema are deployed; older local-only/closed-service statements below are dated historical checkpoints, not current activation or release evidence. Review submission remains governed by Owner instructions and [handoff](docs/handoff.md).
 
 ## October11 remaining five boundaries — source and local evidence
 
@@ -190,7 +196,7 @@ The principal security objectives are confidentiality between planners, integrit
 - Product progress events are server-generated after successful mutations, use exact event/property allowlists, carry only coarse client provenance and remain insert-only to the application role. A 90-day expiry marker is not proof of automatic deletion.
 - Deletion, correction, retention and data-region requirements remain implementable; core product data is not made immutable through blockchain storage.
 
-### Current assumptions and limits
+### Historical October11 assumptions and limits
 
 - Production access is restricted by exact identities and expiry; public customers,
   live charging and actual death/claim release remain closed.

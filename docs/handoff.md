@@ -1,28 +1,28 @@
-# Rillora 当前交接
+# Rillora Current Handoff
 
-Status: NATIVE18 INSTALLED / REPURCHASE REPAIRED AND VERIFIED / LONGER USER SESSION WORK ACTIVE
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Status: USER SESSIONS DEPLOYED / APP REVIEW RECHECK ACTIVE
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
-## 当前任务
+## Current task
 
-Owner最新要求延长登录保持，已明确仅Rillora App／Web用户自己的登录，且要设置网络／IP变化等安全条件，不是AWS／Auth0／Stripe管理会话。Agent已说明拟采用最长30天、闲置7天、陌生网络／客户端同账号再确认，敏感操作另验；当前仍在核对可信网络来源与现有会话实现，尚未改代码或部署时限。Auth0付费功能、管理角色长期密钥、无限期令牌都不是本轮目标。
+Owner requests another careful App Review check after asking for longer Rillora App/Web user login. The session implementation is deployed and independently read back; provider-management login was not lengthened. Continue preparing the exact review candidate and materials, without resubmitting or distributing TestFlight. Preserve prices, real data and FanPass; no cloud CI or subagents.
 
-## 已完成
+## Completed
 
-- 原iPhone16ProMax/iOS27.2有线原位从17升到18，复用相同已验签IPA，独立读回和启动成功。未卸载、清数据或重建原生包。[安装记录](native18-device-install-20261105.md)。
-- Owner随后发现新购买及恢复后仍Free。实际新HKD888订单pending、两次409；签名／token／金额／原账号均匹配，旧0096函数错误拒绝同原订阅编号的新购买token。0109及限定诊断已实现；本机先复现失败，67集成／类型／build通过。[修复与证据](apple-resubscription-repair-20261105.md)。
-- 维护镜像304422f4仅叠加诊断JS和109SQL。两维护任务定义读回，仅镜像和既有ARN依赖变化；API／worker镜像、IAM模板、数据／价格／收费和FanPass保持。先Preview109＋五项权限，后正式109＋六项权限，均成功；两readiness200。
-- 修复后Owner恢复同笔交易并确认“现在显示已订阅了”；后台同单completed／paid_reconciled，HKD888收据签名true、active／applied，最后本期至香港22:52:01。没有人工Family、转移归属、取消重建或要求重买。正常Sandbox加速续订不是正式年价期限。
-- 原审核资格DB／API／监控到December4、14天预警及安静跟进保留；18付款与旧17证据分开。App Store／TestFlight／重提仍暂停，云CI及子代理不用。
+- Native18was installed in place, then the same-owner Apple repurchase defect was repaired with109. Owner restored the same purchase and confirmed subscribed; ledger/receipt/signature matched. Code and archive62are pushed at9be4aab08; its independent45-object remote receipt is included with the current work, not rerun.
+- [Bounded user sessions](longer-user-sessions-20261106.md): Preview then production110, authority probes, context-aware API/edge with issuance off, then30-dayabsolute/7-dayidle activation. Both actual API instances are healthy and exact-image matched; trusted edge/runtime verifier matches and anonymous requests remain denied. Old sessions are not extended.51API plus35increment,38infra plus19increment,34Web contract,9Chrome and8legal-artifact checks passed.
+- App/Preview Web changes are live, full manifests match and unchanged speech files were retained. Cookie Notice cookies-2026-11-06-1 is independently versioned; original agreement source c983dc26remains exact. Legal0514114aand18resources plus actual English/Chinese390px/1440px navigation pass. No new real-user login or natural30-day observation is claimed.
+- Live ASC still has the one October30message forRejected14,2.2and2.1(b); previous16link occurrences/15targets remain the same. English metadata and four inherited iPhone marketing images are present. Internal TestFlight group is explicitly manual. Exact18-r2archive passed Apple validation and was uploaded/processed. ASC shows18Ready to Submit with no test group. The version draft was changed to18 and Save clicked; reload then actually returned authResult=FAILED, so persistent save readback is pending.
+- Auth0 CLI had actually expired; original SSO was reusable. Prior92scopes cover all91requested scopes, so equivalent refresh completed without new permissions or Owner authentication. Dedicated reviewer exists, is not blocked and retains its email/password identity.
 
-## 当前证据和资源边界
+## Evidence and boundaries
 
-当次QA `output/qa/rillora-native18-install-20261105/`；设备、认证、本机PG目录在其private子目录，云状态及操作能力在 `.local-secrets/native18-purchase-20261105/`，不得公开。SQL迁移109已在线，不得再次执行任务；采集器错误仅重读原任务。安装及付款修复的Git保存尚在收尾，原18代码头1b069bec0、PR10保持。
+Session QA: output/qa/rillora-long-sessions-20261105; safe receipts and newly sealed archive63: collaboration/verification/user-sessions-20261106. Archive63is sealed and locally verified100paths/97objects; the source gate passed after whitespace-only formatting retained the already-approved PEM marker lines, with identical compiled bytes. Final combined Git publication is in progress; archives63/64are locally authenticated. Maintenance capabilities are only in .local-secrets/user-sessions-20261106.
 
-本机独立PG16.14端口55435与仅rillora-build Colima目前运行；FYP和其他虚拟机未操作。后续会话验证可复用这套本机环境，任务结束时只停止本轮启动的资源。AWS已用原身份完成一次本人验证，再由官方same-device localhost callback接回CLI，无第二次MFA、无授权码落盘。现有会话仍可用，不重复认证。
+Review QA: output/qa/rillora-app-review-recheck-20261106; actual provider/auth bodies and task capabilities are private. Latest known review eligibility remains active until2026-12-04T12:00Z. The later read at2026-11-05T20:22Z shows the same known order still renewing: active until20:58:34Z, signed renewal applied. Do not infer final expiry from the older ended period or alter the ledger. A reviewer-guard dependency omission was reproduced and fixed;39checks pass and image266b79fbis deployed/read back in both environments, with sessions/prices/data unchanged. Updated notes/screenshots must use the exact final candidate and dated evidence. No new phone purchase or iPadOS27.2result is claimed.
 
-已查自身会话默认8h绝对／30min闲置，API运行环境没有覆盖这两项；Native opaque token在ThisDeviceOnly Keychain，Web为HttpOnly/Secure Cookie。既有reauth仅更新authenticated_at且保留同一会话，敏感操作10min；网络风险需要允许认证挑战路由通过，不能形成自锁。当前API经CloudFront→HTTP API，不能信任任意客户端IP头；AllViewerExceptHostHeader会传CF viewer metadata，但仍需验证来自本项目边缘而非直接API伪造。方案尚未定稿／实现，避免把这些研究写成已上线保护。
+This turn's PG55435, Colima rillora-build and dedicated media simulator have been stopped after validation. Do not stop pre-existing5432orFYP resources. AWS and refreshed Auth0 remain usable. Apple browser auth has actually failed; Chrome1082163917is marked handoff and an async Owner login request is pending. No repeated authorization request for already-authorized work.
 
-## 唯一下一步
+## Single next step
 
-先完成本轮109付款修复与设备回执的Git保存，再继续实现并验证Rillora用户长期会话和可信网络／客户端风险判断；不改管理登录、不复活旧撤销会话、不弱化付款／删除等保护，不重复已完成购买。保持重提／TestFlight暂停。
+Finish combined Git/evidence preservation, then resume the already-open Apple login handoff. Read back draft18, save the prepared2998-character review notes and source-matched IAP reference, check remaining store fields, and verify the demo has truly ended its Sandbox renewal before any later resubmission. Current review/TestFlight holds remain. See[the current recheck](app-review-recheck-20261106.md); do not repeat successful18upload,110migration, purchases or archived tests.
