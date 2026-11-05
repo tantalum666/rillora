@@ -1,0 +1,42 @@
+"""Append only new native18 delivery and resubscription-repair evidence."""
+from pathlib import Path
+import datetime,json,os,re,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).parent
+DEST=ROOT/'collaboration/verification/apple-resubscription-20261105';ARCHIVE=ROOT/'collaboration/archives/raw-work-062.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+selected=[];excluded=[{'path':'archives001-061','reason':'immutable previous work; no recapture or repeated download'},{'path':'.local-secrets and QA/private','reason':'raw device/auth/provider state, credentials, cloud capabilities and disposable local database'}]
+for parent,dirs,names in os.walk(QA):
+ parent=Path(parent)
+ for name in list(dirs):
+  p=parent/name;rel=p.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+  if name=='private' or 'publication' in name or name.startswith('derived'):reason='private state or reproducible publication/build cache'
+  if reason or p.is_symlink():dirs.remove(name);excluded.append({'path':rel,'reason':reason or 'symlink'})
+ for name in names:
+  p=parent/name;rel=p.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+  if name in ['preserve-payment-work.py','preservation-plan.json','archive-seal.log'] or '.private.' in name:reason='capture bookkeeping or private provider response'
+  if reason or p.is_symlink():excluded.append({'path':rel,'reason':reason or 'symlink'})
+  else:selected.append((rel,p))
+plan={'files':len(selected),'bytes':sum(p.stat().st_size for _,p in selected),'paths':[x for x,_ in selected],'excluded':excluded}
+(QA/'preservation-plan.json').write_text(json.dumps(plan,indent=2)+'\n')
+if '--seal' not in sys.argv:print(json.dumps({k:plan[k] for k in ['files','bytes']}));sys.exit()
+assert not ARCHIVE.exists();assert (QA/'payment-closeout.json').exists()
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+patterns=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b',rb'\b(?:sk_live_|rk_live_|sk_test_)[A-Za-z0-9]{20,}\b',rb'\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b']
+objects={};records=[];began=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for rel,p in sorted(selected):
+ frozen,digest=snapshot.freeze_file(p,cache);data=frozen.read_bytes();assert not any(re.search(x,data) for x in patterns),'Potential credential requires review: '+rel
+ blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(rel);records.append({'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()})
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip();archive=snapshot.seal_chunk(62,list(objects.values()),recipient)
+cat=DEST/'catalog.json';cat.write_text(json.dumps(records,indent=2)+'\n')
+summary={'capturedFrom':began,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'workFiles':len(records),'uniqueRawObjects':len(objects),'archives':[archive],'catalogFiles':[cat.relative_to(ROOT).as_posix()],'excluded':excluded,'credentialPatternMatches':0,'boundary':'Exact same18IPA reused from60. Native delivery plus server109repair, original failures and passes, safe same-order Sandbox facts; raw private device/auth/cloud state excluded. No TestFlight/resubmission. Session-duration follow-up not implemented in this capture.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-repurchase62-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+ for name in [archive['path'],*summary['catalogFiles']]:
+  dest=stage/name;dest.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,dest)
+ result=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n');print(json.dumps({'files':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'verified':result['passed']}))

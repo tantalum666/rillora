@@ -1,25 +1,28 @@
 # Rillora 当前交接
 
-Status: PURCHASE FIX VERIFIED LOCALLY AND SAVED / CANDIDATE18 DEVICE READBACK PENDING / RESUBMISSION HELD
+Status: NATIVE18 INSTALLED / REPURCHASE REPAIRED AND VERIFIED / LONGER USER SESSION WORK ACTIVE
 Last updated: 2026-11-05 (Asia/Hong_Kong)
 
 ## 当前任务
 
-Owner要求复核并修完Apple拒审问题，随后报告手机套餐页订阅按钮橙／灰反复切换，灰色区域点击误开Subscription Terms。优先修这两个实际交互问题；不重新提审、不发TestFlight。Owner选择提供截图，不再次要求连接手机、重买或恢复。当前手机独立证据是17-r2，新的18只在本机准备。前一AWS／Kiro交接已移入[HISTORICAL记录](handoff-history-20261104-before-app-review-recheck.md)，外部申请仍等待回复，Kiro仍暂缓。
+Owner最新要求延长登录保持，已明确仅Rillora App／Web用户自己的登录，且要设置网络／IP变化等安全条件，不是AWS／Auth0／Stripe管理会话。Agent已说明拟采用最长30天、闲置7天、陌生网络／客户端同账号再确认，敏感操作另验；当前仍在核对可信网络来源与现有会话实现，尚未改代码或部署时限。Auth0付费功能、管理角色长期密钥、无限期令牌都不是本轮目标。
 
 ## 已完成
 
-- 重新读取当前Apple拒审原文：仍为14的2.2和2.1(b)，无新拒审理由；原16处／15个独立链接的完整阅读沿用October31，当前关键官方页再次核对。免费／付费协议均有效，年付仍Ready for Review，仅USA/HKG开放。原14仍被选入版本；年付审核图／备注仍描述14，不能把源码更新当它们已替换。
-- Auth0原管理会话经Owner恢复后核对：专用审核账号存在、没有封禁；既有正式Action没有旧审核日期门。没有修改密码、已验证邮箱状态或重新索取凭据。
-- 专用审核资格已按原31天上限续到2026-12-04T12:00Z（香港20:00）；DB／生产API／现有监控匹配，两个CloudFormation栈UPDATE_COMPLETE。API镜像／秘密／角色及其他环境保持，其他账号、目录、价格和收费不变。现有15分钟监控预警提前14天，真实探针aggregate ok、failed0；没有重做邮件投递演练。新增每日安静跟进只在必要变化／续期时通知，不等于无限期访问。
-- 本机复现：连续三条交易核对多触发三次报价重载；禁用订阅区域实际触发同一Form行的法律链接。已将交易后的权益刷新和报价重载分开，并给三个链接限定独立按钮样式；iPad与iPhone中英文禁用区域／显式条款／可用购买点击6项通过。74项购买／CommerceStore／语言测试在明确英文测试环境后通过，原中文环境导致英文断言失败的记录保留。
+- 原iPhone16ProMax/iOS27.2有线原位从17升到18，复用相同已验签IPA，独立读回和启动成功。未卸载、清数据或重建原生包。[安装记录](native18-device-install-20261105.md)。
+- Owner随后发现新购买及恢复后仍Free。实际新HKD888订单pending、两次409；签名／token／金额／原账号均匹配，旧0096函数错误拒绝同原订阅编号的新购买token。0109及限定诊断已实现；本机先复现失败，67集成／类型／build通过。[修复与证据](apple-resubscription-repair-20261105.md)。
+- 维护镜像304422f4仅叠加诊断JS和109SQL。两维护任务定义读回，仅镜像和既有ARN依赖变化；API／worker镜像、IAM模板、数据／价格／收费和FanPass保持。先Preview109＋五项权限，后正式109＋六项权限，均成功；两readiness200。
+- 修复后Owner恢复同笔交易并确认“现在显示已订阅了”；后台同单completed／paid_reconciled，HKD888收据签名true、active／applied，最后本期至香港22:52:01。没有人工Family、转移归属、取消重建或要求重买。正常Sandbox加速续订不是正式年价期限。
+- 原审核资格DB／API／监控到December4、14天预警及安静跟进保留；18付款与旧17证据分开。App Store／TestFlight／重提仍暂停，云CI及子代理不用。
 
-## 证据边界
+## 当前证据和资源边界
 
-后台收据的pending独立回读回归已修正并通过，最终18-r2本机归档／App Store导出完成；同源开发签名包也已导出并验签；archive60–61本地认证合计1,806路径／927原件通过，精确base本机发布门通过，源码82560587e已推PR10，独立远端认证同数原件／路径通过，旧档未重下。PR仍开放未合并，云端作业未新增。[完整结果](app-review-readiness-20261104.md)。原始运行记录在 `output/qa/rillora-app-review-readiness-20261104/`，敏感云端资料在 `.local-secrets/app-review-readiness-20261104/`；这些不是公开证据包。
+当次QA `output/qa/rillora-native18-install-20261105/`；设备、认证、本机PG目录在其private子目录，云状态及操作能力在 `.local-secrets/native18-purchase-20261105/`，不得公开。SQL迁移109已在线，不得再次执行任务；采集器错误仅重读原任务。安装及付款修复的Git保存尚在收尾，原18代码头1b069bec0、PR10保持。
 
-原17的真实Sandbox购买／恢复及November2自然到期沿用同一订单独立证据，不重做；手动取消与退款不是本轮新证明。18尚未安装到手机、上传、选入审核或提交；没有实际iPadOS27.2设备证据，本机M3模拟器为27.0。不能宣称所有问题已在用户手机消失或Apple必定通过。
+本机独立PG16.14端口55435与仅rillora-build Colima目前运行；FYP和其他虚拟机未操作。后续会话验证可复用这套本机环境，任务结束时只停止本轮启动的资源。AWS已用原身份完成一次本人验证，再由官方same-device localhost callback接回CLI，无第二次MFA、无授权码落盘。现有会话仍可用，不重复认证。
+
+已查自身会话默认8h绝对／30min闲置，API运行环境没有覆盖这两项；Native opaque token在ThisDeviceOnly Keychain，Web为HttpOnly/Secure Cookie。既有reauth仅更新authenticated_at且保留同一会话，敏感操作10min；网络风险需要允许认证挑战路由通过，不能形成自锁。当前API经CloudFront→HTTP API，不能信任任意客户端IP头；AllViewerExceptHostHeader会传CF viewer metadata，但仍需验证来自本项目边缘而非直接API伪造。方案尚未定稿／实现，避免把这些研究写成已上线保护。
 
 ## 唯一下一步
 
-按Owner方便的方式将已验签18-r2原位安装到原手机，保留账号与事项，只补套餐页面稳定／禁用区域不误跳转的读回，不再要求购买、恢复或到期。随后将审核图／Notes与确切候选对应；仍等待Owner解除重提暂停，不发TestFlight。
+先完成本轮109付款修复与设备回执的Git保存，再继续实现并验证Rillora用户长期会话和可信网络／客户端风险判断；不改管理登录、不复活旧撤销会话、不弱化付款／删除等保护，不重复已完成购买。保持重提／TestFlight暂停。

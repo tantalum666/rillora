@@ -23,6 +23,12 @@ export type AppleReviewPurchaseDiagnostic = {
   last_event_status: string | null;
   last_event_error_code: string | null;
   last_event_signature_verified: boolean | null;
+  last_event_received_at: Date | null;
+  last_event_purchased_at: string | null;
+  last_event_token_matches_intent: boolean | null;
+  last_event_original_known: boolean | null;
+  last_event_original_owned_by_order_account: boolean | null;
+  last_event_quote_matches_intent: boolean | null;
 };
 
 /** Existing operator inspection only: no tokens, signed payloads, identity or customer content. */
@@ -39,12 +45,18 @@ export async function inspectAppleReviewPurchases(client: Client, reviewPlannerI
       receipt.price_milliunits::text as receipt_price_milliunits,receipt.currency_code as receipt_currency_code,
       receipt.purchased_at as receipt_purchased_at,subscription.state as subscription_state,
       subscription.current_period_ends_at,inbox_event.processing_status as last_event_status,
-      inbox_event.last_error_code as last_event_error_code,inbox_event.signature_verified as last_event_signature_verified
+      inbox_event.last_error_code as last_event_error_code,inbox_event.signature_verified as last_event_signature_verified,
+      inbox_event.received_at as last_event_received_at,inbox_event.purchased_at as last_event_purchased_at,
+      inbox_event.token_matches_intent as last_event_token_matches_intent,
+      inbox_event.original_known as last_event_original_known,
+      inbox_event.original_owned_by_order_account as last_event_original_owned_by_order_account,
+      inbox_event.quote_matches_intent as last_event_quote_matches_intent
     from app.commerce_apple_purchase_sessions s
     join app.commerce_orders o on o.id=s.order_id and o.planner_id=s.planner_id
     join app.commerce_validation_accounts enrollment on enrollment.planner_id=s.planner_id
     join app.planners planner on planner.id=s.planner_id and planner.status='active'
     join app.commerce_prices price on price.id=o.price_id
+    join app.commerce_apple_price_bindings binding on binding.binding_code=s.binding_code
     left join app.commerce_purchase_consents consent on consent.order_id=o.id and consent.planner_id=o.planner_id
     left join lateral(select r.price_milliunits,r.currency_code,r.purchased_at,r.subscription_id
       from app.commerce_apple_transaction_receipts r where r.planner_id=s.planner_id and r.provider_environment='sandbox'
@@ -52,7 +64,25 @@ export async function inspectAppleReviewPurchases(client: Client, reviewPlannerI
       order by r.purchased_at desc,r.transaction_reference desc limit 1) receipt on true
     left join app.commerce_subscriptions subscription on subscription.id=receipt.subscription_id
       and subscription.planner_id=s.planner_id and subscription.provider_environment='sandbox'
-    left join lateral(select i.processing_status,i.last_error_code,i.signature_verified
+    left join lateral(select i.processing_status,i.last_error_code,i.signature_verified,i.received_at,
+        i.verified_receipt->>'purchasedAt' as purchased_at,
+        i.account_binding_reference=s.app_account_token as token_matches_intent,
+        exists(select 1 from app.commerce_provider_object_links link
+          where link.provider_code='storekit' and link.provider_environment='sandbox'
+            and link.provider_object_type='original_transaction'
+            and link.provider_object_reference=i.provider_subscription_reference) as original_known,
+        exists(select 1 from app.commerce_provider_object_links link
+          join app.commerce_accounts account on account.public_id=link.commerce_account_reference
+          where link.provider_code='storekit' and link.provider_environment='sandbox'
+            and link.provider_object_type='original_transaction'
+            and link.provider_object_reference=i.provider_subscription_reference
+            and account.id=o.commerce_account_id and account.planner_id=s.planner_id
+            and account.status='active') as original_owned_by_order_account,
+        i.verified_receipt->>'productId'=binding.product_reference
+          and i.verified_receipt->>'storefront'=s.storefront_country_code
+          and i.verified_receipt->>'currency'=o.currency_code
+          and i.verified_receipt->'priceMilliunits'=to_jsonb(o.amount_minor*power(10::numeric,3-price.minor_unit_exponent))
+          as quote_matches_intent
       from app.commerce_provider_event_inbox i where i.provider_code='storekit' and i.provider_environment='sandbox'
         and (i.account_binding_reference=s.app_account_token
           or i.provider_subscription_reference=s.original_transaction_reference)

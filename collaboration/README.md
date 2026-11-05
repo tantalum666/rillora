@@ -1,5 +1,9 @@
 # Rillora — Git / Dot 协作入口
 
+November5最新：[同账号再次订阅修复](../docs/apple-resubscription-repair-20261105.md)已部署109至Preview／正式，并经五／六项权限探针及实际同单账本验证；Owner在18恢复后已订阅。67本机集成／类型／build通过，价格／归属／收费／数据保持，[安全回执与新增62](verification/apple-resubscription-20261105/README.md)分开保存。下一工作是Owner明确的Rillora用户长期会话，当前时限尚未改；不动管理会话，不重提／TestFlight，唯一下一步见handoff。
+
+November5后续：Owner要求直接装手机，已复用原18-r2并在原iPhone从17原位升级到18、独立读回、启动成功。[交付记录](../docs/native18-device-install-20261105.md)与[安全回执](verification/native18-install-20261105/README.md)只新增元数据；旧IPA／测试／归档不重做，本人页面结果仍待反馈。不重提或发TestFlight，唯一下一步见handoff。
+
 November5当前：[审核复核和购买按钮修复](../docs/app-review-readiness-20261104.md)已完成本机74项原生／6项UI回归，准备隔离18-r2。两条缺陷分别为交易后重复报价重载与Form法律链接整行点击范围；不放宽付款验证。原专用资格有界续到December4，DB／API／监控匹配；原17交易证据沿用。[本轮安全回执](verification/app-review-readiness-20261104/README.md)与新增archive60–61分层保存，旧1–59不重做。手机安装及最终素材仍待对应；不上传、重提、TestFlight、云CI或子代理，唯一下一步只看handoff。
 
 November4当前：Owner要求继续账户活动与申请，[公开准备参考](../docs/aws-activate-preparation-20261104.md)已更新，新增[非财务清理回执](verification/aws-account-maintenance-20261104/README.md)。本仓库公开，实际财务结果、联系人和申请回执仅保留在受保护本机QA，不用公开旧余额代替当前状态。临时资源已清理，应用／数据／价格／收费／审核保持；无云CI或子代理。唯一下一步见handoff，不重复此前活动。

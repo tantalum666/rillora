@@ -1,0 +1,16 @@
+{
+  "environment": "production",
+  "phase": "audit-authority",
+  "checkedAt": "2026-11-05T13:54:32.636719+00:00",
+  "state": "STOPPED",
+  "exitCode": 0,
+  "expectedImageVerified": true,
+  "authorityChecks": {
+    "sqlCannotReadAuthority": true,
+    "sqlCannotAcknowledgeJournal": true,
+    "unsignedTenantSelectionDenied": true,
+    "signedOwnerReadWorks": true,
+    "changedOwnerDenied": true,
+    "forgedJournalEnvelopeDenied": true
+  }
+}

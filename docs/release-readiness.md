@@ -4,9 +4,13 @@ Role: current launch scope, remaining work and release evidence contract
 Status: WEB LIVE / APPLE14 REJECTED / RELEASE PRODUCT AUDIT AND CANDIDATE ACCEPTANCE IN PROGRESS / RESUBMISSION HELD
 Last updated: 2026-11-05 (Asia/Hong_Kong)
 
+## November5同账号再次订阅修复
+
+[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。新维护镜像仅叠加诊断和109，普通API／worker／价格／收费不变。现推进独立的用户长期会话需求，尚未部署；重提／TestFlight暂停继续。
+
 ## November5当前发布状态
 
-[本轮复核与交互修复](app-review-readiness-20261104.md)优先解决Owner最新手机反馈：交易核对不再反复清空报价，灰色订阅区域不再误开法律链接；74项购买／状态／双语及6项iPad／iPhone点击检查通过，18-r2仅本机签名候选。手机现有17实际购买／恢复和November2自然到期保持有效证据，旧“待验自然到期”与重买下一步不再适用。
+[本轮复核与交互修复](app-review-readiness-20261104.md)优先解决Owner最新手机反馈：交易核对不再反复清空报价，灰色订阅区域不再误开法律链接；74项购买／状态／双语及6项iPad／iPhone点击检查通过，18-r2已按后续Owner指令在原手机原位安装并启动，独立读回build18，本人页面检查待反馈。手机现有17实际购买／恢复和November2自然到期保持有效证据，旧“待验自然到期”与重买下一步不再适用。
 
 专用审核身份购买资格已续到2026-12-04T12:00Z，DB／API／监控一致，提前14天告警与安静跟进已设置。Auth0现有账号无封禁，密码未改；生产数据／价格／收费保持。Apple仍选14且Rejected，旧审核图和备注未自动更新；本轮不上传、重提或TestFlight。唯一下一步见[交接](handoff.md)：补最终18页面稳定性读回，再对应最终素材／构建，不重复已经完成的交易。
 

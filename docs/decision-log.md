@@ -3999,3 +3999,19 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Reproduce and fix the transaction-to-quote reload chain and automatic Form link hit targets. Keep fresh pre-payment amount/currency/terms evaluation, account ownership, signed server acknowledgement and session-reset boundaries; no extra consent dialog or simulated public functionality is added.
 - Maintain only the existing dedicated reviewer within the existing31-day cap, updating DB/API/monitor together and warning14days ahead. Quiet follow-up does not authorize unlimited identities, relaxed protections, new sales or a claim of permanent availability.
 - Continue the explicit no-resubmission/no-TestFlight hold. Existing17purchase/restore and natural expiry are retained as dated evidence, while exact18device interaction, matching review materials and final submission remain separate. Local74checks and6UItests are not a new Apple purchase or approval.
+
+## 2026-11-05 — Install the existing signed18candidate for Owner review
+
+- Owner explicitly asks to push the fixed build to the original phone for manual review. This supersedes the preceding screenshot-only device stage, without lifting the resubmission/TestFlight hold.
+- Reuse the exact signed development artifact; perform only an in-place update and launch, with no uninstall, data clearing, mirroring, account switch or purchase. Device version/readback is distinct from Owner confirmation of the page and retained data.
+
+## 2026-11-05 — Repair same-owner resubscription without transferring purchase ownership
+
+- Owner reports Apple purchase/restore on18stillreturnsFree, with the saved-by-Apple message. Stop repeated purchasing and inspect the actual pending transaction.
+- The new receipt is signed, matches the current intent and money, and refers to an original already owned by the same commerce account. Add109to allow only this fully proved same-owner path; preserve existing-owner links, per-intent tokens, financial and timing checks. Do not grant Family manually or rebuild the order.
+- Preview then production migration and authority probes pass. Owner reports subscribed after restore; the exact original pending order independently reads completed/paid_reconciled and active with a signed applied event. Resubmission/TestFlight remain held.
+
+## 2026-11-05 — Extend Rillora customer login with contextual protection
+
+- Owner asks for longer or persistent login with network/IP safety conditions and explicitly selects Rillora App/Web users, not provider management sessions.
+- Agent proposes a bounded30-dayabsolute/7-dayidle ordinary session with same-account verification for unfamiliar network/client context and separately retained sensitive-action checks. This is an implementation direction, not a deployed result or approval to use paid Auth0 features, static administrator keys, guessed IP headers, endless credentials or revived revoked sessions.

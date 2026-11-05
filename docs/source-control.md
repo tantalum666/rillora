@@ -2,6 +2,14 @@
 
 Last updated: 2026-11-05 (Asia/Hong_Kong)
 
+## November5同账号再次订阅修复
+
+[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。新维护镜像仅叠加诊断和109，普通API／worker／价格／收费不变。现推进独立的用户长期会话需求，尚未部署；重提／TestFlight暂停继续。
+
+## November5 in-place device delivery
+
+[The existing18candidate is installed and launched](native18-device-install-20261105.md) on the original phone after the Owner explicitly requests delivery. [Safe receipts](../collaboration/verification/native18-install-20261105/README.md) record hash reuse, exact17-to18device readback and process launch. No rebuild, archive recapture, cloud deployment, purchase/restore, TestFlight or resubmission. Original artifacts remain in60; private device/connection responses and extracted duplicates stay local. Only small metadata, the full readable manifest and exact-base local publication need verification; Owner page acceptance remains pending.
+
 ## November5 App Review interaction repair and bounded reviewer renewal
 
 [The focused report](app-review-readiness-20261104.md) separates shipping-source fixes, 74 native checks, six actual UI interactions, the isolated18-r2 artifacts and the already-completed17real purchase/restore/expiry. [New safe evidence](../collaboration/verification/app-review-readiness-20261104/README.md) includes the reproduced failures, current bounded DB/API/monitor deadline, source isolation and unsent review-note draft. Only this workflow is captured in new archives60–61; old1–59remain immutable. Raw account/auth/device/provider material and maintenance capabilities remain local-only; exact signed artifacts and local test results are encrypted-only. No real-device installation, App Store upload, resubmission, TestFlight, cloud CI or subagent is claimed. Run the complete readable-manifest and exact-base publication checks after the last receipt, then independently verify only the new remote archive.

@@ -17,8 +17,9 @@ import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 import { loadConfig } from '../src/config.js';
 import { createApp } from '../src/app.js';
 import request from './http-fixture.js';
+import { inspectAppleReviewPurchases } from '../src/apple-review-purchase-diagnostics.js';
 
-const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_review_test', 'continuity_apple_review_test');
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1/continuity_apple_review_test', 'continuity_apple_review_test');
 let pool:DatabasePool, plannerId:string, plannerPublicId:string, account:string;
 let purchases:ApplePurchasePreflight;
 const selection={serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'};
@@ -90,6 +91,23 @@ describe('enrolled Apple review purchases share the strict lifecycle without pro
     await pool.query("insert into app.commerce_validation_accounts values($1,now()+interval '1 hour','Isolated Apple review fixture')",[plannerId]);
   });
   afterAll(async()=>{await pool?.end();});
+  it('reconciles a Sandbox repurchase for the same original owner and projects only diagnostic facts',async()=>{
+    const f=await fixture();f.tx.purchaseDate=Date.now()-86_400_000;f.tx.expiresDate=Date.now()-1000;
+    f.item.status=Status.EXPIRED;f.renewal.autoRenewStatus=0;
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({finishAuthorized:true});
+    const order=await prepare();await purchases.transition({plannerId,orderReference:order.orderReference,action:'start'});
+    const now=Date.now();f.tx.transactionId='900000000002';f.tx.appAccountToken=order.appAccountToken;
+    f.tx.purchaseDate=now;f.tx.expiresDate=now+3600000;f.tx.signedDate=now;
+    f.renewal.appAccountToken=order.appAccountToken;f.renewal.signedDate=now;f.renewal.autoRenewStatus=1;f.item.status=Status.ACTIVE;
+    expect(await f.intake.acceptClientTransaction({...f.input,signedTransaction:'synthetic.review.repurchase'})).toMatchObject({finishAuthorized:true});
+    const [record]=await inspectAppleReviewPurchases(pool,[plannerId]);
+    expect(record).toMatchObject({state:'completed',order_status:'paid_reconciled',subscription_state:'active',
+      last_event_token_matches_intent:true,last_event_original_known:true,last_event_original_owned_by_order_account:true,
+      last_event_quote_matches_intent:true,last_event_signature_verified:true});
+    expect(JSON.stringify(record)).not.toContain(order.appAccountToken);
+    expect(JSON.stringify(record)).not.toContain(f.tx.originalTransactionId!);
+    expect((await pool.query('select production_entitlements_enabled from app.commerce_runtime_policy')).rows[0].production_entitlements_enabled).toBe(false);
+  });
   it('prepares only an explicit Sandbox offer while production sales and Web88.99 remain unchanged',async()=>{
     const quote=await purchases.quote(plannerId,selection);
     expect(quote).toMatchObject({environment:'sandbox',validationOnly:true,quote:{amountMinor:9999}});

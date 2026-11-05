@@ -9,7 +9,7 @@ import { applePurchaseTerms } from '../src/apple-purchase-consent.js';
 import { assertNoForeignPurchase } from '../src/commerce-purchase-conflicts.js';
 import { inspectAppleReviewPurchases } from '../src/apple-review-purchase-diagnostics.js';
 
-const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_purchase_test', 'continuity_apple_purchase_test');
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1/continuity_apple_purchase_test', 'continuity_apple_purchase_test');
 let pool:DatabasePool, purchases:ApplePurchasePreflight, plannerId:string, plannerPublicId:string;
 const selection={serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'};
 const consent={...applePurchaseTerms,acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true} as const;

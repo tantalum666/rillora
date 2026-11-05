@@ -7,7 +7,7 @@ import { reviewIdentityDigest } from '../src/production-review-access.js';
 import { loadApplePurchaseQuote } from '../src/apple-purchase-catalog.js';
 
 const name = 'continuity_apple_configuration_test';
-const url = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_configuration_test', name);
+const url = dedicatedTestDatabaseUrl('postgresql://127.0.0.1/continuity_apple_configuration_test', name);
 let client: pg.Client;
 const digest = reviewIdentityDigest('https://identity.example.test', 'existing-apple-review-fixture');
 describe('bounded Apple release configuration in an isolated database', () => {

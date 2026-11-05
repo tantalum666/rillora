@@ -1,7 +1,9 @@
 # App Review 复核、购买按钮修复与审核资格维护
 
-Status: LOCAL FIXES VERIFIED / CANDIDATE18 PREPARED / DEVICE READBACK AND RESUBMISSION HELD
+Status: LOCAL FIXES VERIFIED / NATIVE18 INSTALLED / OWNER PAGE REVIEW PENDING / RESUBMISSION HELD
 Last updated: 2026-11-05 (Asia/Hong_Kong)
+
+November5香港20:50后续：[同一18-r2已原位安装并启动](native18-device-install-20261105.md)，设备独立读回1.0(18)。这是Owner明确要求直装后的新结果；以下原修复／签名阶段的“尚未安装”描述保留其当时边界，当前只待本人页面检查，不重买或恢复。
 
 Owner要求再次核对Apple拒审问题，并维护审核身份／服务有效期；随后提供手机截图，指出订阅按钮反复橙／灰切换，灰色时点击会打开Subscription Terms。此报告取代旧“只差取消／到期测试”的活动下一步；原[17购买、恢复与自然到期](apple-purchase-acceptance-20261101.md)保留，不要求重买。
 
@@ -37,7 +39,7 @@ Auth0管理会话已由Owner恢复，专用用户存在且没有封禁；当前�
 - App Store版本仍选14且Rejected；年付审核图片及备注仍明确描述build14。当前上传控件禁用，本轮未尝试绕过或提交。不能用合成Preview截图替换为“真机18证据”。
 - 已准备不含凭据的新版备注草稿：明确仅USA/HKG、设备／系统证据、外部服务、订阅入口、旧月付用途和已过期审核账号场景。待最终手机页面读回、真实候选画面及上传选包对应后再保存，Owner重提暂停仍有效。
 
-唯一下一步：按Owner方便的方式原位安装同源18，补一次套餐页面稳定／按钮不误跳转的读回即可；不重复已有购买、恢复或到期。随后同步审核素材和确切构建，仍不越过重提／TestFlight暂停。没有实际iPadOS27.2验收或Apple批准，不能写成全面闭环。
+唯一下一步：Owner在已装同源18上补一次套餐页面稳定／按钮不误跳转的读回即可；不重复已有购买、恢复或到期。随后同步审核素材和确切构建，仍不越过重提／TestFlight暂停。没有实际iPadOS27.2验收或Apple批准，不能写成全面闭环。
 
 ## 保存范围
 
