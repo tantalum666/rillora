@@ -4029,3 +4029,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Repair the newly found reviewer-guard identity-check boundary with the shared service; deterministic old503/new200regression and39checks pass. Deploy only the two changed API modules, preserving existing long-session policy, schema, catalog and data.
 - Use a source-matched simulator layout reference with explicit provenance, separate from actual18device transaction evidence. Do not claim entire test-host binary/catalog identity or a fresh purchase.
 - Signed Sandbox renewal is still observed; historical expiry cannot be reported as current expiry. Keep the final expired-demo check open without fake entitlement changes or another purchase. Apple portal authentication actually fails during save readback; preserve its handoff and finish independent work. No resubmission/TestFlight follows.
+
+## 2026-11-06 — Complete authenticated review preparation without resubmission
+
+- Owner completes the pending Apple login. Preserve the existing hold: edit and verify the draft/materials, but do not click Update Review or Resubmit, distribute TestFlight, replay a purchase, or change prices/data.
+- The yearly IAP review image and notes are locked at Ready for Review. Agent chooses the ordinary editable app-version attachment and explicit provenance note instead of bypassing controls, removing the product or canceling the original submission. The old IAP-specific image remains historical; the new attachment is source-matched layout evidence, not a new shipping-binary capture or transaction.
+- Add an explicit Apple standard EULA link to both store descriptions while retaining the existing standard-license selection and Rillora terms. Current source metadata must record rejected14 and saved-draft18 separately, preserving the old dated provider observation.
+- A new bounded, read-only inspection confirms the signed Sandbox expiry has now been applied. This closes the earlier current-expiry uncertainty, not every future payment scenario or a guarantee of App Review approval. No further Owner authentication is requested when the existing AWS console session can refresh the CLI.

@@ -4535,3 +4535,13 @@ Goal: verify actual review readiness after the session deployment. Attempts: rer
 Result:18is processed/unassigned, both APIs healthy on266b79fbwith30-day/7-day settings preserved, and Auth0reviewer remains unblocked with no password change. One screenshot-only XCTest passes on matching UI source; ineffective simulator-plugin taps were not reported as product passes. Remaining: Apple browser auth actually fails on draft reload; exact save readback, note/image writes and final expired-demo status stay open. Source/QA/Git saving continues without a new purchase, fake email proof, resubmission, TestFlight, cloud CI or subagent.
 
 保存闭环：e363a34c0已在原协作分支远端读回，63／64独立下载认证通过，PR10更新；无新增云CI。508份Markdown本地链接检查找到一处历史QA失效链接，已改为保留证据入口。最后回执普通Git保存，不重封原件。Apple登录与真实过期审核账号状态仍是明确未闭合门。
+
+## 2026-11-06 — Apple 登录恢复后的材料收尾
+
+目标：完成Owner已经恢复的Apple会话对应的真实草稿／材料回读，不重复已完成工作。尝试：读回18及手动发布，核对中英说明和剩余六张商店图、协议／隐私／地区价格，并用现有AWS浏览器会话续接CLI执行一次限定只读检查。
+
+判断变化：年付商品的旧审核图被Ready for Review锁定，没有正常编辑入口；采用可编辑的版本附件和准确备注，不删除商品或取消提交。标准Apple许可不会自动显示为商店链接，故两语言描述补明确链接。附件上传会重置尚未保存的文字，不能只凭上传成功就声称整页已保存；最后单独保存并刷新核对全部目标字段。
+
+结果：18草稿、3,557字符备注、当前布局参考附件和双语许可链接均持久化读回；协议／13类隐私／USA-HKG和年价一致。原同单Sandbox订阅于香港09:01自然到期，签名到期事件已applied，目录和用户资料不变；不需要Owner再购买、恢复或MFA。源配置旧“等待审核／无拒绝”状态纠正并保留历史。小型元数据与证据按本机发布门保存，不重跑应用测试或旧归档。
+
+未完成项：Owner仍暂停重新提审和TestFlight，Apple下一轮结论尚未发生。IAP专属图仍为锁定的历史14图，新18参考仅在版本附件，不能把二者写成同一位置或把参考图当作真实交易证据。未来解除暂停时仅刷新有时效的服务／资格，不重做已通过流程。

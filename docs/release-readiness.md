@@ -1,14 +1,20 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB LIVE / APPLE14 REJECTED / RELEASE PRODUCT AUDIT AND CANDIDATE ACCEPTANCE IN PROGRESS / RESUBMISSION HELD
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Status: WEB LIVE / REVIEW18 DRAFT AND MATERIALS VERIFIED / RESUBMISSION HELD
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
-## November5同账号再次订阅修复
+## November6 当前发布准备
+
+[长期用户会话](longer-user-sessions-20261106.md)和额外审核身份核验器修复已完成两环境部署；[审核再复核](app-review-recheck-20261106.md)现已读回18草稿、最终备注、当前布局参考附件和双语标准许可链接。协议有效，当前13类隐私标签、USA/HKG及年费USD119.99/HKD888已核对。既有18再次订阅／恢复和新的签名自然到期结果分别有真实证据；不重复购买。
+
+年付商品的旧审核图／备注由Apple状态锁定，当前版本附件和说明明确补充，未宣称旧字段替换。Owner的“不重新提审、不分发TestFlight”仍是执行边界；当前准备不等于Apple批准或公开上架。详见[当前交接](handoff.md)，以下November5及更早段落均为历史检查点。
+
+## HISTORICAL — November5同账号再次订阅修复
 
 [109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。新维护镜像仅叠加诊断和109，普通API／worker／价格／收费不变。现推进独立的用户长期会话需求，尚未部署；重提／TestFlight暂停继续。
 
-## November5当前发布状态
+## HISTORICAL — November5发布状态
 
 [本轮复核与交互修复](app-review-readiness-20261104.md)优先解决Owner最新手机反馈：交易核对不再反复清空报价，灰色订阅区域不再误开法律链接；74项购买／状态／双语及6项iPad／iPhone点击检查通过，18-r2已按后续Owner指令在原手机原位安装并启动，独立读回build18，本人页面检查待反馈。手机现有17实际购买／恢复和November2自然到期保持有效证据，旧“待验自然到期”与重买下一步不再适用。
 

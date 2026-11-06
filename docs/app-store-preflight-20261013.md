@@ -1,9 +1,9 @@
 # App Store 上线材料与当前证据 — 2026-10-13
 
-October30当前状态：Apple已实际拒绝1.0(14)，不再等待首次审核。[修复、已部署资格／告警及本地15候选](app-review-remediation-20261030.md)是当前状态；Owner明确暂不重新提交。以下October13–15结果为历史，不是新审核批准。
+November6当前状态：[审核再复核](app-review-recheck-20261106.md)已独立读回18草稿、最终备注／布局参考附件、两语言标准许可链接及最新真实Sandbox到期。原14拒审仍保留历史，Owner暂不重新提交或TestFlight。以下October13–15结果为历史，不是新审核批准。
 
-Status: HISTORICAL READINESS / REJECTED14 / SEE OCTOBER30 REMEDIATION AND OWNER HOLD
-Last updated: 2026-10-30 (Asia/Shanghai)
+Status: HISTORICAL READINESS / SEE NOVEMBER6 REVIEW18 PREPARATION AND OWNER HOLD
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 本文件记录Apple实际草稿与填写依据，不把保存元数据、构建上传或Sandbox购买视为App Review批准或正式开售。当前执行仍由[最终收尾](final-readiness-20261013.md)与[交接](handoff.md)路由。
 

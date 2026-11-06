@@ -1,9 +1,27 @@
 # App Review 再复核 — 2026-11-06
 
-Status: CANDIDATE18 UPLOADED / REVIEW AUTH FIX DEPLOYED / PORTAL READBACK AND EXPIRED-DEMO GATES OPEN
+Status: CANDIDATE18 AND MATERIALS SAVED / CURRENT SANDBOX EXPIRY VERIFIED / OWNER RESUBMISSION HOLD
 Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 Owner要求再次仔细检查，确保下一次审核的准备充分。继续不重新提审、不分发TestFlight；本轮没有重新购买、改价、人工授予套餐或改变真实用户资料。
+
+## November6 登录恢复后的完成结果
+
+Owner完成 Apple 登录后，实际草稿已独立读回构建 1.0(18)，发布方式仍为手动。最终 3,557 字符审核备注、当前购买页参考附件，以及中英文描述中的 Apple 标准许可链接均保存并重新读取一致。附件名为 `Rillora-18-plan-layout-reference.png`；原有专用凭据和联系方式保持，未再次读取或改写密码。
+
+新版备注分别说明当前功能、登录步骤、USA/HKG、实际价格、外部服务、从 14 修复的问题、18 的真实购买／恢复结果及本次自然到期。下一版 HealthKit／Watch／文件录音不写成当前构建能力。英文 4 张 iPhone 图沿用此前检查点；这次逐张查看中文 2 张 iPhone 图和两语言各 2 张 iPad 图，未发现测试横幅或下一版功能宣传。
+
+实际内购商品仍处于 `Ready for Review`，截图选择器禁用、备注只读；原提交详情也没有该商品的编辑入口。按照 [Apple 的状态限制](https://developer.apple.com/help/app-store-connect/reference/in-app-purchases-and-subscriptions/in-app-purchase-statuses/)，不绕过控件、不删除商品、不取消原提交来强行解锁。改将新参考图保存到可编辑的**版本审核附件**，备注明确旧内购字段仍描述历史 14，新附件才是当前布局参考。**没有宣称内购专属截图已经替换。** 该图的合成报价／隔离宿主证据边界保持，不能充当真实交易截图。
+
+另发现商店已选 Apple 标准许可，但两个描述只有 Rillora 自己的条款链接。[Apple 官方说明](https://developer.apple.com/help/app-store-connect/manage-app-information/provide-a-custom-license-agreement/)指出默认标准许可不会自动显示为商店许可链接；已在两语言描述末尾补上明确的标准许可链接，原许可选择和 Rillora 合同未变。同步修正两份 `config/app-store-listing.*.json` 中过时的“等待审核／未拒绝／14”当前状态，保留原日期快照。
+
+当前只读核对：免费／付费 App 协议均有效；13 类已发布隐私标签仍含粗略位置与其他数据的 App 功能用途；App 和年付订阅均只开放 USA/HKG；年价分别 USD 119.99 与 HKD 888。App 维持效率分类、18+（旧系统 17+，部分地区另有换算）、Apple 标准许可及原生产／审核通知 URL，Mac／Vision 分发未开启。没有发布新的隐私声明或接受新协议。
+
+AWS CLI 曾实际过期，但原浏览器会话有效，等价恢复成功，无新 MFA。一个新的受限只读任务于香港 13:43 完成：同一 November5 订单仍 `paid_reconciled`，订阅已为 `expired_read_only`，本期实际结束于 **2026-11-06 香港 09:01:19**；对应签名事件已 applied，当前 token／归属匹配。旧已付订单亦过期，另三条尝试均已取消；不是根据一个旧时间戳猜测到期。目录、原历史付款和用户内容未改；既有审核资格至 December4 香港20:00的事实保持。本轮不要求 Owner 重买或再恢复。
+
+保存时还捕获到 Apple 附件上传会使同页未保存的文字回到先前版本；在上传完成后重新明确保存最终文字，并以刷新后的字段匹配关闭此问题。一次慢页面加载和一个重复元素定位失败仅为工具记录，没有计为产品通过或缺陷。
+
+本次安全回执见[材料补齐记录](../collaboration/verification/app-review-materials-20261106/README.md)，原始提供方／会话资料仅留本机。以下“登录失败、仍续订、材料未保存”均是**同日早一检查点**，已由本节当前结果取代。
 
 ## 原拒审与候选
 
@@ -37,8 +55,8 @@ Owner要求再次仔细检查，确保下一次审核的准备充分。继续不
 
 [Apple隐私定义](https://developer.apple.com/app-store/app-privacy-details/)要求按IP实际用途披露。原已发布13类记录已有“粗略位置—App功能／安全”及“其他数据—会话元数据”，覆盖本轮同用途的国家／网络哈希；没有新增广告追踪或位置权限。仍需在恢复Apple登录后核对当前已保存标签。隐私政策／服务条款正文不变，新的存储时长已在独立版本Cookie Notice公开并验证。
 
-## 剩余门与保存
+## 当前剩余门与保存
 
-Apple登录恢复后：首先独立读回草稿确实选18，再保存完整备注、替换旧14的IAP审核参考图，并复核中英素材、协议与隐私。最终提审前另核对原审核账号已经真实结束有效Sandbox订阅；不清历史、不转移购买归属、不人工降级。Owner的重提／TestFlight暂停继续有效。
+当前材料准备及真实过期状态已按顶部结果完成；内购锁定字段以版本附件和明确备注补充，原字段保留历史。唯一执行门仍是 Owner 明确的重提／TestFlight 暂停。解除重提暂停后，才更新原审核提交并最终重新提交；届时只刷新有时效的服务／账号资格，不重跑已通过的购买、迁移、上传或测试。Apple 的实际下一轮结论无法由准备检查保证，真实 iPadOS27.2交易未新增验证。
 
 QA：`output/qa/rillora-app-review-recheck-20261106/`；原始认证／提供方资料仅留private目录和`.local-secrets/app-review-recheck-20261106/`。安全回执见[本轮证据](../collaboration/verification/app-review-recheck-20261106/README.md)。Apple包装校验、上传、草稿保存、实际交易及审核批准是不同状态；本轮没有承诺下一次一定获批。
