@@ -1,0 +1,67 @@
+{
+  "at": "2026-10-31T00:01:26.758032+00:00",
+  "focusedWeb": {
+    "tests": 23,
+    "pass": 23,
+    "fail": 0,
+    "skipped": 0
+  },
+  "allWebInitial": {
+    "tests": 220,
+    "pass": 217,
+    "fail": 3,
+    "skipped": 0
+  },
+  "correctLegalArtifact": {
+    "tests": 8,
+    "pass": 8,
+    "fail": 0,
+    "skipped": 0
+  },
+  "allWebCoverage": "212 non-legal tests passed in original full run; all8legal-worker cases passed after building their correct isolated fixture. Three earlier artifact-target failures are retained. No claim of a second220-test run.",
+  "apiBillingAndAppleBoundary": {
+    "passed": 29,
+    "failed": 0,
+    "noRealProviderCall": true
+  },
+  "browserBilling": {
+    "passed": 27,
+    "failed": 0,
+    "localIsolatedProviderFixtures": true
+  },
+  "nativeArchive": {
+    "version": "1.0",
+    "build": "16",
+    "bundle": "com.rillora.ios",
+    "customerAccess": "YES",
+    "healthPermissionPresent": false,
+    "microphonePermissionPresent": false,
+    "watchAppPresent": false,
+    "localStoreKitConfigPresent": false,
+    "priceAndPaymentLogicChangedFrom15": false,
+    "newUIChange": "Removed unavailable passkey/MFA-management roadmap footer",
+    "signatureVerified": true,
+    "checkedAt": "2026-10-30T22:01:44.565332+00:00"
+  },
+  "deployed": false,
+  "finalAvailabilityRegression": {
+    "passed": 1,
+    "notSelected": 16,
+    "providerCalls": 0,
+    "initialAdditionalFixtureFailure": "Sales-closed app fixture omitted stripeProductionConfig; guard correctly rejected it. Fixed fixture only; original failure retained."
+  },
+  "nativeInstalled": {
+    "version": "1.0(16)",
+    "inPlace": true,
+    "readbackVerified": true,
+    "loginVerified": false,
+    "sandboxPurchaseVerified": false
+  },
+  "buildArtifacts": {
+    "productionFiles": 113,
+    "previewFiles": 110,
+    "publicFiles": 66,
+    "publicPages": 28,
+    "containerImageDigest": "sha256:45bd2d47917ee5d8250c56f408d36ea4065ddd417e256bde98f03b0898aa357c"
+  }
+}

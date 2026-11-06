@@ -1,0 +1,126 @@
+{
+  "status": "CREATE_COMPLETE",
+  "executionStatus": "AVAILABLE",
+  "changes": [
+    {
+      "id": "FailedDeliveriesPolicyBAFAE301",
+      "action": "Modify",
+      "replacement": "False",
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "QuarterHourly4AE380E3.Arn"
+        }
+      ]
+    },
+    {
+      "id": "HealthCheckA1C381C7",
+      "action": "Modify",
+      "replacement": "False",
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Metadata",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Code",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Environment",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Description",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Static",
+          "ChangeSource": "DirectModification"
+        }
+      ]
+    },
+    {
+      "id": "OperationsRunbook277D4959",
+      "action": "Modify",
+      "replacement": "False",
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "PolicyDocument",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "HealthCheckA1C381C7.Arn"
+        }
+      ]
+    },
+    {
+      "id": "QuarterHourly4AE380E3",
+      "action": "Modify",
+      "replacement": "False",
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "Targets",
+            "RequiresRecreation": "Never"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "HealthCheckA1C381C7.Arn"
+        }
+      ]
+    },
+    {
+      "id": "QuarterHourlyAllowEventRuleRilloraOperationsHealthCheckD0D9D8C5337B971B",
+      "action": "Modify",
+      "replacement": "Conditional",
+      "details": [
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "SourceArn",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "QuarterHourly4AE380E3.Arn"
+        },
+        {
+          "Target": {
+            "Attribute": "Properties",
+            "Name": "FunctionName",
+            "RequiresRecreation": "Always"
+          },
+          "Evaluation": "Dynamic",
+          "ChangeSource": "ResourceAttribute",
+          "CausingEntity": "HealthCheckA1C381C7.Arn"
+        }
+      ]
+    }
+  ]
+}

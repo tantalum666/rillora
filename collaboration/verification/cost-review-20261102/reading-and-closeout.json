@@ -1,0 +1,26 @@
+{
+  "at": "2026-11-02T01:10:45.789237+00:00",
+  "workflow": "continuation; existing complete project Markdown reading retained",
+  "recovery": [
+    "AGENTS.md",
+    "docs/product.md current sections",
+    "docs/handoff.md",
+    "docs/decision-log.md latest decisions",
+    "docs/apple-purchase-acceptance-20261101.md",
+    "docs/cloud-cost-options-20260924.md",
+    "docs/infrastructure-roadmap.md",
+    "docs/source-control.md current policy",
+    "collaboration/README.md current/preservation policy",
+    "tools/ci/README.md",
+    "docs/journey/PROJECT_JOURNEY.md header/latest entries"
+  ],
+  "decisionLogAppend": "Not required: no new approved budget, hosting choice, price or authorization; findings and proposed choices recorded in focus report",
+  "changedSpecifications": [
+    "docs/aws-cost-review-20261102.md",
+    "docs/apple-purchase-acceptance-20261101.md",
+    "config/release-gates.json"
+  ],
+  "handoff": "docs/handoff.md",
+  "journey": "docs/journey/PROJECT_JOURNEY.md",
+  "verification": "Invoice exact-decimal match; full single-page cost responses; current AWS resource readback; one bounded real-expiry task; app tests not rerun"
+}

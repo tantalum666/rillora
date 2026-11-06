@@ -4,6 +4,7 @@ import { fileURLToPath } from 'node:url';
 import pg, { type PoolClient } from 'pg';
 import { loadDatabaseConfig } from './config.js';
 import { databaseConnectionOptions } from './db.js';
+import { inspectAppleReviewPurchases } from './apple-review-purchase-diagnostics.js';
 
 type Client = Pick<PoolClient, 'query'>;
 type Operation = 'inspect' | 'prepare' | 'close-new-sales' | 'renew-review' | 'enroll-review' | 'provision-reviewer';
@@ -172,9 +173,15 @@ export async function configureProductionApple(client: Client, operation: Operat
         requireFact(d[key].every(row => after.data[key].some(next => JSON.stringify(next) === JSON.stringify(row))), 'Historical catalog row changed');
       }
     }
+    // Keep volatile attempts outside the catalog fingerprint. Inspection stays
+    // read-only and limited to already-enrolled Sandbox identities.
+    const reviewPurchases = operation === 'inspect'
+      ? await inspectAppleReviewPurchases(client, d.review.filter(row => row.status === 'active').map(row => row.planner_id))
+      : undefined;
     await client.query('commit');
     return { operation, before, after, marketSalesChanged: false, userContentChanged: false, historicalPaymentsChanged: false,
-      syntheticReviewerProvisioningRequested: operation === 'provision-reviewer' };
+      syntheticReviewerProvisioningRequested: operation === 'provision-reviewer',
+      ...(reviewPurchases ? { reviewPurchases } : {}) };
   } catch (error) { await client.query('rollback'); throw error; }
 }
 

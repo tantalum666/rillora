@@ -1,0 +1,113 @@
+{
+  "observedAt": "2026-11-02T01:07:08.829815+00:00",
+  "region": "eu-central-1",
+  "clusters": [
+    {
+      "environment": "production",
+      "runningTasks": 2,
+      "services": 2,
+      "containerInsights": "enabled",
+      "servicesDetail": [
+        {
+          "role": "identity-worker",
+          "running": 1,
+          "desired": 1,
+          "publicIpv4": true
+        },
+        {
+          "role": "api",
+          "running": 1,
+          "desired": 1,
+          "publicIpv4": true
+        }
+      ],
+      "activeContainerInsightSeries": 63
+    },
+    {
+      "environment": "staging",
+      "runningTasks": 2,
+      "services": 2,
+      "containerInsights": "enabled",
+      "servicesDetail": [
+        {
+          "role": "identity-worker",
+          "running": 1,
+          "desired": 1,
+          "publicIpv4": true
+        },
+        {
+          "role": "api",
+          "running": 1,
+          "desired": 1,
+          "publicIpv4": true
+        }
+      ],
+      "activeContainerInsightSeries": 63
+    }
+  ],
+  "databases": [
+    {
+      "environment": "production",
+      "class": "db.t4g.micro",
+      "status": "available",
+      "storageGiB": 20,
+      "multiAZ": false,
+      "backupDays": 7,
+      "publiclyAccessible": false
+    },
+    {
+      "environment": "staging",
+      "class": "db.t4g.micro",
+      "status": "available",
+      "storageGiB": 20,
+      "multiAZ": false,
+      "backupDays": 1,
+      "publiclyAccessible": false
+    }
+  ],
+  "metricsByNamespace": {
+    "AWS/RDS": 155,
+    "AWS/Lambda": 36,
+    "AWS/Usage": 85,
+    "AWS/ApiGateway": 26,
+    "AWS/STS": 4,
+    "AWS/Logs": 37,
+    "AWS/DynamoDB": 17,
+    "AWS/Events": 18,
+    "ECS/ContainerInsights": 126,
+    "AWS/KMS": 8,
+    "Rillora/Commerce": 10,
+    "AWS/ECS": 12,
+    "Rillora/Operations": 2,
+    "AWS/ECR": 1,
+    "Rillora/Retention": 4,
+    "AWS/SecretsManager": 1,
+    "AWS/CertificateManager": 1
+  },
+  "alarmCount": 22,
+  "allAlarmsOK": true,
+  "alarmsUsingContainerInsights": 0,
+  "logGroupCount": 24,
+  "containerInsightsLogsRetentionDays": [
+    1,
+    1
+  ],
+  "budget": {
+    "name": "Rillora-Staging-Monthly-25",
+    "monthlyUSD": "25.0",
+    "filters": {},
+    "includesCredit": true,
+    "notifications": 0,
+    "forecastUSD": "149.712",
+    "forecastUpdatedAt": "2026-11-01T23:07:34.335000+08:00",
+    "earlyMonthForecastNotInvoice": true
+  },
+  "accountPlan": {
+    "type": "PAID",
+    "status": "ACTIVE",
+    "remainingCreditUSD": 0.0
+  },
+  "productionStopped": false,
+  "configurationChanged": false,
+  "savingsRealized": false
+}

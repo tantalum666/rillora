@@ -12,6 +12,13 @@
   ],
   "timeoutMs": 8000,
   "certificateWarningDays": 21,
+  "deadlines": [
+    {
+      "id": "apple-review-purchase-window",
+      "expiresAt": "2026-12-04T12:00:00Z",
+      "warningDays": 14
+    }
+  ],
   "targets": [
     {
       "id": "public-app",

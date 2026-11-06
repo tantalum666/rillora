@@ -9,6 +9,8 @@ import { ApiError } from "./errors.js";
 import { currentLegalContract } from "./legal-contract.js";
 import { verifiedEmailDigest } from "./sharing-identity.js";
 import { reviewAccessOpen } from './production-review-access.js';
+import { evaluateSessionContext, sessionContextForRequest, type StoredSessionContext } from './session-context.js';
+import { identityRecheckMilliseconds, type SessionSecurity } from './session-security.js';
 
 const developmentPlannerHeader = "x-dev-planner-id";
 const csrfHeader = "x-csrf-token";
@@ -33,13 +35,14 @@ type PlannerIdentityRow = {
   planner_public_id: string;
 };
 
-type SessionIdentityRow = PlannerIdentityRow & {
+type SessionIdentityRow = PlannerIdentityRow & StoredSessionContext & {
   session_public_id: string;
   csrf_token_hash: Buffer;
   authentication_methods: string[];
   authenticated_at: Date | null;
   credential_kind: "browser_cookie" | "native_bearer";
   verified_email_hash: Buffer | null;
+  identity_checked_at: Date | null;
 };
 
 function digestToken(token: string): Buffer {
@@ -50,7 +53,8 @@ function isPlausibleOpaqueToken(token: string): boolean {
   return /^[A-Za-z0-9_-]{43,128}$/.test(token);
 }
 
-export function authenticate(pool: DatabasePool, config: AppConfig): RequestHandler {
+export function authenticate(pool: DatabasePool, config: AppConfig,
+  options: { sessionSecurity?: SessionSecurity; purpose?: 'identity-confirmation' } = {}): RequestHandler {
   return async (request, _response, next) => {
     try {
       if (!reviewAccessOpen(config)) throw new ApiError(403, 'service_not_open', 'Account access is not open.');
@@ -99,7 +103,7 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
       }
 
       const tokenHash = digestToken(token);
-      const identity = await withAuthDatabase(pool, async (client) => {
+      const readSession = () => withAuthDatabase(pool, async (client) => {
         const result = await client.query<SessionIdentityRow>(
           `select
              p.id::text as planner_id,
@@ -109,7 +113,8 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
              s.authentication_methods,
              s.authenticated_at,
              s.credential_kind,
-             s.verified_email_hash
+             s.verified_email_hash,
+             s.context_version,s.client_context_hash,s.network_context_hashes,s.identity_checked_at
            from app.auth_sessions s
            join app.planners p on p.id = s.planner_id
            join app.legal_acceptances acceptance
@@ -121,7 +126,7 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
              and s.expires_at > now()
              and (
                s.last_seen_at is null
-               or s.last_seen_at > now() - make_interval(mins => $2)
+               or s.last_seen_at > now() - make_interval(mins => coalesce(s.idle_timeout_minutes,$2))
              )
              and p.status = 'active'
              and acceptance.terms_version = $4
@@ -138,21 +143,38 @@ export function authenticate(pool: DatabasePool, config: AppConfig): RequestHand
             config.productionReviewAccess?.identityDigests ?? null,
           ],
         );
-        const row = result.rows[0] ?? null;
-        if (row) {
-          await client.query(
-            `update app.auth_sessions
-             set last_seen_at = now()
-             where public_id = $1
-               and (last_seen_at is null or last_seen_at < now() - interval '5 minutes')`,
-            [row.session_public_id],
-          );
-        }
-        return row;
+        return result.rows[0] ?? null;
       });
-
+      let identity = await readSession();
       if (!identity) {
         throw new ApiError(401, "authentication_required", "Authentication is required.");
+      }
+
+      // Exact revocation routes contain no private read or grant. A changed network
+      // must never prevent a valid credential from signing itself/all its sessions out.
+      const revocation = request.method === 'POST' && ['/auth/logout', '/auth/logout-all'].includes(request.path);
+      const context = sessionContextForRequest(request, token, credentialKind, config.trustedUserSessions?.edgeProofSha256);
+      const checkContext = (row: SessionIdentityRow) => {
+        if (revocation) return;
+        const result = evaluateSessionContext(row, context);
+        if (result === 'verify-client') throw new ApiError(401, 'authentication_required', 'Sign in again on this client.');
+        if (result === 'verify-network' && options.purpose !== 'identity-confirmation') {
+          throw new ApiError(403, 'reauthentication_required', 'Confirm it is still you on this network. Your changes stay here.');
+        }
+      };
+      checkContext(identity);
+      if (identity.context_version === 1 && !revocation && options.purpose !== 'identity-confirmation'
+        && (!identity.identity_checked_at || identity.identity_checked_at.getTime() <= Date.now() - identityRecheckMilliseconds)) {
+        if (!options.sessionSecurity) throw new ApiError(503, 'identity_status_unavailable', 'Account security could not be checked.');
+        await options.sessionSecurity.verifySession(identity.session_public_id);
+        identity = await readSession();
+        if (!identity) throw new ApiError(401, 'authentication_required', 'Sign in again to continue.');
+        checkContext(identity);
+      }
+      if (!revocation && evaluateSessionContext(identity, context) !== 'verify-network') {
+        await withAuthDatabase(pool, client => client.query(`update app.auth_sessions set last_seen_at=now()
+          where public_id=$1 and revoked_at is null and expires_at>now()
+            and (last_seen_at is null or last_seen_at<now()-interval '5 minutes')`, [identity!.session_public_id]));
       }
 
       request.auth = {

@@ -1,4 +1,5 @@
 import { readFileSync } from "node:fs";
+import { createSecureContext } from "node:tls";
 import pg, { type PoolClient, type QueryResult, type QueryResultRow } from "pg";
 import type { AppConfig, DatabaseConfig } from "./config.js";
 import { contentClient, KmsContentKeyProvider, type ContentKeyProvider, type ContentProtectionConfig } from "./private-content.js";
@@ -33,13 +34,13 @@ export function databaseConnectionOptions(config: DatabaseConfig): pg.PoolConfig
         user: config.user,
         password: config.password,
       };
-  const ssl =
-    config.sslMode === "verify-full"
-      ? {
-          rejectUnauthorized: true,
-          ca: readFileSync(config.sslCaPath!, "utf8"),
-        }
-      : false;
+  let ssl: pg.PoolConfig['ssl'] = false;
+  if (config.sslMode === "verify-full") {
+    const ca = readFileSync(config.sslCaPath!, "utf8");
+    // One context per pool avoids reparsing/retaining the large RDS root store
+    // whenever an idle connection is replaced. Hostname/chain checks stay on.
+    ssl = { rejectUnauthorized: true, ca, secureContext: createSecureContext({ ca }) };
+  }
   return { ...connection, ssl };
 }
 

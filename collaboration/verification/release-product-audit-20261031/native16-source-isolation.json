@@ -1,0 +1,30 @@
+{
+  "base": "bfe9baaf520e051e70081daf7ed459f0926264b4",
+  "checkedPaths": 196,
+  "previous15ChangesMatched": true,
+  "onlyChangedPaths": [
+    "apps/ios/Rillora.xcodeproj/project.pbxproj",
+    "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+    "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+    "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift",
+    "apps/ios/Rillora/Resources/Info.plist",
+    "apps/ios/RilloraTests/AppleStoreKitClientTests.swift"
+  ],
+  "newDeltaFrom15": [
+    "apps/ios/Rillora/Features/Account/ProfileSupportViews.swift"
+  ],
+  "healthWatchDuoOrNextContentAdded": false,
+  "buildNumberRequested": 16,
+  "archivedYet": false,
+  "configCopiesUnchangedFrom15": [
+    {
+      "path": "config/disclosure-copy.json",
+      "sha256": "d1c82f69cef4570aba2e35c03f62cfc1be6dd208e9b548f6c6258eb16f5abb6e"
+    },
+    {
+      "path": "config/provider-guides.json",
+      "sha256": "50fd0a45442140aaef228ac5dc73b36ddf7f0a331e84e10123ff551f78cb513f"
+    }
+  ]
+}

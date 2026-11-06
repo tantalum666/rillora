@@ -1,0 +1,70 @@
+{
+  "checkedOn": "2026-11-02",
+  "timezone": "Asia/Hong_Kong",
+  "sources": [
+    {
+      "topic": "postgres-license",
+      "url": "https://www.postgresql.org/about/licence/",
+      "finding": "Database software permits use without license fee; hosting is separate"
+    },
+    {
+      "topic": "postgres-rls",
+      "url": "https://www.postgresql.org/docs/current/ddl-rowsecurity.html",
+      "finding": "Row security and role semantics match current application constraints"
+    },
+    {
+      "topic": "postgres-performance",
+      "url": "https://www.postgresql.org/docs/current/performance-tips.html",
+      "finding": "Performance depends on workload/query/configuration rather than a user-count limit"
+    },
+    {
+      "topic": "workers-pricing",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "finding": "Standard5USD includes10millionrequests and30millionCPUms; math scenarios only"
+    },
+    {
+      "topic": "workers-limits",
+      "url": "https://developers.cloudflare.com/workers/platform/limits/",
+      "finding": "CPU execution and elapsed request duration are distinct"
+    },
+    {
+      "topic": "cloudrun",
+      "url": "https://cloud.google.com/run/pricing",
+      "finding": "Allocated instance billed time and concurrency make a single per-request estimate insufficient"
+    },
+    {
+      "topic": "oracle",
+      "url": "https://www.oracle.com/cloud/compute/arm/",
+      "finding": "A1 normal unit prices retained; VM capacity not benchmarked against Worker requests"
+    },
+    {
+      "topic": "neon-pricing",
+      "url": "https://neon.com/pricing",
+      "finding": "Free1GB/100CUh/limited6h restore; Launch0.106/CUh and0.35/GBmonth"
+    },
+    {
+      "topic": "neon-current-free",
+      "url": "https://neon.com/blog/neon-free-plan-1-gb-per-project",
+      "finding": "October2update confirms100CUh equivalent to400h at0.25CU"
+    },
+    {
+      "topic": "neon-suspend",
+      "url": "https://neon.com/docs/introduction/scale-to-zero",
+      "finding": "Five-minute inactivity suspension; querying wakes compute"
+    },
+    {
+      "topic": "supabase-pricing",
+      "url": "https://supabase.com/pricing",
+      "finding": "Free500MB and inactivity pause; Pro25USD includes daily backups retained7days, not PITR"
+    },
+    {
+      "topic": "supabase-pitr",
+      "url": "https://supabase.com/docs/guides/platform/manage-your-usage/point-in-time-recovery",
+      "finding": "7dayPITR is separate add-on at0.137USD/hour about100USD/month"
+    }
+  ],
+  "providerDecision": false,
+  "cloudResourcesChanged": false,
+  "engineMigrationApproved": false,
+  "existingPostgresSchemaKept": true
+}

@@ -120,7 +120,7 @@ export class RilloraProductionStack extends Stack {
   journal.node.addDependency(database);
   const boundaryKeys=new RilloraRuntimeBoundaryKeys(this,'RuntimeBoundaries','production');
   const journalBroker=new RilloraRecoveryAttestationBroker(this,'RecoveryAttestation',journal);
-  const cluster=new ecs.Cluster(this,'Cluster',{vpc,containerInsightsV2:ecs.ContainerInsights.ENABLED});
+  const cluster=new ecs.Cluster(this,'Cluster',{vpc,containerInsightsV2:ecs.ContainerInsights.DISABLED});
   const directory=dirname(fileURLToPath(import.meta.url));
   const image=ecs.ContainerImage.fromAsset(resolve(directory,'../../../apps/api'),{
    platform:ecr.Platform.LINUX_ARM64,

@@ -1,0 +1,395 @@
+{
+  "checkedAt": "2026-10-26T00:49:16.364Z",
+  "method": "Anonymous HTTPS GET; normal diagnostic User-Agent, TLS verified; not Googlebot or authenticated MCP acceptance",
+  "endpoints": [
+    {
+      "url": "https://app.rillora.xyz/api/mcp",
+      "status": 401,
+      "headers": {
+        "content-type": "application/json",
+        "cache-control": "no-store",
+        "www-authenticate": "Bearer error=\"invalid_token\", error_description=\"Missing Authorization header\", scope=\"matters:read:summary\", resource_metadata=\"https://app.rillora.xyz/api/mcp/resource-metadata\""
+      },
+      "body": "{\"error\":\"invalid_token\",\"error_description\":\"Missing Authorization header\"}"
+    },
+    {
+      "url": "https://app.rillora.xyz/api/mcp/resource-metadata",
+      "status": 200,
+      "headers": {
+        "content-type": "application/json; charset=utf-8",
+        "cache-control": "no-store"
+      },
+      "body": "{\"resource\":\"https://app.rillora.xyz/api/mcp\",\"authorization_servers\":[\"https://app.rillora.xyz/api/ai/oauth\"],\"scopes_supported\":[\"matters:read:summary\",\"readiness:read:scoped\"],\"bearer_methods_supported\":[\"header\"],\"resource_name\":\"Rillora selected matters\"}"
+    },
+    {
+      "url": "https://www.rillora.xyz/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/"
+    },
+    {
+      "url": "https://www.rillora.xyz/robots.txt",
+      "status": 200,
+      "headers": {
+        "content-type": "text/plain",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "body": "User-agent: *\nAllow: /\nSitemap: https://www.rillora.xyz/sitemap-index.xml\n"
+    },
+    {
+      "url": "https://www.rillora.xyz/sitemap-index.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "text/xml",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "locations": [
+        "https://www.rillora.xyz/sitemap-en.xml",
+        "https://www.rillora.xyz/sitemap-zh-CN.xml"
+      ],
+      "containsMcp": false
+    },
+    {
+      "url": "https://www.rillora.xyz/sitemap-en.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "text/xml",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "locations": [
+        "https://www.rillora.xyz/en/",
+        "https://www.rillora.xyz/en/product",
+        "https://www.rillora.xyz/en/security",
+        "https://www.rillora.xyz/en/pricing",
+        "https://www.rillora.xyz/en/support",
+        "https://www.rillora.xyz/en/legal",
+        "https://www.rillora.xyz/en/legal/licenses",
+        "https://www.rillora.xyz/en/learn",
+        "https://www.rillora.xyz/en/learn/digital-legacy-checklist",
+        "https://www.rillora.xyz/en/learn/password-manager-and-digital-legacy",
+        "https://www.rillora.xyz/en/learn/what-is-digital-legacy",
+        "https://www.rillora.xyz/en/learn/share-digital-legacy-safely",
+        "https://www.rillora.xyz/en/learn/apple-google-legacy-settings",
+        "https://www.rillora.xyz/en/learn/choose-a-digital-legacy-tool"
+      ],
+      "containsMcp": false
+    },
+    {
+      "url": "https://www.rillora.xyz/sitemap-zh-CN.xml",
+      "status": 200,
+      "headers": {
+        "content-type": "text/xml",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "locations": [
+        "https://www.rillora.xyz/zh-CN/",
+        "https://www.rillora.xyz/zh-CN/product",
+        "https://www.rillora.xyz/zh-CN/security",
+        "https://www.rillora.xyz/zh-CN/pricing",
+        "https://www.rillora.xyz/zh-CN/support",
+        "https://www.rillora.xyz/zh-CN/legal",
+        "https://www.rillora.xyz/zh-CN/legal/licenses",
+        "https://www.rillora.xyz/zh-CN/learn",
+        "https://www.rillora.xyz/zh-CN/learn/digital-legacy-checklist",
+        "https://www.rillora.xyz/zh-CN/learn/password-manager-and-digital-legacy",
+        "https://www.rillora.xyz/zh-CN/learn/what-is-digital-legacy",
+        "https://www.rillora.xyz/zh-CN/learn/share-digital-legacy-safely",
+        "https://www.rillora.xyz/zh-CN/learn/apple-google-legacy-settings",
+        "https://www.rillora.xyz/zh-CN/learn/choose-a-digital-legacy-tool"
+      ],
+      "containsMcp": false
+    }
+  ],
+  "pages": [
+    {
+      "url": "https://www.rillora.xyz/en/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/product",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/product",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/security",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/security",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/pricing",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/pricing",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/support",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/support",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/legal",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/legal",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/legal/licenses",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/legal/licenses",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/digital-legacy-checklist",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/digital-legacy-checklist",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/password-manager-and-digital-legacy",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/password-manager-and-digital-legacy",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/what-is-digital-legacy",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/what-is-digital-legacy",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/share-digital-legacy-safely",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/share-digital-legacy-safely",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/apple-google-legacy-settings",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/apple-google-legacy-settings",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/en/learn/choose-a-digital-legacy-tool",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/en/learn/choose-a-digital-legacy-tool",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/product",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/product",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/security",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/security",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/pricing",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/pricing",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/support",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/support",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/legal",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/legal",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/legal/licenses",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/legal/licenses",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/digital-legacy-checklist",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/digital-legacy-checklist",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/password-manager-and-digital-legacy",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/password-manager-and-digital-legacy",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/what-is-digital-legacy",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/what-is-digital-legacy",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/share-digital-legacy-safely",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/share-digital-legacy-safely",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/apple-google-legacy-settings",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/apple-google-legacy-settings",
+      "noindex": false
+    },
+    {
+      "url": "https://www.rillora.xyz/zh-CN/learn/choose-a-digital-legacy-tool",
+      "status": 200,
+      "headers": {
+        "content-type": "text/html",
+        "cache-control": "public,max-age=300,must-revalidate"
+      },
+      "canonical": "https://www.rillora.xyz/zh-CN/learn/choose-a-digital-legacy-tool",
+      "noindex": false
+    }
+  ],
+  "summary": {
+    "canonicalPageCount": 28,
+    "allPages200": true,
+    "allSelfCanonical": true,
+    "noPageNoindex": true,
+    "anyMcpInSitemap": false
+  }
+}

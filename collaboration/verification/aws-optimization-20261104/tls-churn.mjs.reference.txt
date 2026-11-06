@@ -1,0 +1,21 @@
+import {createServer,connect,createSecureContext} from 'node:tls';
+import {readFileSync} from 'node:fs';
+const [mode,keyPath,certPath,bundlePath]=process.argv.slice(2);
+if(!['per-connection','shared'].includes(mode))throw new Error('Unknown bounded benchmark mode');
+const key=readFileSync(keyPath),cert=readFileSync(certPath),ca=Buffer.concat([cert,readFileSync(bundlePath)]);
+const server=createServer({key,cert},socket=>socket.end('ok'));
+server.on('tlsClientError',()=>{});
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const port=server.address().port;
+const ssl={ca,rejectUnauthorized:true,...(mode==='shared'?{secureContext:createSecureContext({ca})}:{})};
+const samples=[];const sample=i=>samples.push({connections:i,...process.memoryUsage()});sample(0);
+const deadline=setTimeout(()=>{process.stderr.write('Bounded TLS test timed out\n');process.exit(2)},120000).unref();
+for(let i=1;i<=600;i++){
+ await new Promise((resolve,reject)=>{
+  const socket=connect({...ssl,host:'127.0.0.1',port,servername:'localhost'},()=>socket.resume());
+  socket.on('error',reject);socket.on('close',resolve);
+ });
+ if(i%100===0)sample(i);
+}
+await new Promise(resolve=>server.close(resolve));clearTimeout(deadline);
+console.log(JSON.stringify({mode,node:process.version,openssl:process.versions.openssl,connections:600,certificateVerified:true,samples},null,2));

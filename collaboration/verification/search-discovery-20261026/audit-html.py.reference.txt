@@ -1,0 +1,47 @@
+from pathlib import Path
+from html.parser import HTMLParser
+from urllib.parse import urljoin,urlsplit
+from collections import Counter,deque
+import json,re,sys
+qa=Path(__file__).resolve().parent
+class Page(HTMLParser):
+ def __init__(self):
+  super().__init__(); self.stack=[]; self.text=[]; self.links=[]; self.headings=[]; self.meta=[]; self.canonical=[]; self.alternates=[]; self.ids=[]; self.title=[]; self.lang=None; self.assets=[]
+ def handle_starttag(self,tag,attrs):
+  a=dict(attrs)
+  if tag=='html':self.lang=a.get('lang')
+  if a.get('id'):self.ids.append(a['id'])
+  if tag=='meta':self.meta.append(a)
+  if tag=='link' and a.get('rel')=='canonical':self.canonical.append(a.get('href'))
+  if tag=='link' and a.get('rel')=='alternate':self.alternates.append(a)
+  if tag=='a':self.links.append({'href':a.get('href',''),'inMain':'main' in self.stack,'text':''})
+  if tag in ['h1','h2','h3']:self.headings.append({'level':tag,'text':''})
+  if tag in ['script','link','img','source']:
+   for k in ['src','href','srcset']:
+    if a.get(k,'').startswith('/assets/'):self.assets.append(a[k])
+  if tag not in ['meta','link','img','source','input','br','hr']:self.stack.append(tag)
+ def handle_endtag(self,tag):
+  if tag in self.stack:
+   pos=len(self.stack)-1-self.stack[::-1].index(tag);self.stack=self.stack[:pos]
+ def handle_data(self,d):
+  if 'title' in self.stack:self.title.append(d)
+  if 'main' in self.stack and not {'script','style','svg'}&set(self.stack):self.text.append(d)
+  if self.links and 'a' in self.stack:self.links[-1]['text']+=d
+  if self.headings and any(h in self.stack for h in ['h1','h2','h3']):self.headings[-1]['text']+=d
+http=json.loads((qa/'before-http.json').read_text()); rows=[]
+for r in http['rows']:
+ if 'file' not in r:continue
+ p=Page(); h=(qa/r['file']).read_text(); p.feed(h); text=' '.join(' '.join(p.text).split())
+ rows.append({'url':r['url'],'status':r['status'],'lang':p.lang,'title':''.join(p.title),'headings':p.headings,'mainTextCharacters':len(text),'englishWords':len(re.findall(r"[A-Za-z]+(?:'[A-Za-z]+)?",text)),'chineseCharacters':len(re.findall(r'[\u4e00-\u9fff]',text)),'mainText':text,'canonical':p.canonical,'meta':p.meta,'hreflang':p.alternates,'links':p.links,'duplicateIds':[k for k,v in Counter(p.ids).items() if v>1],'assets':list(set(p.assets))})
+known={r['url'] for r in rows}; edges={r['url']:{urljoin(r['url'],a['href']).split('#')[0].split('?')[0] for a in r['links'] if a['href']} for r in rows}
+for r in rows:
+ r['inboundPages']=sorted(u for u,v in edges.items() if r['url'] in v and u!=r['url'])
+ r['contextualInboundPages']=sorted(p['url'] for p in rows if p['url']!=r['url'] and any(a['inMain'] and urljoin(p['url'],a['href']).split('#')[0].split('?')[0]==r['url'] for a in p['links']))
+ broken=[]
+ for a in r['links']:
+  u=urljoin(r['url'],a['href']);parsed=urlsplit(u)
+  if parsed.hostname=='www.rillora.xyz' and not parsed.query and parsed.path.startswith(('/en/','/zh-CN/')) and u.split('#')[0] not in known:broken.append(u)
+ r['unmappedInternalLinks']=broken
+report={'checkedAt':http['checkedAt'],'rows':rows,'all28InGoogleKnownSet':known==set(json.loads((qa/'google-27.json').read_text())['urls'])|{'https://www.rillora.xyz/en/'},'summary':[{'url':r['url'],'englishWords':r['englishWords'],'chineseCharacters':r['chineseCharacters'],'h1':[h['text'] for h in r['headings'] if h['level']=='h1'],'inbound':len(r['inboundPages']),'bodyInbound':len(r['contextualInboundPages']),'unmapped':r['unmappedInternalLinks'],'duplicateIds':r['duplicateIds']} for r in rows]}
+(qa/'before-content-audit.json').write_text(json.dumps(report,ensure_ascii=False,indent=2)+'\n')
+print(json.dumps({'all28InGoogleKnownSet':report['all28InGoogleKnownSet'],'summary':report['summary']},ensure_ascii=False,indent=2))

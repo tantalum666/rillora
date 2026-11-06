@@ -1,0 +1,103 @@
+{
+  "recordedAt": "2026-10-30T18:56:43.211Z",
+  "observedDuring": "2026-10-31 Asia/Shanghai authenticated isolated Web acceptance",
+  "evidenceType": "Already observed authenticated GET response bodies, read via browser document",
+  "account": "Dedicated synthetic App Review account",
+  "requests": {
+    "usaQuote": {
+      "method": "GET",
+      "path": "/api/v1/commerce/storekit/review/quote?serviceMarketCode=GLOBAL_US&storefrontCountryCode=USA",
+      "response": {
+        "contractVersion": "commerce-apple-purchase-v1",
+        "quote": {
+          "bindingCode": "apple_review_usa_11999_20261006",
+          "priceCode": "family_apple_review_usd_11999_20261006",
+          "productId": "com.rillora.family.annual",
+          "serviceMarketCode": "GLOBAL_US",
+          "storefrontCountryCode": "USA",
+          "currency": "USD",
+          "amountMinor": 11999,
+          "minorUnitExponent": 2,
+          "priceMilliunits": 119990,
+          "billingPeriod": "annual"
+        },
+        "purchaseTerms": {
+          "version": "family-annual-apple-20261009-1",
+          "termsVersion": "terms-2026-10-09-1",
+          "subscriptionTermsVersion": "subscriptions-2026-08-27-1",
+          "refundPolicyVersion": "refunds-2026-08-27-1",
+          "legalBundleSha256": "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb"
+        },
+        "requiresFreshEvaluation": true,
+        "environment": "sandbox",
+        "validationOnly": true
+      }
+    },
+    "hkgQuote": {
+      "method": "GET",
+      "path": "/api/v1/commerce/storekit/review/quote?serviceMarketCode=GLOBAL_US&storefrontCountryCode=HKG",
+      "response": {
+        "contractVersion": "commerce-apple-purchase-v1",
+        "quote": {
+          "bindingCode": "apple_review_hkg_88800_20261006",
+          "priceCode": "family_apple_review_hkd_88800_20261006",
+          "productId": "com.rillora.family.annual",
+          "serviceMarketCode": "GLOBAL_US",
+          "storefrontCountryCode": "HKG",
+          "currency": "HKD",
+          "amountMinor": 88800,
+          "minorUnitExponent": 2,
+          "priceMilliunits": 888000,
+          "billingPeriod": "annual"
+        },
+        "purchaseTerms": {
+          "version": "family-annual-apple-20261009-1",
+          "termsVersion": "terms-2026-10-09-1",
+          "subscriptionTermsVersion": "subscriptions-2026-08-27-1",
+          "refundPolicyVersion": "refunds-2026-08-27-1",
+          "legalBundleSha256": "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb"
+        },
+        "requiresFreshEvaluation": true,
+        "environment": "sandbox",
+        "validationOnly": true
+      }
+    },
+    "currentPurchase": {
+      "method": "GET",
+      "path": "/api/v1/commerce/storekit/review/purchases/current",
+      "response": {
+        "purchase": null,
+        "appAccountTokens": []
+      }
+    },
+    "commerceStatus": {
+      "method": "GET",
+      "path": "/api/v1/commerce/status?serviceMarketCode=GLOBAL_US",
+      "response": {
+        "contractVersion": "commerce-v1",
+        "validationOnly": true,
+        "billingOpen": true,
+        "serviceMarketCode": "GLOBAL_US",
+        "currentAccess": {
+          "planCode": "free",
+          "planVersion": 1,
+          "subscription": null,
+          "managementDestination": "none"
+        },
+        "boundaries": {
+          "serverAuthoritative": true,
+          "providerCallbackGrantsAccess": false,
+          "clientPurchaseResultGrantsAccess": false,
+          "billingStateCanTriggerClaim": false,
+          "billingStateCanTriggerDisclosure": false,
+          "storefrontPersistedToCustomerProfile": false,
+          "oneActiveRenewalProviderPerHouseholdPlan": true
+        }
+      }
+    }
+  },
+  "purchasePreparationSubmitted": false,
+  "applePurchaseAttempted": false,
+  "paymentProved": false,
+  "limitation": "Server quote eligibility does not prove native StoreKit product retrieval, purchase, restore, expiry or refund."
+}

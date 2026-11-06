@@ -1,0 +1,82 @@
+TAP version 13
+# Subtest: requires real string metric identifiers and a header object
+ok 1 - requires real string metric identifiers and a header object
+  ---
+  duration_ms: 4.024875
+  type: 'test'
+  ...
+# Subtest: closed and restricted-review denial are allowed but success and unplanned errors still alarm
+ok 2 - closed and restricted-review denial are allowed but success and unplanned errors still alarm
+  ---
+  duration_ms: 1.986958
+  type: 'test'
+  ...
+# Subtest: current live production session probes accept authenticated denial but never a service outage
+ok 3 - current live production session probes accept authenticated denial but never a service outage
+  ---
+  duration_ms: 1.027916
+  type: 'test'
+  ...
+# Subtest: rejects private, mapped, loopback and reserved DNS addresses
+ok 4 - rejects private, mapped, loopback and reserved DNS addresses
+  ---
+  duration_ms: 0.322875
+  type: 'test'
+  ...
+# Subtest: blocks off-registry origins, credentials, queries, fragments and IP targets
+ok 5 - blocks off-registry origins, credentials, queries, fragments and IP targets
+  ---
+  duration_ms: 0.15125
+  type: 'test'
+  ...
+# Subtest: keeps expanded production monitoring bounded and rejects duplicate identifiers
+ok 6 - keeps expanded production monitoring bounded and rejects duplicate identifiers
+  ---
+  duration_ms: 0.140583
+  type: 'test'
+  ...
+# Subtest: successful denial and TLS check never retain response data
+ok 7 - successful denial and TLS check never retain response data
+  ---
+  duration_ms: 0.227833
+  type: 'test'
+  ...
+# Subtest: unexpected success on a private endpoint is a failure, without logging contents
+ok 8 - unexpected success on a private endpoint is a failure, without logging contents
+  ---
+  duration_ms: 1.339917
+  type: 'test'
+  ...
+# Subtest: network failure does not leak arbitrary error messages or codes
+ok 9 - network failure does not leak arbitrary error messages or codes
+  ---
+  duration_ms: 0.439417
+  type: 'test'
+  ...
+# Subtest: missing certificate evidence is unknown, not a healthy default
+ok 10 - missing certificate evidence is unknown, not a healthy default
+  ---
+  duration_ms: 0.486958
+  type: 'test'
+  ...
+# Subtest: review deadline warns a week before expiry and remains failed after expiry
+ok 11 - review deadline warns a week before expiry and remains failed after expiry
+  ---
+  duration_ms: 0.313833
+  type: 'test'
+  ...
+# Subtest: deadline configuration rejects ambiguous dates, unexpected data and duplicate target ids
+ok 12 - deadline configuration rejects ambiguous dates, unexpected data and duplicate target ids
+  ---
+  duration_ms: 0.326208
+  type: 'test'
+  ...
+1..12
+# tests 12
+# suites 0
+# pass 12
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 107.106666

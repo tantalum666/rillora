@@ -1,0 +1,41 @@
+{
+  "capturedFrom": "2026-10-23T19:29:23.434837+00:00",
+  "capturedThrough": "2026-10-23T19:29:29.335546+00:00",
+  "workFiles": 751,
+  "uniqueRawObjects": 508,
+  "workBytes": 170619422,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-053.tar.zst.age",
+      "sha256": "311b40d0b065a56df5e932147d19e5b71b4a31649653ff263ac80eea728e11e6",
+      "bytes": 71447368,
+      "plainBytes": 117526210,
+      "uniqueObjects": 508
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/health-checkin-watch-20261024/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-052",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only the final unsigned simulator app and sanitized crash summary are selected"
+    },
+    {
+      "path": "output/qa/rillora-health-checkin-watch-20261024/readable-staging",
+      "reason": "duplicate capture/publication cache or personal authentication"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Only this health/check-in/Watch QA, original failed/passed logs, complete result bundles, synthetic UI captures, real paired-Simulator SDK receipts, current source/configuration digests, local helpers and the final unsigned Release simulator candidate. DerivedData/dependency caches and full machine crash reports are excluded. No distributable IPA is created.",
+  "boundary": "No private account credentials, database backups or authentication captures. Current App Review, prices, billing and FanPass preserved. Current source and selected safe receipts are ordinary Git."
+}

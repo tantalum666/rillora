@@ -1,0 +1,18 @@
+{
+  "state": "started",
+  "order_status": "pending",
+  "amount_minor": "88800",
+  "currency_code": "HKD",
+  "storefront_country_code": "HKG",
+  "has_original_transaction": false,
+  "last_event_status": "ignored",
+  "last_event_received_at": "2026-11-05T12:52:02.438Z",
+  "last_event_purchased_at": "2026-11-05T12:52:01.000Z",
+  "last_event_signature_verified": true,
+  "last_event_token_matches_intent": true,
+  "last_event_original_known": true,
+  "last_event_original_owned_by_order_account": true,
+  "last_event_quote_matches_intent": true,
+  "catalogFingerprint": "8c6853dd507de8e0673beba4c8ee466fb3c3a1568a47f9e1e2b1baa65bdb2530",
+  "diagnosis": "Valid same-account repurchase with fresh intent token and already-owned original rejected by old resolver; no grant applied"
+}

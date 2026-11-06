@@ -1,0 +1,41 @@
+"""Append the independent UI-project follow-up only; archive60 stays immutable."""
+from pathlib import Path
+import datetime,json,os,re,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).parent
+DEST=ROOT/'collaboration/verification/app-review-readiness-20261104';ARCHIVE=ROOT/'collaboration/archives/raw-work-061.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+assert not ARCHIVE.exists()
+names=['native18-isolated-ui-project-final-r2.xcresult','purchase-ui-project','purchase-ui-generator-failed.log','purchase-ui-generator.log','purchase-ui-generator-final.log','purchase-ui-generator-final-r2.log','purchase-ui-default-generator.log','isolated-ui-project-attempt1.log','isolated-ui-project-attempt2.log','isolated-ui-project-final.log','isolated-ui-project-attempt1.json','isolated-ui-project-attempt2.json','isolated-ui-project-final.json','ui-project-separation.json','final-local-publication/result.json','final-local-publication/source-scan.json','final-local-publication/04.log']
+selected=[]
+for name in names:
+ base=QA/name
+ if base.is_file():selected.append(base);continue
+ assert base.is_dir(),name
+ for parent,dirs,files in os.walk(base):
+  parent=Path(parent)
+  dirs[:]=[d for d in dirs if not directory_exclusion((parent/d).relative_to(ROOT).as_posix()) and not (parent/d).is_symlink()]
+  for n in files:
+   p=parent/n
+   if not p.is_symlink() and not file_exclusion(p.relative_to(ROOT).as_posix()):selected.append(p)
+prior=json.loads((DEST/'snapshot.json').read_text());oldpaths={x['sourcePath'] for f in prior['catalogFiles'] for x in json.loads((ROOT/f).read_text())};assert all(p.relative_to(ROOT).as_posix() not in oldpaths for p in selected)
+cache=QA/'publication/frozen-followup';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+objects={};records=[]
+patterns=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b',rb'\b(?:sk_live_|rk_live_|sk_test_)[A-Za-z0-9]{20,}\b',rb'\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b']
+for p in sorted(selected):
+ rel=p.relative_to(ROOT).as_posix();frozen,digest=snapshot.freeze_file(p,cache);data=frozen.read_bytes();assert not any(re.search(x,data) for x in patterns),rel
+ b=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});b['paths'].append(rel);records.append({'sourcePath':rel,'bytes':len(data),'rawObject':b['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()})
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip();archive=snapshot.seal_chunk(61,list(objects.values()),recipient)
+catalog=DEST/'catalog-followup.json';catalog.write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+part={'archives':[archive],'catalogFiles':[catalog.relative_to(ROOT).as_posix()],'workFiles':len(records)}
+with tempfile.TemporaryDirectory(prefix='rillora-review61-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(part))
+ for n in [archive['path'],*part['catalogFiles']]:
+  dest=stage/n;dest.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/n,dest)
+ result=verify(stage,identity)
+(DEST/'archive-followup-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+prior['archives'].append(archive);prior['catalogFiles'].append(catalog.relative_to(ROOT).as_posix());prior['workFiles']+=len(records);prior['uniqueRawObjects']+=len(objects);prior['workBytes']+=sum(x['bytes'] for x in records);prior['capturedThrough']=datetime.datetime.now(datetime.timezone.utc).isoformat();prior['followup']='Independent UI-test project generator and its original build failures/final passing smoke; initial source-publication failure retained. No release source, signed artifact or scanner exception changed.'
+(DEST/'snapshot.json').write_text(json.dumps(prior,ensure_ascii=False,indent=2)+'\n');print(json.dumps({'newPaths':len(records),'newObjects':len(objects),'encryptedBytes':archive['bytes'],'totalPaths':prior['workFiles'],'localFollowupVerified':result['passed']}))

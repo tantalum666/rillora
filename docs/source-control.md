@@ -1,6 +1,116 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+## November6 Owner批准重新提审
+
+[18／年付／群组重新提交回执](app-review-resubmission-20261106.md)已实际读回三个等待审核及手动发布。当前源配置、自动维护登记和[安全证据](../collaboration/verification/review18-resubmission-20261106/README.md)普通Git保存；无新加密归档、应用源码修改或测试／部署重跑。原始账号、授权和提供方全文留本机，公开截图避开账号／联系字段。最后完整清单和确切base本机发布门覆盖本次增量，远端头与无新Actions分别读回。
+
+## November6用户会话与审核再复核
+
+登录续接后，18草稿与最终材料已实际保存回读，新只读检查确认原Sandbox订阅已自然到期。[材料补齐回执](../collaboration/verification/app-review-materials-20261106/README.md)记录独立版本附件的替代路径、两语言标准许可链接、配置快照纠偏及证据边界。该小型增量只需普通Git保存；不新建加密归档，不重下63／64，不运行未变化应用测试或部署。原始账号／提供方状态留本机；最后重建完整可读清单并按确切main基线执行本机发布门。下面早一检查点的“Apple登录失效”已被续接结果取代。
+
+[长期用户会话](longer-user-sessions-20261106.md)已完成两环境110、可信边缘和30天／7天策略启用。[审核再复核](app-review-recheck-20261106.md)另修复审核入口的身份核验器传递遗漏，39项检查及两模块266b79fb部署回读通过。原生18复用原归档，已通过Apple校验及上传、处理为未分配测试组的候选；草稿18保存后刷新遇到实际登录失效，材料最终回读仍分开记录。没有重提、TestFlight分发或新购买。
+
+仅新增归档63（100路径／97对象）与64（87路径／77对象），均本机认证通过；旧1–62未重封。来源证明、认证／提供方原始资料、维护能力和私有发布包保留本机。代码、非秘密回执、既有62远端回执正常入Git；最后完成全量可读清单、确切base发布门及新63／64独立远端核验。配置文件只调整空行保留原有已批准PEM格式标记位置，编译字节与已部署镜像一致，没有添加扫描例外或改策略。
+
+## November5同账号再次订阅修复
+
+[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。该检查点只改变维护镜像和109；后续长期会话及审核入口更新见November6记录，不能把它们混成同次部署。重提／TestFlight暂停继续。
+
+## November5 in-place device delivery
+
+[The existing18candidate is installed and launched](native18-device-install-20261105.md) on the original phone after the Owner explicitly requests delivery. [Safe receipts](../collaboration/verification/native18-install-20261105/README.md) record hash reuse, exact17-to18device readback and process launch. No rebuild, archive recapture, cloud deployment, purchase/restore, TestFlight or resubmission. Original artifacts remain in60; private device/connection responses and extracted duplicates stay local. Only small metadata, the full readable manifest and exact-base local publication need verification; Owner page acceptance remains pending.
+
+## November5 App Review interaction repair and bounded reviewer renewal
+
+[The focused report](app-review-readiness-20261104.md) separates shipping-source fixes, 74 native checks, six actual UI interactions, the isolated18-r2 artifacts and the already-completed17real purchase/restore/expiry. [New safe evidence](../collaboration/verification/app-review-readiness-20261104/README.md) includes the reproduced failures, current bounded DB/API/monitor deadline, source isolation and unsent review-note draft. Only this workflow is captured in new archives60–61; old1–59remain immutable. Raw account/auth/device/provider material and maintenance capabilities remain local-only; exact signed artifacts and local test results are encrypted-only. No real-device installation, App Store upload, resubmission, TestFlight, cloud CI or subagent is claimed. Run the complete readable-manifest and exact-base publication checks after the last receipt, then independently verify only the new remote archive.
+
+## November4 private account follow-through
+
+[The public preparation reference](aws-activate-preparation-20261104.md) and [nonfinancial cleanup receipt](../collaboration/verification/aws-account-maintenance-20261104/README.md) record general programme rules, scope and removal of the isolated resources. The GitHub repository is PUBLIC. Actual account balances, credit responses, personal applicant fields, authenticated screenshots and application receipts stay only in the protected local QA directory; they are not mirrored into the readable manifest or encrypted public archives. This respects the current AWS promotional terms' disclosure boundary. No application implementation or deployed workload changes; use document checks and the exact-base local publication gate, then verify the remote head and no new Actions run. Do not repeat existing application tests or previous deployments.
+
+The follow-up adds only the publicly observable Hong Kong routing/form contract and corrects the personal-versus-company LinkedIn interpretation. Exact profile URL, application dates, contact/address fields, account and mail identifiers, filled screenshots and original superseded email remain local-only. No company social page, personal-profile edit or external email is part of the resulting website submission route.
+
+## November4 AWS controls, worker memory repair and growth plan
+
+[The current execution report](aws-optimization-20261104.md) records actual cluster metric reduction, original-recipient budget/anomaly controls, free standard recommendations, and the isolated worker TLS memory repair in both environments. [Safe evidence](../collaboration/verification/aws-optimization-20261104/README.md) preserves sanitized cloud readbacks, failed/passed local checks, exact two-file overlay hashes/diffs, Linux memory results, current free allowances and full growth budgets. The immutable worker image remains in the existing ECR repository; its source and small reproducible overlay are preserved, without re-archiving dependency layers or old artifacts. Raw provider templates/configuration, credentials, mail/account data, synthetic certificate keys and temporary databases remain local-only. Preview sleep, grant awards and long-term savings are not claimed. Rebuild the full readable manifest, use exact-base local publication, read back the pushed head and confirm no new cloud CI.
+
+## November3 five-provider complete hosting decision
+
+[The complete model and recommendation](architecture/five-provider-hosting-decision-20261103.md) covers retained disks, credentials/keys, private networking and restricted egress, separate journal/MCP state, backups, TLS renewal and restore drills. [Safe evidence](../collaboration/verification/five-provider-decision-20261103/README.md) contains only public rate extracts, a 13-check Decimal model and scope receipts. No app/provider/runtime changes, new sealed archive or repeated business tests. Rebuild the full readable manifest after the last receipt, then run the exact-base local publication gate and verify pushed head plus unchanged Actions. No cloud CI or subagents.
+
+## November3 Vercel and comparison-method correction
+
+[The Vercel/method review](architecture/vercel-cost-method-20261103.md) separates required protection from chosen topology, current loops from an adapted target, and scoped examples from a full quote. [Safe source/arithmetic evidence](../collaboration/verification/vercel-method-20261103/README.md) records native Pro PrivateLink, uncertain base pricing and current payload/cron constraints. Documentation and a seven-check numerical illustration only; no app/runtime/provider changes, new archive or replay of business tests. Use complete readable publication and the same exact trusted base locally, then read back the pushed head; no cloud CI.
+
+## November3 Oracle/Google plus Neon recheck
+
+[The focused comparison](architecture/oci-google-neon-cost-review-20261103.md) corrects the older component-price recommendation and records matched assumptions, regional VPN/IPv4 prices and incomplete full-cost boundaries. [Safe evidence](../collaboration/verification/oci-google-neon-20261103/README.md) includes a reproducible Decimal model, primary-source references, selected public SKU fields and a cropped public-price table. No provider configuration, application source, data, review state or old archive changes. Only document/arithmetic and the exact-base local publication checks run; no application-suite replay, subagent or cloud CI. Rebuild the full manifest after the final evidence file and verify the exact remote head.
+
+## November2 broader provider research
+
+November2–3 adds the Owner-selected [CF/Neon validation](architecture/cf-neon-validation-20261102.md): isolated source/lockfiles under infra/hosting-validation, safe live results, normalized failure/pass logs and cropped retirement screenshots in the [evidence package](../collaboration/verification/cf-neon-validation-20261102/README.md). No apps/config/AWS implementation changes, real-data migration or review deployment. Generated dependencies/runtime types/reproducible bundle caches stay excluded; their recipe and exact tested digest are retained. This small safe increment needs no new encrypted archive or replay of old suites. Rebuild the full manifest after the last receipt and use the unchanged exact main base for local publication; no cloud CI.
+
+The later [six-pair decision report](hosting-six-pair-decision-20261102.md) narrows the comparison to Oracle/Cloudflare/Google with Neon/Supabase. Its [safe evidence](../collaboration/verification/hosting-six-pair-20261102/README.md) contains public regional prices and an explicit Decimal model. This is documentation and arithmetic only; no new sealed archive, app suite, provider resource or cloud CI. The same exact-base local publication policy applies after the final receipt and complete manifest.
+
+[The same comparison](cloud-hosting-comparison-20261102.md) now includesGoogle,Azure,Hetzner,DigitalOcean,Akamai,RailwayandRender. Only current official-source findings, partial-price scope and safe rendered-price receipts are added to the existing[research package](../collaboration/verification/hosting-comparison-20261102/README.md). No runtime, archive or engineering test changes occur; regenerate the full manifest and exact-base local publication after these final updates.
+
+## November2 lower-cost provider comparison
+
+[Cloudflare/Oracle comparison](cloud-hosting-comparison-20261102.md) adds current primary-source research and explicit arithmetic examples, without selecting or deploying a provider. [Small safe receipts](../collaboration/verification/hosting-comparison-20261102/README.md) contain source links, assumptions and static review scope only. Reuse prior invoice/expiry and application evidence; no new sealed archive or engineering suite is warranted. Full manifest and exact-base local publication remain required.
+
+## November2 cost diagnosis and actual expiry
+
+[The cost report](aws-cost-review-20261102.md) reconciles the realOctoberinvoice and identifies optional container metrics, always-on Preview and missing budget notifications. These are recommendations, not a deployment. One new bounded read-only maintenance task verifies the original paid Sandbox order is expired_read_only; no repeat purchase/restore. [Safe summaries](../collaboration/verification/cost-review-20261102/README.md) are small ordinary Git JSON/Markdown; raw mail/payment/account/resource/auth material stays protected locally. Archives1–59are unchanged. Run only the exact-base publication and document/data checks for this report; inherited app tests are not rerun and no cloud CI is started.
+
+## November1 physical purchase, restore and immutable-order verification
+
+[Current acceptance](apple-purchase-acceptance-20261101.md) installs the already-preserved17candidate in place, verifies the same originalHKD888order with signed applied receipt/active subscription, and retains the Owner's successful purchase/restore. Only the tester's storefront was aligned; no old order or ownership was rewritten. New native error copy is source-only; the bounded operator inspection is deployed only in the existing maintenance task, with normal API/Web/workers and permission templates unchanged.
+
+[New safe receipts](../collaboration/verification/native17-install-20261101/README.md) preserve the exact local failures/passes, original/final diagnostic image inputs, scoped cloud readbacks and nonsecret financial outcomes. Raw provider/auth/device data, credentials, unrelated request IDs and derived test/build caches stay excluded. Old archives1–58and the signed17artifact are immutable; capture only this new work and independently verify its new archive. Git/receipt publication is not a claim that cancellation/expiry/refund or resubmission has completed.
+
+## November1 ownership repair and completed cloud rollout
+
+[Current repair](apple-owner-latency-20261101.md) preserves transaction ownership while removing redundant Apple authentication from pending checks and checking foreign/expired history before a new charge. Isolated17-r2is signed and subsequently installed/read back/launched on the original phone; Owner confirms pending-check status without another Apple password prompt. New successful payment and actual latency remain unverified. The preceding October31API and three Web deployments are complete, with price/data/sale controls unchanged.
+
+[Readable receipts and new archive58](../collaboration/verification/apple-owner-latency-20261101/README.md) preserve1,164paths/663objects/45,379,030encrypted bytes, locally authenticated. They include original failing/passing native tests, both unpublished17candidate artifacts and prior rollout evidence. Credentials, raw private provider/device/authentication material and caches are excluded; old1–57are unchanged. Exact-base local publication and fresh new-archive remote verification follow separately; resubmission/TestFlight remain held.
+
+Source/archive`b628c18051824515a806a987badfaf9463bb7765`is pushed in PR10, still open/unmerged. Fresh remote verification authenticated all663objects/1,164paths from archive58; previous archives were not downloaded. Complete readable tracking is checked in final metadata, including one ignored safe localization log explicitly added to the index. Actions total remains314/latestOctober23. Those source/archive receipts do not themselves prove device installation or payment; the later [17installation/manual-status receipt](../collaboration/verification/native17-install-20261101/README.md) separately records the installed version and no repeated password prompt, with actual purchase still pending.
+
+## HISTORICAL — October31 release-product audit and local repair checkpoint
+
+[The release-product audit](release-product-audit-20261031.md) repairs Web payment-environment/account-state confusion, missing failure feedback, obsolete public testing copy, a native roadmap footer and stale active release status. Build16is signed, exported and installed in place; API/App/Preview/WWW artifacts are prepared but not deployed. Actual native Sandbox acceptance and provider/cloud readbacks remain blocked by observed authentication. Final resubmission/TestFlight remain held.
+
+[Safe receipts and new archive57](../collaboration/verification/release-product-audit-20261031/README.md) preserve local failures/passes, synthetic/local and public screenshots, exact candidate16source/artifacts and three static publication bundles. Personal legal publication values and device-bound profiles stay encrypted-only; credentials, raw device/provider/auth state, reproducible speech models, VM disks and caches stay excluded. Existing1–56remain immutable. Exact-base local publication and fresh new-archive remote verification are recorded separately; Git保存不等于已部署或已通过真实购买。
+
+Source/artifact26b68e066is pushed; exact-diff local publication passed. New archive57was independently downloaded and verified fromGitHub:528objects/665paths. PR10remainsopen/unmerged; currentActionscount314andlatestOctober23run are unchanged. Final readback metadata does not recapture old work or imply deployment.
+
+## HISTORICAL — October31 build15 acceptance checkpoint
+
+[The current acceptance](app-review-sandbox-acceptance-20261031.md) reuses the15archive for a development-signed in-place install, verifies the dedicated review account through real Web login and authenticated server Sandbox quotes, and preserves the unresolved native sign-in. Owner then disconnects the phone: no further device or mirroring operations occur. [Safe evidence](../collaboration/verification/app-review-acceptance-20261031/README.md) is readable Git; the new development IPA is encrypted-only in the new archive56. Extracted duplicate app files, raw device/provider/authentication data, whole-desktop screenshots and credentials stay out of the publication. Old1–55are not resealed or downloaded. Run exact-base publication checks and independently read the new remote archive; this is not an Apple transaction or resubmission result. No app implementation changes or repeated engineering suites are part of this checkpoint.
+
+Checkpoint93543ccfcis published with exact-diff local-gate evidence. Fresh independent archive56download authenticated all23objects/23paths; PR10is open/unmerged and cloud runs remain314. Final metadata receipts are ordinary Git additions, never another archive or business-test run.
+
+## October31 Apple message-link recheck
+
+[The full link review](app-review-link-recheck-20261031.md) adds small nonsecret reading receipts, provider status cells, the original message and unsent notes/reply drafts. [Readable evidence](../collaboration/verification/app-review-links-20261031/README.md) is ordinary Git; no new native artifact or encrypted archive is necessary. Keep archive55 and prior validation immutable. Private survey target, account pages, banking details and authentication state are excluded. Run only the exact-base publication/scan checks needed for the new documents, not the unchanged application suites; resubmission and TestFlight remain held.
+
+## October30 App Review rejection remediation
+
+[Current remediation](app-review-remediation-20261030.md) preserves source on the existing collaboration branch and isolates local1.0(15)from the original14native baseline; next-version features are excluded. [New safe receipts and archive55](../collaboration/verification/app-rejection-20261030/README.md) preserve exact patch/source metadata, failed/passed local tests, original Apple screenshots, scoped cloud readbacks and local signed artifacts. Earlier1–54remain immutable. Credentials/private cloud state are excluded, no cloudCIor sub-agent is started, and local/Git evidence does not authorize resubmission: Owner explicitly holds it. Final exact-base gate and immutable remote verification are recorded separately.
+
+## October25 Duo native acceptance and existing Apple support case
+
+[This continuation](iphone-duo-validation-20261025.md) retains the existing next branch/PR10 and current App Review isolation. Corrected ordinary rotation tests pass2/0/0; real iOS27.1 Duo acceptance is separately evidenced by direct Device Hub interactions, bilingual screenshots/AX and loopback API counts. Experimental automated probe failures remain raw evidence and their temporary target is withdrawn, not marked passed. Only two final active Swift files change.
+
+[New receipts and archive54](../collaboration/verification/duo-native-20261025/README.md) preserve this work, the unsigned simulator candidate and same-case Apple follow-up. Old1–53 are not resealed or downloaded. Official vendor runtime staging, DerivedData, private UI and reproducible test products are excluded; the installed official runtime remains. Run the exact-main-base local publication gate and verify only the new remote archive; no cloud CI, deployment or TestFlight. Source/archive commit `dfe3583e31a54b2b20f428b5e1496846c81e1332` is published in PR10, open and unmerged. Its exact binary diff matches the precommit local gate. Fresh independent remote verification authenticated1,793objects/2,834paths in archive54; that source head has0cloud runs. [Readback](../collaboration/verification/duo-native-20261025/remote-readback.json) and the final metadata receipt keep this separate from distribution.
+
+## October24 isolated health, check-in and Watch development
+
+[This implementation](health-checkin-watch-development-20261024.md) starts from `f017648cada6d39144a88aa12b5a42d470c40e5d` on `codex/health-checkin-watch-20261024`. Current source, bilingual resources and next-only project configuration are ordinary Git. [Safe receipts](../collaboration/verification/health-checkin-watch-20261024/README.md) and new archive53 preserve this task's successful and failed tests, result bundles, synthetic screenshots, actual paired-Simulator SDK evidence and unsigned Release simulator candidate; archives1–52 remain immutable. Credentials, real health data, machine-wide crash reports, DerivedData and dependency caches are excluded. The actual crash is represented by a sanitized stack summary.
+
+Only local tests and the reviewed exact-base publication/source guard run. Source preservation is not deployment or real-device acceptance; current review files, data, prices, billing, TestFlight and toolchain remain unchanged. Source/archive commit `95ba3923614610ae5d41372b56d0bd71782d26cc` is published in [PR10](https://github.com/tantalum666/rillora/pull/10), open and conflict-free. Fresh remote archive53 verification matches508objects/751paths. The run total remains314 and this source head has0runs; final metadata changes do not rerun application tests.
 
 ## October23 local verification and reviewed main integration
 
@@ -614,3 +724,13 @@ Archive30was freshly downloaded and decrypted at remote99c2537f4ba59aae112127ddf
 本轮新增archive39已完成本地认证：316路径／276对象／23,202,691密文字节；3113de7a7的GitHub独立新下载认证276对象／316路径通过，CI154三任务成功；不重做旧1—38。
 
 源码与材料fda980549已推送到codex/ai-discovery-vnext-20261015，CI179的source、api、web-and-infrastructure三项全部成功；GitHub读回复核报告、ASO草稿和插件生成器，与本地逐字一致。后续只保存此回执，不部署或重复验收。
+
+October30 Git回执：源码／archive55为`4acf1cae3bdf9d9444fa60fd94249c207c02940e`；新增归档独立远端认证482对象／674路径通过。PR10仍开放未合并，Actions总数314且该源码无PR云端作业。最后回执普通Git保存，不重封或重跑已完成业务验证；Owner重提暂停保持。
+
+本轮archive59已本地认证：728路径／412对象／953,549密文字节。只保留新增原件和明确安全摘要，旧1–58未重封／重下；config.ts的两处PEM头为既有校验字面量，原件与已跟踪字节完全一致，未新增扫描例外。实际凭据与原始私人提供方响应保持排除。新归档的远端认证与最终发布回执随后单独记录。
+
+archive59已在7b6c3deb923555106e45463d5979a6fa55e5ee5f推送PR10；GitHub独立新下载认证412对象／728路径通过。确切diff与本机发布门一致，Actions仍314／最新October23。最终元数据不重封归档，也不重跑应用验证或交易。
+
+November5 review follow-through: source/artifacts `82560587e39affaf68499bcabcb6b9d97768f1d4` are pushed in open PR10. Fresh independent remote LFS storage authenticated both new archives60–61,927objects/1,806paths; previous1–59were not downloaded. The exact source diff matches the corrected local publication gate. Root release project and scanner exceptions are unchanged after isolating the UI host. Actions remain314/latestOctober23, queued/running0. Final metadata is ordinary Git, without recapture or another application test/deployment cycle.
+
+November6远端回读：源码与63／64已推e363a34c0，两个新包各用独立空LFS目录重新下载并认证，97／77对象、100／87路径通过；旧档未重下。PR10开放，历史Actions314、最新39970887532，新提交及queued／in_progress均0。最后回执只更新文档与清单，不重跑应用、部署或购买。

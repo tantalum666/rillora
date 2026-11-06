@@ -24,7 +24,8 @@ export function loadDeletionWorkerConfig(env:NodeJS.ProcessEnv=process.env){
 }
 
 async function main(){
-  const config=loadDeletionWorkerConfig(),pool=new pg.Pool({...databaseConnectionOptions(loadDatabaseConfig()),max:2,application_name:'rillora-identity-deletion-worker'});
+  const config=loadDeletionWorkerConfig(),pool=new pg.Pool({...databaseConnectionOptions(loadDatabaseConfig()),max:2,
+    idleTimeoutMillis:60_000,connectionTimeoutMillis:5_000,application_name:'rillora-identity-deletion-worker'});
   const publisher=recoveryPublisherFromEnvironment();if(publisher)configureRecoveryPool(pool,publisher);
   const storage=contentConfiguration();
   if(storage&&!storage.bucket.startsWith(`${config.CONTENT_KEY_NAMESPACE}-private-content-`))throw new Error('Content cleanup environment mismatch');

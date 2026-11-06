@@ -1,0 +1,15 @@
+{
+  "baseDigest": "sha256:9fb560a8cb25afd41c63b6704b4fe3f93e3b1ad13d7e3b412b119c37c35ed3da",
+  "newDigest": "sha256:9944d7ed0780359c8c8fe4b36d409a77a8b7e38f5847b658417b80a2ee488e13",
+  "overlaySha256": "ff3f934403ac0e78f59990767ed052116d2f4997f5383d172c1455f5640c12b5",
+  "files": {
+    "db.js": "8b75afc154730db88fc9489ef5795696437792c21204832b9e805708a2d2b5af",
+    "account-deletion-worker.js": "077d78caa38e5f51f1feedc11e6e064aeaae686ad581b41871e3f13e9d49fbf0"
+  },
+  "onlyChanges": [
+    "shared verified database TLS context",
+    "deletion worker idle and connection timeouts"
+  ],
+  "imageRepository": "existing Rillora CDK asset repository; resolve from account CloudFormation",
+  "layers": "original base plus one two-file COPY layer; not a whole API rollout"
+}

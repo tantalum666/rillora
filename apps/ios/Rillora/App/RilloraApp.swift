@@ -1,9 +1,15 @@
 import GoogleSignIn
 import SwiftUI
 import UIKit
+#if RILLORA_CHECKIN_NEXT_VERSION
+import RilloraCheckInKit
+#endif
 
 @main
 struct RilloraApp: App {
+    #if RILLORA_CHECKIN_NEXT_VERSION
+    @UIApplicationDelegateAdaptor(RilloraNextAppDelegate.self) private var nextDelegate
+    #endif
     @Environment(\.scenePhase) private var scenePhase
     @State private var overviewStore: OverviewStore
     @State private var authenticationStore: AuthenticationStore
@@ -72,6 +78,9 @@ struct RilloraApp: App {
                 maintenanceService: maintenanceService
             )
             .background(RilloraTheme.canvas)
+            #if RILLORA_CHECKIN_NEXT_VERSION
+            .environment(nextDelegate.checkInStore)
+            #endif
             #if DEBUG
             .modifier(RilloraUITestAccessibilityOverrides())
             .onChange(of: scenePhase, initial: true) { _, phase in

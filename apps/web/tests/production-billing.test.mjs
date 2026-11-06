@@ -52,3 +52,13 @@ test('production checkout uses authenticated CSRF POST, independent proof and th
   assert.equal(calls.length,2);
   for(const {url,options} of calls){assert.equal(url,'/api/v1/commerce/stripe/checkout');assert.equal(options.method,'POST');assert.equal(options.credentials,'include');assert.equal(options.headers.get('x-csrf-token'),'fixture-csrf');assert.equal(options.headers.get('idempotency-key'),'fixture-retry-key');assert.deepEqual(JSON.parse(options.body),{billingPeriod:'annual',purchaseConsent:proof});}
 });
+
+test('production status requires an explicit known checkout-availability result', () => {
+  const base={contractVersion:'commerce-stripe-production-v1',testOnly:false,canManage:false,checkoutPending:false,subscription:null};
+  for(const checkoutAvailability of ['available','account_unavailable','unavailable']) {
+    assert.equal(productionBillingStatus({...base,checkoutAvailability}).checkoutAvailability,checkoutAvailability);
+  }
+  for(const checkoutAvailability of [undefined,null,true,'test','unknown']) {
+    assert.throws(()=>productionBillingStatus({...base,checkoutAvailability}));
+  }
+});

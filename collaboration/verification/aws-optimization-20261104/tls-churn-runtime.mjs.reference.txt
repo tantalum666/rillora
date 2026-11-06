@@ -1,0 +1,22 @@
+import {createServer,connect} from 'node:tls';
+import {readFileSync} from 'node:fs';
+import {databaseConnectionOptions} from '/app/dist/db.js';
+const [keyPath,certPath,bundlePath]=process.argv.slice(2);
+const key=readFileSync(keyPath),cert=readFileSync(certPath);
+const server=createServer({key,cert},socket=>socket.end('ok'));
+server.on('tlsClientError',()=>{});
+await new Promise(resolve=>server.listen(0,'127.0.0.1',resolve));
+const port=server.address().port;
+const ssl=databaseConnectionOptions({sslMode:'verify-full',sslCaPath:bundlePath}).ssl;
+if(ssl.rejectUnauthorized!==true)throw new Error('Certificate verification must remain enabled');
+const samples=[];const sample=i=>samples.push({connections:i,...process.memoryUsage()});sample(0);
+const deadline=setTimeout(()=>{process.stderr.write('Bounded runtime TLS test timed out\n');process.exit(2)},120000).unref();
+for(let i=1;i<=600;i++){
+ await new Promise((resolve,reject)=>{
+  const socket=connect({...ssl,host:'127.0.0.1',port,servername:'localhost'},()=>socket.resume());
+  socket.on('error',reject);socket.on('close',resolve);
+ });
+ if(i%100===0)sample(i);
+}
+await new Promise(resolve=>server.close(resolve));clearTimeout(deadline);
+console.log(JSON.stringify({node:process.version,openssl:process.versions.openssl,connections:600,certificateVerified:true,sharedContext:!!ssl.secureContext,samples},null,2));

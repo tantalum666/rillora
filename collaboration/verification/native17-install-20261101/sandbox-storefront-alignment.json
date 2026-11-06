@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-31T18:57:57.624Z",
+  "tester": "Rillora StoreKit Sandbox Tester 3",
+  "previousStorefront": "USA",
+  "savedStorefront": "HKG",
+  "readback": "Full page reload shows Hong Kong for this tester; other existing tester remains USA",
+  "originalReviewOrder": {
+    "currency": "HKD",
+    "amountMinor": 88800,
+    "storefront": "HKG",
+    "state": "started",
+    "hasOriginalTransaction": false
+  },
+  "productPriceChanged": false,
+  "purchaseHistoryCleared": false,
+  "accountDeleted": false,
+  "renewalRateChanged": false,
+  "interruptedPurchasesEnabled": false,
+  "providerRequiresDeviceSandboxSignInAfterChange": true,
+  "saveUiError": "Apple frontend removeChild TypeError after save; refreshed server-backed list confirms save succeeded; not resubmitted"
+}

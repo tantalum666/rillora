@@ -1,0 +1,32 @@
+{
+  "reviewBuild14NativeSource": "bfe9baaf520e051e70081daf7ed459f0926264b4",
+  "candidateVersion": "1.0",
+  "candidateBuild": "15",
+  "overlays": [
+    {
+      "path": "apps/ios/Rillora/Core/Commerce/CommerceStore.swift",
+      "sha256": "42504a4c9e60ea6ab9d29f0b6ecac7deba0abfcde9df79c983d197c408494cc5"
+    },
+    {
+      "path": "apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift",
+      "sha256": "1ff7260b2982c407cf4ba53f7a7510158016336e72768a69758c7d2ca7b099a9"
+    },
+    {
+      "path": "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+      "sha256": "debad1a751630059c6fb418a450c89811e8c70870b3bcbd679f02716a50846d0"
+    },
+    {
+      "path": "apps/ios/RilloraTests/AppleStoreKitClientTests.swift",
+      "sha256": "269c7bf8ae25beed7d3d98c8b4b56657252abf389cd6c13ed7141574345a008a"
+    }
+  ],
+  "healthKitWatchDuoAndNextContentExcluded": true,
+  "sourceDirectory": "/Users/tantalum/Documents/\u7535\u5b50\u9057\u5631app/output/release/rillora-app-rejection-20261030/source",
+  "uploaded": false,
+  "submitted": false,
+  "releaseMetadataOverride": {
+    "path": "apps/ios/Rillora/Resources/Info.plist",
+    "key": "CFBundleVersion",
+    "value": "$(CURRENT_PROJECT_VERSION)"
+  }
+}

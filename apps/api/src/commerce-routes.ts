@@ -84,7 +84,11 @@ const rankedCatalogPlanVersions = `with ranked_plan_versions as (
   where pv.plan_code in ('free', 'family') and pv.status in ('active', 'planned')
 )`;
 
-export function createCommerceRouter(pool: DatabasePool, configuredPurchaseProviders: ReadonlySet<string> = new Set()): Router {
+export function createCommerceRouter(
+  pool: DatabasePool,
+  configuredPurchaseProviders: ReadonlySet<string> = new Set(),
+  webBillingEnvironment: 'test' | 'production' | null = null,
+): Router {
   const router = createRouter();
 
   router.get(
@@ -94,7 +98,7 @@ export function createCommerceRouter(pool: DatabasePool, configuredPurchaseProvi
       const status = await withPlannerDatabase(
         pool,
         request.auth.plannerId,
-        async (client) => loadCommerceStatus(client, query.serviceMarketCode),
+        async (client) => loadCommerceStatus(client, query.serviceMarketCode, webBillingEnvironment),
       );
       response.json(status);
     }),
@@ -179,7 +183,8 @@ export function createCommerceRouter(pool: DatabasePool, configuredPurchaseProvi
   return router;
 }
 
-async function loadCommerceStatus(client: PoolClient, serviceMarketCode?: string) {
+async function loadCommerceStatus(client: PoolClient, serviceMarketCode: string | undefined,
+  webBillingEnvironment: 'test' | 'production' | null) {
   const validationOnly = (await client.query("select app.commerce_validation_enabled() as enabled")).rows[0].enabled === true;
   const subscription = await getCurrentSubscription(client, serviceMarketCode);
   const capabilities = await client.query<CapabilityRow>(
@@ -265,6 +270,8 @@ async function loadCommerceStatus(client: PoolClient, serviceMarketCode?: string
   return {
     contractVersion: "commerce-v1",
     ...(validationOnly ? { validationOnly: true } : {}),
+    // Apple review eligibility is account-specific; it does not select Stripe's environment.
+    webBillingEnvironment,
     billingOpen: marketRow?.sales_enabled === true && marketRow.status === "active",
     serviceMarketCode: serviceMarketCode ?? null,
     marketPolicyVersion: marketRow?.version ?? null,

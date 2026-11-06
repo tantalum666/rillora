@@ -22,7 +22,7 @@ import { configureRecoveryPool, type RecoveryControl } from '../src/recovery-jou
 import { reconcileRecoveryCommerce } from '../src/recovery-commerce.js';
 
 // Fixed disposable local database; no Owner/provider data or configurable cloud target.
-const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1:5432/continuity_apple_delivery_test', 'continuity_apple_delivery_test');
+const databaseUrl = dedicatedTestDatabaseUrl('postgresql://127.0.0.1/continuity_apple_delivery_test', 'continuity_apple_delivery_test');
 let pool: DatabasePool;
 type Owner = { plannerId: string; plannerPublicId: string; account: string };
 let owner: Owner;
@@ -97,7 +97,7 @@ async function state() {
     from app.commerce_subscriptions s limit 1`)).rows[0];
 }
 
-async function preparePurchase() {
+async function preparePurchase(subject = owner) {
   await pool.query("update app.commerce_operating_planes set status='active' where code='global'");
   await pool.query("update app.commerce_operators set status='active' where operating_plane_code='global'");
   await pool.query("update app.commerce_market_policies set status='active',sales_enabled=true where service_market_code='GLOBAL_US'");
@@ -109,8 +109,8 @@ async function preparePurchase() {
     from app.commerce_prices where price_code='family_apple_usd_annual_delivery_fixture'
     on conflict(provider_code,provider_environment,external_product_reference) do update set price_id=excluded.price_id,status='active'`);
   const service=new ApplePurchasePreflight(pool);
-  const quote=(await service.quote(owner.plannerId,{serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'})).quote;
-  const intent=await service.prepare({...owner,nonce:randomUUID(),quote,consent:{...applePurchaseTerms,
+  const quote=(await service.quote(subject.plannerId,{serviceMarketCode:'GLOBAL_US',storefrontCountryCode:'USA'})).quote;
+  const intent=await service.prepare({...subject,nonce:randomUUID(),quote,consent:{...applePurchaseTerms,
     acceptedSubscriptionTerms:true,acceptedAnnualRenewal:true,acknowledgedCancellation:true}});
   return {intent,service};
 }
@@ -147,6 +147,66 @@ describe('production Apple durable intake (decoded Apple fixtures + real isolate
     owner = await addOwner();
   });
   afterAll(async () => { await pool?.end(); });
+
+  it('resubscribes the same owner after expiry when Apple retains the original and uses the new intent token', async () => {
+    const f = await harness();
+    f.item.status = Status.EXPIRED;
+    f.tx.expiresDate = Date.now() - 1000;
+    f.renewal.autoRenewStatus = 0;
+    f.transactions.set('client.signed.fixture', structuredClone(f.tx));
+    f.publish();
+    expect(await f.intake.acceptClientTransaction(f.input)).toMatchObject({ finishAuthorized: true });
+    expect(await state()).toMatchObject({ state: 'expired_read_only', grants: 0, renewal_is_possible: false });
+
+    const { intent, service } = await preparePurchase();
+    await service.transition({ plannerId: owner.plannerId, orderReference: intent.orderReference, action: 'start' });
+    const now = Date.now();
+    f.tx.transactionId = '700000000002';
+    f.tx.appAccountToken = intent.appAccountToken;
+    f.tx.purchaseDate = now; f.tx.expiresDate = now + 365 * day; f.tx.signedDate = now;
+    f.renewal.appAccountToken = intent.appAccountToken; f.renewal.signedDate = now; f.renewal.autoRenewStatus = 1;
+    f.item.status = Status.ACTIVE;
+    f.transactions.set('client.resubscribe.fixture', structuredClone(f.tx)); f.publish();
+    expect(await f.intake.acceptClientTransaction({ ...f.input, signedTransaction: 'client.resubscribe.fixture' }))
+      .toMatchObject({ finishAuthorized: true, status: 'applied' });
+    expect(await state()).toMatchObject({ state: 'active', receipts: 2, grants: 2 });
+    const order = (await pool.query(`select s.state,o.status,s.original_transaction_reference from app.commerce_apple_purchase_sessions s
+      join app.commerce_orders o on o.id=s.order_id where o.public_id=$1`, [intent.orderReference])).rows[0];
+    expect(order).toMatchObject({ state: 'completed', status: 'paid_reconciled', original_transaction_reference: f.tx.originalTransactionId });
+  });
+
+  it('does not attach another accounts fresh intent to an already owned original subscription', async () => {
+    const original = owner;
+    const f = await harness();
+    const other = await addOwner();
+    const { intent, service } = await preparePurchase(other);
+    await service.transition({ plannerId: other.plannerId, orderReference: intent.orderReference, action: 'start' });
+    f.tx.transactionId = '700000000002'; f.tx.appAccountToken = intent.appAccountToken;
+    f.tx.purchaseDate = Date.now(); f.tx.signedDate = Date.now();
+    f.transactions.set('client.foreign-repurchase.fixture', structuredClone(f.tx));
+    await expect(f.intake.acceptClientTransaction({ ...other, signedTransaction: 'client.foreign-repurchase.fixture' }))
+      .rejects.toMatchObject({ code: 'apple_account_not_bound' });
+    const links = (await pool.query('select commerce_account_reference from app.commerce_provider_object_links')).rows;
+    expect(links).toEqual([{ commerce_account_reference: original.account }]);
+    expect((await pool.query('select * from app.commerce_entitlement_grants')).rows).toEqual([]);
+  });
+
+  it.each(['not-started', 'wrong-price', 'wrong-currency', 'old-receipt', 'wrong-environment'])
+    ('keeps exact intent checks for an existing owner: %s', async fault => {
+      const f = await harness();
+      const { intent, service } = await preparePurchase();
+      if (fault !== 'not-started') await service.transition({ plannerId: owner.plannerId, orderReference: intent.orderReference, action: 'start' });
+      const receipt = { originalTransactionId: f.tx.originalTransactionId, productId: identity.annualProductId,
+        storefront: 'USA', currency: fault === 'wrong-currency' ? 'HKD' : 'USD',
+        priceMilliunits: fault === 'wrong-price' ? 100_000 : 99_990,
+        purchasedAt: new Date(Date.now() - (fault === 'old-receipt' ? day : 0)).toISOString() };
+      const result = await withCommercePlannerDatabase(pool, owner.plannerId, c =>
+        c.query('select * from app.resolve_apple_purchase_owner($1,$2,$3,$4::jsonb)',
+          [intent.appAccountToken, fault === 'wrong-environment' ? 'sandbox' : 'production', f.tx.originalTransactionId, receipt]));
+      expect(result.rows).toEqual([]);
+      expect((await pool.query('select original_transaction_reference from app.commerce_apple_purchase_sessions')).rows)
+        .toEqual([{ original_transaction_reference: null }]);
+    });
 
   it('does not create first ownership from a signed public planner UUID without a purchase intent', async () => {
     const f = await harness(owner,false);

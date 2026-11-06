@@ -1,4 +1,7 @@
 import { createReauthenticationRouter, completeReauthentication, failReauthentication, type ReauthenticationTransaction } from "./reauthentication.js";
+import { SessionSecurity } from './session-security.js';
+import { sessionContextForRequest } from './session-context.js';
+import type { Request } from 'express';
 import { fetchInitialOverview } from "./overview.js";
 import { createHash, randomBytes, randomUUID } from "node:crypto";
 import { sealSessionDeletionProof } from './identity-deletion-proof.js';
@@ -55,6 +58,7 @@ type ProvisionedIdentity = {
 export type AuthDependencies = {
   identityProvider?: IdentityProvider;
   nativeIdentityVerifier?: NativeIdentityVerifier;
+  sessionSecurity?: SessionSecurity;
 };
 
 const authStartSchema = z.object({
@@ -70,6 +74,7 @@ export function createAuthRouter(
   dependencies: AuthDependencies = {},
 ): Router {
   const router = createRouter();
+  const sessionSecurity = dependencies.sessionSecurity ?? new SessionSecurity(pool, null);
   const provider = config.oidc
     ? dependencies.identityProvider ?? createOidcIdentityProvider(config.oidc)
     : null;
@@ -85,7 +90,7 @@ export function createAuthRouter(
   });
 
   router.use(["/reauthenticate", "/native/reauthenticate"], authLimiter);
-  router.use(createReauthenticationRouter(pool, config, provider, nativeVerifier));
+  router.use(createReauthenticationRouter(pool, config, provider, nativeVerifier, sessionSecurity));
 
   router.get("/legal-contract", (_request, response) => {
     response.json({
@@ -119,7 +124,7 @@ export function createAuthRouter(
              and s.expires_at > now()
              and (
                s.last_seen_at is null
-               or s.last_seen_at > now() - make_interval(mins => $2)
+               or s.last_seen_at > now() - make_interval(mins => coalesce(s.idle_timeout_minutes,$2))
              )
              and p.status = 'active'
              and acceptance.terms_version = $3
@@ -259,7 +264,7 @@ export function createAuthRouter(
           state, nonce: stored.nonce, codeVerifier: stored.code_verifier,
         });
         if (stored.reauth_session_public_id) {
-          await completeReauthentication(pool, config, stored, identity, request);
+          await completeReauthentication(pool, config, stored, identity, request, sessionSecurity);
           response.type('html').send('<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width"><title>Sign-in complete · Rillora</title><main><h1>Sign-in complete</h1><p>Return to your Rillora window and try your action again. You can close this window.</p></main></html>');
           return;
         }
@@ -278,17 +283,19 @@ export function createAuthRouter(
         "browser_cookie",
         storedLegalAcceptance(stored),
         "web",
+        request,
+        sessionSecurity,
       );
 
       response.cookie(securityCookieName(config, sessionCookieName), session.sessionToken, {
         ...baseCookieOptions(config),
         httpOnly: true,
-        maxAge: config.sessionTtlMinutes * 60 * 1_000,
+        maxAge: session.expiresIn * 1_000,
       });
       response.cookie(securityCookieName(config, csrfCookieName), session.csrfToken, {
         ...baseCookieOptions(config),
         httpOnly: false,
-        maxAge: config.sessionTtlMinutes * 60 * 1_000,
+        maxAge: session.expiresIn * 1_000,
       });
       response.redirect(303, new URL(returnTo, config.oidc.webAppOrigin).href);
     }),
@@ -326,6 +333,8 @@ export function createAuthRouter(
         "native_bearer",
         acceptance,
         "ios",
+        request,
+        sessionSecurity,
       );
       // A verified native session can carry its first screen in the same response.
       // Failure to load records does not discard the successfully issued session; the app can retry.
@@ -337,7 +346,7 @@ export function createAuthRouter(
         overview,
         tokenType: "Bearer",
         sessionToken: session.sessionToken,
-        expiresIn: config.sessionTtlMinutes * 60,
+        expiresIn: session.expiresIn,
         plannerPublicId: session.plannerPublicId,
         authenticatedAt: identity.authenticatedAt,
         authenticationMethods: identity.authenticationMethods,
@@ -377,13 +386,22 @@ async function issueSession(
   credentialKind: "browser_cookie" | "native_bearer",
   acceptance: LegalAcceptance,
   clientSurface: "web" | "ios",
-): Promise<{ sessionToken: string; csrfToken: string; plannerPublicId: string; plannerId: string }> {
+  request: Request,
+  sessionSecurity: SessionSecurity,
+): Promise<{ sessionToken: string; csrfToken: string; plannerPublicId: string; plannerId: string; expiresIn: number }> {
   if (!reviewIdentityAllowed(config, digestIdentityReference(identity).toString('hex'))) {
     throw new ApiError(403, 'service_not_open', 'Account access is not open for this identity.');
   }
   const sessionToken = randomOpaqueToken();
   const csrfToken = randomOpaqueToken();
   const sessionPublicId = randomUUID();
+  const trusted = config.trustedUserSessions;
+  if (trusted?.enabled) await sessionSecurity.verifyNewIdentity(identity);
+  const freshIdentity = identity.authenticatedAt && identity.authenticatedAt.getTime() > Date.now() - 86400_000
+    && identity.authenticatedAt.getTime() <= Date.now() + 30_000;
+  const context = trusted?.enabled && freshIdentity
+    ? sessionContextForRequest(request, sessionToken, credentialKind, trusted.edgeProofSha256) : null;
+  const ttlMinutes = context ? trusted!.ttlMinutes : config.sessionTtlMinutes;
   const deletionProof = await sealSessionDeletionProof(config,identity,sessionPublicId);
   const accountIds = await withAuthDatabase(pool, async (client) => {
     const deletion = await client.query<{ pending: boolean }>("select app.identity_deletion_pending($1,$2) as pending", [identity.issuer, identity.subject]);
@@ -435,10 +453,12 @@ async function issueSession(
       `insert into app.auth_sessions (
          planner_id, identity_account_id, token_hash, csrf_token_hash,
          authenticated_at, authentication_methods, credential_kind,
-         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash,public_id,deletion_identity_proof
+         legal_acceptance_id, last_seen_at, expires_at, verified_email_hash,public_id,deletion_identity_proof,
+         context_version,client_context_hash,network_context_hashes,idle_timeout_minutes,identity_checked_at
        ) values (
          $1, $2, $3, $4, $5, $6::text[], $7, $8, now(),
-         now() + make_interval(mins => $9), $10,$11,$12::jsonb
+         now() + make_interval(mins => $9), $10,$11,$12::jsonb,$13::smallint,$14,$15,$16,
+         case when $13::smallint=1 then now() else null end
        )`,
       [
         account.planner_id,
@@ -449,9 +469,11 @@ async function issueSession(
         identity.authenticationMethods,
         credentialKind,
         legalAcceptanceId,
-        config.sessionTtlMinutes,
+        ttlMinutes,
         null, // No global email match value is retained with sessions.
         sessionPublicId, deletionProof ? JSON.stringify(deletionProof) : null,
+        context ? 1 : 0, context?.clientHash ?? null, context?.networkHash ?? null,
+        context ? trusted!.idleMinutes : null,
       ],
     );
     await client.query(
@@ -466,7 +488,8 @@ async function issueSession(
     );
     return { plannerPublicId: account.planner_public_id, plannerId: account.planner_id };
   });
-  return { sessionToken, csrfToken, ...accountIds };
+  request.log.info({ event: 'session_policy_selected', policy: context ? 'trusted-v1' : 'legacy', credentialKind });
+  return { sessionToken, csrfToken, ...accountIds, expiresIn: ttlMinutes * 60 };
 }
 
 function storedLegalAcceptance(stored: StoredTransaction): LegalAcceptance {

@@ -1,7 +1,13 @@
 # 下一版本 iPhone Duo 布局适配
 
-Status: SOURCE PREPARED / 3 LAYOUT CHECKS PASS / 2 ROTATION UI CHECKS OPEN / DUO NATIVE VALIDATION DEFERRED
-Last updated: 2026-10-23 (Asia/Hong_Kong)
+Status: NEXT-VERSION SOURCE AND BILINGUAL DUO SIMULATOR ACCEPTANCE COMPLETE / NOT DISTRIBUTED
+Last updated: 2026-10-25 (Asia/Hong_Kong)
+
+## October25恢复新版工具与验收
+
+Owner已升级Xcode，取代晚点升级的旧门。[October25验收](iphone-duo-validation-20261025.md)已完成新SDK构建、原中英文两项普通旋转回归，以及官方iOS27.1 Duo模拟器的三姿态、系统栏、双语草稿／键盘上方保存、放弃与文件选择器取消返回。直接原生操作与失败自动化探针分别记录；没有把探针改写成通过。当前审核、生产、数据／价格和TestFlight保持。下方全部为October23历史检查点，不再把旧升级／两项旋转失败作为当前待办。
+
+## October23范围（HISTORICAL）
 
 Owner要求适配iPhone Duo，放在下一版本。随后曾允许升级开发环境，又明确“稍等，我还是晚点升级吧”；后一句取代升级授权。本轮继续现有工具可完成的源码和尺寸变化检查，不下载／安装macOS或Xcode、不切换开发工具、不启用收费云端Mac。升级检查仅列出可用版本，没有开始安装。
 
@@ -28,4 +34,4 @@ Owner要求适配iPhone Duo，放在下一版本。随后曾允许升级开发�
 
 最终执行结果见[验证回执](../collaboration/verification/iphone-duo-20261023/README.md)。已经通过的内容／支付／上线验收不重跑。本轮不发TestFlight、不安装到Owner手机、不变更审核，也不自动升级系统。
 
-唯一后续门：Owner以后恢复升级安排后，用支持的Xcode／iOS27.1或更新SDK和实际Duo模拟器，补折叠／展开／姿态变化、纵向系统栏、键盘／文件弹窗、导航与草稿保持，再决定下一版是否可宣称Duo已适配。
+October23历史后续门（已由October25验收取代）：Owner以后恢复升级安排后，用支持的Xcode／iOS27.1或更新SDK和实际Duo模拟器，补折叠／展开／姿态变化、纵向系统栏、键盘／文件弹窗、导航与草稿保持，再决定下一版是否可宣称Duo已适配。

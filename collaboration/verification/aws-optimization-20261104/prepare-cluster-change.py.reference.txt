@@ -1,0 +1,45 @@
+"""Patch only deployed ClusterSettings; never synthesize unrelated runtime changes."""
+import json,os,subprocess,hashlib,copy,sys
+from pathlib import Path
+OUT=Path(__file__).parent
+stack=sys.argv[1]
+assert stack in ['RilloraStaging','RilloraProduction']
+def cli(args,profile='rillora-cdk-deploy',env=None):
+    command=['aws',*args,'--region','eu-central-1','--output','json','--no-cli-pager']
+    if env is None:command+=['--profile',profile]
+    p=subprocess.run(command,capture_output=True,text=True,env=env)
+    if p.returncode:raise RuntimeError(p.stderr.strip())
+    return json.loads(p.stdout) if p.stdout.strip() else {}
+before=cli(['cloudformation','get-template','--stack-name',stack,'--template-stage','Original'])['TemplateBody']
+if isinstance(before,str):before=json.loads(before)
+stored=json.loads((OUT/(stack+'-template.json')).read_text())['TemplateBody']
+assert before==stored,'Cloud template changed after inventory'
+after=copy.deepcopy(before)
+clusters=[(k,v) for k,v in after['Resources'].items() if v['Type']=='AWS::ECS::Cluster']
+assert len(clusters)==1
+logical,cluster=clusters[0]
+settings=cluster['Properties']['ClusterSettings']
+target=[x for x in settings if x['Name']=='containerInsights'];assert len(target)==1 and target[0]['Value']=='enabled'
+target[0]['Value']='disabled'
+guard=copy.deepcopy(after);next(x for x in guard['Resources'][logical]['Properties']['ClusterSettings'] if x['Name']=='containerInsights')['Value']='enabled'
+assert guard==before
+assert 'ContainerInsights' not in (OUT/'alarms.json').read_text()
+body=json.dumps(after,separators=(',',':'));digest=hashlib.sha256(body.encode()).hexdigest()
+template=OUT/(stack+'-metrics-only.template.json');template.write_text(body);os.chmod(template,0o600)
+toolkit=json.loads((OUT/'CDKToolkit-stack.json').read_text())['Stacks'][0]
+outputs={x['OutputKey']:x['OutputValue'] for x in toolkit['Outputs']};bucket=outputs['BucketName']
+assert bucket=='cdk-hnb659fds-assets-133857166372-eu-central-1'
+assumed=cli(['sts','assume-role','--role-arn','arn:aws:iam::133857166372:role/cdk-hnb659fds-file-publishing-role-133857166372-eu-central-1','--role-session-name','rillora-cost-template','--duration-seconds','900'],profile='rillora-cdk-session')['Credentials']
+env={k:v for k,v in os.environ.items() if not k.startswith('AWS_')}
+env.update(AWS_ACCESS_KEY_ID=assumed['AccessKeyId'],AWS_SECRET_ACCESS_KEY=assumed['SecretAccessKey'],AWS_SESSION_TOKEN=assumed['SessionToken'])
+key='rillora-cost-optimization/20261104/'+stack+'-'+digest+'.json'
+cli(['s3api','put-object','--bucket',bucket,'--key',key,'--body',str(template),'--server-side-encryption','AES256'],env=env)
+env.clear();assumed.clear()
+current=cli(['cloudformation','describe-stacks','--stack-name',stack])['Stacks'][0]
+assert current['StackStatus']=='UPDATE_COMPLETE'
+parameters=[{'ParameterKey':x['ParameterKey'],'UsePreviousValue':True} for x in current.get('Parameters',[])]
+name='rillora-cost-metrics-off-20261104-'+stack.lower()
+result=cli(['cloudformation','create-change-set','--stack-name',stack,'--change-set-name',name,'--change-set-type','UPDATE','--template-url','https://'+outputs['BucketDomainName']+'/'+key,'--parameters',json.dumps(parameters),'--capabilities','CAPABILITY_NAMED_IAM','--role-arn',current['RoleARN'],'--description','Only disable optional Container Insights; retain alarms, images, roles, data and billing flags'])
+receipt={'stack':stack,'changeSet':name,'result':result,'templateSha256':digest,'changedResource':logical,'onlyChangedProperty':'ClusterSettings.containerInsights','before':'enabled','after':'disabled','executed':False}
+(OUT/(stack+'-metrics-change.json')).write_text(json.dumps(receipt,indent=2)+'\n')
+print(json.dumps({k:v for k,v in receipt.items() if k!='result'},indent=2))

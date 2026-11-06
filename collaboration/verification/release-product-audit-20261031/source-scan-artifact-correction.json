@@ -1,0 +1,10 @@
+{
+  "initialGate": "final-test-publication",
+  "result": "failed",
+  "unreviewed": 4,
+  "cause": "Temporary untracked compiled Preview output under apps/web was included in the source candidate; hits are generated hashes/vendor bytes.",
+  "repair": "Verified every byte against the immutable publication copy under output/release, then removed only the duplicate temporary build directory.",
+  "scannerOrExceptionPolicyChanged": false,
+  "sourceOrPrivateDataRemoved": false,
+  "preservedArtifact": "output/release/rillora-release-product-audit-20261031/web-preview"
+}

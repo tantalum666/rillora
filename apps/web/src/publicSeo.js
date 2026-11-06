@@ -3,10 +3,10 @@ export const PUBLIC_ORIGIN = "https://www.rillora.xyz";
 export const PUBLIC_LOCALES = ["en", "zh-CN"];
 export const publicPages = {
   "/": { title: "public.seo.homeTitle", description: "public.seo.home" },
-  "/product": { title: "public.title.product", description: "public.seo.product" },
-  "/security": { title: "public.title.security", description: "public.seo.security" },
-  "/pricing": { title: "public.title.pricing", description: "public.seo.pricing" },
-  "/support": { title: "public.title.support", description: "public.seo.support" },
+  "/product": { title: "public.seo.productTitle", description: "public.seo.product" },
+  "/security": { title: "public.seo.securityTitle", description: "public.seo.security" },
+  "/pricing": { title: "public.seo.pricingTitle", description: "public.seo.pricing" },
+  "/support": { title: "public.seo.supportTitle", description: "public.seo.support" },
   "/legal": { title: "public.title.legal", description: "public.seo.legal" },
   "/legal/licenses": { title: "public.title.notices", description: "public.seo.notices" },
   "/learn": { title: "public.learn.title", description: "public.seo.learn" },

@@ -37,6 +37,14 @@ final class AppleStoreKitClientTests: XCTestCase {
             )
         }
 
+        session.resetToDefaultState()
+        // Reset removes property overrides, including dialog suppression. Apply
+        // the deterministic test settings afterwards, before loading products.
+        session.disableDialogs = true
+        session.clearTransactions()
+        session.storefront = "USA"
+        defer { session.clearTransactions() }
+
         let client = AppleStoreKitClient(
             expectedSubscriptionGroupID:
                 RilloraStoreKitCatalog.xcodeLocalFamilySubscriptionGroupID
@@ -52,12 +60,6 @@ final class AppleStoreKitClientTests: XCTestCase {
                     + "separately."
             )
         }
-
-        session.disableDialogs = true
-        session.resetToDefaultState()
-        session.clearTransactions()
-        session.storefront = "USA"
-        defer { session.clearTransactions() }
 
         XCTAssertTrue(
             products.allSatisfy {

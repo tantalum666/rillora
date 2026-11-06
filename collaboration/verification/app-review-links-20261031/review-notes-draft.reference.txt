@@ -1,0 +1,21 @@
+DRAFT ONLY — not saved to Apple. Pending real Sandbox acceptance and review-account scenario verification.
+
+PURPOSE AND CURRENT VERSION
+Rillora is a private organizer for important accounts, documents, devices and directions. It does not store passwords, act as a legal will, transfer third-party accounts or determine death. The replacement candidate retains the features of 1.0(14); HealthKit, Watch and other next-version additions are not included.
+
+CHANGES FOR THIS REJECTION
+The previous server-side Sandbox review eligibility expired while the submission waited for review. That dedicated-account enrollment and runtime deadline have been renewed, and advance deadline monitoring has been deployed. The normal paywall displays Family benefits, the StoreKit annual price and a Subscribe action without the separate test banner. Money, environment, ownership and receipt checks remain enforced.
+
+SIGN-IN AND PURCHASE
+Use the existing dedicated review credentials supplied in the Sign-In Information fields. Open Profile > Sign in and use the existing email/password account. Read and confirm account terms if prompted; passkey enrollment can be skipped. The account contains a clearly labelled synthetic App Review example. Open Profile > Plan & access to review the offer, subscribe or restore purchases.
+
+PRODUCTS AND STOREFRONTS
+The only new-sale product is com.rillora.family.annual, an auto-renewing one-year Family subscription in group 22325627. New purchases are configured for the United States and Hong Kong storefronts only: USD 119.99/year and HKD 888/year. Use a Sandbox Apple Account with one of those storefronts. No device-specific purchase restriction is intended.
+The old com.rillora.family.monthly product is not offered for new purchases, has zero available sale territories and is not part of this review submission. Its identifier remains in the client only for historical transaction and restore handling. Rillora Family's recipient features are app features and do not claim Apple's Family Sharing subscription capability.
+
+SERVICES
+Auth0 provides account authentication, AWS hosts the Rillora API and stored records, Resend delivers transactional mail, and Apple StoreKit/App Store services process iOS subscriptions. Stripe is used by the companion web service; iOS subscriptions use Apple.
+
+VALIDATION STATUS — COMPLETE BEFORE SENDING
+Build 15 is a locally signed candidate, not yet uploaded or submitted. October 30 checks include 45 purchase/restore logic tests and one local StoreKitTest SDK lifecycle test. Synthetic iPad Air 11-inch (M3) / iPadOS 27.0 rendering was checked. These are not a new Apple server Sandbox transaction or a physical iPadOS 27.2 result. Original physical iPhone results remain dated historical evidence.
+Before using this draft: record the actual repaired-candidate Sandbox device/OS/purchase/receipt/entitlement/restore outcome; verify or provide the dedicated expired-subscription review scenario; replace this section with the resulting facts and synchronize the final review screenshot. Never invent a purchase or expiration record.

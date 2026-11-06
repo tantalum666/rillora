@@ -1,4 +1,7 @@
 import SwiftUI
+#if RILLORA_CHECKIN_NEXT_VERSION
+import RilloraCheckInKit
+#endif
 #if RILLORA_CONTENT_NEXT_VERSION
 import RilloraContentKit
 #endif
@@ -7,6 +10,9 @@ import RilloraHeartRateKit
 #endif
 
 struct AuthenticatedProfileContent: View {
+    #if RILLORA_CHECKIN_NEXT_VERSION
+    @Environment(CheckInPhoneStore.self) private var checkInStore
+    #endif
     let snapshot: OverviewSnapshot
     let store: OverviewStore
     let planService: any PlanEditing
@@ -157,7 +163,10 @@ struct AuthenticatedProfileContent: View {
             }
             #endif
             #if RILLORA_HEALTHKIT_NEXT_VERSION
-            HeartRateEntryView()
+            HealthEntryView()
+            #endif
+            #if RILLORA_CHECKIN_NEXT_VERSION
+            CheckInEntryView(store: checkInStore)
             #endif
             if let dataService = startHereService as? any AccountDataServing {
                 NavigationLink { AccountDataView(service: dataService, overviewStore: store, onDeletionRequested: authenticationStore.endSessionAfterDeletion) } label: {

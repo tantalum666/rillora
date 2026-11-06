@@ -67,6 +67,7 @@ struct ContentPackEditor<Guide: View>: View {
                     .accessibilityIdentifier("content.save-pack")
             }
         }
+        .accessibilityIdentifier("content.pack-editor")
         .navigationTitle(ContentText.get(previous == nil ? "newPack" : "editPack")).navigationBarTitleDisplayMode(.inline)
         .toolbar {
             ToolbarItem(placement: .cancellationAction) { Button(ContentText.get("close")) { if dirty { discard = true } else { dismiss() } }.disabled(store.working) }

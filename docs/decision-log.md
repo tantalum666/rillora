@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 新条目使用以下模板：
 
@@ -3819,3 +3819,226 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - The current single-heart-rate slice is a technical checkpoint, not the final product scope. Read-only still means no HealthKit writes. The staged metric list and iPhone-first/Watch-later recommendation are Agent proposals in [the focused note](healthkit-multisignal-watchos-20261024.md), not a new price, threshold, Watch release or disclosure decision.
 - Synced health reads and basic forwarded notifications do not require a Watch app. A companion would add short intentional interactions, not unrestricted monitoring. Common-source gaps, limited authorization, unknown states and the health-purpose boundary remain material.
 - Current review, real data, platform capabilities, billing, toolchain defer and local-only verification policy remain unchanged. No repeated Apple preapproval request or personal sampling is started.
+
+## 2026-10-24 — Implement iPhone health reads and check-ins, then the Watch companion
+
+- Status: OWNER EXPLICIT IMPLEMENTATION ORDER. Begin the approved sequence, use local tests, keep all changes for the next version, preserve current review and defer TestFlight; push completed work to GitHub.
+- This supersedes the earlier watchOS-recommendation-only gate. Read six first-stage types with no HealthKit writes. Check-ins are independently enabled user actions, not health-derived disclosure decisions. Technical reminder cadence/outbox expiry choices do not set medical or inheritance conditions.
+- Use isolated next targets/packages, account-bound minimum Watch messages, secure device-only state and explicit pending/acknowledged status. No raw health serialization to the Watch, server, content system or analytics. Real-device evidence stays separate under [the implementation contract](health-checkin-watch-development-20261024.md).
+
+同轮实施细化：独立提醒采用本人选择的24小时／3天／7天、每次手机接收后重新计时，默认关闭；传输有效期24小时仅用于拒绝陈旧命令，不产生医疗／遗产后果。Watch静态入口只导航，主动确认才产生操作；实际回执不等于通知家人或核验健康。新增只在下一版合并的延迟通知语言目录，保护当前审核原语言文件；真实SDK回调及通知串行修复不改变产品权限。
+
+## 2026-10-25 — Resume Duo after Owner's Xcode upgrade; follow the existing review case
+
+- Owner confirms Xcode is upgraded and explicitly requests Duo continuation. This supersedes the prior upgrade defer, not current App Review or TestFlight isolation. Use installed Xcode27.1 and only necessary official simulator assets; local validation and existing data/prices/FanPass boundaries remain.
+- Owner explicitly requests an Apple review-status email/case. The existing103001356140is open, so send one factual follow-up in that case after reading the real unchanged October15 submission. Request queue/blocker/missing-info/next-step details; do not withdraw/resubmit, claim a cause or fabricate urgency.
+- Owner completed the actual new Xcode/Apple SDK agreement prompt. No repeat project permission or Apple authentication was requested. SDK installation, runtime download, real Duo acceptance and Apple support receipt are separate facts.
+
+## 2026-10-25 — Default to one agent; ask before any necessary delegation
+
+- Owner explicitly asks to minimize sub-agent calls. Future work is performed by the main agent by default; even for audit or an actually necessary delegation, explain the purpose and reason and ask Owner before invoking it.
+- This supersedes automatic delegation suggestions in vendor skills for this project. The two already used read-only/controlled UI reviews retain their dated evidence; no further sub-agent work is dispatched for the current Duo task.
+
+## 2026-10-25 — Separate direct Duo acceptance from unreliable automation probes
+
+- Implementation outcome under the existing Duo authorization; no new product, commercial or distribution decision. Keep the current SwiftUI layout and privacy behavior because direct native interactions succeed.
+- Preserve the ordinary bilingual rotation regression and its final2/0/0result. The experimental hybrid Duo target cannot reliably dispatch/report all post-fold keyboard interactions; its failed results and source remain historical evidence, and the experimental target is withdrawn from active project configuration rather than presented as a passing or skipped regression.
+- Complete the actual Duo matrix through Device Hub native actions, screenshots/AX and the dedicated loopback API readback. Record direct acceptance separately from automated tests. No broad release/physical-device guarantee follows. Current App Review, TestFlight, production data, pricing and FanPass remain unchanged.
+
+## 2026-10-26 — Investigate discovered URLs and continue public SEO/GEO
+
+- Owner explicitly requests checking all27 discovered/unindexed URLs, directly repairing evidenced problems, advancing SEO/GEO and pushing GitHub while preserving current App Review. This supersedes the wait-for-Apple-only active task.
+- Reuse existing website/deployment authorization, correct metadata and useful bilingual content; preserve the rejected primary-navigation promotion, current prices/data/billing/FanPass, MCP authorization and TestFlight pause. Use local checks and no sub-agent delegation.
+- Google scheduling reasons are not inferred from generic guidance; distinguish technical access, original published content, provider submission, actual indexing, AI citation and acquired customers. No new ad spend, mass submissions, guaranteed rankings or medical/legal product capability follows.
+
+## 2026-10-30 — Repair the actual App Store rejection; hold resubmission
+
+- Owner explicitly requests reading and fixing the actual Apple2.2/2.1(b) rejection. This supersedes preserving a still-waiting review state; it does not approve bundling next-version HealthKit/Watch/Duo/content into the replacement.
+- The two screenshots and actual cloud/database state establish a configured reviewer deadline that expired before review. Renew only the existing dedicated synthetic reviewer and the original runtime deadline within the31-day guard, preserve all other users/prices/sale controls/data, and add a7-day advance check to the existing monitor. Removing ordinary paywall test framing does not change payment environments or verification.
+- Owner explicitly confirms acceptance of the new Apple Developer Program License Agreement; visible history recordsOctober30acceptance. Owner then says “先别重新提交”. Keep the locally prepared1.0(15)unuploaded and do not send a review reply or resubmit until the Owner resumes that step. TestFlight and physical-test pauses remain.
+- Initial local failures and repairs are retained;46native,24operations/infrastructure and11static checks are scoped evidence, not a new live Sandbox purchase or an approval guarantee. [Full contract](app-review-remediation-20261030.md).
+
+## 2026-10-31 — Read every Apple message link and correct the completion boundary
+
+- Owner explicitly requests another complete read of Apple's reply and every referenced link. This is a continuation of rejection remediation, with the prior resubmission/physical/TestFlight holds retained.
+- Sixteen link occurrences map to fifteen distinct targets; all were opened, with dynamic documentation read in Chrome. Four closely relevant follow-up pages were also read. Source pages are evidence, not authorization to create cases, submit a survey, purchase, change accounts or resubmit.
+- The October30fix remains implemented/deployed, but it does not prove a repaired-candidate Apple Sandbox purchase or close2.1/2.2. Current official guidance adds an explicit expired-subscription demo scenario and clearer region/device/service notes to the acceptance record. Preserve missing evidence rather than inventing orders, treating a fresh Free account as an expired subscription, or reclassifying synthetic previews.
+- Only documentation/drafts and evidence are updated. [Full recheck](app-review-link-recheck-20261031.md). No commercial/product/security policy change or new engineering test is approved or claimed by this read-only phase.
+
+## 2026-10-31 — Start the remaining real Sandbox acceptance work
+
+- Owner says “开始这些工作吧” after the full-message/link recheck. Resume the physical steps necessary for the current candidate's actual Sandbox purchase/restore, expired-subscription review scenario and material alignment. This supersedes the old blanket physical-test stop only for this scope; it does not resume unrelated acceptance or final App Review submission/TestFlight.
+- Reuse the exact15archive for a development-signed direct installation. Preserve existing app data, normal Apple accounts, approved prices, historical receipts and FanPass. Do not fabricate expired subscriptions or transfer the owner's purchase ownership to the reviewer.
+- Owner connected/unlocked the original phone, completed Mac mirroring authentication and temporarily disabled Stage Manager to repair the tool's thumbnail-coordinate mismatch. These are observed platform actions, not completion of billing acceptance.
+
+## 2026-10-31 — Pause the phone while preserving independent acceptance results
+
+- Owner says “iphone我先断连一下”. Stop phone/mirroring input, captures, device probes and automatic reconnection immediately; continue independent Web verification and Git preservation. Do not request reconnection until Owner resumes it.
+- The dedicated review account's explicit Web legal consent and restored Auth0 administrator session remain recorded. Reuse completed validation; only a genuinely expired session requires renewed login. Clear temporary credential references at closeout without resetting the valid account password.
+- Current candidate15 is installed, authenticated Web login and server Sandbox quotes are evidenced, but native login and Apple purchase/restore/expiry remain incomplete. Keep final resubmission and TestFlight held; do not change pricing, real records, sales settings or FanPass.
+
+## 2026-10-31 — Resume acceptance and inspect the complete release product
+
+- Owner confirms the mirror is unlocked and explicitly resumes unfinished acceptance. This supersedes the temporary phone-disconnection pause, not final resubmission or TestFlight holds.
+- Owner identifies the unacceptable testing text in Apple's submitted14screenshot and requests a thorough project-wide product-readiness review after the current work, with fixes. Inspect user-visible copy, real task completion, ordinary-account/payment behavior, runtime/release configuration and current/next-version isolation; cosmetic removal alone cannot prove readiness.
+- Reuse completed install/Web/provider evidence and perform only new or changed-path checks. Keep original prices, real data, transaction ownership and FanPass. No sub-agent or cloud CI; no fabricated successful payment, expired subscription or completed feature.
+
+
+## 2026-10-31 — Resume existing authentication and deploy verified repairs
+
+- Owner explicitly requests reopening AWS, Stripe and Mac authentication, then deployment and actual purchase acceptance; final resubmission and TestFlight remain held. Existing frozen artifacts and completed tests are reused, not rebuilt.
+- Owner confirms AWS login and asks whether mirroring is needed now. Cloud deployment and Stripe readback proceed without mirroring; this does not cancel the remaining native acceptance. Protected reviewer credential access is deferred until needed to avoid another premature user-presence timeout.
+- Only existing Rillora account/permissions are resumed. Keep data, prices, sales flags, transaction ownership and FanPass unchanged. Stripe Live inspection stays read-only; real acceptance means provider Sandbox, not manufactured Live self-payments.
+
+
+## 2026-10-31 — Explicit system clipboard fallback and manual phone takeover
+
+- After documented clipboard/mirroring failures, Owner explicitly selects the built-in macOS pbcopy method for the existing protected synthetic reviewer password, solely for the intended Rillora login, with cleanup and no plaintext file/chat output. This is a bounded input-method authorization, not permission to change passwords or general OS security.
+- Owner then says mirroring is too slow and chooses manual operation. Stop agent mirroring clicks/input; provide concrete login, matching-price/Sandbox purchase and single-restore steps. Native outcomes remain unverified until actual results are received and checked. Restore the temporary Stage Manager setting and clear credential references at completion/pause.
+
+
+## 2026-10-31 — Owner requests the dedicated review login directly
+
+- Owner explicitly asks to receive the account and password directly in this chat for manual Rillora login. This narrowly supersedes the earlier clipboard-only/no-chat handling for this existing synthetic reviewer credential.
+- Return only that reviewer username/password to the Owner. Do not include Apple/AWS/Stripe credentials, change the password, or write secret values into project documents, QA receipts, Git or public material. Mirroring input remains stopped; native acceptance is still unverified.
+
+## 2026-11-01 — Keep purchase ownership while repairing repeated authentication
+
+- Owner reports30–60second Apple authentication/pending-check delay followed by the original-Rillora-account warning, and asks how to test without weakening security. No email-specific Apple binding is a product rule: preserve signed transaction/token/original-transaction ownership; do not transfer the old subscription or grant synthetic entitlement.
+- Repair the pending/restore distinction, surface foreign/unknown ownership, and inspect known expired ownership before opening another payment sheet. Retain durable started/pending intents and existing nonce recovery; no forced timeout/cancellation of an uncertain Apple payment.
+- Prepare isolated17from16for the existing direct-install/manual-phone workflow. Retain existing prices/data/sales flags/FanPass and final resubmission/TestFlight hold. Prefer the already documented purpose-limited Sandbox tester before creating another; metadata is not current provider login/history verification. [Contract](apple-owner-latency-20261101.md).
+
+## 2026-11-01 — Inspect and retain the original review order through actual Sandbox acceptance
+
+- The Owner confirms the exact English conflict, purchase success after storefront alignment, and successful restoration. The original review order is HKG/HKD888; the independent tester was USA/USD119.99. Correct only that tester's region and retain the order, historical prices and original ownership; no cleanup or synthetic grant substitutes for a payment.
+- Extend only the existing bounded operator inspect command with read-only Sandbox order/receipt metadata, outside the catalog fingerprint. No arbitrary SQL endpoint, ordinary Production financial records, token payloads, permission-template expansion or runtime API rollout. A same-order completed/paid_reconciled record, matching verified receipt and active subscription now provide independent evidence.
+- Keep the10-minute recent-identity gate. Known purchase conflicts receive accurate catalog copy in both languages; this source-only presentation repair joins the next grouped native candidate, not another immediate phone/TestFlight update.
+- Actual cancellation, expiry and refund remain distinct from successful purchase/restoration. Ask the Owner for the new manual Sandbox cancellation step, preserve history, and verify later provider state rather than treating a Free account as expired. Final resubmission/TestFlight hold remains.
+
+## 2026-11-02 — Compare lower-cost hosting before treating the AWS estimate as acceptable
+
+- Owner says the60–80USD/monthAWS-consolidation estimate is still expensive and asks aboutCloudflare/Oracle. That estimate is not an accepted budget or the product's minimum operating cost.
+- Evaluate current official allowances and full provider/operations costs. Workers plus managed on-demandPostgres is an Agent preference, OCI a comparison candidate; no provider selection, new account/paid tier or real-data migration is inferred from this question.
+- Preserve the current data/security/recovery contract, prices, real records, FanPass and final resubmission/TestFlight hold. [Comparison](cloud-hosting-comparison-20261102.md).
+
+## 2026-11-02 — Include Azure, Google and other hosting alternatives
+
+- Owner explicitly adds Microsoft/Azure, other cost-effective providers and Google to the same comparison. Keep this as research; no provider or paid tier has been selected.
+- Compare like-for-like API, PostgreSQL, background tasks, keys, recovery and network costs, with current list prices rather than credits or obsolete SKU prices. No migration, cloud CI, resubmission or TestFlight follows from widening the shortlist.
+
+## 2026-11-02 — Narrow the economic review to six hosting combinations
+
+- Owner explicitly requests Oracle, Cloudflare and Google paired with Neon or Supabase, considering later growth and overall value. This deepens the research scope; it does not select a provider, approve a new monthly budget or authorize a weaker security/recovery topology.
+- [The focused comparison](hosting-six-pair-decision-20261102.md) records current regional prices and explicit workload assumptions. Agent recommends Cloud Run plus Neon as the first compatibility candidate; this supersedes only the previous broad, equally ranked research shortlist, not an Owner migration decision.
+- Keep seven-day PITR and the current roles, encryption, independent deletion/recovery authority and regional requirements. Launch/public-TLS subtotals cannot establish equivalence to private RDS. Preserve production, data, prices, FanPass and final review/TestFlight holds; no cloud CI or subagent.
+
+## 2026-11-02 — Owner selects Cloudflare plus Neon for isolated validation
+
+- Owner explicitly selects CF plus Neon for the next validation, superseding the Agent's prior Cloud Run-first recommendation. Determine the complete recurring cost and required migration work; prioritize useful legitimate free allowances and benefit eligibility.
+- Use synthetic data only. Preserve all existing security controls, current production/review, prices and real data; no production migration, TestFlight, cloud CI or subagent. Publish the scoped results to GitHub.
+- Free-tier limitations must remain visible; neither a six-hour restore window, public database, same-process master key nor omitted independent recovery/deletion authority can substitute for the current production safeguards. No paid Enterprise plan, financing fact or incorporation status is inferred.
+
+## 2026-11-03 — Record the CF/Neon validation boundary and grant facts
+
+- Owner confirms Rillora is a self-funded individual project, not incorporated, and has not previously received Cloudflare Startup credits. Do not invent incorporation/funding or count unawarded credits as a recurring budget.
+- The scoped free runtime results do not approve production migration, a paid plan or weaker protection. Provider inquiry drafts remain unsent; no new external-message authorization is inferred from research completion. The current report preserves the private-network, key, deletion, recovery and regional questions and keeps the complete quote unknown.
+
+## 2026-11-03 — Hold the Cloudflare provider inquiry as a draft
+
+- Owner explicitly selects “先保留草稿” after reviewing the prepared Cloudflare inquiry destination and purpose. Do not send that message or infer Startup application submission. The separate Neon inquiry remains unsent.
+- Preserve the completed synthetic validation and Git publication. The missing provider quote remains unknown; this choice does not authorize a paid plan, production migration or weaker security. Resume external contact only after a later explicit send instruction.
+
+## 2026-11-03 — Recheck Oracle/Google plus Neon before another hosting recommendation
+
+- Owner explicitly requests careful comparison of Oracle plus Neon and Google plus Neon after the CF cost mismatch. This resumes research beyond the held supplier inquiry; it does not authorize sending that inquiry, buying resources, migrating data or changing the current security/review boundary.
+- Preserve matched environment/workload assumptions and distinguish public unit prices, a chosen network topology, free eligibility, partial sums and complete production cost. Do not call managed multi-tunnel HA a minimum requirement, assume three permanently running helper units, or silently substitute public database access.
+- The Agent withdraws the earlier Cloud Run plus Neon low-cost priority based on incomplete component prices. The new report records AWS-only Neon private networking, actual Frankfurt VPN/IPv4 rates and unresolved end-to-end support. No replacement provider or monthly budget is approved.
+
+## 2026-11-03 — Review Vercel and correct architecture-selection bias
+
+- Owner asks to investigate Vercel and whether the repeated higher-than-AWS conclusions reflect a misconception. Recheck provider-native capabilities and the method, not just add another expensive reference topology.
+- The Agent acknowledges that partial component prices and one conservative managed-VPN topology cannot establish the cheapest acceptable deployment or prove all migrations uneconomic. Compare protection outcomes, current code and adapted target code separately; do not turn role isolation into a fixed always-on server count.
+- Current official Vercel sources establish Pro PrivateLink distinct from Enterprise Secure Compute, optional static IP charges, and bounded runtime/payload constraints. Advanced Networking base cost and exact connection scope remain unknown. No new budget, provider selection, paid integration, public-database policy change or weaker security is authorized; existing supplier-message hold persists.
+
+## 2026-11-03 — Compare five complete hosting architectures without weakening protection
+
+- Owner explicitly requests complete monthly costs and renovation scope for AWS, Cloudflare, Oracle, Google and Vercel, plus a clear recommendation. No real-data migration or current-review disturbance follows from this research task; held supplier inquiries remain unsent.
+- [The full model](architecture/five-provider-hosting-decision-20261103.md) replaces partial-component or one expensive VPN example as the current recommendation basis. Agent recommends AWS Stage A then separately validated bounded deletion jobs; Oracle paid self-managed PostgreSQL is the lower-cash but higher-maintenance alternative. This is an Agent recommendation, not an Owner-approved new provider or spending cap.
+- Preserve private DB and provider-enforced outbound restrictions, existing encryption and separate credentials, seven-day database recovery, 35-day journal recovery and non-reviving MCP state. Do not spend unverified SSM savings, count a fourth free Oracle table, or skip stopped storage and certificate renewal. Hybrid totals must retain the AWS bill; unquoted whole-core options remain unqualified.
+
+## 2026-11-04 — Optimize current AWS, plan growth and verify legitimate benefits
+
+- Owner requests current AWS optimization, a growth plan and available free benefits. Necessary reversible maintenance continues under the existing project authorization; no real-data migration, review/TestFlight action, price/sales change, FanPass operation, cloud CI or subagent follows.
+- [The execution report](aws-optimization-20261104.md) records actual optional-metric reduction and notification repairs, free standard Compute Optimizer enrollment, and an independently reproduced worker TLS memory problem repaired without increasing task size. Only isolated worker images are replaced; ordinary API/data/security controls retain their deployed scope.
+- Keep planning separate from results: Preview is still online, bounded worker execution is not implemented,73.35/65.71USD are future conditional targets, and growth scenarios are not tested user capacity. Unclaimed EC2/Bedrock activity rewards and Activate opportunities are not awarded credits. No new provider, spending commitment, startup registration/funding fact or application submission is approved or inferred.
+
+## 2026-11-04 — Follow through on account activities and the startup application
+
+- Owner explicitly requests executing the previously researched EC2/Bedrock activities and applying to Activate Founders. This supersedes the earlier draft-only scope for this AWS task; the held Cloudflare inquiry is still not authorized for sending.
+- Use existing account/session and accurate, independently confirmed applicant facts. Builder account terms and specific Google identity sharing were confirmed at action time. Do not infer a final programme agreement, application receipt, award or bill refund from that confirmation.
+- The repository is public. Preserve only general programme references and nonfinancial resource cleanup in Git; actual balances, applicant information and authenticated receipts remain in protected local QA because of the provider disclosure terms. No changed product/security/price/review decision, new ongoing paid capacity, cloud CI or subagent follows.
+
+## 2026-11-04 — Use the actual Hong Kong website route and the applicant's personal profile
+
+- Owner confirms the remaining project facts and reuse of the existing AWS contact address for this application. Keep the private values and approvals in protected QA, not public Git.
+- The actual global form directs Hong Kong applicants to the regional form. Follow the real region and current regional terms rather than assuming the global headline amount applies. Preserve the unincorporated, self-funded status.
+- Owner clarifies that a personal LinkedIn exists; the form asks for that profile under Your Info, not a company Page. Correct the earlier interpretation, reuse the actual profile and continue on the website. The proposed manual email was never authorized or sent and is superseded; no new social account or personal-profile edit follows.
+- Final programme agreement remains distinct from prior Builder consent. Prepare all known fields first, then use the specific action-time confirmation required by the UI tool. A valid form is not a submission, award or billing result.
+
+- Subsequent explicit Owner confirmation accepts the four named final regional terms and authorizes the prepared website submission. Execute once with marketing unchecked; preserve the provider response privately. No new paid support, other incubation programme, public endorsement or award claim is authorized.
+
+## 2026-11-04 — Defer optional Kiro verification after bounded scope checks
+
+- Owner asks to investigate the provider verification notice, then explicitly says to defer it if nonessential. Current application, infrastructure and deployment-tool source has no Kiro dependency; the existing cloud identity/account and Builder profile remain accessible in the bounded checks.
+- Defer the optional tool verification. Do not submit the prepared support form, create an identity, accept a new Kiro agreement, connect repositories, buy a plan or change credentials/MFA/cloud resources. The request stays unsent; only Agent-created inspection tabs close.
+- This is a priority decision, not proof that the provider flag is cleared or that every possible security event has been ruled out. Resume only for an actual need for Kiro or new evidence affecting necessary services. Existing Activate review and release constraints remain separate. Private notice/session/form material is not published to the public repository.
+
+## 2026-11-05 — Repair real subscription interactions and preserve bounded review access
+
+- Owner resumes App Review readiness, asks that dedicated review access/services remain usable, then supplies actual17phone evidence of repeated Subscribe disabling and legal-link activation. This new defect takes priority over declaring review readiness. Owner offers a screenshot instead of connecting the phone; do not infer that18is installed or ask for another purchase.
+- Reproduce and fix the transaction-to-quote reload chain and automatic Form link hit targets. Keep fresh pre-payment amount/currency/terms evaluation, account ownership, signed server acknowledgement and session-reset boundaries; no extra consent dialog or simulated public functionality is added.
+- Maintain only the existing dedicated reviewer within the existing31-day cap, updating DB/API/monitor together and warning14days ahead. Quiet follow-up does not authorize unlimited identities, relaxed protections, new sales or a claim of permanent availability.
+- Continue the explicit no-resubmission/no-TestFlight hold. Existing17purchase/restore and natural expiry are retained as dated evidence, while exact18device interaction, matching review materials and final submission remain separate. Local74checks and6UItests are not a new Apple purchase or approval.
+
+## 2026-11-05 — Install the existing signed18candidate for Owner review
+
+- Owner explicitly asks to push the fixed build to the original phone for manual review. This supersedes the preceding screenshot-only device stage, without lifting the resubmission/TestFlight hold.
+- Reuse the exact signed development artifact; perform only an in-place update and launch, with no uninstall, data clearing, mirroring, account switch or purchase. Device version/readback is distinct from Owner confirmation of the page and retained data.
+
+## 2026-11-05 — Repair same-owner resubscription without transferring purchase ownership
+
+- Owner reports Apple purchase/restore on18stillreturnsFree, with the saved-by-Apple message. Stop repeated purchasing and inspect the actual pending transaction.
+- The new receipt is signed, matches the current intent and money, and refers to an original already owned by the same commerce account. Add109to allow only this fully proved same-owner path; preserve existing-owner links, per-intent tokens, financial and timing checks. Do not grant Family manually or rebuild the order.
+- Preview then production migration and authority probes pass. Owner reports subscribed after restore; the exact original pending order independently reads completed/paid_reconciled and active with a signed applied event. Resubmission/TestFlight remain held.
+
+## 2026-11-05 — Extend Rillora customer login with contextual protection
+
+- Owner asks for longer or persistent login with network/IP safety conditions and explicitly selects Rillora App/Web users, not provider management sessions.
+- Agent proposes a bounded30-dayabsolute/7-dayidle ordinary session with same-account verification for unfamiliar network/client context and separately retained sensitive-action checks. This is an implementation direction, not a deployed result or approval to use paid Auth0 features, static administrator keys, guessed IP headers, endless credentials or revived revoked sessions.
+
+## 2026-11-06 — Deploy bounded customer sessions and resume App Review recheck
+
+- Implement the Owner-requested longer Rillora user login with30-dayabsolute/7-dayidle limits only for freshly verified, context-bound new sessions. Preserve legacy expiry, hash-only storage, same-account confirmation, sensitive-action proof and revocation. Network metadata requires an environment-specific CloudFront origin proof; the API holds only its verifier. No paid Auth0 feature or permanent provider credential is added.
+- Keep the accepted c983dc26 registration/subscription source immutable. Version the informational Cookie Notice independently and route current Cookie pages to it, with identical Chinese/English scope. The old acceptance digest is not the new notice digest.
+- Preview110 and authority checks precede production110; context-aware API and edge deploy with issuance off, old instances drain, then issuance is enabled. Both environments and exact Web/notice bytes are read back. Rollback below context-aware code must first revoke long sessions.
+- Configuration and tests are not a new real-user login or natural30-day observation. Native18and actual109repurchase/restore evidence stay unchanged. Owner then requests a careful App Review recheck; reconcile the live portal, exact candidate, reviewer state and materials while preserving no resubmission/TestFlight.
+
+## 2026-11-06 — Exact18review preparation and honest remaining gates
+
+- Owner requests another careful App Review check. Reuse exact18-r2; its Apple validation and upload are preparation, not approval or submission. Confirm manual internal distribution and keep18unassigned to testers. Selecting/saving18in the version draft must still be independently re-read.
+- Repair the newly found reviewer-guard identity-check boundary with the shared service; deterministic old503/new200regression and39checks pass. Deploy only the two changed API modules, preserving existing long-session policy, schema, catalog and data.
+- Use a source-matched simulator layout reference with explicit provenance, separate from actual18device transaction evidence. Do not claim entire test-host binary/catalog identity or a fresh purchase.
+- Signed Sandbox renewal is still observed; historical expiry cannot be reported as current expiry. Keep the final expired-demo check open without fake entitlement changes or another purchase. Apple portal authentication actually fails during save readback; preserve its handoff and finish independent work. No resubmission/TestFlight follows.
+
+## 2026-11-06 — Complete authenticated review preparation without resubmission
+
+- Owner completes the pending Apple login. Preserve the existing hold: edit and verify the draft/materials, but do not click Update Review or Resubmit, distribute TestFlight, replay a purchase, or change prices/data.
+- The yearly IAP review image and notes are locked at Ready for Review. Agent chooses the ordinary editable app-version attachment and explicit provenance note instead of bypassing controls, removing the product or canceling the original submission. The old IAP-specific image remains historical; the new attachment is source-matched layout evidence, not a new shipping-binary capture or transaction.
+- Add an explicit Apple standard EULA link to both store descriptions while retaining the existing standard-license selection and Rillora terms. Current source metadata must record rejected14 and saved-draft18 separately, preserving the old dated provider observation.
+- A new bounded, read-only inspection confirms the signed Sandbox expiry has now been applied. This closes the earlier current-expiry uncertainty, not every future payment scenario or a guarantee of App Review approval. No further Owner authentication is requested when the existing AWS console session can refresh the CLI.
+
+## 2026-11-06 — Owner authorizes exact18 resubmission with annual subscription and group
+
+- Owner explicitly requests resubmitting1.0(18), the yearly subscription and its subscription group together, preserving manual release and no TestFlight, and maintaining reviewer/service validity. This supersedes only the previous resubmission hold.
+- After current identity/service/expiry-monitor checks, update the existing submission and resubmit once. Apple independently reads back all three Waiting for Review at14:16 Hong Kong; a separate version read confirms manual release. No approval, public release, repeat upload or TestFlight distribution is inferred.
+- The provider reports the earlier local maintenance task missing. Restore standing account/service upkeep under the current maintenance instruction, with the existing14-day threshold and maximum31-day same-identity renewal. It is not a watcher for this submission's completion; no first scheduled run or renewal is claimed from creation. Existing cloud health and expiry alerts remain independent.

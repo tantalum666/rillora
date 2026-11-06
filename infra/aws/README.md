@@ -3,7 +3,20 @@
 This directory defines synthetic staging, independent production and public operations
 in AWS Frankfurt (`eu-central-1`). The deployed revision is evidence only for the
 exact resources and checks recorded in `docs/handoff.md`; staging is not approved
-for external private plans and production customer traffic remains closed.
+for external private plans. Older closed/review descriptions below are dated checkpoints,
+not the current production traffic state.
+
+## November4 cost controls and isolated worker repair
+
+Both cluster definitions now disable optional Container Insights, retaining standard
+ECS metrics and existing business alarms. The deployed-template update changed only
+that setting; dependent policy reevaluations retained the exact same grants. A later
+worker-only image update fixes database TLS context churn in Preview and production;
+normal API tasks, data, scope and commerce configuration remain unchanged.
+See [current execution and growth plan](../../docs/aws-optimization-20261104.md).
+Preview is still online: do not describe on-demand sleep or the projected73/66USD
+budgets as deployed. Future sleep needs leases, queue/callback handling, monitor
+expectations, restart controls and safe resume; a single RDS stop auto-expires in7days.
 
 ## October1–2 restricted acceptance rollout
 

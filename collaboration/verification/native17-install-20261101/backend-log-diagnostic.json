@@ -1,0 +1,21 @@
+{
+  "at": "2026-10-31T17:28:04.915288+00:00",
+  "awsSessionValid": true,
+  "newLoginRequested": false,
+  "query": "Current production task log group, bounded45minute POST window",
+  "statusCounts": {
+    "401": 9,
+    "201": 1,
+    "200": 3,
+    "404": 3,
+    "403": 1,
+    "409": 5
+  },
+  "conflictResponseTimeMsRange": [
+    17,
+    27
+  ],
+  "routeOrUserCorrelationAvailable": false,
+  "specificErrorCodeLogged": false,
+  "conclusion": "Business conflicts occur in the same window, but this does not identify the exact user request or cause. Native Chinese error mapping masks unknown purchase codes; awaiting the existing English server message without changing order state."
+}

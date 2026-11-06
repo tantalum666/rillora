@@ -1,0 +1,24 @@
+{
+  "attempts": [
+    {
+      "stage": "local automation inventory",
+      "failure": "System Python does not include tomllib; used bounded text history to resolve the existing id."
+    },
+    {
+      "stage": "service receipt helper",
+      "failure": "Initial helper expected an unprefixed CloudFormation expiry key. Read actual named key and corrected helper, without changing cloud configuration."
+    },
+    {
+      "stage": "Auth0 status",
+      "failure": "Management session expired; existing SSO restored equivalent CLI authorization; no Owner login or password change."
+    },
+    {
+      "stage": "existing local automation",
+      "failure": "Provider update reported missing automation; recreated the standing account/service maintenance schedule under current Owner instruction."
+    },
+    {
+      "stage": "Auth0 filtered lookup",
+      "failure": "last_password_reset is not an allowed users-by-email projection. Retried with supported fields and read the exact user endpoint; successful, no account change."
+    }
+  ]
+}

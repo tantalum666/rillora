@@ -1,0 +1,77 @@
+{
+  "capturedFrom": "2026-10-31T00:06:17.952794+00:00",
+  "capturedThrough": "2026-10-31T00:06:22.748624+00:00",
+  "workFiles": 665,
+  "uniqueRawObjects": 528,
+  "workBytes": 148595462,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-057.tar.zst.age",
+      "sha256": "8244a20cabca64dcf839003fec14c11aa51a423a59da7690460a3afb5cf45988",
+      "bytes": 44567362,
+      "plainBytes": 110993998,
+      "uniqueObjects": 528
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/release-product-audit-20261031/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-056",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/derived-release",
+      "reason": "reproducible_xcode_cache"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/final-test-publication-corrected",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/final-test-publication",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/pre-test-publication",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/pre-build-publication",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/availability-fixture-publication",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-release-product-audit-20261031/preservation-plan.json",
+      "reason": "derived selection receipt regenerated after file capture plan"
+    },
+    {
+      "path": "output/release/rillora-release-product-audit-20261031/development-extracted",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/release/rillora-release-product-audit-20261031/web-preview/speech",
+      "reason": "fixed vendor model/runtime downloads, reproducible from source manifest and recorded deployed SHA256"
+    },
+    {
+      "path": "output/release/rillora-release-product-audit-20261031/web-production/speech",
+      "reason": "fixed vendor model/runtime downloads, reproducible from source manifest and recorded deployed SHA256"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "Current repair QA, failed/passed tests, local synthetic and public screenshots, isolated16source/archive/development and AppStore exports, exact App/Preview/WWW publication bundles excluding pinned speech model downloads. Public legal facts and device-bound profiles remain encrypted-only. Generated duplicates and build caches excluded.",
+  "boundary": "No credentials, database backups, raw device/provider/authentication state, whole-desktop captures, machine VM disks or dependency caches.16installed, no new native sign-in/purchase result. Cloud rollout awaits authentication; resubmission/TestFlight held. Old1-56unchanged; selected safe receipts remain ordinary Git."
+}

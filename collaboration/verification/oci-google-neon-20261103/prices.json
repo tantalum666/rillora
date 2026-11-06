@@ -1,0 +1,131 @@
+{
+  "checkedAt": "2026-11-03T18:32:20.791399+08:00",
+  "currency": "USD",
+  "aws": {
+    "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonVPC/current/eu-central-1/index.json",
+    "immutableSource": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonVPC/20261103000947/eu-central-1/index.json",
+    "publicationDate": "2026-11-03T00:09:47Z",
+    "region": "eu-central-1",
+    "rows": [
+      {
+        "sku": "P6D6UQPC87KFKK3N",
+        "attributes": {
+          "servicecode": "AmazonVPC",
+          "location": "EU (Frankfurt)",
+          "locationType": "AWS Region",
+          "group": "VPCPublicIPv4Address",
+          "groupDescription": "Hourly charge for In-use Public IPv4 Addresses",
+          "usagetype": "EUC1-PublicIPv4:InUseAddress",
+          "operation": "",
+          "regionCode": "eu-central-1",
+          "servicename": "Amazon Virtual Private Cloud"
+        },
+        "dimension": {
+          "rateCode": "P6D6UQPC87KFKK3N.JRTCKXETXF.6YS6EN2CT7",
+          "description": "$0.005 per In-use public IPv4 address per hour",
+          "beginRange": "0",
+          "endRange": "Inf",
+          "unit": "Hrs",
+          "pricePerUnit": {
+            "USD": "0.0050000000"
+          },
+          "appliesTo": []
+        }
+      },
+      {
+        "sku": "DZS88SBJ6FBS328N",
+        "attributes": {
+          "servicecode": "AmazonVPC",
+          "location": "EU (Frankfurt)",
+          "locationType": "AWS Region",
+          "endpointType": "PrivateLink",
+          "group": "VPCE:VpcEndpoint",
+          "groupDescription": "Hourly charge for VPC Endpoints",
+          "usagetype": "EUC1-VpcEndpoint-Hours",
+          "operation": "VpcEndpoint",
+          "regionCode": "eu-central-1",
+          "servicename": "Amazon Virtual Private Cloud"
+        },
+        "dimension": {
+          "rateCode": "DZS88SBJ6FBS328N.JRTCKXETXF.6YS6EN2CT7",
+          "description": "$0.012 per VPC Endpoint Hour",
+          "beginRange": "0",
+          "endRange": "Inf",
+          "unit": "Hrs",
+          "pricePerUnit": {
+            "USD": "0.0120000000"
+          },
+          "appliesTo": []
+        }
+      },
+      {
+        "sku": "YJUYE6HEQBVWDJJ8",
+        "attributes": {
+          "servicecode": "AmazonVPC",
+          "location": "EU (Frankfurt)",
+          "locationType": "AWS Region",
+          "endpointType": "IPsec",
+          "usagetype": "EUC1-VPN-Usage-Hours:ipsec.1",
+          "operation": "CreateVpnConnection",
+          "regionCode": "eu-central-1",
+          "servicename": "Amazon Virtual Private Cloud",
+          "vpnType": "VPN Standard (1.25 Gbps)"
+        },
+        "dimension": {
+          "rateCode": "YJUYE6HEQBVWDJJ8.JRTCKXETXF.6YS6EN2CT7",
+          "description": "$0.05 per VPN Connection-Hour",
+          "beginRange": "0",
+          "endRange": "Inf",
+          "unit": "Hrs",
+          "pricePerUnit": {
+            "USD": "0.0500000000"
+          },
+          "appliesTo": []
+        }
+      }
+    ]
+  },
+  "googleVpn": {
+    "source": "https://cloud.google.com/vpn/pricing",
+    "selectedRegion": "europe-west3",
+    "method": "Official rendered table, explicit region selected",
+    "usdPerTunnelHour": "0.06",
+    "defaultIowaUsdPerTunnelHour": "0.05",
+    "activeTunnelPublicIpExtraCharge": false,
+    "screenshot": "google-vpn-frankfurt.png"
+  },
+  "googleRun": {
+    "source": "https://cloud.google.com/run/pricing",
+    "selectedRegion": "europe-west3",
+    "method": "Official rendered tables, explicit region selected",
+    "instanceCpuPerSecond": "0.0000216",
+    "instanceMemoryPerGiBSecond": "0.0000024",
+    "requestCpuPerSecond": "0.0000336",
+    "requestMemoryPerGiBSecond": "0.0000035",
+    "freeTier": "Billing account shared; monetary discount valued at Tier1, not local-price seconds"
+  },
+  "oracle": {
+    "source": "https://www.oracle.com/cloud/price-list/",
+    "method": "Official rendered table after dynamic values loaded; USD selected",
+    "a1OcpuHour": "0.01",
+    "a1MemoryGbHour": "0.0015",
+    "blockStorageGbMonth": "0.0255",
+    "blockVpuGbMonth": "0.0017",
+    "balancedVpus": 10,
+    "freeEligibility": "Not checked for an Owner tenancy; general docs and paid-tenancy footnote differ"
+  },
+  "neon": {
+    "source": "https://neon.com/docs/introduction/plans",
+    "method": "Official Neon documentation connector",
+    "scaleCuHour": "0.222",
+    "launchCuHour": "0.106",
+    "dataGbMonth": "0.35",
+    "historyGbMonth": "0.20",
+    "privateTransferGb": "0.01",
+    "defaultPaidHistoryDays": 1,
+    "requiredHistoryDays": 7,
+    "privateNetworkingPlan": "Scale organization",
+    "currentFrankfurtServiceNames": 8,
+    "oneServiceSubsetConfirmed": false
+  }
+}

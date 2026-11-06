@@ -1,0 +1,19 @@
+{
+  "reason": "Initial publication failed because adding a test target moved two already approved public Auth0 client-ID declarations. No secret or exception rule changed.",
+  "solution": "Generate an independent local-only UI project from the existing Preview target, preserving release project bytes.",
+  "unchanged": {
+    "apps/ios/project.yml": true,
+    "apps/ios/Rillora.xcodeproj/project.pbxproj": true,
+    "apps/ios/Rillora.xcodeproj/xcshareddata/xcschemes/RilloraComponentPreview.xcscheme": true,
+    "config/repository-scan-exceptions.json": true
+  },
+  "firstFailure": "final-local-publication/source-scan.json",
+  "candidate18RuntimeAndSignaturesUnchanged": true,
+  "independentProjectBuildAndInteraction": "passed1case, no product runtime changed",
+  "generatorFailuresRetained": [
+    "quiet dump required explicit file output",
+    "generated Info.plist path needed project-relative handling",
+    "original preview Info.plist must be excluded from copied resources"
+  ],
+  "defaultRootGenerationPreservedRelease": true
+}

@@ -1,0 +1,124 @@
+TAP version 13
+# Subtest: every public semantic message has complete English and Chinese forms and matching interpolation
+ok 1 - every public semantic message has complete English and Chinese forms and matching interpolation
+  ---
+  duration_ms: 2.725708
+  type: 'test'
+  ...
+# Subtest: all public UI and example-data message references resolve in both languages
+ok 2 - all public UI and example-data message references resolve in both languages
+  ---
+  duration_ms: 6.493083
+  type: 'test'
+  ...
+# Subtest: demonstration content is translated before rendering without widening recipient visibility
+ok 3 - demonstration content is translated before rendering without widening recipient visibility
+  ---
+  duration_ms: 0.341833
+  type: 'test'
+  ...
+# Subtest: shared-count grammar and name interpolation form complete locale-specific sentences
+ok 4 - shared-count grammar and name interpolation form complete locale-specific sentences
+  ---
+  duration_ms: 0.243666
+  type: 'test'
+  ...
+# Subtest: display locale never converts or changes the locked Web annual price and plan limits
+ok 5 - display locale never converts or changes the locked Web annual price and plan limits
+  ---
+  duration_ms: 1.177958
+  type: 'test'
+  ...
+# Subtest: legal references follow the selected language while third-party licence originals remain intact
+ok 6 - legal references follow the selected language while third-party licence originals remain intact
+  ---
+  duration_ms: 0.59225
+  type: 'test'
+  ...
+# Subtest: both public headers keep language selection before the far-right appearance control
+ok 7 - both public headers keep language selection before the far-right appearance control
+  ---
+  duration_ms: 0.597958
+  type: 'test'
+  ...
+# Subtest: Chinese sample download stays synthetic and separate from real export contracts
+ok 8 - Chinese sample download stays synthetic and separate from real export contracts
+  ---
+  duration_ms: 0.975625
+  type: 'test'
+  ...
+# Subtest: public discovery metadata and original education are complete in both languages
+ok 9 - public discovery metadata and original education are complete in both languages
+  ---
+  duration_ms: 13.154834
+  type: 'test'
+  ...
+# Subtest: canonical language links preserve fragments without rewriting external or private destinations
+ok 10 - canonical language links preserve fragments without rewriting external or private destinations
+  ---
+  duration_ms: 0.558625
+  type: 'test'
+  ...
+# Subtest: article metadata matches visible language, honest dates, sources and related public routes
+ok 11 - article metadata matches visible language, honest dates, sources and related public routes
+  ---
+  duration_ms: 1.601916
+  type: 'test'
+  ...
+# Subtest: edge chooses locale-specific cache objects and preserves old public and guide bookmarks
+ok 12 - edge chooses locale-specific cache objects and preserves old public and guide bookmarks
+  ---
+  duration_ms: 0.690708
+  type: 'test'
+  ...
+# Subtest: built HTML has actual locale-specific body, metadata and no blocked inline styles
+ok 13 - built HTML has actual locale-specific body, metadata and no blocked inline styles
+  ---
+  duration_ms: 15.496667
+  type: 'test'
+  ...
+# Subtest: public route identifiers match the private catalog without shipping guide bodies
+ok 14 - public route identifiers match the private catalog without shipping guide bodies
+  ---
+  duration_ms: 1.232208
+  type: 'test'
+  ...
+# Subtest: public routing serves only public pages and fixed asset paths
+ok 15 - public routing serves only public pages and fixed asset paths
+  ---
+  duration_ms: 0.536916
+  type: 'test'
+  ...
+# Subtest: public guide bookmarks continue through sign-in on the chosen app only
+ok 16 - public guide bookmarks continue through sign-in on the chosen app only
+  ---
+  duration_ms: 0.19425
+  type: 'test'
+  ...
+# Subtest: public routing rejects writes without an API or account fallback
+ok 17 - public routing rejects writes without an API or account fallback
+  ---
+  duration_ms: 0.059458
+  type: 'test'
+  ...
+# Subtest: guide redirects retain only an explicitly supported language enum
+ok 18 - guide redirects retain only an explicitly supported language enum
+  ---
+  duration_ms: 0.077292
+  type: 'test'
+  ...
+# Subtest: guide redirects pass only a safe automatic hint and explicit selection wins
+ok 19 - guide redirects pass only a safe automatic hint and explicit selection wins
+  ---
+  duration_ms: 0.121625
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 118.166333

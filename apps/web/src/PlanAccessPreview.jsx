@@ -30,7 +30,7 @@ export function PlanAccessPreview({ commerce, onAccessChanged, returnedFromCheck
           : <p>{t("workspace.access.priceUnavailable")}</p>}
         {offer && <small>{t("workspace.access.webPrice")}</small>}
       </div>
-      {commerce.validationOnly
+      {commerce.webBillingEnvironment === 'test' && commerce.validationOnly
         ? <TestBillingControls commerce={commerce} onAccessChanged={onAccessChanged} />
         : <ProductionBillingControls commerce={commerce} onAccessChanged={onAccessChanged} returnedFromCheckout={returnedFromCheckout} />}
     </section>

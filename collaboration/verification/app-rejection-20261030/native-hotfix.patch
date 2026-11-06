@@ -1,0 +1,88 @@
+diff --git a/apps/ios/Rillora/Core/Commerce/CommerceStore.swift b/apps/ios/Rillora/Core/Commerce/CommerceStore.swift
+index 51f2f87ea..ac1595089 100644
+--- a/apps/ios/Rillora/Core/Commerce/CommerceStore.swift
++++ b/apps/ios/Rillora/Core/Commerce/CommerceStore.swift
+@@ -84,7 +84,10 @@ final class CommerceStore {
+         case "family": String(localized: "Family")
+         default: planCode
+         }
+-        return status?.validationOnly == true ? L10n.format("%1$@ · Test access", label) : label
++        // StoreKit's environment changes transaction verification, not the
++        // customer-facing plan name. Technical labels belong to diagnostics.
++        return storeKitTestEnvironment.isEnabled && status?.validationOnly == true
++            ? L10n.format("%1$@ · Test access", label) : label
+     }
+ 
+     var purchaseIsAvailable: Bool {
+diff --git a/apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift b/apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift
+index f4223b544..aa2ee9393 100644
+--- a/apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift
++++ b/apps/ios/Rillora/Core/Domain/ApplePurchaseModels.swift
+@@ -41,12 +41,15 @@ struct ApplePurchaseTerms: Codable, Equatable, Sendable {
+     let subscriptionTermsVersion: String
+     let refundPolicyVersion: String
+     let legalBundleSha256: String
++    static var current: Self {
++        Self(version: "family-annual-apple-20261009-1",
++             termsVersion: LegalAcceptanceProof.current.termsVersion,
++             subscriptionTermsVersion: "subscriptions-2026-08-27-1",
++             refundPolicyVersion: "refunds-2026-08-27-1",
++             legalBundleSha256: LegalAcceptanceProof.current.bundleSha256)
++    }
+     var isCurrent: Bool {
+-        version == "family-annual-apple-20261009-1"
+-            && termsVersion == LegalAcceptanceProof.current.termsVersion
+-            && legalBundleSha256 == LegalAcceptanceProof.current.bundleSha256
+-            && subscriptionTermsVersion == "subscriptions-2026-08-27-1"
+-            && refundPolicyVersion == "refunds-2026-08-27-1"
++        self == Self.current
+     }
+ }
+ 
+diff --git a/apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift b/apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift
+index 0ca54d273..6412dd801 100644
+--- a/apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift
++++ b/apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift
+@@ -32,10 +32,6 @@ struct ApplePurchaseSection: View {
+                     Text(String(localized: "App Store price is unavailable. Pull down to try again."))
+                         .font(.footnote).foregroundStyle(RilloraTheme.muted)
+                 }
+-                if purchase.environment == .sandbox {
+-                    Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
+-                        .font(.footnote).foregroundStyle(RilloraTheme.muted)
+-                }
+                 if let subscription {
+                     Label(String(localized: "Subscribed"), systemImage: "checkmark.circle.fill")
+                         .font(.subheadline).foregroundStyle(RilloraTheme.sage)
+diff --git a/apps/ios/RilloraTests/AppleStoreKitClientTests.swift b/apps/ios/RilloraTests/AppleStoreKitClientTests.swift
+index 7f7c497ac..6a9d17ff8 100644
+--- a/apps/ios/RilloraTests/AppleStoreKitClientTests.swift
++++ b/apps/ios/RilloraTests/AppleStoreKitClientTests.swift
+@@ -37,6 +37,14 @@ final class AppleStoreKitClientTests: XCTestCase {
+             )
+         }
+ 
++        session.resetToDefaultState()
++        // Reset removes property overrides, including dialog suppression. Apply
++        // the deterministic test settings afterwards, before loading products.
++        session.disableDialogs = true
++        session.clearTransactions()
++        session.storefront = "USA"
++        defer { session.clearTransactions() }
++
+         let client = AppleStoreKitClient(
+             expectedSubscriptionGroupID:
+                 RilloraStoreKitCatalog.xcodeLocalFamilySubscriptionGroupID
+@@ -53,12 +61,6 @@ final class AppleStoreKitClientTests: XCTestCase {
+             )
+         }
+ 
+-        session.disableDialogs = true
+-        session.resetToDefaultState()
+-        session.clearTransactions()
+-        session.storefront = "USA"
+-        defer { session.clearTransactions() }
+-
+         XCTAssertTrue(
+             products.allSatisfy {
+                 $0.subscriptionGroupID

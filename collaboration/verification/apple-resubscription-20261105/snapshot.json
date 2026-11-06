@@ -1,0 +1,42 @@
+{
+  "capturedFrom": "2026-11-05T14:49:15.643903+00:00",
+  "capturedThrough": "2026-11-05T14:49:15.779355+00:00",
+  "workFiles": 45,
+  "uniqueRawObjects": 45,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-062.tar.zst.age",
+      "sha256": "ade2030ca1d7b52b2064375f57c492b8359aae83ca26579feb7cf9fbbbbf8059",
+      "bytes": 20669,
+      "plainBytes": 68966,
+      "uniqueObjects": 45
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/apple-resubscription-20261105/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-061",
+      "reason": "immutable previous work; no recapture or repeated download"
+    },
+    {
+      "path": ".local-secrets and QA/private",
+      "reason": "raw device/auth/provider state, credentials, cloud capabilities and disposable local database"
+    },
+    {
+      "path": "output/qa/rillora-native18-install-20261105/private",
+      "reason": "private state or reproducible publication/build cache"
+    },
+    {
+      "path": "output/qa/rillora-native18-install-20261105/archive-seal.log",
+      "reason": "capture bookkeeping or private provider response"
+    },
+    {
+      "path": "output/qa/rillora-native18-install-20261105/preserve-payment-work.py",
+      "reason": "capture bookkeeping or private provider response"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "boundary": "Exact same18IPA reused from60. Native delivery plus server109repair, original failures and passes, safe same-order Sandbox facts; raw private device/auth/cloud state excluded. No TestFlight/resubmission. Session-duration follow-up not implemented in this capture."
+}

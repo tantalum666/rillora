@@ -1,7 +1,7 @@
 # Rillora 第31—35组安全边界修复
 
 Status: OCTOBER11 SOURCE CHECKPOINT PRESERVED / OCTOBER12 DEPLOYMENT RECORDED SEPARATELY
-Last updated: 2026-10-12 (Asia/Hong_Kong)
+Last updated: 2026-11-06 (evidence-link correction only; original test/deployment dates retained)
 
 后续状态（2026-10-12）：Owner已授权并完成[实际安全切换](security-rollout-20261012.md)，含两库103、隔离运行时／worker／日志broker及9份具名本机凭据迁移。以下保留October11源码阶段的原日期、测试分母和当时未部署边界，不再作为线上冻结指令；当前唯一下一步见handoff。
 
@@ -82,7 +82,7 @@ API最初全量失败、历史邀请兼容修正、旧Keychain原型和前两次
 5. 本机凭据另行安装签名助手、本人确认非秘密probe后，逐个受支持文件计划／迁移／读回；不擅自清除备份、轮换provider或迁移归档身份。
 
 结果是这五组具体路径的源码修复与本地验证，不是线上隔离生效、全进程失陷防御、旧副本擦除或新的全面审计结论。
-Git与证据保存状态见[当前交接](handoff.md)和[当次QA](../output/qa/rillora-security-remaining-five-20261011/README.md)。
+Git与证据保存状态见[当前交接](handoff.md)和[保留的当次QA记录](../collaboration/verification/security-remaining-five-20261011/README.md)。
 
 ## Git交付完成
 

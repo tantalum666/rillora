@@ -1,20 +1,28 @@
-# Rillora 当前交接
+# Rillora Current Handoff
 
-Status: MULTI-TYPE HEALTHKIT DIRECTION RESEARCHED / WATCH COMPANION RECOMMENDED / NO RUNTIME CHANGE
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Status: REVIEW18 / ANNUAL SUBSCRIPTION / GROUP WAITING FOR REVIEW
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
-## 当前任务与已完成
+## Current task
 
-Owner要求健康数据范围不只心率，并询问是否做watchOS。[当前方案](healthkit-multisignal-watchos-20261024.md)已按最新Apple文档和实际源码复核：只读可涵盖多类；iPhone能读同步记录，基本通知可转到手表。建议先心率／活动／可选睡眠与清楚的数据状态，再独立提醒闭环，之后提供轻量手表回应。具体分批和Watch开发仍是建议，本轮没有开始代码或个人采样。
+Owner explicitly authorized resubmitting1.0(18), the yearly subscription and its group together, retaining manual release and no TestFlight, and maintaining reviewer/service validity. Submission is complete and independently read back. The prior resubmission hold is superseded; TestFlight and automatic-public-release boundaries remain. [Previous handoff](handoff-history-20261106-before-resubmission.md) is historical.
 
-[前一轮Git交接](handoff-history-20261024-before-health-scope.md)转HISTORICAL。PR9已合并，main a985c3754包含最后元数据；当时32个远端分支头已包含、开放PR0，三项云端工作流停用、无新作业。本轮不重复Git整合、应用测试、部署或本人验证。
+## Completed
 
-## 证据边界与保留项
+- Apple accepted the resubmission on November6 at14:16 Hong Kong. Original submission6537a10c-38f2-425e-8b8e-c76e5fa730b1 shows all three Waiting for Review: iOS1.0(18), Rillora Family Yearly and Rillora Family group22325627. Refresh verified the result; a separate version page confirmed18 and manual release. No repeat upload or TestFlight assignment/distribution.
+- Exact18-r2 packaging/upload, source isolation, real same-order purchase/reconciliation/restore and signed November6expiry retain their dated evidence. The current layout reference and final3,557-character notes remain attached. The locked IAP-specific14image was not replaced; its historical scope is explicitly separated from the current version attachment.
+- Fresh Auth0 user read confirms the dedicated reviewer exists, is unblocked and has its password identity, with no reset or MFA. Original SSO refreshed the expired management CLI without Owner authentication or changed credentials. Reviewer purchase eligibility remains through2026-12-04T12:00Z.
+- API and cloud-monitor expiry match; production/operations stacks are stable; public health invocation failed0, readiness200, unauthenticated session401. The existing15-minute monitor is enabled with one confirmed alert subscriber. No redeployment or cloud-policy change.
+- The earlier local maintenance task was actually missing. Recreated standing account/service upkeep is ACTIVE, daily09:00HK,14-day early-maintenance threshold and maximum31-day same-identity renewal. It does not watch review completion, submit, purchase or distribute TestFlight. First scheduled execution has not occurred; local execution requires the Mac, while cloud monitoring is independent.
 
-实际健康源码仍只有前台24小时／200条心率切片；合成测试与入口证据沿用原检查点。其他指标、个人基线、提醒、Watch App、真实系统健康／语音／硬件保护没有完成。心率缺失／活动减少／未回复不能充当死亡事实，健康及派生状态不进入资料解锁。Apple不给概念预审并非用途批准。
+## Evidence and boundaries
 
-两项Duo横屏UI失败、办理包材料装配等既有未完成项继续保留。当前审核、线上数据、收费、定价、FanPass、TestFlight和系统／Xcode升级暂缓保持。未来长文字客户端部署仍须兼容API先行。所有检查继续本机执行。
+Current report: [resubmission and maintenance](app-review-resubmission-20261106.md). QA: output/qa/rillora-review18-resubmission-20261106. Safe receipts: collaboration/verification/review18-resubmission-20261106. Raw account/auth/provider material is private. No cloud CI or subagent.
 
-## 唯一下一步
+[User sessions](longer-user-sessions-20261106.md) remain deployed with30-dayabsolute/7-dayidle contextual protection; old sessions were not extended. Reviewer identity-guard correction remains on266b79fb in both environments. Existing tests are inherited from e363a34c0 and earlier native checkpoints, not rerun. Previous code/archives63–64 and remote verification remain unchanged; the materials checkpoint is4d60bf118. Current submission metadata and safe receipts use the exact-main local publication gate and ordinary Git preservation only.
 
-后续开发先把下一版单类型reader扩为按用途／类型选择的健康读取接口，落实心率、活动与可选睡眠的数据状态、来源／重复处理和授权缺失测试；不以watchOS作为前置依赖，不在此过程中增加自动披露。手表配套的具体功能与分发按本轮建议另行推进，当前不改变审核包。
+The known Sandbox order was expired_read_only at the immediately preceding same-day inspection, with signed expiry applied and same-owner token matched. No new purchase, restore, expiry simulation, data migration, price change or FanPass action occurred. Next-version HealthKit/Watch/Duo/content remains excluded from18.
+
+## Single next step
+
+Handle the next actual Apple review result when it arrives, preserving manual release and the TestFlight hold. Account/service maintenance continues within the existing bounded scope; do not repeat successful upload, migration, purchase or archived tests, and do not treat an approval as an automatic public release.

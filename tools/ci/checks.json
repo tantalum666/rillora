@@ -138,6 +138,11 @@
         "name": "Health read-only module",
         "cwd": ".",
         "command": "swift test --package-path apps/ios/NextVersionHealth"
+      },
+      {
+        "name": "Check-in and Watch message module",
+        "cwd": ".",
+        "command": "swift test --package-path apps/ios/NextVersionCheckIn"
       }
     ]
   }

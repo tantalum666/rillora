@@ -1,0 +1,30 @@
+{
+  "at": "2026-10-30T20:58:08.198633+00:00",
+  "currentMigrationSha256": "4b048b55ecfe5bab7c425d22a9ad4c03f75c32db43323ddeeaaba039b84187f2",
+  "firstCommittedSha256": "4b048b55ecfe5bab7c425d22a9ad4c03f75c32db43323ddeeaaba039b84187f2",
+  "gitMigrationUnchangedSinceFirstCommit": true,
+  "localDatabases": [
+    {
+      "database": "continuity_production_commerce_test",
+      "name": "0108_legacy_content_workspace.sql",
+      "checksum": "edbb0d61fe823fed6252a7db66e2b279c37e2fd6a47d26a01589c844baf37686",
+      "appliedAt": "2026-10-22T18:37:11.318498+08:00"
+    },
+    {
+      "database": "continuity_apple_review_test",
+      "name": "0108_legacy_content_workspace.sql",
+      "checksum": "edbb0d61fe823fed6252a7db66e2b279c37e2fd6a47d26a01589c844baf37686",
+      "appliedAt": "2026-10-22T18:37:34.081244+08:00"
+    }
+  ],
+  "preservedArtifacts": [],
+  "productionDatabaseVerified": false,
+  "priorProductionPostMigrationRecord": [
+    {
+      "name": "0108_legacy_content_workspace.sql",
+      "checksum": "4b048b55ecfe5bab7c425d22a9ad4c03f75c32db43323ddeeaaba039b84187f2"
+    }
+  ],
+  "priorProductionChecksumMatchesCurrent": true,
+  "evidenceBoundary": "Historical actual production post-migration receipt; no new cloud database read or migration"
+}

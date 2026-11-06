@@ -32,10 +32,6 @@ struct ApplePurchaseSection: View {
                     Text(String(localized: "App Store price is unavailable. Pull down to try again."))
                         .font(.footnote).foregroundStyle(RilloraTheme.muted)
                 }
-                if purchase.environment == .sandbox {
-                    Label(String(localized: "Apple test purchase · No charge"), systemImage: "testtube.2")
-                        .font(.footnote).foregroundStyle(RilloraTheme.muted)
-                }
                 if let subscription {
                     Label(String(localized: "Subscribed"), systemImage: "checkmark.circle.fill")
                         .font(.subheadline).foregroundStyle(RilloraTheme.sage)
@@ -56,7 +52,7 @@ struct ApplePurchaseSection: View {
                             .frame(maxWidth: .infinity)
                     }
                     .buttonStyle(RilloraPrimaryActionButtonStyle())
-                    .disabled(purchase.busy || displayedQuote == nil)
+                    .disabled(purchase.busy || displayedQuote == nil || purchase.purchaseBlockedByAccount)
                     .accessibilityIdentifier("apple-purchase.subscribe")
                     if displayedQuote == nil, purchase.catalogProduct != nil, !purchase.isLoadingQuote {
                         Text(String(localized: "Purchases are temporarily unavailable. Pull down to try again."))
@@ -73,7 +69,10 @@ struct ApplePurchaseSection: View {
             }
             .padding(.vertical, 8)
             Button {
-                Task { await purchase.restore() }
+                Task {
+                    if purchase.pending == nil { await purchase.restore() }
+                    else { await purchase.checkPendingPurchase() }
+                }
             } label: {
                 Label(purchase.pending == nil ? String(localized: "Restore purchases") : String(localized: "Check pending purchase"), systemImage: "arrow.clockwise")
             }
@@ -87,11 +86,19 @@ struct ApplePurchaseSection: View {
     }
 
     @ViewBuilder private var policyLinks: some View {
+        // Automatic Form link styles can make the entire containing row tappable,
+        // including the disabled Subscribe area. Each policy owns only its label.
         Link(String(localized: "Terms"), destination: RilloraLegalURLs.subscriptions)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.terms")
         Link(String(localized: "Privacy"), destination: RilloraLegalURLs.privacy)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.privacy")
         Link(String(localized: "Refunds"), destination: RilloraLegalURLs.refunds)
             .fixedSize().frame(minHeight: 44)
+            .buttonStyle(.borderless)
+            .accessibilityIdentifier("apple-purchase.refunds")
     }
 }

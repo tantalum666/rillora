@@ -1,0 +1,56 @@
+{
+  "start": "2026-10-28T02:31:57.793291+00:00",
+  "end": "2026-11-04T02:31:57.793291+00:00",
+  "periodSeconds": 900,
+  "note": "maximum of individual15-minute p95 values, not pooled seven-day p95; mostly low-volume checks",
+  "metrics": {
+    "production.Count.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 207.0,
+      "sum": 6718.0
+    },
+    "production.5xx.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 1.0,
+      "sum": 1.0
+    },
+    "production.Latency.p95": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 3643.221085859158,
+      "sum": null
+    },
+    "production.IntegrationLatency.p95": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 3638.85469947361,
+      "sum": null
+    },
+    "preview.Count.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 10.0,
+      "sum": 2036.0
+    },
+    "preview.5xx.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 0.0,
+      "sum": 0.0
+    },
+    "preview.Latency.p95": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 771.2011529773758,
+      "sum": null
+    },
+    "preview.IntegrationLatency.p95": {
+      "status": "Complete",
+      "samples": 672,
+      "maximum": 734.9574540456082,
+      "sum": null
+    }
+  }
+}

@@ -31,7 +31,7 @@ export async function prerenderPublic(template) {
       const title = t(metadata.title), description = t(metadata.description);
       const alternates = PUBLIC_LOCALES.map(language => `<link rel="alternate" hreflang="${language}" href="${PUBLIC_ORIGIN}${publicPath(path, language)}" />`).join("\n");
       const article = publicArticles[path];
-      const structured = publicStructuredData(path, locale, t, { title, description, logoURL });
+      const structured = publicStructuredData(path, locale, t, { title, description, logoURL, imageURL });
       const head = `<link rel="canonical" href="${url}" />\n${alternates}\n<link rel="alternate" hreflang="x-default" href="${PUBLIC_ORIGIN}${publicPath(path, "en")}" />
 <meta property="og:type" content="${article ? 'article' : 'website'}" /><meta property="og:site_name" content="Rillora" />
 <meta property="og:title" content="${escape(title)}" /><meta property="og:description" content="${escape(description)}" />

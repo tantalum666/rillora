@@ -1,0 +1,59 @@
+{
+  "at": "2026-11-05T19:22:40.985218+00:00",
+  "sessionWork": "deployed and configuration/readiness verified",
+  "reviewFollowup": "active under later Owner request; separate QA directory",
+  "policy": {
+    "absoluteDays": 30,
+    "idleDays": 7,
+    "maxRememberedNetworks": 5,
+    "identityStatusRecheckHours": 4,
+    "sensitiveActionMinutes": 10,
+    "legacySessionPolicyChanged": false
+  },
+  "sourceTests": {
+    "initialCombinedApi": 51,
+    "finalApiIncrement": 35,
+    "infrastructure": 38,
+    "infrastructureIncrement": 19,
+    "webContracts": 34,
+    "syntheticChromeJourneys": 9,
+    "legalArtifact": 8,
+    "liveLegalResources": 18,
+    "liveLegalBrowserPages": 4
+  },
+  "boundaries": {
+    "newRealUserLoginObserved": false,
+    "thirtyDaysNaturallyElapsed": false,
+    "nativeDistribution": false,
+    "testFlight": false,
+    "resubmission": false,
+    "cloudCi": false,
+    "subagents": false
+  },
+  "image": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:4a2e086fe5e0acd1d6f106a0aa89522b3e093c2d686347b503e3c1338a7d2d6a",
+  "maintenanceImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:acebc21ebdba2a387fb76458bae8483ee140583481320b8c05c5bffedee1d5ad",
+  "acceptedLegalBundleSha256": "c983dc26bb372fba66b8df467d6e4c0ea1d85a2f4d94d86104b4bffa8d7f3ddb",
+  "existingReviewWindowAndPricesPreserved": true,
+  "focusSpecs": [
+    "docs/longer-user-sessions-20261106.md",
+    "docs/authentication-experience.md",
+    "docs/backend.md",
+    "docs/public-legal-pages.md",
+    "SECURITY.md"
+  ],
+  "decisionLog": "Append bounded implementation and deployment outcome; Owner requests review recheck next",
+  "failedAttemptsRetained": [
+    "SQL parameter type",
+    "column privileges",
+    "missing bundled Chromium; installed Chrome used",
+    "AWS CLI stdin/FIFO input",
+    "least-privilege GetDistributionConfig role",
+    "CFN implicit service-reference update review",
+    "default urllib user agent403; named readback user agent passed"
+  ],
+  "gitPublication": "pending final manifest and gate",
+  "sourceCommit": "e363a34c0f3d2c0acd12860ad093c4f0744e3ba5",
+  "sourceWorkSavedToGit": true,
+  "remoteArchiveVerified": true,
+  "noNewCloudRuns": true
+}

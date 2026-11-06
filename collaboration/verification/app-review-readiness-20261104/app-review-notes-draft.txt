@@ -1,0 +1,13 @@
+DRAFT — not saved to App Store Connect. Final candidate installation and matching screenshot remain pending.
+
+Rillora helps people record where important digital matters exist, their wishes and who may see each item. It does not store transaction passwords or recovery phrases and does not determine death or automatically transfer assets.
+
+Sign in using the existing dedicated account in the Sign-in Information fields. Core path: Profile > Sign in; open Matters to add or edit an item, or Profile > Plan & access for the annual Family subscription. Family provides up to five live recipients, shared reviews and one trusted contributor. The dedicated review account has an expired subscription so the full purchase flow can be reviewed.
+
+This submission and its annual subscription are configured for the United States and Hong Kong. The native purchase page loads the current StoreKit price for the storefront (US$119.99/year in the United States; HK$888/year in Hong Kong). Review purchases use Apple's Sandbox. The monthly product is retained only for historical purchases and restoration, with no new monthly offer. Restore purchases and Manage Apple subscription are on the same page. Billing does not trigger disclosure.
+
+Changes from rejected build14: removed customer-facing test labels; renewed and monitored the dedicated review purchase eligibility; fixed receipt-driven quote reloads and Form link hit targets that could disable Subscribe repeatedly or open policy links from a disabled area; improved English and Simplified Chinese purchase errors. Purchase ownership, signed server verification and exact amount/currency checks remain enforced.
+
+External services: Auth0 for hosted sign-in; AWS for the API and data; Resend for transactional email; Apple StoreKit for native subscription purchase and management. Stripe is used by the separate Web service. No special hardware, HealthKit or watchOS companion is required or included in this candidate.
+
+Evidence: real iPhone16ProMax/iOS27.2 build17 purchase and restore on November1, with matching server record; natural expiry confirmed by device and server on November2. Candidate18 local purchase/state tests pass, with exact-source UI interaction checks on iPadAir11M3/iOS27.0 and iPhone layout/iOS26.5 simulators. Replace this paragraph with the final18device readback after it is actually completed; do not claim the simulators reproduce iPadOS27.2.

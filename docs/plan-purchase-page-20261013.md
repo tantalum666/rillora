@@ -1,7 +1,11 @@
 # 套餐与权限：家庭版权益、年价与一个订阅操作
 
-Status: BOTH WEB CLIENTS DEPLOYED / SOURCE CI PASSED / REAL ACCOUNT BILINGUAL UI VERIFIED / NO TESTFLIGHT
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: SINGLE-ACTION CONTRACT ACTIVE / NATIVE INTERACTION FIX LOCALLY VERIFIED / NO TESTFLIGHT
+Last updated: 2026-11-05 (Asia/Hong_Kong)
+
+November5当前：[本轮原生修复](app-review-readiness-20261104.md)新增两条明确交互约束：后台交易核对只刷新权益及待处理状态，不反复清空已显示报价；禁用订阅按钮和价格文字不能触发同卡片的法律链接。主动刷新、商店变化及真正购买前继续重新核验价格／币种／条款，过期或不匹配时保持拒绝购买。只有用户明确点法律链接才导航，不增加确认框。中英文、iPad与iPhone点击回归通过，18-r2待手机最终读回；17真实购买／恢复／自然到期沿用。下面October13／31部署与开关状态保留为历史，当前以本段和release-readiness为准。
+
+HISTORICAL — October31补充：[正式产品复查](release-product-audit-20261031.md)保留以下权益、价格和单按钮合同。October15普通Web已开售；本轮修正测试环境／审核资格混用、普通套餐测试后缀和缺失状态反馈，尚未部署。只有实际Stripe测试环境中的有效验收身份显示不扣款说明，不能仅凭Apple审核资格选择测试UI。以下October13关闭开关、CI和部署结果保留原日期，不作为当前状态。
 
 ## 当前合同
 
@@ -13,7 +17,7 @@ Owner再次明确“就展示付费版的套餐然后和价格还有订阅按钮
 
 点击订阅才为当次可见报价提交独立接受记录，先重新核验购买路由和不可变价格／条款版本，再进入Stripe托管结账。页面加载、点击管理或价格读取均不产生接受；不再要求第二个勾选／确认页。原账号注册同意与历史收据保持。双击锁、相同尝试幂等键、可信跳转地址、服务器权益和单续订provider限制继续生效。
 
-## 价格、开关与原生边界
+## HISTORICAL — October13价格、开关与原生边界
 
 WebUSD88.99／年、Apple美国USD119.99及此前手机实际HKD888证据保持，Free1／Family5不变。普通客户新购开关仍关闭：卡片与“订阅家庭版”可见，但按钮禁用并给出简短真实说明。这个UI请求没有被当作正式开售授权或税务事实。
 

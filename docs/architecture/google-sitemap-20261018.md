@@ -1,7 +1,7 @@
 # Google 地图读取续修
 
 Status: DEPLOYED / GOOGLE BOTH LANGUAGE MAPS PROCESSED / 28 URLS DISCOVERED
-Last updated: 2026-10-22 (Asia/Hong_Kong)
+Last updated: 2026-10-26 (Asia/Hong_Kong)
 
 Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记录独立官网修复。生产应用、在审构建及MCP交付另看[正式接入](customer-mcp-20261018.md)。
 
@@ -28,3 +28,15 @@ Owner要求继续解决Google地图，并推进正式用户MCP；本文件只记
 Owner收到Google“网页会自动重定向”通知。实际读取域属性报告，3个示例仅为`http://www.rillora.xyz/`、`https://rillora.xyz/`、`http://rillora.xyz/`；均单次跳转到`https://www.rillora.xyz/`并200，没有循环或错误目标。HTTP www为301，根域两个入口是既有302。Search Console对正式HTTPS www首页明确显示“网址已收录到Google／网页已编入索引”。报告数据更新日为October16，不当作全站实时覆盖率。
 
 重新读取线上地图及其28个语言规范页面，均200、无跳转、无noindex且canonical精确指向自身。按[Google说明](https://support.google.com/webmasters/answer/7440203#page_with_redirect)，跳转入口本身不索引是预期，目标页面另行判断。因此保留现有统一入口，没有删除正确跳转、请求无意义的修正验证或重复提交地图；本次未发现需要发布的索引故障。未声明28篇全部已索引或已有排名。实际记录在`output/qa/rillora-web-content-20261022/provider-followup/`。
+
+## 2026-10-25 搜索展示邮件与实际数据
+
+[本次实读](../marketing/google-search-baseline-20261025.md)记录October22–25窗口的2次展示、0点击、平均排名8，全部展示在首页；唯一可见查询为带引号的品牌词1次。域属性索引总表仍停October16，不能据此给出全站现时覆盖率。另检查中英文清单，两页尚未索引；中文Google实时测试抓取／索引许可／canonical通过，未把技术资格当收录。没有重复提交地图、请求索引、改配置或部署。此前两地图成功解析28网址的检查点保留，实际流量／索引结果分别取证。
+
+## 2026-10-26 401邮件核查
+
+[本次诊断](../marketing/google-indexing-401-20261026.md)确认唯一401示例是受保护的`app.rillora.xyz/api/mcp`，Google记录从第三方MCP目录发现它；当前匿名请求401并明确缺少Authorization，资源发现200。地图不含接口，官网首页和地图28个规范页面均200且无noindex。保留正确OAuth拒绝，不提交修正验证或重新部署。总表现标October19：2已索引／3重定向／1受保护接口／27发现待索引；这份延迟报告和真实公开页面请求各自记录，不把401解释为27篇的收录原因。
+
+## 2026-10-26 待索引清单与内容推进
+
+Owner继续要求处理27条发现待索引。[本轮结果](../marketing/search-discovery-20261026.md)取得完整清单、Google主机无问题回执，并逐页排除当前抓取／元数据／站内链接阻断；不能获知Google具体调度原因。独立官网已更新实用双语内容及正文链接，66文件线上匹配。Google新版英文清单实时检查通过，优先申请因验证码服务连接错误未成功；Bing两语言清单均读回Indexing requested。地图网址数及既有提交保持，只更新实际编辑文章日期；实际收录仍待提供方结果。

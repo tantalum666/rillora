@@ -1,0 +1,40 @@
+{
+  "passed": true,
+  "sourceCandidate": "18-r2",
+  "host": "isolated component preview, not shipping binary",
+  "checks": [
+    {
+      "path": "Features/Account/PlanAccessView.swift",
+      "sha256": "712d33c854383f409da5e44a1dd42d63d88d968114f9549d6b8e7fb4c6483ed7",
+      "matches": true
+    },
+    {
+      "path": "Features/Account/ApplePurchaseSection.swift",
+      "sha256": "0b20f1ee1847e157c2a176fb6e55859c32b2b221ddaeb445db866efb2c86b41f",
+      "matches": true
+    },
+    {
+      "path": "Core/Design/RilloraTheme.swift",
+      "sha256": "0674f58d126fc45f9e6da1335504999e9f3a3b4b665eaa4d7f841aa8287de9b2",
+      "matches": true
+    },
+    {
+      "path": "Core/Commerce/CommerceStore.swift",
+      "sha256": "21fd5c5fc78b35a1a2453bc4a36ebdbcb8c38e765f0e5347163e995fd0acdc9c",
+      "matches": true
+    }
+  ],
+  "visibleEnglishKeysMatch": true,
+  "catalogHasOtherDifferences": [
+    "Apple purchases are not available for this account. Contact support for help."
+  ],
+  "actualPurchaseClaim": false,
+  "captureOnlyTest": {
+    "passed": 1,
+    "failed": 0
+  },
+  "pixels": [
+    1320,
+    2868
+  ]
+}

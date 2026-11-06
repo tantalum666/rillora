@@ -1,7 +1,9 @@
 # App Store 上线材料与当前证据 — 2026-10-13
 
-Status: MATERIAL RECHECKED / DEDICATED REVIEWER VERIFIED / BUILD14 MANUAL RELEASE RETAINED
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+November6当前状态：[18、年付订阅和群组已重新提交](app-review-resubmission-20261106.md)，三个项目刷新后均等待审核，手动发布保持且未分发TestFlight。原14拒审和以下October13–15结果保留历史，不是18的新拒审或新审核批准。
+
+Status: HISTORICAL READINESS / SEE NOVEMBER6 REVIEW18 RESUBMISSION
+Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 本文件记录Apple实际草稿与填写依据，不把保存元数据、构建上传或Sandbox购买视为App Review批准或正式开售。当前执行仍由[最终收尾](final-readiness-20261013.md)与[交接](handoff.md)路由。
 

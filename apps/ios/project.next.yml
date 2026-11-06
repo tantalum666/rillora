@@ -7,11 +7,16 @@ packages:
     path: NextVersionContent
   RilloraHeartRateKit:
     path: NextVersionHealth
+  RilloraCheckInKit:
+    path: NextVersionCheckIn
 targets:
   Rillora:
     dependencies:
       - package: RilloraContentKit
       - package: RilloraHeartRateKit
+      - package: RilloraCheckInKit
+      - target: RilloraWatchNext
+        embed: true
     sources:REPLACE:
       - path: ../../config/provider-guides.json
         buildPhase: resources
@@ -20,6 +25,7 @@ targets:
       - path: Rillora
         excludes:
           - Resources/Info.plist
+          - Resources/Localizable.xcstrings
       - path: StoreKit/Rillora.storekit
         buildPhase: resources
       - path: NextVersionContent/Configuration
@@ -29,12 +35,12 @@ targets:
     info:
       path: NextVersionContent/Configuration/Info.plist
       properties:
-        NSHealthShareUsageDescription: "Rillora reads selected heart-rate records for you to review on this device. Records are not uploaded and do not determine death or unlock information."
+        NSHealthShareUsageDescription: "Rillora reads the heart, activity, sleep and workout records you select so you can review them on this device. Records are not uploaded or used to unlock your plan."
         NSMicrophoneUsageDescription: "Record the instructions you choose to keep in your Rillora plan. Recording starts only when you tap the record button."
         NSSpeechRecognitionUsageDescription: "With your permission, supported on-device speech recognition creates a text draft for you to review. Recordings are not sent to a speech-recognition server."
     settings:
       base:
-        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_CONTENT_NEXT_VERSION RILLORA_HEALTHKIT_NEXT_VERSION RILLORA_DUO_NEXT_VERSION"
+        SWIFT_ACTIVE_COMPILATION_CONDITIONS: "$(inherited) RILLORA_CONTENT_NEXT_VERSION RILLORA_HEALTHKIT_NEXT_VERSION RILLORA_DUO_NEXT_VERSION RILLORA_CHECKIN_NEXT_VERSION"
         CODE_SIGN_ENTITLEMENTS: NextVersionHealth/Configuration/RilloraNext.entitlements
   RilloraNextTests:
     type: bundle.unit-test
@@ -44,6 +50,8 @@ targets:
     dependencies:
       - target: Rillora
       - package: RilloraContentKit
+      - package: RilloraHeartRateKit
+      - package: RilloraCheckInKit
     settings:
       base:
         PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.next-tests
@@ -60,7 +68,81 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.next-ui-tests
         GENERATE_INFOPLIST_FILE: true
         TEST_TARGET_NAME: Rillora
+  RilloraWatchNext:
+    type: application
+    platform: watchOS
+    deploymentTarget: "10.4"
+    sources:
+      - path: NextVersionWatch/App
+      - path: NextVersionWatch/Configuration/Localizable.xcstrings
+        buildPhase: resources
+    dependencies:
+      - package: RilloraCheckInKit
+      - target: RilloraCheckInWidget
+        embed: true
+    info:
+      path: NextVersionWatch/Configuration/WatchInfo.plist
+      properties:
+        CFBundleDisplayName: Rillora
+        CFBundleLocalizations: [en, zh-Hans]
+        WKCompanionAppBundleIdentifier: com.rillora.ios
+        WKApplication: true
+        WKRunsIndependentlyOfCompanionApp: false
+        CFBundleURLTypes:
+          - CFBundleURLSchemes: [rillora-watch]
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.watchkitapp
+        PRODUCT_NAME: RilloraWatch
+        DEVELOPMENT_TEAM: 8L99CFNK24
+        CODE_SIGN_STYLE: Automatic
+        ASSETCATALOG_COMPILER_APPICON_NAME: AppIcon
+        SKIP_INSTALL: true
+  RilloraCheckInWidget:
+    type: app-extension
+    platform: watchOS
+    deploymentTarget: "10.4"
+    sources:
+      - path: NextVersionWatch/Widget
+    info:
+      path: NextVersionWatch/Configuration/WidgetInfo.plist
+      properties:
+        CFBundleDisplayName: Rillora
+        CFBundleLocalizations: [en, zh-Hans]
+        NSExtension:
+          NSExtensionPointIdentifier: com.apple.widgetkit-extension
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.watchkitapp.checkin-widget
+        DEVELOPMENT_TEAM: 8L99CFNK24
+        CODE_SIGN_STYLE: Automatic
+        SKIP_INSTALL: true
+        APPLICATION_EXTENSION_API_ONLY: true
+  RilloraWatchNextUITests:
+    type: bundle.ui-testing
+    platform: watchOS
+    deploymentTarget: "10.4"
+    sources:
+      - path: NextVersionWatch/UITests
+    dependencies:
+      - target: RilloraWatchNext
+    settings:
+      base:
+        PRODUCT_BUNDLE_IDENTIFIER: com.rillora.ios.watchkitapp.ui-tests
+        GENERATE_INFOPLIST_FILE: true
+        TEST_TARGET_NAME: RilloraWatchNext
 schemes:
+  RilloraWatchNext:
+    build:
+      targets:
+        RilloraWatchNext: all
+        RilloraWatchNextUITests: [test]
+    run:
+      config: Debug
+    test:
+      config: Debug
+      targets:
+        - RilloraWatchNextUITests
   RilloraNext:
     build:
       targets:

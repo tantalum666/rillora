@@ -46,7 +46,7 @@ export class RilloraOperationsStack extends Stack {
       deadLetterQueue: queue,
       retryAttempts: 1,
       maxEventAge: Duration.minutes(15),
-      description: "Checks only approved public metadata; no private data or repair credentials",
+      description: "Checks approved public metadata and configured deadlines; no private data or repair credentials",
     });
     new events.Rule(this, "QuarterHourly", {
       enabled: props.scheduleEnabled ?? false,

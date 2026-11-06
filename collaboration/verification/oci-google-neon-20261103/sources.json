@@ -1,0 +1,106 @@
+{
+  "asOf": "2026-11-03",
+  "sources": [
+    {
+      "id": "neon_regions",
+      "url": "https://neon.com/docs/introduction/regions",
+      "scope": "New projects AWS; Azure deprecated; no Google/OCI project region listed"
+    },
+    {
+      "id": "neon_private",
+      "url": "https://neon.com/docs/guides/neon-private-networking",
+      "scope": "AWS PrivateLink, same-region AWS-side prerequisites, eight Frankfurt services, separate public block"
+    },
+    {
+      "id": "neon_plans",
+      "url": "https://neon.com/docs/introduction/plans",
+      "scope": "Scale/network/compute/storage/PITR unit prices"
+    },
+    {
+      "id": "aws_vpn",
+      "url": "https://aws.amazon.com/vpn/pricing/",
+      "scope": "VPN connection rate category and extra public IPv4 charges"
+    },
+    {
+      "id": "google_vpn",
+      "url": "https://cloud.google.com/vpn/pricing",
+      "scope": "Frankfurt UI selected; 0.06 per tunnel hour, data egress separate"
+    },
+    {
+      "id": "google_aws_ha",
+      "url": "https://docs.cloud.google.com/network-connectivity/docs/vpn/how-to/connect-ha-vpn-aws-peer-gateway",
+      "scope": "Four Google tunnels/two AWS VPN connections for documented HA topology"
+    },
+    {
+      "id": "oracle_aws_vpn",
+      "url": "https://docs.oracle.com/en-us/iaas/Content/Network/Tasks/vpn_to_aws.htm",
+      "scope": "Single active tunnel configuration example; not a full Neon connectivity proof"
+    },
+    {
+      "id": "oracle_vpn_free",
+      "url": "https://www.oracle.com/cloud/networking/virtual-cloud-network/faq/",
+      "scope": "OCI side service is free; does not pay AWS side"
+    },
+    {
+      "id": "oracle_network",
+      "url": "https://www.oracle.com/cloud/networking/virtual-cloud-network/pricing/",
+      "scope": "OCI networking categories and separate outbound transfer"
+    },
+    {
+      "id": "oracle_a1",
+      "url": "https://www.oracle.com/cloud/compute/arm/",
+      "scope": "A1 compute normal unit prices"
+    },
+    {
+      "id": "oracle_prices",
+      "url": "https://www.oracle.com/cloud/price-list/",
+      "scope": "USD dynamic storage and compute table read back"
+    },
+    {
+      "id": "oracle_free",
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+      "scope": "Home region, 1500/9000 allowances, capacity and idle reclaim conditions"
+    },
+    {
+      "id": "google_run",
+      "url": "https://cloud.google.com/run/pricing",
+      "scope": "Frankfurt instance/request prices and account-wide Tier1-valued discount"
+    },
+    {
+      "id": "google_direct_vpc",
+      "url": "https://docs.cloud.google.com/run/docs/configuring/vpc-direct-vpc",
+      "scope": "No connector required, startup connection-delay caveat"
+    },
+    {
+      "id": "google_vpc_comparison",
+      "url": "https://docs.cloud.google.com/run/docs/configuring/connecting-vpc",
+      "scope": "Direct VPC avoids extra connector VM charges"
+    },
+    {
+      "id": "google_domains",
+      "url": "https://docs.cloud.google.com/run/docs/mapping-custom-domains",
+      "scope": "No Frankfurt native mapping; preview not recommended for production"
+    },
+    {
+      "id": "aws_interface_dns",
+      "url": "https://www.repost.aws/knowledge-center/vpc-interface-configure-dns",
+      "scope": "General external/private endpoint connectivity and DNS choices, not Neon guarantee"
+    },
+    {
+      "id": "google_aws_identity",
+      "url": "https://aws.amazon.com/blogs/security/access-aws-using-a-google-cloud-platform-native-workload-identity/",
+      "scope": "Temporary AWS role credentials from narrowly bound Google native OIDC identity"
+    },
+    {
+      "id": "google_worker_pools",
+      "url": "https://docs.cloud.google.com/run/docs/configuring/workerpools/manual-scaling",
+      "scope": "Alternative background runtime; not modeled as a completed deployment"
+    },
+    {
+      "id": "google_classic_static",
+      "url": "https://docs.cloud.google.com/network-connectivity/docs/vpn/how-to/creating-static-vpns",
+      "scope": "Explicit single static-route tunnel with one used public IP; avoids accidentally omitting unused HA interface address fees"
+    }
+  ],
+  "scope": "Official primary material only; no outside messages sent"
+}

@@ -1,0 +1,14 @@
+{
+  "baseImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:83bb73e118af27aae5fa2ec14eb4eced3f9bbde13baa609fe6d47535a263468c",
+  "onlyOverlayPaths": [
+    "dist/apple-review-purchase-diagnostics.js",
+    "migrations/0109_apple_resubscription_owner_binding.sql"
+  ],
+  "files": {
+    "apps/api/dist/apple-review-purchase-diagnostics.js": "4f6ac9d512db2b3e2637153aa0b7ef527a110dd8b89a232ffad341b28cbfe4bd",
+    "apps/api/migrations/0109_apple_resubscription_owner_binding.sql": "ed4965d50c2839222a052f035f703da952d408d51ff3cab06e3ea10ff9788079"
+  },
+  "ordinaryApiImageChanged": false,
+  "permissionsOrSecretsChanged": false,
+  "sourceMigrations0001Through0108Changed": false
+}

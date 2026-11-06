@@ -1,0 +1,2131 @@
+{
+  "GroupDefinitions": [
+    {
+      "Type": "DIMENSION",
+      "Key": "SERVICE"
+    },
+    {
+      "Type": "DIMENSION",
+      "Key": "USAGE_TYPE"
+    }
+  ],
+  "ResultsByTime": [
+    {
+      "TimePeriod": {
+        "Start": "2026-10-01",
+        "End": "2026-11-01"
+      },
+      "Total": {},
+      "Groups": [
+        {
+          "Keys": [
+            "AWS Certificate Manager",
+            "EUC1-ExportPublicCertificate"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "33",
+              "Unit": "API Call"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Cloud Map",
+            "EUC1-Cloud-Map-API-Calls"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.031656",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "31656",
+              "Unit": "CloudMapAPICall"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS CloudFormation",
+            "EUC1-Resource-Operation-Count"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "598",
+              "Unit": "Count"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service",
+            "eu-central-1-KMS-Keys"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "3.26881473",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "3.2688146793",
+              "Unit": "Keys"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service",
+            "eu-central-1-KMS-Requests"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "18045",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-CloudFront-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.1077274288",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-CloudFront-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0160054363",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0552375242",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0092037714",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Lambda-GB-Second"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "822.489625",
+              "Unit": "Lambda-GB-Second"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Lambda-GB-Second-ARM"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1738.445",
+              "Unit": "Lambda-GB-Second"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Request"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "60",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Request-ARM"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "5030",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-USE1-AWS-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0007307842",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-USE1-AWS-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000114873",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.000574375",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager",
+            "EUC1-AWSSecretsManager-Secrets"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "7.7226232576",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "19.3065580446",
+              "Unit": "Secrets"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager",
+            "EUC1-AWSSecretsManagerAPIRequest"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.008595",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1719",
+              "Unit": "API Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon API Gateway",
+            "EUC1-ApiGatewayHttpRequest"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0387504",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "32292",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon API Gateway",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0204060197",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0033254731",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000007894",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000393986",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "93",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "9",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "290",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.1571850881",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000260154",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0013007917",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-HTTP-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "154",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "3134",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2379",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "29073",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "Executions-CloudFrontFunctions"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "52936",
+              "Unit": "FunctionExecutions"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "Invalidations"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "57",
+              "Unit": "URLs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.4478804893",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000377707",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0018885518",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-HTTP-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "144",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2843",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2945",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "18973",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-ReadRequestUnits"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00047946",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "3144",
+              "Unit": "ReadRequestUnits"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-TimedPITRStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000012241",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.000004997",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000065681",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-WriteRequestUnits"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00010675",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "140",
+              "Unit": "WriteRequestUnits"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon EC2 Container Registry (ECR)",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0221190938",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.2211910654",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0044721694",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0012837808",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-Regional-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0082081468",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1.8208145714",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-Fargate-ARM-GB-Hours"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "4.9696883332",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1215.0827225616",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-Fargate-ARM-vCPU-Hours:perCPU"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "22.6309157054",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "607.5413612474",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0115711394",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0115717478",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-EUW2-AWS-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001869454",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-EUW2-AWS-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000037402",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001869853",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-InstanceUsage:db.t4g.micro"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "28.300441936",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1489.496944",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-RDS:ChargedBackupUsage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.1511664659",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1.4676355917",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-RDS:GP3-Storage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "5.485512852",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "40.0402397566",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Route 53",
+            "HostedZone"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "2",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "4",
+              "Unit": "HostedZone"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000692235",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000625786",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service",
+            "EUC1-DeliveryAttempts-SMTP"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "22",
+              "Unit": "Notifications"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Notification Service",
+            "EUC1-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "26",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Queue Service",
+            "EUC1-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "24",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-APE1-AWS-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0168473642",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-APE1-AWS-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0001172668",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0058633396",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-CloudFront-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.5025153001",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.4381241879",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0003642825",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0273024",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "5056",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-Requests-Tier2"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00901925",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "20975",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0114398108",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.4669310453",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "Global-Bucket-Hrs-FreeTier"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.1935482979",
+              "Unit": "Bucket-Mo"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "Requests-Tier2"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000256",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "64",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "USE1-EUC1-AWS-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000007834",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000391734",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Virtual Private Cloud",
+            "EUC1-PublicIPv4:InUseAddress"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "12.159307105",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2431.861421",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-CW:AlarmMonitorUsage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "1.039112842",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "20.3911279705",
+              "Unit": "Alarms"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-CW:GMD-Metrics"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00002",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2",
+              "Unit": "Metrics"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-CW:MetricMonitorUsage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "32.74838685",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "119.1612895051",
+              "Unit": "Metrics"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-DataProcessing-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.599451369",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.1926906775",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-VendedLog-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.2074201876",
+              "Unit": "GB"
+            }
+          }
+        }
+      ],
+      "Estimated": false
+    },
+    {
+      "TimePeriod": {
+        "Start": "2026-11-01",
+        "End": "2026-11-02"
+      },
+      "Total": {},
+      "Groups": [
+        {
+          "Keys": [
+            "AWS Cloud Map",
+            "EUC1-Cloud-Map-API-Calls"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.000577",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "577",
+              "Unit": "CloudMapAPICall"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service",
+            "eu-central-1-KMS-Keys"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.055555556",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.055555556",
+              "Unit": "Keys"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Key Management Service",
+            "eu-central-1-KMS-Requests"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "227",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-CloudFront-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.001877049",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-CloudFront-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0002307199",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.00078719",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001324892",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Lambda-GB-Second-ARM"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "33.307",
+              "Unit": "Lambda-GB-Second"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Lambda",
+            "EUC1-Request-ARM"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "96",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager",
+            "EUC1-AWSSecretsManager-Secrets"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.12777776",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.3194444025",
+              "Unit": "Secrets"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AWS Secrets Manager",
+            "EUC1-AWSSecretsManagerAPIRequest"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.000115",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "23",
+              "Unit": "API Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon API Gateway",
+            "EUC1-ApiGatewayHttpRequest"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.000702",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "585",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon API Gateway",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0003009435",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.00001109",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000000357",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000017835",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "4",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "CA-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "4",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0017137693",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.000000833",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.00004165",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "99",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "4",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "EU-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "560",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "Executions-CloudFrontFunctions"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "838",
+              "Unit": "FunctionExecutions"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.00026899",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-DataTransfer-Out-OBytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000032068",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.00016034",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-HTTPS-Proxy"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "102",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-Tier1"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "2",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon CloudFront",
+            "US-Requests-Tier2-HTTPS"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "72",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-ReadRequestUnits"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000077775",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "51",
+              "Unit": "ReadRequestUnits"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-TimedPITRStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000000241",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000000979",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000000697",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon DynamoDB",
+            "EUC1-WriteRequestUnits"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000053375",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "7",
+              "Unit": "WriteRequestUnits"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon EC2 Container Registry (ECR)",
+            "EUC1-TimedStorage-ByteHrs"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00046898",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0046897999",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001866816",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000395701",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-DataTransfer-Regional-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0199965676",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-Fargate-ARM-GB-Hours"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0817544749",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "19.9888691599",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Elastic Container Service",
+            "EUC1-Fargate-ARM-vCPU-Hours:perCPU"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.3722926881",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "9.9944345799",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-DataTransfer-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001674729",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-DataTransfer-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0001674729",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-EUW2-AWS-In-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000025197",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-EUW2-AWS-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0000000504",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0000025197",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-InstanceUsage:db.t4g.micro"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.342",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "18",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Relational Database Service",
+            "EUC1-RDS:GP3-Storage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.0685000008",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.5000000004",
+              "Unit": "GB-Month"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Route 53",
+            "HostedZone"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "2",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "4",
+              "Unit": "HostedZone"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-CloudFront-Out-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0010734142",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Simple Storage Service",
+            "EUC1-Requests-Tier2"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.00005633",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "131",
+              "Unit": "Requests"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "Amazon Virtual Private Cloud",
+            "EUC1-PublicIPv4:InUseAddress"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0.20004722",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "40.009444",
+              "Unit": "Hrs"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-CW:AlarmMonitorUsage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.3361111116",
+              "Unit": "Alarms"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-CW:MetricMonitorUsage"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "1.5375000002",
+              "Unit": "Metrics"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-DataProcessing-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.0106002739",
+              "Unit": "GB"
+            }
+          }
+        },
+        {
+          "Keys": [
+            "AmazonCloudWatch",
+            "EUC1-VendedLog-Bytes"
+          ],
+          "Metrics": {
+            "UnblendedCost": {
+              "Amount": "0",
+              "Unit": "USD"
+            },
+            "UsageQuantity": {
+              "Amount": "0.003901511",
+              "Unit": "GB"
+            }
+          }
+        }
+      ],
+      "Estimated": true
+    }
+  ],
+  "DimensionValueAttributes": []
+}

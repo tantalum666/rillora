@@ -1,0 +1,13 @@
+# Build18 resubmission — 2026-11-06
+
+Owner explicitly authorized the exact18 app, yearly subscription and subscription group to be resubmitted together. Apple shows all three Waiting for Review at14:16 Hong Kong on November6, and a refreshed read confirms this state. A separate version page still selects18 and manual release. No TestFlight assignment/distribution, repeat binary upload or public release occurred.
+
+`submission-receipt.json`, `submitted-three-items.png` and `manual-release-after-submission.png` are the current provider evidence. The oldOctober30message reviewed14; it is not a fresh rejection of18. Existing final notes and the source-matched layout attachment were retained without another screenshot capture or purchase. The IAP-specific historical14image remains locked and accurately identified.
+
+Fresh exact Auth0 user read confirms the reviewer exists, is not blocked, has a password identity and has no password reset or enrolled MFA. Existing SSO recovered the expired management CLI without changing credentials. `service-readback.json` records stable production/operations stacks, readiness200, anonymous private-session401, current public health failed0, an enabled15-minute cloud schedule, one confirmed alert subscriber and the matching December4deadline with14-day warning. The immediately preceding same-day signed Sandbox-expiry/DB evidence is inherited, not rerun.
+
+The earlier local automation was actually reported missing. Standing account/service validity maintenance was recreated as ACTIVE, daily09:00HK, with the existing14-day threshold and maximum31-day same-identity renewal. `maintenance-schedule.json` distinguishes creation from a future run or renewal. It does not watch this review's completion, submit, purchase or distribute TestFlight. Local execution needs the Mac; cloud monitoring remains independent. Routine successful-run notifications are muted; failures can notify.
+
+Failures/recoveries are preserved in `read-failures.json`; no failed helper query is reported as a product outage or passing check. Raw identity, authorization, session and provider page bodies stay private. No new archive, real-data change, price/region change, FanPass operation, cloud CI or subagent.
+
+Only metadata consistency, modified Markdown links and the exact-base local publication gate apply. Existing application tests, migration/deployment, native packaging and real purchase/restore/expiry evidence retain their original checkpoints. See [current submission report](../../../docs/app-review-resubmission-20261106.md) and [handoff](../../../docs/handoff.md).

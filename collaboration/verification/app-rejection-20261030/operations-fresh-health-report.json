@@ -1,0 +1,129 @@
+{
+  "schemaVersion": 1,
+  "environment": "synthetic-staging",
+  "checkedAt": "2026-10-30T11:00:08.701Z",
+  "ok": true,
+  "failed": 0,
+  "checks": [
+    {
+      "id": "public-app",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 118,
+      "latencyMs": 292,
+      "issues": []
+    },
+    {
+      "id": "legal-terms",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 67,
+      "latencyMs": 454,
+      "issues": []
+    },
+    {
+      "id": "legal-private-route-blocked",
+      "ok": true,
+      "httpStatus": 404,
+      "certificateDaysRemaining": 67,
+      "latencyMs": 446,
+      "issues": []
+    },
+    {
+      "id": "api-live",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 586,
+      "issues": []
+    },
+    {
+      "id": "api-ready",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 285,
+      "issues": []
+    },
+    {
+      "id": "private-session-blocked",
+      "ok": true,
+      "httpStatus": 401,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 441,
+      "issues": []
+    },
+    {
+      "id": "identity-discovery",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 67,
+      "latencyMs": 585,
+      "issues": []
+    },
+    {
+      "id": "production-api-live",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 740,
+      "issues": []
+    },
+    {
+      "id": "production-api-ready",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 2742,
+      "issues": []
+    },
+    {
+      "id": "production-accounts-closed",
+      "ok": true,
+      "httpStatus": 401,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 738,
+      "issues": []
+    },
+    {
+      "id": "public-product-home",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 737,
+      "issues": []
+    },
+    {
+      "id": "public-product-private-route-blocked",
+      "ok": true,
+      "httpStatus": 404,
+      "certificateDaysRemaining": 161,
+      "latencyMs": 737,
+      "issues": []
+    },
+    {
+      "id": "production-client-home",
+      "ok": true,
+      "httpStatus": 200,
+      "certificateDaysRemaining": 162,
+      "latencyMs": 856,
+      "issues": []
+    },
+    {
+      "id": "production-client-accounts-closed",
+      "ok": true,
+      "httpStatus": 401,
+      "certificateDaysRemaining": 162,
+      "latencyMs": 970,
+      "issues": []
+    },
+    {
+      "id": "apple-review-purchase-window",
+      "ok": true,
+      "deadlineDaysRemaining": 31,
+      "issues": []
+    }
+  ],
+  "scope": "public-metadata-and-configured-deadlines",
+  "responseBodiesStored": false
+}

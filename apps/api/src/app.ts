@@ -9,7 +9,8 @@ import { appleReviewContext, appleProductionContext } from './apple-execution-co
 import { ApplePurchasePreflight } from './apple-purchase-preflight.js';
 import { appleReviewAccessRequired } from './apple-review-access.js';
 import { authenticate, requireWorkspaceIdentity } from "./auth.js";
-import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying } from "./email-verification.js";
+import { Auth0EmailIdentityVerifier, SessionEmailVerification, type EmailIdentityVerifying, type IdentitySecurityVerifying } from "./email-verification.js";
+import { SessionSecurity } from './session-security.js';
 import type { AppConfig } from "./config.js";
 import type { DatabasePool } from "./db.js";
 import { checkContentKeys, withAuthDatabase } from "./db.js";
@@ -68,6 +69,7 @@ export type AppDependencies = AuthDependencies & {
   appleProductionIntake?: AppleProductionIntake;
   transportReady?: () => boolean;
   emailIdentityVerifier?: EmailIdentityVerifying;
+  sessionIdentityVerifier?: IdentitySecurityVerifying;
   accountIdentityDeleter?: AccountIdentityDeleting;
   accountDeletionProcessor?: AccountDeletionHandling;
   stripeProvider?: StripeCommerceProvider;
@@ -88,8 +90,10 @@ export function createApp(
   }
   if (dependencies.legacyContent && (config.productionRuntimeClosed || config.productionReviewAccess)) throw new Error('Content cannot be enabled in a closed or review-only runtime');
   const app = express();
-  const emailVerifier = dependencies.emailIdentityVerifier
-    ?? (config.emailVerification ? new Auth0EmailIdentityVerifier(config.emailVerification) : null);
+  const directory = config.emailVerification ? new Auth0EmailIdentityVerifier(config.emailVerification) : null;
+  const emailVerifier = dependencies.emailIdentityVerifier ?? directory;
+  const sessionSecurity = new SessionSecurity(pool, dependencies.sessionIdentityVerifier ?? directory);
+  if (config.trustedUserSessions?.enabled && !sessionSecurity.available) throw new Error('Trusted sessions require current identity status verification');
   const emailVerification = emailVerifier ? new SessionEmailVerification(pool, emailVerifier) : null;
   const accountDeletion = dependencies.accountDeletionProcessor ?? deletionProcessor(pool, config, dependencies.accountIdentityDeleter);
   installSecurityMiddleware(app, config);
@@ -105,6 +109,8 @@ export function createApp(
       await checkContentKeys(pool);
       await checkRecoveryJournal(pool);
       await dependencies.mcp?.checkReady();
+      if (config.trustedUserSessions) await withAuthDatabase(pool, client => client.query(
+        'select context_version,client_context_hash,network_context_hashes,idle_timeout_minutes,identity_checked_at from app.auth_sessions limit 0'));
       if (dependencies.legacyContent || dependencies.futureNoticesEnabled) {
         // Production logins deliberately do not inherit schema privileges.
         // Use the existing signed role transaction even for catalog metadata.
@@ -207,7 +213,7 @@ export function createApp(
   // one third to ciphertext size; the import envelope also sits outside the
   // backup's own 2 MiB limit, which the handler enforces independently.
   const jsonTypes = ["application/json", "application/*+json"];
-  const fileAuthentication = [preventCaching, authenticate(pool, config), requireWorkspaceIdentity];
+  const fileAuthentication = [preventCaching, authenticate(pool, config, { sessionSecurity }), requireWorkspaceIdentity];
   if (dependencies.legacyContent) {
     app.get(['/legacy-content/notice', '/api/legacy-content/notice'], contentNoticeHandler());
     app.post(['/v1/legacy-content/assets', '/api/v1/legacy-content/assets'], ...fileAuthentication, ...contentUploadHandlers(dependencies.legacyContent));
@@ -228,7 +234,7 @@ export function createApp(
     }),
   );
 
-  const authRouter = createAuthRouter(pool, config, dependencies);
+  const authRouter = createAuthRouter(pool, config, { ...dependencies, sessionSecurity });
   const publicDeletions = createPublicAccountDeletionRouter(pool);
   app.use("/account-deletions", preventCaching, publicDeletions);
   app.use("/api/account-deletions", preventCaching, publicDeletions);
@@ -252,7 +258,7 @@ export function createApp(
   }
 
   const plannerApi = express.Router();
-  plannerApi.use(preventCaching, authenticate(pool, config));
+  plannerApi.use(preventCaching, authenticate(pool, config, { sessionSecurity }));
   plannerApi.use(requireWorkspaceIdentity, rejectForbiddenSecretFields);
   if (dependencies.legacyContent) plannerApi.use('/legacy-content', createContentRouter(dependencies.legacyContent));
   if (config.allowSyntheticRecipientRehearsal) {
@@ -280,11 +286,12 @@ export function createApp(
       createStoreKitSandboxRouter(storeKitSandboxIntake),
     );
   }
-  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',appleReviewAccessRequired(pool,config),
+  if(appleReviewIntake) plannerApi.use('/commerce/storekit/review',appleReviewAccessRequired(pool,config,sessionSecurity),
     createAppleProductionRouter(appleReviewIntake,new ApplePurchasePreflight(pool,appleReviewContext),config));
   if (appleProductionIntake) plannerApi.use('/commerce/storekit/production', createAppleProductionRouter(appleProductionIntake,new ApplePurchasePreflight(pool),config));
   plannerApi.use("/commerce", createCommerceRouter(pool,
-    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])])));
+    new Set([...(stripeCheckoutEnabled ? ['stripe'] : []),...(appleProductionIntake ? ['storekit'] : [])]),
+    stripeExecutor?.providerEnvironment ?? null));
   plannerApi.use("/account", createAccountIdentityRouter(pool, emailVerifier));
   if (dependencies.mcp) plannerApi.use('/account/ai-connections', dependencies.mcp.connections);
   plannerApi.use("/account", createAccountDataRouter(pool, config));

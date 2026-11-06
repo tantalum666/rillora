@@ -1,0 +1,121 @@
+{
+  "startedAt": "2026-10-23T19:27:00.397210+00:00",
+  "head": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "trackedDiffSha256": "cd04790885da6ba2dd5453262c8ced37c262f055a1f939ed884b95d2e6adc2a4",
+  "planSha256": "94cd2cf15ebe75d8e27875f3625d66394f202fefc6059252c014f5d286373bc6",
+  "runnerSha256": "292f62b7ca2b8722a0ff431fbb756fee96958fb046f0b3a433686ef62cd71557",
+  "trustedBase": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "groups": [
+    "source"
+  ],
+  "execution": "local",
+  "steps": [
+    {
+      "name": "Verify pinned scanner",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.025,
+      "log": "00.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Prepare trusted policy repository",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.076,
+      "log": "01.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Read immutable base policy",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.049,
+      "log": "02.log",
+      "logSha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "Prepare candidate without executing it",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 1.336,
+      "log": "03.log",
+      "logSha256": "e5fa93f52bb9d66b803b440f4601a66813e8cd277e4b3ba03347d8af382cc375"
+    },
+    {
+      "name": "Scan source with base exception authority",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.488,
+      "log": "04.log",
+      "logSha256": "ebdf6a39d220749ae4b32ead25870b3c293edc006f51e109db2e0c9ec7ae2e7e"
+    },
+    {
+      "name": "Verify complete readable publication",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 43.524,
+      "log": "05.log",
+      "logSha256": "934b68315bda6564bb47e3b6c4ba2dc18cbb385c90ea612250faee984499194b"
+    },
+    {
+      "name": "source: Test tools/release",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 6.966,
+      "log": "06.log",
+      "logSha256": "4cf76e718ae82509ece4b27d17b672660cc34c6d083143db51adf9fbf235298a"
+    },
+    {
+      "name": "source: Test tools/godaddy",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.15,
+      "log": "07.log",
+      "logSha256": "c0a234441cecc9937a09c7cbc31cee2a9774cd3f1dce8048b17104e7e417c7f1"
+    },
+    {
+      "name": "source: Test tools/auth0",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 3.52,
+      "log": "08.log",
+      "logSha256": "84a16cb4bd9a72852cfd4a62a3dfddb13924c4d5b12997e96c053322993820b6"
+    },
+    {
+      "name": "source: Test tools/collaboration",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.141,
+      "log": "09.log",
+      "logSha256": "960da5fc1eb9cb5a2641bf51f826142d685bb57a0263278672f16391e5ced49c"
+    },
+    {
+      "name": "source: Test tools/security",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 2.325,
+      "log": "10.log",
+      "logSha256": "bb202be7ca8467e73d75b792c583114595720e9edc8d7a54d47175b11e276872"
+    },
+    {
+      "name": "source: Test infra/aws/recovery-journal-broker",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.078,
+      "log": "11.log",
+      "logSha256": "83166b089fbcb82fac63f22522fa6ae99bb5e46368cd35d756277fd463dd6346"
+    },
+    {
+      "name": "source: Test tools/ci",
+      "exitCode": 0,
+      "timedOut": false,
+      "seconds": 0.26,
+      "log": "12.log",
+      "logSha256": "4bfd484eecb555a9e27518c1fddc544e74e5cc1e951a04b275b10c1aad3556c9"
+    }
+  ],
+  "boundary": "Selected groups only; no cloud run, deployment, device acceptance or release claim.",
+  "passed": true,
+  "finishedAt": "2026-10-23T19:28:06.527094+00:00"
+}

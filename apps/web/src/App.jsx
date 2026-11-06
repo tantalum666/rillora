@@ -214,6 +214,11 @@ function ContactEvidence({ contact }) {
 }
 
 export function App() {
+  // Network confirmation must also work before the first private overview loads.
+  return <><ReauthenticationPrompt apiClient={api} /><AppContent /></>;
+}
+
+function AppContent() {
   const { t, formatDate, errorMessage } = useI18n();
   const initialPublicPath = window.location.pathname.length > 1
     ? window.location.pathname.replace(/\/+$/, "")
@@ -327,6 +332,12 @@ export function App() {
       if (workspaceRevision.current === revision) setLoading(false);
     }
   }, []);
+
+  useEffect(() => {
+    const confirmed = () => { void loadWorkspace(); };
+    window.addEventListener('rillora:identity-confirmed', confirmed);
+    return () => window.removeEventListener('rillora:identity-confirmed', confirmed);
+  }, [loadWorkspace]);
 
   useEffect(() => {
     if (import.meta.env.VITE_RILLORA_CUSTOMER_ACCESS === "closed") setLoading(false);
@@ -838,7 +849,6 @@ export function App() {
 
   return (
     <div className="app-shell">
-      <ReauthenticationPrompt apiClient={api} />
       <aside className="sidebar" aria-label={t("workspace.nav.primary")}>
         <nav>{navigation.map(({ id, icon: Icon }) => <button type="button" key={id} className={activeNav === id ? "active" : ""} aria-current={activeNav === id ? "page" : undefined} onClick={() => void navigateWorkspace(id)}><Icon size={23} weight="regular" aria-hidden="true" /> <span>{t(`workspace.nav.${id}`)}</span></button>)}</nav>
         <div className="sidebar-spacer" />

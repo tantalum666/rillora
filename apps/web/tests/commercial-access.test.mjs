@@ -167,3 +167,12 @@ test('Family benefits remain visible when their catalog enforcement becomes incl
   assert.deepEqual(commercial.familyFeatures,['Shared reviews and approved corrections','Multiple trusted people']);
   assert.deepEqual(commercial.futureFeatures,['Adaptive review reminders']);
 });
+
+test('account validation does not choose the Web provider environment or rename the plan', () => {
+  for (const webBillingEnvironment of ['production','test',null,undefined]) {
+    const actual=normalizeCommercialStatus({...payload,validationOnly:true,webBillingEnvironment});
+    assert.equal(actual.webBillingEnvironment,webBillingEnvironment??null);
+    assert.equal(actual.currentAccessLabel,'Rillora Free');
+  }
+  assert.throws(()=>normalizeCommercialStatus({...payload,webBillingEnvironment:'sandbox'}));
+});

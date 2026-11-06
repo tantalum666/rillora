@@ -1,0 +1,54 @@
+{
+  "checkedAt": "2026-11-06T05:53:50.985687+00:00",
+  "appId": "6803957639",
+  "candidate": "1.0(18)",
+  "buildSelectedPersisted": true,
+  "reviewNotesPersisted": true,
+  "reviewNotesCharacters": 3557,
+  "englishDescriptionPersisted": true,
+  "chineseDescriptionPersisted": true,
+  "standardEulaLinkAddedBothLocales": true,
+  "currentLayoutReferenceAttachmentPersisted": true,
+  "iapSpecificScreenshotReplaced": false,
+  "iapSpecificScreenshotReason": "Ready for Review locks screenshot and review-note edits. Its unchanged build14 reference is explicitly superseded for current layout purposes by the version attachment. No item removal, cancellation or state bypass.",
+  "releaseMode": "MANUAL",
+  "reviewState": "unresolved_issues",
+  "lastReviewedBuild": "14",
+  "resubmitted": false,
+  "testFlightDistributed": false,
+  "prices": {
+    "USA": {
+      "currency": "USD",
+      "annual": "119.99"
+    },
+    "HKG": {
+      "currency": "HKD",
+      "annual": "888.00"
+    }
+  },
+  "appDownloadRegions": [
+    "USA",
+    "HKG"
+  ],
+  "subscriptionRegions": [
+    "USA",
+    "HKG"
+  ],
+  "publishedPrivacyCategories": 13,
+  "coarseLocationPurpose": "App functionality",
+  "paidAppsAgreement": "active",
+  "freeAppsAgreement": "active",
+  "reviewEligibilityEndsAt": "2026-12-04T12:00:00Z",
+  "currentSandboxSubscriptionState": "expired_read_only",
+  "sandboxExpiryAt": "2026-11-06T01:01:19Z",
+  "realPurchaseReplayed": false,
+  "runtimeDeploymentRepeated": false,
+  "credentialChanged": false,
+  "workflowFailures": [
+    "AWS CLI was expired; existing console session refreshed it without new MFA.",
+    "Attachment upload reset unsaved note/English edits; final fields were saved afterwards and independently read back.",
+    "Initial Apple page/asset loading yielded empty states, and one screenshot locator was ambiguous; current visible state was used to finish."
+  ],
+  "inheritedChecks": "e363a34c0f3d2c0acd12860ad093c4f0744e3ba5 code and 9cd4583e83188e9ac77c4374e2f03d74563bb0f4 receipts; no application tests rerun for metadata-only continuation",
+  "gitPublication": "See local publication gate and final remote-head receipt in this workflow QA directory; source and provider state are separate."
+}

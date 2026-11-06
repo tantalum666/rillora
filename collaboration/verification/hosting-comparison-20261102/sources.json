@@ -1,0 +1,68 @@
+{
+  "readOn": "2026-11-02",
+  "timezone": "Asia/Hong_Kong",
+  "sources": [
+    {
+      "topic": "workers",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "finding": "Free100k/day and10msCPU; Paid5USD base; static assets free; December1logs pricing change"
+    },
+    {
+      "topic": "r2",
+      "url": "https://developers.cloudflare.com/r2/pricing/",
+      "finding": "10GB-month Standard free and no Internet egress fee; operations limits"
+    },
+    {
+      "topic": "d1",
+      "url": "https://developers.cloudflare.com/d1/platform/pricing/",
+      "finding": "5GB total free and read/write row limits"
+    },
+    {
+      "topic": "d1-sql",
+      "url": "https://developers.cloudflare.com/d1/best-practices/query-d1/",
+      "finding": "SQLite semantics; not the current PostgreSQL implementation"
+    },
+    {
+      "topic": "hyperdrive",
+      "url": "https://developers.cloudflare.com/hyperdrive/",
+      "finding": "Connection service for existing PostgreSQL/MySQL"
+    },
+    {
+      "topic": "node-compat",
+      "url": "https://developers.cloudflare.com/workers/runtime-apis/nodejs/",
+      "finding": "Some Node APIs still stubs; import is not runtime acceptance"
+    },
+    {
+      "topic": "http-compat",
+      "url": "https://developers.cloudflare.com/workers/configuration/compatibility-flags/",
+      "finding": "Current HTTP server compatibility exists"
+    },
+    {
+      "topic": "containers",
+      "url": "https://developers.cloudflare.com/containers/faq/",
+      "finding": "Ephemeral disk by default; snapshots are not a live durable PostgreSQL disk"
+    },
+    {
+      "topic": "neon",
+      "url": "https://neon.com/pricing",
+      "finding": "CurrentFree1GB/100CU-hours; Launch0.106USD/CU-hour and0.35USD/GB-month; paid recovery history extra"
+    },
+    {
+      "topic": "oci-free",
+      "url": "https://docs.oracle.com/en-us/iaas/Content/FreeTier/freetier_topic-Always_Free_Resources.htm",
+      "finding": "1500OCPU-hours/9000GB-hours; capacity and idle reclaim caveats"
+    },
+    {
+      "topic": "oci-paid-allowance",
+      "url": "https://www.oracle.com/cloud/price-list/",
+      "finding": "Container Instances section names3000OCPU-hours/18000GB-hours for paid tenancies; not presumed new free-account eligibility"
+    },
+    {
+      "topic": "oci-a1-price",
+      "url": "https://www.oracle.com/cloud/compute/arm/",
+      "finding": "A1 CPU0.01USD/OCPU-hour and memory0.0015USD/GB-hour"
+    }
+  ],
+  "providerAccountsInspected": false,
+  "oracleCapacityOrEligibilityVerified": false
+}

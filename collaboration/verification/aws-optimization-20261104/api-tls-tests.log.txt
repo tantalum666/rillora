@@ -1,0 +1,60 @@
+
+ RUN  v4.1.12 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/database-tls-runtime.test.ts (3 tests | 3 failed) 103ms
+     × keeps one verified context through pg and repeated TLS connections 6ms
+     × still rejects a valid chain for the wrong hostname 1ms
+     × does not share trust between separate pool configurations 0ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 3 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/database-tls-runtime.test.ts > reused database TLS context > keeps one verified context through pg and repeated TLS connections
+Error: Database configuration must provide DATABASE_URL or every DATABASE_* connection field
+ ❯ parseDatabaseConfig src/config.ts:215:11
+    213|   }
+    214|   if (!parsed.DATABASE_URL && configuredComponents.length !== componen…
+    215|     throw new Error("Database configuration must provide DATABASE_URL …
+       |           ^
+    216|   }
+    217|   if (!parsed.DATABASE_URL && configuredComponents.length === 0) {
+ ❯ loadDatabaseConfig src/config.ts:256:10
+ ❯ options tests/database-tls-runtime.test.ts:28:36
+ ❯ tests/database-tls-runtime.test.ts:43:15
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/3]⎯
+
+ FAIL  tests/database-tls-runtime.test.ts > reused database TLS context > still rejects a valid chain for the wrong hostname
+Error: Database configuration must provide DATABASE_URL or every DATABASE_* connection field
+ ❯ parseDatabaseConfig src/config.ts:215:11
+    213|   }
+    214|   if (!parsed.DATABASE_URL && configuredComponents.length !== componen…
+    215|     throw new Error("Database configuration must provide DATABASE_URL …
+       |           ^
+    216|   }
+    217|   if (!parsed.DATABASE_URL && configuredComponents.length === 0) {
+ ❯ loadDatabaseConfig src/config.ts:256:10
+ ❯ options tests/database-tls-runtime.test.ts:28:36
+ ❯ tests/database-tls-runtime.test.ts:53:28
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[2/3]⎯
+
+ FAIL  tests/database-tls-runtime.test.ts > reused database TLS context > does not share trust between separate pool configurations
+Error: Database configuration must provide DATABASE_URL or every DATABASE_* connection field
+ ❯ parseDatabaseConfig src/config.ts:215:11
+    213|   }
+    214|   if (!parsed.DATABASE_URL && configuredComponents.length !== componen…
+    215|     throw new Error("Database configuration must provide DATABASE_URL …
+       |           ^
+    216|   }
+    217|   if (!parsed.DATABASE_URL && configuredComponents.length === 0) {
+ ❯ loadDatabaseConfig src/config.ts:256:10
+ ❯ options tests/database-tls-runtime.test.ts:28:36
+ ❯ tests/database-tls-runtime.test.ts:56:19
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[3/3]⎯
+
+
+ Test Files  1 failed | 2 passed (3)
+      Tests  3 failed | 13 passed (16)
+   Start at  10:17:45
+   Duration  998ms (transform 82ms, setup 94ms, import 381ms, tests 156ms, environment 0ms)

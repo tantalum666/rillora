@@ -1,0 +1,52 @@
+{
+  "schema": "xcodebuildmcp.output.test-result",
+  "schemaVersion": "3",
+  "didError": false,
+  "error": null,
+  "data": {
+    "summary": {
+      "status": "SUCCEEDED",
+      "durationMs": 57074,
+      "counts": {
+        "passed": 1,
+        "failed": 0,
+        "skipped": 0
+      },
+      "target": "simulator"
+    },
+    "artifacts": {
+      "buildLogPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/logs/test_sim_2026-10-30T10-58-07-662Z_pid2806_9b42ce3b.log",
+      "xcresultPath": "output/qa/rillora-app-rejection-20261030/native-storekit-sdk.xcresult",
+      "testProductsPath": "~/Library/Developer/XcodeBuildMCP/workspaces/app-525a0c93b7f5/test-products/test_sim_2026-10-30T10-58-07-662Z_pid2806_9fcd1f8f.xctestproducts"
+    },
+    "tests": {
+      "selected": [
+        "RilloraTests/AppleStoreKitClientTests/testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase"
+      ],
+      "discovered": {
+        "total": 1,
+        "items": [
+          "RilloraTests/AppleStoreKitClientTests/testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase"
+        ]
+      }
+    },
+    "diagnostics": {
+      "warnings": [
+        {
+          "message": "-[RilloraTests.AppleStoreKitClientTests testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase] : Making a purchase without listening for transaction updates risks missing successful purchases. Create a Task to iterate Transaction.updates at launch.",
+          "location": "/Users/tantalum/Documents/电子遗嘱app/apps/ios/RilloraTests/AppleStoreKitClientTests.swift:74"
+        }
+      ],
+      "errors": [],
+      "testFailures": []
+    },
+    "testCases": [
+      {
+        "suite": "AppleStoreKitClientTests",
+        "test": "testLoadsExactLocalFamilyCatalogAndReturnsVerifiedBoundPurchase",
+        "status": "passed",
+        "durationMs": 2960
+      }
+    ]
+  }
+}

@@ -3,7 +3,7 @@ import { APP, isolate } from './fixtures.mjs';
 import contract from '../../../config/purchase-consent.json' with { type: 'json' };
 const boundaries = { serverAuthoritative: true, providerCallbackGrantsAccess: false, clientPurchaseResultGrantsAccess: false, billingStateCanTriggerClaim: false, billingStateCanTriggerDisclosure: false, storefrontPersistedToCustomerProfile: false, oneActiveRenewalProviderPerHouseholdPlan: true };
 const catalog = {
-  contractVersion: 'commerce-v1', billingOpen: true, serviceMarketCode: 'GLOBAL_US', currentAccess: { planCode: 'free' },
+  contractVersion: 'commerce-v1', billingOpen: true, webBillingEnvironment: 'production', serviceMarketCode: 'GLOBAL_US', currentAccess: { planCode: 'free' },
   plans: [{ planCode: 'free', capabilities: [{ code: 'matter_map_core', enforcementMode: 'included' }] },
     { planCode: 'family', capabilities: [{ code: 'family_maintenance', enforcementMode: 'included', availability: 'available' }, { code: 'trusted_people_multiple', enforcementMode: 'included', availability: 'available' }] }],
   offers: [{ priceCode: contract.priceCode, amountMinor: contract.amountMinor, currencyCode: contract.currency, minorUnitExponent: 2, billingInterval: 'annual', purchasable: true }], boundaries,
@@ -17,7 +17,8 @@ async function commerceFixture(context, overrides = {}) {
     if (path.endsWith('/commerce/status')) return route.fulfill({ json: state.catalog });
     if (path.endsWith('/test/status') && state.testUnavailable) return route.fulfill({ status: 404, json: { error: { code: 'not_found' } } });
     if (path.endsWith('/test/status')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-test-v1', testOnly: true, validationOnly: true, orders: [], subscriptions: state.subscription ? [state.subscription] : [] } });
-    if (path.endsWith('/stripe/status')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-production-v1', testOnly: false, subscription: state.subscription ?? null, canManage: Boolean(state.subscription), checkoutPending: false } });
+    if (path.endsWith('/stripe/status') && state.productionUnavailable) return route.fulfill({ status:404, json:{error:{code:'not_found'}} });
+    if (path.endsWith('/stripe/status')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-production-v1', testOnly: false, subscription: state.subscription ?? null, canManage: Boolean(state.subscription), checkoutPending: false, checkoutAvailability: state.checkoutAvailability ?? 'available' } });
     if (path.endsWith('/purchase-route')) return route.fulfill({ json: { contractVersion: 'commerce-v1', purchaseRoute: state.routeBlocked ? 'none' : 'web_direct', reason: state.routeBlocked ? 'unavailable' : 'available', requiresFreshEvaluation: true, boundaries } });
     if (path.endsWith('/stripe/quote')) return route.fulfill({ json: { contractVersion: 'commerce-stripe-production-v1', requiresFreshEvaluation: true, applicableTaxShownAtCheckout: true, purchaseConsent: { ...contract, ...state.quoteChange } } });
     if (path.endsWith('/checkout') || path.endsWith('/portal')) {
@@ -98,7 +99,7 @@ for (const locale of ['en', 'zh-CN']) {
   });
   test(`Enrolled TEST uses the same single annual action without charging ${locale}`, async ({ browser }) => {
     const context = await browser.newContext({ locale, viewport: { width: 390, height: 960 } });
-    const state = await commerceFixture(context, { catalog: { ...structuredClone(catalog), billingOpen: false, validationOnly: true } });
+    const state = await commerceFixture(context, { catalog: { ...structuredClone(catalog), webBillingEnvironment:'test', billingOpen: false, validationOnly: true } });
     const page = await context.newPage(); await page.goto(APP + '/?view=access');
     const card = page.locator('.family-plan-feature');
     await expect(card.getByRole('button', { name: subscribeLabel(locale), exact: true })).toBeEnabled();
@@ -112,6 +113,32 @@ for (const locale of ['en', 'zh-CN']) {
     await expect(card.getByRole('alert')).toContainText(locale === 'en' ? 'not available in this environment' : '当前环境未提供');
     await expect(card.getByRole('button', { name: subscribeLabel(locale), exact: true })).toBeDisabled();
     clean(state); await context.close();
+  });
+  test(`Apple review enrollment on production never exposes Stripe test controls ${locale}`, async ({ browser }) => {
+    const context = await browser.newContext({ locale, viewport:{width:390,height:960} });
+    const state = await commerceFixture(context, { catalog:{...structuredClone(catalog),validationOnly:true}, checkoutAvailability:'account_unavailable' });
+    const page = await context.newPage(); await page.goto(APP + '/?view=access');
+    const card = page.locator('.family-plan-feature');
+    await expect(card.getByRole('status')).toContainText(locale==='en'?'cannot start a new Web subscription':'当前账号无法通过网页版开通新订阅');
+    await expect(card.getByRole('button',{name:subscribeLabel(locale),exact:true})).toBeDisabled();
+    await expect(card).not.toContainText(/Test subscription|No charge|测试订阅|不会扣款/);
+    expect(state.reads.some(path=>path.includes('/commerce/test/'))).toBe(false);
+    expect(state.writes).toEqual([]);
+    await page.screenshot({path:test.info().outputPath(`production-review-account-${locale}.png`),fullPage:true});
+    clean(state); await context.close();
+  });
+  test(`Missing production billing is explained and recovers without a checkout ${locale}`, async ({ browser }) => {
+    const context=await browser.newContext({locale});
+    const state=await commerceFixture(context,{productionUnavailable:true});
+    const page=await context.newPage();await page.goto(APP+'/?view=access');
+    const card=page.locator('.family-plan-feature');
+    await expect(card.getByRole('alert')).toContainText(locale==='en'?'Web subscriptions are temporarily unavailable':'暂时无法开通网页订阅');
+    await expect(card.getByRole('button',{name:subscribeLabel(locale),exact:true})).toBeDisabled();
+    state.productionUnavailable=false;
+    await card.getByRole('button',{name:locale==='en'?'Refresh access':'刷新订阅状态',exact:true}).click();
+    await expect(card.getByRole('alert')).toHaveCount(0);
+    await expect(card.getByRole('button',{name:subscribeLabel(locale),exact:true})).toBeEnabled();
+    expect(state.writes).toEqual([]);clean(state);await context.close();
   });
 }
 for (const overrides of [{ quoteChange: { amountMinor: 6800 } }, { quoteChange: { termsVersion: 'old' } }, { routeBlocked: true }, { wrongProviderMode: true }]) {

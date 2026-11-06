@@ -1,0 +1,103 @@
+{
+  "checkedAt": "2026-10-23T19:29:02.968668+00:00",
+  "base": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "branch": "codex/health-checkin-watch-20261024",
+  "status": "source and scoped local acceptance complete; Git remote delivery follows separately",
+  "tests": {
+    "healthPure": 10,
+    "checkInPure": 23,
+    "targetedSourceGuards": 13,
+    "localSourceGroup": 137,
+    "phoneBilingualUI": 2,
+    "phoneDeniedNotificationUI": 1,
+    "phoneSystemDistinct": 4,
+    "watchBilingualLinkedOfflineUI": 4
+  },
+  "counting": "Final applicable distinct cases only. The 13 targeted guards are included in the source group, not additive. Phone schedule tests were repeated during localization verification and count once. No cloud CI.",
+  "builds": {
+    "debugIOSWatchWidget": true,
+    "releaseIOSWithEmbeddedWatchAndWidget": true,
+    "latestReleaseLog": "build-logs/build_sim_2026-10-23T19-18-15-281Z_pid71612_644f7117.log",
+    "toolchain": "existing Xcode26.6 17F113; iOS/watchOS26.5",
+    "simulatorSigning": "ad-hoc Debug for Keychain tests; final unsigned Release simulator candidate, not a distributable IPA"
+  },
+  "realSDKOnPairedSimulators": {
+    "onlinePhoneReceipt": true,
+    "offlineWatchConfirmation": true,
+    "watchProcessRestartPreservesPendingInKeychain": true,
+    "phoneRestartRestoresBinding": true,
+    "reconnectionReceivesExactAcknowledgement": true,
+    "phoneSeparatesReportedAndReceivedTimes": true,
+    "UIFixturesUsedForThisFlow": false,
+    "healthQueriesDuringThisFlow": false
+  },
+  "resolvedFailures": [
+    "Unisolated system WatchConnectivity reply entered inherited MainActor closure and crashed; nonisolated Sendable callback factory plus background-executor regression and actual SDK recheck passed.",
+    "Keep phone async notification scheduling serialization across authentication transitions so old cleanup cannot cancel newer work.",
+    "Unsigned simulator Keychain tests failed; ad-hoc signing resolved without reducing protection.",
+    "Notification scheduling verification required actual simulator authorization; later system queue/readback and action constraints passed.",
+    "Watch WKApplication metadata and unavailable DisclosureGroup fixed; targeted install/UI passed.",
+    "UI toggle target/readiness and immediate receipt/contrast repaired; original failures retained.",
+    "First local publication gate detected the edited collaboration README against its old hash. Full manifest regenerated; source group and full scan then passed."
+  ],
+  "isolation": {
+    "currentReviewFilesIdentical": 6,
+    "releaseExecutablesWithoutQAMarkers": 3,
+    "healthDataInMemoryOnly": true,
+    "checkInIndependentOfHealth": true,
+    "noCurrentReviewPortalChanges": true,
+    "noDeployment": true,
+    "noTestFlight": true,
+    "noPhysicalInstallation": true,
+    "noCloudCI": true,
+    "noToolchainUpgrade": true,
+    "dataPriceBillingFanPassUnchanged": true
+  },
+  "cleanup": {
+    "at": "2026-10-23T19:26:05.077830+00:00",
+    "verifiedFixturePid": 25154,
+    "fixtureStopped": true,
+    "simulators": [
+      {
+        "device": "F57B6381-6448-434C-AE61-A2663F3458A7",
+        "exitCode": 0,
+        "detail": ""
+      },
+      {
+        "device": "02E62533-29A6-4447-BDB5-9AE9F1A65F31",
+        "exitCode": 0,
+        "detail": ""
+      }
+    ],
+    "data": "Only the isolated synthetic database and simulator containers remain; nothing erased. No user hardware installation or TestFlight."
+  },
+  "openGates": [
+    "Real personal HealthKit authorization and samples; physical Watch connectivity, background delivery, battery and hardware protection.",
+    "Actual complication installation and next-version Store/Privacy/signing acceptance.",
+    "Previously documented two Duo landscape UI failures; not rerun here.",
+    "Existing real speech and provider application-pack material assembly; not expanded here."
+  ],
+  "excludedScope": [
+    "Health anomaly scoring/personal baselines",
+    "Health-derived death/incapacity or content disclosure",
+    "Respiratory rate/HRV and further sensitive data types",
+    "Family notifications or new server endpoints"
+  ],
+  "documentation": {
+    "focused": [
+      "docs/health-checkin-watch-development-20261024.md",
+      "docs/healthkit-preparation-20261020.md",
+      "docs/healthkit-multisignal-watchos-20261024.md",
+      "apps/ios/NextVersionHealth/README.md",
+      "apps/ios/NextVersionCheckIn/README.md",
+      "apps/ios/NextVersionWatch/README.md",
+      "docs/source-control.md",
+      "tools/ci/README.md"
+    ],
+    "decision": "docs/decision-log.md: October24 explicit implementation supersedes recommendation-only status; cadence/wire choices documented separately from medical/disclosure policy.",
+    "handoff": "docs/handoff.md; prior checkpoint moved to HISTORICAL history",
+    "journey": "docs/journey/PROJECT_JOURNEY.md: October24 goal, attempts, corrections, results and outstanding boundaries"
+  },
+  "preservation": "Only new archive53; old1-52 unchanged. Source and safe receipts ordinary Git. Full machine crash reports, credentials, personal health, dependency and DerivedData caches excluded. Final unsigned Release simulator app included.",
+  "remote": "Pending separate immutable-SHA and fresh-LFS receipt, not claimed from local checks."
+}

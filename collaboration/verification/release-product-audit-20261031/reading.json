@@ -1,0 +1,35 @@
+{
+  "mode": "Continuation of App Review remediation and current-candidate acceptance; scope extended by Owner to release-product completeness",
+  "retainedFullBodyChain": "collaboration/verification/app-rejection-20261030/reading.json",
+  "previousFocusedRecord": "collaboration/verification/app-review-acceptance-20261031/reading.json",
+  "currentReadRanges": {
+    "AGENTS.md": "full",
+    "docs/product.md": "1-100,527-703; compressed recovery597-703complete; unchanged full-body chain retained",
+    "docs/handoff.md": "full",
+    "docs/app-review-sandbox-acceptance-20261031.md": "full with26-45supplement",
+    "docs/decision-log.md": "latest90lines plus authored current scope",
+    "docs/journey/PROJECT_JOURNEY.md": "latest18lines plus authored new entry",
+    "apps/web/AGENTS.md": "full",
+    "tools/security/credential_store.py": "1-140; earlier full read retained",
+    "product-design skill": "audit,index,user-context,critical-overrides,communication,design-audit-framework and context-preflight script fully read",
+    "Auth0 skill": "unchanged skill and previously read debugging references retained",
+    "docs/production-commerce-20260926.md": "full209lines before edits plus authored update",
+    "docs/plan-purchase-page-20261013.md": "full",
+    "docs/release-readiness.md": "current1-32 plus retained dated history; authored current-state correction",
+    "docs/source-control.md": "current1-45; unchanged historical body retained",
+    "collaboration/README.md": "current routing entries; unchanged full-body chain retained",
+    "tools/ci/README.md": "full",
+    "Stripe skill": "best-practices and Billing reference read; unchanged tax defer retained",
+    "React skill": "best practices and derived-state-no-effect reference read"
+  },
+  "newInstruction": "Resume unlocked phone; complete acceptance then inspect/fix real product readiness; hold resubmission/TestFlight",
+  "excluded": [
+    "generated output evidence",
+    "generated collaboration mirrors/catalog/archives",
+    "dependencies/build caches",
+    "credentials and private provider state"
+  ],
+  "notAFullSourceReadClaim": true,
+  "recordedAt": "2026-10-31T00:05:24.997679+00:00",
+  "coverageNote": "Repeated combined output truncations were not treated as new full-body reads. Focused current authority and modified contracts were supplemented; full original chain remains unchanged."
+}

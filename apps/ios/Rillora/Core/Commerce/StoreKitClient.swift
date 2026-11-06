@@ -116,6 +116,7 @@ protocol StoreKitPurchasing: Sendable {
     func purchaseIntents() -> AsyncStream<String>
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot]
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot
+    func unfinishedTransactions(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot
     func subscriptionStatuses(
         identifiers: Set<String>
     ) async -> StoreKitSubscriptionStatusSnapshot
@@ -137,6 +138,9 @@ extension StoreKitPurchasing {
     func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { nil }
     func refreshAppEnvironment() async throws -> ApplePurchaseEnvironment? { nil }
     func purchaseIntents() -> AsyncStream<String> { AsyncStream { $0.finish() } }
+    func unfinishedTransactions(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
+        .init(transactions: [], containsUnverifiedTransaction: false)
+    }
 }
 
 actor AppleStoreKitClient: StoreKitPurchasing {
@@ -216,9 +220,18 @@ actor AppleStoreKitClient: StoreKitPurchasing {
     }
 
     func currentEntitlements(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
+        await transactionSnapshot(Transaction.currentEntitlements, identifiers: identifiers)
+    }
+
+    func unfinishedTransactions(identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
+        await transactionSnapshot(Transaction.unfinished, identifiers: identifiers)
+    }
+
+    private func transactionSnapshot(_ sequence: Transaction.Transactions,
+                                     identifiers: Set<String>) async -> StoreKitEntitlementSnapshot {
         var transactions: [StoreKitTransactionEvidence] = []
         var containsUnverifiedTransaction = false
-        for await result in Transaction.currentEntitlements {
+        for await result in sequence {
             let productID = result.unsafePayloadValue.productID
             guard identifiers.contains(productID) else { continue }
             switch result {

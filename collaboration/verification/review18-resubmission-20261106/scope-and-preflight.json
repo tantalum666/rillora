@@ -1,0 +1,21 @@
+{
+  "at": "2026-11-06T06:16:22.767785+00:00",
+  "ownerInstruction": "Resubmit exact1.0(18) with annual subscription and subscription group, manual release, no TestFlight; maintain reviewer and service validity.",
+  "supersedes": "Prior no-resubmission hold only; TestFlight hold and manual release remain.",
+  "baseCommit": "4d60bf118c63341508e093c14b11131f1dc324b7",
+  "preflightPassed": [
+    "current Auth0 exact user exists, unblocked, password identity, no reset or MFA",
+    "production readiness200, anonymous session401",
+    "existing cloud monitor active every15minutes, current invoke failed0",
+    "API and monitor review expiry match December4; catalog/DB read inherited from same-day immediately preceding checkpoint",
+    "published material/build18/manual release retained"
+  ],
+  "standingMaintenance": "Missing prior local task recreated as daily9:00HK account/service upkeep only; no submission-status watcher",
+  "reusedEvidence": [
+    "full project Markdown read from same workflow",
+    "18-r2Applevalidation/upload",
+    "actual18purchase/restore",
+    "November6signedSandboxexpiry",
+    "bilingualmaterial/readbackat4d60bf118"
+  ]
+}
