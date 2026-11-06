@@ -2,6 +2,10 @@
 
 Last updated: 2026-11-06 (Asia/Hong_Kong)
 
+## November6 Owner批准重新提审
+
+[18／年付／群组重新提交回执](app-review-resubmission-20261106.md)已实际读回三个等待审核及手动发布。当前源配置、自动维护登记和[安全证据](../collaboration/verification/review18-resubmission-20261106/README.md)普通Git保存；无新加密归档、应用源码修改或测试／部署重跑。原始账号、授权和提供方全文留本机，公开截图避开账号／联系字段。最后完整清单和确切base本机发布门覆盖本次增量，远端头与无新Actions分别读回。
+
 ## November6用户会话与审核再复核
 
 登录续接后，18草稿与最终材料已实际保存回读，新只读检查确认原Sandbox订阅已自然到期。[材料补齐回执](../collaboration/verification/app-review-materials-20261106/README.md)记录独立版本附件的替代路径、两语言标准许可链接、配置快照纠偏及证据边界。该小型增量只需普通Git保存；不新建加密归档，不重下63／64，不运行未变化应用测试或部署。原始账号／提供方状态留本机；最后重建完整可读清单并按确切main基线执行本机发布门。下面早一检查点的“Apple登录失效”已被续接结果取代。

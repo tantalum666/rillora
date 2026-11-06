@@ -1,7 +1,9 @@
 # App Review 复核、购买按钮修复与审核资格维护
 
-Status: LOCAL FIXES VERIFIED / NATIVE18 INSTALLED / OWNER PAGE REVIEW PENDING / RESUBMISSION HELD
-Last updated: 2026-11-05 (Asia/Hong_Kong)
+Status: HISTORICAL REPAIR EVIDENCE / SEE NOVEMBER6 REVIEW18 RESUBMISSION
+Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+当前状态：[18已按Owner明确指令重新提审](app-review-resubmission-20261106.md)，年付与群组三项等待审核，手动发布保持；本文件的页面补验／14材料／暂不重提等下一步均为November4–5历史。原修复及测试证据沿用，不因提审重跑。
 
 November5香港20:50后续：[同一18-r2已原位安装并启动](native18-device-install-20261105.md)，设备独立读回1.0(18)。这是Owner明确要求直装后的新结果；以下原修复／签名阶段的“尚未安装”描述保留其当时边界，当前只待本人页面检查，不重买或恢复。
 

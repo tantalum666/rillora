@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-03",
+  "updatedAt": "2026-11-06",
   "deploymentEvidenceRequired": true,
   "jobs": [
     {
@@ -150,6 +150,25 @@
       "sideEffects": "Retire only the named snapshot after its actual deadline; no broad backup deletion",
       "evidence": "docs/release-engineering-20260930.md",
       "livePrerequisites": []
+    },
+    {
+      "id": "account-service-validity",
+      "state": "local_maintenance_created_active_first_run_not_observed",
+      "automationId": "rillora",
+      "kind": "heartbeat",
+      "trigger": "Daily09:00Asia/Hong_Kong",
+      "purpose": "Maintain currently required account eligibility and necessary service health; not a particular review-result watcher",
+      "warningDays": 14,
+      "maximumReviewRenewalDays": 31,
+      "notificationPolicy": "failed_runs_only",
+      "sideEffects": "Only the existing approved same-identity bounded renewal when needed, with database/API/monitor readback; no passwords, purchase, resubmission or TestFlight changes",
+      "evidence": "docs/app-review-resubmission-20261106.md",
+      "limitations": [
+        "Local upkeep requires the Mac and app execution environment to be available",
+        "Actual provider authentication may require Owner MFA",
+        "Existing cloud15minute monitor and confirmed alert subscriber remain independent"
+      ],
+      "replaces": "Prior automation id rillora was reported missing by the provider; no duplicate existing job was updated or presumed active"
     }
   ]
 }

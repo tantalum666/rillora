@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November6最新：[18重新提审](../docs/app-review-resubmission-20261106.md)已按Owner明确要求完成，App／年付订阅／群组三个项目均等待审核，手动发布与不发TestFlight保持。账号和云端监控读回通过，原本机维护任务实际缺失后已恢复为每日有界账号／服务维护。[安全回执](verification/review18-resubmission-20261106/README.md)普通Git保存，不新建归档或重跑测试／部署。下方先前“暂停重新提审”已被最新指令取代，当前唯一下一步见handoff。
+
 November6后续：[审核材料续接](verification/app-review-materials-20261106/README.md)已完成18草稿／最终备注／布局附件及双语标准许可链接的刷新回读；最新受限只读观察确认原Sandbox订阅自然到期。原年付商品图片栏受Apple状态限制，版本附件与备注明确补充，未删除项目或取消提交。免费／付费协议、13类隐私、USA/HKG与原年价保持。只追加小型可读证据和源配置状态修正，不重封归档、重跑测试、重复部署、重提或TestFlight。下段登录／到期门是同日早一检查点，已由本段取代。
 
 November6当前：[用户登录保持](../docs/longer-user-sessions-20261106.md)已在两环境启用30天／7天策略并完成可信边缘、身份状态和运行回读；[审核再复核](../docs/app-review-recheck-20261106.md)修复额外身份核验器遗漏，39项检查和两模块API更新通过。18已通过Apple校验并上传为未分配测试组的候选；草稿18保存后的重新读取遇到实际Apple登录失效，备注／审核参考图尚未保存，不能宣称全部提审条件闭合。最新Sandbox仍有签名自动续订，最终过期账号状态另核对；不重提或TestFlight。

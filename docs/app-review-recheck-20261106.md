@@ -1,7 +1,9 @@
 # App Review 再复核 — 2026-11-06
 
-Status: CANDIDATE18 AND MATERIALS SAVED / CURRENT SANDBOX EXPIRY VERIFIED / OWNER RESUBMISSION HOLD
+Status: PREPARATION COMPLETE / SUPERSEDED BY NOVEMBER6 AUTHORIZED RESUBMISSION
 Last updated: 2026-11-06 (Asia/Hong_Kong)
+
+后续Owner已明确解除重新提审暂停，18／年订阅／群组已于同日香港14:16一起等待审核，手动发布与TestFlight暂停保持。当前状态见[重新提审回执](app-review-resubmission-20261106.md)；本文件下述暂停和准备结果是此前检查点，不再作为当前提审阻塞。
 
 Owner要求再次仔细检查，确保下一次审核的准备充分。继续不重新提审、不分发TestFlight；本轮没有重新购买、改价、人工授予套餐或改变真实用户资料。
 
@@ -55,7 +57,7 @@ AWS CLI 曾实际过期，但原浏览器会话有效，等价恢复成功，无
 
 [Apple隐私定义](https://developer.apple.com/app-store/app-privacy-details/)要求按IP实际用途披露。原已发布13类记录已有“粗略位置—App功能／安全”及“其他数据—会话元数据”，覆盖本轮同用途的国家／网络哈希；没有新增广告追踪或位置权限。仍需在恢复Apple登录后核对当前已保存标签。隐私政策／服务条款正文不变，新的存储时长已在独立版本Cookie Notice公开并验证。
 
-## 当前剩余门与保存
+## 此前准备检查点的剩余门与保存
 
 当前材料准备及真实过期状态已按顶部结果完成；内购锁定字段以版本附件和明确备注补充，原字段保留历史。唯一执行门仍是 Owner 明确的重提／TestFlight 暂停。解除重提暂停后，才更新原审核提交并最终重新提交；届时只刷新有时效的服务／账号资格，不重跑已通过的购买、迁移、上传或测试。Apple 的实际下一轮结论无法由准备检查保证，真实 iPadOS27.2交易未新增验证。
 

@@ -1,10 +1,12 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB LIVE / REVIEW18 DRAFT AND MATERIALS VERIFIED / RESUBMISSION HELD
+Status: WEB LIVE / REVIEW18 PLUS ANNUAL AND GROUP WAITING FOR REVIEW / MANUAL RELEASE
 Last updated: 2026-11-06 (Asia/Hong_Kong)
 
 ## November6 当前发布准备
+
+后续Owner明确要求重新提审。[实际重新提交](app-review-resubmission-20261106.md)已于香港14:16完成，18／年订阅／群组刷新后都为等待审核，手动发布独立确认。只有重新提审暂停被解除，TestFlight和自动发布边界保持。账号／服务当前检查通过，既有云端监控保留，缺失本机维护任务已重新建立。下段“暂停”是此前材料准备检查点。
 
 [长期用户会话](longer-user-sessions-20261106.md)和额外审核身份核验器修复已完成两环境部署；[审核再复核](app-review-recheck-20261106.md)现已读回18草稿、最终备注、当前布局参考附件和双语标准许可链接。协议有效，当前13类隐私标签、USA/HKG及年费USD119.99/HKD888已核对。既有18再次订阅／恢复和新的签名自然到期结果分别有真实证据；不重复购买。
 
