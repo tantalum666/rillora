@@ -5,9 +5,13 @@ Authority scope: current product definition, terminology, constraints and docume
 Superseded by: Owner后续明确决定，并记录在 `docs/decision-log.md`  
 Do not use for: 具体法律意见、实现完成度、发布状态或历史过程  
 Status: PRODUCT FOUNDATION ACTIVE  
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
 
 本文件是任何产品、设计、Web、iOS、安全、研究或商业任务的第一入口。它刻意保持为决策层；细节由Authority Map路由到聚焦文件。
+
+## 2026-11-14 18再次拒审，修复真实登录依赖
+
+Owner要求认真检查实际无法登录。[当前根因与修复](app-review-login-fix-20261114.md)确认新长期会话查询用了Auth0不接受的字段投影，真实400导致会话503；不是密码或审核期限到期。支持的排除投影已在两API部署，20项检查及真实服务方／密码重置证明对照通过，安全边界和数据价格保持。全新双端登录仍待受保护凭据读取及本次条款确认，未再次提审；旧健康／用户存在与变更前登录证据不再替代最终登录闭环。
 
 ## 2026-11-06 Owner批准18重新提审，保留手动发布
 

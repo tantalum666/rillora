@@ -1,0 +1,15 @@
+# Actual18 login rejection and backend repair — 2026-11-14
+
+Apple's November12review of1.0(18), iPad Air11M3/iPadOS27.2.1, reports2.1(a): unable to log in. The attached original screenshot shows the native session-exchange error. The previous waiting-for-review state and readiness claim are superseded.
+
+A real exact-user Auth0 request using the deployed security projection returned400: last_password_reset is returned profile data but is not in the accepted projection-field allowlist. SessionSecurity converted the provider failure to503, so new sessions were denied. This is not limited to the reviewer. A prepared provider stub and a test assertion of the invalid query missed this; old login and health/account-existence evidence did not test the new final identity path.
+
+The supported exclusion projection returns200 for the same reviewer. A separate read-only comparison verifies an existing real password-reset proof survives the new request. No password, identity, privilege, data or price was changed. The new provider-contract regression failed against the old implementation, then20related checks/typecheck/build passed. Unrelated contact data, linked-provider identities and large metadata are excluded; blocking/deletion/reset/revocation/network/CSRF/session limits remain.
+
+Only email-verification.js is overlaid on the existing API. Preview then production now run the exact aa5160ad image with unchanged config/edge verifier, healthy tasks and private anonymous401. No migration, worker change or native distribution. Those deployment checks do not prove full customer login.
+
+Fresh native acceptance uses frozen18Release source/config in a new M3 simulator. Initial build-argument/config mismatches were corrected before install. The environment is27.0, not a physical27.2.1device. Real hosted login was reached, but protected credential user presence and current consent are pending. The dedicated simulator has been shut down with its prepared install retained; the original device view was restored and tool defaults cleared. No complete fresh Web/native sign-in, new purchase, resubmission or Apple acceptance is claimed. The timed-out credential helper was stopped with no plaintext obtained.
+
+`diagnosis.json` and `verification-status.json` preserve scope and open gates. Red/green test logs, actual-provider/reset comparisons, exact runtime/policy receipts, build configuration comparison and link/failure records are readable. Raw provider/auth/account/logs stay private; the overlay recipe and frozen18sources are retained locally/at their prior archive checkpoints. No new encrypted archive or old-archive download is needed for this small increment. No cloudCI, subagent, automation recreation or FanPass operation.
+
+See [current diagnosis](../../../docs/app-review-login-fix-20261114.md) and [handoff](../../../docs/handoff.md). Fresh post-change login against the exact backend/candidate is required before another resubmission; health200, unblocked identity, stubs and old sessions cannot substitute.

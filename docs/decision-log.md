@@ -5,7 +5,7 @@ Authority scope: explicit product and process decisions
 Superseded by: later entries in this file  
 Do not use for: treating casual feedback as global approval  
 Status: ACTIVE  
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
 
 新条目使用以下模板：
 
@@ -4042,3 +4042,10 @@ Owner明确要求“你帮我直接升级并部署吧，留下交接文档在git
 - Owner explicitly requests resubmitting1.0(18), the yearly subscription and its subscription group together, preserving manual release and no TestFlight, and maintaining reviewer/service validity. This supersedes only the previous resubmission hold.
 - After current identity/service/expiry-monitor checks, update the existing submission and resubmit once. Apple independently reads back all three Waiting for Review at14:16 Hong Kong; a separate version read confirms manual release. No approval, public release, repeat upload or TestFlight distribution is inferred.
 - The provider reports the earlier local maintenance task missing. Restore standing account/service upkeep under the current maintenance instruction, with the existing14-day threshold and maximum31-day same-identity renewal. It is not a watcher for this submission's completion; no first scheduled run or renewal is claimed from creation. Existing cloud health and expiry alerts remain independent.
+
+## 2026-11-14 — Repair the actual18 login rejection and correct the validation gate
+
+- Owner requests direct inspection and serious repair of the new inability to sign in. The actual Apple message is2.1(a) for18 on iPad27.2.1, superseding Waiting for Review. Preserve manual release, no TestFlight, data/prices/security/FanPass; no new submission while the failed flow remains unverified.
+- Live evidence rejects the security profile projection400. Use supported exclusion semantics to preserve password-reset, blocking and deletion proof, not a bypass or manual reviewer exception. The exact module is deployed to Preview then production after a failing regression and20passing checks.
+- Existing-user lookups, health200and older authenticated sessions were insufficient after an identity-path change. Fresh login through the real provider and final backend/candidate becomes an explicit prerequisite; no simulator or provider-contract check is relabeled as physical-device or complete-login acceptance.
+- Owner confirmation for the current synthetic-account consent and Mac user presence remains pending. Stop timed-out credential access without a plaintext fallback or password reset. Do not recreate the previously deleted local automation.

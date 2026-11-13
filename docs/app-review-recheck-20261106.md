@@ -1,7 +1,9 @@
 # App Review 再复核 — 2026-11-06
 
+November14当前：[18登录拒审的根因和修复](app-review-login-fix-20261114.md)已确认并部署，完整新登录仍待实际验收。下方November6提交／等待状态和此前检查结果是历史，不能当成当前通过证明。
+
 Status: PREPARATION COMPLETE / SUPERSEDED BY NOVEMBER6 AUTHORIZED RESUBMISSION
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
 
 后续Owner已明确解除重新提审暂停，18／年订阅／群组已于同日香港14:16一起等待审核，手动发布与TestFlight暂停保持。当前状态见[重新提审回执](app-review-resubmission-20261106.md)；本文件下述暂停和准备结果是此前检查点，不再作为当前提审阻塞。
 

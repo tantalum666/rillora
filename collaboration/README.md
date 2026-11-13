@@ -1,5 +1,7 @@
 # Rillora — Git / Dot 协作入口
 
+November14最新：[18登录故障](../docs/app-review-login-fix-20261114.md)已定位为Auth0资料投影400导致会话503；单模块修复在两API部署，20项检查及真实服务方对照通过。实际全新Web／原生登录仍待本人步骤，未重提；不能再用用户存在／健康200／旧登录记录替代。[本轮安全回执](verification/review-login-20261114/README.md)保存失败、修复和证据边界，原始账号／授权资料不公开。当前唯一下一步见handoff，下方等待审核均为历史。
+
 November6最新：[18重新提审](../docs/app-review-resubmission-20261106.md)已按Owner明确要求完成，App／年付订阅／群组三个项目均等待审核，手动发布与不发TestFlight保持。账号和云端监控读回通过，原本机维护任务实际缺失后已恢复为每日有界账号／服务维护。[安全回执](verification/review18-resubmission-20261106/README.md)普通Git保存，不新建归档或重跑测试／部署。下方先前“暂停重新提审”已被最新指令取代，当前唯一下一步见handoff。
 
 November6后续：[审核材料续接](verification/app-review-materials-20261106/README.md)已完成18草稿／最终备注／布局附件及双语标准许可链接的刷新回读；最新受限只读观察确认原Sandbox订阅自然到期。原年付商品图片栏受Apple状态限制，版本附件与备注明确补充，未删除项目或取消提交。免费／付费协议、13类隐私、USA/HKG与原年价保持。只追加小型可读证据和源配置状态修正，不重封归档、重跑测试、重复部署、重提或TestFlight。下段登录／到期门是同日早一检查点，已由本段取代。

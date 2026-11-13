@@ -1,7 +1,9 @@
 # App Review 复核、购买按钮修复与审核资格维护
 
+November14当前：[18登录拒审的根因和修复](app-review-login-fix-20261114.md)已确认并部署，完整新登录仍待实际验收。下方November6提交／等待状态和此前检查结果是历史，不能当成当前通过证明。
+
 Status: HISTORICAL REPAIR EVIDENCE / SEE NOVEMBER6 REVIEW18 RESUBMISSION
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
 
 当前状态：[18已按Owner明确指令重新提审](app-review-resubmission-20261106.md)，年付与群组三项等待审核，手动发布保持；本文件的页面补验／14材料／暂不重提等下一步均为November4–5历史。原修复及测试证据沿用，不因提审重跑。
 

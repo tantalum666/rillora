@@ -1,9 +1,11 @@
 # Rillora 用户登录保持与网络确认
 
-Status: DEPLOYED TO PREVIEW AND PRODUCTION / CONFIGURATION AND RUNTIME VERIFIED
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Status: DEPLOYED / NOVEMBER14 PROFILE CONTRACT FIX / FRESH LOGIN ACCEPTANCE OPEN
+Last updated: 2026-11-14 (Asia/Shanghai)
 
 Owner明确延长的是Rillora App／Web用户登录，要求同时设置网络／IP变化等安全条件。AWS、Auth0、Stripe管理登录不在范围。此前18购买修复和同单恢复已完成，价格、数据、收费设置及审核资格保留；不重做购买、不发TestFlight、不重新提审。
+
+November14纠正：[实际拒审诊断](app-review-login-fix-20261114.md)证明原资料字段投影不被Auth0接受，之前合成测试与健康检查不能证明新的真实登录可用。该请求现已修复并部署两环境，原会话合同保持；完整全新登录仍待实际验收。下方November6测试和部署保留其当时的证据范围。
 
 ## 会话合同
 

@@ -1,6 +1,10 @@
 # Source control, complete work preservation and release rollback
 
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 实际登录故障修复
+
+[当前登录修复](app-review-login-fix-20261114.md)仅修改身份资料投影及聚焦回归；真实服务方反例、20项检查、单模块两环境发布及未完成的新登录门分开保存。[安全证据](../collaboration/verification/review-login-20261114/README.md)普通Git保存，原始账号／授权／云配置／日志留private。冻结18源和原归档沿用，只生成可复现的模拟器Release验收产物，不新增发布包或重封旧归档。完整可读清单和确切base本机发布门在最后回执后运行；不以Git成功冒充全新登录通过。
 
 ## November6 Owner批准重新提审
 

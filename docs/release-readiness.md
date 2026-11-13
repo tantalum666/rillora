@@ -1,8 +1,12 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB LIVE / REVIEW18 PLUS ANNUAL AND GROUP WAITING FOR REVIEW / MANUAL RELEASE
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Status: REJECTED18 LOGIN / BACKEND FIX DEPLOYED / FRESH LOGIN GATE OPEN
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 当前拒审与修复
+
+18已实际被Apple因无法登录拒绝。[根因与后端修复](app-review-login-fix-20261114.md)确认当前服务方字段参数400，已修复并在Preview／正式部署；完整新登录仍待系统本人验证及条款提交。当前不能称为提审验收通过，不再次提交或发TestFlight。下述November6等待审核为历史状态。
 
 ## November6 当前发布准备
 

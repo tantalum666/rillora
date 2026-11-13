@@ -5,7 +5,11 @@ Authority scope: API, PostgreSQL model, runtime security controls and production
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
 Status: ACTIVE BACKEND CONTRACT; CURRENT DEPLOYMENT STATE IN HANDOFF; DATED EVIDENCE BELOW
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 Auth0 profile-contract repair
+
+[Current login repair](app-review-login-fix-20261114.md) corrects an actually rejected fields projection in the existing read:users service. Security proof still includes exact identity, blocked/deleted state and password-reset time; contact fields, linked identities and metadata are excluded. Live400/200and a real existing reset-proof comparison accompany the failing-then-passing regression. Only email-verification.js is overlaid onto the currentAPI, Preview then production, with no SQL/config/permission/worker change. Runtime readiness is separately recorded and cannot stand in for fresh session issuance.
 
 ## November6 user-session security and continuity
 

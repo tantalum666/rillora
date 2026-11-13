@@ -1,10 +1,10 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-11-06",
+  "updatedAt": "2026-11-14",
   "locale": "zh-Hans",
   "appId": "6803957639",
   "bundleId": "com.rillora.ios",
-  "status": "waiting_for_review_build18_verified_20261106",
+  "status": "rejected18_login_backend_fixed_fresh_acceptance_pending",
   "name": "Rillora",
   "subtitle": "把重要的事，提前交代清楚",
   "primaryCategory": "PRODUCTIVITY",
@@ -30,17 +30,17 @@
     "savedReadbackEvidence": "collaboration/verification/final-readiness-20261013/receipts/apple-bilingual-assets-saved.json"
   },
   "reviewSubmission": {
-    "state": "waiting_for_review",
+    "state": "unresolved_issues",
     "id": "6537a10c-38f2-425e-8b8e-c76e5fa730b1",
     "build": "18",
-    "lastReviewedBuild": "14",
+    "lastReviewedBuild": "18",
     "lastReviewedOutcome": "rejected",
     "submittedAtLocal": "2026-11-06 14:16",
     "submittedTimeZone": "Asia/Hong_Kong",
     "submittedTimePrecision": "minute",
-    "observedAt": "2026-11-06T06:20:18.071661+00:00",
-    "evidence": "docs/app-review-resubmission-20261106.md",
-    "appleRejection": false,
+    "observedAt": "2026-11-13T20:14:21.082536+00:00",
+    "evidence": "docs/app-review-login-fix-20261114.md",
+    "appleRejection": true,
     "newBuildResubmitted": true,
     "publiclyReleased": false,
     "items": [
@@ -48,7 +48,11 @@
       "com.rillora.family.annual",
       "subscription_group_22325627"
     ],
-    "note": "All three items independently read back Waiting for Review after resubmission. October30 rejected14 remains historical, not a rejection of18. Manual release retained; no TestFlight distribution."
+    "note": "18 rejected for2.1(a) login failure. The Auth0 profile projection fix is deployed; fresh complete login acceptance remains open. No new submission or TestFlight.",
+    "reviewDate": "2026-11-12",
+    "reviewDevice": "iPad Air 11-inch (M3)",
+    "reviewOS": "iPadOS 27.2.1",
+    "resubmittedAfterLatestRejection": false
   },
   "previousReviewSubmission": {
     "state": "developer_withdrawn",
@@ -79,6 +83,27 @@
       "newBuildResubmitted": false,
       "publiclyReleased": false,
       "note": "The draft now selects 18; the October 30 Apple rejection reviewed 14. Notes and current layout reference are saved in the version draft; the original IAP image remains locked and is identified as historical in the new notes."
+    },
+    {
+      "state": "waiting_for_review",
+      "id": "6537a10c-38f2-425e-8b8e-c76e5fa730b1",
+      "build": "18",
+      "lastReviewedBuild": "14",
+      "lastReviewedOutcome": "rejected",
+      "submittedAtLocal": "2026-11-06 14:16",
+      "submittedTimeZone": "Asia/Hong_Kong",
+      "submittedTimePrecision": "minute",
+      "observedAt": "2026-11-06T06:20:18.071661+00:00",
+      "evidence": "docs/app-review-resubmission-20261106.md",
+      "appleRejection": false,
+      "newBuildResubmitted": true,
+      "publiclyReleased": false,
+      "items": [
+        "app_version_1.0_18",
+        "com.rillora.family.annual",
+        "subscription_group_22325627"
+      ],
+      "note": "All three items independently read back Waiting for Review after resubmission. October30 rejected14 remains historical, not a rejection of18. Manual release retained; no TestFlight distribution."
     }
   ]
 }

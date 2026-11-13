@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-13T20:02:19.910497+00:00",
+  "environment": "production",
+  "passed": true,
+  "desired": 1,
+  "running": 1,
+  "pending": 0,
+  "rollout": "COMPLETED",
+  "taskDefinitionMatches": true,
+  "imageMatches": true,
+  "imageDigest": "sha256:aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3",
+  "containerHealth": "HEALTHY",
+  "http": [
+    {
+      "requestedUrl": "https://app.rillora.xyz/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store"
+    },
+    {
+      "requestedUrl": "https://app.rillora.xyz/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store"
+    },
+    {
+      "requestedUrl": "https://app.rillora.xyz/api/v1/commerce/status",
+      "status": 401,
+      "cacheControl": "no-store"
+    }
+  ],
+  "accountOrDataWrites": false
+}

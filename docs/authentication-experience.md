@@ -5,7 +5,11 @@ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appear
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
 Status: HOSTED SIGN-IN OBSERVED; WEB ACCOUNT CHOICE/REAUTH VERIFIED; SIGNUP GUIDANCE APPLIED
-Last updated: 2026-11-06 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 real-provider projection failure
+
+[The actual18 rejection](app-review-login-fix-20261114.md) exposed a missing fresh-login gate after the long-session rollout. A user record and health200do not prove a session can be issued. The exact provider projection failed400and was replaced with supported exclusion mode without dropping password-reset/blocked/deleted checks. Both APIs are patched; the full fresh Web/native flow remains unverified until the pending user-presence and same-version consent steps complete. Any affected identity/session deployment invalidates older login evidence for resubmission.
 
 ## November6 bounded user login continuity
 

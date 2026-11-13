@@ -20,6 +20,19 @@ export interface IdentitySecurityVerifying {
   securityStatus(identity: EmailIdentity): Promise<IdentitySecurityStatus>;
 }
 
+type ProfileProjection = { fields: string; includeFields: boolean };
+// Auth0 returns last_password_reset but rejects it in the projection allowlist.
+// Use its supported exclusion mode to retain that security proof while keeping
+// contact details, metadata and linked-provider credentials out of the response.
+const securityProfileProjection: ProfileProjection = {
+  fields: [
+    'phone_number', 'email', 'email_verified', 'picture', 'username', 'name', 'nickname',
+    'created_at', 'identities', 'app_metadata', 'user_metadata', 'last_ip', 'last_login',
+    'logins_count', 'updated_at', 'family_name', 'given_name',
+  ].join(','),
+  includeFields: false,
+};
+
 /** Read current provider proof for one server-selected identity. Never set email_verified. */
 export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying, IdentitySecurityVerifying {
   private token: { value: string; expiresAt: number } | null = null;
@@ -27,7 +40,7 @@ export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying, Ident
   constructor(private config: EmailVerificationConfig, private transport: typeof fetch = fetch) {}
 
   async verifiedEmail(identity: EmailIdentity): Promise<string | null> {
-    const profile = await this.readProfile(identity, 'user_id,email,email_verified', false);
+    const profile = await this.readProfile(identity, { fields: 'user_id,email,email_verified', includeFields: true }, false);
     if (!profile) throw new Error('email_verification_unavailable');
     if (profile.email_verified !== true) return null;
     const email = z.email().max(254).safeParse(profile.email);
@@ -36,7 +49,7 @@ export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying, Ident
   }
 
   async securityStatus(identity: EmailIdentity): Promise<IdentitySecurityStatus> {
-    const profile = await this.readProfile(identity, 'user_id,blocked,last_password_reset', true);
+    const profile = await this.readProfile(identity, securityProfileProjection, true);
     if (!profile) return { exists: false, blocked: true, passwordChangedAt: null };
     if (profile.blocked !== undefined && typeof profile.blocked !== 'boolean') throw new Error('identity_status_unavailable');
     const reset = profile.last_password_reset;
@@ -48,14 +61,14 @@ export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying, Ident
     return { exists: true, blocked: profile.blocked === true, passwordChangedAt };
   }
 
-  private async readProfile(identity: EmailIdentity, fields: string, allowMissing: boolean): Promise<Record<string, unknown> | null> {
+  private async readProfile(identity: EmailIdentity, projection: ProfileProjection, allowMissing: boolean): Promise<Record<string, unknown> | null> {
     const issuer = identity.issuer.replace(/\/$/, "");
     if (!this.config.allowedIssuers.some(value => value.replace(/\/$/, "") === issuer)
       || !identity.subject || identity.subject.length > 255) throw new Error("identity_scope_mismatch");
     const accessToken = await this.accessToken();
     const url = new URL(`https://${this.config.domain}/api/v2/users/${encodeURIComponent(identity.subject)}`);
-    url.searchParams.set("fields", fields);
-    url.searchParams.set("include_fields", "true");
+    url.searchParams.set("fields", projection.fields);
+    url.searchParams.set("include_fields", String(projection.includeFields));
     const response = await this.transport(url, {
       headers: { authorization: `Bearer ${accessToken}` }, redirect: "error", signal: AbortSignal.timeout(5_000),
     });

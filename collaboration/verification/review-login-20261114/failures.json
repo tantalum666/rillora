@@ -1,0 +1,32 @@
+{
+  "items": [
+    {
+      "step": "provider-profile",
+      "result": "Live old projection400; supported exclusion200; no credential change."
+    },
+    {
+      "step": "contract-regression",
+      "result": "New test failed before fix, then20related checks passed."
+    },
+    {
+      "step": "review-log-query",
+      "result": "Path filter returned0 because request paths are intentionally redacted. Bounded status query found503at18:48:05Z; not uniquely attributable to an identity."
+    },
+    {
+      "step": "simulator-build1",
+      "result": "Incorrect cache flag; corrected from xcodebuild help."
+    },
+    {
+      "step": "simulator-config",
+      "result": "First build lacked archive command-line overrides; before installation, added exact build18/customer-access overrides and verified all Rillora config keys against original archive."
+    },
+    {
+      "step": "staging-readback-helper",
+      "result": "Expected a cached stack file absent in new QA directory; replaced with fresh read-only describe-stacks. Deployment was not repeated."
+    },
+    {
+      "step": "protected-password-read",
+      "result": "Required user presence did not complete before parent timeout; stopped orphaned helper, no plaintext credential obtained."
+    }
+  ]
+}
