@@ -9,7 +9,7 @@ Last updated: 2026-11-14 (Asia/Shanghai)
 
 ## November14 Auth0 profile-contract repair
 
-[Current login repair](app-review-login-fix-20261114.md) corrects an actually rejected fields projection in the existing read:users service. Security proof still includes exact identity, blocked/deleted state and password-reset time; contact fields, linked identities and metadata are excluded. Live400/200and a real existing reset-proof comparison accompany the failing-then-passing regression. Only email-verification.js is overlaid onto the currentAPI, Preview then production, with no SQL/config/permission/worker change. Runtime readiness is separately recorded and cannot stand in for fresh session issuance.
+[Current login repair](app-review-login-fix-20261114.md) corrects an actually rejected fields projection in the existing read:users service. Security proof still includes exact identity, blocked/deleted state and password-reset time; contact fields, linked identities and metadata are excluded. Live400/200and a real existing reset-proof comparison accompany the failing-then-passing regression. Only email-verification.js is overlaid onto the currentAPI, Preview then production, with no SQL/config/permission/worker change. Runtime readiness is separately recorded and cannot stand in for fresh session issuance. The subsequent November14acceptance now completes fresh production Web and native session issuance with the original synthetic reviewer, private matter/account reads, Web reload and native process relaunch. No credentials, session policy or provider checks were bypassed. Native18runs in the isolated27.0simulator; physical27.2.1and natural30-daycontinuity are not claimed.
 
 ## November6 user-session security and continuity
 

@@ -1,6 +1,6 @@
 # Rillora — Git / Dot 协作入口
 
-November14最新：[18登录故障](../docs/app-review-login-fix-20261114.md)已定位为Auth0资料投影400导致会话503；单模块修复在两API部署，20项检查及真实服务方对照通过。实际全新Web／原生登录仍待本人步骤，未重提；不能再用用户存在／健康200／旧登录记录替代。[本轮安全回执](verification/review-login-20261114/README.md)保存失败、修复和证据边界，原始账号／授权资料不公开。当前唯一下一步见handoff，下方等待审核均为历史。
+November14最新：[18登录故障](../docs/app-review-login-fix-20261114.md)已定位为Auth0资料投影400导致会话503；单模块修复在两API部署，20项检查及真实服务方对照通过。Owner确认后，原受保护密码已成功完成正式Web新登录／刷新及冻结18原生登录／读取／停止重开；原生为27.0模拟器，不冒称27.2.1真机，本轮未重提；不能再用用户存在／健康200／旧登录记录替代。[本轮安全回执](verification/review-login-20261114/README.md)保存失败、修复和证据边界，原始账号／授权资料不公开。当前唯一下一步见handoff，下方等待审核均为历史。
 
 November6最新：[18重新提审](../docs/app-review-resubmission-20261106.md)已按Owner明确要求完成，App／年付订阅／群组三个项目均等待审核，手动发布与不发TestFlight保持。账号和云端监控读回通过，原本机维护任务实际缺失后已恢复为每日有界账号／服务维护。[安全回执](verification/review18-resubmission-20261106/README.md)普通Git保存，不新建归档或重跑测试／部署。下方先前“暂停重新提审”已被最新指令取代，当前唯一下一步见handoff。
 

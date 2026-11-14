@@ -1,5 +1,15 @@
 # Actual18 login rejection and backend repair — 2026-11-14
 
+## Current: fresh sign-in acceptance completed
+
+After the Owner explicitly confirmed the original synthetic account's Web and native consent, the existing protected password was read successfully and used without a reset. [The subsequent acceptance receipt](fresh-login-acceptance.json) records production Web login, original matter/detail/account/plan reads and reload; frozen18 Release native login through the real hosted provider, matching private reads, process termination/relaunch and retained account. All14 Rillora native configuration values match the original archive. Native runtime is the independent iPadOS27.0 simulator, not physical27.2.1.
+
+The `fresh-` images are actual captures. Web new purchase is disabled for the dedicated reviewer; the simulator shows catalog price without an available new-purchase quote. These are read-only observations, not a new payment result. Existing real-device purchase/restore/expiry evidence is inherited. No repeated deployment, app tests, TestFlight or resubmission. The [Apple response](apple-response-draft.md) is an unsent draft. Credential memory/clipboard were cleared; the dedicated simulator was stopped and Device Hub restored.
+
+The timestamped `verification-status.json` and `cleanup.json` below preserve the earlier pending checkpoint. For current login status use `fresh-login-acceptance.json`; do not revive the completed owner questions. No Apple approval, natural30-day session duration, physical27.2.1 result or universal uptime is claimed.
+
+## Earlier repair checkpoint — before the Owner response
+
 Apple's November12review of1.0(18), iPad Air11M3/iPadOS27.2.1, reports2.1(a): unable to log in. The attached original screenshot shows the native session-exchange error. The previous waiting-for-review state and readiness claim are superseded.
 
 A real exact-user Auth0 request using the deployed security projection returned400: last_password_reset is returned profile data but is not in the accepted projection-field allowlist. SessionSecurity converted the provider failure to503, so new sessions were denied. This is not limited to the reviewer. A prepared provider stub and a test assertion of the invalid query missed this; old login and health/account-existence evidence did not test the new final identity path.

@@ -9,7 +9,7 @@ Last updated: 2026-11-14 (Asia/Shanghai)
 
 ## November14 real-provider projection failure
 
-[The actual18 rejection](app-review-login-fix-20261114.md) exposed a missing fresh-login gate after the long-session rollout. A user record and health200do not prove a session can be issued. The exact provider projection failed400and was replaced with supported exclusion mode without dropping password-reset/blocked/deleted checks. Both APIs are patched; the full fresh Web/native flow remains unverified until the pending user-presence and same-version consent steps complete. Any affected identity/session deployment invalidates older login evidence for resubmission.
+[The actual18 rejection](app-review-login-fix-20261114.md) exposed a missing fresh-login gate after the long-session rollout. A user record and health200do not prove a session can be issued. The exact provider projection failed400and was replaced with supported exclusion mode without dropping password-reset/blocked/deleted checks. Both APIs are patched. After explicit same-account consent and successful protected credential access, fresh production Web login/read/reload and frozen18Release native login/read/process-relaunch passed. The native result is an iPadOS27.0simulator using real identity/API services, not a physical27.2.1device or new purchase. Any affected identity/session deployment invalidates older login evidence for resubmission.
 
 ## November6 bounded user login continuity
 

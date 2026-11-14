@@ -1,0 +1,17 @@
+{
+  "at": "2026-11-14T03:29:13.686668+00:00",
+  "changes": "documentation and actual acceptance evidence only",
+  "sourceCheckpoint": "e61ebc6f44d68871cb17bf6096b4d54686981de7",
+  "applicationInfrastructureToolsConfigDiffSinceCheckpoint": false,
+  "inheritedVerification": "20 identity/session tests, API typecheck/build and exact sequential API deployment; not rerun",
+  "newVerification": "real production Web and frozen18 native hosted authentication, private reads and reload/relaunch; actual screenshots",
+  "nativeBoundary": "iPadOS27.0 Simulator, not physical27.2.1",
+  "markdownFilesChecked": 14,
+  "localLinksChecked": 1008,
+  "brokenLinks": 0,
+  "trustedPublicationBase": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "publicationGate": "Run after final readable receipt; exact command/result kept in local QA. Git push does not itself establish validation.",
+  "cloudCI": "disabled; no dispatch or new budget",
+  "unsentAppleDraft": true,
+  "resubmitted": false
+}
