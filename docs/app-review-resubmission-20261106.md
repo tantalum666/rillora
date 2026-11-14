@@ -3,7 +3,7 @@
 Status: HISTORICAL SUBMISSION / REJECTED18 ON NOVEMBER12 / SEE NOVEMBER14 LOGIN FIX
 Last updated: 2026-11-14 (Asia/Shanghai)
 
-后续Apple实际拒绝18的登录流程；[当前修复和未完成的真实验收](app-review-login-fix-20261114.md)取代本文件的等待状态。以下November6提交／检查是历史，不能继续作为登录可用证明。
+后续Apple实际拒绝18的登录流程；[当前修复和实际验收](app-review-login-fix-20261114.md)取代本文件的等待状态。以下November6提交／检查是历史，不能继续作为登录可用证明。
 
 Owner明确要求用1.0(18)重新提交审核，年付订阅与订阅群组一起提交，保持手动发布、暂不发TestFlight，并维护审核账号和服务有效期。这条指令只解除此前的重新提审暂停，没有授权自动公开发布或新的付款／数据变更。
 

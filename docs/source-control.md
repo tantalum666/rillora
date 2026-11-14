@@ -2,7 +2,11 @@
 
 Last updated: 2026-11-14 (Asia/Shanghai)
 
-## November14 实际登录故障修复
+## November14 修复后回复与重新提审
+
+[本轮提交](app-review-resubmission-20261114.md)只增加实际消息发送／三项等待审核／手动发布、当前账号和服务期限读回及[安全回执](../collaboration/verification/review18-resubmission-20261114/README.md)。两语言listing元数据保存原拒审历史并同步当前等待状态；旧draft保留为准备记录，实际已发送文字单独存档。没有产品实现、旧测试／归档／部署重跑，原始身份／授权／联系人留private。最后完整可读清单、确切base本机发布门、远端提交及无新云CI分别读回。
+
+## Earlier November14 实际登录故障修复
 
 [当前登录修复](app-review-login-fix-20261114.md)仅修改身份资料投影及聚焦回归；真实服务方反例、20项检查、单模块两环境发布及随后完成的新登录验收分开保存。[安全证据](../collaboration/verification/review-login-20261114/README.md)普通Git保存，原始账号／授权／云配置／日志留private。冻结18源和原归档沿用，只生成可复现的模拟器Release验收产物，不新增发布包或重封旧归档。完整可读清单和确切base本机发布门在最后回执后运行；不以Git成功冒充全新登录通过。续接验收只新增原账号正式Web与冻结18原生的实际页面、重开结果和安全回执，不重跑未变化测试／部署；旧pending回执保留时间戳，新fresh-login-acceptance.json明确取代它的当前状态。
 

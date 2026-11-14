@@ -1,6 +1,8 @@
 # Actual18 login rejection and backend repair — 2026-11-14
 
-## Current: fresh sign-in acceptance completed
+Later the same day, the Owner explicitly instructed sending the response and resubmitting. [The new submission receipt](../review18-resubmission-20261114/README.md) records all three items Waiting for Review and manual release. The unsent/no-resubmission statements below retain their earlier acceptance-only scope.
+
+## Fresh sign-in acceptance completed
 
 After the Owner explicitly confirmed the original synthetic account's Web and native consent, the existing protected password was read successfully and used without a reset. [The subsequent acceptance receipt](fresh-login-acceptance.json) records production Web login, original matter/detail/account/plan reads and reload; frozen18 Release native login through the real hosted provider, matching private reads, process termination/relaunch and retained account. All14 Rillora native configuration values match the original archive. Native runtime is the independent iPadOS27.0 simulator, not physical27.2.1.
 

@@ -1,6 +1,8 @@
 # Apple review response — unsent draft
 
-Status: DRAFT ONLY / NOT SENT / NO RESUBMISSION IN THIS CONTINUATION
+Status: HISTORICAL PREPARED DRAFT / FOLLOW-UP SENT AND RESUBMITTED NOVEMBER14
+
+The Owner later explicitly instructed sending and resubmitting. The [exact sent text](../review18-resubmission-20261114/apple-response-sent.txt) adds the same-build resubmission sentence; [the actual receipt](../review18-resubmission-20261114/README.md) supersedes this earlier unsent state. The preparation text below is retained unchanged.
 Prepared: 2026-11-14
 Applies to: Rillora 1.0(18), November12 guideline2.1(a) login rejection
 

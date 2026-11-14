@@ -1,32 +1,32 @@
 # Rillora Current Handoff
 
-Status: REJECTED18 / LOGIN FIX DEPLOYED / FRESH WEB AND NATIVE SIGN-IN VERIFIED / NOT RESUBMITTED
+Status: BUILD18 + ANNUAL SUBSCRIPTION + GROUP WAITING FOR REVIEW / MANUAL RELEASE / NO TESTFLIGHT
 Last updated: 2026-11-14 (Asia/Shanghai)
 
-## Current task and completed result
+## Current task and completed action
 
-Owner requested a serious investigation of the latest Apple login rejection, then explicitly confirmed the original synthetic review account's current Web and native terms/privacy/electronic-record submission. That confirmation has been used; do not ask again for this completed acceptance. [Earlier pending handoff](handoff-history-20261114-before-fresh-login-acceptance.md) is HISTORICAL.
+Owner explicitly instructed sending the prepared login-fix response and resubmitting1.0(18), the yearly subscription and subscription group together, preserving manual release/no TestFlight and reviewer/service availability. This supersedes the previous no-resubmission checkpoint; [that completed fresh-login handoff](handoff-history-20261114-before-second-resubmission.md) is HISTORICAL.
 
-The actual November12 review is for build18 on iPad Air11(M3), iPadOS27.2.1, guideline2.1(a). The original screenshot says the identity service could not establish a Rillora session. The November6 security-profile query used an unsupported Auth0 projection field, returning400 and causing session503. The supported exclusion projection preserves blocking/deletion/password-reset checks. The failing regression,20 passing related checks/typecheck/build, actual400/200comparison and existing reset-proof preservation are recorded in [the diagnosis](app-review-login-fix-20261114.md).
+At21:47 Hong Kong, the1940-character response and two actual native sign-in/relaunch images were sent and read back. At21:49, the same submission was resubmitted once; refresh confirms all three Waiting for Review. A separate version-page read confirms18 and manual release. Original reviewer username/password are unchanged. No upload, TestFlight, purchase or public release. [Actual submission report](app-review-resubmission-20261114.md).
 
-The one-module repair was deployed Preview then production. Both APIs use digest `aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3`; prior exact runtime/config/edge readbacks are retained, not rerun. Data, credentials, prices, session protections, workers, manual release and FanPass remain unchanged.
+## Fixed login and evidence boundaries
 
-## Fresh acceptance completed on November14
+The actual November12rejection was caused by an unsupported Auth0 security-profile field projection, producing provider400and session503. The supported exclusion projection retains reset/block/delete proof. Its20related tests/typecheck/build, real400/200comparison and existing-reset-proof check passed. Only the compiled identity module was deployed Preview then production, using aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3.
 
-- The existing protected password was successfully read after the earlier absent-popup report. No password reset, plaintext credential file or security change. The temporary system clipboard and credential memory were cleared after use.
-- Production Web: signed-out entry → current consent → real hosted email/password login → Rillora App Review → original matter/detail/account/plan reads. Reload and return retain the same account and original matter.
-- Native: the prepared independent M3 iPad simulator uses frozen18 Release source and all14 Rillora configuration values match the original archive. Real hosted authentication and current consent returned to the production API, established a new session, and loaded the same original matter/detail/account. After stopping and relaunching the process, the original map and account read succeeded without signing in again.
-- Early tool input failures and one system authentication-window network interruption are retained. Correctly routed input and a new normal transaction succeeded; no session injection or TLS/identity bypass was used.
-- Device Hub's original device view, window mode and keyboard capture were restored; only the dedicated simulator was shut down with its install retained. Tool defaults were cleared. No physical phone data/account changes, purchase, restore, deployment, upload, TestFlight or resubmission occurred in this continuation.
+Earlier the same day, the original protected reviewer password completed fresh production Web login/private reads/reload and frozen18 Release native login/private reads/process-relaunch. Original account and matter were retained. Native runtime was the independent iPadOS27.0simulator with all14 Rillora configuration values matching the archive; it is not physical27.2.1 or a new purchase. Credentials and temporary device state were cleaned up. [Login diagnosis and actual acceptance](app-review-login-fix-20261114.md). Do not repeat these unchanged checks or substitute health/user-existence for a future changed identity path.
 
-## Evidence and limits
+## Current reviewer and service checks
 
-[Fresh acceptance receipt and actual images](../collaboration/verification/review-login-20261114/fresh-login-acceptance.json) supersede the earlier pending verification-status.json for current status; that earlier timestamped receipt remains historical. QA: `output/qa/rillora-review-login-20261114/fresh-acceptance/`. Source implementation and prior tests are inherited from e61ebc6f44d68871cb17bf6096b4d54686981de7; this continuation changes documentation and evidence only.
+AWS/Auth0 management sessions had actually expired; Auth0 reused existing browser identity, while Owner completed the AWS MFA. Both were restored without new access scope. Current exact reviewer remains unblocked, with password identity, no password reset and no extra MFA. This is distinct from App/Web user login.
 
-Native acceptance is iPadOS27.0 Simulator, not a physical27.2.1 iPad or the App Store-signed binary running on hardware. The native plan page showed catalog price but no new-purchase quote; no purchase acceptance is claimed from it. Web correctly blocks new purchases for the dedicated review identity. Original device purchase/restore/signed-expiry evidence remains dated. No natural30-day duration, universal reliability or Apple approval is claimed.
+Production still runs the validated fix, readiness200/private401; Operations is enabled every15minutes and its check returnedok/failed0. Runtime and monitor agree on the Sandbox purchase qualification deadline: December4at12:00Z /20:00Hong Kong, about19.93days remaining at readback.14-day deadline warning,21-day certificate warning and a confirmed alert receiver remain active. Runtime islive with no global review-login expiry; ordinary login is not controlled by that Sandbox purchase deadline.
 
-Existing reviewer eligibility remains the previously verified December4 deadline with independent cloud monitoring; it was not renewed in this continuation. The deleted local maintenance automation is not recreated or treated as active evidence. Before a materially later submission, refresh only time-sensitive provider/reviewer state; do not repeat passed purchases, deployment or unchanged app tests.
+No deployment, policy, data, price, password or FanPass change occurred. The Owner-deleted local maintenance task is not recreated. Existing cloud monitoring is not a full sign-in test, future renewal or permanent-uptime guarantee. If that same qualified reviewer still needs access when the warning is reached, follow the existing bounded same-identity/max31-day DB/API/monitor renewal procedure; do not broaden access.
+
+## Saved evidence
+
+[Safe receipts and actual submission screenshot](../collaboration/verification/review18-resubmission-20261114/README.md); local QA `output/qa/rillora-review18-resubmission-20261114/`. Raw identities, authorizations, contacts and full provider pages stay private. Current listing metadata preserves older rejected/waiting snapshots and records this new submission separately. Local publication gates apply; no cloud CI or subagent.
 
 ## Single next step
 
-Use the prepared [Apple response draft](../collaboration/verification/review-login-20261114/apple-response-draft.md) and exact18 evidence for the next review action. This continuation completes the failed login gate and saves the result; it does not send the draft, resubmit, distribute TestFlight or release the app. Preserve manual release. Any further identity/session change invalidates the affected fresh-login evidence and requires the full flow again.
+Handle Apple's next actual review feedback while retaining manual release and the existing availability/expiry monitoring. Waiting for Review is not approval or public release. Do not upload, distribute TestFlight, replay purchases or submit again without a new reason/current instruction.

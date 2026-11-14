@@ -1,10 +1,14 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: REJECTED18 / LOGIN FIX AND FRESH SIGN-IN ACCEPTANCE COMPLETE / NOT RESUBMITTED
+Status: ALL THREE18 ITEMS WAITING FOR REVIEW / MANUAL RELEASE / NO TESTFLIGHT
 Last updated: 2026-11-14 (Asia/Shanghai)
 
-## November14 当前拒审与修复
+## November14 当前：修复后重新提交
+
+按Owner新指令，[Apple回复与重新提审](app-review-resubmission-20261114.md)已完成：香港21:47说明／实际截图送达，21:49原18、年付和群组一起提交，刷新均等待审核。版本页再次确认手动发布。当前原账号、服务和期限／告警已读回；December4是沙盒购买资格而非全局登录期限。既有真实新登录和购买证据不重做，没有新构建上传、部署或TestFlight。
+
+## Earlier November14 拒审与修复检查点
 
 18已实际被Apple因无法登录拒绝。[根因与后端修复](app-review-login-fix-20261114.md)确认当前服务方字段参数400，已修复并在Preview／正式部署；随后使用原受保护密码及Owner明确确认完成正式Web与冻结18 Release原生的新登录、私有事项读取和刷新／停止重开；登录门已闭合。原生为27.0模拟器，物理27.2.1和新购买不在本轮范围。Apple回复材料已准备，本轮没有发送、再次提交或发TestFlight；不能保证下一轮审核结果。下述November6等待审核为历史状态。
 

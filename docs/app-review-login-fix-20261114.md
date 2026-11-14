@@ -1,6 +1,6 @@
 # 18 再次拒审：登录会话故障与修复
 
-Status: BACKEND FIX DEPLOYED / FRESH PRODUCTION WEB AND NATIVE LOGIN VERIFIED / NOT RESUBMITTED
+Status: BACKEND FIX DEPLOYED / FRESH LOGIN VERIFIED / RESUBMITTED AND WAITING FOR REVIEW
 Last updated: 2026-11-14 (Asia/Shanghai)
 
 Owner指出18再次被拒，要求直接阅读Connect并认真检查。当前实际拒审为November12对1.0(18)的2.1(a)：iPad Air11(M3)、iPadOS27.2.1无法登录。年付和群组回到可供审核；没有新的2.2理由。截图显示身份服务不能建立Rillora会话，不能当作密码错误或资格到期处理。
@@ -43,7 +43,7 @@ Owner随后明确同意原合成审核账号本次Web／原生条款提交。受
 
 这是连接正式Auth0和正式API的真实新登录，原生运行环境明确为iPadOS27.0模拟器，不是Apple所用27.2.1物理iPad，也不是App Store签名二进制的真机运行。本轮没有重新测试购买或自然经过30天；不宣称Apple必然通过。原手机资料和账号未操作。独立模拟器已关闭并保留安装，Device Hub窗口／键盘捕获／原设备视图和工具默认值已恢复。
 
-**唯一下一步：**用现有18和本轮实际根因／验收材料准备下一次Apple复核；本轮仅保存[回复草稿](../collaboration/verification/review-login-20261114/apple-response-draft.md)，未发消息、重新提审或分发TestFlight。手动发布保持。
+**后续已完成：**Owner明确要求发送并重新提交后，[November14回复和三项提审](app-review-resubmission-20261114.md)已实际完成，香港21:49刷新均等待审核，手动发布独立确认。原[准备稿](../collaboration/verification/review-login-20261114/apple-response-draft.md)保留为历史，实际已发送文字单独存档。当前唯一下一步见handoff，不再重复提交。
 
 今后任何身份／会话相关部署都使此前完整登录证据对受影响路径失效；重新提审必须有最终后端与确切候选对应的全新登录结果。账号未封禁、管理CLI查询、健康200、模拟接口单测及旧会话均不能替代它。本轮已补齐这条登录门，不将它扩大为所有产品功能或未来可用性的保证。
 
