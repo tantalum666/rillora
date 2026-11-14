@@ -1,8 +1,16 @@
 # Production annual commerce preparation
 
 Role: focused ordinary Web purchase, consent and provider-isolation contract
-Status: LIVE BILLING ENGINE DEPLOYED; AUTOMATIC TAX DISABLED; NEW SALES HELD FOR IDENTITY TOKEN EXPIRY
-Last updated: 2026-10-13 (Asia/Hong_Kong)
+Status: WEB LIVE SINCE OCTOBER15 / BILLING DISPLAY REPAIR LOCALLY VERIFIED / CURRENT PROVIDER READBACK AND DEPLOYMENT PENDING
+Last updated: 2026-10-31 (Asia/Shanghai)
+
+## October31当前付款入口合同
+
+October15已完成旧令牌到期后的正式Web开放，USD88.99／年与显式关闭自动计税保持；下面October13及更早的关闭状态是历史检查点。当前[正式产品复查](release-product-audit-20261031.md)发现Apple审核账号资格曾被Web错误地当成Stripe测试环境，修复尚未部署。
+
+`commerce/status.webBillingEnvironment`由实际挂载的Stripe执行器返回`test`、`production`或`null`。只有真实测试执行器与有效测试账号同时成立时，Web进入明确标识的测试结账；Apple审核账号的`validationOnly`不能选择Stripe环境，普通套餐名称不追加测试后缀。生产`stripe/status.checkoutAvailability`只读返回`available`、`account_unavailable`或`unavailable`，复用既有账号与测试账本限制，不创建订单、改变权益或放宽真人收费资格。前端依次核验销售开关、有效报价及该状态；真实不可用状态有双语说明和重试。
+
+发布顺序必须先兼容API、再Web：旧客户端可忽略新增字段，新Web要求生产状态字段存在。无数据库迁移、价格、权限、税务或销售开关变更。本机合成提供方／浏览器检查与真实Stripe后台回读分别记录；这次没有制造Live付款。
 
 ## October13实际Web计费交付
 
@@ -107,20 +115,23 @@ recorded tax code, exact annualUSD Price of8899cents, licensed/per-unit, explici
 behavior, one item and quantity one. No new monthly purchase, trial, promotion
 code, adaptive pricing or client-supplied price/provider identity is accepted.
 
-New checkout retains its tax-readiness gate. A purchase-enabled configuration requires a recorded assessment
-and confirmed product code; automatic tax additionally rechecks the specified
-active registrations. An explicit reviewed-no-collection decision is a separate
-mode, never an automatic inference from missing registration. The explicit not_configured mode permits signed notifications and owned management, while quote/checkout and new-purchase routing stay closed. No tax registration,
-filing, merchant verification or tax assessment was performed in this increment.
+New checkout requires an explicit valid tax mode and the confirmed product code.
+The current Owner-approved mode is disabled, with automatic_tax=false. Automatic
+mode separately checks registrations; reviewed_no_collection requires its recorded
+assessment. Missing configuration never means exemption. The not_configured mode
+permits signed notifications and owned management but closes new checkout. No new
+tax registration, filing or assessment is implied by this technical configuration.
 
 ## Customer flow and durable purchase proof
 
-Plan & access now has annual review/checkout, current status, management, refresh
-and unfinished-checkout closure. It reuses the existing visual language. A separate,
-unchecked consent shows the annual amount, renewal/cancellation and current
-Subscription Terms/Refund Policy. Account-registration consent cannot substitute.
-Version, legal-bundle digest, amount/currency and three explicit acknowledgements
-are checked by the server; an immutable per-order receipt is saved transactionally.
+Plan & access follows the [October13 single-action contract](plan-purchase-page-20261013.md):
+Family benefits, explicit-currency annual price and one subscribe/manage action.
+Renewal, cancellation and current Subscription Terms/Refund Policy sit beside the
+button. Clicking subscribe submits that purchase's acceptance after refreshing the
+quote; there is no extra checkbox or confirmation page. Account-registration
+consent cannot substitute. Version, legal-bundle digest, amount/currency and the
+required acknowledgements are checked by the server; an immutable per-order receipt
+is saved transactionally. Status reads and management do not submit acceptance.
 
 An owned durable order/attempt and stable provider idempotency key precede the
 provider call. Ambiguous response retries retain the same reservation and original

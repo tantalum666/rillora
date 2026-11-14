@@ -1,0 +1,87 @@
+{
+  "checkedOn": "2026-11-02",
+  "closeoutDate": "2026-11-03",
+  "primarySources": [
+    {
+      "topic": "workers-plan",
+      "url": "https://developers.cloudflare.com/workers/platform/pricing/",
+      "finding": "Free is bounded; production budget5USD is not a purchased plan. Hyperdrive Free quota counts SQL statements."
+    },
+    {
+      "topic": "node-http",
+      "url": "https://developers.cloudflare.com/workers/runtime-apis/nodejs/http/",
+      "finding": "Real Node HTTP adapter is supported; request-scoped lifecycle still needs adaptation."
+    },
+    {
+      "topic": "workers-practices",
+      "url": "https://developers.cloudflare.com/workers/best-practices/workers-best-practices/",
+      "finding": "Types, bounded payloads, no request state in globals, durable background work."
+    },
+    {
+      "topic": "workers-vpc",
+      "url": "https://developers.cloudflare.com/workers-vpc/platform/pricing/",
+      "finding": "Open beta currently free; connector machine and external network costs are separate."
+    },
+    {
+      "topic": "vpc-private-db",
+      "url": "https://developers.cloudflare.com/hyperdrive/configuration/connect-to-private-database-vpc/",
+      "finding": "Private database through narrowly scoped VPC service and Tunnel."
+    },
+    {
+      "topic": "placement",
+      "url": "https://developers.cloudflare.com/workers/configuration/placement/",
+      "finding": "Placement hints optimize proximity; no residency guarantee or measured latency improvement claimed."
+    },
+    {
+      "topic": "regional",
+      "url": "https://developers.cloudflare.com/data-localization/regional-services/",
+      "finding": "Enterprise add-on; exact required configuration and price remain open."
+    },
+    {
+      "topic": "regional-workers",
+      "url": "https://developers.cloudflare.com/data-localization/how-to/workers/",
+      "finding": "Regional hostname execution differs from Cron/Queues and code/secrets distribution."
+    },
+    {
+      "topic": "neon-plans",
+      "url": "https://neon.com/docs/introduction/plans",
+      "finding": "Scale .222/CUh with private networking; data .35/GB-month; history .20; private transfer .01/GB."
+    },
+    {
+      "topic": "neon-private",
+      "url": "https://neon.com/docs/guides/neon-private-networking",
+      "finding": "Guide lists8Frankfurt service names and says to add all. Public connections must be blocked separately. Project-specific subset and trial need confirmation."
+    },
+    {
+      "topic": "cf-startups",
+      "url": "https://www.cloudflare.com/startups/",
+      "finding": "Tier3 up to10kUSD,1year, self-funded option; incorporation wording and personal-project eligibility not resolved. Payment/account connection required; Enterprise add-ons not automatically covered."
+    },
+    {
+      "topic": "neon-contact",
+      "url": "https://neon.com/contact-sales",
+      "finding": "Verified technical/pricing/migration inquiry form; required name and Terms acceptance not completed."
+    },
+    {
+      "topic": "r2-api",
+      "url": "https://developers.cloudflare.com/r2/api/s3/api/",
+      "finding": "Not a drop-in for current version-aware deletion and recovery."
+    },
+    {
+      "topic": "aws-private",
+      "url": "https://aws.amazon.com/privatelink/pricing/",
+      "finding": "Endpoint-hours per AZ and processed traffic separately charged; regional .012 from saved Price List, not default .01."
+    },
+    {
+      "topic": "aws-secret",
+      "url": "https://aws.amazon.com/secrets-manager/pricing/",
+      "finding": ".40/secret/month and .05/10k calls; actual secret count in model is a planning inventory."
+    },
+    {
+      "topic": "aws-kms",
+      "url": "https://aws.amazon.com/kms/pricing/",
+      "finding": "Key-version and request charges; symmetric free allowance distinct from asymmetric operations."
+    }
+  ],
+  "additionalRegionalPriceLists": "aws-frankfurt-price-evidence.json"
+}

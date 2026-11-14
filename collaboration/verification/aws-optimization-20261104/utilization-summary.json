@@ -1,0 +1,263 @@
+{
+  "start": "2026-10-28T02:07:22.786022+00:00",
+  "end": "2026-11-04T02:07:22.786022+00:00",
+  "periodSeconds": 900,
+  "metrics": {
+    "production.worker.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.11030876752403046,
+      "maximum": 0.6969493707434997,
+      "mean": 0.16995354460885492,
+      "sum": null
+    },
+    "production.worker.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.34411531686782837,
+      "maximum": 14.722073435783386,
+      "mean": 1.0272280246939598,
+      "sum": null
+    },
+    "production.worker.MemoryUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 12.103949652777777,
+      "maximum": 97.26779513888889,
+      "mean": 58.06838488993278,
+      "sum": null
+    },
+    "production.worker.MemoryUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 14.6484375,
+      "maximum": 99.8046875,
+      "mean": 60.863821847098215,
+      "sum": null
+    },
+    "production.api.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 1.013517512851912,
+      "maximum": 1.6717707404556374,
+      "mean": 1.2293008833723031,
+      "sum": null
+    },
+    "production.api.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 3.1269040107727046,
+      "maximum": 27.342826306819916,
+      "mean": 4.108006065682275,
+      "sum": null
+    },
+    "production.api.MemoryUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 19.78528390522876,
+      "maximum": 25.390625,
+      "mean": 23.773164105051745,
+      "sum": null
+    },
+    "production.api.MemoryUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 21.09375,
+      "maximum": 25.390625,
+      "mean": 23.799060639880953,
+      "sum": null
+    },
+    "production.db.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 4.303842612066052,
+      "maximum": 12.297752900399676,
+      "mean": 4.559469260836267,
+      "sum": null
+    },
+    "production.db.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 4.840028706377155,
+      "maximum": 49.90167977602986,
+      "mean": 6.0707355293767415,
+      "sum": null
+    },
+    "production.db.DatabaseConnections.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 2.0,
+      "maximum": 4.0,
+      "mean": 2.4345238095238093,
+      "sum": null
+    },
+    "production.db.FreeableMemory.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 95404032.0,
+      "maximum": 201220096.0,
+      "mean": 137651443.80952382,
+      "sum": null
+    },
+    "production.db.FreeStorageSpace.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 18307842048.0,
+      "maximum": 18308333568.0,
+      "mean": 18308097834.666668,
+      "sum": null
+    },
+    "production.db.CPUCreditBalance.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 286.70971878333336,
+      "maximum": 288.0,
+      "mean": 287.9972228871528,
+      "sum": null
+    },
+    "production.db.CPUSurplusCreditsCharged.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "sum": 0.0
+    },
+    "production.db.DiskQueueDepth.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.021053157973696054,
+      "maximum": 0.09743504330446369,
+      "mean": 0.0389470762118597,
+      "sum": null
+    },
+    "preview.api.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 1.6453895123468505,
+      "maximum": 2.3723605984694087,
+      "mean": 1.8390650693942485,
+      "sum": null
+    },
+    "preview.api.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 4.98960542678833,
+      "maximum": 19.097925561480224,
+      "mean": 5.9256462204932525,
+      "sum": null
+    },
+    "preview.api.MemoryUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 21.968315972222225,
+      "maximum": 42.578125,
+      "mean": 41.6928589741018,
+      "sum": null
+    },
+    "preview.api.MemoryUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 23.6328125,
+      "maximum": 42.578125,
+      "mean": 41.74005417596726,
+      "sum": null
+    },
+    "preview.worker.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.11220573397974173,
+      "maximum": 0.639537753868434,
+      "mean": 0.170911726072239,
+      "sum": null
+    },
+    "preview.worker.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.354850709438324,
+      "maximum": 15.592201624065638,
+      "mean": 1.040238336312108,
+      "sum": null
+    },
+    "preview.worker.MemoryUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 11.19068287037037,
+      "maximum": 97.48697916666667,
+      "mean": 59.67518202151426,
+      "sum": null
+    },
+    "preview.worker.MemoryUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 14.2578125,
+      "maximum": 99.8046875,
+      "mean": 62.6190185546875,
+      "sum": null
+    },
+    "preview.db.CPUUtilization.Average": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 4.138251413230899,
+      "maximum": 11.099799355443634,
+      "mean": 4.362045847060857,
+      "sum": null
+    },
+    "preview.db.CPUUtilization.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 4.424484364604125,
+      "maximum": 44.56081250104231,
+      "mean": 5.581941612250579,
+      "sum": null
+    },
+    "preview.db.DatabaseConnections.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 1.0,
+      "maximum": 3.0,
+      "mean": 1.3764880952380953,
+      "sum": null
+    },
+    "preview.db.FreeableMemory.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 95039488.0,
+      "maximum": 205262848.0,
+      "mean": 137975082.66666666,
+      "sum": null
+    },
+    "preview.db.FreeStorageSpace.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 18306994176.0,
+      "maximum": 18374115328.0,
+      "mean": 18333670485.333332,
+      "sum": null
+    },
+    "preview.db.CPUCreditBalance.Minimum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 286.78747178333333,
+      "maximum": 288.0,
+      "mean": 287.9975088078869,
+      "sum": null
+    },
+    "preview.db.CPUSurplusCreditsCharged.Sum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.0,
+      "maximum": 0.0,
+      "mean": 0.0,
+      "sum": 0.0
+    },
+    "preview.db.DiskQueueDepth.Maximum": {
+      "status": "Complete",
+      "samples": 672,
+      "minimum": 0.031757668660546176,
+      "maximum": 0.21633966227141643,
+      "mean": 0.053488926267616504,
+      "sum": null
+    }
+  }
+}

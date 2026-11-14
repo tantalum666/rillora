@@ -1,0 +1,26 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonApiGateway/current/eu-central-1/index.json",
+  "version": "20261013003044",
+  "rows": [
+    {
+      "sku": "T5HBB5E3DWVQPUNF",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-ApiGatewayHttpRequest",
+      "description": "$1.2/million requests - API Gateway HTTP API (first 300 million)",
+      "unit": "Requests",
+      "beginRange": "0",
+      "endRange": "300000000",
+      "USD": "0.0000012000"
+    },
+    {
+      "sku": "T5HBB5E3DWVQPUNF",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-ApiGatewayHttpRequest",
+      "description": "$1.08/million requests - API Gateway HTTP API (more than 300 million)",
+      "unit": "Requests",
+      "beginRange": "300000000",
+      "endRange": "Inf",
+      "USD": "0.0000010800"
+    }
+  ]
+}

@@ -1,0 +1,207 @@
+{
+  "checkedAt": "2026-10-30T17:15:35.223583+00:00",
+  "messageCount": 1,
+  "linkOccurrences": 16,
+  "uniqueExactTargets": 15,
+  "allDirectLinksOpened": true,
+  "allSubstantiveLinkedDocumentBodiesRead": true,
+  "navigationAndFooterLinksNotTreatedAsMessageLinks": true,
+  "externalMessagesSent": 0,
+  "surveyResponsesSubmitted": 0,
+  "items": [
+    {
+      "ordinal": 1,
+      "label": "App Review",
+      "url": "https://developer.apple.com/distribute/app-review/",
+      "readTitle": "App Review",
+      "finding": "完整版本、可用账号／后端、有效链接、如实说明能力；拒审可在原消息澄清。",
+      "readCoverage": "web full main body131-287",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 2,
+      "label": "tips for a smooth review experience",
+      "url": "https://developer.apple.com/forums/thread/810791",
+      "readTitle": "Tips from App Review",
+      "finding": "Apple Staff锁定帖实际只引导至App Review Help；继续打开该帮助页及设备／完整资料子页。",
+      "readCoverage": "web full thread0-32 plus linked help",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 3,
+      "label": "guideline 2.2",
+      "url": "https://developer.apple.com/app-store/review/guidelines/#2.2",
+      "readTitle": "Guideline2.2",
+      "finding": "正式商店要求可用的完整产品，删除测试文字本身不能证明合规。",
+      "readCoverage": "web anchored section244-246",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 4,
+      "label": "TestFlight Beta Testing",
+      "url": "https://developer.apple.com/testflight/",
+      "readTitle": "TestFlight",
+      "finding": "未完成产品的测试分发渠道；这封信没有强制所有修复必须先分发TestFlight。",
+      "readCoverage": "web main body131-174",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 5,
+      "label": "product configurations",
+      "url": "https://developer.apple.com/help/app-store-connect/configure-in-app-purchase-settings/overview-for-configuring-in-app-purchases",
+      "readTitle": "IAP configuration overview",
+      "finding": "产品ID、价格、本地化、有效协议／财务信息、签名与服务器通知均属配置；元数据同步最多一小时。",
+      "readCoverage": "web main body404-450",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 6,
+      "label": "complete any missing information",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-in-app-purchases/view-and-edit-in-app-purchase-information",
+      "readTitle": "IAP information",
+      "finding": "有些已提审元数据受审核限制；审核截图／说明与可选推广图用途不同。",
+      "readCoverage": "web main body404-469",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 7,
+      "label": "test them in the sandbox",
+      "url": "https://developer.apple.com/documentation/StoreKit/testing-in-app-purchases-with-sandbox",
+      "readTitle": "Sandbox testing",
+      "finding": "真实商品和Apple服务器交易；本机StoreKit配置与Sandbox分别验证，开发签名直装也可测试。",
+      "readCoverage": "Chrome rendered app-main full body; web JS shell not used as content",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 8,
+      "label": "StoreKit framework",
+      "url": "https://developer.apple.com/documentation/storekit",
+      "readTitle": "StoreKit framework",
+      "finding": "提供商品、交易、AppTransaction和相关商店接口；Rillora现有实现与API调用另行源核对。",
+      "readCoverage": "Chrome rendered app-main full body",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 9,
+      "label": "Paid Apps Agreement",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-agreements/sign-and-update-agreements",
+      "readTitle": "Sign agreements",
+      "finding": "付费协议由AccountHolder接受；旧协议签过不等于当前生效，需结合状态页。",
+      "readCoverage": "web main body404-455",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 10,
+      "label": "in effect",
+      "url": "https://developer.apple.com/help/app-store-connect/manage-agreements/view-agreements-status",
+      "readTitle": "Agreement status",
+      "finding": "Active才表示协议生效；银行／税表也需处于可用状态。",
+      "readCoverage": "web main body404-447",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 11,
+      "label": "Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/",
+      "readTitle": "Developer Forums",
+      "finding": "技术问题与同类讨论入口；未发帖、未新建社区账号。",
+      "readCoverage": "web forums landing full0-329",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 12,
+      "label": "guideline 2.1(b)",
+      "url": "https://developer.apple.com/app-store/review/guidelines/#2.1",
+      "readTitle": "Guideline2.1(b)",
+      "finding": "内购须完整、最新、可找到且可操作；不能展示的已配置商品要在审核说明解释。",
+      "readCoverage": "web anchored section240-243",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 13,
+      "label": "configuring In-App Purchases for review in the sandbox",
+      "url": "https://developer.apple.com/help/app-review/before-submitting-for-review/configure-in-app-purchases",
+      "readTitle": "Configure IAP for review",
+      "finding": "审核使用Sandbox、无需IAP预先批准；有地区／设备限制时必须说明；提审前测试。",
+      "readCoverage": "web full main body159-179",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 14,
+      "label": "Contact Us module",
+      "url": "https://developer.apple.com/contact/topic/#!/topic/select",
+      "readTitle": "Contact Us",
+      "finding": "原hash路由转至当前Apple联系首页，可进入主题和原案例；未发工单。",
+      "readCoverage": "Chrome final contact landing after web unavailable",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 15,
+      "label": "Apple Developer Forums",
+      "url": "https://developer.apple.com/forums/",
+      "readTitle": "Developer Forums duplicate",
+      "finding": "与前一论坛链接相同，重复入口已核对。",
+      "readCoverage": "same destination",
+      "opened": true,
+      "uniqueTarget": false,
+      "privateSurveyTargetOmitted": false
+    },
+    {
+      "ordinal": 16,
+      "label": "completing a short survey",
+      "url": "https://survey.apple.com/",
+      "readTitle": "App Review Survey",
+      "finding": "自愿反馈入口，已打开介绍页；无额外修复条件，未填写或提交调查。",
+      "readCoverage": "Chrome survey introduction after web unavailable",
+      "opened": true,
+      "uniqueTarget": true,
+      "privateSurveyTargetOmitted": true
+    }
+  ],
+  "additionalFollowedDocuments": [
+    {
+      "url": "https://developer.apple.com/help/app-review/",
+      "read": true
+    },
+    {
+      "url": "https://developer.apple.com/documentation/technotes/tn3186-troubleshooting-in-app-purchases-availability-in-the-sandbox",
+      "read": "Chrome full rendered body"
+    },
+    {
+      "url": "https://developer.apple.com/help/app-review/before-submitting-for-review/test-compatible-devices",
+      "read": "full body159-225"
+    },
+    {
+      "url": "https://developer.apple.com/help/app-review/before-submitting-for-review/complete-review",
+      "read": "full body159-235"
+    }
+  ]
+}

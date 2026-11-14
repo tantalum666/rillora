@@ -1,0 +1,19 @@
+{
+  "stackStatus": "UPDATE_COMPLETE",
+  "templateUnchanged": true,
+  "changedParameter": "RuntimeAppleReviewExpiresAt6422F952",
+  "changedApiEnvironment": [
+    "APPLE_REVIEW_EXPIRES_AT"
+  ],
+  "imageSecretsAndOtherEnvironmentUnchanged": true,
+  "expiry": "2026-11-29T12:00:00Z",
+  "desired": 1,
+  "running": 1,
+  "deployments": [
+    {
+      "status": "PRIMARY",
+      "rolloutState": "COMPLETED",
+      "running": 1
+    }
+  ]
+}

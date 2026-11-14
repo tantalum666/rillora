@@ -9,7 +9,7 @@ import {
   ArrowRight,
 } from "@phosphor-icons/react";
 import { api } from "./api.js";
-import { LegalDocumentPage } from "./LegalDocumentPage.jsx";
+import { LegalDocumentPage } from "./CurrentLegalDocumentPage.jsx";
 import { RegistrationConsentText } from "./LegalConsentText.jsx";
 import { SavedCopyReader } from "./SavedCopyReader.jsx";
 import "./interaction-refinement.css";

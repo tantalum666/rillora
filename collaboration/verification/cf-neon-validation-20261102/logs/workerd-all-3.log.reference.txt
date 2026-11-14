@@ -1,0 +1,8 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+{"phase":"workerd-http","status":200,"result":{"evidence":"real-api-router-in-workerd-without-provider-credentials","results":[{"key":"health","status":200,"expected":200,"noSniff":true,"noCache":false,"passed":true},{"key":"unauthenticated_matters","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true},{"key":"untrusted_origin","status":403,"expected":403,"noSniff":true,"noCache":false,"passed":true},{"key":"unauthenticated_payment","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true},{"key":"unauthenticated_file","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true}],"passed":true}}
+{"phase":"/probe/crypto","status":200,"result":{"evidence":"real-sdks-and-content-cipher-with-synthetic-input","stripeVerified":true,"tamperedStripeRejected":true,"pinnedRoot":true,"rootSignatureVerified":true,"invalidAppleRejected":true,"file":{"bytes":4096,"equal":true,"wrongOwnerRejected":true,"tamperRejected":true,"passed":true},"realPurchaseVerified":false,"appleValidChainAndOnlineOcspVerified":false,"kmsVerified":false,"passed":true}}
+{"phase":"/probe/file-limit","status":200,"result":{"evidence":"actual-content-cipher-with-memory-only-synthetic-key","kmsVerified":false,"file":{"bytes":8388608,"equal":true,"wrongOwnerRejected":true,"tamperRejected":true,"passed":true}}}
+{"passed":true,"outerBoundaryChecks":2,"realRouterChecks":5,"liveDatabaseTouched":false,"actualProviderPurchase":false}

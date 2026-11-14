@@ -1,0 +1,11 @@
+{
+  "at": "2026-10-26T03:22:17.996986+00:00",
+  "candidateFiles": 66,
+  "candidateZipBytes": 1170323,
+  "ordinaryGitEvidenceReason": "Static public bundle and synthetic browser checks contain no customer/private credentials; no encrypted archive needed for these explicitly public artifacts",
+  "excluded": [
+    "provider auth/session material",
+    ".local-secrets",
+    "generated CDK support dependencies and reproducible caches"
+  ]
+}

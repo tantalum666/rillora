@@ -1,0 +1,44 @@
+import json,subprocess,sys,time,copy
+from pathlib import Path
+OUT=Path(__file__).parent;stack=sys.argv[1];assert stack in ['RilloraStaging','RilloraProduction']
+def cli(args,profile='rillora-operator'):
+ return json.loads(subprocess.check_output(['aws',*args,'--profile',profile,'--region','eu-central-1','--output','json'],text=True))
+state=cli(['cloudformation','describe-stacks','--stack-name',stack],'rillora-cdk-deploy')['Stacks'][0]
+assert state['StackStatus']=='UPDATE_COMPLETE'
+beforeStack=json.loads((OUT/(stack+'-stack.json')).read_text())['Stacks'][0]
+assert state['Parameters']==beforeStack['Parameters']
+template=cli(['cloudformation','get-template','--stack-name',stack],'rillora-cdk-deploy')['TemplateBody']
+assert template==json.loads((OUT/(stack+'-worker-only.template.json')).read_text())
+oldServices=json.loads((OUT/(stack+'-services-current.json')).read_text())['services'];cluster=oldServices[0]['clusterArn']
+services=cli(['ecs','describe-services','--cluster',cluster,'--services',*[s['serviceArn'] for s in oldServices]])['services']
+worker=None
+for old in oldServices:
+ new=next(s for s in services if s['serviceArn']==old['serviceArn']);assert (new['desiredCount'],new['runningCount'],new['pendingCount'])==(1,1,0)
+ assert len(new['deployments'])==1 and new['deployments'][0]['rolloutState']=='COMPLETED' and new['deployments'][0].get('failedTasks',0)==0
+ if 'IdentityWorker' in old['serviceName']:worker=new
+ else:
+  assert new['taskDefinition']==old['taskDefinition'] and new['deployments'][0]['id']==old['deployments'][0]['id'],'Normal API changed'
+assert worker
+task=cli(['ecs','describe-task-definition','--task-definition',worker['taskDefinition']])['taskDefinition']
+oldTask=json.loads((OUT/(stack+'-worker-definition.json')).read_text())['taskDefinition']
+candidate=json.loads((OUT/'worker-candidate.json').read_text());assert task['containerDefinitions'][0]['image']==candidate['immutableImage']
+ignore={'taskDefinitionArn','revision','registeredAt','deregisteredAt','registeredBy','status'}
+def normalized(value):
+ result={k:copy.deepcopy(v) for k,v in value.items() if k not in ignore}
+ for key in ['compatibilities','requiresCompatibilities']:
+  if key in result:result[key]=sorted(result[key])
+ if 'requiresAttributes' in result:result['requiresAttributes']=sorted(result['requiresAttributes'],key=lambda v:json.dumps(v,sort_keys=True))
+ return result
+restored=normalized(task);restored['containerDefinitions'][0]['image']=candidate['base'];assert restored==normalized(oldTask),'Unexpected task role/config/resource change'
+running=cli(['ecs','list-tasks','--cluster',cluster,'--service-name',worker['serviceName'],'--desired-status','RUNNING'])['taskArns'];assert len(running)==1
+detail=cli(['ecs','describe-tasks','--cluster',cluster,'--tasks',*running])['tasks'][0]
+assert detail['lastStatus']=='RUNNING' and detail['containers'][0]['imageDigest']==candidate['imageDigest']
+container=oldTask['containerDefinitions'][0];cfg=container['logConfiguration']['options'];stream=cfg['awslogs-stream-prefix']+'/'+container['name']+'/'+running[0].split('/')[-1]
+logs=cli(['logs','get-log-events','--log-group-name',cfg['awslogs-group'],'--log-stream-name',stream,'--limit','100'])
+errors=[e for e in logs.get('events',[]) if any(t in e['message'].lower() for t in ['retry','could not start','error','fatal'])]
+assert not errors,'New worker reported errors'
+proof={'stack':stack,'status':'UPDATE_COMPLETE','imageDigest':candidate['imageDigest'],'taskRevision':task['revision'],
+ 'workerRunning':1,'failedTasks':0,'normalApiTaskAndDeploymentUnchanged':True,'onlyWorkerImageDiffers':True,
+ 'rolesSecretsResourcesAndCommandsUnchanged':True,'stackParametersUnchanged':True,'startedAt':detail.get('startedAt'),
+ 'newStreamEvents':len(logs.get('events',[])),'newStreamErrors':0,'longTermMemoryCurve':'not yet observed'}
+(OUT/(stack+'-worker-verification.json')).write_text(json.dumps(proof,indent=2)+'\n');print(json.dumps(proof,indent=2))

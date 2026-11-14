@@ -5,7 +5,15 @@ Authority scope: Auth0 identity boundary, direct hosted iOS entry, hosted appear
 Superseded by: later Owner direction recorded in `docs/decision-log.md`  
 Do not use for: credential storage, API authorization rules, production identity approval or legal claims  
 Status: HOSTED SIGN-IN OBSERVED; WEB ACCOUNT CHOICE/REAUTH VERIFIED; SIGNUP GUIDANCE APPLIED
-Last updated: 2026-10-05 (Asia/Hong_Kong)
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 real-provider projection failure
+
+[The actual18 rejection](app-review-login-fix-20261114.md) exposed a missing fresh-login gate after the long-session rollout. A user record and health200do not prove a session can be issued. The exact provider projection failed400and was replaced with supported exclusion mode without dropping password-reset/blocked/deleted checks. Both APIs are patched. After explicit same-account consent and successful protected credential access, fresh production Web login/read/reload and frozen18Release native login/read/process-relaunch passed. The native result is an iPadOS27.0simulator using real identity/API services, not a physical27.2.1device or new purchase. Any affected identity/session deployment invalidates older login evidence for resubmission.
+
+## November6 bounded user login continuity
+
+Owner selects Rillora App/Web user sessions. The [current session contract](longer-user-sessions-20261106.md) adds opt-in 30-day absolute/7-day idle sessions with authenticated-edge network context, same-account confirmation, current identity-status checks and unchanged sensitive-action requirements. Ordinary new login still requests explicit account choice. Reauthentication preserves the original token and absolute deadline; it does not submit a held action. Existing and unverifiable-context sessions keep the earlier short policy. Deployment progress and real-user evidence remain distinct in the linked record.
 
 ## October5 explicit account choice on ordinary Web entry
 

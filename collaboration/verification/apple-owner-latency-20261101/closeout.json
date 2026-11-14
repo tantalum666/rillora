@@ -1,0 +1,73 @@
+{
+  "at": "2026-10-31T16:23:38.506679+00:00",
+  "sourceHeadBeforePatch": "1a54ed906c7f66672dbcaba5347aed62c63292b8",
+  "sourceSha256": {
+    "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift": "29def66968185d49d66107b3d4cd59755414830ce6b8f79c4fe89b7ac8ad141c",
+    "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift": "5e1b008a79601f199e134f96aa73dea80971e2a8b15df101c36943ce100af161",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift": "7992b6a0f42354c10086ccc1c6321e54c06370b4ed96d60e6f388302178d8aec",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings": "e2dd48dfc3aef1633306ef3ad4937ed1633fff40b2c2d8a9cc342af940409af0",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift": "549b76867d87270471c18c6950231a5f44a3e9bc5a2a20bd0ce5031f40795231"
+  },
+  "tests": {
+    "originalReproductions": {
+      "passed": 0,
+      "failed": 3
+    },
+    "firstFullTargetedRun": {
+      "passed": 57,
+      "failed": 1,
+      "explanation": "Account-switch assertion required nil instead of checking that late old response preserves valid new-account conflict state; corrected and independently rerun."
+    },
+    "accountSwitchRerun": {
+      "passed": 1,
+      "failed": 0
+    },
+    "firstCoordinatorFollowup": {
+      "passed": 42,
+      "failed": 0
+    },
+    "finalCoordinator": {
+      "passed": 44,
+      "failed": 0,
+      "skipped": 0
+    },
+    "unchangedStoreKitAndCommerceCasesInheritedFromSameWorkflow": 19,
+    "distinctNativeCasesWithPassingEvidence": 63,
+    "localizationChecks": 9
+  },
+  "candidate": "1.0(17) isolated final-r2 development export, signature verified, not installed; device disconnected",
+  "cloud": "October31rollout complete, current native fix requires no API/Web redeploy",
+  "backendReadback": "Synthetic reviewer authenticated; one started intent and one owned token; not a successful payment",
+  "remaining": [
+    "connected-device install",
+    "existing independent Sandbox tester current validity/history",
+    "actual purchase, restore, entitlement and expiry",
+    "actual phone latency",
+    "final screenshot/reviewer notes after real success"
+  ],
+  "held": [
+    "TestFlight",
+    "resubmission"
+  ],
+  "preserved": [
+    "prices",
+    "data",
+    "sale flags",
+    "original transaction owner",
+    "FanPass"
+  ],
+  "subagents": false,
+  "cloudCI": false,
+  "documentation": {
+    "focused": [
+      "docs/apple-owner-latency-20261101.md",
+      "docs/storekit.md",
+      "docs/release-product-audit-20261031.md"
+    ],
+    "decision": "docs/decision-log.md November1 ownership repair",
+    "handoff": "docs/handoff.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md November1",
+    "newDecisionReason": "Owner requested repair and secure independent test approach; existing ownership/sale rules retained"
+  },
+  "publication": "Safe readable receipts and new archive58; old1-57not resealed/redownloaded; final remote metadata follows capture"
+}

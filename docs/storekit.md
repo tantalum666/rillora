@@ -4,8 +4,18 @@ Role: StoreKit 2 client, local Xcode testing, Apple sandbox and server-verificat
 Authority scope: Rillora Family StoreKit product identifiers, purchase/restore lifecycle, transaction evidence, App Store server boundary and phased verification  
 Superseded by: newer Apple platform rules, verified App Store Connect state, a later Owner decision, or stricter payment/security evidence  
 Do not use for: proof of App Store approval, accepted Paid Apps Agreement, banking/tax completion, live IAP products, production entitlement or a real charge  
-Status: SEPARATE RUNTIMES DEPLOYED; PRERELEASE401 EXPLAINED; PRODUCTION CHECK AFTER RELEASE BEFORE SALES; PHONE14 AND WEB TEST ENTITLEMENT MATCH
-Last updated: 2026-10-14 (Asia/Hong_Kong)
+Status: PHYSICAL SANDBOX PURCHASE AND RESTORE VERIFIED; CANCELLATION/EXPIRY PENDING; OWNER HOLDS RESUBMISSION
+Last updated: 2026-11-01 (Asia/Shanghai)
+
+## November1 purchase ownership and pending-check repair — current
+
+[Physical acceptance](apple-purchase-acceptance-20261101.md) now confirms the original HKD888 order is completed/paid_reconciled, its888000-milliunit receipt matches, the Apple signature is verified and the event applied, with an active subscription. Owner completed the purchase and one restore in17. The independent tester'sUSAregion was corrected toHKGto match the unchanged original order; no ownership transfer, history reset or new replacement order occurred. Cancellation and actual expiry remain separate gates. New bilingual error-copy changes pass9tests but are not yet installed in17; the expanded operator inspection passes20local API tests and runs read-only. Ordinary API/Web/sale settings remain unchanged.
+
+[Current repair](apple-owner-latency-20261101.md) keeps server transaction/account binding and exact money/environment validation. Pending checks read current/unfinished transactions without forced synchronization or full status queries. Known foreign history, including expired subscriptions, is checked before another payment sheet; owned receipts reconcile without a second order, and account-switch late replies cannot overwrite the new session.44coordinator cases pass;19unchanged StoreKit/CommerceStore cases retain this workflow's passing evidence;9localization checks pass. Isolated17is installed in place and read back on the original phone. Owner confirms Rillora App Review and a pending-check response without another Apple password prompt. Actual purchase/restore/expiry and measured latency remain pending. No ownership transfer, historical clearing, server redeployment, price change, TestFlight or review resubmission.
+
+## HISTORICAL — October30 rejection remediation
+
+Apple rejected1.0(14)under2.2and2.1(b). The submitted screenshots already loadUSD119.99but cannot purchase: both dedicated-reviewer enrollment and API review expiry endedOctober27, before reviewOctober30. [Current remediation](app-review-remediation-20261030.md) renews only that reviewer and the runtime deadline throughNovember29 12:00Z, deploys7-day advance monitoring, and removes normal-page test framing without changing signature, money, ownership or finish guards. All other catalog/sales/data controls remain unchanged. Local1.0(15)is prepared from the exact14native baseline; Owner says do not resubmit. No new upload/TestFlight or actual App Store purchase is claimed. The dated sections below remain historical checkpoints.
 
 ## October13 current release preparation
 

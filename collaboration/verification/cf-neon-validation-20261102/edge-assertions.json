@@ -1,0 +1,46 @@
+{
+  "passed": true,
+  "checks": [
+    {
+      "index": 0,
+      "path": "/probe/http",
+      "passed": true
+    },
+    {
+      "index": 1,
+      "path": "/arbitrary",
+      "passed": true
+    },
+    {
+      "index": 2,
+      "path": "/probe/http",
+      "passed": true
+    },
+    {
+      "index": 3,
+      "path": "/probe/http",
+      "passed": true
+    },
+    {
+      "index": 4,
+      "path": "/probe/crypto",
+      "passed": true
+    },
+    {
+      "index": 5,
+      "path": "/probe/file-limit",
+      "passed": true
+    },
+    {
+      "index": 6,
+      "path": "/probe/database",
+      "passed": true
+    },
+    {
+      "index": 7,
+      "path": "/probe/database",
+      "passed": true
+    }
+  ],
+  "scope": "Offline assertions over the original eight live calls; no cloud calls rerun."
+}

@@ -43,7 +43,7 @@ class NativeContentNextTests(unittest.TestCase):
             self.assertNotRegex(path.read_text(), r'import RilloraContentKit|URLSession|URLRequest|FileManager|UserDefaults|JSONEncoder')
         for path in KIT.glob('*.swift'):
             self.assertNotRegex(path.read_text(), r'import HealthKit|HeartRateReading|HKHealthStore')
-        self.assertIn('toShare: []', (health / 'HealthKitHeartRateReader.swift').read_text())
+        self.assertIn('toShare: []', (health / 'HealthKitReader.swift').read_text())
 
     def test_next_permission_resources_do_not_copy_whole_localization_folders(self):
         for name in ['project.next.yml', 'project.healthkit-next.yml']:
@@ -63,11 +63,17 @@ class NativeContentNextTests(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             ios = Path(directory)
             for name in module.PRESERVED:
-                path = ios / name; path.parent.mkdir(parents=True, exist_ok=True); path.write_text(name)
+                path = ios / name; path.parent.mkdir(parents=True, exist_ok=True)
+                path.write_text(json.dumps({'sourceLanguage': 'en', 'version': '1.0', 'strings': {'existing': {}}}) if name.endswith('.xcstrings') else name)
+            additions = ios / 'NextVersionCheckIn/Configuration/NotificationStrings.xcstrings'
+            additions.parent.mkdir(parents=True)
+            additions.write_text(json.dumps({'strings': {'new-notice': {}}}))
             with patch.object(module, 'IOS', ios), patch.object(module.subprocess, 'run'):
                 module.main()
             target = ios / 'RilloraNext.xcodeproj/project.xcworkspace/xcshareddata/swiftpm/Package.resolved'
             self.assertEqual(target.read_bytes(), (ios / module.PRESERVED[-1]).read_bytes())
+            self.assertEqual(set(json.loads((ios / 'NextVersionContent/Configuration/Localizable.xcstrings').read_text())['strings']), {'existing', 'new-notice'})
+            self.assertEqual(set(json.loads((ios / 'Rillora/Resources/Localizable.xcstrings').read_text())['strings']), {'existing'})
             def changed(*args, **kwargs): (ios / 'project.yml').write_text('unexpected mutation')
             with patch.object(module, 'IOS', ios), patch.object(module.subprocess, 'run', side_effect=changed):
                 with self.assertRaisesRegex(RuntimeError, 'Current review source changed'): module.main()

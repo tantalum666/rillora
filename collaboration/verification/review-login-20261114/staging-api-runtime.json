@@ -1,0 +1,31 @@
+{
+  "at": "2026-11-13T19:54:37.449538+00:00",
+  "environment": "staging",
+  "passed": true,
+  "desired": 1,
+  "running": 1,
+  "pending": 0,
+  "rollout": "COMPLETED",
+  "taskDefinitionMatches": true,
+  "imageMatches": true,
+  "imageDigest": "sha256:aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3",
+  "containerHealth": "HEALTHY",
+  "http": [
+    {
+      "requestedUrl": "https://l1g8350qw0.execute-api.eu-central-1.amazonaws.com/health/ready",
+      "status": 200,
+      "cacheControl": null
+    },
+    {
+      "requestedUrl": "https://app.staging.rillora.xyz/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store, max-age=0"
+    },
+    {
+      "requestedUrl": "https://app.staging.rillora.xyz/api/v1/commerce/status",
+      "status": 401,
+      "cacheControl": "no-store, max-age=0"
+    }
+  ],
+  "accountOrDataWrites": false
+}

@@ -1,0 +1,52 @@
+{
+  "metrics": {
+    "production": {
+      "templateExactlyMatchesSinglePropertyCandidate": true,
+      "servicesAndDeploymentIdsUnchanged": true,
+      "containerInsights": "disabled",
+      "otherSettingsUnchanged": true,
+      "phase": "before worker image rollout"
+    },
+    "preview": {
+      "templateExactlyMatchesSinglePropertyCandidate": true,
+      "servicesAndDeploymentIdsUnchanged": true,
+      "containerInsights": "disabled",
+      "otherSettingsUnchanged": true,
+      "phase": "before worker image rollout"
+    }
+  },
+  "workers": {
+    "production": {
+      "stack": "RilloraProduction",
+      "status": "UPDATE_COMPLETE",
+      "imageDigest": "sha256:9944d7ed0780359c8c8fe4b36d409a77a8b7e38f5847b658417b80a2ee488e13",
+      "taskRevision": 10,
+      "workerRunning": 1,
+      "failedTasks": 0,
+      "normalApiTaskAndDeploymentUnchanged": true,
+      "onlyWorkerImageDiffers": true,
+      "rolesSecretsResourcesAndCommandsUnchanged": true,
+      "stackParametersUnchanged": true,
+      "startedAt": "2026-11-04T11:02:06.661000+08:00",
+      "newStreamEvents": 0,
+      "newStreamErrors": 0,
+      "longTermMemoryCurve": "not yet observed"
+    },
+    "preview": {
+      "stack": "RilloraStaging",
+      "status": "UPDATE_COMPLETE",
+      "imageDigest": "sha256:9944d7ed0780359c8c8fe4b36d409a77a8b7e38f5847b658417b80a2ee488e13",
+      "taskRevision": 4,
+      "workerRunning": 1,
+      "failedTasks": 0,
+      "normalApiTaskAndDeploymentUnchanged": true,
+      "onlyWorkerImageDiffers": true,
+      "rolesSecretsResourcesAndCommandsUnchanged": true,
+      "stackParametersUnchanged": true,
+      "startedAt": "2026-11-04T10:38:19.838000+08:00",
+      "newStreamEvents": 0,
+      "newStreamErrors": 0,
+      "longTermMemoryCurve": "not yet observed"
+    }
+  }
+}

@@ -23,15 +23,20 @@ export async function expirePreparedApplePurchases(client: PoolClient): Promise<
       where id in(select order_id from expired) and status='created'`);
 }
 
+export async function isTestCommerceAccount(client: PoolClient): Promise<boolean> {
+  const result = await client.query<{ testing: boolean }>(`select app.commerce_validation_enabled()
+      or exists(select 1 from app.commerce_subscriptions where planner_id=app.current_planner_id()
+        and provider_environment in ('sandbox','test'))
+      or exists(select 1 from app.commerce_orders where planner_id=app.current_planner_id()
+        and provider_environment in ('sandbox','test')) as testing`);
+  return result.rows[0]?.testing === true;
+}
+
 export async function assertNoForeignPurchase(client: PoolClient, provider: 'stripe' | 'storekit',
   environment: 'production' | 'sandbox' = 'production'): Promise<void> {
   // Review identities never become real payers merely because their enrollment
   // expired. Retire their synthetic ledger explicitly, or use a customer account.
-  if (environment === 'production' && (await client.query(`select app.commerce_validation_enabled()
-      or exists(select 1 from app.commerce_subscriptions where planner_id=app.current_planner_id()
-        and provider_environment in ('sandbox','test'))
-      or exists(select 1 from app.commerce_orders where planner_id=app.current_planner_id()
-        and provider_environment in ('sandbox','test')) as testing`)).rows[0]?.testing) {
+  if (environment === 'production' && await isTestCommerceAccount(client)) {
     throw new ApiError(409,'test_account_real_purchase_blocked','Testing accounts cannot make real purchases. Use a separate customer account.');
   }
   if (!(await client.query('select app.commerce_planner_can_purchase() as allowed')).rows[0]?.allowed) {

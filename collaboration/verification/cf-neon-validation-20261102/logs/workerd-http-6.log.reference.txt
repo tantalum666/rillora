@@ -1,0 +1,10 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+{"event":"hosting_probe_failed","kind":"TypeError","locations":[{"line":1269,"column":5357},{"line":1,"column":611},{"line":1269,"column":11075},{"line":1,"column":544},{"line":1633,"column":9793},{"line":1,"column":544}]}
+{"phase":"workerd-http","status":503,"result":{"passed":false,"code":"probe_failed"}}
+Expected values to be strictly equal:
+
+503 !== 200
+

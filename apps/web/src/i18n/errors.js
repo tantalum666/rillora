@@ -11,6 +11,7 @@ const errorKeys = Object.freeze({
   verified_email_required: "common.error.verifiedEmail",
   billing_confirmation_required: "common.error.billingConfirmation",
   temporarily_unavailable: "common.error.unavailable",
+  identity_status_unavailable: "common.error.unavailable",
   invalid_export_response: "common.error.invalidResponse",
   invalid_disclosure_rehearsal_response: "common.error.invalidResponse",
   invalid_role_assignment_response: "common.error.invalidResponse",

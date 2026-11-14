@@ -40,6 +40,7 @@ export function productionBillingStatus(payload) {
   const sub = payload?.subscription;
   if (payload?.contractVersion !== 'commerce-stripe-production-v1' || payload.testOnly !== false
     || typeof payload.canManage !== 'boolean' || typeof payload.checkoutPending !== 'boolean'
+    || !['available', 'account_unavailable', 'unavailable'].includes(payload.checkoutAvailability)
     || (sub !== null && (!states.includes(sub?.state) || typeof sub.cancelAtPeriodEnd !== 'boolean'
       || (sub.currentPeriodEndsAt !== null && !Number.isFinite(Date.parse(sub.currentPeriodEndsAt)))))) throw new Error('Your billing status could not be verified.');
   return payload;

@@ -1,0 +1,57 @@
+{
+  "at": "2026-11-13T20:05:18.995698+00:00",
+  "reviewedBuild": "1.0(18)",
+  "reviewDate": "2026-11-12",
+  "reviewDevice": "iPad Air11(M3) / iPadOS27.2.1",
+  "rejection": "2.1(a) could not log in",
+  "screenshot": "apple-review-login-failure.png",
+  "visibleError": "The identity service could not establish a Rillora session.",
+  "rootCause": "Auth0 GetUser projection allowlist rejects last_password_reset although the property can be returned. Long-session new-identity validation converted this400 to503, rejecting new Rillora sessions.",
+  "providerBefore": {
+    "status": 400,
+    "code": "invalid_query_string"
+  },
+  "providerAfter": {
+    "status": 200,
+    "queryMode": "exclude supported unrelated profile fields"
+  },
+  "resetProofLiveComparison": {
+    "readOnly": true,
+    "sameIdentity": true,
+    "blockedMatches": true,
+    "resetProofExists": true,
+    "resetProofPreserved": true,
+    "responseFields": [
+      "user_id",
+      "last_password_reset"
+    ],
+    "noPasswordOrAccountChange": true
+  },
+  "accountBlocked": false,
+  "reviewDeadline": "2026-12-04T12:00:00Z",
+  "failureScope": "Every new session when trusted user sessions are enabled; not restricted to the App Review identity. Existing long sessions can also fail the periodic identity recheck.",
+  "reviewWindow503": {
+    "at": "2026-11-12T18:48:05.140Z",
+    "responseTimeMilliseconds": 525,
+    "boundary": "Time correlation; private request paths and identities are deliberately not in API logs, so this is not unique attribution."
+  },
+  "regression": {
+    "beforeFailed": true,
+    "afterPassed": true,
+    "unitChecks": 20,
+    "typecheck": true,
+    "build": true
+  },
+  "deployedImage": "sha256:aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3",
+  "overlayModules": [
+    "email-verification.js"
+  ],
+  "migrations": false,
+  "securityChecksRemoved": false,
+  "freshWebLoginVerified": false,
+  "freshNativeLoginVerified": false,
+  "remaining": "Pending original protected credential access and action-time consent for same synthetic account. Native frozen18Release source/config are prepared in a fresh iPad27.0 simulator; no physical iPad27.2.1 claim.",
+  "appResubmitted": false,
+  "testFlightDistributed": false,
+  "priorValidationGap": "Provider stub accepted an invalid projection; metadata/user existence and health200 replaced the missing post-change fresh-login check."
+}

@@ -1,5 +1,67 @@
 # Rillora — Git / Dot 协作入口
 
+November14最新：[修复后回复与重新提交](../docs/app-review-resubmission-20261114.md)已按Owner新指令完成，香港21:47回复送达、21:49原18／年付／群组一起提交，刷新确认等待审核和手动发布。当前账号／服务及December4沙盒资格、15分钟监测／14天预警读回；普通登录无全局审核倒计时。[安全回执](verification/review18-resubmission-20261114/README.md)普通Git保存，原密码、价格、数据保持，无新上传／部署／购买／TestFlight。下方同日“未重提”为前一验收检查点，不是当前状态。
+
+November14最新：[18登录故障](../docs/app-review-login-fix-20261114.md)已定位为Auth0资料投影400导致会话503；单模块修复在两API部署，20项检查及真实服务方对照通过。Owner确认后，原受保护密码已成功完成正式Web新登录／刷新及冻结18原生登录／读取／停止重开；原生为27.0模拟器，不冒称27.2.1真机，本轮未重提；不能再用用户存在／健康200／旧登录记录替代。[本轮安全回执](verification/review-login-20261114/README.md)保存失败、修复和证据边界，原始账号／授权资料不公开。当前唯一下一步见handoff，下方等待审核均为历史。
+
+November6最新：[18重新提审](../docs/app-review-resubmission-20261106.md)已按Owner明确要求完成，App／年付订阅／群组三个项目均等待审核，手动发布与不发TestFlight保持。账号和云端监控读回通过，原本机维护任务实际缺失后已恢复为每日有界账号／服务维护。[安全回执](verification/review18-resubmission-20261106/README.md)普通Git保存，不新建归档或重跑测试／部署。下方先前“暂停重新提审”已被最新指令取代，当前唯一下一步见handoff。
+
+November6后续：[审核材料续接](verification/app-review-materials-20261106/README.md)已完成18草稿／最终备注／布局附件及双语标准许可链接的刷新回读；最新受限只读观察确认原Sandbox订阅自然到期。原年付商品图片栏受Apple状态限制，版本附件与备注明确补充，未删除项目或取消提交。免费／付费协议、13类隐私、USA/HKG与原年价保持。只追加小型可读证据和源配置状态修正，不重封归档、重跑测试、重复部署、重提或TestFlight。下段登录／到期门是同日早一检查点，已由本段取代。
+
+November6当前：[用户登录保持](../docs/longer-user-sessions-20261106.md)已在两环境启用30天／7天策略并完成可信边缘、身份状态和运行回读；[审核再复核](../docs/app-review-recheck-20261106.md)修复额外身份核验器遗漏，39项检查和两模块API更新通过。18已通过Apple校验并上传为未分配测试组的候选；草稿18保存后的重新读取遇到实际Apple登录失效，备注／审核参考图尚未保存，不能宣称全部提审条件闭合。最新Sandbox仍有签名自动续订，最终过期账号状态另核对；不重提或TestFlight。
+
+新增[会话证据／归档63](verification/user-sessions-20261106/README.md)及[复核证据／归档64](verification/app-review-recheck-20261106/README.md)分别封存并认证，原1–62不重封。根snapshot仍代表初次完整快照，各追加包有独立snapshot／catalog／验证回执；完整可读清单覆盖全部追加材料。当前唯一下一步见[handoff](../docs/handoff.md)，不重跑已完成迁移／购买／上传。
+
+November5检查点：[同账号再次订阅修复](../docs/apple-resubscription-repair-20261105.md)已部署109至Preview／正式，并经五／六项权限探针及实际同单账本验证；Owner在18恢复后已订阅。67本机集成／类型／build通过，价格／归属／收费／数据保持，[安全回执与新增62](verification/apple-resubscription-20261105/README.md)分开保存。随后用户长期会话的实现与部署见November6记录；不动管理会话，不重提／TestFlight。
+
+November5后续：Owner要求直接装手机，已复用原18-r2并在原iPhone从17原位升级到18、独立读回、启动成功。[交付记录](../docs/native18-device-install-20261105.md)与[安全回执](verification/native18-install-20261105/README.md)只新增元数据；旧IPA／测试／归档不重做，本人页面结果仍待反馈。不重提或发TestFlight，唯一下一步见handoff。
+
+November5当前：[审核复核和购买按钮修复](../docs/app-review-readiness-20261104.md)已完成本机74项原生／6项UI回归，准备隔离18-r2。两条缺陷分别为交易后重复报价重载与Form法律链接整行点击范围；不放宽付款验证。原专用资格有界续到December4，DB／API／监控匹配；原17交易证据沿用。[本轮安全回执](verification/app-review-readiness-20261104/README.md)与新增archive60–61分层保存，旧1–59不重做。手机安装及最终素材仍待对应；不上传、重提、TestFlight、云CI或子代理，唯一下一步只看handoff。
+
+November4当前：Owner要求继续账户活动与申请，[公开准备参考](../docs/aws-activate-preparation-20261104.md)已更新，新增[非财务清理回执](verification/aws-account-maintenance-20261104/README.md)。本仓库公开，实际财务结果、联系人和申请回执仅保留在受保护本机QA，不用公开旧余额代替当前状态。临时资源已清理，应用／数据／价格／收费／审核保持；无云CI或子代理。唯一下一步见handoff，不重复此前活动。
+
+同轮后续：全球申请实际指向香港地区表，使用申请人的个人LinkedIn即可，不要求Rillora公司Page。公开只保留一般地区规则和表单边界；填好的申请、本人资料及最终回执保持私密。前一“没有个人LinkedIn”的解释已纠正，人工受理邮件草稿未发送且已作废；网站步骤已完成，后续供应商结果依私密记录续接，不重复申请。
+
+November4前一检查点：[AWS优化与增长规划](../docs/aws-optimization-20261104.md)已落地两集群额外指标关闭、原收件人费用／异常通知及免费Compute Optimizer；新发现的TLS上下文内存增长已修复并只部署两独立worker，API／数据／权限／价格／审核保持。实际Linux600次重连前后、30项API／28项infra／4项控制边界／6项算术及云端读回分别保存于[安全证据](verification/aws-optimization-20261104/README.md)。Preview按需和有界worker仍未实现；账户活动已由上方后续工作取代，本段不是当前财务结果。
+
+November3前一检查点：[五家完整托管预算与推荐](../docs/architecture/five-provider-hosting-decision-20261103.md)完成同口径全运行费用、保护控制及改造清单，推荐先AWS收敛。Oracle现金更低但自管；CF／Vercel明确仅公开层混合账单，Google保留AWS安全服务的成本亦计入。13项算术／边界校验通过，[安全模型与来源](verification/five-provider-decision-20261103/README.md)普通Git保存。没有部署、真实迁移、外发、子代理或云端CI；旧价格／审核保持。
+
+November3前一检查点：[Vercel与成本比较方法纠正](../docs/architecture/vercel-cost-method-20261103.md)明确不能从昂贵跨云案例推导所有平台比AWS贵。确认Pro原生PrivateLink、可选StaticIPs和Enterprise网络不同，普通TLS方案未被批准替代现有私网；七项示例算术通过，完整价格／目标安全实证仍缺。[安全来源和模型](verification/vercel-method-20261103/README.md)普通Git保存，没有新资源、运行改动、外发、云端CI或子代理。
+
+November3前一检查点：[Oracle／Google＋Neon专项复核](../docs/architecture/oci-google-neon-cost-review-20261103.md)核对AWS侧Neon私网、两端VPN／IPv4、Google实际Frankfurt区域和Oracle美元价格。12项算术／边界检查通过，不是网络连通或生产保护验收；旧低价组件优先建议已撤回，单链路／HA示例均非全包或最低价。[本轮安全资料](verification/oci-google-neon-20261103/README.md)普通Git保存；没有部署、真实数据迁移、付费、外发询问、云端CI或子代理。
+
+November3前一检查点：[CF＋Neon隔离验证](../docs/architecture/cf-neon-validation-20261102.md)已完成限定运行检查：真实Worker8次调用、SDK／8MiB加密和Neon只读权限结果保留，临时URL与数据库绑定已关闭。完整生产迁移仍有私网／地域／恢复及报价缺口；免费赠金未获批、不计长期月费。[源码与安全回执](verification/cf-neon-validation-20261102/README.md)普通Git保存，生产／真实数据／价格／审核保持，旧归档和旧付款不重做，未用云端CI或子代理。
+
+November2最新：[六组合比较](../docs/hosting-six-pair-decision-20261102.md)已完成官方区域价格、三档可复算预算和源码适配核对。Agent建议先验Cloud Run＋Neon，Supabase7天PITR最小约130美元、Neon网络套餐与CF地域差异单列；没有选择或部署。[本轮公开资料](verification/hosting-six-pair-20261102/README.md)普通Git保存，原数据／价格／审核保持，无新云端作业。
+
+November2范围扩充：[托管比较](../docs/cloud-hosting-comparison-20261102.md)已纳入Google／微软和Hetzner／DO／Akamai／Railway／Render，记录当前价格与7天恢复等额外费用；继续是研究，未选择或迁移。[安全资料](verification/hosting-comparison-20261102/README.md)只新增公开来源／价格事实，无新云端作业或旧归档重做。
+
+November2后续：[CF／Oracle托管比较](../docs/cloud-hosting-comparison-20261102.md)回应Owner仍嫌旧AWS预算过高；最新免费／付费额度、完整费用遗漏和当前PG／worker约束已分开记录。[来源与算术](verification/hosting-comparison-20261102/README.md)普通Git保存，尚未选provider、开通付费或迁移，原成本止损仍未部署。
+
+November2最新：[真实费用诊断](../docs/aws-cost-review-20261102.md)确认10月资源费120.63减额度83＝应付37.63美元、当前额度0；两个集群额外性能指标和无通知预算已查明，降本仍为具体方案而非已部署。Owner到期／Free与同一原订单expired_read_only后台证明一致，不重买／恢复；手动取消与退款未冒领通过。[安全摘要](verification/cost-review-20261102/README.md)普通Git保存，旧1–59归档不重做，重提／TestFlight和云端CI保持暂停。
+
+November1最新：[17真实购买／恢复与独立账本](../docs/apple-purchase-acceptance-20261101.md)已通过，同一原HKD888订单完成／验签／权益核对。仅修正独立tester的地区，不重建订单；新双语错误文案9项、只读诊断20项通过。普通API／Web和收费保持，仅维护检查工具更新。当前新门是取消续期／真正到期，Owner不重做购买恢复，重提／TestFlight仍暂停。[本轮安全回执](verification/native17-install-20261101/README.md)将本轮新增工作独立保存，旧1–58不重做。
+
+November1此前检查点：[Apple购买归属与等待修复](../docs/apple-owner-latency-20261101.md)通过本机44项购买协调与9项语言检查，另19项同轮未变化原生证据沿用。隔离17-r2随后已在原机安装／读回／启动；Owner确认待处理检查不再弹Apple密码，实际新交易及耗时仍未通过。见[新增安装回执](verification/native17-install-20261101/README.md)。前轮两API／三Web已部署并保留价格、数据和开关。[安全结果与archive58](verification/apple-owner-latency-20261101/README.md)保存新增工作，旧1–57不重做；不使用云端CI、子代理、TestFlight或重提。下方October31准备状态是历史检查点，唯一下一步以handoff为准。
+
+October31当前：[正式产品复查与16直装](../docs/release-product-audit-20261031.md)已修Web付款环境／资格混用、不可用反馈、官网测试阶段文案及原生无操作预告；本机相关检查通过，16签名原位安装读回。API／三套Web产物已准备但未部署；实际AWS／Stripe／Mac认证阻塞和原生Sandbox未完成明确保留，重提／TestFlight暂停。[本轮安全证据及archive57](verification/release-product-audit-20261031/README.md)追加保存，旧1–56不重做。以下15手机暂停是历史检查点，已由Owner恢复指令取代；唯一下一步见handoff。
+
+October31当前补验：[候选15直装与审核Web对照](../docs/app-review-sandbox-acceptance-20261031.md)完成原机安装读回、同一受保护密码的Web登录及USD119.99／HKD888服务器测试报价；原生登录仍待定位，没有发起Apple购买。Owner先断开手机，真机／镜像暂停；重提／TestFlight保持。[安全回执及新增archive56](verification/app-review-acceptance-20261031/README.md)保存当前结果和开发签名产物，旧1–55不重做，最终远端认证另记。唯一下一步只看handoff。
+
+October31前一检查点：[Apple原消息和全部链接复核](../docs/app-review-link-recheck-20261031.md)已读16处／15目标及4个跟读页面；实际协议／商品配置与签名候选只读核对完成。明确真实Sandbox、过期订阅demo及最终材料缺口，旧修复不冒称审核闭环。[新可读回执／未发送草稿](verification/app-review-links-20261031/README.md)普通Git保存，旧archive55不重封；当时重提／真机／TestFlight暂停保持，后续手机范围以上节和handoff为准。
+
+October30检查点：[Apple实际拒审修复](../docs/app-review-remediation-20261030.md)已续专用审核购买资格、部署提前7天告警并完成本机验证；本地15从原14基线独立准备，下一版功能不混入。Owner明确先不重新提交，Apple仍14／Rejected，未上传或TestFlight。[本轮回执与archive55](verification/app-rejection-20261030/README.md)保留修复、失败及边界，旧1–54不重复。唯一下一步以handoff为准。
+
+October26当前：[27条发现待索引与SEO／GEO推进](../docs/marketing/search-discovery-20261026.md)已完成官网改进和发布，19源码／构建、7浏览器检查及66文件线上核验通过。Bing两语言请求已收件，Google实时检查通过但手动请求因验证码／提交服务未成；不冒称已索引。[完整安全交付](verification/search-discovery-20261026/README.md)普通Git保存公开产物、矩阵和回执，无新加密归档、云端CI或审核变更。唯一下一步见handoff。
+
+October26：[Google 401邮件诊断](../docs/marketing/google-indexing-401-20261026.md)确认唯一地址是受保护MCP接口，由第三方目录被发现；匿名401正确，公开发现200，官网和地图28规范页面200／无noindex。[安全回执](verification/google-401-20261026/README.md)保存当前请求与Google原报告；27条发现待索引单独保留，没有改源码、认证、索引配置、部署或审核。
+
+October25晚间实读／October26归档：[Google搜索初始数据](../docs/marketing/google-search-baseline-20261025.md)已读取实际报告，2次首页展示／0点击，可见品牌词1次。中英文清单尚未收录，中文Google实时抓取与索引许可通过；旧汇总仍为October16数据。[小型安全回执](verification/google-search-20261025/README.md)直接Git保存，无新归档、无索引重提、部署或广告；不能当成SEO获客或AI推荐。当前唯一下一步仍见handoff。
+
+October25当前：[Duo新版SDK与实际双语验收](../docs/iphone-duo-validation-20261025.md)已完成，本轮另在Apple原工单103001356140追问审核，官方确认收件；三项仍等待审核。原普通旋转2项通过，实际Duo采用原生操作／截图／API回读，失败探针保留而不冒称通过。[本轮archive54及回执](verification/duo-native-20261025/README.md)只追加新工作；源码dfe3583e3／PR10已发布，archive54独立远端认证1,793对象／2,834路径通过，源码云端作业0，PR未合并。旧1–53不重封／重下。当前审核、线上、真实数据、价格／收费和TestFlight不变，云端CI停用。唯一下一步只看handoff。
+
+October24历史检查点：[六类健康、独立报平安与轻量Watch](../docs/health-checkin-watch-development-20261024.md)已完成下一版源码及本机验收，当前审核与线上不变。[本轮回执](verification/health-checkin-watch-20261024/README.md)分别记录纯模块、双语UI、系统适配、真实配对模拟器回执和原始失败；仅新增archive53，旧1–52不重做。云端CI继续停用；源码95ba39236已推PR10，archive53远端认证508对象／751路径通过，云端运行仍314；PR开放未合入main。当前唯一下一步仍看handoff。
+
 October23最新：[Git整合／本机验证](../docs/git-integration-local-ci-20261023.md)按Owner明确指令停止云端CI，旧账单恢复门被取代；保留可信base秘密扫描、完整清单及相关本机测试。[当前本机入口](../tools/ci/README.md)与[本轮回执](verification/git-local-ci-20261023/README.md)供后续协作沿用。PR9已合并为main15068a9ce，32个远端分支头全包含、开放PR0；运行总数保持314，无新云端任务。[完成回执](verification/git-local-ci-20261023/completion.json)。下方云端CI描述均为有日期的既往检查点，不能据此重新启动工作流；当前唯一下一步只看handoff。
 
 October23当前：[下一版本原生内容](../docs/ios-content-development-20261023.md)已补齐办理包、文件、原声及独立HealthKit入口，完成14项模块／15项原生用例相关结果／8项隔离检查；当前审核工程和线上保持。源码与[本轮原始证据](verification/ios-content-20261023/README.md)使用新增archive50，旧1–49不重做。源码b17d76f32和[PR9](https://github.com/tantalum666/rillora/pull/9)已发布；archive50独立远端解密核验425对象／792路径通过。当前唯一下一步只看handoff；最终候选CI按PR原生记录核对。
@@ -116,7 +178,7 @@ HKD888购买已验签；简洁购买页构建8已分发原内部组并选入未�
 677对象，本地与GitHub独立新下载后的解密核验均通过。Stripe Live凭据已保护保存、运行计费尚未接通。
 
 
-Updated: 2026-10-23 (Asia/Hong_Kong)
+Updated: 2026-11-02 (Asia/Hong_Kong)
 
 October6保留检查点：`codex/release-12-stripe-20261005`源码10194de6a/CI58通过；双语多设备/大字号/系统语言、共享/文件与88.99StripeWeb TEST闭环完成。API14及Web/WWW已部署；新1.0(5)已上传处理为准备提交，说明回读一致，群组/独立测试员0。[新增完整保存包](verification/release-12-stripe-20261006/README.md)的raw-work-019包含9,769路径/1,541对象，本地及GitHub新下载原件均已解密核验通过，归档提交557af9f11/CI59成功。旧归档/真实数据/FanPass保留，真人/真机/live/最终审核门仍分开。
 

@@ -1,9 +1,11 @@
 # 下一版本：多类健康数据与手表端取舍
 
-Status: OWNER BROADER-READING DIRECTION / RESEARCH AND RECOMMENDATION / NOT IMPLEMENTED
+Status: HISTORICAL RESEARCH CHECKPOINT / FIRST-STAGE IMPLEMENTATION TRACKED SEPARATELY
 Last updated: 2026-10-24 (Asia/Hong_Kong)
 
-Owner指出HealthKit不应只限心率，还应考虑其他健康数据，并询问是否开发watchOS。本轮据当前源码和Apple官方资料明确范围；没有扩展实际授权、读取个人记录、创建Watch target或修改当前审核。之前心率24小时／200条只是已实现的首段技术验证，不是产品最终范围。这里的具体指标分批、提醒和手表端方案属于Agent建议，不伪称已获Apple用途批准或已完成开发。
+本文件保存当时讨论的依据与取舍。Owner随后已明确开始开发；六类读取、独立提醒与轻量Watch的当前实现／测试见[实施合同](health-checkin-watch-development-20261024.md)。下列“尚未实现”只描述研究检查点，不能再作为当前执行门。
+
+Owner指出HealthKit不应只限心率，还应考虑其他健康数据，并询问是否开发watchOS。讨论时据源码和Apple官方资料明确范围，没有扩展实际授权、读取个人记录、创建Watch target或修改当前审核。之前心率24小时／200条只是首段技术验证，不是产品最终范围。这里的具体指标分批、提醒和手表端方案记录当时Agent建议，不伪称已获Apple用途批准。
 
 ## 读取范围
 

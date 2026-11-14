@@ -1,0 +1,62 @@
+[0/1] Planning build
+Building for debugging...
+[0/3] Write sources
+[1/3] Write swift-version--58304C5D6DBC2206.txt
+[3/5] Compiling RilloraCheckInKitTests CheckInTests.swift
+[4/5] Emitting module RilloraCheckInKitTests
+[4/6] Write Objects.LinkFileList
+[5/6] Linking RilloraCheckInKitPackageTests
+Build complete! (1.60s)
+Test Suite 'All tests' started at 2026-10-24 03:21:58.123.
+Test Suite 'All tests' passed at 2026-10-24 03:21:58.125.
+	 Executed 0 tests, with 0 failures (0 unexpected) in 0.000 (0.002) seconds
+◇ Test run started.
+↳ Testing Library Version: 1902
+↳ Target Platform: arm64e-apple-macos14.0
+◇ Test saveFailureDoesNotAcknowledgeOrScheduleAConfirmation() started.
+◇ Test malformedAndOversizedWirePayloadsAreRejected() started.
+◇ Test olderSnapshotsCannotOverwriteAnAcceptedState() started.
+◇ Test wireSnapshotHasAnExactNonHealthNonIdentityFieldAllowlist() started.
+◇ Test exactRetryIsIdempotentAndIdReuseCannotChangeTheAction() started.
+◇ Test unsavedOutboxCannotTransmit() started.
+◇ Test accountRemovalOrReplacementClearsPendingAndOldDisplayedState() started.
+◇ Test pauseResumeAndBoundedReceiptsKeepTheStateConsistent() started.
+◇ Test inventedAcknowledgementWithoutTheMatchingReceiptCannotClearTheOutbox() started.
+◇ Test permissionDenialDoesNotEnableOrScheduleReminders() started.
+◇ Test pendingIsPersistedAndOnlyARecordedPhoneReceiptCompletesIt() started.
+◇ Test unavailablePhoneAndRepeatedTapsDoNotCreateFalseSuccess() started.
+◇ Test disconnectClearsAFormerSuccessMessageAsWellAsTheOldRecord() started.
+◇ Test settingsChangedOnPhoneRejectTheQueuedOldRevision() started.
+◇ Test snapshotOmitsAccountAndRawHealthInformation() started.
+◇ Test oldAccountOldRevisionExpiredAndFutureCommandsAreRejected() started.
+◇ Test sdkCallbacksCanEnterFromABackgroundExecutorWithoutCrashingOrInventingDelivery() started.
+◇ Test inFlightSchedulingKeepsItsSlotAcrossReauthentication() started.
+◇ Test latePermissionCompletionCannotReviveASignedOutAccount() started.
+◇ Test accountReplacementRejectsOldWatchCommandsAndClearsOldNotifications() started.
+◇ Test explicitConfirmationResetsTheReminderWithoutChangingOtherAuthority() started.
+◇ Test expiredOfflineCommandsAreDiscardedWithoutSending() started.
+◇ Test confirmedRecordSurvivesNotificationSchedulingFailureAndRetry() started.
+✔ Test explicitConfirmationResetsTheReminderWithoutChangingOtherAuthority() passed after 0.001 seconds.
+✔ Test pauseResumeAndBoundedReceiptsKeepTheStateConsistent() passed after 0.001 seconds.
+✔ Test exactRetryIsIdempotentAndIdReuseCannotChangeTheAction() passed after 0.001 seconds.
+✔ Test oldAccountOldRevisionExpiredAndFutureCommandsAreRejected() passed after 0.001 seconds.
+✔ Test malformedAndOversizedWirePayloadsAreRejected() passed after 0.004 seconds.
+✔ Test permissionDenialDoesNotEnableOrScheduleReminders() passed after 0.006 seconds.
+✔ Test wireSnapshotHasAnExactNonHealthNonIdentityFieldAllowlist() passed after 0.007 seconds.
+✔ Test unsavedOutboxCannotTransmit() passed after 0.007 seconds.
+✔ Test unavailablePhoneAndRepeatedTapsDoNotCreateFalseSuccess() passed after 0.007 seconds.
+✔ Test saveFailureDoesNotAcknowledgeOrScheduleAConfirmation() passed after 0.007 seconds.
+✔ Test inventedAcknowledgementWithoutTheMatchingReceiptCannotClearTheOutbox() passed after 0.007 seconds.
+✔ Test snapshotOmitsAccountAndRawHealthInformation() passed after 0.007 seconds.
+✔ Test olderSnapshotsCannotOverwriteAnAcceptedState() passed after 0.008 seconds.
+✔ Test accountReplacementRejectsOldWatchCommandsAndClearsOldNotifications() passed after 0.008 seconds.
+✔ Test pendingIsPersistedAndOnlyARecordedPhoneReceiptCompletesIt() passed after 0.008 seconds.
+✔ Test accountRemovalOrReplacementClearsPendingAndOldDisplayedState() passed after 0.008 seconds.
+✔ Test confirmedRecordSurvivesNotificationSchedulingFailureAndRetry() passed after 0.008 seconds.
+✔ Test settingsChangedOnPhoneRejectTheQueuedOldRevision() passed after 0.008 seconds.
+✔ Test expiredOfflineCommandsAreDiscardedWithoutSending() passed after 0.008 seconds.
+✔ Test disconnectClearsAFormerSuccessMessageAsWellAsTheOldRecord() passed after 0.008 seconds.
+✔ Test sdkCallbacksCanEnterFromABackgroundExecutorWithoutCrashingOrInventingDelivery() passed after 0.009 seconds.
+✔ Test latePermissionCompletionCannotReviveASignedOutAccount() passed after 0.008 seconds.
+✔ Test inFlightSchedulingKeepsItsSlotAcrossReauthentication() passed after 0.009 seconds.
+✔ Test run with 23 tests in 0 suites passed after 0.009 seconds.

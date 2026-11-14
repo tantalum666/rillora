@@ -3,6 +3,7 @@ import { allowAppleCertificateStatusChecks } from './apple-certificate-egress.js
 import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 import {RilloraCustomerMcp} from './rillora-customer-mcp.js';
 import {RilloraPrivateContent} from './rillora-private-content.js';
+import {userSessionEnvironment} from './rillora-user-sessions.js';
 import { CfnOutput, CfnParameter, Duration, RemovalPolicy, aws_ec2 as ec2, aws_ecs as ecs,
  aws_iam as iam, aws_logs as logs, aws_kms as kms, aws_dynamodb as dynamodb,
  aws_rds as rds, aws_secretsmanager as secrets, aws_certificatemanager as acm,
@@ -152,7 +153,7 @@ export class RilloraProductionRuntime extends Construct {
   const linux=new ecs.LinuxParameters(this,'Linux');linux.dropCapabilities(ecs.Capability.ALL);
   const container=task.addContainer('Api',{
    image:p.image,readonlyRootFilesystem:true,linuxParameters:linux,
-   environment:{...p.environment,PRODUCTION_RUNTIME_MODE:'closed',HOST:'0.0.0.0',PORT:'8443',
+   environment:{...p.environment,...userSessionEnvironment(this,p.identityServicesEnabled===true),PRODUCTION_RUNTIME_MODE:'closed',HOST:'0.0.0.0',PORT:'8443',
     DATABASE_HOST:p.database.instanceEndpoint.hostname,DATABASE_POOL_MAX:'5',DATABASE_CONNECTION_TIMEOUT_MS:'10000',
     API_TLS_CERTIFICATE_ARN:certificate.certificateArn,API_TLS_SERVER_NAME:hostname,
     TRUST_PROXY_HOPS:'1',CORS_ORIGINS:'https://app.rillora.xyz',

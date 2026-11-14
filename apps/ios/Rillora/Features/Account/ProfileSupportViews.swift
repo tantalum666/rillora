@@ -65,8 +65,6 @@ struct RilloraSafetyPrivacyView: View {
                     .accessibilityIdentifier("profile.security.password-reset")
                 } header: {
                     Text(String(localized: "Account security"))
-                } footer: {
-                    Text(String(localized: "Passkey and two-step verification management is not available in this app yet. This does not mean those protections are turned off."))
                 }
             }
             Section(String(localized: "Policies")) {

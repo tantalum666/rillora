@@ -4,8 +4,22 @@ Role: canonical backend implementation and boundary contract
 Authority scope: API, PostgreSQL model, runtime security controls and production-open gates  
 Superseded by: later reviewed backend decision recorded in `docs/decision-log.md`  
 Do not use for: claiming production identity, real recipient delivery, production end-to-end encryption, legal validity or real release  
-Status: OCT10 API21/SCHEMA0094 EVIDENCE RETAINED; SECURITY0095–0103 LOCALLY VERIFIED; NOT DEPLOYED
-Last updated: 2026-10-11 (Asia/Hong_Kong)
+Status: ACTIVE BACKEND CONTRACT; CURRENT DEPLOYMENT STATE IN HANDOFF; DATED EVIDENCE BELOW
+Last updated: 2026-11-14 (Asia/Shanghai)
+
+## November14 Auth0 profile-contract repair
+
+[Current login repair](app-review-login-fix-20261114.md) corrects an actually rejected fields projection in the existing read:users service. Security proof still includes exact identity, blocked/deleted state and password-reset time; contact fields, linked identities and metadata are excluded. Live400/200and a real existing reset-proof comparison accompany the failing-then-passing regression. Only email-verification.js is overlaid onto the currentAPI, Preview then production, with no SQL/config/permission/worker change. Runtime readiness is separately recorded and cannot stand in for fresh session issuance. The subsequent November14acceptance now completes fresh production Web and native session issuance with the original synthetic reviewer, private matter/account reads, Web reload and native process relaunch. No credentials, session policy or provider checks were bypassed. Native18runs in the isolated27.0simulator; physical27.2.1and natural30-daycontinuity are not claimed.
+
+## November6 user-session security and continuity
+
+[Migration110 and the session service](longer-user-sessions-20261106.md) add bounded context-aware sessions, narrowly granted session columns and periodic current identity checks. Existing session, legal, CSRF, account and commerce ownership boundaries remain. Preview and production110 migrations plus existing authority probes pass; staged API/edge activation is recorded separately. Only the named authentication modules are overlaid on the current API image; the separately deployed November4 worker TLS optimization remains its own checkpoint, not a claim that every current source module ships in this overlay.
+
+## November4 bounded database TLS memory repair
+
+[Current AWS optimization](aws-optimization-20261104.md) identified repeated native TLS context allocation while the isolated worker recycled idle database connections. Each pool now reuses one `SecureContext` built from its existing pinned CA bundle; chain/hostname verification stays enabled and separate configurations retain separate trust. The worker keeps idle connections for60seconds, beyond its30second poll, and bounds connect time to5seconds. No business data or user authorization is cached by this change.
+
+The actual frozen Linux image's600-reconnect benchmark grew84.3→584.2MiB before and90.5→94.5MiB after.16TLS/config/proof checks and14isolated local business cases pass. Only the two compiled modules were overlaid onto the existing worker image; Previewrevision4andproductionrevision10are deployed, with API images, DB/schema, roles, credentials, commands and resources unchanged. Ordinary API source gains the same helper improvement at its next normal release; this increment did not replace that service. Early metrics are recorded separately from long-term acceptance. The older candidate/not-deployed statements below are historical checkpoints.
 
 ## October11 audit remediation candidate
 

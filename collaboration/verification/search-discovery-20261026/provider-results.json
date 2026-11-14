@@ -1,0 +1,47 @@
+{
+  "checkedAt": "2026-10-26T03:42:28.755681+00:00",
+  "google": {
+    "updatedEnglishChecklistLiveTest": {
+      "timeDisplayed": "2026-10-26 11:29:29 Asia/Hong_Kong",
+      "fetchSuccessful": true,
+      "crawlAllowed": true,
+      "indexingAllowed": true,
+      "selfCanonical": true,
+      "validBreadcrumbs": 1
+    },
+    "priorityRequestEnglish": {
+      "attempts": 2,
+      "success": false,
+      "reason": "Initial reCAPTCHA service connection error; fresh-page retry returned submission error"
+    },
+    "priorityRequestChinese": {
+      "attempts": 0,
+      "success": false,
+      "reason": "Known common provider failure; no repeated requests or bypass"
+    },
+    "sitemapsResubmitted": false,
+    "actualIndexingNotProven": true
+  },
+  "bing": {
+    "englishChecklist": {
+      "before": "Discovered but not crawled",
+      "submissionReceipt": "Indexing requested.",
+      "submitClicks": 1
+    },
+    "chineseChecklist": {
+      "before": "Discovered but not crawled",
+      "submissionReceipt": "Indexing requested.",
+      "submitClicks": 1
+    },
+    "liveUrlDiagnostic": "Provider error; no successful live Bing crawl claimed",
+    "actualIndexingNotProven": true
+  },
+  "aiBaseline": {
+    "window": "2026-07-26 through 2026-10-25",
+    "visibleDailyDates": "2026-10-18 through 2026-10-23",
+    "totalCitations": 0,
+    "avgCitedPages": 0,
+    "scope": "Microsoft Copilots and Partners; provider describes report as sampled",
+    "notGlobalAiProof": true
+  }
+}

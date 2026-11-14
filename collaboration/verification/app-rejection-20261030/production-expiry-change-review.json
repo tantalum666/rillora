@@ -1,0 +1,42 @@
+{
+  "status": "CREATE_COMPLETE",
+  "executionStatus": "AVAILABLE",
+  "changes": [
+    {
+      "id": "MaintenanceBrokerFunctionC542279B",
+      "type": "AWS::Lambda::Function",
+      "action": "Modify",
+      "replacement": "False",
+      "scope": [
+        "Properties"
+      ]
+    },
+    {
+      "id": "OperatorDefaultPolicyA84BD3A6",
+      "type": "AWS::IAM::Policy",
+      "action": "Modify",
+      "replacement": "False",
+      "scope": [
+        "Properties"
+      ]
+    },
+    {
+      "id": "RuntimeApiTaskCF645D67",
+      "type": "AWS::ECS::TaskDefinition",
+      "action": "Modify",
+      "replacement": "True",
+      "scope": [
+        "Properties"
+      ]
+    },
+    {
+      "id": "RuntimeService1702E585",
+      "type": "AWS::ECS::Service",
+      "action": "Modify",
+      "replacement": "False",
+      "scope": [
+        "Properties"
+      ]
+    }
+  ]
+}

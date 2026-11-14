@@ -1,0 +1,6 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+{"phase":"workerd-http","status":200,"result":{"evidence":"real-api-router-in-workerd-without-provider-credentials","results":[{"key":"health","status":200,"expected":200,"noSniff":true,"noCache":false,"passed":true},{"key":"unauthenticated_matters","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true},{"key":"untrusted_origin","status":403,"expected":403,"noSniff":true,"noCache":false,"passed":true},{"key":"unauthenticated_payment","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true},{"key":"unauthenticated_file","status":401,"expected":401,"noSniff":true,"noCache":true,"passed":true}],"passed":true}}
+{"passed":true,"outerBoundaryChecks":2,"realRouterChecks":5,"liveDatabaseTouched":false,"actualProviderPurchase":false}

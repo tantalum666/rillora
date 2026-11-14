@@ -1,0 +1,17 @@
+{
+  "base": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:4a2e086fe5e0acd1d6f106a0aa89522b3e093c2d686347b503e3c1338a7d2d6a",
+  "tag": "rillora-review-session-api:20261106",
+  "imageId": "sha256:266b79fb1f5971a64a4eae957c535651ed281200e5a6049474f182df331391d0",
+  "configUnchanged": true,
+  "architecture": "arm64",
+  "imageUri": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:266b79fb1f5971a64a4eae957c535651ed281200e5a6049474f182df331391d0",
+  "changedModules": [
+    "app.js",
+    "apple-review-access.js"
+  ],
+  "fullInputManifestPreservedInEncryptedArchive64": true,
+  "deployedTo": [
+    "staging",
+    "production"
+  ]
+}

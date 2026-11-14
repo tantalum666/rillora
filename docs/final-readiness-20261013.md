@@ -1,7 +1,9 @@
 # 正式上线收尾 — 2026-10-13
 
-Status: WEB LIVE / APPLE WAITING FOR REVIEW / PHYSICAL CHECKS OWNER-CANCELLED
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+October30当前状态：Apple已实际拒绝1.0(14)，不再等待首次审核。[修复、已部署资格／告警及本地15候选](app-review-remediation-20261030.md)是当前状态；Owner明确暂不重新提交。以下October13–15结果为历史，不是新审核批准。
+
+Status: HISTORICAL READINESS / REJECTED14 / SEE OCTOBER30 REMEDIATION AND OWNER HOLD
+Last updated: 2026-10-30 (Asia/Shanghai)
 
 Owner要求进入收尾，把所有内容推进到可正式上线状态。此指令取代“只等Web身份窗口”的单项下一步，继续其余可自主完成的原生、Apple后台、商店材料与发布检查；已完成的支付／退款、代码审计、安全迁移和部署不重复。保留现有UI、Free1／Family5、WebUSD88.99与AppleUSAUSD119.99、真实数据和FanPass，沿用计税策略不再阻塞的决定。此前不分发TestFlight的具体要求仍保持，本轮先集中准备最终商店候选。
 

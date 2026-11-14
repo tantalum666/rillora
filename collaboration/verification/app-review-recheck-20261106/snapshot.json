@@ -1,0 +1,46 @@
+{
+  "capturedFrom": "2026-11-05T21:29:01.938447+00:00",
+  "capturedThrough": "2026-11-05T21:29:02.115313+00:00",
+  "workFiles": 87,
+  "uniqueRawObjects": 77,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-064.tar.zst.age",
+      "sha256": "488f89fefae4486c0f1e918cd579279da87b98acaf35ab7ea3816a761a39dd8f",
+      "bytes": 259398,
+      "plainBytes": 674532,
+      "uniqueObjects": 77
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/app-review-recheck-20261106/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-063",
+      "reason": "immutable previous work; no recapture or repeated download"
+    },
+    {
+      "path": ".local-secrets and QA/private",
+      "reason": "raw device/auth/provider state, credentials, cloud capabilities and disposable local database"
+    },
+    {
+      "path": "output/qa/rillora-app-review-recheck-20261106/api-overlay",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-app-review-recheck-20261106/private",
+      "reason": "private state or reproducible publication/compiled-image cache; exact image and input hashes retained"
+    },
+    {
+      "path": "output/qa/rillora-app-review-recheck-20261106/archive-seal.log",
+      "reason": "capture bookkeeping or private provider response"
+    },
+    {
+      "path": "output/qa/rillora-app-review-recheck-20261106/preserve-review-work.py",
+      "reason": "capture bookkeeping or private provider response"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "boundary": "App Review follow-up,39-check identity-boundary repair, source-matched simulator layout capture and safe upload/deployment facts, including late session-publication follow-up. Raw private account/auth/provider responses, origin proof and maintenance capabilities excluded. Exact18was uploaded but not distributed or resubmitted. No new purchase or fake expiry. Old1-63unchanged."
+}

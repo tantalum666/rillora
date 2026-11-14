@@ -386,4 +386,38 @@ describe('production commerce ledger with a synthetic provider only', () => {
     expect(await subscription()).toMatchObject({ state: 'active', financial_state_override: null });
   });
 
+  it('reports the mounted Web environment independently of review enrollment without starting a payment', async () => {
+    const planner=(await pool.query('select id from app.planners where public_id=$1',[plannerPublicId])).rows[0].id;
+    const calls=checkoutCall.mock.calls.length;
+    const orders=(await pool.query('select count(*)::int as n from app.commerce_orders')).rows[0].n;
+    const read=async(target:ReturnType<typeof createApp>,path:string)=>(await request(target).get(path).set('x-dev-planner-id',plannerPublicId).expect(200)).body;
+    expect(await read(app,'/api/v1/commerce/stripe/status'))
+      .toMatchObject({testOnly:false,checkoutAvailability:'available'});
+    const salesClosed=createApp(pool,{...config,stripeProductionCheckoutEnabled:false},{stripeProductionConfig:billing,stripeExecutor:executor});
+    expect(await read(salesClosed,'/api/v1/commerce/stripe/status'))
+      .toMatchObject({testOnly:false,checkoutAvailability:'unavailable'});
+    await pool.query("insert into app.commerce_validation_accounts(planner_id,expires_at,reason) values($1,now()+interval '1 hour','Isolated display contract verification')",[planner]);
+    try {
+      expect(await read(app,'/api/v1/commerce/status?serviceMarketCode=GLOBAL_US'))
+        .toMatchObject({validationOnly:true,webBillingEnvironment:'production'});
+      expect(await read(app,'/api/v1/commerce/stripe/status'))
+        .toMatchObject({testOnly:false,checkoutAvailability:'account_unavailable'});
+      await request(app).get('/api/v1/commerce/test/status').set('x-dev-planner-id',plannerPublicId).expect(404);
+
+      const withoutProvider={...config,stripeProductionCheckoutEnabled:false};
+      delete withoutProvider.stripeProductionSecretArn;
+      const absent=createApp(pool,withoutProvider);
+      expect(await read(absent,'/api/v1/commerce/status?serviceMarketCode=GLOBAL_US'))
+        .toMatchObject({validationOnly:true,webBillingEnvironment:null});
+      // The same inert provider is used only to inspect routing; no Stripe API call occurs.
+      const testExecutor=new StripeCommerceExecutor(pool,{...productionExecutionConfig(billing),integrationEnvironment:'test'},provider);
+      const testApp=createApp(pool,withoutProvider,{stripeExecutor:testExecutor});
+      expect(await read(testApp,'/api/v1/commerce/status?serviceMarketCode=GLOBAL_US'))
+        .toMatchObject({validationOnly:true,webBillingEnvironment:'test'});
+      expect(await read(testApp,'/api/v1/commerce/test/status')).toMatchObject({testOnly:true,validationOnly:true});
+      expect(checkoutCall.mock.calls.length).toBe(calls);
+      expect((await pool.query('select count(*)::int as n from app.commerce_orders')).rows[0].n).toBe(orders);
+    } finally { await pool.query('delete from app.commerce_validation_accounts where planner_id=$1',[planner]); }
+  });
+
 });

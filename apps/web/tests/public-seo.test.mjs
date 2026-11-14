@@ -36,6 +36,25 @@ test('article metadata matches visible language, honest dates, sources and relat
         const key = `public.learn.${article.key}.${section}.${field}`;
         assert.notEqual(t(key), key);
       }
+      for (const [section, table] of Object.entries(article.tables ?? {})) {
+        assert.ok(article.sections.includes(section));
+        for (const column of table.columns) {
+          const key = `public.learn.${article.key}.${section}.${column}`;
+          assert.notEqual(t(key), key);
+          for (const row of table.rows) {
+            const cell = `public.learn.${article.key}.${section}.${row}.${column}`;
+            assert.notEqual(t(cell), cell);
+          }
+        }
+      }
+      for (const question of article.questions ?? []) for (const field of ['question', 'answer']) {
+        const key = `public.learn.${article.key}.${question}.${field}`;
+        assert.notEqual(t(key), key);
+      }
+      if (article.sources) {
+        assert.match(article.sourcesChecked, /^\d{4}-\d{2}-\d{2}$/);
+        assert.ok(article.sourcesChecked <= article.modified);
+      }
       for (const related of article.related) assert.ok(publicArticles[related] && related !== path);
       const data = publicStructuredData(path, locale, t, { title: t(publicPages[path].title), description: t(publicPages[path].description), logoURL: PUBLIC_ORIGIN + '/logo.png' });
       const record = data['@graph'].find(item => item['@type'] === 'Article');
@@ -51,7 +70,9 @@ test('article metadata matches visible language, honest dates, sources and relat
       assert.deepEqual(record.citation ?? [], (article.sources ?? []).map(source => source.urls[locale]));
     }
   }
-  assert.equal(publicArticles['/learn/digital-legacy-checklist'].modified, '2026-10-16');
+  assert.equal(publicArticles['/learn/digital-legacy-checklist'].published, '2026-10-16');
+  assert.equal(publicArticles['/learn/digital-legacy-checklist'].modified, '2026-10-26');
+  assert.equal(publicArticles['/learn/what-is-digital-legacy'].modified, '2026-10-18');
 });
 
 test('edge chooses locale-specific cache objects and preserves old public and guide bookmarks', () => {
@@ -92,6 +113,21 @@ if (process.env.RILLORA_TEST_PUBLIC_BUILD === '1') {
         assert.ok(html.includes('lp-learning-breadcrumb'));
         assert.ok(html.includes('lp-learning-related'));
         for (const source of article.sources ?? []) assert.ok(html.includes(source.urls[locale]));
+        const articleRecord = structured['@graph'].find(item => item['@type'] === 'Article');
+        const image = /property="og:image" content="([^"]+)"/.exec(html)?.[1];
+        assert.equal(articleRecord.image, image);
+        for (const section of Object.keys(article.tables ?? {})) {
+          assert.ok(html.includes(`aria-labelledby="heading-${section}"`));
+          assert.match(html, /<th scope="col">/);
+          assert.match(html, /<th scope="row">/);
+        }
+      }
+      if (['/product', '/security', '/support'].includes(path)) {
+        const related = /<nav class="lp-related-resources[^>]*>([\s\S]*?)<\/nav>/.exec(html)?.[1];
+        assert.ok(related, `Contextual reading links missing: ${path}`);
+        const hrefs = [...related.matchAll(/href="([^"]+)"/g)].map(match => match[1]);
+        assert.equal(hrefs.length, 2);
+        assert.ok(hrefs.every(href => href.startsWith(`/${locale}/learn/`) && publicArticles[publicRoute(href).path]));
       }
       assert.match(html, /property="og:image:width" content="1600"/);
       for (const [, asset] of html.matchAll(/(?:src|href|srcSet)="(\/assets\/[^"?#]+)"/g)) await access(new URL('.' + asset, root));

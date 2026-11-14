@@ -1,0 +1,65 @@
+Hello, 
+
+We noticed this is your first app submission.
+
+When App Review identifies an issue with a submission, we’ll contact you with a message in App Store Connect with details about what we found and how to resolve the issue. Learn more about App Review and tips for a smooth review experience. 
+
+See below for additional information about the issues that require your attention for this submission. If you have any questions, reply to this message in App Store Connect and let us know.
+
+
+Review Environment
+Submission ID: 6537a10c-38f2-425e-8b8e-c76e5fa730b1
+Review date: October 30, 2026
+Review Device: iPad Air 11-inch (M3)
+Version reviewed: 1.0 (14)
+
+
+
+App Version
+Guideline 2.2 - Performance - Beta Testing
+
+Issue Description
+
+Your app includes content or features, such as in-app purchases, that users aren't able to use in this version. Apps that are for demos or trial purposes are not appropriate for the App Store.
+
+Next Steps
+
+To resolve this issue, please complete, remove, or fully configure any partially implemented features. If the app is not ready for public distribution, use TestFlight to test the app.
+
+Resources
+
+- Learn more about beta testing requirements in guideline 2.2.
+- Test apps and invite users to provide feedback with TestFlight Beta Testing.
+
+Guideline 2.1(b) - Performance - App Completeness
+
+Issue Description
+
+The In-App Purchase products in the app exhibited one or more bugs which create a poor user experience. Specifically, the in-app purchases did not load and we were unable to purchase. Review the details and resources below to troubleshoot this issue.
+
+Review device details: 
+
+- Device type: iPad Air 11-inch (M3) 
+- OS version: iPadOS 27.2
+- Internet Connection: Active 
+
+Next Steps
+
+Apple reviews In-App Purchase products in the sandbox and the In-App Purchase products do not need prior approval to function in review. Review the product configurations, complete any missing information, and test them in the sandbox.
+
+To offer In-App Purchases in the app, implement the StoreKit framework and the Account Holder must also accept the Paid Apps Agreement in the Business section of App Store Connect. Confirm you have a Paid Apps Agreement in effect.
+
+If you still need assistance after completing the steps and reviewing the resources, visit the Apple Developer Forums. If you can’t find an answer from an existing thread, start a new thread with your question to get guidance from Apple engineers and other developers.
+
+Resources
+
+- Learn more about app completeness requirements in guideline 2.1(b).
+- Learn more about configuring In-App Purchases for review in the sandbox.
+
+Support
+- Reply to this message in your preferred language if you need assistance. If you need additional support, use the Contact Us module.
+- Consult with fellow developers and Apple engineers on the Apple Developer Forums.
+- Provide feedback on this message and your review experience by completing a short survey.
+
+
+回复 App 审核

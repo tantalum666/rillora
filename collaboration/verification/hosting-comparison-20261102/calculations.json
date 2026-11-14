@@ -1,0 +1,24 @@
+{
+  "currency": "USD",
+  "hoursPerMonth": 730,
+  "workersBase": 5,
+  "oracleA1CpuPerHour": "0.01",
+  "oracleA1MemoryPerGBHour": "0.0015",
+  "oracle1Ocpu4GBComputeOnly": "11.6800",
+  "oracle2Ocpu8GBComputeOnly": "23.3600",
+  "neonComputePerCUHour": "0.106",
+  "neonStoragePerGBMonth": "0.35",
+  "workersPlusNeon100CUHours1GB": "15.950",
+  "workersPlusNeonAlwaysOnQuarterCU1GB": "24.69500",
+  "excluded": [
+    "extra recovery history and backups",
+    "key and credential controls",
+    "remaining AWS dependencies",
+    "overage networking and CPU",
+    "domain email identity merchant fees and taxes",
+    "human operation time"
+  ],
+  "theseAreWorkloadExamplesNotRilloraForecasts": true,
+  "newMonthlyBudgetApproved": false,
+  "spendOrMigrationPerformed": false
+}

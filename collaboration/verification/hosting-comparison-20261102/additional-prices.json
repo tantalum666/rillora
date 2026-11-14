@@ -1,0 +1,62 @@
+{
+  "googleCloudRunRequestBasedGrant": {
+    "vcpuSeconds": 180000,
+    "gibSeconds": 360000,
+    "requests": 2000000,
+    "basis": "Tier1 spending discount shared by billing account; region/configuration matters"
+  },
+  "azureContainerAppsConsumptionGrant": {
+    "vcpuSeconds": 180000,
+    "gibSeconds": 360000,
+    "requests": 2000000,
+    "basis": "per subscription monthly; other Azure resources excluded"
+  },
+  "hetznerEuropeNetBeforeIpv4Tax": {
+    "CX23_2vcpu4GB40GB_USD": "6.49",
+    "CAX11_2arm4GB40GB_USD": "6.99",
+    "backupsAdditionalServerFraction": "0.20",
+    "inventoryConfirmed": false
+  },
+  "digitalOceanRegularBasic": {
+    "1vcpu2GiB50GiB_USD": "12.00",
+    "2vcpu4GiB80GiB_USD": "24.00",
+    "databaseManaged": false
+  },
+  "akamaiSharedCpu": {
+    "1vcpu2GB50GB_USD": "12.00",
+    "2vcpu4GB80GB_USD": "24.00",
+    "databaseManaged": false
+  },
+  "railway": {
+    "hobbyMinimumUSD": "5",
+    "proMinimumUSD": "20",
+    "minimumCountsTowardUsage": true,
+    "ramPerGBMonthUSD": "10",
+    "cpuPerVcpuMonthUSD": "20",
+    "volumePerGBMonthUSD": "0.15",
+    "egressPerGBUSD": "0.05"
+  },
+  "renderBrowserVerified": {
+    "web512MB_USD": "7",
+    "postgres256MB_USD": "6",
+    "postgres1GB_USD": "19",
+    "proWorkspaceUSD": "25",
+    "hobbyPitrDays": 3,
+    "proPitrDays": 7,
+    "observedOn": "2026-11-02",
+    "source": "https://render.com/pricing"
+  },
+  "renderPartialConfigurationsUSD": {
+    "web512mbPg256mbHobby": "13",
+    "web512mbPg256mbPro": "38",
+    "web512mbPg1gbWorker512mbPro": "58"
+  },
+  "scope": "Published core line items, not equal fully-provisioned production quotes. Storage, backup, keys, remaining dependencies and tax vary.",
+  "awsLightsailLinuxBundle": {
+    "monthlyUSD": "12",
+    "memoryGB": 2,
+    "vcpu": 2,
+    "diskGB": 60,
+    "selfManagedDatabase": true
+  }
+}

@@ -1,0 +1,117 @@
+{
+  "recordedAt": "2026-11-14T03:25:17.284872+00:00",
+  "observedAtLocal": "2026-11-14, approximately 10:54–11:21 Asia/Shanghai",
+  "supersedesCurrentStatusOf": "verification-status.json (2026-11-13T20:05:18.995698+00:00; retained as an earlier checkpoint)",
+  "sourceCheckpoint": "e61ebc6f44d68871cb17bf6096b4d54686981de7",
+  "productionApiImageDigest": "sha256:aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3",
+  "identity": "existing dedicated synthetic App Review account; original protected password unchanged",
+  "ownerConsent": "explicit confirmation for this same-account Web and native terms/privacy/electronic-record submission",
+  "protectedCredential": {
+    "readSucceeded": true,
+    "reset": false,
+    "plaintextFileWritten": false,
+    "clipboardCleared": true,
+    "credentialMemoryReleased": true,
+    "systemProtectionChanged": false
+  },
+  "web": {
+    "origin": "https://app.rillora.xyz",
+    "initialState": "signed out",
+    "realHostedPasswordLogin": true,
+    "realProductionSession": true,
+    "accountName": "Rillora App Review",
+    "originalMatterCount": 1,
+    "originalMatterDetailRead": true,
+    "accountRead": true,
+    "planRead": true,
+    "reloadRetainedAccountAndMatter": true,
+    "dedicatedReviewerWebNewPurchaseDisabled": true
+  },
+  "native": {
+    "version": "1.0",
+    "build": "18",
+    "source": "frozen18 Release source used for original archive",
+    "configurationComparison": "native-config-comparison.json; all14Rillora keys equal",
+    "device": "isolated iPad Air11(M3) simulator",
+    "runtime": "iPadOS27.0",
+    "realHostedPasswordLogin": true,
+    "currentHostedConsentSubmitted": true,
+    "realProductionSession": true,
+    "originalMatterDetailRead": true,
+    "accountName": "Rillora App Review",
+    "accountReferenceSuffix": "83f7f2ce",
+    "accountRead": true,
+    "planRead": true,
+    "stoppedAndRelaunched": true,
+    "relaunchRetainedAccountAndMatter": true,
+    "newPurchaseButtonEnabled": false,
+    "purchaseResultClaimed": false
+  },
+  "observedInputAndRuntimeFailures": [
+    "Initial native IME/clipboard transport caused incorrect/empty input; not treated as a new provider-contract failure.",
+    "One system authentication page reported network connection lost; a new normal transaction succeeded without network/security changes."
+  ],
+  "cleanup": {
+    "dedicatedSimulatorShutdown": true,
+    "installationRetained": true,
+    "originalDeviceHubViewRestored": true,
+    "captureKeyboardRestoredOff": true,
+    "fullscreenRestored": true,
+    "xcodebuildDefaultsCleared": true,
+    "physicalPhoneAltered": false
+  },
+  "notClaimed": [
+    "Physical iPadOS27.2.1 acceptance",
+    "App Store-signed shipping binary execution on a physical device in this continuation",
+    "Natural30-day session duration",
+    "A new purchase/restore/refund result",
+    "Apple approval or guaranteed future uptime"
+  ],
+  "noAdditionalDeployment": true,
+  "noResubmission": true,
+  "noTestFlight": true,
+  "noCloudCI": true,
+  "noSubagents": true,
+  "artifacts": [
+    {
+      "file": "fresh-web-new-login.png",
+      "sha256": "0203c948f363fb6e415676fdf5ddd14fda83aa6ba3877a86ef7cfbd5c15d1c10",
+      "bytes": 30134
+    },
+    {
+      "file": "fresh-web-plan-read.png",
+      "sha256": "daa77004c8f8f9bcfd92353910aad0a6427237b37d9627e4cb0c1262d40c9c28",
+      "bytes": 46653
+    },
+    {
+      "file": "fresh-web-returned-map.png",
+      "sha256": "0203c948f363fb6e415676fdf5ddd14fda83aa6ba3877a86ef7cfbd5c15d1c10",
+      "bytes": 30134
+    },
+    {
+      "file": "fresh-native-new-login-map.jpg",
+      "sha256": "e0886439574aa4a7e66f868af0d75ca8e25903737933659f54c1db9abae688ca",
+      "bytes": 31343
+    },
+    {
+      "file": "fresh-native-existing-matter.jpg",
+      "sha256": "66189c2cef35b6f73f3979e57cc9f7da0b8cc0441a095158717030fe9f71bfdd",
+      "bytes": 42625
+    },
+    {
+      "file": "fresh-native-plan-read.jpg",
+      "sha256": "20e70e539d6fe598ef6239c23b0bb95d627ff0d2f16d9a0c02689a5b77551938",
+      "bytes": 28263
+    },
+    {
+      "file": "fresh-native-reopened-map.jpg",
+      "sha256": "460176196bdff9fe94097c84aee07eaad829e669b5a28ce3d230fe1a63e66d8f",
+      "bytes": 31424
+    },
+    {
+      "file": "fresh-native-reopened-account.jpg",
+      "sha256": "64b5359ac39b6d6aba38473925aefc3d003e26a74442ebb5f47c9779706fcfe0",
+      "bytes": 45110
+    }
+  ]
+}

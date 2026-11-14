@@ -1,0 +1,15 @@
+{
+  "base": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:266b79fb1f5971a64a4eae957c535651ed281200e5a6049474f182df331391d0",
+  "imageUri": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3",
+  "configUnchanged": true,
+  "architecture": "arm64",
+  "modules": [
+    "email-verification.js"
+  ],
+  "compiledModuleSha256": "4c7f56d133974ffc93e2661fc509e5a5b4472979054620fde9614c9a5fa7b759",
+  "deploymentOrder": [
+    "staging",
+    "production"
+  ],
+  "noMigrations": true
+}

@@ -1,0 +1,97 @@
+{
+  "asOf": "2026-11-03",
+  "sources": [
+    {
+      "id": "pro",
+      "url": "https://vercel.com/docs/plans/pro-plan",
+      "verifiedScope": "20 monthly fee, one deploying seat, 20 usage credit; current CDN allowance"
+    },
+    {
+      "id": "hobby",
+      "url": "https://vercel.com/docs/plans/hobby",
+      "verifiedScope": "Noncommercial personal use boundary"
+    },
+    {
+      "id": "fluid",
+      "url": "https://vercel.com/docs/functions/usage-and-pricing",
+      "verifiedScope": "Current fra1 CPU/memory and Pro invocation pricing"
+    },
+    {
+      "id": "networking",
+      "url": "https://vercel.com/docs/networking",
+      "verifiedScope": "Four distinct network choices; not cumulative defaults"
+    },
+    {
+      "id": "static_ips",
+      "url": "https://vercel.com/docs/networking/static-ips",
+      "verifiedScope": "100 per project plus transfer, optional shared fixed egress"
+    },
+    {
+      "id": "privatelink",
+      "url": "https://vercel.com/docs/networking/privatelink",
+      "verifiedScope": "Advanced Networking prerequisite; endpoint in two supported AZs; interface endpoint only"
+    },
+    {
+      "id": "privatelink_launch",
+      "url": "https://vercel.com/changelog/aws-privatelink-is-now-available-on-pro-and-enterprise",
+      "verifiedScope": "September1 Pro availability, first included with Advanced Networking, 30 per additional connection, 0.04 per GB; base fee not explicit"
+    },
+    {
+      "id": "secure_compute",
+      "url": "https://vercel.com/docs/networking/secure-compute",
+      "verifiedScope": "Dedicated network and Enterprise custom pricing, distinct from PrivateLink"
+    },
+    {
+      "id": "byoc",
+      "url": "https://vercel.com/docs/networking/bring-your-own-cloud",
+      "verifiedScope": "Enterprise product with own-AWS execution; not a default budget solution"
+    },
+    {
+      "id": "oidc",
+      "url": "https://vercel.com/docs/oidc/aws",
+      "verifiedScope": "Narrow project/environment AWS web-identity role trust"
+    },
+    {
+      "id": "limits",
+      "url": "https://vercel.com/docs/functions/limitations",
+      "verifiedScope": "4.5MB payload and configured duration limits"
+    },
+    {
+      "id": "cron",
+      "url": "https://vercel.com/docs/cron-jobs/usage-and-pricing",
+      "verifiedScope": "Pro minimum one-minute schedule"
+    },
+    {
+      "id": "kms",
+      "url": "https://vercel.com/docs/kms",
+      "verifiedScope": "Managed JWT/message signing, not envelope encryption replacement"
+    },
+    {
+      "id": "owasp_database",
+      "url": "https://cheatsheetseries.owasp.org/cheatsheets/Database_Security_Cheat_Sheet.html",
+      "verifiedScope": "Layered network, authentication, transport and database controls"
+    },
+    {
+      "id": "neon",
+      "url": "https://neon.com/docs/introduction/plans",
+      "verifiedScope": "Same-day verified pricing inherited from Oracle/Google comparison; no live database operation"
+    }
+  ],
+  "knownPrices": {
+    "proFeeUsd": 20,
+    "proUsageCreditUsd": 20,
+    "staticIpsPerProjectUsd": 100,
+    "privateLinkAdditionalConnectionUsd": 30,
+    "privateLinkGbUsd": 0.04,
+    "advancedNetworkingBaseUsd": null
+  },
+  "evidenceCautions": [
+    "Context7 Vercel documentation search returned mostly unrelated examples; direct official pages used for final claims",
+    "Search cache had older Pro invocation/CDN allowances; current direct pages used",
+    "September1 announcement mentions gateway endpoints but current specific PrivateLink docs exclude them; adopt narrower current setup scope",
+    "No target account, billing confirmation or new resource was accessed/created"
+  ],
+  "completeQuote": false,
+  "networkPolicyChangeApproved": false,
+  "externalContactsSent": false
+}

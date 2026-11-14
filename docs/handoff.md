@@ -1,20 +1,32 @@
-# Rillora 当前交接
+# Rillora Current Handoff
 
-Status: MULTI-TYPE HEALTHKIT DIRECTION RESEARCHED / WATCH COMPANION RECOMMENDED / NO RUNTIME CHANGE
-Last updated: 2026-10-24 (Asia/Hong_Kong)
+Status: BUILD18 + ANNUAL SUBSCRIPTION + GROUP WAITING FOR REVIEW / MANUAL RELEASE / NO TESTFLIGHT
+Last updated: 2026-11-14 (Asia/Shanghai)
 
-## 当前任务与已完成
+## Current task and completed action
 
-Owner要求健康数据范围不只心率，并询问是否做watchOS。[当前方案](healthkit-multisignal-watchos-20261024.md)已按最新Apple文档和实际源码复核：只读可涵盖多类；iPhone能读同步记录，基本通知可转到手表。建议先心率／活动／可选睡眠与清楚的数据状态，再独立提醒闭环，之后提供轻量手表回应。具体分批和Watch开发仍是建议，本轮没有开始代码或个人采样。
+Owner explicitly instructed sending the prepared login-fix response and resubmitting1.0(18), the yearly subscription and subscription group together, preserving manual release/no TestFlight and reviewer/service availability. This supersedes the previous no-resubmission checkpoint; [that completed fresh-login handoff](handoff-history-20261114-before-second-resubmission.md) is HISTORICAL.
 
-[前一轮Git交接](handoff-history-20261024-before-health-scope.md)转HISTORICAL。PR9已合并，main a985c3754包含最后元数据；当时32个远端分支头已包含、开放PR0，三项云端工作流停用、无新作业。本轮不重复Git整合、应用测试、部署或本人验证。
+At21:47 Hong Kong, the1940-character response and two actual native sign-in/relaunch images were sent and read back. At21:49, the same submission was resubmitted once; refresh confirms all three Waiting for Review. A separate version-page read confirms18 and manual release. Original reviewer username/password are unchanged. No upload, TestFlight, purchase or public release. [Actual submission report](app-review-resubmission-20261114.md).
 
-## 证据边界与保留项
+## Fixed login and evidence boundaries
 
-实际健康源码仍只有前台24小时／200条心率切片；合成测试与入口证据沿用原检查点。其他指标、个人基线、提醒、Watch App、真实系统健康／语音／硬件保护没有完成。心率缺失／活动减少／未回复不能充当死亡事实，健康及派生状态不进入资料解锁。Apple不给概念预审并非用途批准。
+The actual November12rejection was caused by an unsupported Auth0 security-profile field projection, producing provider400and session503. The supported exclusion projection retains reset/block/delete proof. Its20related tests/typecheck/build, real400/200comparison and existing-reset-proof check passed. Only the compiled identity module was deployed Preview then production, using aa5160ad985b765b33629d14ae9e620c8f5533ad63803079ec6aae33647546a3.
 
-两项Duo横屏UI失败、办理包材料装配等既有未完成项继续保留。当前审核、线上数据、收费、定价、FanPass、TestFlight和系统／Xcode升级暂缓保持。未来长文字客户端部署仍须兼容API先行。所有检查继续本机执行。
+Earlier the same day, the original protected reviewer password completed fresh production Web login/private reads/reload and frozen18 Release native login/private reads/process-relaunch. Original account and matter were retained. Native runtime was the independent iPadOS27.0simulator with all14 Rillora configuration values matching the archive; it is not physical27.2.1 or a new purchase. Credentials and temporary device state were cleaned up. [Login diagnosis and actual acceptance](app-review-login-fix-20261114.md). Do not repeat these unchanged checks or substitute health/user-existence for a future changed identity path.
 
-## 唯一下一步
+## Current reviewer and service checks
 
-后续开发先把下一版单类型reader扩为按用途／类型选择的健康读取接口，落实心率、活动与可选睡眠的数据状态、来源／重复处理和授权缺失测试；不以watchOS作为前置依赖，不在此过程中增加自动披露。手表配套的具体功能与分发按本轮建议另行推进，当前不改变审核包。
+AWS/Auth0 management sessions had actually expired; Auth0 reused existing browser identity, while Owner completed the AWS MFA. Both were restored without new access scope. Current exact reviewer remains unblocked, with password identity, no password reset and no extra MFA. This is distinct from App/Web user login.
+
+Production still runs the validated fix, readiness200/private401; Operations is enabled every15minutes and its check returnedok/failed0. Runtime and monitor agree on the Sandbox purchase qualification deadline: December4at12:00Z /20:00Hong Kong, about19.93days remaining at readback.14-day deadline warning,21-day certificate warning and a confirmed alert receiver remain active. Runtime islive with no global review-login expiry; ordinary login is not controlled by that Sandbox purchase deadline.
+
+No deployment, policy, data, price, password or FanPass change occurred. The Owner-deleted local maintenance task is not recreated. Existing cloud monitoring is not a full sign-in test, future renewal or permanent-uptime guarantee. If that same qualified reviewer still needs access when the warning is reached, follow the existing bounded same-identity/max31-day DB/API/monitor renewal procedure; do not broaden access.
+
+## Saved evidence
+
+[Safe receipts and actual submission screenshot](../collaboration/verification/review18-resubmission-20261114/README.md); local QA `output/qa/rillora-review18-resubmission-20261114/`. Raw identities, authorizations, contacts and full provider pages stay private. Current listing metadata preserves older rejected/waiting snapshots and records this new submission separately. Local publication gates apply; no cloud CI or subagent.
+
+## Single next step
+
+Handle Apple's next actual review feedback while retaining manual release and the existing availability/expiry monitoring. Waiting for Review is not approval or public release. Do not upload, distribute TestFlight, replay purchases or submit again without a new reason/current instruction.

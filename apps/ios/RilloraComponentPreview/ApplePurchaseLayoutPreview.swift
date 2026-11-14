@@ -2,17 +2,32 @@ import SwiftUI
 
 /// Preview target only. There is no API client, Apple SDK purchase or live identity.
 struct ApplePurchaseLayoutPreview: View {
-    @State private var context = ApplePurchasePreviewContext(currency: .hkd)
+    @State private var context = ApplePurchasePreviewContext(currency: .selected)
+    @State private var openedPolicy = "none"
+    private let capturesLinks = ProcessInfo.processInfo.environment["RILLORA_PREVIEW_CAPTURE_LINKS"] == "1"
     var body: some View {
         PlanAccessView(store: context.commerce, appAccountToken: context.owner)
         .task {
             await context.commerce.start(appAccountToken: context.owner)
+        }
+        .environment(\.openURL, OpenURLAction { url in
+            guard capturesLinks else { return .systemAction }
+            openedPolicy = url.path
+            return .handled
+        })
+        .safeAreaInset(edge: .bottom) {
+            if capturesLinks {
+                Text(openedPolicy).accessibilityIdentifier("preview.opened-policy")
+            }
         }
     }
 }
 
 private enum PreviewAppleCurrency: String, CaseIterable, Identifiable, Sendable {
     case usd = "USD", aud = "AUD", hkd = "HKD"
+    static var selected: Self {
+        Self(rawValue: ProcessInfo.processInfo.environment["RILLORA_PREVIEW_CURRENCY"] ?? "HKD") ?? .hkd
+    }
     var id: String { rawValue }
     var amountMinor: Int { switch self { case .usd: 11999; case .aud: 19999; case .hkd: 88800 } }
     var country: String { switch self { case .usd: "USA"; case .aud: "AUS"; case .hkd: "HKG" } }
@@ -67,10 +82,8 @@ private struct PreviewAppleQuoteService: CommerceServing {
             priceCode: "family_preview_fixture", productId: RilloraStoreKitCatalog.familyAnnualProductID,
             serviceMarketCode: serviceMarket, storefrontCountryCode: storefront, currency: currency.rawValue,
             amountMinor: currency.amountMinor, minorUnitExponent: 2, priceMilliunits: currency.amountMinor * 10, billingPeriod: "annual"),
-            purchaseTerms: ApplePurchaseTerms(version: "family-annual-apple-20260926-1",
-                termsVersion: LegalAcceptanceProof.current.termsVersion, subscriptionTermsVersion: "subscriptions-2026-08-27-1",
-                refundPolicyVersion: "refunds-2026-08-27-1", legalBundleSha256: LegalAcceptanceProof.current.bundleSha256),
-            requiresFreshEvaluation: true)
+            purchaseTerms: .current, requiresFreshEvaluation: true,
+            environment: environment, validationOnly: environment == .sandbox)
     }
     func pendingApplePurchase(environment: ApplePurchaseEnvironment) async throws -> ApplePendingPurchaseResponse { ApplePendingPurchaseResponse(purchase: nil) }
     // All mutating operations deliberately retain the unavailable default.
@@ -78,7 +91,7 @@ private struct PreviewAppleQuoteService: CommerceServing {
 private struct PreviewAppleCatalog: StoreKitPurchasing {
     let currency: PreviewAppleCurrency
     let state: PreviewApplePlanState
-    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { .production }
+    func verifiedAppEnvironment() async -> ApplePurchaseEnvironment? { .sandbox }
     func loadProducts(identifiers: Set<String>) async throws -> [StoreKitProductSnapshot] {
         guard state != .missingProduct else { throw StoreKitClientError.productUnavailable }
         return [.init(productID: RilloraStoreKitCatalog.familyAnnualProductID, displayName: "Family", description: "Layout fixture",

@@ -1,9 +1,19 @@
 # Rillora App Review 进度查询
 
-Status: SUPPORT CASE ACCEPTED / APP STILL WAITING FOR REVIEW / NO REPLY YET
-Last updated: 2026-10-19 (Asia/Hong_Kong)
+Status: SAME-CASE FOLLOW-UP ACCEPTED OCTOBER25 / APP STILL WAITING FOR REVIEW / REASON AND ETA UNKNOWN
+Last updated: 2026-10-25 (Asia/Hong_Kong)
 
-## Owner任务与实际状态
+## October25再次核对与跟进
+
+Owner明确要求在审核状态持续未更新时再次写信／开工单。实际复用Apple登录进入同一提交详情：October15 09:49提交的`6537a10c-38f2-425e-8b8e-c76e5fa730b1`仍为等待审核，iOS1.0(14)、Family Yearly和订阅群组三项均未推进，提交页未显示审核反馈或补资料要求；已超过10天。
+
+Apple支持页将原案例103001356140列为未结，存在“就同一主题获取更多帮助”→电子邮件入口。因此在原案例内发送一次跟进，询问队列是否正常、是否有技术或行政阻塞、是否缺少开发者资料／操作，以及可提供的进度或下一步；请适当转交能核查提交状态的团队。没有新建重复案例、编造紧急理由或改变当前提交。
+
+Apple最终页面明确显示“感谢你与我们联系。我们将审阅你的信息，并尽快给予回复。”当前只有本次跟进收件证明，原因、预计时间和审核结果仍未知。正文不含审核密码或私人日志，也不提尚未发布的Duo／HealthKit更新。已连接Gmail的限定检索没有匹配邮件，不能据此断言检查了开发者账号的全部收件箱。本轮原始记录位于`output/qa/rillora-duo-review-20261025/apple-review-followup.txt`与`apple-followup-receipt.json`，本轮收尾再次刷新同一提交，三项仍为等待审核。安全回执见[October25交付](../collaboration/verification/duo-native-20261025/README.md)。
+
+下方October19材料保留为原始检查点；“没有回复”只描述当日，不代替上面的最新范围。
+
+## October19任务与实际状态（HISTORICAL）
 
 Owner表示审核已超过48小时，明确要求写邮件或开工单询问进度。这是对Apple官方审核支持的具体外发授权；不包含撤回／重提版本、更换构建或虚构紧急情况申请加急。
 

@@ -1,0 +1,9 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+service core:user:rillora-hosting-validation-local: Uncaught Error: No such module "dist/c008d06ea1d6b5bd4a608c06dbe96d7ed45c4a47-apple-root-g3.pem".
+  imported from "dist/worker.js"
+The Workers runtime failed to start. There was likely a problem with the workerd binary or your configuration.
+Runtime stderr:
+{"timestamp":"1793610370278","level":"error","source":"src/workerd/server/server/entry.rs:169","message":"service core:user:rillora-hosting-validation-local: Uncaught Error: No such module \"dist/c008d06ea1d6b5bd4a608c06dbe96d7ed45c4a47-apple-root-g3.pem\".\n  imported from \"dist/worker.js\"","context_depth":0}

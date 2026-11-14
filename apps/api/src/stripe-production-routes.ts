@@ -14,7 +14,7 @@ export function createStripeProductionCommerceRouter(executor: StripeCommerceExe
   if (executor.providerEnvironment !== 'production') throw new Error('Production billing requires a production executor');
   const router = Router();
   router.get('/status', asyncHandler(async (request, response) => {
-    response.json(await executor.loadProductionStatus(request.auth.plannerId));
+    response.json(await executor.loadProductionStatus(request.auth.plannerId, options.checkoutEnabled));
   }));
   router.get('/quote', (_request, response) => {
     if (!options.checkoutEnabled) throw new ApiError(503, 'checkout_setup_unavailable', 'Checkout is not available yet.');

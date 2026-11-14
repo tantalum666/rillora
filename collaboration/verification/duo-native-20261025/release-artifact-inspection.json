@@ -1,0 +1,49 @@
+{
+  "artifact": "local unsigned next-version simulator Release, not the submitted App Store binary",
+  "info": {
+    "DTSDKName": "iphonesimulator27.1",
+    "DTSDKBuild": "24A94232",
+    "DTXcode": "2710",
+    "DTXcodeBuild": "27A9275",
+    "DTPlatformName": "iphonesimulator",
+    "DTPlatformVersion": "27.1",
+    "MinimumOSVersion": "17.4",
+    "UIDeviceFamily": [
+      1,
+      2
+    ],
+    "UILaunchScreen": {
+      "UIColorName": "LaunchBackground"
+    },
+    "UISupportedInterfaceOrientations": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UISupportedInterfaceOrientations~ipad": [
+      "UIInterfaceOrientationPortrait",
+      "UIInterfaceOrientationPortraitUpsideDown",
+      "UIInterfaceOrientationLandscapeLeft",
+      "UIInterfaceOrientationLandscapeRight"
+    ],
+    "UIRequiresFullScreen": null,
+    "UIApplicationSceneManifest": null
+  },
+  "binaries": [
+    {
+      "path": "derived-data/Build/Products/Release-iphonesimulator/Rillora.app/Rillora",
+      "sha256": "bfb3dd48bbd2f388a29c1ab2812816bd53b0cb6e999d4d37c90e4152c1e18156",
+      "qaFlagsPresent": []
+    },
+    {
+      "path": "derived-data/Build/Products/Release-iphonesimulator/Rillora.app/Watch/RilloraWatch.app/RilloraWatch",
+      "sha256": "095365bcfb5d4a6db2dfa050581860b75e612d8fe46f5b109ce984c568b5347a",
+      "qaFlagsPresent": []
+    },
+    {
+      "path": "derived-data/Build/Products/Release-iphonesimulator/Rillora.app/Watch/RilloraWatch.app/PlugIns/RilloraCheckInWidget.appex/RilloraCheckInWidget",
+      "sha256": "841c934c68d9aa1e967e433e7d1ed5855e6484c84208065d35681f39ffae14a1",
+      "qaFlagsPresent": []
+    }
+  ]
+}

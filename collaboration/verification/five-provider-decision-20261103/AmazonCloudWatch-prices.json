@@ -1,0 +1,166 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonCloudWatch/current/eu-central-1/index.json",
+  "version": "20261007115540",
+  "rows": [
+    {
+      "sku": "HCS2CB4V5UZSY78D",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:LogAlarmMonitorUsage",
+      "description": "$0.10 per Alarm in EU (Frankfurt)",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.1000000000"
+    },
+    {
+      "sku": "8C26KWSF67UY2336",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:HighResAlarmMonitorUsage",
+      "description": "$0.30 per alarm metric month (high resolution) - EU (Frankfurt)",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.3000000000"
+    },
+    {
+      "sku": "HUTEU22QYW378H98",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:GMD-Metrics",
+      "description": "$0.01 per 1,000 metrics requested using GetMetricData API - EU (Frankfurt)",
+      "unit": "Metrics",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000100000"
+    },
+    {
+      "sku": "H7BQPA3ZA2KY9TC9",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:CompositeAlarmMonitorUsage",
+      "description": "$0.50 per composite alarm month - EU (Frankfurt)",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.5000000000"
+    },
+    {
+      "sku": "3ZJZSGX8K87XPW4R",
+      "location": "Any",
+      "usageType": "Global-CW:MetricMonitorUsage",
+      "description": "Global",
+      "unit": "Metrics",
+      "beginRange": "0",
+      "endRange": "10",
+      "USD": "0.0000000000"
+    },
+    {
+      "sku": "4V9YKJHUP3C55Q2R",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-TimedStorage-ByteHrs",
+      "description": "$0.0324 per GB-mo of log storage - EU (Frankfurt)",
+      "unit": "GB-Mo",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0324000000"
+    },
+    {
+      "sku": "XAE7GPNAZR6AWCQK",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-DataProcessing-Bytes",
+      "description": "$0.63 per GB custom log data ingested in Standard log class - EU (Frankfurt)",
+      "unit": "GB",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.6300000000"
+    },
+    {
+      "sku": "8CM49YJM6J2SHVD6",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:MetricMonitorUsage",
+      "description": "$0.30 per metric-month for the first 10,000 metrics - EU (Frankfurt)",
+      "unit": "Metrics",
+      "beginRange": "0",
+      "endRange": "10000",
+      "USD": "0.3000000000"
+    },
+    {
+      "sku": "8CM49YJM6J2SHVD6",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:MetricMonitorUsage",
+      "description": "$0.10 per metric-month for the next 240,000 metrics - EU (Frankfurt)",
+      "unit": "Metrics",
+      "beginRange": "10000",
+      "endRange": "250000",
+      "USD": "0.1000000000"
+    },
+    {
+      "sku": "8CM49YJM6J2SHVD6",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:MetricMonitorUsage",
+      "description": "$0.05 per metric-month for the next 750,000 metrics - EU (Frankfurt)",
+      "unit": "Metrics",
+      "beginRange": "250000",
+      "endRange": "1000000",
+      "USD": "0.0500000000"
+    },
+    {
+      "sku": "8CM49YJM6J2SHVD6",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:MetricMonitorUsage",
+      "description": "$0.02 per metric-month for over 1,000,000 metrics - EU (Frankfurt)",
+      "unit": "Metrics",
+      "beginRange": "1000000",
+      "endRange": "Inf",
+      "USD": "0.0200000000"
+    },
+    {
+      "sku": "FCH8WPMWVXA4B6VM",
+      "location": "Any",
+      "usageType": "Global-CW:AlarmMonitorUsage",
+      "description": "Global",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "10",
+      "USD": "0.0000000000"
+    },
+    {
+      "sku": "SSNSJENVU973ECHE",
+      "location": "Any",
+      "usageType": "Global-DataProcessing-Bytes",
+      "description": "Global",
+      "unit": "GB",
+      "beginRange": "0",
+      "endRange": "5",
+      "USD": "0.0000000000"
+    },
+    {
+      "sku": "SH5YX249TQ85UCP9",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:PromQLAlarmMonitorUsage",
+      "description": "$0.10 per Alarm in EU (Frankfurt)",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.1000000000"
+    },
+    {
+      "sku": "6XTVPDAM3VF25UTA",
+      "location": "Any",
+      "usageType": "Global-TimedStorage-ByteHrs",
+      "description": "Global",
+      "unit": "GB-Mo",
+      "beginRange": "0",
+      "endRange": "5",
+      "USD": "0.0000000000"
+    },
+    {
+      "sku": "VJ934U28PCG8EKRA",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-CW:AlarmMonitorUsage",
+      "description": "$0.10 per alarm metric month (standard resolution) - EU (Frankfurt)",
+      "unit": "Alarms",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.1000000000"
+    }
+  ]
+}

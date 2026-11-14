@@ -10,6 +10,7 @@ import { LifeSituations } from "./LifeSituations.jsx";
 import { ControlSection } from "./ControlSection.jsx";
 import { QuestionList, landingQuestions } from "./LandingFAQ.jsx";
 import { publicEntry } from "../publicEntry.js";
+import { RelatedResources } from "./RelatedResources.jsx";
 
 export function ProductPage() {
   const { t } = useI18n();
@@ -49,6 +50,7 @@ export function ProductPage() {
         <p className="lp-product-note">{t("public.product.guidance")}</p>
       </section>
       <LifeSituations />
+      <RelatedResources topic="product" className="lp-container" />
     </main>
   );
 }
@@ -69,6 +71,7 @@ export function SecurityPage() {
           questions={landingQuestions.filter((_, index) => index >= 2)}
         />
       </section>
+      <RelatedResources topic="security" className="lp-container" />
     </main>
   );
 }
@@ -104,6 +107,7 @@ export function SupportPage() {
           ]}
         />
       </div>
+      <RelatedResources topic="support" />
     </main>
   );
 }

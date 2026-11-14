@@ -1,0 +1,35 @@
+{
+  "at": "2026-10-30T22:50:23.202Z",
+  "anonymous": true,
+  "mutations": 0,
+  "rows": [
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store",
+      "authenticationChallenge": null,
+      "readiness": "ready"
+    },
+    {
+      "path": "/api/mcp",
+      "status": 401,
+      "cacheControl": "no-store",
+      "authenticationChallenge": "Bearer error=\"invalid_token\", error_description=\"Missing Authorization header\", scope=\"matters:read:summary\", resource_metadata=\"https://app.rillora.xyz/api/mcp/resource-metadata\""
+    },
+    {
+      "path": "/.well-known/oauth-protected-resource/api/mcp",
+      "status": 200,
+      "cacheControl": "no-store",
+      "authenticationChallenge": null,
+      "resource": "https://app.rillora.xyz/api/mcp"
+    },
+    {
+      "path": "/.well-known/oauth-authorization-server/api/ai/oauth",
+      "status": 200,
+      "cacheControl": "no-store",
+      "authenticationChallenge": null,
+      "issuer": "https://app.rillora.xyz/api/ai/oauth",
+      "authorizationEndpoint": "https://app.rillora.xyz/api/ai/oauth/auth"
+    }
+  ]
+}

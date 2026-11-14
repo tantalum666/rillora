@@ -1,0 +1,18 @@
+{
+  "date": "2026-11-02",
+  "sourceHead": "6c3fc553fefd079fadec469aa199324875a1e3d8",
+  "workflow": "continuation of cost investigation; prior complete project Markdown read retained",
+  "projectReads": [
+    "docs/aws-cost-review-20261102.md full",
+    "docs/architecture/ai-hosting-20261017.md full",
+    "docs/identity-data-region.md current region sections",
+    "apps/api/package.json full",
+    "apps/api/src/account-deletion-worker.ts full",
+    "apps/api/src/db.ts transaction lock references",
+    "apps/api/migrations signed/RLS/transaction references"
+  ],
+  "skill": "Cloudflare platform skill read in full, latest official docs and connector consulted",
+  "findingsAreStaticOrDatedEvidence": true,
+  "migrationAcceptance": false,
+  "ownerDecision": "60-80USD is still expensive; compare cheaper hosting. No selected provider or approved new budget inferred."
+}

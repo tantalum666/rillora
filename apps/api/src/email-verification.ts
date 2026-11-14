@@ -15,44 +15,100 @@ export type EmailIdentity = { issuer: string; subject: string };
 export interface EmailIdentityVerifying {
   verifiedEmail(identity: EmailIdentity): Promise<string | null>;
 }
+export type IdentitySecurityStatus = { exists: boolean; blocked: boolean; passwordChangedAt: Date | null };
+export interface IdentitySecurityVerifying {
+  securityStatus(identity: EmailIdentity): Promise<IdentitySecurityStatus>;
+}
+
+type ProfileProjection = { fields: string; includeFields: boolean };
+// Auth0 returns last_password_reset but rejects it in the projection allowlist.
+// Use its supported exclusion mode to retain that security proof while keeping
+// contact details, metadata and linked-provider credentials out of the response.
+const securityProfileProjection: ProfileProjection = {
+  fields: [
+    'phone_number', 'email', 'email_verified', 'picture', 'username', 'name', 'nickname',
+    'created_at', 'identities', 'app_metadata', 'user_metadata', 'last_ip', 'last_login',
+    'logins_count', 'updated_at', 'family_name', 'given_name',
+  ].join(','),
+  includeFields: false,
+};
 
 /** Read current provider proof for one server-selected identity. Never set email_verified. */
-export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying {
+export class Auth0EmailIdentityVerifier implements EmailIdentityVerifying, IdentitySecurityVerifying {
   private token: { value: string; expiresAt: number } | null = null;
+  private tokenLoading: Promise<string> | null = null;
   constructor(private config: EmailVerificationConfig, private transport: typeof fetch = fetch) {}
 
   async verifiedEmail(identity: EmailIdentity): Promise<string | null> {
+    const profile = await this.readProfile(identity, { fields: 'user_id,email,email_verified', includeFields: true }, false);
+    if (!profile) throw new Error('email_verification_unavailable');
+    if (profile.email_verified !== true) return null;
+    const email = z.email().max(254).safeParse(profile.email);
+    if (!email.success) throw new Error('email_verification_unavailable');
+    return email.data;
+  }
+
+  async securityStatus(identity: EmailIdentity): Promise<IdentitySecurityStatus> {
+    const profile = await this.readProfile(identity, securityProfileProjection, true);
+    if (!profile) return { exists: false, blocked: true, passwordChangedAt: null };
+    if (profile.blocked !== undefined && typeof profile.blocked !== 'boolean') throw new Error('identity_status_unavailable');
+    const reset = profile.last_password_reset;
+    if (reset !== undefined && reset !== null && !z.iso.datetime({ offset: true }).safeParse(reset).success) {
+      throw new Error('identity_status_unavailable');
+    }
+    const passwordChangedAt = typeof reset === 'string' ? new Date(reset) : null;
+    if (passwordChangedAt && passwordChangedAt.getTime() > Date.now() + 30_000) throw new Error('identity_status_unavailable');
+    return { exists: true, blocked: profile.blocked === true, passwordChangedAt };
+  }
+
+  private async readProfile(identity: EmailIdentity, projection: ProfileProjection, allowMissing: boolean): Promise<Record<string, unknown> | null> {
     const issuer = identity.issuer.replace(/\/$/, "");
     if (!this.config.allowedIssuers.some(value => value.replace(/\/$/, "") === issuer)
       || !identity.subject || identity.subject.length > 255) throw new Error("identity_scope_mismatch");
-    if (!this.token || this.token.expiresAt <= Date.now()) {
-      const response = await this.transport(`https://${this.config.domain}/oauth/token`, {
-        method: "POST", headers: { "content-type": "application/json" }, redirect: "error",
-        signal: AbortSignal.timeout(5_000),
-        body: JSON.stringify({ grant_type: "client_credentials", client_id: this.config.clientId,
-          client_secret: this.config.clientSecret, audience: `https://${this.config.domain}/api/v2/`, scope: "read:users" }),
-      });
-      if (!response.ok) throw new Error("email_verification_unavailable");
-      const token = await response.json() as { access_token?: unknown; expires_in?: unknown };
-      if (typeof token.access_token !== "string" || typeof token.expires_in !== "number"
-        || !Number.isFinite(token.expires_in) || token.expires_in <= 60) throw new Error("email_verification_unavailable");
-      this.token = { value: token.access_token, expiresAt: Date.now() + (Math.min(token.expires_in, 86_400) - 60) * 1_000 };
-    }
+    const accessToken = await this.accessToken();
     const url = new URL(`https://${this.config.domain}/api/v2/users/${encodeURIComponent(identity.subject)}`);
-    url.searchParams.set("fields", "user_id,email,email_verified");
-    url.searchParams.set("include_fields", "true");
+    url.searchParams.set("fields", projection.fields);
+    url.searchParams.set("include_fields", String(projection.includeFields));
     const response = await this.transport(url, {
-      headers: { authorization: `Bearer ${this.token.value}` }, redirect: "error", signal: AbortSignal.timeout(5_000),
+      headers: { authorization: `Bearer ${accessToken}` }, redirect: "error", signal: AbortSignal.timeout(5_000),
     });
-    if (response.status === 401) this.token = null;
-    if (!response.ok) throw new Error("email_verification_unavailable");
-    const profile = await response.json() as Record<string, unknown>;
+    if (response.status === 401 && this.token?.value === accessToken) this.token = null;
+    if (!response.ok) {
+      await response.body?.cancel().catch(() => {});
+      if (response.status === 404 && allowMissing) return null;
+      throw new Error("email_verification_unavailable");
+    }
+    const profile = await readIdentityJson(response);
     if (profile.user_id !== identity.subject) throw new Error("identity_scope_mismatch");
-    if (profile.email_verified !== true) return null;
-    const email = z.email().max(254).safeParse(profile.email);
-    if (!email.success) throw new Error("email_verification_unavailable");
-    return email.data;
+    return profile;
   }
+
+  private async accessToken(): Promise<string> {
+    if (this.token && this.token.expiresAt > Date.now()) return this.token.value;
+    if (this.tokenLoading) return this.tokenLoading;
+    const loading = this.loadAccessToken(); this.tokenLoading = loading;
+    try { return await loading; }
+    finally { if (this.tokenLoading === loading) this.tokenLoading = null; }
+  }
+
+  private async loadAccessToken(): Promise<string> {
+    const response = await this.transport(`https://${this.config.domain}/oauth/token`, {
+      method: "POST", headers: { "content-type": "application/json" }, redirect: "error",
+      signal: AbortSignal.timeout(5_000),
+      body: JSON.stringify({ grant_type: "client_credentials", client_id: this.config.clientId,
+        client_secret: this.config.clientSecret, audience: `https://${this.config.domain}/api/v2/`, scope: "read:users" }),
+    });
+    if (!response.ok) {
+      await response.body?.cancel().catch(() => {});
+      throw new Error("email_verification_unavailable");
+    }
+    const token = await readIdentityJson(response) as { access_token?: unknown; expires_in?: unknown };
+    if (typeof token.access_token !== "string" || !token.access_token || token.access_token.length > 16384 || typeof token.expires_in !== "number"
+      || !Number.isFinite(token.expires_in) || token.expires_in <= 60) throw new Error("email_verification_unavailable");
+    this.token = { value: token.access_token, expiresAt: Date.now() + (Math.min(token.expires_in, 86_400) - 60) * 1_000 };
+    return this.token!.value;
+  }
+
 }
 
 export class SessionEmailVerification {
@@ -97,4 +153,24 @@ export class SessionEmailVerification {
     else delete auth.verifiedEmailHash;
     return hash;
   }
+}
+
+
+/** Provider failures never turn into an unbounded response or a positive proof. */
+async function readIdentityJson(response: Response): Promise<Record<string, unknown>> {
+  const reader = response.body?.getReader();
+  if (!reader) throw new Error('identity_status_unavailable');
+  const chunks: Uint8Array[] = []; let size = 0;
+  try {
+    for (;;) {
+      const { value, done } = await reader.read();
+      if (done) break;
+      size += value.byteLength;
+      if (size > 32 * 1024) throw new Error('identity_status_unavailable');
+      chunks.push(value);
+    }
+  } finally { await reader.cancel().catch(() => {}); reader.releaseLock(); }
+  const value: unknown = JSON.parse(Buffer.concat(chunks).toString('utf8'));
+  if (!value || typeof value !== 'object' || Array.isArray(value)) throw new Error('identity_status_unavailable');
+  return value as Record<string, unknown>;
 }

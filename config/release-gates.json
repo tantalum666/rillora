@@ -1,6 +1,6 @@
 {
   "schemaVersion": 1,
-  "updatedAt": "2026-10-15",
+  "updatedAt": "2026-11-05",
   "release": "Rillora Global 1.0",
   "scope": "Web and native iOS; existing Free and Family only",
   "gates": [
@@ -45,9 +45,11 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "The unchanged protected API/schema remains; October15 completes the existing Web admission/catalog/static cutover after fresh old-token denial evidence. Both frontend stacks preserve all other resources/parameters,117HTTPS files match40c76496f/CI153. No new API or DB deployment."
+      "next": "Retain October31 API/Web and November4 worker evidence. November4 only the existing dedicated Apple review expiry parameter was updated; API image, secrets, roles and all other environment values match. Production/Operations stacks UPDATE_COMPLETE, API1/1healthy. Data, prices and sales remain unchanged."
     },
     {
       "id": "production-identity",
@@ -97,9 +99,11 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Four old Preview issuers remain disabled and twoM2Mrequests still403after the measured deadline. Current source-matching production consent Action is deployed with unchanged otherAction/order and mandatory native current consent. Dedicated reviewer Web/native login and original Google phone login succeed. Owner-deferred Auth0 outer-shell cosmetics remain unresolved but are not this identity safety gate."
+      "next": "Retain physical17 dedicated-reviewer sign-in and existing legal/token-isolation evidence. November4 Auth0 account exists and has no blocks; deployed production terms Action has no obsolete review-expiry gate. No password reset or new credential proof. Auth0 outer-shell cosmetics remain deferred."
     },
     {
       "id": "production-billing",
@@ -127,9 +131,10 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Original Web route/market opened after fresh provider readiness and catalog fingerprint;USD88.99annual,disabledautomaticTax,existing signed callback/test-refund evidence retained. No new self-payment or customer revenue claim. Two Apple Production routes stay independently closed; Apple lifecycle is separately gated."
+      "next": "October31verified repair is deployed: API-first and static-assets-before-pages. Existing parameters/data/prices/sales flags retained. Actual reviewer Web and WWW bilingual UI confirmed;289files accounted for with48changed bytes fetched and241unchanged hashes inherited. StripeLiveaccount/price/18-event webhook readback is current and read-only; no manufactured Live payment. Apple actual acceptance stays separately open."
     },
     {
       "id": "merchant-market",
@@ -147,7 +152,7 @@
         "collaboration/verification/web-billing-activation-20261013/README.md",
         "docs/app-review-preflight-20261014.md"
       ],
-      "next": "Rillora Live account/product/price readiness passes. Owner removed tax strategy as the opening prerequisite; explicit disabled tax automation retained without invented tax exemption. Only the existing GLOBAL_US Web route is opened, with no new regions or Apple availability."
+      "next": "October31existing Rillora Live read-only account retrieval confirms charges_enabled,payouts_enabled,details_submittedtrue; current active default annualUSD8899price and enabled18-event callback are read back. Nested requirements were not inferred from collapsed UI, and no new payment/delivery was manufactured. Existing tax defer, disabledautomaticTax,GLOBAL_USWebscope and independentApple gates are unchanged."
     },
     {
       "id": "apple-transactions",
@@ -183,9 +188,16 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/apple-owner-latency-20261101.md",
+        "collaboration/verification/native17-install-20261101/README.md",
+        "docs/apple-purchase-acceptance-20261101.md",
+        "collaboration/verification/cost-review-20261102/expiry-ledger.json",
+        "docs/app-review-readiness-20261104.md",
+        "docs/apple-resubscription-repair-20261105.md"
       ],
-      "next": "Retain actualHKD888Sandboxpurchase/restore and native14evidence. Dedicated reviewer remains enrolled throughOctober27. Apple prereleaseProduction401is not a presubmission blocker. After approval configure streamlined purchasing, manually release, then verify Productionauthorization/notifications/reconciliation before enabling two new-sale routes. No generic401fallback."
+      "next": "November5native18installed and launched. New same-owner resubscription409reproduced and repaired by109, deployed Previewthenproduction with5/6authoritychecks. Owner restored the same pending order and reportsSubscribed; independent ledgercompleted/paid_reconciled,HKD888verified receipt,active/applied,unchangedcatalog. No manualgrant,orderrebuild,newpurchase request or TestFlight/resubmission. Other unobserved device/financial scenarios remain separate."
     },
     {
       "id": "operations",
@@ -206,9 +218,12 @@
         "output/qa/rillora-launch-resume-20260930/final-runtime-readback.json",
         "output/qa/rillora-launch-resume-20260930/snapshot-cloud-result.json",
         "docs/final-readiness-20261013.md",
-        "docs/app-store-preflight-20261013.md"
+        "docs/app-store-preflight-20261013.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/aws-cost-review-20261102.md",
+        "docs/app-review-readiness-20261104.md"
       ],
-      "next": "Fourteen public targets retain existing schedules and recipients; production session probes now require401 and reject503. Four new Production StoreKit worker alarms supplement Sandbox/retention alarms, all readOKwith exact existing SNS actions. The updated cloud checker returnsoktrue/failed0; previous notification/silence drills retain their original date, not rerun."
+      "next": "November4 fixed existing cost alerts/optional metrics per dated report. Dedicated reviewer DB/API/monitor now match2026-12-04T12:00Z, original31-daycap retained, existing15minprobe warns14daysahead, aggregate ok/failed0.12health tests pass. Quiet daily local follow-up created; existing cloud monitor independent. No new alert-delivery drill or permanent-availability claim."
     },
     {
       "id": "backup-retention",
@@ -277,9 +292,10 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "Retain schema103/security/recovery evidence. October15fresh verification closes the expired86400+300second Preview token window;fourissuersstaydisabled/two403. No auth/certification bypass. GitHub private-plan enforced checks remain unavailable; current source CI153passes."
+      "next": "Retain schema103/security/recovery and old-token denial evidence at their dated checkpoints. October31 uses exact-main-base f017648cada6d39144a88aa12b5a42d470c40e5d local publication policy, no cloudCI or bypass. Current candidate scans are separately recorded; source scan is not a new penetration test or current provider authentication proof."
     },
     {
       "id": "apple-submission",
@@ -311,13 +327,22 @@
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
         "docs/provider-diagnostics-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/app-review-remediation-20261030.md",
+        "docs/app-review-link-recheck-20261031.md",
+        "docs/app-review-sandbox-acceptance-20261031.md",
+        "collaboration/verification/app-review-acceptance-20261031/README.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/apple-owner-latency-20261101.md",
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md",
+        "docs/native18-device-install-20261105.md"
       ],
-      "next": "Apple accepted submission6537a10c-38f2-425e-8b8e-c76e5fa730b1atHong Kong2026-10-15 09:49. App1.0(14),FamilyannualandgroupallWaitingforReview. DedicatedreviewerWeb/nativeandroundtrippassed;Ownercancelledfurtherphysicaltesting. No monthlyproductorTestFlight. AwaitAppleoutcome;manualreleaseandpost-releaseProductionverificationremain."
+      "next": "November5originaliPhone16ProMax/iOS27.2updated in place from17to18using the unchanged signedIPA; independent device version readback and launch succeed. Owner manual page-stability/hit-target and retained-data check remains pending. No new purchase/restore, rebuild, AppStoreupload, TestFlight or resubmission. Match final review materials only after the page result, preserving the Owner submission hold."
     },
     {
       "id": "physical-device",
-      "status": "owner_deferred",
+      "status": "in_progress",
       "required": true,
       "title": "Physical-device acceptance",
       "evidence": [
@@ -335,9 +360,18 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/final-readiness-20261013.md",
         "docs/app-store-preflight-20261013.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/app-review-sandbox-acceptance-20261031.md",
+        "collaboration/verification/app-review-acceptance-20261031/README.md",
+        "docs/release-product-audit-20261031.md",
+        "docs/apple-owner-latency-20261101.md",
+        "collaboration/verification/native17-install-20261101/README.md",
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md",
+        "docs/native18-device-install-20261105.md",
+        "docs/apple-resubscription-repair-20261105.md"
       ],
-      "next": "Owner explicitly says no further physical-device verification onOctober15. Stop and do not request it again. Original phone14account/matter and HKD888test-plan evidence retained; Owner explicitly confirms legal return preserves account/data. Unsubscribed-device/VoiceOver tests are cancelled, not passed. Dedicated reviewer simulator round trip is separate."
+      "next": "November5native18installed and launched. New same-owner resubscription409reproduced and repaired by109, deployed Previewthenproduction with5/6authoritychecks. Owner restored the same pending order and reportsSubscribed; independent ledgercompleted/paid_reconciled,HKD888verified receipt,active/applied,unchangedcatalog. No manualgrant,orderrebuild,newpurchase request or TestFlight/resubmission. Other unobserved device/financial scenarios remain separate."
     },
     {
       "id": "public-surface",
@@ -371,13 +405,14 @@
         "docs/native-cross-platform-acceptance-20261012.md",
         "docs/web-billing-activation-20261013.md",
         "collaboration/verification/web-billing-activation-20261013/README.md",
-        "docs/app-review-preflight-20261014.md"
+        "docs/app-review-preflight-20261014.md",
+        "docs/release-product-audit-20261031.md"
       ],
-      "next": "October15production App/public website deployed from40c76496f/CI153;onlyoneexistingstaticassetperstack,allotherresources/parametersunchanged.117HTTPShashesmatchandactualZH/ENpricing/entryreadbackpasses. CustomerAccesslive now matches actual ordinary Web admission/new-sales state."
+      "next": "October31verified repair is deployed: API-first and static-assets-before-pages. Existing parameters/data/prices/sales flags retained. Actual reviewer Web and WWW bilingual UI confirmed;289files accounted for with48changed bytes fetched and241unchanged hashes inherited. StripeLiveaccount/price/18-event webhook readback is current and read-only; no manufactured Live payment. Apple actual acceptance stays separately open."
     },
     {
       "id": "review-remediation",
-      "status": "verified",
+      "status": "in_progress",
       "required": true,
       "title": "Owner-supplied Dot review remediation",
       "evidence": [
@@ -385,9 +420,15 @@
         "output/qa/rillora-review-repair-20260930/work-state.json",
         "docs/release-123-20261001.md",
         "collaboration/verification/release-123-20261002/ci43.json",
-        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json"
+        "collaboration/verification/release-123-20261002/receipts/repair-rollout-readback.json",
+        "docs/apple-owner-latency-20261101.md",
+        "collaboration/verification/native17-install-20261101/README.md",
+        "docs/apple-purchase-acceptance-20261101.md",
+        "docs/app-review-readiness-20261104.md",
+        "docs/native18-device-install-20261105.md",
+        "docs/apple-resubscription-repair-20261105.md"
       ],
-      "next": "All13confirmed Dot fixes are locally verified and deployed; CI43 passed on the changed source. This remediation gate is complete. Real identity, purchase, distribution and customer cutover remain separate gates; do not repeat this rollout."
+      "next": "November5native18installed and launched. New same-owner resubscription409reproduced and repaired by109, deployed Previewthenproduction with5/6authoritychecks. Owner restored the same pending order and reportsSubscribed; independent ledgercompleted/paid_reconciled,HKD888verified receipt,active/applied,unchangedcatalog. No manualgrant,orderrebuild,newpurchase request or TestFlight/resubmission. Other unobserved device/financial scenarios remain separate."
     }
   ],
   "retainedEvidence": [

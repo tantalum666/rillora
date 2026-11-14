@@ -1,0 +1,153 @@
+{
+  "observedAt": "2026-11-02T01:07:08.822821+00:00",
+  "billingPeriod": {
+    "Start": "2026-10-01",
+    "End": "2026-11-01"
+  },
+  "estimated": false,
+  "currency": "USD",
+  "usage": "120.6338910658",
+  "credits": "-83.0000000000",
+  "net": "37.6338910658",
+  "invoiceAmount": "37.63",
+  "invoiceMatchesRoundedNet": true,
+  "services": [
+    {
+      "service": "Amazon Relational Database Service",
+      "usage": "33.9371249941",
+      "credit": "-33.9371212558",
+      "other": "0",
+      "net": "0.0000037383"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usage": "33.787519692",
+      "credit": "-33.787519692",
+      "other": "0",
+      "net": "0E-9"
+    },
+    {
+      "service": "Amazon Elastic Container Service",
+      "usage": "27.6088121854",
+      "credit": "-15.2753590522",
+      "other": "0",
+      "net": "12.3334531332"
+    },
+    {
+      "service": "Amazon Virtual Private Cloud",
+      "usage": "12.159307105",
+      "credit": "0",
+      "other": "0",
+      "net": "12.159307105"
+    },
+    {
+      "service": "AWS Secrets Manager",
+      "usage": "7.7312182576",
+      "credit": "0",
+      "other": "0",
+      "net": "7.7312182576"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "usage": "3.26881473",
+      "credit": "0",
+      "other": "0",
+      "net": "3.26881473"
+    },
+    {
+      "service": "Amazon Route 53",
+      "usage": "2",
+      "credit": "0",
+      "other": "0",
+      "net": "2"
+    },
+    {
+      "service": "Amazon Simple Storage Service",
+      "usage": "0.047905111",
+      "credit": "0",
+      "other": "0",
+      "net": "0.047905111"
+    },
+    {
+      "service": "Amazon API Gateway",
+      "usage": "0.0387504",
+      "credit": "0",
+      "other": "0",
+      "net": "0.0387504"
+    },
+    {
+      "service": "AWS Cloud Map",
+      "usage": "0.031656",
+      "credit": "0",
+      "other": "0",
+      "net": "0.031656"
+    },
+    {
+      "service": "Amazon EC2 Container Registry (ECR)",
+      "usage": "0.0221190938",
+      "credit": "0",
+      "other": "0",
+      "net": "0.0221190938"
+    },
+    {
+      "service": "Amazon DynamoDB",
+      "usage": "0.0005874341",
+      "credit": "0",
+      "other": "0",
+      "net": "0.0005874341"
+    },
+    {
+      "service": "Amazon CloudFront",
+      "usage": "0.0000645755",
+      "credit": "0",
+      "other": "0",
+      "net": "0.0000645755"
+    },
+    {
+      "service": "AWS Lambda",
+      "usage": "0.0000114873",
+      "credit": "0",
+      "other": "0",
+      "net": "0.0000114873"
+    },
+    {
+      "service": "AWS Certificate Manager",
+      "usage": "0",
+      "credit": "0",
+      "other": "0",
+      "net": "0"
+    },
+    {
+      "service": "AWS CloudFormation",
+      "usage": "0",
+      "credit": "0",
+      "other": "0",
+      "net": "0"
+    },
+    {
+      "service": "Amazon Simple Notification Service",
+      "usage": "0",
+      "credit": "0",
+      "other": "0",
+      "net": "0"
+    },
+    {
+      "service": "Amazon Simple Queue Service",
+      "usage": "0",
+      "credit": "0",
+      "other": "0",
+      "net": "0"
+    },
+    {
+      "service": "Tax",
+      "usage": "0",
+      "credit": "0",
+      "other": "0",
+      "net": "0"
+    }
+  ],
+  "costExplorerCalls": 2,
+  "paginationIncomplete": false,
+  "invoiceMessageDate": "2026-11-02",
+  "rawEmailAndPaymentDetailsPublished": false
+}

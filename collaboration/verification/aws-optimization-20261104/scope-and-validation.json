@@ -1,0 +1,20 @@
+{
+  "scope": "AWS-only reversible optimization and worker memory repair; no data migration/review/TestFlight/FanPass/price/sale change",
+  "tests": {
+    "infra": 28,
+    "tls_config_proof": 16,
+    "isolated_business": 14,
+    "cost_controls": 4,
+    "growth_arithmetic": 6
+  },
+  "failedAttemptsRetained": [
+    "new TLS fixture missing database URL corrected",
+    "old local fixture migration0108checksum mismatch preserved; fresh isolated PG used",
+    "Colima host mount absent; only synthetic inputs copied to isolated containers",
+    "CFN unchanged dependency policy reevaluation and compatibility-list ordering verified",
+    "IAM policy actual name resolved from template property instead of CloudFormation physical identifier"
+  ],
+  "temporaryServices": "isolated PG55434 stopped; rillora-build restored to stopped; Dockercontext default restored; other projectprofilesnot operated",
+  "reading": "inherited complete hosting-workflow read plus focused current files; private record in output/qa",
+  "publication": "full manifest and exact-base local gate required after this last receipt; final remote receipt stays in ignored QA"
+}

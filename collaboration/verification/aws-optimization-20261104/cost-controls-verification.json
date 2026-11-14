@@ -1,0 +1,51 @@
+{
+  "budgetLimitAndScopePreserved": true,
+  "creditsAndRefundsExcluded": true,
+  "notifications": [
+    {
+      "NotificationType": "ACTUAL",
+      "ComparisonOperator": "GREATER_THAN",
+      "Threshold": 25,
+      "ThresholdType": "ABSOLUTE_VALUE"
+    },
+    {
+      "NotificationType": "ACTUAL",
+      "ComparisonOperator": "GREATER_THAN",
+      "Threshold": 50,
+      "ThresholdType": "ABSOLUTE_VALUE"
+    },
+    {
+      "NotificationType": "ACTUAL",
+      "ComparisonOperator": "GREATER_THAN",
+      "Threshold": 80,
+      "ThresholdType": "ABSOLUTE_VALUE"
+    },
+    {
+      "NotificationType": "FORECASTED",
+      "ComparisonOperator": "GREATER_THAN",
+      "Threshold": 80,
+      "ThresholdType": "ABSOLUTE_VALUE"
+    }
+  ],
+  "allRecipientsMatchOriginalConfirmedEmail": true,
+  "anomalyDailyAndRecipientPreserved": true,
+  "anomalyAbsoluteUSD": 5,
+  "anomalyPercentage": 40,
+  "computeOptimizer": "Active",
+  "organizationEnrollment": false,
+  "recommendationPreferences": [
+    {
+      "resourceType": "Ec2Instance",
+      "paidEnhancedMetrics": false
+    },
+    {
+      "resourceType": "RdsDBInstance",
+      "paidEnhancedMetrics": false
+    },
+    {
+      "resourceType": "EcsService",
+      "paidEnhancedMetrics": false
+    }
+  ],
+  "notificationDelivery": "configuration verified; first new budget email not yet observed"
+}

@@ -33,6 +33,7 @@ import type { Construct } from "constructs";
 import { RilloraMaintenanceBroker } from './rillora-maintenance-broker.js';
 import {RilloraRuntimeBoundaryKeys,RilloraIdentityDeletionWorker} from './rillora-runtime-boundaries.js';
 import {RilloraPrivateContent} from './rillora-private-content.js';
+import {userSessionEnvironment,userSessionOriginHeaders} from './rillora-user-sessions.js';
 
 export type RilloraStagingStackProps = StackProps & {
   desiredCount: number;
@@ -293,7 +294,7 @@ export class RilloraStagingStack extends Stack {
 
     const cluster = new ecs.Cluster(this, "Cluster", {
       vpc,
-      containerInsightsV2: ecs.ContainerInsights.ENABLED,
+      containerInsightsV2: ecs.ContainerInsights.DISABLED,
     });
     const namespace = new servicediscovery.PrivateDnsNamespace(this, "Namespace", {
       vpc,
@@ -377,6 +378,7 @@ export class RilloraStagingStack extends Stack {
         ALLOW_SYNTHETIC_RECIPIENT_REHEARSAL: "false",
         DATABASE_POOL_MAX: "5",
         TRUST_PROXY_HOPS: "1",
+        ...userSessionEnvironment(this,props.emailVerificationEnabled===true),
         PRODUCTION_RUNTIME_MODE: "staging",
         REQUIRE_RECENT_AUTHENTICATION: "true",
         OIDC_ISSUER_URL: oidcIssuer.valueAsString,
@@ -759,6 +761,10 @@ export class RilloraStagingStack extends Stack {
   return request;
 }`),
     });
+    const sessionEdge = new cloudfront.Function(this, 'SessionEdge', {
+      runtime: cloudfront.FunctionRuntime.JS_2_0,
+      code: cloudfront.FunctionCode.fromFile({filePath:resolve(moduleDirectory,'../../../apps/web/worker/session-edge.js')}),
+    });
     const distribution = new cloudfront.Distribution(this, "WebDistribution", {
       domainNames: [webDomainName],
       certificate: webCertificate,
@@ -783,6 +789,7 @@ export class RilloraStagingStack extends Stack {
       additionalBehaviors: {
         "/api/*": {
           origin: new origins.HttpOrigin(Fn.parseDomainName(httpApi.apiEndpoint), {
+            customHeaders: userSessionOriginHeaders(this),
             protocolPolicy: cloudfront.OriginProtocolPolicy.HTTPS_ONLY,
             originSslProtocols: [cloudfront.OriginSslPolicy.TLS_V1_2],
             readTimeout: Duration.seconds(30),
@@ -791,6 +798,7 @@ export class RilloraStagingStack extends Stack {
           cachedMethods: cloudfront.CachedMethods.CACHE_GET_HEAD_OPTIONS,
           cachePolicy: cloudfront.CachePolicy.CACHING_DISABLED,
           originRequestPolicy: cloudfront.OriginRequestPolicy.ALL_VIEWER_EXCEPT_HOST_HEADER,
+          functionAssociations: [{eventType:cloudfront.FunctionEventType.VIEWER_REQUEST,function:sessionEdge}],
           compress: true,
           responseHeadersPolicy,
           viewerProtocolPolicy: cloudfront.ViewerProtocolPolicy.REDIRECT_TO_HTTPS,

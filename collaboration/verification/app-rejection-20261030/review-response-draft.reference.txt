@@ -1,0 +1,11 @@
+UNSENT DRAFT — Owner has requested no resubmission yet.
+
+Hello App Review,
+
+Thank you for the report and screenshots for Rillora 1.0. We identified an expiry in our server-side Sandbox review eligibility while the submission was waiting for review. The product price could load, but the expired server eligibility prevented a purchase quote from being issued.
+
+We renewed the existing dedicated review account's Sandbox eligibility and aligned the deployed runtime configuration. We added advance deadline monitoring. Prices, transaction verification and account binding remain unchanged. The normal Plan & access screen now presents Family benefits, the local StoreKit annual price and the subscription action without the separate test banner.
+
+Replacement build 1.0(15) is prepared locally, with 45 purchase/restore logic checks, one local StoreKit SDK lifecycle check and bilingual iPad layout checks. These local tests do not establish a new real-device Sandbox transaction. The existing review credentials are unchanged.
+
+BEFORE SENDING: recheck the review window, upload/select the prepared build only when the Owner resumes submission, and replace this note with the actual selected-build result. This draft has not been sent to Apple.

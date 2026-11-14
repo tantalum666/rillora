@@ -1,0 +1,22 @@
+{
+  "source": "Owned synthetic Watch simulator crash; full machine report excluded from Git",
+  "exception": "EXC_BREAKPOINT",
+  "signal": "SIGTRAP",
+  "frames": [
+    "_dispatch_assert_queue_fail",
+    "dispatch_assert_queue$V2.cold.1",
+    "dispatch_assert_queue",
+    "_swift_task_checkIsolatedSwift",
+    "swift_task_isCurrentExecutorWithFlagsImpl(swift::SerialExecutorRef, swift::swift_task_is_current_executor_flag)",
+    "closure #2 in CheckInWatchLink.send(_:)",
+    "thunk for @escaping @callee_guaranteed (@guaranteed Data) -> ()",
+    "__61-[WCSession onqueue_handleResponseData:record:withPairingID:]_block_invoke",
+    "<deduplicated_symbol>",
+    "-[NSBlockOperation main]",
+    "__NSOPERATION_IS_INVOKING_MAIN__",
+    "-[NSOperation start]"
+  ],
+  "diagnosis": "MainActor-inferred WatchConnectivity reply block entered on SDK background queue",
+  "repair": "Explicit nonisolated Sendable callback factory, then Task MainActor for state update; error callback stays pending",
+  "regression": "sdkCallbacksCanEnterFromABackgroundExecutorWithoutCrashingOrInventingDelivery"
+}

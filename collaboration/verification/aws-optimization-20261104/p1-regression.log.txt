@@ -1,0 +1,25 @@
+
+ RUN  v4.1.12 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/p1-repair.integration.test.ts (14 tests | 14 skipped) 142ms
+
+⎯⎯⎯⎯⎯⎯ Failed Suites 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/p1-repair.integration.test.ts > P1 map reliability and export privacy
+Error: Applied migration checksum changed: 0108_legacy_content_workspace.sql
+ ❯ runMigrations src/migrate.ts:48:17
+     46|       if (existing.rows[0]) {
+     47|         if (existing.rows[0].checksum !== checksum) {
+     48|           throw new Error(`Applied migration checksum changed: ${name}…
+       |                 ^
+     49|         }
+     50|         continue;
+ ❯ tests/p1-repair.integration.test.ts:27:3
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  14 skipped (14)
+   Start at  10:22:07
+   Duration  1.18s (transform 325ms, setup 40ms, import 865ms, tests 142ms, environment 0ms)

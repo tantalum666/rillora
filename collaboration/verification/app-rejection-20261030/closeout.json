@@ -1,0 +1,46 @@
+{
+  "at": "2026-10-30T11:09:33.968194+00:00",
+  "task": "App Store rejection remediation",
+  "backendReviewAccessRenewed": true,
+  "onlyDedicatedReviewIdentityRenewed": true,
+  "operationsDeadlineMonitorDeployed": true,
+  "ordinaryPricesAndSalesSwitchesUnchanged": true,
+  "nativeLogicTests": {
+    "passed": 45,
+    "failed": 0,
+    "skipped": 0
+  },
+  "localStoreKitSDK": {
+    "passed": 1,
+    "failed": 0,
+    "skipped": 0
+  },
+  "healthDeadlineTests": 12,
+  "infraTests": 12,
+  "staticChecks": 11,
+  "localSignedCandidate": "1.0(15)",
+  "candidateBasedOnReview14Source": "bfe9baaf520e051e70081daf7ed459f0926264b4",
+  "appleAgreementAccepted": true,
+  "uploaded": false,
+  "reviewReplySent": false,
+  "resubmitted": false,
+  "testFlightDistributed": false,
+  "realSandboxTransactionPerformed": false,
+  "ownerHoldsResubmission": true,
+  "cloudCIUsed": false,
+  "subagentsUsed": false,
+  "documents": [
+    "docs/app-review-remediation-20261030.md",
+    "docs/product.md",
+    "docs/handoff.md",
+    "docs/decision-log.md",
+    "docs/journey/PROJECT_JOURNEY.md",
+    "docs/storekit.md",
+    "docs/app-review-preflight-20261014.md",
+    "docs/final-readiness-20261013.md",
+    "docs/app-store-preflight-20261013.md",
+    "docs/source-control.md"
+  ],
+  "decisionReason": "Actual rejection changes active gate; Owner confirms agreement and then explicitly holds resubmission.",
+  "pending": "Owner resumption of review submission and subsequent fresh provider window/status checks"
+}

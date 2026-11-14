@@ -1,0 +1,45 @@
+{
+  "checkedAt": "2026-11-04T16:01:19.284202+00:00",
+  "nativeUnit": {
+    "passed": 74,
+    "failed": 0,
+    "result": "native18-purchase-final.xcresult",
+    "language": "en-US explicit; localization suite checks both bundles"
+  },
+  "nativeUI": {
+    "iPadM3iOS27_0": 3,
+    "iPhoneMatrixiOS26_5": 3,
+    "failed": 0,
+    "checks": [
+      "disabled subscription coordinate is inert",
+      "price area is not a legal link",
+      "explicit localized Terms opens correct path",
+      "enabled subscription invokes purchase flow, no policy jump"
+    ],
+    "fixture": "shipping UI and commerce source with an isolated local-only service; no Apple transaction"
+  },
+  "operationsTests": {
+    "passed": 12,
+    "failed": 0
+  },
+  "preservedFailures": [
+    "new quote-reload regression failed before fix",
+    "disabled-area UI regression actually opened refund-policy before fix",
+    "new pending-state regression failed during intermediate refactor",
+    "UI test expected wrong Chinese label and policy path; actual values corrected without product URL change",
+    "26 legacy English-copy assertions failed under inherited Chinese app preferences; 73 then final74 passed with explicit en-US",
+    "review-error copy regression before mapping fix"
+  ],
+  "sameCandidateRealPurchase": false,
+  "inheritedPhysicalEvidence": "17-r2 purchase and restore Nov1; same-order natural expiry Nov2. No new purchase, restore, refund or manual cancellation.",
+  "staticNativeBoundaryTests": {
+    "passed": 17,
+    "failed": 0,
+    "scope": "catalog and current/next HealthKit/Watch project isolation"
+  },
+  "isolatedTestProjectSmoke": {
+    "passed": 1,
+    "failed": 0,
+    "scope": "test host moved out of release project; shipping fix and signed18unchanged"
+  }
+}

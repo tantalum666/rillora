@@ -1,0 +1,29 @@
+{
+  "observedAt": "2026-11-02T06:48:44.398Z",
+  "source": "https://cloud.google.com/run/pricing",
+  "selectedRegion": "Frankfurt (europe-west3)",
+  "currency": "USD",
+  "requestRows": [
+    "资源类型默认（美元）* (USD)info使用模式 ID：7754-699E-0EBFCloud Run CUD - 1 Year* (USD)info使用模式 ID：73A1-AD60-B867Cloud Run CUD - 3 Year* (USD)info使用模式 ID：A4B6-DEDF-1A65Compute Flexible CUD - 1 Year* (USD)info使用模式 ID：D97B-0795-975BCompute Flexible CUD - 3 Year* (USD)info使用模式 ID：70D7-D1AB-12A4",
+    "CPU（每 vCPU 秒）活跃时间US$0.0000336US$0.000027888US$0.000027888US$0.000027888US$0.000027888",
+    "空闲时间（最少实例数1）US$0.0000035US$0.000002905US$0.000002905US$0.000002905US$0.000002905",
+    "内存（每 GiB 秒）活跃时间US$0.0000035US$0.000002905US$0.000002905US$0.000002905US$0.000002905",
+    "空闲时间（最少实例数1）US$0.0000035US$0.000002905US$0.000002905US$0.000002905US$0.000002905",
+    "请求数（每 1,000,000 个）不适用US$0.40US$0.332US$0.332US$0.332US$0.332"
+  ],
+  "instanceRows": [
+    "资源默认（美元）* (USD)info使用模式 ID：7754-699E-0EBFCloud Run CUD - 1 Year* (USD)info使用模式 ID：73A1-AD60-B867Cloud Run CUD - 3 Year* (USD)info使用模式 ID：A4B6-DEDF-1A65Compute Flexible CUD - 1 Year* (USD)info使用模式 ID：D97B-0795-975BCompute Flexible CUD - 3 Year* (USD)info使用模式 ID：70D7-D1AB-12A4",
+    "CPU（每 vCPU 秒）US$0.0000216US$0.000017928US$0.000017928US$0.000015552US$0.000011664",
+    "内存（每 GiB 秒）US$0.0000024US$0.000001992US$0.000001992US$0.000001728US$0.000001296"
+  ],
+  "modeledRates": {
+    "requestCpuPerVcpuSecond": 0.0000336,
+    "requestMemoryPerGiBSecond": 0.0000035,
+    "requestsPerMillion": 0.4,
+    "instanceCpuPerVcpuSecond": 0.0000216,
+    "instanceMemoryPerGiBSecond": 0.0000024,
+    "monthlyCpuFreeCreditUsd": 4.32,
+    "monthlyMemoryFreeCreditUsd": 0.9,
+    "requestFreeCount": 2000000
+  }
+}

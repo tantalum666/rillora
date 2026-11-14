@@ -41,12 +41,15 @@ struct ApplePurchaseTerms: Codable, Equatable, Sendable {
     let subscriptionTermsVersion: String
     let refundPolicyVersion: String
     let legalBundleSha256: String
+    static var current: Self {
+        Self(version: "family-annual-apple-20261009-1",
+             termsVersion: LegalAcceptanceProof.current.termsVersion,
+             subscriptionTermsVersion: "subscriptions-2026-08-27-1",
+             refundPolicyVersion: "refunds-2026-08-27-1",
+             legalBundleSha256: LegalAcceptanceProof.current.bundleSha256)
+    }
     var isCurrent: Bool {
-        version == "family-annual-apple-20261009-1"
-            && termsVersion == LegalAcceptanceProof.current.termsVersion
-            && legalBundleSha256 == LegalAcceptanceProof.current.bundleSha256
-            && subscriptionTermsVersion == "subscriptions-2026-08-27-1"
-            && refundPolicyVersion == "refunds-2026-08-27-1"
+        self == Self.current
     }
 }
 

@@ -1,0 +1,38 @@
+{
+  "mode": "Continue original full-read App Review workflow; do not rescan/retest unchanged project",
+  "retainedFullReadRecord": "collaboration/verification/app-rejection-20261030/reading.json",
+  "previousFocusedRecord": "collaboration/verification/app-review-links-20261031/reading.json",
+  "currentReads": {
+    "AGENTS.md": "full",
+    "docs/product.md": "1-35 current authority plus retained locked body",
+    "docs/handoff.md": "full latest checkpoint",
+    "docs/app-review-link-recheck-20261031.md": "full",
+    "docs/decision-log.md": "latest45lines plus new entry",
+    "docs/journey/PROJECT_JOURNEY.md": "latest24lines plus new entry",
+    "docs/direct-device-iteration-20261008.md": "full",
+    "docs/device-config-20261006.md": "1-140, dated workflow only",
+    "docs/app-review-preflight-20261014.md": "full",
+    "tools/security/credential_store.py": "full",
+    "tools/maintenance-broker/core.mjs": "fixed command and review scope sections; remaining earlier full read retained",
+    "docs/app-review-sandbox-acceptance-20261031.md": "full current working contract",
+    "docs/source-control.md": "1-70 and retained earlier full read",
+    "collaboration/README.md": "current entry,135-232 and retained earlier full read",
+    "tools/ci/README.md": "full69lines",
+    "tools/ci/verify_local.py": "full149lines",
+    "tools/security/migrate_local_credential.py": "full60lines; metadata-only review, no execution; legacy backup has no supported reader migration",
+    "tools/collaboration/snapshot_policy.py": "full",
+    "tools/collaboration/verify_publication.py": "1-110; retained remaining main footer",
+    "output/qa/rillora-app-rejection-20261030/preserve-app-review.py": "full",
+    "output/qa/rillora-app-rejection-20261030/verify-remote-app-review.py": "full",
+    "Auth0 skill": "full skill and common-error pattern; CLI1-190 and Swift710-790 only; no full Swift-reference claim",
+    "screenshot skill": "full; applied earlier for read-only window diagnosis"
+  },
+  "newInstruction": "Owner starts remaining real Sandbox, expired-subscription review scenario and material alignment. Relevant physical acceptance resumes; resubmission/TestFlight hold preserved.",
+  "excluded": [
+    "dependencies and generated build caches",
+    "private identities/authentication/provider bodies",
+    "generated historical evidence mirrors"
+  ],
+  "completedAt": "2026-10-30T19:00:28.449753+00:00",
+  "latestOwnerInstruction": "Phone temporarily disconnected. Stop phone/mirroring/probes and automatic reconnect; independent Web and preservation only."
+}

@@ -1,0 +1,32 @@
+{
+  "at": "2026-11-05T13:35:54.162207+00:00",
+  "passed": true,
+  "changes": [
+    {
+      "logicalId": "MaintenanceBrokerFunctionC542279B",
+      "type": "AWS::Lambda::Function",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "MaintenanceBrokerFunctionServiceRoleDefaultPolicy7B959001",
+      "type": "AWS::IAM::Policy",
+      "replacement": "False"
+    },
+    {
+      "logicalId": "MigrationTask69EAEF9D",
+      "type": "AWS::ECS::TaskDefinition",
+      "replacement": "True"
+    },
+    {
+      "logicalId": "OperatorDefaultPolicyA84BD3A6",
+      "type": "AWS::IAM::Policy",
+      "replacement": "False"
+    }
+  ],
+  "onlyDirectChange": "MigrationTask69EAEF9D",
+  "newImage": "133857166372.dkr.ecr.eu-central-1.amazonaws.com/cdk-hnb659fds-container-assets-133857166372-eu-central-1@sha256:304422f4f5f9bd10a52de94f0773e21eabc8765392902550160d1d469670d927",
+  "ordinaryApiAndWorkersUnchanged": true,
+  "parametersUnchanged": true,
+  "permissionTemplatesUnchanged": true,
+  "dataWritesRequested": false
+}

@@ -3,6 +3,19 @@ import { PublicLink } from "../PublicLink.jsx";
 import { ArrowRight } from "@phosphor-icons/react";
 import { publicArticles, articleDate } from "../publicArticles.js";
 
+function ArticleTable({ prefix, section, table }) {
+  const { t } = useI18n();
+  const key = `${prefix}.${section}`;
+  return <div className="lp-learning-table-scroll" role="region" aria-labelledby={`heading-${section}`} tabIndex={0}>
+    <table className="lp-learning-table">
+      <thead><tr>{table.columns.map(column => <th scope="col" key={column}>{t(`${key}.${column}`)}</th>)}</tr></thead>
+      <tbody>{table.rows.map(row => <tr key={row}>{table.columns.map((column, index) => index === 0
+        ? <th scope="row" key={column}>{t(`${key}.${row}.${column}`)}</th>
+        : <td key={column}>{t(`${key}.${row}.${column}`)}</td>)}</tr>)}</tbody>
+    </table>
+  </div>;
+}
+
 export default function LearningPage({ path }) {
   const { t, locale } = useI18n();
   const article = publicArticles[path];
@@ -28,7 +41,8 @@ export default function LearningPage({ path }) {
           <li key={section}><a href={`#section-${section}`}>{t(`${prefix}.${section}.title`)}</a></li>)}</ol>
       </nav>
       {article.sections.map(section => <section key={section} id={`section-${section}`}>
-        <h2>{t(`${prefix}.${section}.title`)}</h2><p>{t(`${prefix}.${section}.body`)}</p>
+        <h2 id={`heading-${section}`}>{t(`${prefix}.${section}.title`)}</h2><p>{t(`${prefix}.${section}.body`)}</p>
+        {article.tables?.[section] ? <ArticleTable prefix={prefix} section={section} table={article.tables[section]} /> : null}
       </section>)}
       {article.questions ? <section><h2>{t("public.learn.questions")}</h2>{article.questions.map(question =>
         <details className="lp-faq-item" key={question}><summary>{t(`${prefix}.${question}.question`)}</summary>
@@ -36,7 +50,7 @@ export default function LearningPage({ path }) {
       {article.sources ? <section className="lp-learning-sources"><h2>{t("public.learn.sources")}</h2>
         <ul>{article.sources.map(source => <li key={source.key}><a href={source.urls[locale]} rel="noopener noreferrer" target="_blank">
           {t(`public.learn.source.${source.key}`)}</a></li>)}</ul>
-        <p>{t("public.learn.sourcesChecked", { date: articleDate(article.modified, locale) })}</p>
+        <p>{t("public.learn.sourcesChecked", { date: articleDate(article.sourcesChecked, locale) })}</p>
       </section> : null}
     </article>
     <nav className="lp-learning-related" aria-label={t("public.learn.related")}><h2>{t("public.learn.related")}</h2>

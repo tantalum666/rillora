@@ -1,0 +1,21 @@
+Rillora is a private organizer for important digital matters, directions and chosen sharing. It is not a will, password vault, account-transfer service or medical service. It does not infer death or automatically disclose information when someone stops signing in.
+
+SIGN-IN AND CORE FLOW
+Use the existing dedicated username/password in Sign-In Information. Open Profile > Sign in; choose sign in, not sign up. Confirm the displayed terms if requested. Passkey enrollment is optional; Continue without passkeys is supported. The supplied account uses email/password and has no enrolled MFA. Google and Apple sign-in are alternatives.
+
+The account contains clearly labelled synthetic planning information, not personal data. Open Matters to add/edit an item and Profile for contacts, sharing, Plan & access and My data. Recipients can use the web without installing iOS; accepting an invitation requires their own account with the invited email verified. My data provides export/import and account controls.
+
+SUBSCRIPTION AND REGIONS
+Family is annual-only: up to five live recipients, shared reviews and one designated contributor whose proposed corrections need the planner's approval. Free includes one live recipient. This version and its annual subscription are configured for United States and Hong Kong storefronts. Profile > Plan & access loads the current StoreKit price: USD 119.99/year in the US and HKD 888/year in Hong Kong. Review uses Apple Sandbox; the app is free to download. The supplied account’s previous Sandbox subscription expired on November 6 at 01:01 UTC; its signed expiry event has been reconciled. It is available for the new-subscription path. The monthly SKU remains only for historical restoration, with no new monthly offer. Restore purchases and Manage Apple subscriptions are on the same page. Billing never triggers disclosure.
+
+CHANGES FROM BUILD 14
+Removed customer-facing test labels; maintained and monitored review purchasing eligibility; fixed receipt-driven quote reloads and Form-row link hit targets; repaired same-owner resubscription reconciliation and an identity-check timing boundary. Signed receipts, ownership, exact currency/amount, storefront and fresh purchase consent remain enforced.
+
+TEST EVIDENCE
+Build 18 on a real iPhone 16 Pro Max / iOS 27.2 completed the existing dedicated account's Sandbox purchase/reconciliation and restore on November 5. The same order, signed receipt and entitlement were matched server-side. Earlier build 17 purchase/restore and natural expiry were verified November 1-2. Current-source UI interaction checks also passed on iPad Air 11 (M3) / iOS 27.0 and iPhone / iOS 26.5 simulators. This is not a claim of a physical iPadOS 27.2 test. Any simulator layout reference is identified separately from real-device transaction evidence.
+
+SERVICES AND LANGUAGES
+Auth0 provides hosted identity; AWS hosts API/data; Resend delivers transactional messages; Apple StoreKit handles native subscriptions. Stripe serves the separate Web service. No special hardware, HealthKit or watchOS companion is included or required in this candidate. English and Simplified Chinese are supported, with separately localized store materials.
+
+CURRENT SCREEN REFERENCE
+The IAP record is locked at Ready for Review and still contains a dated build 14 image. See the attached Rillora-18-plan-layout-reference.png for the current purchase layout. This was captured in an isolated simulator host with matching build 18 UI source and a synthetic HKD quote; it is not real-device transaction evidence.

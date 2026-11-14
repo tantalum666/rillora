@@ -1,0 +1,21 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+$REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:137470
+  throw new TypeError(
+        ^
+
+TypeError: Cannot convert v4 Miniflare option "modulesRules" to v5 options without losing behavior.
+    at throwUnsupportedOption ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:137470:9)
+    at addSourceOptions ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:136884:5)
+    at convertWorkerOptions ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:136805:20)
+    at $REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:136737:26
+    at Array.map (<anonymous>)
+    at convertV4MiniflareOptions ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:136736:35)
+    at $REPO/infra/hosting-validation/local-check.mjs:10:31
+    at ModuleJob.run (node:internal/modules/esm/module_job:343:25)
+    at async onImport.tracePromise.__proto__ (node:internal/modules/esm/loader:681:26)
+    at async asyncRunEntryPointWithESMLoader (node:internal/modules/run_main:117:5)
+
+Node.js v22.23.4

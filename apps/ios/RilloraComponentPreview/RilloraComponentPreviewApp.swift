@@ -7,7 +7,7 @@ struct RilloraComponentPreviewApp: App {
     var body: some Scene {
         WindowGroup {
             NavigationStack { ComponentPreviewHome() }
-                .preferredColorScheme(.dark)
+                .preferredColorScheme(ProcessInfo.processInfo.environment["RILLORA_PREVIEW_APPEARANCE"] == "light" ? .light : .dark)
                 #if DEBUG
                 .modifier(RilloraUITestAccessibilityOverrides())
                 #endif

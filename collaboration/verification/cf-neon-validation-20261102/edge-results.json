@@ -1,0 +1,212 @@
+{
+  "origin": "https://rillora-hosting-validation-20261102.rillora-candidate.workers.dev",
+  "syntheticOnly": true,
+  "results": [
+    {
+      "path": "/probe/http",
+      "authorized": false,
+      "exit": 0,
+      "status": "404",
+      "wallSeconds": 1.924,
+      "body": {
+        "nonJson": "Unavailable"
+      },
+      "error": ""
+    },
+    {
+      "path": "/arbitrary",
+      "authorized": true,
+      "exit": 0,
+      "status": "404",
+      "wallSeconds": 0.738,
+      "body": {
+        "nonJson": "Unavailable"
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/http",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 1.144,
+      "body": {
+        "evidence": "real-api-router-in-workerd-without-provider-credentials",
+        "results": [
+          {
+            "key": "health",
+            "status": 200,
+            "expected": 200,
+            "noSniff": true,
+            "noCache": false,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_matters",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          },
+          {
+            "key": "untrusted_origin",
+            "status": 403,
+            "expected": 403,
+            "noSniff": true,
+            "noCache": false,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_payment",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_file",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/http",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 0.797,
+      "body": {
+        "evidence": "real-api-router-in-workerd-without-provider-credentials",
+        "results": [
+          {
+            "key": "health",
+            "status": 200,
+            "expected": 200,
+            "noSniff": true,
+            "noCache": false,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_matters",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          },
+          {
+            "key": "untrusted_origin",
+            "status": 403,
+            "expected": 403,
+            "noSniff": true,
+            "noCache": false,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_payment",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          },
+          {
+            "key": "unauthenticated_file",
+            "status": 401,
+            "expected": 401,
+            "noSniff": true,
+            "noCache": true,
+            "passed": true
+          }
+        ],
+        "passed": true
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/crypto",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 1.113,
+      "body": {
+        "evidence": "real-sdks-and-content-cipher-with-synthetic-input",
+        "stripeVerified": true,
+        "tamperedStripeRejected": true,
+        "pinnedRoot": true,
+        "rootSignatureVerified": true,
+        "invalidAppleRejected": true,
+        "file": {
+          "bytes": 4096,
+          "equal": true,
+          "wrongOwnerRejected": true,
+          "tamperRejected": true,
+          "passed": true
+        },
+        "realPurchaseVerified": false,
+        "appleValidChainAndOnlineOcspVerified": false,
+        "kmsVerified": false,
+        "passed": true
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/file-limit",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 0.958,
+      "body": {
+        "evidence": "actual-content-cipher-with-memory-only-synthetic-key",
+        "kmsVerified": false,
+        "file": {
+          "bytes": 8388608,
+          "equal": true,
+          "wrongOwnerRejected": true,
+          "tamperRejected": true,
+          "passed": true
+        }
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/database",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 4.362,
+      "body": {
+        "evidence": "live-synthetic-hyperdrive-postgres-readonly",
+        "leastPrivilegeLogin": true,
+        "unsignedAuthorityRejected": true,
+        "elapsedMs": 3373,
+        "passed": true
+      },
+      "error": ""
+    },
+    {
+      "path": "/probe/database",
+      "authorized": true,
+      "exit": 0,
+      "status": "200",
+      "wallSeconds": 1.765,
+      "body": {
+        "evidence": "live-synthetic-hyperdrive-postgres-readonly",
+        "leastPrivilegeLogin": true,
+        "unsignedAuthorityRejected": true,
+        "elapsedMs": 771,
+        "passed": true
+      },
+      "error": ""
+    }
+  ]
+}

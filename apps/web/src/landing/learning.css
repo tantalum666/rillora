@@ -16,3 +16,18 @@
 .lp-learning .lp-faq-item p { margin-bottom: 0; }
 .lp-learning-related { max-width: 760px; margin: 42px 0; }
 .lp-learning-related h2 { font-size: 23px; }
+.lp-related-resources { margin-block: 42px; padding-block: 24px; border-top: 1px solid var(--lp-rule); }
+.lp-related-resources h2 { font-size: 23px; }
+.lp-related-resources ul { padding-inline-start: 22px; }
+.lp-related-resources li { margin-block: 12px; line-height: 1.7; }
+.lp-related-resources a { text-underline-offset: 4px; }
+.lp-learning-table-scroll { max-width: 100%; overflow-x: auto; margin-block: 22px; }
+.lp-learning-table { width: 100%; border-collapse: collapse; font-size: 16px; line-height: 1.65; text-align: start; }
+.lp-learning-table th, .lp-learning-table td { padding: 14px 16px; border-bottom: 1px solid var(--lp-rule); vertical-align: top; overflow-wrap: anywhere; }
+.lp-learning-table thead th { border-top: 1px solid var(--lp-rule); }
+.lp-learning-table th { text-align: start; }
+.lp-learning-table tbody th { width: 25%; font-weight: 600; }
+.lp-learning-table td { color: var(--lp-muted); }
+@media (max-width: 600px) {
+  .lp-learning-table th, .lp-learning-table td { padding: 12px 10px; }
+}

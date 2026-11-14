@@ -1,0 +1,106 @@
+{
+  "source": "https://pricing.us-east-1.amazonaws.com/offers/v1.0/aws/AmazonDynamoDB/current/eu-central-1/index.json",
+  "version": "20260911124422",
+  "rows": [
+    {
+      "sku": "E6BWPE4RMAZHTC7Z",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-IA-WriteRequestUnits",
+      "description": "$0.955 per million IA write request units in EU (Frankfurt)",
+      "unit": "WriteRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000009550"
+    },
+    {
+      "sku": "9G7XEGBNEMAXT6EE",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-WriteRequestUnits",
+      "description": "$0.7625 per million write request units (EU Central(Frankfurt))",
+      "unit": "WriteRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000007625"
+    },
+    {
+      "sku": "NK55AKMGKTK89SGA",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-IA-TimedStorage-ByteHrs",
+      "description": "$0.12240 per GB-Month of IA storage in EU (Frankfurt)",
+      "unit": "GB-Mo",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.1224000000"
+    },
+    {
+      "sku": "GCC4M9MXFJ7MCQM5",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-IA-ReplWriteRequestUnits",
+      "description": "$0.955 per million replicated IA write request units in EU (Frankfurt)",
+      "unit": "ReplicatedWriteRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000009550"
+    },
+    {
+      "sku": "D4EXBWCGADNSQYRE",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-IA-ReadRequestUnits",
+      "description": "$0.1905 per million IA read request units in EU (Frankfurt)",
+      "unit": "ReadRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000001905"
+    },
+    {
+      "sku": "DC7NMEMXZPW6E4HE",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-TimedStorage-ByteHrs",
+      "description": "$0.00 per GB-Month of storage for first 25 free GB-Months",
+      "unit": "GB-Mo",
+      "beginRange": "0",
+      "endRange": "25",
+      "USD": "0.0000000000"
+    },
+    {
+      "sku": "DC7NMEMXZPW6E4HE",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-TimedStorage-ByteHrs",
+      "description": "$0.306 per GB-Month of storage used beyond first 25 free GB-Months",
+      "unit": "GB-Mo",
+      "beginRange": "25",
+      "endRange": "Inf",
+      "USD": "0.3060000000"
+    },
+    {
+      "sku": "GA5XQXTMQJ8CBEU4",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-ReadRequestUnits",
+      "description": "$0.1525 per million read request units (EU Central(Frankfurt))",
+      "unit": "ReadRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000001525"
+    },
+    {
+      "sku": "TUQPK74VVYHMJD6T",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-ReplWriteRequestUnits",
+      "description": "$0.7625 per million replicated write request units (EU Central(Frankfurt))",
+      "unit": "ReplicatedWriteRequestUnits",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.0000007625"
+    },
+    {
+      "sku": "PT5R87Y6K3WPNRYP",
+      "location": "EU (Frankfurt)",
+      "usageType": "EUC1-TimedPITRStorage-ByteHrs",
+      "description": "$0.2448 per GB-Month of storage used for DynamoDB PITR backup",
+      "unit": "GB-Mo",
+      "beginRange": "0",
+      "endRange": "Inf",
+      "USD": "0.2448000000"
+    }
+  ]
+}

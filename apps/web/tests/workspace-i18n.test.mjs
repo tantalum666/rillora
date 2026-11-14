@@ -50,9 +50,9 @@ test('localized matter and contact labels preserve evidence, statuses and legacy
 });
 
 test('commercial rendering adapters localize known metadata without changing access or unknown values', () => {
-  const access = Object.freeze({ available: true, currentAccessLabel: 'Rillora Free · Test access', currentAccess: Object.freeze({ planCode: 'free' }), validationOnly: true, billingOpen: false });
+  const access = Object.freeze({ available: true, currentAccessLabel: 'Rillora Free', currentAccess: Object.freeze({ planCode: 'free' }), validationOnly: true, billingOpen: false });
   assert.equal(commercialPlanLabel(access), access.currentAccessLabel);
-  assert.equal(commercialPlanLabel(access, chinese), 'Rillora 免费版 · 测试权限');
+  assert.equal(commercialPlanLabel(access, chinese), 'Rillora 免费版');
   assert.equal(access.billingOpen, false);
   assert.equal(billingStateLabel('active', chinese), '家庭版已启用');
   assert.equal(billingStateLabel('unknown_future_state', chinese), '家庭版订阅');

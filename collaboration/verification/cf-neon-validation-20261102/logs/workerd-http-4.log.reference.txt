@@ -1,0 +1,37 @@
+
+> rillora-hosting-validation@0.1.0 check:local
+> node local-check.mjs
+
+service core:user:rillora-hosting-validation-local: Uncaught Error: Disallowed operation called within global scope. Asynchronous I/O (ex: fetch() or connect()), setting a timeout, and generating random values are not allowed within global scope. To fix this error, perform this operation within a handler. https://developers.cloudflare.com/workers/runtime-apis/handlers/
+  at dist/worker.js:67:115991
+  at dist/worker.js:1:611
+  at dist/worker.js:151:50117
+  at dist/worker.js:1:611
+  at dist/worker.js:151:74074
+  at dist/worker.js:1:611
+  at dist/worker.js:295:5509
+The Workers runtime failed to start. There was likely a problem with the workerd binary or your configuration.
+Runtime stderr:
+{"timestamp":"1793608770654","level":"error","source":"src/workerd/server/server/entry.rs:169","message":"service core:user:rillora-hosting-validation-local: Uncaught Error: Disallowed operation called within global scope. Asynchronous I/O (ex: fetch() or connect()), setting a timeout, and generating random values are not allowed within global scope. To fix this error, perform this operation within a handler. https://developers.cloudflare.com/workers/runtime-apis/handlers/\n  at dist/worker.js:67:115991\n  at dist/worker.js:1:611\n  at dist/worker.js:151:50117\n  at dist/worker.js:1:611\n  at dist/worker.js:151:74074\n  at dist/worker.js:1:611\n  at dist/worker.js:295:5509","context_depth":0}
+$REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:119530
+      throw new MiniflareCoreError(
+            ^
+
+MiniflareCoreError [ERR_RUNTIME_FAILURE]: The Workers runtime failed to start. There was likely a problem with the workerd binary or your configuration.
+Runtime stderr:
+{"timestamp":"1793608770654","level":"error","source":"src/workerd/server/server/entry.rs:169","message":"service core:user:rillora-hosting-validation-local: Uncaught Error: Disallowed operation called within global scope. Asynchronous I/O (ex: fetch() or connect()), setting a timeout, and generating random values are not allowed within global scope. To fix this error, perform this operation within a handler. https://developers.cloudflare.com/workers/runtime-apis/handlers/\n  at dist/worker.js:67:115991\n  at dist/worker.js:1:611\n  at dist/worker.js:151:50117\n  at dist/worker.js:1:611\n  at dist/worker.js:151:74074\n  at dist/worker.js:1:611\n  at dist/worker.js:295:5509","context_depth":0}
+    at StartupLogBuffer.handleStartupFailure ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:119530:13)
+    at Runtime.updateConfig ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:119610:24)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+    at async #assembleAndUpdateConfigInternal ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:139269:30)
+    at async #assembleAndUpdateConfig ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:139191:7)
+    at async $REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:138091:7
+    at async Mutex.runWith ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:80902:16)
+    at async #waitForReady ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:139405:5)
+    at async _Miniflare.dispatchFetch ($REPO/infra/hosting-validation/node_modules/miniflare/dist/src/index.js:139571:5)
+    at async $REPO/infra/hosting-validation/local-check.mjs:28:18 {
+  code: 'ERR_RUNTIME_FAILURE',
+  cause: undefined
+}
+
+Node.js v22.23.4

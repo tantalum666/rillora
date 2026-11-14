@@ -1,0 +1,28 @@
+{
+  "device": "iPad Air 11-inch (M3)",
+  "runtime": "iPadOS27.0",
+  "scope": "synthetic renderer using the actual paywall view; no real purchase",
+  "cases": [
+    {
+      "language": "en",
+      "appearance": "light",
+      "currency": "USD",
+      "annualAmount": "119.99",
+      "fixture": "ready",
+      "subscribeEnabled": true,
+      "testBadgeAbsent": true,
+      "image": "ipad-preview-ready-en-usd.jpg"
+    },
+    {
+      "language": "zh-Hans",
+      "appearance": "dark",
+      "currency": "HKD",
+      "annualAmount": "888.00",
+      "fixture": "unavailable",
+      "subscribeEnabled": false,
+      "retryExplanationVisible": true,
+      "testBadgeAbsent": true,
+      "image": "ipad-preview-unavailable-zh-hkd.jpg"
+    }
+  ]
+}

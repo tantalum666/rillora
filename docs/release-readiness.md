@@ -1,13 +1,65 @@
 # Rillora 1.0 正式发布准备
 
 Role: current launch scope, remaining work and release evidence contract  
-Status: WEB LIVE; APPLE WAITING FOR REVIEW; REMAINING PHYSICAL TESTS CANCELLED BY OWNER
-Last updated: 2026-10-15 (Asia/Hong_Kong)
+Status: ALL THREE18 ITEMS WAITING FOR REVIEW / MANUAL RELEASE / NO TESTFLIGHT
+Last updated: 2026-11-14 (Asia/Shanghai)
 
+## November14 当前：修复后重新提交
 
-Apple最终回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight，尚未获批或公开上架。
+按Owner新指令，[Apple回复与重新提审](app-review-resubmission-20261114.md)已完成：香港21:47说明／实际截图送达，21:49原18、年付和群组一起提交，刷新均等待审核。版本页再次确认手动发布。当前原账号、服务和期限／告警已读回；December4是沙盒购买资格而非全局登录期限。既有真实新登录和购买证据不重做，没有新构建上传、部署或TestFlight。
 
-## October15当前发布状态
+## Earlier November14 拒审与修复检查点
+
+18已实际被Apple因无法登录拒绝。[根因与后端修复](app-review-login-fix-20261114.md)确认当前服务方字段参数400，已修复并在Preview／正式部署；随后使用原受保护密码及Owner明确确认完成正式Web与冻结18 Release原生的新登录、私有事项读取和刷新／停止重开；登录门已闭合。原生为27.0模拟器，物理27.2.1和新购买不在本轮范围。Apple回复材料已准备，本轮没有发送、再次提交或发TestFlight；不能保证下一轮审核结果。下述November6等待审核为历史状态。
+
+## November6 当前发布准备
+
+后续Owner明确要求重新提审。[实际重新提交](app-review-resubmission-20261106.md)已于香港14:16完成，18／年订阅／群组刷新后都为等待审核，手动发布独立确认。只有重新提审暂停被解除，TestFlight和自动发布边界保持。账号／服务当前检查通过，既有云端监控保留，缺失本机维护任务已重新建立。下段“暂停”是此前材料准备检查点。
+
+[长期用户会话](longer-user-sessions-20261106.md)和额外审核身份核验器修复已完成两环境部署；[审核再复核](app-review-recheck-20261106.md)现已读回18草稿、最终备注、当前布局参考附件和双语标准许可链接。协议有效，当前13类隐私标签、USA/HKG及年费USD119.99/HKD888已核对。既有18再次订阅／恢复和新的签名自然到期结果分别有真实证据；不重复购买。
+
+年付商品的旧审核图／备注由Apple状态锁定，当前版本附件和说明明确补充，未宣称旧字段替换。Owner的“不重新提审、不分发TestFlight”仍是执行边界；当前准备不等于Apple批准或公开上架。详见[当前交接](handoff.md)，以下November5及更早段落均为历史检查点。
+
+## HISTORICAL — November5同账号再次订阅修复
+
+[109修复与实际结果](apple-resubscription-repair-20261105.md)已完成：18设备安装后报告的409不是显示延迟；服务器误拒同原编号的新意图token。Preview／正式迁移及权限通过，Owner恢复后已订阅，同一新订单、签名收据、active权益匹配。新维护镜像仅叠加诊断和109，普通API／worker／价格／收费不变。现推进独立的用户长期会话需求，尚未部署；重提／TestFlight暂停继续。
+
+## HISTORICAL — November5发布状态
+
+[本轮复核与交互修复](app-review-readiness-20261104.md)优先解决Owner最新手机反馈：交易核对不再反复清空报价，灰色订阅区域不再误开法律链接；74项购买／状态／双语及6项iPad／iPhone点击检查通过，18-r2已按后续Owner指令在原手机原位安装并启动，独立读回build18，本人页面检查待反馈。手机现有17实际购买／恢复和November2自然到期保持有效证据，旧“待验自然到期”与重买下一步不再适用。
+
+专用审核身份购买资格已续到2026-12-04T12:00Z，DB／API／监控一致，提前14天告警与安静跟进已设置。Auth0现有账号无封禁，密码未改；生产数据／价格／收费保持。Apple仍选14且Rejected，旧审核图和备注未自动更新；本轮不上传、重提或TestFlight。唯一下一步见[交接](handoff.md)：补最终18页面稳定性读回，再对应最终素材／构建，不重复已经完成的交易。
+
+## HISTORICAL — November1发布状态
+
+最新[真机验收](apple-purchase-acceptance-20261101.md)已完成购买、恢复及独立账本读回：同一原HKD888订单paid_reconciled，签名验证／事件处理通过，订阅active。原待处理订单与独立Sandbox的US地区不匹配已对齐至香港；没有清账或转移原购买。新的双语错误文案在源码通过9项、只读检查通过20项；尚未为文字单独重装手机。取消续期／实际到期及最终候选材料仍未完成，不能写成所有付款场景或发布门通过。以下本日早先“尚无本次成功交易”的描述是此前检查点，由本段结果取代。
+
+[购买归属修复](apple-owner-latency-20261101.md)已完成本机44项购买协调测试和9项语言检查；另19项同轮未变化检查沿用。17从16隔离源码准备，已原位安装／读回／启动。Owner确认当前审核账号检查待处理购买时没有再弹Apple密码；耗时未给出。Owner在16进入购买操作并报告归属错误；审核Web实际读到started意图，尚无本次成功交易／权益／恢复／到期证据。保留原交易归属，复用已有独立Sandbox tester的元数据线索，实际凭据／历史仍待验证。普通AppleID不被硬编码，不能为测试放宽签名或跨账号权益。
+
+两API／三套Web已部署、Stripe只读状态已核对；不重复部署。当前下一步是Owner使用独立Sandbox身份刷新报价，再完成购买验收，最终提审／TestFlight继续暂停。下面October31安装16和初始登录状态为当时检查点。
+
+## HISTORICAL — October31发布状态
+
+本日后续：Owner恢复认证后，本轮两API与三套Web修正已实际部署并核对，StripeLive状态／价格／回调已只读复核，真实审核Web和官网双语UI已确认。原生16不重装；Owner现接管手动登录、Sandbox购买和一次恢复。当前仍没有新的原生购买成功结果，最终提审／TestFlight暂停；详细状态只看[当前交接](handoff.md)。下表中较早“待部署／认证”按这条实际结果更新理解。
+
+Apple在October30拒绝1.0(14)，涉及2.2及2.1(b)，不能再使用下方“等待审核”的历史结论。购买资格过期和普通页面测试呈现已在[原修复](app-review-remediation-20261030.md)处理；15已直装并读回，专用审核Web登录及服务器报价有[独立证据](app-review-sandbox-acceptance-20261031.md)，原生审核登录和真实Apple购买／恢复／到期仍未完成。
+
+Owner现已恢复镜像，要求完成当前验收后[彻查正式产品完整性](release-product-audit-20261031.md)。本轮已确认并修复候选中的Web付款环境选择、不可用状态反馈、官网测试阶段文案及原生无对应操作的未来功能提示；本机回归与后续部署分别记录，不能把源码修复说成线上完成。最终重新提审和TestFlight仍暂停。
+
+| 当前项 | 准确状态与剩余工作 |
+| --- | --- |
+| 正式Web与官网 | 本轮修正已部署；正式Web、Preview和官网的变化文件／发布记录及真实双语UI已核对，WebUSD88.99和原收费范围保持。 |
+| 原生审核替代候选 | 16已开发签名原位安装、设备读回；与15只差移除无对应操作的安全管理预告，原支付逻辑与下一版隔离保持。受保护读取已由Owner完成，原密码在正式Web成功；Owner现接管原生登录／Sandbox购买，Agent停止镜像输入。 |
+| Apple实际购买闭环 | 审核登记有效至November29 12:00Z，价格USD119.99／HKD888；服务器报价和旧版本购买不能替代当前修复后的完整验证，未订阅不能冒充过期订阅。 |
+| 审核材料与提交 | 原14仍Rejected；最终候选、有效审核账号、实际验收结果及截图／说明需一致。当前不上传、重提或发送未完成的回复草稿。 |
+| 下一版内容、HealthKit、Watch、Duo | 与审核替代候选隔离；各自已实现、本机通过与真实设备／分发缺口仍按聚焦合同保留，不把未分发能力写成当前iOS功能。 |
+| 其他既有证据 | 数据／权限／恢复、旧支付及共享结果沿用原时间与提交。Owner保留的删除账号不做不可撤销删除，不虚构删除通过。 |
+
+唯一执行下一步以[当前交接](handoff.md)为准。下面各段均为带日期的历史记录，不再是当前发布门。
+
+## HISTORICAL — October15发布检查点
+
+当时Apple回执：香港October15 09:49，提交6537a10c-38f2-425e-8b8e-c76e5fa730b1中的App1.0(14)、年订阅、群组三项均等待审核。手动发布保持，未分发TestFlight；该排队状态已被October30实际拒审取代。
 
 [本轮复核](app-review-preflight-20261014.md)：40c76496f／CI153及两份静态部署通过，117文件匹配；旧身份令牌窗口关闭、正式Action与Web新购已开启，USD88.99和关闭自动计税不变。专用审核账号Web／原生登录与合成资料跨端读写完成，Apple双语权益与审核说明已保存。Owner明确停止余下真机检查，未验证项不冒称通过。Apple普通新购继续等待独立发布后验证；Auth0外壳为Owner暂缓。
 
@@ -43,9 +95,9 @@ Owner本轮暂后手机本人验证，独立Web检查已完成。两处实际问
 
 本机部署工具两处兼容问题另修于042f4e100，CI127三任务通过；archive33已在d33e0b31f独立远端解密核验；发布测试样本稳定性修正5adf61570／CI129三任务通过，当前剩余发布步骤见handoff。GitHub当前私有仓库页面明确不强制保护规则，不能把CI通过写成服务器强制检查已启用。此前付款与Apple证据继续保留原日期；下方October10技术版本是历史检查点。
 
-## Current remaining launch inventory — updated October13
+## HISTORICAL remaining launch inventory — October13
 
-上方October13集中收尾及下表是当前状态。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
+上方October13集中收尾及下表是当时检查点，已由本文件顶部October31状态与当前handoff取代。下列October10付款复核段落保留当日技术版本，不应继续把API21／schema94／手机13、旧商店9或尚未授权社区外发当作现状。
 
 October10的[付款与完整双语交付](payment-recheck-20261009.md)更新了下列实际证据，不重开旧工作。Web/原生Free1与Family5、WebUSD88.99年付和Apple美国USD119.99保持。
 

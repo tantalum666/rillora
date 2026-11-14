@@ -4,8 +4,20 @@ Role: staged hosting, domain, runtime, data, cost-control and migration contract
 Authority scope: zero-revenue public hosting, future production resources, cost triggers and provider migration  
 Superseded by: later explicit Owner decision, stricter security／legal requirement or verified provider limit  
 Do not use for: claiming production readiness, creating paid resources, storing real sensitive data or opening a market  
-Status: PUBLIC LEGAL AND STAGING LIVE; PRODUCTION DATA/CLOSED API VERIFIED; CUSTOMER RELEASE CLOSED
-Last updated: 2026-09-25 (Asia/Hong_Kong)
+Status: HOSTING COST REVIEW ACTIVE; CURRENT PRODUCTION UNCHANGED
+Last updated: 2026-11-04 (Asia/Hong_Kong)
+
+## November4 AWS optimization execution and growth
+
+[The current AWS report](aws-optimization-20261104.md) records actual optional-metric reduction, notification/anomaly repairs, free standard recommendations and a deployed isolated-worker TLS memory fix. Preview sleep and bounded worker execution remain planned; the earlier73.35/65.71USD targets are not current realized bills. Scale by measured latency/CPU/memory/connections and recovery needs, with shared rate limits and background coordination before multiple API replicas. Existing Free Tier usage is verified; two20USDactivities andActivate are unawarded opportunities. No new paid plan, migration, review action or cloud CI follows.
+
+## November3 full hosting comparison
+
+[The five-provider decision](architecture/five-provider-hosting-decision-20261103.md) is the current cost-design reference: matched environments and complete running costs, with security invariants separated from implementation. Recommend AWS optional-metrics/Preview control first, then validate bounded isolated deletion; Oracle is the lower-cash self-managed alternative. CF/Vercel public-only hybrids include the retained AWS bill. Public unit rates and workload budgets are not invoices, validated capacity or approved migration. No live change, real-data move, supplier message or review/TestFlight action occurred. The dated implementation statements below remain historical.
+
+## November2 cost-control diagnosis
+
+[Current invoice and resource evidence](aws-cost-review-20261102.md) supersedes the dated credit, current-hosting and cost estimates below: ordinary production and Preview are running, October gross usage120.63USD was reduced to37.63USDby83USDcredits, and available credits now equal0. The existing budget has no notifications. Performance-metric reduction and on-demand Preview are concrete proposals only; no production data/runtime has been stopped or migrated. Continue from the current handoff, not the historical phase0 entry.
 
 ## September24 identity/mail/public increment
 

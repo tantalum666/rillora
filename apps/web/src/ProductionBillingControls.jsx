@@ -20,7 +20,7 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
       setStatus(billing); setError(null); onAccessChanged(access);
     } catch (failure) {
       if (version !== requestVersion.current) return;
-      setStatus(null); setError(failure.status === 404 ? null : failure);
+      setStatus(null); setError(failure);
     }
   }, [apiClient, appleManaged, commerce.serviceMarketCode, onAccessChanged]);
   useEffect(() => { void refresh(); return () => { ++requestVersion.current; }; }, [refresh]);
@@ -36,7 +36,8 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
   const sub = status?.subscription ?? commerce.currentAccess?.subscription;
   const managesExisting = active || appleManaged || subscriptionPreventsNewCheckout(sub);
   const offer = currentWebAnnualOffer(commerce.offers);
-  const canSubscribe = commerce.billingOpen && offer?.purchasable === true && status !== null;
+  const canSubscribe = commerce.billingOpen && offer?.purchasable === true
+    && status?.checkoutAvailability === 'available';
   const subscribe = () => run(async isCurrent => {
     const route = await apiClient.resolvePurchaseRoute({ clientSurface: 'web', serviceMarketCode: commerce.serviceMarketCode, intent: 'plan_access' });
     if (!isCurrent()) return;
@@ -60,12 +61,16 @@ export function ProductionBillingControls({ commerce, onAccessChanged, returnedF
         {t(busy ? "workspace.billing.checking" : status?.checkoutPending ? "workspace.billing.continueCheckout" : "workspace.billing.subscribe")}</button>}
     {!managesExisting && <div className="billing-disclosure">
       {!commerce.billingOpen && <p>{t("workspace.billing.newClosed")}</p>}
+      {commerce.billingOpen && status?.checkoutAvailability === 'account_unavailable'
+        && <p role="status">{t("workspace.billing.accountUnavailable")}</p>}
+      {commerce.billingOpen && status?.checkoutAvailability === 'unavailable'
+        && <p role="status">{t("workspace.billing.unavailable")}</p>}
       <p>{t("workspace.billing.renewalShort")}</p><p><SubscriptionConsentText bySubscribing /></p>
     </div>}
     {sub?.currentPeriodEndsAt && !['refunded', 'revoked'].includes(sub.state) && <p className="billing-disclosure">{t(sub.cancelAtPeriodEnd ? "workspace.billing.paidEnds" : active ? "workspace.billing.periodEnds" : "workspace.billing.periodEnded", { date: formatDate(sub.currentPeriodEndsAt) })}</p>}
     {sub && ['refunded', 'revoked'].includes(sub.state) && sub.renewalIsPossible !== false && <p className="billing-disclosure">{t("workspace.billing.checkRenewalAfterRefund")}</p>}
     {returnedFromCheckout && status?.checkoutPending && !active && <p role="status">{t("workspace.billing.confirmationPending")}</p>}
-    {error && <p role="alert">{errorMessage(error, "workspace.billing.errorOperation")} <button className="text-button" disabled={busy} onClick={() => run(refresh)}>{t("workspace.billing.refresh")}</button></p>}
+    {error && <p role="alert">{error.status === 404 ? t("workspace.billing.unavailable") : errorMessage(error, "workspace.billing.errorOperation")} <button className="text-button" disabled={busy} onClick={() => run(refresh)}>{t("workspace.billing.refresh")}</button></p>}
     {status?.canManage && !managesExisting && <button className="text-button" disabled={busy} onClick={manage}>{t("workspace.billing.manage")}</button>}
     {status?.checkoutPending && <button className="text-button" disabled={busy} onClick={() => run(async () => {
       await apiClient.cancelProductionCheckout(); checkoutKey.current = crypto.randomUUID(); await refresh();

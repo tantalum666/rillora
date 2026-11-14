@@ -1,0 +1,51 @@
+"""Preserve only the new Nov4-5 review work; private provider/account records stay local."""
+from pathlib import Path
+import datetime,hashlib,json,os,re,subprocess,sys,tempfile,uuid
+ROOT=Path(__file__).resolve().parents[3];QA=Path(__file__).parent
+DEST=ROOT/'collaboration/verification/app-review-readiness-20261104'
+ARCHIVE=ROOT/'collaboration/archives/raw-work-060.tar.zst.age'
+sys.path.insert(0,str(ROOT/'tools/collaboration'))
+import build_snapshot as snapshot
+from snapshot_policy import directory_exclusion,file_exclusion
+from verify_archives import verify
+safe_names={'reading-and-scope.json','owner-flicker-report.json','owner-plan-page-flicker-20261104.png','ui-harness-scope.json','review-window-deployment-verified.json','auth0-deployed-action-scope.json','validation-summary.json','asc-readback-safe.json','app-review-notes-draft.txt','health-check-final.log','native-static-boundaries.log','release-preflight.json','closeout.json','prepare-native18.py'}
+selected=[];excluded=[{'path':'archives001-059','reason':'immutable prior work; not resealed or downloaded'},{'path':'.local-secrets and private provider/auth/device records','reason':'private identities, credentials, authentication, cloud templates and maintenance capabilities remain local-only'}]
+bases=[QA,ROOT/'output/release/rillora-app-review-readiness-20261104',ROOT/'output/release/rillora-app-review-readiness-20261104-r2']
+for base in bases:
+ for parent,dirs,names in os.walk(base):
+  parent=Path(parent)
+  for name in list(dirs):
+   path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=directory_exclusion(rel)
+   if parent==QA and name!='ui-source' and not (name.startswith('native18-') and name.endswith('.xcresult')):reason='outside explicit new native/QA archive scope'
+   if reason or path.is_symlink():dirs.remove(name);excluded.append({'path':rel,'reason':reason or 'symlink'})
+  for name in names:
+   path=parent/name;rel=path.relative_to(ROOT).as_posix();reason=file_exclusion(rel)
+   if parent==QA and name not in safe_names and not name.startswith('native18-'):reason='not explicitly approved nonsecret native result'
+   if '.private.' in name or name.startswith(('auth0-login','aws-login')):reason='private authentication/provider record'
+   if reason or path.is_symlink():excluded.append({'path':rel,'reason':reason or 'symlink'})
+   else:selected.append((rel,path))
+plan={'files':len(selected),'bytes':sum(p.stat().st_size for _,p in selected),'paths':[p for p,_ in selected],'excluded':excluded,'archive':ARCHIVE.relative_to(ROOT).as_posix()}
+(QA/'preservation-plan.json').write_text(json.dumps(plan,ensure_ascii=False,indent=2)+'\n')
+if '--seal' not in sys.argv:print(json.dumps({k:plan[k] for k in ['files','bytes','archive']}));sys.exit()
+assert not ARCHIVE.exists(),'Never replace a prior archive'
+assert (QA/'closeout.json').exists(),'Close out actual verification before capture'
+cache=QA/'publication/frozen';cache.mkdir(parents=True,mode=0o700,exist_ok=True)
+patterns=[rb'-----BEGIN (?:RSA |EC |OPENSSH )?PRIVATE KEY-----',rb'\b(?:AKIA|ASIA)[A-Z0-9]{16}\b',rb'\b(?:sk_live_|rk_live_|sk_test_)[A-Za-z0-9]{20,}\b',rb'\beyJ[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\.[A-Za-z0-9_-]{15,}\b']
+objects={};records=[];started=datetime.datetime.now(datetime.timezone.utc).isoformat()
+for rel,path in sorted(selected):
+ frozen,digest=snapshot.freeze_file(path,cache);data=frozen.read_bytes()
+ assert not any(re.search(pattern,data) for pattern in patterns),'Review potential credential before capture: '+rel
+ blob=objects.setdefault(digest,{'id':uuid.uuid4().hex,'sha256':digest,'bytes':len(data),'source':str(frozen),'paths':[]});blob['paths'].append(rel)
+ records.append({'sourcePath':rel,'bytes':len(data),'rawObject':blob['id'],'rawArchive':ARCHIVE.relative_to(ROOT).as_posix()})
+identity=ROOT/'.local-secrets/collaboration-git/identity.txt';assert identity.stat().st_mode&0o077==0
+recipient=subprocess.check_output(['age-keygen','-y',str(identity)],text=True).strip();archive=snapshot.seal_chunk(60,list(objects.values()),recipient)
+(DEST/'catalog.json').write_text(json.dumps(records,ensure_ascii=False,indent=2)+'\n')
+summary={'capturedFrom':started,'capturedThrough':datetime.datetime.now(datetime.timezone.utc).isoformat(),'workFiles':len(records),'uniqueRawObjects':len(objects),'workBytes':sum(x['bytes'] for x in records),'archives':[archive],'catalogFiles':[(DEST/'catalog.json').relative_to(ROOT).as_posix()],'excluded':excluded,'credentialPatternMatches':0,'selection':'New exact candidate18-r1/r2 sources and signed artifacts; local-only test harness and original failed/passed xcresults; explicitly selected safe native and reviewer-renewal summaries. Raw private authentication/account/device/provider/cloud state excluded. Prior1-59unchanged.','boundary':'No phone18installation, AppStoreupload, TestFlight, resubmission or new purchase. Local and real17evidence remain separate.'}
+(DEST/'snapshot.json').write_text(json.dumps(summary,ensure_ascii=False,indent=2)+'\n')
+with tempfile.TemporaryDirectory(prefix='rillora-review60-') as temporary:
+ stage=Path(temporary);(stage/'collaboration').mkdir();(stage/'collaboration/snapshot.json').write_text(json.dumps(summary))
+ for name in [archive['path'],*summary['catalogFiles']]:
+  target=stage/name;target.parent.mkdir(parents=True,exist_ok=True);os.link(ROOT/name,target)
+ result=verify(stage,identity)
+(DEST/'archive-verification.json').write_text(json.dumps(result,indent=2)+'\n')
+print(json.dumps({'paths':len(records),'objects':len(objects),'encryptedBytes':archive['bytes'],'locallyVerified':result['passed']}))

@@ -1,5 +1,12 @@
 function handler(event) {
   var request = event.request;
+  // Viewer values cannot supply trusted context. CloudFront adds its own
+  // network metadata and the private origin proof after this viewer function.
+  var headers = request.headers || {};
+  delete headers['x-rillora-session-edge-proof'];
+  delete headers['cloudfront-viewer-country'];
+  delete headers['cloudfront-viewer-asn'];
+  delete headers['cloudfront-viewer-address'];
   if (request.uri === '/.well-known/apple-app-site-association' && (request.method === 'GET' || request.method === 'HEAD')) {
     return { statusCode: 200, headers: { 'content-type': { value: 'application/json' }, 'cache-control': { value: 'public, max-age=3600' } },
       // Preserve the current App's universal-link contract. Future notices use

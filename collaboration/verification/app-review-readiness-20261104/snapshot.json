@@ -1,0 +1,197 @@
+{
+  "capturedFrom": "2026-11-04T16:11:49.311908+00:00",
+  "capturedThrough": "2026-11-04T16:27:05.601507+00:00",
+  "workFiles": 1806,
+  "uniqueRawObjects": 927,
+  "workBytes": 179716792,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-060.tar.zst.age",
+      "sha256": "641af8da13f602004c9e03ed63001210a12f03e55c6de4d6a3098653ddfaa14f",
+      "bytes": 72607692,
+      "plainBytes": 155318891,
+      "uniqueObjects": 883
+    },
+    {
+      "path": "collaboration/archives/raw-work-061.tar.zst.age",
+      "sha256": "ecb3f07b1e2a46ace084ee8b22a3c10afd9a070a911fc7c77cbc7aa8dfc20b22",
+      "bytes": 143067,
+      "plainBytes": 2756707,
+      "uniqueObjects": 44
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/app-review-readiness-20261104/catalog.json",
+    "collaboration/verification/app-review-readiness-20261104/catalog-followup.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-059",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets and private provider/auth/device records",
+      "reason": "private identities, credentials, authentication, cloud templates and maintenance capabilities remain local-only"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/derived-release",
+      "reason": "outside explicit new native/QA archive scope"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/derived-tests-r2",
+      "reason": "outside explicit new native/QA archive scope"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/derived-release-r2",
+      "reason": "outside explicit new native/QA archive scope"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/derived-ui",
+      "reason": "outside explicit new native/QA archive scope"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/derived-tests",
+      "reason": "outside explicit new native/QA archive scope"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-mfa-required.png",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/ops-deadline-tests.log",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/device-discovery.private.log",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/archive-seal.log",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/preserve-review-work.py",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/renew-review-receipt.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-login.private.log",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/review-renewal-plan.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-reviewer-readback.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-login-result.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/preservation-plan.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/operations-live-health.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/operations-change-guard.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/review-ipad-inventory.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/apple-links-current.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-read-attempt.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/operations-review-window-plan.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-login.private.log",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-login-stream.private.log",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/asc-version-snapshot.private.txt",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-session-recovery.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/apple-message-current.private.txt",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/aws-login-tty.private.log",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-login-required.png",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/apple-review-maintenance.py",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/review-access-check.py",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-reviewer-blocks.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-login-result.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-deployed-actions.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/devices.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/review-inspection-result.json",
+      "reason": "not explicitly approved nonsecret native result"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/asc-business.private.txt",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/auth0-reviewer-status.private.json",
+      "reason": "private authentication/provider record"
+    },
+    {
+      "path": "output/qa/rillora-app-review-readiness-20261104/production-review-window-plan-check.json",
+      "reason": "not explicitly approved nonsecret native result"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "selection": "New exact candidate18-r1/r2 sources and signed artifacts; local-only test harness and original failed/passed xcresults; explicitly selected safe native and reviewer-renewal summaries. Raw private authentication/account/device/provider/cloud state excluded. Prior1-59unchanged.",
+  "boundary": "No phone18installation, AppStoreupload, TestFlight, resubmission or new purchase. Local and real17evidence remain separate.",
+  "followup": "Independent UI-test project generator and its original build failures/final passing smoke; initial source-publication failure retained. No release source, signed artifact or scanner exception changed."
+}

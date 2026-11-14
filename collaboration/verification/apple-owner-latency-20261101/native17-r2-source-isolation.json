@@ -1,0 +1,29 @@
+{
+  "preparedAt": "2026-10-31T16:14:12.091083+00:00",
+  "baseCandidate": "1.0(16)",
+  "candidate": "1.0(17)",
+  "changedPaths": [
+    "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift",
+    "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift"
+  ],
+  "sourceFiles": 198,
+  "sha256": {
+    "apps/ios/Rillora/Core/Commerce/ApplePurchaseCoordinator.swift": "29def66968185d49d66107b3d4cd59755414830ce6b8f79c4fe89b7ac8ad141c",
+    "apps/ios/Rillora/Core/Commerce/StoreKitClient.swift": "5e1b008a79601f199e134f96aa73dea80971e2a8b15df101c36943ce100af161",
+    "apps/ios/Rillora/Features/Account/ApplePurchaseSection.swift": "7992b6a0f42354c10086ccc1c6321e54c06370b4ed96d60e6f388302178d8aec",
+    "apps/ios/Rillora/Resources/Localizable.xcstrings": "932ceaf5bc925d58863e0934646358452ecec23a7ed06f3d8683d1e83baa45d5",
+    "apps/ios/RilloraTests/ApplePurchaseCoordinatorTests.swift": "549b76867d87270471c18c6950231a5f44a3e9bc5a2a20bd0ce5031f40795231"
+  },
+  "localizationKeys": [
+    "Use the Rillora account originally used for this purchase.",
+    "Apple could not confirm which Rillora account owns this purchase. Contact support before subscribing again.",
+    "Apple has not returned a matching purchase yet. Check again shortly; do not start another purchase."
+  ],
+  "newNextVersionFeatures": false,
+  "pricingAndRuntimeConfigChanged": false,
+  "upload": false,
+  "submit": false
+}

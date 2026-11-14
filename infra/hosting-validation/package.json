@@ -1,0 +1,24 @@
+{
+  "name": "rillora-hosting-validation",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "build": "node prepare-root.mjs && wrangler deploy --dry-run --minify --outdir dist && node stage-assets.mjs",
+    "types": "wrangler types",
+    "typecheck": "tsc --noEmit",
+    "check:local": "node local-check.mjs"
+  },
+  "dependencies": {
+    "pg": "8.22.0",
+    "stripe": "22.6.2",
+    "@apple/app-store-server-library": "3.1.0"
+  },
+  "devDependencies": {
+    "@types/node": "24.10.1",
+    "@types/pg": "8.15.6",
+    "miniflare": "5.20261101.0-beta",
+    "typescript": "7.0.2",
+    "wrangler": "4.156.1"
+  }
+}

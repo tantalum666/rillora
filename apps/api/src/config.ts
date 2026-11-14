@@ -12,7 +12,6 @@ const booleanFromString = z
   .transform((value) => value === "true");
 
 const optionalUrl = z.string().url().optional();
-
 const optionalNonEmpty = z.string().min(1).optional();
 
 const configSchema = z
@@ -62,6 +61,11 @@ const configSchema = z
     TRUST_PROXY_HOPS: z.coerce.number().int().min(0).max(1).default(0),
     SESSION_TTL_MINUTES: z.coerce.number().int().min(15).max(1_440).default(480),
     SESSION_IDLE_MINUTES: z.coerce.number().int().min(5).max(240).default(30),
+    TRUSTED_USER_SESSIONS_ENABLED: booleanFromString,
+    SESSION_EDGE_PROOF_SHA256: z.preprocess(value => value === '' ? undefined : value,
+      z.string().regex(/^[a-f0-9]{64}$/).optional()),
+    TRUSTED_SESSION_TTL_DAYS: z.coerce.number().int().min(1).max(30).default(30),
+    TRUSTED_SESSION_IDLE_DAYS: z.coerce.number().int().min(1).max(7).default(7),
     AUTH_TRANSACTION_TTL_SECONDS: z.coerce.number().int().min(120).max(900).default(600),
     WEB_APP_ORIGIN: optionalUrl,
     OIDC_ISSUER_URL: optionalUrl,
@@ -167,6 +171,7 @@ export type AppConfig = {
   trustProxyHops: number;
   sessionTtlMinutes: number;
   sessionIdleMinutes: number;
+  trustedUserSessions?: { enabled: boolean; edgeProofSha256: string; ttlMinutes: number; idleMinutes: number } | null;
   authTransactionTtlSeconds: number;
   dataRegion: string;
   oidc: OidcConfig | null;
@@ -384,6 +389,11 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   const database = parseDatabaseConfig(parsed);
   const verificationValues = [parsed.AUTH0_EMAIL_VERIFICATION_DOMAIN, parsed.AUTH0_EMAIL_VERIFICATION_CLIENT_ID, parsed.AUTH0_EMAIL_VERIFICATION_CLIENT_SECRET];
   const hasVerification = verificationValues.some(value => value !== undefined);
+  if (parsed.TRUSTED_USER_SESSIONS_ENABLED && (!parsed.SESSION_EDGE_PROOF_SHA256
+    || parsed.TRUSTED_SESSION_IDLE_DAYS > parsed.TRUSTED_SESSION_TTL_DAYS
+    || (parsed.NODE_ENV === 'production' && (!hasVerification || parsed.TRUST_PROXY_HOPS !== 1)))) {
+    throw new Error('Trusted user sessions require the reviewed edge verifier, bounded durations and production identity status checks');
+  }
   if (hasVerification && (verificationValues.some(value => value === undefined) || !parsed.OIDC_ISSUER_URL?.startsWith("https://"))) {
     throw new Error("Email verification requires its complete read-only Auth0 service configuration and HTTPS OIDC issuer");
   }
@@ -393,12 +403,10 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   if (hasDeletion && (deletionValues.some(value => value === undefined) || !parsed.OIDC_ISSUER_URL?.startsWith("https://"))) {
     throw new Error("Account deletion requires its complete Auth0 service configuration and HTTPS OIDC issuer");
   }
-
   if (parsed.NODE_ENV === "production" && parsed.ALLOW_FAMILY_MAINTENANCE_PREVIEW
     && (parsed.WEB_APP_ORIGIN !== "https://app.staging.rillora.xyz" || parsed.DATA_REGION !== "eu-central-1")) {
     throw new Error("Family maintenance preview is restricted to the existing synthetic staging");
   }
-
   const webOidcValues = [
     parsed.WEB_APP_ORIGIN,
     parsed.OIDC_CLIENT_ID,
@@ -412,7 +420,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   ) {
     throw new Error("Web OIDC configuration must be provided as a complete set with OIDC_ISSUER_URL");
   }
-
   let oidc: OidcConfig | null = null;
   if (configuredWebOidcValues.length === webOidcValues.length) {
     const issuer = new URL(parsed.OIDC_ISSUER_URL!);
@@ -431,7 +438,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       webAppOrigin: webOrigin,
     };
   }
-
   const nativeOidcValues = [parsed.NATIVE_OIDC_CLIENT_ID, parsed.OIDC_API_AUDIENCE];
   const configuredNativeOidcValues = nativeOidcValues.filter((value) => value !== undefined);
   if (
@@ -443,7 +449,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   if (configuredNativeOidcValues.length > 0 && !parsed.OIDC_ISSUER_URL) {
     throw new Error("Native OIDC configuration requires OIDC_ISSUER_URL");
   }
-
   let nativeOidc: NativeOidcConfig | null = null;
   if (configuredNativeOidcValues.length === nativeOidcValues.length) {
     const issuer = new URL(parsed.OIDC_ISSUER_URL!);
@@ -456,11 +461,9 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       audience: parsed.OIDC_API_AUDIENCE!,
     };
   }
-
   if (parsed.NODE_ENV === "production" && !oidc && !nativeOidc && !productionRuntimeClosed) {
     throw new Error("Production identity issuance requires Web or native OIDC configuration");
   }
-
   const stripeValues = [
     parsed.STRIPE_TEST_API_KEY,
     parsed.STRIPE_TEST_WEBHOOK_SECRET,
@@ -482,7 +485,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
   ) {
     throw new Error("Stripe test configuration must be provided as a complete set");
   }
-
   let stripeTest: StripeTestConfig | null = null;
   if (parsed.ALLOW_STRIPE_TEST_INTEGRATION) {
     const priceVersion = parsed.STRIPE_FAMILY_PRICE_VERSION ?? parsed.STRIPE_FAMILY_PLAN_VERSION;
@@ -498,7 +500,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     if (!parsed.STRIPE_TEST_WEBHOOK_SECRET!.startsWith("whsec_")) {
       throw new Error("Stripe test webhook secret must start with whsec_");
     }
-
     const webOrigin = new URL(parsed.WEB_APP_ORIGIN).origin;
     if (parsed.STRIPE_TEST_STAGING_MODE) {
       if (
@@ -547,7 +548,6 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
       portalReturnUrl,
     };
   }
-
   if (
     parsed.APPLE_ROOT_CERTIFICATE_DIRECTORY
     && !parsed.ALLOW_APPLE_SANDBOX_INTEGRATION
@@ -697,6 +697,12 @@ export function loadConfig(env: NodeJS.ProcessEnv = process.env): AppConfig {
     trustProxyHops: parsed.TRUST_PROXY_HOPS,
     sessionTtlMinutes: parsed.SESSION_TTL_MINUTES,
     sessionIdleMinutes: parsed.SESSION_IDLE_MINUTES,
+    trustedUserSessions: parsed.SESSION_EDGE_PROOF_SHA256 ? {
+      enabled: parsed.TRUSTED_USER_SESSIONS_ENABLED,
+      edgeProofSha256: parsed.SESSION_EDGE_PROOF_SHA256,
+      ttlMinutes: parsed.TRUSTED_SESSION_TTL_DAYS * 1440,
+      idleMinutes: parsed.TRUSTED_SESSION_IDLE_DAYS * 1440,
+    } : null,
     authTransactionTtlSeconds: parsed.AUTH_TRANSACTION_TTL_SECONDS,
     dataRegion: parsed.DATA_REGION,
     oidc,

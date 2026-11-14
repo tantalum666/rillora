@@ -1,0 +1,29 @@
+{
+  "at": "2026-11-06T06:14:50.628524+00:00",
+  "operationsStack": "UPDATE_COMPLETE",
+  "productionStack": "UPDATE_COMPLETE",
+  "scheduleEnabled": true,
+  "intervalMinutes": 15,
+  "livePublicHealth": {
+    "ok": true,
+    "failed": 0
+  },
+  "warningDays": 14,
+  "deadline": "2026-12-04T12:00:00Z",
+  "runtimeDeadlineMatchesMonitor": true,
+  "runtimeImageMatchesValidatedReviewFix": true,
+  "confirmedAlertSubscribers": 1,
+  "http": [
+    {
+      "path": "/api/health/ready",
+      "status": 200,
+      "cacheControl": "no-store"
+    },
+    {
+      "path": "/api/v1/session",
+      "status": 401,
+      "cacheControl": "no-store"
+    }
+  ],
+  "noDeploymentOrPolicyChange": true
+}

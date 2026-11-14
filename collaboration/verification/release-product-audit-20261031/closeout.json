@@ -1,0 +1,205 @@
+{
+  "at": "2026-10-31T00:05:24.997679+00:00",
+  "scope": "App Review continuation and whole-product release-readiness review",
+  "baseHead": "a7c7ea639be84ded001573b21aa04dbb3cf32d94",
+  "trustedMainBase": "f017648cada6d39144a88aa12b5a42d470c40e5d",
+  "reviewedSurfaceCount": 8,
+  "sourceInventoryFiles": 614,
+  "sourceInventoryIsFullLineAudit": false,
+  "copyCandidatesTriaged": 45,
+  "localValidation": {
+    "at": "2026-10-31T00:01:26.758032+00:00",
+    "focusedWeb": {
+      "tests": 23,
+      "pass": 23,
+      "fail": 0,
+      "skipped": 0
+    },
+    "allWebInitial": {
+      "tests": 220,
+      "pass": 217,
+      "fail": 3,
+      "skipped": 0
+    },
+    "correctLegalArtifact": {
+      "tests": 8,
+      "pass": 8,
+      "fail": 0,
+      "skipped": 0
+    },
+    "allWebCoverage": "212 non-legal tests passed in original full run; all8legal-worker cases passed after building their correct isolated fixture. Three earlier artifact-target failures are retained. No claim of a second220-test run.",
+    "apiBillingAndAppleBoundary": {
+      "passed": 29,
+      "failed": 0,
+      "noRealProviderCall": true
+    },
+    "browserBilling": {
+      "passed": 27,
+      "failed": 0,
+      "localIsolatedProviderFixtures": true
+    },
+    "nativeArchive": {
+      "version": "1.0",
+      "build": "16",
+      "bundle": "com.rillora.ios",
+      "customerAccess": "YES",
+      "healthPermissionPresent": false,
+      "microphonePermissionPresent": false,
+      "watchAppPresent": false,
+      "localStoreKitConfigPresent": false,
+      "priceAndPaymentLogicChangedFrom15": false,
+      "newUIChange": "Removed unavailable passkey/MFA-management roadmap footer",
+      "signatureVerified": true,
+      "checkedAt": "2026-10-30T22:01:44.565332+00:00"
+    },
+    "deployed": false,
+    "finalAvailabilityRegression": {
+      "passed": 1,
+      "notSelected": 16,
+      "providerCalls": 0,
+      "initialAdditionalFixtureFailure": "Sales-closed app fixture omitted stripeProductionConfig; guard correctly rejected it. Fixed fixture only; original failure retained."
+    },
+    "nativeInstalled": {
+      "version": "1.0(16)",
+      "inPlace": true,
+      "readbackVerified": true,
+      "loginVerified": false,
+      "sandboxPurchaseVerified": false
+    },
+    "buildArtifacts": {
+      "productionFiles": 113,
+      "previewFiles": 110,
+      "publicFiles": 66,
+      "publicPages": 28,
+      "containerImageDigest": "sha256:45bd2d47917ee5d8250c56f408d36ea4065ddd417e256bde98f03b0898aa357c"
+    }
+  },
+  "native": {
+    "at": "2026-10-30T23:51:03.570034+00:00",
+    "bundle": "com.rillora.ios",
+    "version": "1.0",
+    "build": "16",
+    "originalPairedDevice": true,
+    "inPlace": true,
+    "uninstallPerformed": false,
+    "installationVerified": true,
+    "launchAttempted": false,
+    "productLoginVerified": false,
+    "sandboxPurchaseVerified": false,
+    "initialProbeCorrection": "devicectl version is marketing version; bundleVersion is build. Existing successful device readback is16; no reinstall."
+  },
+  "publicationArtifacts": {
+    "api": {
+      "exitCode": 0,
+      "at": "2026-10-30T23:05:03.372609+00:00",
+      "context": "colima-rillora-build",
+      "image": "rillora-release-audit:20261031",
+      "hostFoldersMounted": false,
+      "published": false,
+      "localImageId": "sha256:45bd2d47917ee5d8250c56f408d36ea4065ddd417e256bde98f03b0898aa357c",
+      "architecture": "arm64",
+      "runtimeUser": "node"
+    },
+    "web": {
+      "surface": "production-client",
+      "customerAccess": "live",
+      "aiConnections": true,
+      "legacyContent": true,
+      "localTranscription": true,
+      "futureNotices": false,
+      "filesVerified": 113,
+      "manifestSha256": "9cf7ba15cded638a7cd6cfc3d35241f5b243509f7716f6473a4f55865322c310",
+      "immutableCopy": "output/release/rillora-release-product-audit-20261031/web-production",
+      "published": false
+    },
+    "preview": {
+      "filesVerified": 110,
+      "legacyContent": true,
+      "localTranscription": true,
+      "aiConnections": false,
+      "futureNotices": false,
+      "developmentIdentity": false,
+      "manifestSha256": "f439e835ddae8453141b6ccba3e2eb6a63f9d3c3e0a3911ed3c597ee9ec35262",
+      "immutableCopy": "output/release/rillora-release-product-audit-20261031/web-preview",
+      "published": false,
+      "initialPackagingFailure": "Speech preparer requires apps/web/dist*; candidate moved to supported build directory, existing pinned assets verified, then immutable publication copy created. No guard changed.",
+      "at": "2026-10-30T23:47:44.805639+00:00"
+    },
+    "www": {
+      "surface": "public-information",
+      "filesVerified": 66,
+      "pagesVerified": 28,
+      "supportPagesWithoutObsoleteTestClaim": 2,
+      "manifestSha256": "b64ea305734e0ab96296e08d57f5b4bca71a72009ff6204ca126b014cd5a48bc",
+      "immutableCopy": "output/release/rillora-release-product-audit-20261031/www",
+      "published": false,
+      "priorProbeCorrection": "English canonical route is /en/support, not /support; original count assertion failed before this correction. Artifact unchanged.",
+      "at": "2026-10-30T23:47:19.575311+00:00"
+    }
+  },
+  "releasePreflight": {
+    "checkedAt": "2026-10-31T00:01:54.054843+00:00",
+    "preflightPassed": false,
+    "publicationApproval": false,
+    "gateBlockers": [
+      "production-billing: in_progress",
+      "apple-transactions: in_progress",
+      "apple-submission: in_progress",
+      "physical-device: in_progress",
+      "public-surface: in_progress"
+    ],
+    "nativeArtifactBlockers": [],
+    "sourceInventory": {
+      "nativeReleaseFieldsConfigured": {
+        "RILLORA_API_BASE_URL": true,
+        "RILLORA_AUTH0_DOMAIN": true,
+        "RILLORA_AUTH0_CLIENT_ID": true,
+        "RILLORA_AUTH0_AUDIENCE": true,
+        "RILLORA_NATIVE_SESSION_URL": true
+      },
+      "mainAppIconConfigured": true,
+      "stripeTestAdapterRejectsLiveObjects": true,
+      "stripeProductionAdapterSourcePresent": true,
+      "productionPurchaseConsentSourcePresent": true,
+      "appleProductionVerificationSourcePresent": true,
+      "appleProductionPriceBindingsSourcePresent": true,
+      "productionInfrastructureSourcePresent": true,
+      "note": "Source inventory only. A present value/file does not prove deployment or release acceptance."
+    },
+    "evidenceLimit": "Local preflight is not provider approval, deployment, App Review or legal clearance."
+  },
+  "providerPasswordChanged": false,
+  "nativePurchaseAttemptsThisResume": 0,
+  "liveFinancialTransactions": 0,
+  "cloudDeployed": false,
+  "appleUploaded": false,
+  "appleResubmitted": false,
+  "testFlightDistributed": false,
+  "realDataOrPricesOrSalesFlagsChanged": false,
+  "fanPassTouched": false,
+  "subagentsUsed": false,
+  "cloudCiStarted": false,
+  "originalTestDatabasesPreserved": true,
+  "migrationSourceChanged": false,
+  "dockerDefaultContextChanged": false,
+  "isolatedBuildVmStopped": true,
+  "pendingAuthentication": [
+    "Mac user presence for protected reviewer credential and mirror",
+    "AWS rillora-operator MFA; CLI wait expired, reuse browser recovery in new CLI flow",
+    "Original Rillora Stripe dashboard sign-in"
+  ],
+  "gitState": "Ready for initial source/artifact commit; immutable remote verification follows separately",
+  "documents": {
+    "focused": [
+      "docs/release-product-audit-20261031.md",
+      "docs/production-commerce-20260926.md",
+      "docs/plan-purchase-page-20261013.md",
+      "docs/app-review-sandbox-acceptance-20261031.md",
+      "docs/release-readiness.md"
+    ],
+    "decision": "Owner resume and product-readiness scope appended; no new pricing/permissions decision",
+    "handoff": "docs/handoff.md",
+    "journey": "docs/journey/PROJECT_JOURNEY.md"
+  },
+  "boundary": "Local repair/build/device-install evidence is not current native login, actual Sandbox purchase/expiry, cloud rollout, provider approval or launch."
+}

@@ -1,0 +1,32 @@
+
+> continuity-api@0.1.0 test
+> vitest run tests/email-verification.test.ts -t uses supported profile projections
+
+
+ RUN  v4.1.12 /Users/tantalum/Documents/电子遗嘱app/apps/api
+
+ ❯ tests/email-verification.test.ts (14 tests | 1 failed | 13 skipped) 7ms
+     × uses supported profile projections while retaining password-reset proof and excluding unrelated user data 6ms
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 13 skipped (14)
+   Start at  03:43:44
+   Duration  396ms (transform 81ms, setup 41ms, import 220ms, tests 7ms, environment 0ms)
+
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  tests/email-verification.test.ts > Current-session email proof > uses supported profile projections while retaining password-reset proof and excluding unrelated user data
+Error: email_verification_unavailable
+ ❯ Auth0EmailIdentityVerifier.readProfile src/email-verification.ts:66:13
+     64|       await response.body?.cancel().catch(() => {});
+     65|       if (response.status === 404 && allowMissing) return null;
+     66|       throw new Error("email_verification_unavailable");
+       |             ^
+     67|     }
+     68|     const profile = await readIdentityJson(response);
+ ❯ Auth0EmailIdentityVerifier.securityStatus src/email-verification.ts:39:21
+ ❯ tests/email-verification.test.ts:81:12
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+

@@ -1,7 +1,9 @@
 import { en as learningEn, zhCN as learningZhCN } from './publicLearning.js';
+import { en as practicalEn, zhCN as practicalZhCN } from './publicPractical.js';
 // Original public education and product facts. No private platform-guide bodies.
 export const en = {
   ...learningEn,
+  ...practicalEn,
   "public.seo.homeTitle": "Rillora — A private map for your digital legacy",
   "public.seo.home": "Organise your digital legacy with Rillora: map important accounts, documents and next steps, and choose what to share with people you trust. No passwords or seed phrases.",
   "public.seo.product": "See how Rillora organises digital matters, document locations and wishes into a private map, with selected information shared through a secure Web entry.",
@@ -12,7 +14,7 @@ export const en = {
   "public.seo.notices": "Read the third-party software, font and design licence notices included with Rillora.",
   "public.seo.learn": "Understand digital legacy planning, build a useful family inventory, share selected information safely, compare tools and review Apple and Google account arrangements.",
   "public.learn.title": "Digital legacy resources — Rillora",
-  "public.learn.heading": "Make a useful starting point",
+  "public.learn.heading": "Digital legacy planning guides",
   "public.learn.intro": "Start with what someone would need to find, understand and check. You can build a useful map without collecting your secrets in one place.",
   "public.learn.link": "Digital legacy resources",
   "public.learn.back": "All resources",
@@ -45,6 +47,7 @@ export const en = {
 
 export const zhCN = {
   ...learningZhCN,
+  ...practicalZhCN,
   "public.seo.homeTitle": "Rillora — 私密的数字遗产事项地图",
   "public.seo.home": "用 Rillora 整理数字遗产与重要事务：记录账号、文件位置和下一步，并选择与信任的人共享哪些资料。不保存密码或助记词。",
   "public.seo.product": "了解 Rillora 如何把数字事务、文件位置与处理意愿整理成私密事项地图，并让接收人通过安全的网页入口查看选定资料。",
@@ -55,7 +58,7 @@ export const zhCN = {
   "public.seo.notices": "查看 Rillora 使用的软件、字体与设计素材的第三方许可声明。",
   "public.seo.learn": "了解数字遗产，准备家人能用的事务清单，安全地共享选定资料，比较整理工具，并核对苹果与谷歌的账号安排。",
   "public.learn.title": "数字遗产整理方法 — Rillora",
-  "public.learn.heading": "让关心你的人知道从哪里开始",
+  "public.learn.heading": "数字遗产整理指南",
   "public.learn.intro": "先想清楚对方需要找到什么、理解什么、核对什么。整理一份有用的事项地图，不需要把所有秘密集中存放。",
   "public.learn.link": "数字遗产整理方法",
   "public.learn.back": "全部整理方法",

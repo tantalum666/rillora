@@ -1,4 +1,7 @@
 import SwiftUI
+#if RILLORA_CHECKIN_NEXT_VERSION
+import RilloraCheckInKit
+#endif
 
 struct AppShellView: View {
     let store: OverviewStore
@@ -30,6 +33,9 @@ struct AppShellView: View {
     @State private var showsApplePurchase = false
     @AppStorage(AppAppearance.storageKey) private var appearanceValue = AppAppearance.system.rawValue
     @Environment(\.colorScheme) private var colorScheme
+    #if RILLORA_CHECKIN_NEXT_VERSION
+    @Environment(CheckInPhoneStore.self) private var checkInStore
+    #endif
 
     var body: some View {
         if commerceStore.storeKitSandboxCatalogTestingEnabled {
@@ -119,6 +125,20 @@ struct AppShellView: View {
             .tag(AppTab.profile)
         }
         .tint(RilloraTheme.tabSelection)
+        #if RILLORA_CHECKIN_NEXT_VERSION
+        .onChange(of: store.state, initial: true) { _, state in
+            switch state {
+            case .loaded(let snapshot): Task { await checkInStore.activate(accountID: snapshot.session.plannerPublicId) }
+            case .signedOut: checkInStore.deactivate()
+            default: checkInStore.temporarilyUnavailable()
+            }
+        }
+        .sheet(isPresented: Binding(get: { checkInStore.showReminder }, set: { checkInStore.showReminder = $0 })) {
+            NavigationStack { CheckInPhoneView(store: checkInStore).toolbar {
+                ToolbarItem(placement: .cancellationAction) { Button("Close") { checkInStore.showReminder = false } }
+            } }
+        }
+        #endif
         .toolbarBackground(
             RilloraTheme.graphiteSurface,
             for: .tabBar

@@ -1,0 +1,155 @@
+{
+  "accountPlan": "PAID",
+  "status": "ACTIVE",
+  "remainingCreditUSD": 0,
+  "currentMonthUsage": [
+    {
+      "service": "AWS Lambda",
+      "usageType": "Lambda-GB-Second",
+      "actualUsageAmount": 183.329375,
+      "limit": 400000.0,
+      "unit": "Lambda-GB-Second",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AWS Lambda",
+      "usageType": "Request",
+      "actualUsageAmount": 518.0,
+      "limit": 1000000.0,
+      "unit": "Request",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon CloudFront",
+      "usageType": "DataTransfer-Out-Bytes",
+      "actualUsageAmount": 0.01819515,
+      "limit": 1024.0,
+      "unit": "GB",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon CloudFront",
+      "usageType": "Requests-Tier1",
+      "actualUsageAmount": 6124.0,
+      "limit": 10000000.0,
+      "unit": "Requests",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon CloudFront",
+      "usageType": "Executions-CloudFrontFunctions",
+      "actualUsageAmount": 5477.0,
+      "limit": 2000000.0,
+      "unit": "FunctionExecutions",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usageType": "CW:AlarmMonitorUsage",
+      "actualUsageAmount": 1.92500028,
+      "limit": 10.0,
+      "unit": "Alarms",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usageType": "CW:MetricMonitorUsage",
+      "actualUsageAmount": 10.0,
+      "limit": 10.0,
+      "unit": "Metrics",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usageType": "CW:Requests",
+      "actualUsageAmount": 5.0,
+      "limit": 1000000.0,
+      "unit": "Requests",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usageType": "TimedStorage-ByteHrs",
+      "actualUsageAmount": 0.02180801,
+      "limit": 5.0,
+      "unit": "GB-Mo",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AmazonCloudWatch",
+      "usageType": "DataProcessing-Bytes",
+      "actualUsageAmount": 0.08135699,
+      "limit": 5.0,
+      "unit": "GB",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon DynamoDB",
+      "usageType": "EUC1-TimedStorage-ByteHrs",
+      "actualUsageAmount": 6e-07,
+      "limit": 25.0,
+      "unit": "GB-Mo",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon Simple Notification Service",
+      "usageType": "EUC1-DeliveryAttempts-SMTP",
+      "actualUsageAmount": 2.0,
+      "limit": 1000.0,
+      "unit": "Notifications",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "Amazon Simple Notification Service",
+      "usageType": "EUC1-Requests-Tier1",
+      "actualUsageAmount": 2.0,
+      "limit": 1000000.0,
+      "unit": "Requests",
+      "freeTierType": "Always Free"
+    },
+    {
+      "service": "AWS Key Management Service",
+      "usageType": "KMS-Requests",
+      "actualUsageAmount": 1270.0,
+      "limit": 20000.0,
+      "unit": "Requests",
+      "freeTierType": "Always Free"
+    }
+  ],
+  "activities": [
+    {
+      "title": "Launch an instance using EC2",
+      "status": "NOT_STARTED",
+      "rewardUSD": 20.0
+    },
+    {
+      "title": "Use a foundation model in the Amazon Bedrock playground",
+      "status": "NOT_STARTED",
+      "rewardUSD": 20.0
+    },
+    {
+      "title": "Create a web app using AWS Lambda",
+      "status": "COMPLETED",
+      "rewardUSD": 20.0
+    },
+    {
+      "title": "Create an Aurora or RDS database",
+      "status": "COMPLETED",
+      "rewardUSD": 20.0
+    },
+    {
+      "title": "Set up a cost budget using AWS Budgets",
+      "status": "COMPLETED",
+      "rewardUSD": 20.0
+    }
+  ],
+  "remainingActivityCompletionDeadline": "2027-02-11",
+  "newCreditAwarded": false,
+  "activateSubmitted": false,
+  "activateAwarded": false,
+  "ownerConfirmedFacts": [
+    "self-funded",
+    "unincorporated"
+  ],
+  "priorActivateAward": "not yet verified"
+}

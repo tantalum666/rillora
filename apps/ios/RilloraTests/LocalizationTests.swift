@@ -39,9 +39,44 @@ final class LocalizationTests: XCTestCase {
         XCTAssertEqual(message, "暂时无法完成此操作，请重试。")
     }
 
+    func testChinesePurchaseConflictsRemainActionableWithoutEchoingServerText() throws {
+        let bundle = try resourceBundle("zh-Hans")
+        let messages = [
+            "purchase_terms_changed": "价格或订阅条款已变化。请刷新报价；如有待处理购买，请先核对。",
+            "purchase_account_changed": "当前账号已变化。请返回套餐页重新核对后再订阅。",
+            "apple_purchase_in_progress": "有一笔 Apple 购买尚未确认完成。请先检查待处理购买。",
+            "apple_purchase_owner_conflict": "这笔 Apple 购买关联的是另一个 Rillora 账号。请登录当时购买时使用的 Rillora 账号。",
+            "checkout_finished": "这笔购买已处理完毕。请刷新套餐与权限。",
+        ]
+        for (code, expected) in messages {
+            XCTAssertEqual(L10n.serverError(status: 409, code: code,
+                message: "PRIVATE SERVER TEXT", bundle: bundle), expected, code)
+        }
+    }
+
     func testEnglishServerMessageContractIsPreserved() throws {
         let bundle = try resourceBundle("en")
         XCTAssertEqual(L10n.serverError(status: 401, code: "authentication_required", message: "Authentication is required.", bundle: bundle), "Authentication is required.")
+    }
+
+    func testEnglishPurchaseConflictDoesNotSendTheUserToReadALegalPage() throws {
+        let bundle = try resourceBundle("en")
+        XCTAssertEqual(L10n.serverError(status: 409, code: "purchase_terms_changed",
+            message: "Review the current subscription terms.", bundle: bundle),
+            "The price or subscription terms changed. Refresh the price and check any pending purchase.")
+    }
+
+    func testReviewAccessRejectionDoesNotExposeInternalTestingCopy() throws {
+        let error = RilloraAPIError.server(status: 403, code: "apple_review_not_enrolled",
+            message: "This account is not enrolled for Apple purchase testing.", requestID: nil)
+        XCTAssertFalse(error.isAuthenticationRequired)
+        XCTAssertFalse(error.isReauthenticationRequired)
+        XCTAssertEqual(L10n.serverError(status: 403, code: "apple_review_not_enrolled",
+            message: "This account is not enrolled for Apple purchase testing.", bundle: try resourceBundle("en")),
+            "Apple purchases are not available for this account. Contact support for help.")
+        XCTAssertEqual(L10n.serverError(status: 403, code: "apple_review_not_enrolled",
+            message: "PRIVATE SERVER TEXT", bundle: try resourceBundle("zh-Hans")),
+            "当前账号无法使用 Apple 购买。请联系支持获取帮助。")
     }
 
     func testFormattedPrivateValueIsNotAKeyOrFormatString() throws {

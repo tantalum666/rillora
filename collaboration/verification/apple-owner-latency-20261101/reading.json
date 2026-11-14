@@ -1,0 +1,43 @@
+{
+  "at": "2026-10-31T15:08:02.676746+00:00",
+  "continuationOf": [
+    "output/qa/rillora-release-product-audit-20261031/reading.json",
+    "output/qa/rillora-release-rollout-20261031/reading.json"
+  ],
+  "ownerRequest": "Investigate account ownership warning and30-60second wait on buy/pending checks; repair without moving existing subscriptions",
+  "sourceHead": "1a54ed906c7f66672dbcaba5347aed62c63292b8",
+  "readRanges": [
+    "docs/product.md latest65lines; retained locked foundation",
+    "docs/handoff.md full",
+    "docs/decision-log.md latest35lines",
+    "docs/storekit.md1-84; remaining dated contract retained",
+    "docs/apple-plan-restore-20261007.md full",
+    "ApplePurchaseCoordinator.swift full",
+    "ApplePurchaseSection.swift full",
+    "StoreKitClient.swift1-245,310-435; supplemented ranges follow",
+    "ApplePurchaseCoordinatorTests.swift1-620 with retained final mock supplement",
+    "apple-production-routes.ts full",
+    "apple-purchase-preflight.ts full"
+  ],
+  "constraints": [
+    "No re-submission/TestFlight",
+    "No account transfer, history deletion, fabricated grant or price switch",
+    "No mirrored phone interaction; Owner controls phone",
+    "Local tests only; no subagents"
+  ],
+  "continuedThrough": "2026-10-31T16:23:38.506679+00:00",
+  "supplementReadRanges": [
+    "AGENTS.md full after compaction",
+    "docs/product.md latest sections and locked foundation535-645; task authority retained",
+    "docs/handoff.md full",
+    "docs/decision-log.md3880-3904 plus current append",
+    "docs/storekit.md1-44,125-165; retained prior full read",
+    "all changed native implementation and test diff; coordinator full",
+    "docs/release-product-audit-20261031.md full",
+    "docs/release-readiness.md current sections1-34; dated body retained",
+    "docs/source-control.md current1-78 and retained archive workflow",
+    "collaboration/README.md current1-18 and preservation159-229",
+    "tools/ci/README.md full",
+    "selected prior preservation/remote helper scripts full"
+  ]
+}

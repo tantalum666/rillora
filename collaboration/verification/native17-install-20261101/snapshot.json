@@ -1,0 +1,96 @@
+{
+  "capturedFrom": "2026-10-31T20:48:23.401812+00:00",
+  "capturedThrough": "2026-10-31T20:48:24.092915+00:00",
+  "workFiles": 728,
+  "uniqueRawObjects": 412,
+  "workBytes": 7088777,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-059.tar.zst.age",
+      "sha256": "71be986eff97a1ec940f9969baab615109eebbc3a98bb58386100792b33f42a8",
+      "bytes": 953549,
+      "plainBytes": 5278677,
+      "uniqueObjects": 412
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/native17-install-20261101/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-058",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-localization-test-publication",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/publication",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-order-inspection-test-publication",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-localization-test-corrected",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-ledger-inspection-test-publication",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-ledger-corrected-publication",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/pre-final-localization-test-publication",
+      "reason": "derived trusted policy/candidate scan materialization; result receipts retained separately"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/archive-seal.log",
+      "reason": "capture-time output; final readable receipt follows without resealing"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/preserve-acceptance-work.py",
+      "reason": "capturing helper is preserved separately as a readable reference after capture"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/preservation-plan.json",
+      "reason": "derived selection receipt regenerated after file capture plan"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/post-request-summary.json",
+      "reason": "unattributed raw request identifiers; safe aggregate retained"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [
+    {
+      "path": "output/qa/rillora-native17-install-20261101/operator-image-context/src/config.ts",
+      "sha256": "b86f5ba2fee9b3e329f18a4971ae64529d1c06cee93fa0cc5138c547e44183ec",
+      "source": "HEAD:apps/api/src/config.ts",
+      "reason": "Exact tracked validation literal, not private key material; only scan copy classified",
+      "sourceCommit": "23a7c012d8b17f50db7cdc03582ae4805f09ae67"
+    },
+    {
+      "path": "output/qa/rillora-native17-install-20261101/operator-ledger-image-context/src/config.ts",
+      "sha256": "b86f5ba2fee9b3e329f18a4971ae64529d1c06cee93fa0cc5138c547e44183ec",
+      "source": "HEAD:apps/api/src/config.ts",
+      "reason": "Exact tracked validation literal, not private key material; only scan copy classified",
+      "sourceCommit": "23a7c012d8b17f50db7cdc03582ae4805f09ae67"
+    }
+  ],
+  "selection": "This workflow install/manual/provider-result receipts, original failed/passed API and native checks, result bundles, both immutable maintenance-image input snapshots, build/publish/deployment/verification helpers and safe cloud summaries. Previous native17 signed artifacts remain in archive58. Final receipts follow capture.",
+  "boundary": "No credentials, private authentication/device/provider bodies, database backups, VM disks, dependency/build caches or prior archive download. Actual Sandbox purchase and restore are verified; cancellation/expiry and final resubmission remain separate. Old1-58unchanged."
+}

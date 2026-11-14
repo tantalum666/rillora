@@ -1,0 +1,65 @@
+{
+  "capturedFrom": "2026-10-31T16:23:38.683041+00:00",
+  "capturedThrough": "2026-10-31T16:23:42.997599+00:00",
+  "workFiles": 1164,
+  "uniqueRawObjects": 663,
+  "workBytes": 138089945,
+  "archives": [
+    {
+      "path": "collaboration/archives/raw-work-058.tar.zst.age",
+      "sha256": "1684f0ba93d323cfb95f8a4685bbed0aa119db3310dbc4ec2de191e94aeef808",
+      "bytes": 45379030,
+      "plainBytes": 126123490,
+      "uniqueObjects": 663
+    }
+  ],
+  "catalogFiles": [
+    "collaboration/verification/apple-owner-latency-20261101/catalog.json"
+  ],
+  "excluded": [
+    {
+      "path": "archives001-057",
+      "reason": "immutable prior work; not resealed or downloaded"
+    },
+    {
+      "path": ".local-secrets",
+      "reason": "credentials, personal auth state, actual private provider bodies and maintenance capabilities"
+    },
+    {
+      "path": "DerivedData, dependency caches, machine-wide crash reports",
+      "reason": "reproducible or machine-private; only task-specific source, local test result bundles and signed release candidates are selected"
+    },
+    {
+      "path": "output/qa/rillora-apple-owner-latency-20261031/before-tests-publication",
+      "reason": "duplicate trusted policy/candidate scan materialization"
+    },
+    {
+      "path": "output/qa/rillora-apple-owner-latency-20261031/expired-history-publication",
+      "reason": "duplicate trusted policy/candidate scan materialization"
+    },
+    {
+      "path": "output/qa/rillora-apple-owner-latency-20261031/fix-publication",
+      "reason": "duplicate trusted policy/candidate scan materialization"
+    },
+    {
+      "path": "output/qa/rillora-apple-owner-latency-20261031/session-fix-publication",
+      "reason": "duplicate trusted policy/candidate scan materialization"
+    },
+    {
+      "path": "output/qa/rillora-apple-owner-latency-20261031/preservation-plan.json",
+      "reason": "derived selection receipt regenerated after file capture plan"
+    },
+    {
+      "path": "output/release/rillora-apple-owner-latency-20261101/development-extracted",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    },
+    {
+      "path": "output/release/rillora-apple-owner-latency-20261101-r2/development-extracted",
+      "reason": "duplicate publication/extracted app cache or personal authentication"
+    }
+  ],
+  "credentialPatternMatches": 0,
+  "publicFormatMarkerReviews": [],
+  "selection": "October31 rollout receipts and public/synthetic screenshots; native ownership repair failed/passed tests and original result bundles; isolated17 intermediate and final-r2 source/archive/development exports. Device-bound profiles remain encrypted-only. Generated duplicates, private raw provider/auth state and caches excluded.",
+  "boundary": "No credentials, database backups, raw device/provider/authentication state, whole-desktop captures, VM disks or dependencies. API and Web deployedOctober31;17prepared but not installed at capture. Native real payment still pending; no TestFlight or resubmission. Old1-57unchanged; safe final receipts ordinary Git."
+}

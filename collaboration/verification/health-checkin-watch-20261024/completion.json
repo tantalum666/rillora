@@ -1,0 +1,17 @@
+{
+  "completedAt": "2026-10-23T19:35:43.695376+00:00",
+  "sourceCommit": "95ba3923614610ae5d41372b56d0bd71782d26cc",
+  "branch": "codex/health-checkin-watch-20261024",
+  "pullRequest": "https://github.com/tantalum666/rillora/pull/10",
+  "requestedSourceAndLocalAcceptanceComplete": true,
+  "remoteSourceAndNewArchiveVerified": true,
+  "newArchive": 53,
+  "remoteObjects": 508,
+  "remotePaths": 751,
+  "cloudRunCount": 314,
+  "newSourceHeadCloudRuns": 0,
+  "merge": "PR10 is open and conflict-free; no main merge or current review/deployment implied.",
+  "tests": "Exact scopes in closeout.json and local-source-checks.json. Metadata-only follow-up reuses the validated runtime bytes and scans the full readable manifest again.",
+  "review": "Six original review files identical to base; no current App Store materials/binary update, live deployment, TestFlight, physical installation or toolchain upgrade.",
+  "remaining": "Physical HealthKit/Watch/background/battery/hardware/complication and future store gates; prior Duo landscape and content/voice gaps remain separate."
+}
